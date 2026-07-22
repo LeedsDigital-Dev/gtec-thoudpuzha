@@ -31,6 +31,10 @@ vi.mock("next-intl", async () => {
   };
 });
 
+vi.mock("@/components/shared/FlashNewsBar", () => ({
+  FlashNewsBar: () => null,
+}));
+
 vi.mock("@/lib/i18n/navigation", () => ({
   usePathname: vi.fn(() => "/"),
   Link: ({

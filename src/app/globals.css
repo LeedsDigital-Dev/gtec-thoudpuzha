@@ -128,3 +128,15 @@
     @apply font-sans;
   }
 }
+.flash-marquee {
+  animation: flash-marquee 30s linear infinite;
+}
+
+@keyframes flash-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

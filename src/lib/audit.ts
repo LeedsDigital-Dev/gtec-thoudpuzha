@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
+import type { Prisma } from "@prisma/client";
 
 interface LogAdminActionInput {
   actorUserId: string;
@@ -26,7 +27,7 @@ export async function logAdminAction({
         action,
         entityType,
         entityId,
-        metadata: metadata ?? null,
+        metadata: metadata as Prisma.InputJsonValue | undefined,
       },
     });
   } catch (error) {

@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import { Header } from "./Header";
 import PublicLayout from "@/app/[locale]/(public)/layout";
 import PortalLayout from "@/app/[locale]/(portal)/layout";
@@ -77,8 +77,9 @@ describe("Header", () => {
     ).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByLabelText("Open menu"));
-    expect(screen.getByLabelText("Mobile navigation")).toBeInTheDocument();
-    expect(screen.getByText("Resources")).toBeInTheDocument();
+    const mobileNav = screen.getByLabelText("Mobile navigation");
+    expect(mobileNav).toBeInTheDocument();
+    expect(within(mobileNav).getByText("Resources")).toBeInTheDocument();
 
     fireEvent.click(screen.getByLabelText("Close menu"));
     expect(

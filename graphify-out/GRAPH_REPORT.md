@@ -1,16 +1,16 @@
-# Graph Report - gtec-thoudpuzha  (2026-07-22)
+# Graph Report - gtec-thoudpuzha  (2026-07-23)
 
 ## Corpus Check
-- 46 files · ~4,945 words
+- 49 files · ~5,655 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 237 nodes · 236 edges · 32 communities (25 shown, 7 thin omitted)
+- 243 nodes · 247 edges · 33 communities (26 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dd8b9ee7`
+- Built from commit: `560397c2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,6 +32,7 @@
 - postcss.config.mjs
 - taste.md
 - tailwind
+- Header.tsx
 - (public)/page.tsx
 - clerk.d.ts
 - audit.test.ts
@@ -45,8 +46,8 @@
 6. `aliases` - 6 edges
 7. `Role` - 5 edges
 8. `handleRouteProtection()` - 5 edges
-9. `LanguageSwitcher()` - 4 edges
-10. `routing` - 4 edges
+9. `routing` - 4 edges
+10. `lib` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `LogAdminActionInput` --references--> `Role`  [EXTRACTED]
@@ -59,7 +60,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (32 total, 7 thin omitted)
+## Communities (33 total, 7 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.06
@@ -90,7 +91,7 @@ Cohesion: 0.22
 Nodes (8): Deployment, Environment Variables, Getting Started, GTEC Thodupuzha, License, Prerequisites, Project Structure, Scripts
 
 ### Community 7 - "smoke.test.tsx"
-Cohesion: 0.21
+Cohesion: 0.24
 Nodes (6): buildLocalePath(), LanguageSwitcher(), mockAuth, mockAuthResult, mockClerkMiddleware, mockCreateRouteMatcher
 
 ### Community 8 - "aliases"
@@ -109,12 +110,16 @@ Nodes (3): Button(), buttonVariants, cn()
 Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
+### Community 22 - "Header.tsx"
+Cohesion: 0.50
+Nodes (4): PublicLayout(), Header(), navItems, siteConfig
+
 ### Community 33 - "audit.test.ts"
 Cohesion: 0.20
 Nodes (11): AuditLogPage(), AuditLogPageProps, logAdminAction(), LogAdminActionInput, requireRole(), Role, globalForPrisma, mockAuth (+3 more)
 
 ## Knowledge Gaps
-- **123 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+118 more)
+- **124 isolated node(s):** `Taste (Continuously Learned by [CommandCode][cmd])`, `workflow`, `navItems`, `$schema`, `style` (+119 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -122,11 +127,11 @@ Nodes (11): AuditLogPage(), AuditLogPageProps, logAdminAction(), LogAdminActionI
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+  _High betweenness centrality (0.065) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
-- **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _123 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+- **What connects `Taste (Continuously Learned by [CommandCode][cmd])`, `workflow`, `navItems` to the rest of the system?**
+  _124 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GTEC Thodupuzha
+
+Multi-tenant web platform for GTEC Thodupuzha: a public marketing site, student portal, job portal, and admin system.
+
+Built with [Next.js](https://nextjs.org/) (App Router), TypeScript, Tailwind CSS, and shadcn/ui.
+
+## Prerequisites
+
+- Node.js >= 20.9 (see `.nvmrc`)
+- npm
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Description |
+|---|---|
+| `npm run dev` | Start development server (Turbopack) |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run Vitest tests |
+| `npm run format` | Format code with Prettier |
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local` and fill in the values:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See `.env.example` for the full list of required variables. Up-to-date descriptions of each variable are maintained in `AGENTS.md`.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/
+│   ├── (public)/      # Public marketing site routes
+│   ├── (portal)/      # Student & Employer portal routes (auth required)
+│   └── (admin)/       # Admin routes (Super Admin & Centre Staff)
+├── components/
+│   └── ui/            # shadcn/ui components
+├── lib/
+│   └── utils.ts       # shadcn/ui utility
+└── __tests__/         # Vitest smoke tests
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Connected to Vercel — pushes to `main` deploy automatically. Preview deployments are created on PRs.
+
+## License
+
+Private — GTEC Thodupuzha.

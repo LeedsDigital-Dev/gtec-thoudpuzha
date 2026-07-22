@@ -1,4 +1,4 @@
-import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
+import { Header } from "@/components/shared/Header";
 
 export default function PublicLayout({
   children,
@@ -7,11 +7,7 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <header className="border-b p-4">
-        <nav className="flex items-center justify-end">
-          <LanguageSwitcher />
-        </nav>
-      </header>
+      <Header />
       {children}
     </>
   );

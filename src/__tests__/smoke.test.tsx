@@ -6,8 +6,10 @@ test("homepage renders without throwing", () => {
   expect(() => renderToString(<HomePage />)).not.toThrow();
 });
 
-test("(public) route group renders placeholder text", () => {
+test("(public) homepage renders hero and enquiry form", () => {
   const html = renderToString(<HomePage />);
-  expect(html).toContain("GTEC Thodupuzha");
-  expect(html).toContain("Coming soon");
+  expect(html).toContain("Build Your Career With G-TEC Thodupuzha");
+  expect(html).toContain("Apply Now");
+  expect(html).toContain("Full name");
+  expect(html).toContain("Phone number");
 });

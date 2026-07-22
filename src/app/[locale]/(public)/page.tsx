@@ -1,14 +1,15 @@
+import { HeroSection } from "@/components/shared/HeroSection";
+import { EnquiryForm } from "@/components/shared/EnquiryForm";
+
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4">
-      <h1 className="text-3xl font-semibold">GTEC Thodupuzha — Coming soon</h1>
-      <section
-        id="enquiry"
-        className="mt-12 w-full max-w-2xl rounded-lg border p-6"
-      >
-        <h2 className="text-xl font-semibold">Apply Now</h2>
-        <p className="text-muted-foreground">Enquiry form coming soon.</p>
-      </section>
-    </div>
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
+        <HeroSection />
+        <section id="enquiry" className="lg:sticky lg:top-24">
+          <EnquiryForm source="homepage-hero" />
+        </section>
+      </div>
+    </main>
   );
 }

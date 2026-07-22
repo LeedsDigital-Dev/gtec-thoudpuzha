@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "[ML] Home",
+    "courses": "[ML] Courses"
+  },
+  "common": {
+    "loading": "[ML] Loading",
+    "submit": "[ML] Submit"
+  }
+}

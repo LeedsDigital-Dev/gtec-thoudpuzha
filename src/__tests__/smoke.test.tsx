@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { renderToString } from "react-dom/server";
-import HomePage from "@/app/(public)/page";
+import HomePage from "@/app/[locale]/(public)/page";
 
 test("homepage renders without throwing", () => {
   expect(() => renderToString(<HomePage />)).not.toThrow();

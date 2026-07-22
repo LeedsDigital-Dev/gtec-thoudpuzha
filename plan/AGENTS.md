@@ -144,3 +144,22 @@ missed optimization.
 ## Super Admin Seeding (v1)
 
 The single v1 Super Admin account is seeded manually via the Clerk dashboard (`publicMetadata.role = SUPER_ADMIN`). There is no in-app Super Admin creation flow until Sprint 9.
+
+## Manual Prerequisite Check (rule 10)
+
+Before starting work on any task, check its Manual Prerequisites section against two sources:
+
+1. **Credentials**: for each required env var, run `echo $VAR_NAME` — if it's empty OR literally
+   equals `REPLACE_ME`, the credential hasn't been provided yet. Do not attempt work that
+   depends on it, do not fabricate a fake value to keep going. Stop, write to
+   `plan/blockers.md` under a `## <task-id> waiting on credential` heading naming exactly which
+   env var is missing, mark the task `blocked` in `task-graph.json`, and move to a different
+   eligible task if one exists.
+2. **Content**: check `plan/manual-content.md` for any unchecked item this task's own Manual
+   Prerequisites list references. If unchecked, same as above — stop, log to blockers.md under
+   `## <task-id> waiting on content`, naming the specific unchecked item, don't invent
+   placeholder content to substitute for it.
+
+This is a different situation from a real failure (wrong code, failing test) — label it clearly
+as "waiting on you," not "blocked," in the blockers.md entry, so it's obvious at a glance which
+blockers need your input vs. which need debugging.

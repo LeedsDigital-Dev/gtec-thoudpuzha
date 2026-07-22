@@ -1,0 +1,887 @@
+{
+  "sprints": {
+    "s00": "Sprint 0 - Foundation & Environment",
+    "s01": "Sprint 1 - Public Marketing Site Core",
+    "s02": "Sprint 2 - Courses Module",
+    "s03": "Sprint 3 - Content Modules",
+    "s04": "Sprint 4 - Auth & Account System",
+    "s05": "Sprint 5 - Student Biodata / Candidate Profile",
+    "s06": "Sprint 6 - Student Portal: Academic Resources",
+    "s07": "Sprint 7 - Employer Registration & Vacancy Posting",
+    "s08": "Sprint 8 - Job Portal & Candidate Search",
+    "s09": "Sprint 9 - Admin Staff & Permissions",
+    "s10": "Sprint 10 - Bilingual (EN/ML) Rollout",
+    "s11": "Sprint 11 - Hardening, Cross-Browser/Mobile QA & Security Review",
+    "s12": "Sprint 12 - UAT & Launch"
+  },
+  "tasks": [
+    {
+      "id": "s00-t1",
+      "file": "tasks/s00-t1-nextjs-scaffold.md",
+      "title": "Set up Next.js + TypeScript scaffold with CI deploy to Vercel/Cloudflare Pages",
+      "sprint": "s00",
+      "epic": "Foundation & Infra",
+      "track": "Infra/DevOps",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [],
+      "model": "cheap"
+    },
+    {
+      "id": "s00-t2",
+      "file": "tasks/s00-t2-clerk-auth.md",
+      "title": "Integrate Clerk auth with role-based session claims (Student/Job Seeker/Employer/Centre Staff/Super Admin)",
+      "sprint": "s00",
+      "epic": "Foundation & Infra",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t1"
+      ],
+      "model": "premium",
+      "model_reason": "Auth foundation \u2014 Clerk role model every later access-control decision builds on."
+    },
+    {
+      "id": "s00-t3",
+      "file": "tasks/s00-t3-prisma-schema.md",
+      "title": "Provision Neon + Prisma schema for User/Role/Course/CandidateProfile base models",
+      "sprint": "s00",
+      "epic": "Foundation & Infra",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 8,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t1"
+      ],
+      "model": "premium",
+      "model_reason": "Foundational schema \u2014 mistakes here cascade through every later sprint's ALTERs."
+    },
+    {
+      "id": "s00-t4",
+      "file": "tasks/s00-t4-i18n-scaffold.md",
+      "title": "Scaffold next-intl routing structure (EN/ML) and base dictionary files",
+      "sprint": "s00",
+      "epic": "Foundation & Infra",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t1",
+        "s00-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s00-t5",
+      "file": "tasks/s00-t5-audit-log.md",
+      "title": "Build audit-log service skeleton for admin actions",
+      "sprint": "s00",
+      "epic": "Foundation & Infra",
+      "track": "Backend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t1",
+      "file": "tasks/s01-t1-header-nav.md",
+      "title": "Build sticky header/nav with WhatsApp/Call/Apply/Login CTAs and language switcher",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t4"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t2",
+      "file": "tasks/s01-t2-flash-news.md",
+      "title": "Build Flash News Bar with admin CRUD (add/edit/expire/reorder)",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s00-t5",
+        "s01-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t3",
+      "file": "tasks/s01-t3-hero-enquiry-ui.md",
+      "title": "Build Hero + Quick Enquiry Form component (reusable, with source tracking)",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s01-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t4",
+      "file": "tasks/s01-t4-enquiry-backend.md",
+      "title": "Wire Enquiry submissions to DB + email notification to Centre Staff",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s01-t3"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t5",
+      "file": "tasks/s01-t5-at-a-glance-about-why.md",
+      "title": "Build At a Glance, About, and Why Choose Us sections (Super-Admin-editable stats)",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s00-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s01-t6",
+      "file": "tasks/s01-t6-location-footer.md",
+      "title": "Build Location/Contact/Footer with Google Map + Reviews embed",
+      "sprint": "s01",
+      "epic": "Public Marketing Site Core",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s01-t3",
+        "s01-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s02-t1",
+      "file": "tasks/s02-t1-admin-courses-crud.md",
+      "title": "Build /admin/courses CRUD (categories, courses, bilingual fields, syllabus, certifications)",
+      "sprint": "s02",
+      "epic": "Courses Module",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 8,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s00-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s02-t2",
+      "file": "tasks/s02-t2-public-courses-pages.md",
+      "title": "Build public /courses listing + /courses/[slug] detail page",
+      "sprint": "s02",
+      "epic": "Courses Module",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s02-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s02-t3",
+      "file": "tasks/s02-t3-course-select-wiring.md",
+      "title": "Wire Course dropdown (Enquiry form + Biodata Course Completed field) to live Courses data",
+      "sprint": "s02",
+      "epic": "Courses Module",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s02-t1",
+        "s01-t4"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s03-t1",
+      "file": "tasks/s03-t1-gallery-crud.md",
+      "title": "Build /admin/gallery CRUD with categories, bulk upload, and object storage integration",
+      "sprint": "s03",
+      "epic": "Content Modules",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s02-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s03-t2",
+      "file": "tasks/s03-t2-public-gallery.md",
+      "title": "Build public /gallery page with tabbed categories + lightbox",
+      "sprint": "s03",
+      "epic": "Content Modules",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s03-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s03-t3",
+      "file": "tasks/s03-t3-cert-partners.md",
+      "title": "Build /admin/certification-partners CRUD + public logo strip component",
+      "sprint": "s03",
+      "epic": "Content Modules",
+      "track": "Backend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s02-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s03-t4",
+      "file": "tasks/s03-t4-news-events.md",
+      "title": "Build /admin/news-events CRUD (News/Event types, bilingual body) + public /news listing and detail pages",
+      "sprint": "s03",
+      "epic": "Content Modules",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s00-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s03-t5",
+      "file": "tasks/s03-t5-placement-support-section.md",
+      "title": "Wire Placement & Support homepage section to reuse Gallery items tagged 'Placement'",
+      "sprint": "s03",
+      "epic": "Content Modules",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s03-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s04-t1",
+      "file": "tasks/s04-t1-signup-flow.md",
+      "title": "Build role-selection sign-up flow (Student / Job Seeker / Employer) on top of Clerk",
+      "sprint": "s04",
+      "epic": "Auth & Account System",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t2",
+        "s00-t3"
+      ],
+      "model": "premium",
+      "model_reason": "Auth core \u2014 sets the role that gates every subsequent portal decision."
+    },
+    {
+      "id": "s04-t2",
+      "file": "tasks/s04-t2-admin-students.md",
+      "title": "Build /admin/students provisioning (single entry + CSV bulk import of Student ID + name + phone)",
+      "sprint": "s04",
+      "epic": "Auth & Account System",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s00-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s04-t3",
+      "file": "tasks/s04-t3-student-id-otp-verify.md",
+      "title": "Build Student ID + phone OTP verification sub-flow, linking Clerk account to StudentRecord",
+      "sprint": "s04",
+      "epic": "Auth & Account System",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 8,
+      "status": "not_started",
+      "depends_on": [
+        "s04-t1",
+        "s04-t2"
+      ],
+      "model": "premium",
+      "model_reason": "Highest-stakes flow in the app: enumeration-resistant identity verification (explicitly flagged in its own task prompt)."
+    },
+    {
+      "id": "s04-t4",
+      "file": "tasks/s04-t4-fine-grained-role-gating.md",
+      "title": "Build Clerk middleware route protection for /portal/* and /admin/* by role",
+      "sprint": "s04",
+      "epic": "Auth & Account System",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s04-t1",
+        "s04-t3"
+      ],
+      "model": "premium",
+      "model_reason": "Security \u2014 fine-grained authorization across every /portal/* sub-area."
+    },
+    {
+      "id": "s05-t1",
+      "file": "tasks/s05-t1-biodata-form.md",
+      "title": "Build shared Biodata form component (Student full fields / Job Seeker minus 2 fields)",
+      "sprint": "s05",
+      "epic": "Student Biodata / Candidate Profile",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t3",
+        "s02-t3",
+        "s04-t4"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s05-t2",
+      "file": "tasks/s05-t2-skills-field.md",
+      "title": "Build Skills multi-select field sourced from Skills Taxonomy + free-text add",
+      "sprint": "s05",
+      "epic": "Student Biodata / Candidate Profile",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s05-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s05-t3",
+      "file": "tasks/s05-t3-pdf-export.md",
+      "title": "Build server-side PDF generation for 'Download Biodata as PDF' (react-pdf)",
+      "sprint": "s05",
+      "epic": "Student Biodata / Candidate Profile",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s05-t1"
+      ],
+      "model": "premium",
+      "model_reason": "Access control correctness (self vs. employer vs. other-candidate) on a PII export endpoint."
+    },
+    {
+      "id": "s05-t4",
+      "file": "tasks/s05-t4-visibility-toggle.md",
+      "title": "Build profile-visibility toggle (searchable by employers on/off) + consent copy",
+      "sprint": "s05",
+      "epic": "Student Biodata / Candidate Profile",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s05-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s06-t1",
+      "file": "tasks/s06-t1-student-dashboard.md",
+      "title": "Build /portal/student dashboard with six resource tiles",
+      "sprint": "s06",
+      "epic": "Student Portal - Academic Resources",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s04-t4"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s06-t2",
+      "file": "tasks/s06-t2-notes-assignments-past-papers.md",
+      "title": "Build course-scoped Academic Resource data model + admin upload flow (Notes/Assignments/Past Papers)",
+      "sprint": "s06",
+      "epic": "Student Portal - Academic Resources",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s02-t1",
+        "s05-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s06-t3",
+      "file": "tasks/s06-t3-video-lectures.md",
+      "title": "Build Video Lectures tile with embedded external video (YouTube/Vimeo) player",
+      "sprint": "s06",
+      "epic": "Student Portal - Academic Resources",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s06-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s06-t4",
+      "file": "tasks/s06-t4-timetable-progress.md",
+      "title": "Build Timetable + My Progress tiles with staff-entered data",
+      "sprint": "s06",
+      "epic": "Student Portal - Academic Resources",
+      "track": "Backend",
+      "priority": "Should Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s06-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s07-t1",
+      "file": "tasks/s07-t1-employer-registration.md",
+      "title": "Build Employer Registration form + status workflow (Pending/Approved/Rejected)",
+      "sprint": "s07",
+      "epic": "Employer Registration & Vacancy Posting",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s04-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s07-t2",
+      "file": "tasks/s07-t2-admin-employer-moderation.md",
+      "title": "Build /admin/employers moderation queue (approve/reject + set auto-publish trust flag)",
+      "sprint": "s07",
+      "epic": "Employer Registration & Vacancy Posting",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s07-t1"
+      ],
+      "model": "premium",
+      "model_reason": "Moderation gate \u2014 a logic error here lets unapproved employers through."
+    },
+    {
+      "id": "s07-t3",
+      "file": "tasks/s07-t3-post-vacancy-form.md",
+      "title": "Build Post-a-Vacancy form with salary disclose/private toggle",
+      "sprint": "s07",
+      "epic": "Employer Registration & Vacancy Posting",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s07-t1",
+        "s05-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s07-t4",
+      "file": "tasks/s07-t4-admin-job-moderation.md",
+      "title": "Build /admin/job-postings moderation queue + auto-publish bypass logic for trusted employers",
+      "sprint": "s07",
+      "epic": "Employer Registration & Vacancy Posting",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s07-t3"
+      ],
+      "model": "premium",
+      "model_reason": "Moderation gate + auto-publish bypass logic \u2014 wrong branching publishes unreviewed postings."
+    },
+    {
+      "id": "s07-t5",
+      "file": "tasks/s07-t5-vacancy-auto-expiry.md",
+      "title": "Build Inngest job for vacancy auto-expiry on deadline",
+      "sprint": "s07",
+      "epic": "Employer Registration & Vacancy Posting",
+      "track": "Backend",
+      "priority": "Should Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s07-t3"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s08-t1",
+      "file": "tasks/s08-t1-jobs-listing.md",
+      "title": "Build /portal/jobs listing with filters (course/skill/location/job type)",
+      "sprint": "s08",
+      "epic": "Job Portal & Candidate Search",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s07-t4",
+        "s07-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s08-t2",
+      "file": "tasks/s08-t2-job-detail-apply.md",
+      "title": "Build /portal/jobs/[id] detail page + one-click Apply from saved Biodata",
+      "sprint": "s08",
+      "epic": "Job Portal & Candidate Search",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s08-t1",
+        "s05-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s08-t3",
+      "file": "tasks/s08-t3-application-entity.md",
+      "title": "Build Application entity + status tracking (Applied/Viewed/Shortlisted/Rejected/Hired)",
+      "sprint": "s08",
+      "epic": "Job Portal & Candidate Search",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s08-t2"
+      ],
+      "model": "premium",
+      "model_reason": "Data isolation correctness (DB-level uniqueness, per-employer/per-candidate scoping) underpins trust in the whole job pipeline."
+    },
+    {
+      "id": "s08-t4",
+      "file": "tasks/s08-t4-candidate-search.md",
+      "title": "Build /portal/employer/candidates search with filters over CandidateProfile",
+      "sprint": "s08",
+      "epic": "Job Portal & Candidate Search",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s05-t4",
+        "s07-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s08-t5",
+      "file": "tasks/s08-t5-skills-taxonomy-admin.md",
+      "title": "Build Skills Taxonomy table + /admin/skills-taxonomy merge/approve tooling",
+      "sprint": "s08",
+      "epic": "Job Portal & Candidate Search",
+      "track": "Backend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s05-t2",
+        "s07-t3"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s09-t1",
+      "file": "tasks/s09-t1-staff-invite.md",
+      "title": "Build /admin/staff Centre Staff invite flow via Clerk",
+      "sprint": "s09",
+      "epic": "Admin Staff & Permissions",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s00-t2",
+        "s00-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s09-t2",
+      "file": "tasks/s09-t2-permission-grid.md",
+      "title": "Build granular permission toggle matrix per staff member",
+      "sprint": "s09",
+      "epic": "Admin Staff & Permissions",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s09-t1",
+        "s07-t2",
+        "s07-t4"
+      ],
+      "model": "premium",
+      "model_reason": "Security-critical rewrite of previously-hardcoded access gates across two earlier modules."
+    },
+    {
+      "id": "s09-t3",
+      "file": "tasks/s09-t3-admin-dashboard.md",
+      "title": "Build /admin dashboard summarizing pending approvals + enquiries",
+      "sprint": "s09",
+      "epic": "Admin Staff & Permissions",
+      "track": "Frontend",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s09-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s10-t1",
+      "file": "tasks/s10-t1-backfill-ml-fields.md",
+      "title": "Add Malayalam fields to all admin-managed content models (Courses, Gallery, News, Certification Partners)",
+      "sprint": "s10",
+      "epic": "Bilingual (EN/ML) Rollout",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s02-t1",
+        "s03-t1",
+        "s03-t3",
+        "s03-t4",
+        "s01-t5"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s10-t2",
+      "file": "tasks/s10-t2-static-ui-strings.md",
+      "title": "Translate and wire static UI strings (buttons, labels, validation messages) into next-intl dictionaries",
+      "sprint": "s10",
+      "epic": "Bilingual (EN/ML) Rollout",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [
+        "s10-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s10-t3",
+      "file": "tasks/s10-t3-bilingual-qa.md",
+      "title": "QA pass on bilingual rendering across all public/portal/admin pages",
+      "sprint": "s10",
+      "epic": "Bilingual (EN/ML) Rollout",
+      "track": "Design",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s10-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s11-t1",
+      "file": "tasks/s11-t1-cross-browser-qa.md",
+      "title": "Cross-browser/mobile QA sweep across public site, portals, and admin",
+      "sprint": "s11",
+      "epic": "Hardening & QA",
+      "track": "Frontend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [],
+      "model": "cheap"
+    },
+    {
+      "id": "s11-t2",
+      "file": "tasks/s11-t2-security-review.md",
+      "title": "Security review: rate-limiting on Enquiry/Apply/Registration endpoints, input validation/sanitization audit",
+      "sprint": "s11",
+      "epic": "Hardening & QA",
+      "track": "Backend",
+      "priority": "Must Have",
+      "points": 5,
+      "status": "not_started",
+      "depends_on": [],
+      "model": "premium",
+      "model_reason": "Security review by definition \u2014 rate-limiting, XSS, injection audit."
+    },
+    {
+      "id": "s11-t3",
+      "file": "tasks/s11-t3-accessibility.md",
+      "title": "Accessibility (WCAG 2.1 AA) pass: contrast, labels, keyboard nav, alt text",
+      "sprint": "s11",
+      "epic": "Hardening & QA",
+      "track": "Design",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [],
+      "model": "cheap"
+    },
+    {
+      "id": "s11-t4",
+      "file": "tasks/s11-t4-performance.md",
+      "title": "Performance tuning: ISR/static generation audit, image optimization, LCP targets",
+      "sprint": "s11",
+      "epic": "Hardening & QA",
+      "track": "Infra/DevOps",
+      "priority": "Should Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [],
+      "model": "cheap"
+    },
+    {
+      "id": "s12-t1",
+      "file": "tasks/s12-t1-seed-content.md",
+      "title": "Seed production content: courses, certification partners, initial student ID records",
+      "sprint": "s12",
+      "epic": "UAT & Launch",
+      "track": "Content/Data",
+      "priority": "Must Have",
+      "points": 3,
+      "status": "not_started",
+      "depends_on": [
+        "s02-t1",
+        "s03-t3",
+        "s01-t5",
+        "s04-t2"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s12-t2",
+      "file": "tasks/s12-t2-uat-sessions.md",
+      "title": "Run UAT sessions with GTEC Thodupuzha Centre Staff + Super Admin",
+      "sprint": "s12",
+      "epic": "UAT & Launch",
+      "track": "Content/Data",
+      "priority": "Must Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s09-t3",
+        "s10-t3",
+        "s11-t1",
+        "s11-t2",
+        "s11-t3",
+        "s11-t4"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s12-t3",
+      "file": "tasks/s12-t3-privacy-terms.md",
+      "title": "Finalize and publish Privacy Policy / Terms pages",
+      "sprint": "s12",
+      "epic": "UAT & Launch",
+      "track": "Content/Data",
+      "priority": "Must Have",
+      "points": 1,
+      "status": "not_started",
+      "depends_on": [
+        "s01-t6",
+        "s05-t4",
+        "s07-t1"
+      ],
+      "model": "cheap"
+    },
+    {
+      "id": "s12-t4",
+      "file": "tasks/s12-t4-production-launch.md",
+      "title": "Production go-live: domain cutover, environment variable audit, final smoke test",
+      "sprint": "s12",
+      "epic": "UAT & Launch",
+      "track": "Infra/DevOps",
+      "priority": "Must Have",
+      "points": 2,
+      "status": "not_started",
+      "depends_on": [
+        "s12-t1",
+        "s12-t2",
+        "s12-t3"
+      ],
+      "model": "premium",
+      "model_reason": "Final production gate \u2014 env var and DNS mistakes here are expensive to discover after the fact."
+    }
+  ]
+}

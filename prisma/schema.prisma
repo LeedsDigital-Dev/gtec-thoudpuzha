@@ -31,6 +31,8 @@ model Course {
   titleMl   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  enquiries Enquiry[]
 }
 
 model CandidateProfile {
@@ -57,6 +59,21 @@ model FlashNewsItem {
 
   @@index([active, expiresAt])
   @@index([sortOrder])
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  courseId  String?
+  message   String?
+  source    String
+  createdAt DateTime @default(now())
+
+  course Course? @relation(fields: [courseId], references: [id])
+
+  @@index([courseId])
+  @@index([createdAt])
 }
 
 model AuditLogEntry {

@@ -147,7 +147,7 @@
       "track": "Backend",
       "priority": "Must Have",
       "points": 3,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s01-t3"
       ],

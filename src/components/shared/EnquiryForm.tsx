@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { submitEnquiry, type EnquiryPayload } from "@/lib/enquiry";
+export type { EnquiryPayload };
 
 // TODO: Swap hardcoded course list for live Courses data in Sprint 2.
 const COURSES = [
@@ -14,14 +16,6 @@ const COURSES = [
   "Hardware & Networking",
   "Python Full Stack Development",
 ];
-
-export type EnquiryPayload = {
-  source: string;
-  fullName: string;
-  phone: string;
-  course: string;
-  message: string;
-};
 
 type EnquiryFormProps = {
   source: string;
@@ -96,10 +90,13 @@ export function EnquiryForm({ source, onSubmit }: EnquiryFormProps) {
         message: message.trim(),
       };
 
-      // TODO: Replace stub with real API call in s01-t4.
       try {
         setStatus("submitting");
-        await onSubmit?.(payload);
+        if (onSubmit) {
+          await onSubmit(payload);
+        } else {
+          await submitEnquiry(payload);
+        }
         setStatus("success");
         resetForm();
       } catch {

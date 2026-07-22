@@ -100,7 +100,7 @@
       "track": "Frontend",
       "priority": "Must Have",
       "points": 5,
-      "status": "not_started",
+      "status": "blocked",
       "depends_on": [
         "s00-t4"
       ],

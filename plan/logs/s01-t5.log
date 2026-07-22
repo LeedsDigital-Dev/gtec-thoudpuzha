@@ -1,0 +1,11 @@
+[spawn-engineer] s01-t5  tier=cheap  profile=kimi-code  model=moonshotai/Kimi-K2.7-Code
+=== Attempt 1/3 (2026-07-22T22:47:01Z) ===
+Error: You've reached your weekly usage limit. Resets in 6d 6h (Wed 10:38 AM). Run /upgrade for a higher plan or /extra for on-demand credits.
+--- exit code: 5 ---
+=== Attempt 2/3 (2026-07-22T23:00:32Z) ===
+Error: You've reached your weekly usage limit. Resets in 6d 6h (Wed 10:38 AM). Run /upgrade for a higher plan or /extra for on-demand credits.
+--- exit code: 5 ---
+=== Attempt 3/3 (2026-07-22T23:00:34Z) ===
+Error: You've reached your weekly usage limit. Resets in 6d 6h (Wed 10:38 AM). Run /upgrade for a higher plan or /extra for on-demand credits.
+--- exit code: 5 ---
+[spawn-engineer] s01-t5 BLOCKED — see /home/ubuntu/projects/gtec-thoudpuzha/plan/blockers.md and /home/ubuntu/projects/gtec-thoudpuzha/plan/logs/s01-t5.log

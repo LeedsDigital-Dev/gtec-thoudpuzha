@@ -5,7 +5,7 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 330 nodes · 426 edges · 31 communities (25 shown, 6 thin omitted)
+- 330 nodes · 413 edges · 32 communities (25 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -30,6 +30,7 @@
 - eslint.config.mjs
 - next.config.ts
 - postcss.config.mjs
+- enquiries/page.tsx
 - taste.md
 - tailwind
 - Header.tsx
@@ -40,31 +41,31 @@
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 19 edges
 2. `compilerOptions` - 16 edges
-3. `requireRole()` - 13 edges
+3. `requireRole()` - 11 edges
 4. `logAdminAction()` - 8 edges
-5. `Role` - 8 edges
-6. `GTEC Thodupuzha` - 8 edges
-7. `scripts` - 7 edges
+5. `GTEC Thodupuzha` - 8 edges
+6. `scripts` - 7 edges
+7. `Role` - 7 edges
 8. `include` - 7 edges
-9. `tailwind` - 6 edges
-10. `aliases` - 6 edges
+9. `EnquiryForm()` - 6 edges
+10. `sendEnquiryNotification()` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `AuditLogPage()` --calls--> `requireRole()`  [EXTRACTED]
   src/app/[locale]/(admin)/admin/audit-log/page.tsx → src/lib/auth.ts
-- `EnquiriesPage()` --calls--> `requireRole()`  [EXTRACTED]
-  src/app/[locale]/(admin)/admin/enquiries/page.tsx → src/lib/auth.ts
+- `Input()` --calls--> `cn()`  [EXTRACTED]
+  src/components/ui/input.tsx → src/lib/utils.ts
+- `Label()` --calls--> `cn()`  [EXTRACTED]
+  src/components/ui/label.tsx → src/lib/utils.ts
 - `SelectGroup()` --calls--> `cn()`  [EXTRACTED]
   src/components/ui/select.tsx → src/lib/utils.ts
 - `SelectValue()` --calls--> `cn()`  [EXTRACTED]
-  src/components/ui/select.tsx → src/lib/utils.ts
-- `SelectTrigger()` --calls--> `cn()`  [EXTRACTED]
   src/components/ui/select.tsx → src/lib/utils.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (31 total, 6 thin omitted)
+## Communities (32 total, 7 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.06
@@ -123,13 +124,13 @@ Cohesion: 0.16
 Nodes (17): HomePage(), HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once, Button(), buttonVariants, Input(), Label(), SelectContent() (+9 more)
 
 ### Community 33 - "audit.test.ts"
-Cohesion: 0.15
-Nodes (24): AuditLogPage(), AuditLogPageProps, EnquiriesPage(), EnquiriesPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews() (+16 more)
+Cohesion: 0.17
+Nodes (22): AuditLogPage(), AuditLogPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews() (+14 more)
 
 ## Knowledge Gaps
-- **153 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+148 more)
+- **153 isolated node(s):** `name`, `version`, `private`, `dev`, `build` (+148 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -139,8 +140,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
   _High betweenness centrality (0.040) - this node is a cross-community bridge._
 - **Why does `siteConfig` connect `smoke.test.tsx` to `(public)/page.tsx`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **What connects `$schema`, `style`, `rsc` to the rest of the system?**
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **What connects `name`, `version`, `private` to the rest of the system?**
   _153 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._

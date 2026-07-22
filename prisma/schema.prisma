@@ -76,6 +76,48 @@ model Enquiry {
   @@index([createdAt])
 }
 
+enum WhyCardIcon {
+  AWARD
+  USERS
+  BOOK_OPEN
+  BRIEFCASE
+  GLOBE
+  HEADPHONES
+}
+
+model SiteSettings {
+  id                   String   @id @default(cuid())
+  yearsInOperation     String   @default("25+")
+  studentsTrained     String   @default("3.2M+")
+  centresWorldwide     String   @default("800+")
+  affiliations         String   @default("100+")
+  countries            String   @default("23")
+  aboutBodyEn          String   @default("")
+  aboutBodyMl          String?
+  aboutPhotoUrl        String?
+  whyChooseUsCards     WhyChooseUsCard[]
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model WhyChooseUsCard {
+  id             String       @id @default(cuid())
+  siteSettingsId String
+  sortOrder      Int          @default(0)
+  icon           WhyCardIcon
+  titleEn        String
+  titleMl        String?
+  descriptionEn  String
+  descriptionMl  String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  siteSettings SiteSettings @relation(fields: [siteSettingsId], references: [id], onDelete: Cascade)
+
+  @@index([siteSettingsId])
+  @@index([sortOrder])
+}
+
 model AuditLogEntry {
   id           String   @id @default(cuid())
   actorUserId  String

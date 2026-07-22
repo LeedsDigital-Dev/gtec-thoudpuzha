@@ -1,0 +1,16 @@
+[spawn-engineer] s01-t4  tier=cheap  profile=kimi-code  model=moonshotai/Kimi-K2.7-Code
+=== Attempt 1/3 (2026-07-22T22:32:23Z) ===
+I'll start by reading the guidance files and task definition, then work through the implementation end to end.I have read the task and graph. Now I need to check the manual prerequisites and explore the existing EnquiryForm and schema before implementing.Finished.
+
+- Implemented the Enquiry model + migration, `submitEnquiry` server action, Resend/React Email notification, EnquiryForm wiring, and `/admin/enquiries` role-gated page.
+- Wrote the 4 required tests:
+  1. Valid submission creates an Enquiry row with the correct source.
+  2. Invalid submission (missing phone) is rejected server-side.
+  3. Successful submission triggers exactly one Resend `emails.send` call.
+  4. `/admin/enquiries` is denied to `EMPLOYER` and accessible to `CENTRE_STAFF`.
+- Full suite green: **57 passed** across 11 test files.
+- Committed: `d8980c4` (`s01-t4: wire enquiry submissions to DB, email Centre Staff, and add admin enquiries page`), merged to `main`, and marked `s01-t4` as `done` in `plan/task-graph.json`.
+
+Note: there are pre-existing uncommitted changes in `graphify-out/` and `plan/logs/` that were not part of this task commit, plus pre-existing TypeScript errors in `src/__tests__/i18n.test.tsx` that do not affect the test suite.
+--- exit code: 0 ---
+[spawn-engineer] s01-t4 VERIFIED done (commit landed, status flipped).

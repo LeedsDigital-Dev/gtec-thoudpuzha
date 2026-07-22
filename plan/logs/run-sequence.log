@@ -8,3 +8,13 @@
 [2026-07-22T21:54:40Z] === run-sequence finished ===
 [2026-07-22T22:00:07Z] === run-sequence started ===
 [2026-07-22T22:00:07Z] Starting s01-t1
+[2026-07-22T22:16:24Z] s01-t1 done. Checking for next eligible task.
+[2026-07-22T22:16:24Z] Starting s01-t2
+[2026-07-22T22:26:40Z] s01-t2 done. Checking for next eligible task.
+[2026-07-22T22:26:40Z] Starting s01-t3
+[2026-07-22T22:32:23Z] s01-t3 done. Checking for next eligible task.
+[2026-07-22T22:32:23Z] Starting s01-t4
+[2026-07-22T22:47:01Z] s01-t4 done. Checking for next eligible task.
+[2026-07-22T22:47:01Z] Starting s01-t5
+[2026-07-22T23:00:36Z] s01-t5 did not succeed (exit 1). Stopping sequence rather than continuing past a blocked/failed task. Check plan/blockers.md and plan/logs/s01-t5.log.
+[2026-07-22T23:00:36Z] === run-sequence finished ===

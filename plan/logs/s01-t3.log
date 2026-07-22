@@ -1,0 +1,15 @@
+[spawn-engineer] s01-t3  tier=cheap  profile=kimi-code  model=moonshotai/Kimi-K2.7-Code
+=== Attempt 1/3 (2026-07-22T22:26:40Z) ===
+I'll start by reading the guidance and task file to understand what needs to be built.Finished. Task `s01-t3` is complete and merged to `main`.
+
+Summary:
+- Added `HeroSection` with placeholder copy, eyebrow, headline, subtext, and Apply Now / WhatsApp / Call CTAs.
+- Added reusable `EnquiryForm` in `components/shared/` with `source` prop, client-side validation, inline success/error states, and a stubbed `onSubmit`.
+- Updated the homepage to place Hero and Enquiry side-by-side on desktop, stacked on mobile, above the fold.
+- Added shadcn input/label/select primitives.
+- Wrote 6 Vitest tests covering the 4 required scenarios (valid submission, missing fields, invalid phone, no state leakage).
+- Full suite: **52 passed**, 9 test files passed. `npm run build` also passes.
+- Committed as `s01-t3: hero section and reusable enquiry form with source tracking` and merged to `main`.
+- Updated `plan/task-graph.json` to mark `s01-t3` as `done`.
+--- exit code: 0 ---
+[spawn-engineer] s01-t3 VERIFIED done (commit landed, status flipped).

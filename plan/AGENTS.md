@@ -163,3 +163,9 @@ Before starting work on any task, check its Manual Prerequisites section against
 This is a different situation from a real failure (wrong code, failing test) — label it clearly
 as "waiting on you," not "blocked," in the blockers.md entry, so it's obvious at a glance which
 blockers need your input vs. which need debugging.
+
+### Rule 10 addendum — approved placeholders
+`plan/manual-content.md` may contain items explicitly marked "APPROVED to proceed with a
+placeholder" — these are not blockers. Use the stated placeholder approach and continue. Only
+genuinely unchecked, non-placeholder-approved items trigger the stop-and-block behavior in
+rule 10.

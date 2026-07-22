@@ -19,3 +19,9 @@
 - [ ] Malayalam translations — seeded content (s10-t1)
 - [ ] Malayalam translations — UI strings (s10-t2)
 - [ ] Privacy Policy / Terms copy, legally reviewed (s12-t3)
+
+## Explicit placeholder approvals
+- [x] G-TEC logo — real file not available yet. APPROVED to proceed with a simple text-based
+  placeholder (e.g. "G-TEC THODUPUZHA" in a styled <span>, or a generic placeholder SVG) instead
+  of blocking. Replace with the real logo file when available — track as a follow-up, not a
+  blocker.

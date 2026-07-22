@@ -1,5 +1,5 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
-import { NextRequest } from "next/server";
+import { NextRequest, NextFetchEvent, NextResponse } from "next/server";
 import { renderToString } from "react-dom/server";
 import { handleRouteProtection } from "@/middleware";
 import AccountSetupIncompletePage from "@/app/account-setup-incomplete/page";
@@ -23,7 +23,7 @@ const mockCreateRouteMatcher = vi.hoisted(
   },
 );
 const mockClerkMiddleware = vi.hoisted(
-  () => (_handler: any) => {
+  () => (_handler: (req: NextRequest, evt: NextFetchEvent) => NextResponse | Promise<NextResponse>) => {
     // no-op default export — tests test handleRouteProtection directly
   },
 );

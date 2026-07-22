@@ -44,6 +44,21 @@ model CandidateProfile {
   user User @relation(fields: [userId], references: [id])
 }
 
+model FlashNewsItem {
+  id        String   @id @default(cuid())
+  textEn    String
+  textMl    String?
+  link      String?
+  active    Boolean  @default(true)
+  expiresAt DateTime?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active, expiresAt])
+  @@index([sortOrder])
+}
+
 model AuditLogEntry {
   id           String   @id @default(cuid())
   actorUserId  String
@@ -61,3 +76,4 @@ model AuditLogEntry {
   @@index([entityType, entityId])
   @@index([createdAt])
 }
+

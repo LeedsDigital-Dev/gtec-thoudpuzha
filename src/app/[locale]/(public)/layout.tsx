@@ -1,4 +1,5 @@
 import { Header } from "@/components/shared/Header";
+import { FlashNewsBar } from "@/components/shared/FlashNewsBar";
 
 export default function PublicLayout({
   children,
@@ -8,6 +9,7 @@ export default function PublicLayout({
   return (
     <>
       <Header />
+      <FlashNewsBar />
       {children}
     </>
   );

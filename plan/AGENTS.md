@@ -140,3 +140,7 @@ missed optimization.
 7. Commit after each completed task, referencing the task ID in the commit message (e.g. `git commit -m "s02-t1: admin courses CRUD"`), and update that task's `status` field in `plan/task-graph.json` to `"done"` in the same commit.
 8. Check `plan/task-graph.json` for a task's `depends_on` list before starting it. If a dependency's status isn't `"done"`, stop and flag it rather than proceeding — the plan was written assuming strict ordering, and skipping ahead produces code that references things that don't exist yet.
 9. If you get stuck on the same failure after 3 real attempts, STOP. Write what you tried and why it failed to `plan/blockers.md`, mark the task `"blocked"` in the graph, and move to a different unblocked task if one exists. Do not silently work around a blocker by weakening a test or skipping a requirement. **This is cost control, not just quality control** — an unbounded retry loop against a badly-scoped task burns far more budget than base per-token pricing ever will; three genuine attempts is the actual ceiling, not a soft suggestion.
+
+## Super Admin Seeding (v1)
+
+The single v1 Super Admin account is seeded manually via the Clerk dashboard (`publicMetadata.role = SUPER_ADMIN`). There is no in-app Super Admin creation flow until Sprint 9.

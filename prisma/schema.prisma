@@ -320,6 +320,7 @@ model AcademicResource {
   type       ResourceType
   title      String
   fileUrl    String?
+  embedUrl   String?
   uploadedAt DateTime     @default(now())
   createdAt  DateTime     @default(now())
 

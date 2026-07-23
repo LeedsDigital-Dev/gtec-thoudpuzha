@@ -8,6 +8,7 @@ import {
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -26,6 +27,9 @@ vi.mock("@/lib/db", () => ({
     jobPosting: {
       findMany: mockFindMany,
       update: mockUpdate,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -53,6 +57,8 @@ describe("approveJobPosting", () => {
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
     mockSendModerationNotification.mockReset();
+    mockUserFindUnique.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. approving sets status=APPROVED and sends notification", async () => {

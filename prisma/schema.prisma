@@ -59,10 +59,11 @@ enum JobPostingStatus {
 }
 
 model User {
-  id                String   @id
+  id                String    @id
   role              Role
-  languagePreference String   @default("en")
-  createdAt         DateTime @default(now())
+  languagePreference String    @default("en")
+  deactivatedAt     DateTime?
+  createdAt         DateTime  @default(now())
 
   candidateProfile CandidateProfile?
   employerProfile  EmployerProfile?

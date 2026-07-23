@@ -6,6 +6,7 @@ const mockDelete = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockFindManyCourses = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -34,6 +35,9 @@ vi.mock("@/lib/db", () => ({
     course: {
       findMany: mockFindManyCourses,
     },
+    user: {
+      findUnique: mockUserFindUnique,
+    },
     auditLogEntry: {
       create: mockAuditCreate,
     },
@@ -51,6 +55,7 @@ vi.mock("next/cache", () => ({
 describe("uploadResource (admin server action)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. uploading a NOTE resource persists with the right type and courseId", async () => {

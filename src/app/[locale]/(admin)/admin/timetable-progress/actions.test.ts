@@ -11,6 +11,7 @@ const mockProfileFindUnique = vi.hoisted(() => vi.fn());
 const mockProfileFindMany = vi.hoisted(() => vi.fn());
 const mockEnrollFindMany = vi.hoisted(() => vi.fn());
 const mockCourseFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -44,6 +45,9 @@ vi.mock("@/lib/db", () => ({
     },
     course: {
       findMany: mockCourseFindMany,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -81,6 +85,7 @@ vi.mock("next/link", () => ({
 describe("addTimetableEntry (admin server action)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("3. admin entry of a timetable entry against a course persists correctly", async () => {
@@ -133,6 +138,7 @@ describe("addTimetableEntry (admin server action)", () => {
 describe("addProgressEntry (admin server action)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("3. admin entry of a progress note against a specific student persists correctly and is immediately visible to that student", async () => {

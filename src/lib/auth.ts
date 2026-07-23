@@ -1,4 +1,5 @@
 import { auth as clerkAuth } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/db";
 
 export enum Role {
   STUDENT = "STUDENT",
@@ -9,7 +10,7 @@ export enum Role {
 }
 
 export type RequireRoleResult =
-  | { authorized: false; reason: "unauthenticated" | "no_role" | "forbidden" }
+  | { authorized: false; reason: "unauthenticated" | "no_role" | "forbidden" | "deactivated" }
   | { authorized: true; role: Role; userId: string };
 
 export async function requireRole(
@@ -29,6 +30,17 @@ export async function requireRole(
 
   if (!allowedRoles.includes(role)) {
     return { authorized: false, reason: "forbidden" };
+  }
+
+  // Deactivation check — enforced even for valid roles
+  if (role === Role.CENTRE_STAFF || role === Role.SUPER_ADMIN) {
+    const user = await prisma.user.findUnique({
+      where: { id: session.userId },
+      select: { deactivatedAt: true },
+    });
+    if (user?.deactivatedAt) {
+      return { authorized: false, reason: "deactivated" };
+    }
   }
 
   return { authorized: true, role, userId: session.userId };

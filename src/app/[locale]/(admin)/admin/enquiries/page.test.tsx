@@ -3,6 +3,7 @@ import { renderToString } from "react-dom/server";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockEnquiryFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
     throw new Error(`redirect:${url}`);
@@ -18,6 +19,9 @@ vi.mock("@/lib/db", () => ({
     enquiry: {
       findMany: mockEnquiryFindMany,
     },
+    user: {
+      findUnique: mockUserFindUnique,
+    },
   },
 }));
 
@@ -31,6 +35,7 @@ describe("EnquiriesPage", () => {
     mockRedirect.mockImplementation((url: string) => {
       throw new Error(`redirect:${url}`);
     });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("is denied to an employer-role user", async () => {

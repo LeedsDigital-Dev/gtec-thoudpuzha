@@ -1,2 +1,4 @@
 [spawn-engineer] s08-t5  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
 === Attempt 1/3 (2026-07-23T11:49:14Z) ===
+--- exit code: 0 ---
+[spawn-engineer] s08-t5 VERIFIED done (commit landed, status flipped).

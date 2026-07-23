@@ -12,6 +12,7 @@ const mockUpdate = vi.hoisted(() => vi.fn());
 const mockDelete = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockAggregate = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockUploadFile = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
@@ -31,6 +32,9 @@ vi.mock("@/lib/db", () => ({
       delete: mockDelete,
       findMany: mockFindMany,
       aggregate: mockAggregate,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: { create: mockAuditCreate },
   },
@@ -147,6 +151,7 @@ describe("movePartner — reordering", () => {
     mockUpdate.mockReset();
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("3. reordering partners persists and reflects in order", async () => {

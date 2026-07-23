@@ -12,6 +12,7 @@ const mockCountCandidateProfile = vi.hoisted(() => vi.fn());
 const mockFindManyJobPosting = vi.hoisted(() => vi.fn());
 const mockUpdateJobPosting = vi.hoisted(() => vi.fn());
 const mockCountJobPosting = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRevalidatePath = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
@@ -39,6 +40,9 @@ vi.mock("@/lib/db", () => ({
       update: mockUpdateJobPosting,
       count: mockCountJobPosting,
     },
+    user: {
+      findUnique: mockUserFindUnique,
+    },
     auditLogEntry: { create: mockAuditCreate },
   },
 }));
@@ -63,6 +67,7 @@ describe("approveSkill", () => {
       label: "JavaScript",
       status: "APPROVED",
     });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. Approving a PENDING skill sets status to APPROVED", async () => {
@@ -112,6 +117,7 @@ describe("mergeSkill", () => {
         return Promise.resolve(null);
       },
     );
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("2. Merging skill A into skill B re-points all CandidateProfile references", async () => {
@@ -194,6 +200,7 @@ describe("deleteSkill", () => {
       id: "skill_1",
       label: "OldSkill",
     });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("4. Deleting a skill with active references is blocked, suggesting merge instead", async () => {

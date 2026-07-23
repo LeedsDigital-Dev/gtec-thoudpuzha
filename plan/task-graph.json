@@ -573,11 +573,10 @@
       "track": "Backend",
       "priority": "Should Have",
       "points": 2,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s07-t3"
       ],
-      "blocked_reason": "Inngest credentials INNGEST_EVENT_KEY and INNGEST_SIGNING_KEY are both REPLACE_ME. See plan/blockers.md",
       "model": "cheap"
     },
     {

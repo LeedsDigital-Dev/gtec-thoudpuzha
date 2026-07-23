@@ -37,6 +37,13 @@ function createSettings() {
     aboutBodyEn: "About body",
     aboutBodyMl: null,
     aboutPhotoUrl: null,
+    address: null,
+    mapEmbedUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    youtubeUrl: null,
+    linkedinUrl: null,
+    googleReviewsUrl: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     whyChooseUsCards: [
@@ -119,6 +126,7 @@ describe("SiteSettingsPage", () => {
     expect(html).toContain("At a Glance");
     expect(html).toContain("About Section");
     expect(html).toContain("Why Choose Us");
+    expect(html).toContain("Location, Contact &amp; Social");
     expect(html).toContain("Save Settings");
   });
 });

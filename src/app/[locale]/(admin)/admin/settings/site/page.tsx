@@ -213,6 +213,96 @@ export default async function SiteSettingsPage({
           </div>
         </section>
 
+        <section className="rounded border border-border p-4">
+          <h2 className="text-lg font-medium">Location, Contact &amp; Social</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="space-y-1 sm:col-span-2">
+              <label htmlFor="address" className="text-sm font-medium">
+                Centre Address
+              </label>
+              <input
+                id="address"
+                name="address"
+                defaultValue={settings.address ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1 sm:col-span-2">
+              <label htmlFor="mapEmbedUrl" className="text-sm font-medium">
+                Google Maps Embed URL
+              </label>
+              <input
+                id="mapEmbedUrl"
+                name="mapEmbedUrl"
+                type="url"
+                placeholder="https://www.google.com/maps/embed?pb=..."
+                defaultValue={settings.mapEmbedUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="facebookUrl" className="text-sm font-medium">
+                Facebook URL
+              </label>
+              <input
+                id="facebookUrl"
+                name="facebookUrl"
+                type="url"
+                defaultValue={settings.facebookUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="instagramUrl" className="text-sm font-medium">
+                Instagram URL
+              </label>
+              <input
+                id="instagramUrl"
+                name="instagramUrl"
+                type="url"
+                defaultValue={settings.instagramUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="youtubeUrl" className="text-sm font-medium">
+                YouTube URL
+              </label>
+              <input
+                id="youtubeUrl"
+                name="youtubeUrl"
+                type="url"
+                defaultValue={settings.youtubeUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="linkedinUrl" className="text-sm font-medium">
+                LinkedIn URL
+              </label>
+              <input
+                id="linkedinUrl"
+                name="linkedinUrl"
+                type="url"
+                defaultValue={settings.linkedinUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1 sm:col-span-2">
+              <label htmlFor="googleReviewsUrl" className="text-sm font-medium">
+                Google Reviews URL
+              </label>
+              <input
+                id="googleReviewsUrl"
+                name="googleReviewsUrl"
+                type="url"
+                defaultValue={settings.googleReviewsUrl ?? ""}
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+          </div>
+        </section>
+
         <Button type="submit">Save Settings</Button>
       </form>
     </main>

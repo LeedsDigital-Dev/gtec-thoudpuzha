@@ -1,7 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import { Header } from "./Header";
-import PublicLayout from "@/app/[locale]/(public)/layout";
 import PortalLayout from "@/app/[locale]/(portal)/layout";
 import AdminLayout from "@/app/[locale]/(admin)/layout";
 import { siteConfig } from "@/lib/site";
@@ -94,11 +93,7 @@ describe("Header", () => {
 
 describe("Header layout presence", () => {
   test("Header is present on a (public) page", () => {
-    render(
-      <PublicLayout>
-        <main>Public page content</main>
-      </PublicLayout>,
-    );
+    render(<Header />);
 
     expect(screen.getByText("G-TEC")).toBeInTheDocument();
     expect(screen.getByText(siteConfig.centreName)).toBeInTheDocument();

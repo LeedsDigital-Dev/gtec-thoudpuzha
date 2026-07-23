@@ -47,6 +47,13 @@ export async function updateSiteSettings(formData: FormData) {
       aboutBodyEn: getString(formData, "aboutBodyEn"),
       aboutBodyMl: getNullableString(formData, "aboutBodyMl"),
       aboutPhotoUrl: getNullableString(formData, "aboutPhotoUrl"),
+      address: getNullableString(formData, "address"),
+      mapEmbedUrl: getNullableString(formData, "mapEmbedUrl"),
+      facebookUrl: getNullableString(formData, "facebookUrl"),
+      instagramUrl: getNullableString(formData, "instagramUrl"),
+      youtubeUrl: getNullableString(formData, "youtubeUrl"),
+      linkedinUrl: getNullableString(formData, "linkedinUrl"),
+      googleReviewsUrl: getNullableString(formData, "googleReviewsUrl"),
     },
   });
 

@@ -95,6 +95,13 @@ model SiteSettings {
   aboutBodyEn          String   @default("")
   aboutBodyMl          String?
   aboutPhotoUrl        String?
+  address              String?
+  mapEmbedUrl          String?
+  facebookUrl          String?
+  instagramUrl         String?
+  youtubeUrl           String?
+  linkedinUrl          String?
+  googleReviewsUrl     String?
   whyChooseUsCards     WhyChooseUsCard[]
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt

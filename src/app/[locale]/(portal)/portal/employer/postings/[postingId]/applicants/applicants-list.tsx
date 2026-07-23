@@ -82,25 +82,25 @@ function ApplicantRow({
           <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-gray-600">
             {applicant.candidateProfile.email && (
               <div>
-                <span className="text-xs text-gray-400">{t("email")}</span>
+                <span className="text-xs text-gray-500">{t("email")}</span>
                 <p>{applicant.candidateProfile.email}</p>
               </div>
             )}
             {applicant.candidateProfile.phone && (
               <div>
-                <span className="text-xs text-gray-400">{t("phone")}</span>
+                <span className="text-xs text-gray-500">{t("phone")}</span>
                 <p>{applicant.candidateProfile.phone}</p>
               </div>
             )}
             {applicant.candidateProfile.educationalQualification && (
               <div>
-                <span className="text-xs text-gray-400">{t("qualification")}</span>
+                <span className="text-xs text-gray-500">{t("qualification")}</span>
                 <p>{applicant.candidateProfile.educationalQualification.replace(/_/g, " ")}</p>
               </div>
             )}
             {applicant.candidateProfile.preferredJobLocation && (
               <div>
-                <span className="text-xs text-gray-400">{t("location")}</span>
+                <span className="text-xs text-gray-500">{t("location")}</span>
                 <p>{applicant.candidateProfile.preferredJobLocation}</p>
               </div>
             )}

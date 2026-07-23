@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { siteConfig } from "@/lib/site";
 import type { PublicCourse } from "@/lib/courses";
 import type { SiteSettings } from "@prisma/client";
@@ -46,6 +47,60 @@ const socialIcons: Record<
     viewBox: "0 0 24 24",
   },
 };
+
+function useCloseOnEscape(onClose: () => void) {
+  useEffect(() => {
+    function handler(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [onClose]);
+}
+
+function ModalOverlay({
+  children,
+  onClose,
+}: {
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  useCloseOnEscape(onClose);
+  const containerRef = useFocusTrap(true);
+
+  return (
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enquiry form"
+    >
+      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-background p-6 shadow-xl">
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+          aria-label="Close"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            className="h-5 w-5"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export function ContactSection({ settings, courses }: ContactSectionProps) {
   const t = useTranslations("contact");
@@ -173,35 +228,9 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
 
         {/* Modal */}
         {showEnquiry && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setShowEnquiry(false);
-            }}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Enquiry form"
-          >
-            <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-background p-6 shadow-xl">
-              <button
-                type="button"
-                onClick={() => setShowEnquiry(false)}
-                className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
-                aria-label="Close"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  className="h-5 w-5"
-                >
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-              <EnquiryForm source="contact_page" courses={courses} />
-            </div>
-          </div>
+          <ModalOverlay onClose={() => setShowEnquiry(false)}>
+            <EnquiryForm source="contact_page" courses={courses} />
+          </ModalOverlay>
         )}
       </div>
     </section>

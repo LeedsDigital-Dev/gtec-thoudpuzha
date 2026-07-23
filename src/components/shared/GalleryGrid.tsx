@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import type { PublicGalleryCategory } from "@/lib/gallery";
 import { getMediaUrl } from "@/lib/media";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 function getYouTubeEmbedUrl(url: string): string | null {
   const patterns = [
@@ -72,6 +73,7 @@ function Lightbox({
 }) {
   const item = items[currentIndex];
   const itemCaption = item ? pickLocalizedText({ en: item.captionEn ?? "", ml: item.captionMl }, locale) : "";
+  const containerRef = useFocusTrap(true);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -101,6 +103,7 @@ function Lightbox({
 
   return (
     <div
+      ref={containerRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
       onClick={onClose}
       role="dialog"
@@ -291,7 +294,7 @@ export function GalleryGrid({
       {/* Grid */}
       {activeItems.length === 0 ? (
         <div className="rounded-lg border border-dashed border-gray-200 p-10 text-center">
-          <p className="text-gray-400">No photos yet.</p>
+          <p className="text-gray-500">No photos yet.</p>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">

@@ -157,7 +157,7 @@ function SummaryCard({
     return (
       <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
         <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-        <p className="mt-1 text-xs text-gray-400">No access</p>
+        <p className="mt-1 text-xs text-gray-500">No access</p>
       </div>
     );
   }

@@ -105,7 +105,7 @@ export default async function EmployerDashboardPage({ params }: EmployerDashboar
                     {sb(posting.status)}
                   </span>
                 </div>
-                <div className="mt-2 flex items-center gap-4 text-xs text-gray-400">
+                <div className="mt-2 flex items-center gap-4 text-xs text-gray-500">
                   <span>{t("posted", { date: new Date(posting.createdAt).toLocaleDateString() })}</span>
                   <span>{t("applicantCount", { count: posting._count.applications })}</span>
                 </div>

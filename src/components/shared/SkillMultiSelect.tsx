@@ -135,6 +135,8 @@ export function SkillMultiSelect({
             }
           }}
           placeholder={selectedIds.length === 0 ? "Type to add skills..." : "Add more..."}
+          role="combobox"
+          aria-label="Search skills"
           className="min-w-[120px] flex-1 border-none bg-transparent p-0 text-sm outline-none"
           aria-expanded={open}
           aria-haspopup="listbox"

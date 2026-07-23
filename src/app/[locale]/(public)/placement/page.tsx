@@ -46,7 +46,7 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
                 key={posting.id}
                 className="rounded-lg border p-5 transition-colors hover:bg-gray-50"
               >
-                <h3 className="font-semibold">{posting.title}</h3>
+                <h2 className="font-semibold">{posting.title}</h2>
                 <p className="mt-0.5 text-sm text-gray-600">
                   {posting.employer.companyName}
                 </p>

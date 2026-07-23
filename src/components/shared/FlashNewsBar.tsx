@@ -36,22 +36,24 @@ export async function FlashNewsBar() {
             </span>
           ))}
           <span aria-hidden="true">•</span>
-          {items.map((item) => (
-            <span key={`dup-${item.id}`} className="inline-flex items-center">
-              {item.link ? (
-                <a
-                  href={item.link}
-                  className="underline underline-offset-2 hover:opacity-90"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {item.text}
-                </a>
-              ) : (
-                item.text
-              )}
-            </span>
-          ))}
+          <span aria-hidden="true">
+            {items.map((item) => (
+              <span key={`dup-${item.id}`} className="inline-flex items-center">
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    className="underline underline-offset-2 hover:opacity-90"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    {item.text}
+                  </a>
+                ) : (
+                  item.text
+                )}
+              </span>
+            ))}
+          </span>
         </span>
       </div>
     </div>

@@ -98,7 +98,7 @@ export default async function JobsPage({
                     <p className="mt-2 text-sm text-gray-500">
                       {salaryDisplay}
                     </p>
-                    <p className="mt-1 text-xs text-gray-400">
+                    <p className="mt-1 text-xs text-gray-500">
                       {t("deadline", { date: new Date(posting.applicationDeadline).toLocaleDateString() })}
                     </p>
                   </div>
@@ -110,7 +110,7 @@ export default async function JobsPage({
       )}
 
       {postings.length > 0 && (
-        <p className="mt-6 text-center text-xs text-gray-400">
+        <p className="mt-6 text-center text-xs text-gray-500">
           {t("showing", { count: postings.length })}
         </p>
       )}

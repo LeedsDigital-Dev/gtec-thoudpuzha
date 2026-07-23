@@ -122,7 +122,7 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
                     {app.status}
                   </span>
                 </div>
-                <p className="mt-2 text-xs text-gray-400">
+                <p className="mt-2 text-xs text-gray-500">
                   {sa("applied", { date: new Date(app.appliedAt).toLocaleDateString() })}
                 </p>
               </div>

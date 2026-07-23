@@ -303,6 +303,13 @@ export function RegistrationForm() {
         <Button type="submit" className="w-full" disabled={submitting}>
           {submitting ? t("submitting") : t("register")}
         </Button>
+
+        <p className="text-xs text-muted-foreground text-center">
+          Your company data is handled in accordance with our{" "}
+          <a href="/privacy" className="underline hover:no-underline">Privacy Policy</a>
+          {" "}and{" "}
+          <a href="/terms" className="underline hover:no-underline">Terms of Service</a>.
+        </p>
       </form>
     </div>
   );

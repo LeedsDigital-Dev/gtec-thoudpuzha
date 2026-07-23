@@ -134,7 +134,8 @@
     "typeToFind": "കൂടുതൽ കഴിവുകൾ കണ്ടെത്താൻ ടൈപ്പ് ചെയ്യുക",
     "typeToAddSkills": "കഴിവുകൾ ചേർക്കാൻ ടൈപ്പ് ചെയ്യുക...",
     "addMore": "കൂടുതൽ ചേർക്കുക...",
-    "removeSkill": "{label} നീക്കം ചെയ്യുക"
+    "removeSkill": "{label} നീക്കം ചെയ്യുക",
+    "privacyNote": "Your data is handled in accordance with our {privacyLink}."
   },
   "qualification": {
     "SSLC": "എസ്എസ്എൽസി / പത്താം ക്ലാസ്",
@@ -187,7 +188,8 @@
     "aboutCompany": "കമ്പനിയെക്കുറിച്ച് *",
     "register": "രജിസ്റ്റർ",
     "submitting": "സമർപ്പിക്കുന്നു...",
-    "error": "എന്തോ കുഴപ്പം സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക."
+    "error": "എന്തോ കുഴപ്പം സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക.",
+    "privacyNote": "Your company data is handled in accordance with our {privacyLink} and {termsLink}."
   },
   "sector": {
     "IT_SOFTWARE": "ഐടി / സോഫ്റ്റ്‌വെയർ",
@@ -433,6 +435,7 @@
   "footer": {
     "quickLinks": "ദ്രുത ലിങ്കുകൾ",
     "portals": "പോർട്ടലുകൾ",
+    "legal": "നിയമപരം",
     "studentLogin": "വിദ്യാർത്ഥി ലോഗിൻ",
     "academicResources": "അക്കാദമിക് വിഭവങ്ങൾ",
     "jobVacancies": "ജോലി ഒഴിവുകൾ",
@@ -440,6 +443,8 @@
     "employerLogin": "തൊഴിലുടമ ലോഗിൻ",
     "postVacancy": "ഒഴിവ് പോസ്റ്റ് ചെയ്യുക",
     "verifyCertificate": "സർട്ടിഫിക്കറ്റ് പരിശോധിക്കുക",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
     "allRightsReserved": "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം."
   },
   "portalDashboard": {
@@ -475,6 +480,42 @@
     "noEntries": "നിങ്ങൾ എൻറോൾ ചെയ്ത കോഴ്‌സുകൾക്ക് ഇതുവരെ ടൈംടേബിൾ എൻട്രികൾ ലഭ്യമല്ല.",
     "updated": "അപ്ഡേറ്റ് ചെയ്തത് {date}",
     "backToDashboard": "ഡാഷ്‌ബോർഡിലേക്ക് മടങ്ങുക"
+  },
+  "privacy": {
+    "heading": "Privacy Policy",
+    "lastUpdated": "Last updated: {date}",
+    "introduction": "G-TEC Education Thodupuzha (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+    "infoWeCollect": "Information We Collect",
+    "infoWeCollectContent": "We may collect personal identification information (name, email address, phone number, educational qualifications, employment history), demographic information, and usage data when you fill out enquiry forms, register as a student, create a candidate profile, or register as an employer.",
+    "howWeUse": "How We Use Your Information",
+    "howWeUseContent": "We use the collected information to provide and maintain our services, process enquiries and registrations, match candidates with employers, communicate with you about your account, and improve our website and services.",
+    "dataSharing": "Data Sharing &amp; Disclosure",
+    "dataSharingContent": "We may share your information with registered employers (for job seekers and students who have enabled profile visibility), with service providers who assist us in operating our website and services, and as required by law. We do not sell your personal information to third parties.",
+    "dataRetention": "Data Retention &amp; Deletion",
+    "dataRetentionContent": "We retain your personal information for as long as your account is active or as needed to provide you services. You may request deletion of your account and associated data by contacting us. We will respond to your request within 30 days.",
+    "yourRights": "Your Rights",
+    "yourRightsContent": "You have the right to access, update, or delete your personal information. You can update your profile information through your account settings. To request account deletion, please contact the centre.",
+    "contact": "Contact Us",
+    "contactContent": "If you have questions about this Privacy Policy, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
+  },
+  "terms": {
+    "heading": "Terms of Service",
+    "lastUpdated": "Last updated: {date}",
+    "introduction": "Welcome to G-TEC Education Thodupuzha. By accessing or using our website and services, you agree to be bound by these Terms of Service.",
+    "services": "Services Description",
+    "servicesContent": "G-TEC Education Thodupuzha provides education and training services (courses, certifications, placement support), a student portal with academic resources, and a job portal connecting candidates with employers.",
+    "userAccounts": "User Accounts &amp; Responsibilities",
+    "userAccountsContent": "You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You agree to provide accurate and complete information when creating an account or using our services.",
+    "candidateBiodata": "Candidate Biodata &amp; Profile Visibility",
+    "candidateBiodataContent": "By creating a candidate profile, you consent to your profile being visible to registered employers as described in our Privacy Policy. You can control your profile visibility through your account settings at any time.",
+    "employerObligations": "Employer Obligations",
+    "employerObligationsContent": "Employers agree to use candidate information solely for legitimate hiring purposes, maintain confidentiality of candidate data, and not use the platform for any unlawful or discriminatory practices.",
+    "prohibitedUses": "Prohibited Uses",
+    "prohibitedUsesContent": "You agree not to use the website or services for any unlawful purpose, to impersonate any person or entity, to interfere with or disrupt the website, or to collect user information without consent.",
+    "limitationOfLiability": "Limitation of Liability",
+    "limitationOfLiabilityContent": "G-TEC Education Thodupuzha shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the website or services.",
+    "contact": "Contact Us",
+    "contactContent": "For questions about these Terms, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
   },
   "common": {
     "loading": "ലോഡ് ചെയ്യുന്നു...",

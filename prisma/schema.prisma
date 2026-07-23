@@ -258,6 +258,7 @@ model JobPosting {
   applicationDeadline DateTime
   description         String
   status              JobPostingStatus  @default(PENDING)
+  rejectionReason     String?
   autoPublished       Boolean           @default(false)
   deletedAt           DateTime?
   createdAt           DateTime          @default(now())

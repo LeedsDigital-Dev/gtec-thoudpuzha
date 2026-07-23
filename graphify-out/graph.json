@@ -1412,6 +1412,127 @@
       "norm_label": "prisma.config.ts"
     },
     {
+      "label": "seed-data.ts",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prisma_seed_data",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "seed-data.ts"
+    },
+    {
+      "label": "CourseSeed",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "prisma_seed_data_courseseed",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "courseseed"
+    },
+    {
+      "label": "CATEGORIES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "prisma_seed_data_categories",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "categories"
+    },
+    {
+      "label": "COURSES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "prisma_seed_data_courses",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "courses"
+    },
+    {
+      "label": "CERTIFICATION_PARTNERS",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L247",
+      "_origin": "ast",
+      "id": "prisma_seed_data_certification_partners",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "certification_partners"
+    },
+    {
+      "label": "GALLERY_CATEGORIES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L260",
+      "_origin": "ast",
+      "id": "prisma_seed_data_gallery_categories",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "gallery_categories"
+    },
+    {
+      "label": "WHY_CHOOSE_US_CARDS",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L267",
+      "_origin": "ast",
+      "id": "prisma_seed_data_why_choose_us_cards",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "why_choose_us_cards"
+    },
+    {
+      "label": "NEWS_EVENTS",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L276",
+      "_origin": "ast",
+      "id": "prisma_seed_data_news_events",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "news_events"
+    },
+    {
+      "label": "CATEGORY_NAMES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L283",
+      "_origin": "ast",
+      "id": "prisma_seed_data_category_names",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "category_names"
+    },
+    {
+      "label": "ALL_COURSE_TITLES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L284",
+      "_origin": "ast",
+      "id": "prisma_seed_data_all_course_titles",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "all_course_titles"
+    },
+    {
+      "label": "ALL_PARTNER_NAMES",
+      "file_type": "code",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L285",
+      "_origin": "ast",
+      "id": "prisma_seed_data_all_partner_names",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "all_partner_names"
+    },
+    {
       "label": "seed.ts",
       "file_type": "code",
       "source_file": "prisma/seed.ts",
@@ -1426,7 +1547,7 @@
       "label": "prisma",
       "file_type": "code",
       "source_file": "prisma/seed.ts",
-      "source_location": "L4",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "prisma_seed_prisma",
       "community": 40,
@@ -1437,7 +1558,7 @@
       "label": "slugFromName()",
       "file_type": "code",
       "source_file": "prisma/seed.ts",
-      "source_location": "L8",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "prisma_seed_slugfromname",
       "community": 40,
@@ -1445,10 +1566,21 @@
       "norm_label": "slugfromname()"
     },
     {
+      "label": "findOrCreateCategoryId()",
+      "file_type": "code",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "prisma_seed_findorcreatecategoryid",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "findorcreatecategoryid()"
+    },
+    {
       "label": "main()",
       "file_type": "code",
       "source_file": "prisma/seed.ts",
-      "source_location": "L15",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "prisma_seed_main",
       "community": 40,
@@ -1693,8 +1825,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_tests_bilingual_qa_test",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 85,
+      "community_name": "auth.ts",
       "norm_label": "bilingual-qa.test.tsx"
     },
     {
@@ -1704,8 +1836,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_tests_bilingual_qa_test_collectpagefiles",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 85,
+      "community_name": "auth.ts",
       "norm_label": "collectpagefiles()"
     },
     {
@@ -1726,8 +1858,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_tests_i18n_test",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "i18n.test.tsx"
     },
     {
@@ -1737,8 +1869,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_tests_i18n_test_mockauthresult",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockauthresult"
     },
     {
@@ -1748,8 +1880,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_tests_i18n_test_mockauth",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockauth"
     },
     {
@@ -1759,8 +1891,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_tests_i18n_test_mockcreateroutematcher",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockcreateroutematcher"
     },
     {
@@ -1770,8 +1902,8 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_tests_i18n_test_mockclerkmiddleware",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockclerkmiddleware"
     },
     {
@@ -1781,8 +1913,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "src_tests_i18n_test_makerequest",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "makerequest()"
     },
     {
@@ -1792,8 +1924,8 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_tests_i18n_test_checkvalidvalues",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "checkvalidvalues()"
     },
     {
@@ -1803,8 +1935,8 @@
       "source_location": "L156",
       "_origin": "ast",
       "id": "src_tests_i18n_test_istestfile",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "istestfile()"
     },
     {
@@ -1814,8 +1946,8 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "src_tests_i18n_test_gettsxfiles",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "gettsxfiles()"
     },
     {
@@ -1872,6 +2004,50 @@
       "community": 131,
       "community_name": "portal-role-gating.test.tsx",
       "norm_label": "withauth()"
+    },
+    {
+      "label": "seed-verification.test.ts",
+      "file_type": "code",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_tests_seed_verification_test",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "seed-verification.test.ts"
+    },
+    {
+      "label": "PLACEHOLDER_PATTERNS",
+      "file_type": "code",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "src_tests_seed_verification_test_placeholder_patterns",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "placeholder_patterns"
+    },
+    {
+      "label": "isPlaceholder()",
+      "file_type": "code",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "src_tests_seed_verification_test_isplaceholder",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "isplaceholder()"
+    },
+    {
+      "label": "slugFromName()",
+      "file_type": "code",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "src_tests_seed_verification_test_slugfromname",
+      "community": 40,
+      "community_name": "seed.ts",
+      "norm_label": "slugfromname()"
     },
     {
       "label": "setup.ts",
@@ -2617,8 +2793,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "certification-partners/actions.ts"
     },
     {
@@ -2628,8 +2804,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -2639,8 +2815,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "createpartner()"
     },
     {
@@ -2650,8 +2826,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "updatepartner()"
     },
     {
@@ -2661,8 +2837,8 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletepartner()"
     },
     {
@@ -2672,8 +2848,8 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "movepartner()"
     },
     {
@@ -2859,8 +3035,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_page",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "certification-partners/page.tsx"
     },
     {
@@ -2870,8 +3046,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_page_pageprops",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "pageprops"
     },
     {
@@ -2881,8 +3057,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_certification_partners_page_certificationpartnerspage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 70,
+      "community_name": "courses.test.ts",
       "norm_label": "certificationpartnerspage()"
     },
     {
@@ -2892,8 +3068,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "courses/actions.ts"
     },
     {
@@ -2903,8 +3079,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_localefromformdata",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -2914,8 +3090,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_createcategory",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "createcategory()"
     },
     {
@@ -2925,8 +3101,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_updatecategory",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "updatecategory()"
     },
     {
@@ -2936,8 +3112,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_deletecategory",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletecategory()"
     },
     {
@@ -2947,8 +3123,8 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_movecategory",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "movecategory()"
     },
     {
@@ -2958,8 +3134,8 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_createcourse",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "createcourse()"
     },
     {
@@ -2969,8 +3145,8 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_updatecourse",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "updatecourse()"
     },
     {
@@ -2980,8 +3156,8 @@
       "source_location": "L272",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_deletecourse",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletecourse()"
     },
     {
@@ -2991,8 +3167,8 @@
       "source_location": "L293",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_uploadcourseimage",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "uploadcourseimage()"
     },
     {
@@ -3002,8 +3178,8 @@
       "source_location": "L325",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_actions_slugify",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "slugify()"
     },
     {
@@ -3013,8 +3189,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_page",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "courses/page.tsx"
     },
     {
@@ -3024,8 +3200,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_page_coursespageprops",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "coursespageprops"
     },
     {
@@ -3035,8 +3211,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_page_formatdate",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "formatdate()"
     },
     {
@@ -3046,8 +3222,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_courses_page_coursespage",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "coursespage()"
     },
     {
@@ -3442,7 +3618,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "flash-news/actions.ts"
     },
@@ -3453,7 +3629,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_localefromformdata",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
@@ -3464,7 +3640,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_createflashnews",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "createflashnews()"
     },
@@ -3475,7 +3651,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_updateflashnews",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "updateflashnews()"
     },
@@ -3486,7 +3662,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_deleteflashnews",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "deleteflashnews()"
     },
@@ -3497,7 +3673,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_toggleflashnewsactive",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "toggleflashnewsactive()"
     },
@@ -3508,7 +3684,7 @@
       "source_location": "L129",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_moveflashnews",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "moveflashnews()"
     },
@@ -3519,7 +3695,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "flash-news/page.test.tsx"
     },
@@ -3530,7 +3706,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockauth",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockauth"
     },
@@ -3541,7 +3717,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockcreate",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockcreate"
     },
@@ -3552,7 +3728,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockaggregate",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockaggregate"
     },
@@ -3563,7 +3739,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockuserfindunique",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockuserfindunique"
     },
@@ -3574,7 +3750,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockauditcreate",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockauditcreate"
     },
@@ -3585,7 +3761,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockredirect",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockredirect"
     },
@@ -3596,7 +3772,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_test_mockrevalidatepath",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "mockrevalidatepath"
     },
@@ -3607,7 +3783,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "flash-news/page.tsx"
     },
@@ -3618,7 +3794,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_flashnewspageprops",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "flashnewspageprops"
     },
@@ -3629,7 +3805,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_formatlocaldatetime",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "formatlocaldatetime()"
     },
@@ -3640,7 +3816,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_isexpired",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "isexpired()"
     },
@@ -3651,7 +3827,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_flashnewspage",
-      "community": 97,
+      "community": 41,
       "community_name": "flash-news/page.test.tsx",
       "norm_label": "flashnewspage()"
     },
@@ -3662,8 +3838,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "gallery/actions.ts"
     },
     {
@@ -3673,8 +3849,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_localefromformdata",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -3684,8 +3860,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_revalidategallery",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "revalidategallery()"
     },
     {
@@ -3695,8 +3871,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_createcategory",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "createcategory()"
     },
     {
@@ -3706,8 +3882,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_updatecategory",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "updatecategory()"
     },
     {
@@ -3717,8 +3893,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_deletecategory",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletecategory()"
     },
     {
@@ -3728,8 +3904,8 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_movecategory",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "movecategory()"
     },
     {
@@ -3739,8 +3915,8 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_uploadgalleryimages",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "uploadgalleryimages()"
     },
     {
@@ -3750,8 +3926,8 @@
       "source_location": "L222",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_addvideoitem",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "addvideoitem()"
     },
     {
@@ -3761,8 +3937,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_actions_deletegalleryitem",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletegalleryitem()"
     },
     {
@@ -3926,8 +4102,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_page",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "admin/gallery/page.tsx"
     },
     {
@@ -3937,8 +4113,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_page_gallerypageprops",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "gallerypageprops"
     },
     {
@@ -3948,8 +4124,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_gallery_page_gallerypage",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "gallerypage()"
     },
     {
@@ -5048,8 +5224,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_actions",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "skills-taxonomy/actions.ts"
     },
     {
@@ -5059,8 +5235,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_actions_localefromformdata",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -5070,8 +5246,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_actions_approveskill",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "approveskill()"
     },
     {
@@ -5081,8 +5257,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_actions_mergeskill",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "mergeskill()"
     },
     {
@@ -5092,8 +5268,8 @@
       "source_location": "L114",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_actions_deleteskill",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deleteskill()"
     },
     {
@@ -5103,8 +5279,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_page",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "skills-taxonomy/page.tsx"
     },
     {
@@ -5114,8 +5290,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_page_skillstaxonomypageprops",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "skillstaxonomypageprops"
     },
     {
@@ -5125,8 +5301,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_skills_taxonomy_page_skillstaxonomypage",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "skillstaxonomypage()"
     },
     {
@@ -5136,8 +5312,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "staff/actions.ts"
     },
     {
@@ -5147,8 +5323,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions_localefromformdata",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -5158,8 +5334,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions_invitestaff",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "invitestaff()"
     },
     {
@@ -5169,8 +5345,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions_deactivatestaff",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deactivatestaff()"
     },
     {
@@ -5180,8 +5356,8 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions_reactivatestaff",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "reactivatestaff()"
     },
     {
@@ -5191,8 +5367,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_actions_setstaffpermission",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "setstaffpermission()"
     },
     {
@@ -5202,8 +5378,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_page",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "staff/page.tsx"
     },
     {
@@ -5213,8 +5389,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_page_staffpageprops",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "staffpageprops"
     },
     {
@@ -5224,8 +5400,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_page_staffpage",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "staffpage()"
     },
     {
@@ -5235,8 +5411,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_permissions",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "permissions.ts"
     },
     {
@@ -5246,8 +5422,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_permissions_permission_keys",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "permission_keys"
     },
     {
@@ -5257,8 +5433,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_staff_permissions_permission_labels",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "permission_labels"
     },
     {
@@ -5664,8 +5840,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "timetable-progress/actions.ts"
     },
     {
@@ -5675,8 +5851,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions_localefromformdata",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -5686,8 +5862,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions_addtimetableentry",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "addtimetableentry()"
     },
     {
@@ -5697,8 +5873,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions_deletetimetableentry",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deletetimetableentry()"
     },
     {
@@ -5708,8 +5884,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions_addprogressentry",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "addprogressentry()"
     },
     {
@@ -5719,8 +5895,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_actions_deleteprogressentry",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deleteprogressentry()"
     },
     {
@@ -5730,8 +5906,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_page",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "timetable-progress/page.tsx"
     },
     {
@@ -5741,8 +5917,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_page_props",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "props"
     },
     {
@@ -5752,8 +5928,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_timetable_progress_page_timetableprogresspage",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "timetableprogresspage()"
     },
     {
@@ -5807,8 +5983,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_candidateid_page",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "[candidateid]/page.tsx"
     },
     {
@@ -5818,8 +5994,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_candidateid_page_pageprops",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "pageprops"
     },
     {
@@ -5829,8 +6005,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_candidateid_page_candidatedetailpage",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "candidatedetailpage()"
     },
     {
@@ -5840,8 +6016,8 @@
       "source_location": "L184",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_candidateid_page_section",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "section()"
     },
     {
@@ -5851,8 +6027,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_candidateid_page_field",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "field()"
     },
     {
@@ -5961,8 +6137,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_actions",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 71,
+      "community_name": "search-form.tsx",
       "norm_label": "candidates/actions.ts"
     },
     {
@@ -5994,8 +6170,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_actions_searchcandidates",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 71,
+      "community_name": "search-form.tsx",
       "norm_label": "searchcandidates()"
     },
     {
@@ -6005,8 +6181,8 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_actions_mapresult",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 71,
+      "community_name": "search-form.tsx",
       "norm_label": "mapresult()"
     },
     {
@@ -6027,8 +6203,8 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_actions_invitetoapplyresult",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 71,
+      "community_name": "search-form.tsx",
       "norm_label": "invitetoapplyresult"
     },
     {
@@ -6038,8 +6214,8 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_actions_invitetoapply",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "invitetoapply()"
     },
     {
@@ -6049,8 +6225,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_page",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "candidates/page.tsx"
     },
     {
@@ -6060,8 +6236,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_page_pageprops",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "pageprops"
     },
     {
@@ -6071,8 +6247,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_candidates_page_candidatesearchpage",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "candidatesearchpage()"
     },
     {
@@ -6236,8 +6412,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_page",
-      "community": 50,
-      "community_name": "courses.test.ts",
+      "community": 88,
+      "community_name": "employers/actions.test.ts",
       "norm_label": "employer/page.tsx"
     },
     {
@@ -6247,8 +6423,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_page_employerdashboardpageprops",
-      "community": 50,
-      "community_name": "courses.test.ts",
+      "community": 88,
+      "community_name": "employers/actions.test.ts",
       "norm_label": "employerdashboardpageprops"
     },
     {
@@ -6258,8 +6434,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_page_employerdashboardpage",
-      "community": 50,
-      "community_name": "courses.test.ts",
+      "community": 88,
+      "community_name": "employers/actions.test.ts",
       "norm_label": "employerdashboardpage()"
     },
     {
@@ -6731,8 +6907,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "register/actions.test.ts"
     },
     {
@@ -6742,8 +6918,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockauth",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockauth"
     },
     {
@@ -6753,8 +6929,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockclerkclient",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockclerkclient"
     },
     {
@@ -6764,8 +6940,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockfindunique",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockfindunique"
     },
     {
@@ -6775,8 +6951,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockcreate",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcreate"
     },
     {
@@ -6786,8 +6962,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockredirect",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockredirect"
     },
     {
@@ -6797,8 +6973,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockcheckratelimit",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcheckratelimit"
     },
     {
@@ -6808,8 +6984,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_mockgetclientip",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockgetclientip"
     },
     {
@@ -6819,8 +6995,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_actions_test_validformdata",
-      "community": 85,
-      "community_name": "auth.ts",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "validformdata()"
     },
     {
@@ -6863,8 +7039,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_page",
-      "community": 136,
-      "community_name": "register/page.tsx",
+      "community": 50,
+      "community_name": "courses.test.ts",
       "norm_label": "register/page.tsx"
     },
     {
@@ -6874,8 +7050,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_page_employerregisterpage",
-      "community": 136,
-      "community_name": "register/page.tsx",
+      "community": 50,
+      "community_name": "courses.test.ts",
       "norm_label": "employerregisterpage()"
     },
     {
@@ -6918,8 +7094,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_register_registration_form_registrationform",
-      "community": 136,
-      "community_name": "register/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "registrationform()"
     },
     {
@@ -6962,8 +7138,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_actions_test",
-      "community": 103,
-      "community_name": "[id]/actions.ts",
+      "community": 77,
+      "community_name": "inviteToApply",
       "norm_label": "[id]/actions.test.ts"
     },
     {
@@ -6973,8 +7149,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_actions_test_mockauth",
-      "community": 103,
-      "community_name": "[id]/actions.ts",
+      "community": 77,
+      "community_name": "inviteToApply",
       "norm_label": "mockauth"
     },
     {
@@ -6984,8 +7160,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_actions_test_mockfindunique",
-      "community": 103,
-      "community_name": "[id]/actions.ts",
+      "community": 77,
+      "community_name": "inviteToApply",
       "norm_label": "mockfindunique"
     },
     {
@@ -6995,8 +7171,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_actions_test_mockcreate",
-      "community": 103,
-      "community_name": "[id]/actions.ts",
+      "community": 77,
+      "community_name": "inviteToApply",
       "norm_label": "mockcreate"
     },
     {
@@ -7006,8 +7182,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_actions_test_mockrevalidatepath",
-      "community": 103,
-      "community_name": "[id]/actions.ts",
+      "community": 77,
+      "community_name": "inviteToApply",
       "norm_label": "mockrevalidatepath"
     },
     {
@@ -7171,8 +7347,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_page",
-      "community": 53,
-      "community_name": "courses.test.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "[id]/page.tsx"
     },
     {
@@ -7182,8 +7358,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_page_pageprops",
-      "community": 53,
-      "community_name": "courses.test.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "pageprops"
     },
     {
@@ -7193,8 +7369,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_id_page_jobdetailpage",
-      "community": 53,
-      "community_name": "courses.test.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "jobdetailpage()"
     },
     {
@@ -7413,8 +7589,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "student/actions.test.ts"
     },
     {
@@ -7424,8 +7600,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockauth",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockauth"
     },
     {
@@ -7435,8 +7611,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockclerkclient",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockclerkclient"
     },
     {
@@ -7446,8 +7622,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockupdateuser",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockupdateuser"
     },
     {
@@ -7457,8 +7633,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockfindfirst",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockfindfirst"
     },
     {
@@ -7468,8 +7644,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockfindunique",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockfindunique"
     },
     {
@@ -7479,8 +7655,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockupsert",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockupsert"
     },
     {
@@ -7490,8 +7666,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockcandidatecreate",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcandidatecreate"
     },
     {
@@ -7501,8 +7677,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockrecordupdate",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockrecordupdate"
     },
     {
@@ -7512,8 +7688,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockredirect",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockredirect"
     },
     {
@@ -7523,8 +7699,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockcheckratelimit",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcheckratelimit"
     },
     {
@@ -7534,8 +7710,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockgetclientip",
-      "community": 80,
-      "community_name": "employer/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockgetclientip"
     },
     {
@@ -7578,8 +7754,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_page",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "sign-up/student/page.tsx"
     },
     {
@@ -7589,8 +7765,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_page_step",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "step"
     },
     {
@@ -7611,8 +7787,8 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_page_otpform",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "otpform()"
     },
     {
@@ -8128,8 +8304,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_timetable_page",
-      "community": 137,
-      "community_name": "timetable/page.tsx",
+      "community": 24,
+      "community_name": "gallery/actions.ts",
       "norm_label": "timetable/page.tsx"
     },
     {
@@ -8139,8 +8315,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_timetable_page_props",
-      "community": 137,
-      "community_name": "timetable/page.tsx",
+      "community": 24,
+      "community_name": "gallery/actions.ts",
       "norm_label": "props"
     },
     {
@@ -8150,8 +8326,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_timetable_page_timetablepage",
-      "community": 137,
-      "community_name": "timetable/page.tsx",
+      "community": 24,
+      "community_name": "gallery/actions.ts",
       "norm_label": "timetablepage()"
     },
     {
@@ -8260,8 +8436,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_public_layout",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "(public)/layout.tsx"
     },
     {
@@ -8271,8 +8447,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_public_layout_publiclayout",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "publiclayout()"
     },
     {
@@ -8535,8 +8711,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_layout",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "[locale]/layout.tsx"
     },
     {
@@ -8546,8 +8722,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_layout_geistsans",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "geistsans"
     },
     {
@@ -8557,8 +8733,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_layout_geistmono",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "geistmono"
     },
     {
@@ -8568,8 +8744,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_app_locale_layout_metadata",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "metadata"
     },
     {
@@ -8579,8 +8755,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_app_locale_layout_localelayout",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "localelayout()"
     },
     {
@@ -8821,8 +8997,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_ataglancesection_test",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "ataglancesection.test.tsx"
     },
     {
@@ -8832,8 +9008,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_ataglancesection_test_createsettings",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "createsettings()"
     },
     {
@@ -8843,8 +9019,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_ataglancesection",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "ataglancesection.tsx"
     },
     {
@@ -8854,8 +9030,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_ataglancesection_ataglancesectionprops",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "ataglancesectionprops"
     },
     {
@@ -8865,8 +9041,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_shared_ataglancesection_ataglancesection",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "ataglancesection()"
     },
     {
@@ -9096,8 +9272,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_certificationpartnerstrip",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "certificationpartnerstrip.tsx"
     },
     {
@@ -9107,8 +9283,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_certificationpartnerstrip_certificationpartnerstrip",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "certificationpartnerstrip()"
     },
     {
@@ -9217,8 +9393,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_test",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "courseselect.test.tsx"
     },
     {
@@ -9228,8 +9404,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_test_publishedcourses",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "publishedcourses"
     },
     {
@@ -9239,8 +9415,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_courseselect",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "courseselect.tsx"
     },
     {
@@ -9250,8 +9426,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_courseselectprops",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "courseselectprops"
     },
     {
@@ -9261,8 +9437,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_courseselect",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "courseselect()"
     },
     {
@@ -9272,8 +9448,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_test",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "enquiryform.test.tsx"
     },
     {
@@ -9283,8 +9459,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_test_mock_courses",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mock_courses"
     },
     {
@@ -9294,8 +9470,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_test_fillrequiredfields",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "fillrequiredfields()"
     },
     {
@@ -9305,8 +9481,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "enquiryform.tsx"
     },
     {
@@ -9316,8 +9492,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_enquiryformprops",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "enquiryformprops"
     },
     {
@@ -9327,8 +9503,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_formerrors",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "formerrors"
     },
     {
@@ -9338,8 +9514,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_indianmobileregex",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "indianmobileregex()"
     },
     {
@@ -9349,8 +9525,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_sanitizephone",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "sanitizephone()"
     },
     {
@@ -9360,8 +9536,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_components_shared_enquiryform_enquiryform",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "enquiryform()"
     },
     {
@@ -9371,8 +9547,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "flashnewsbar.test.tsx"
     },
     {
@@ -9382,8 +9558,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test_mockfindmany",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "mockfindmany"
     },
     {
@@ -9393,8 +9569,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test_mockgetlocale",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "mockgetlocale"
     },
     {
@@ -9404,8 +9580,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "flashnewsbar.tsx"
     },
     {
@@ -9415,8 +9591,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_locale",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "locale"
     },
     {
@@ -9426,8 +9602,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_flashnewsbar",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "flashnewsbar()"
     },
     {
@@ -9437,8 +9613,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_footer_test",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 80,
+      "community_name": "employer/page.tsx",
       "norm_label": "footer.test.tsx"
     },
     {
@@ -9448,8 +9624,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_footer",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 80,
+      "community_name": "employer/page.tsx",
       "norm_label": "footer.tsx"
     },
     {
@@ -9459,8 +9635,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_footer_quicklinks",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 80,
+      "community_name": "employer/page.tsx",
       "norm_label": "quicklinks"
     },
     {
@@ -9470,8 +9646,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_shared_footer_portallinks",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 80,
+      "community_name": "employer/page.tsx",
       "norm_label": "portallinks"
     },
     {
@@ -9481,8 +9657,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_shared_footer_footer",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 80,
+      "community_name": "employer/page.tsx",
       "norm_label": "footer()"
     },
     {
@@ -9492,8 +9668,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_gallerygrid_test",
-      "community": 70,
-      "community_name": "courses.test.ts",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "gallerygrid.test.tsx"
     },
     {
@@ -9503,8 +9679,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_components_shared_gallerygrid_test_imageitems",
-      "community": 70,
-      "community_name": "courses.test.ts",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "imageitems"
     },
     {
@@ -9514,8 +9690,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_components_shared_gallerygrid_test_categories",
-      "community": 70,
-      "community_name": "courses.test.ts",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "categories"
     },
     {
@@ -9525,8 +9701,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "src_components_shared_gallerygrid_test_emptycategories",
-      "community": 70,
-      "community_name": "courses.test.ts",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "emptycategories"
     },
     {
@@ -9712,8 +9888,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_languageswitcher",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 85,
+      "community_name": "auth.ts",
       "norm_label": "languageswitcher.tsx"
     },
     {
@@ -9723,8 +9899,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_shared_languageswitcher_buildlocalepath",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 85,
+      "community_name": "auth.ts",
       "norm_label": "buildlocalepath()"
     },
     {
@@ -9734,8 +9910,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_shared_languageswitcher_languageswitcher",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 85,
+      "community_name": "auth.ts",
       "norm_label": "languageswitcher()"
     },
     {
@@ -9745,8 +9921,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "newsteasersection.tsx"
     },
     {
@@ -9756,8 +9932,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection_teaseritem",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "teaseritem"
     },
     {
@@ -9767,8 +9943,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection_newsteasersectionprops",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "newsteasersectionprops"
     },
     {
@@ -9778,8 +9954,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection_formatdate",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "formatdate()"
     },
     {
@@ -9789,8 +9965,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection_picklocalizedtext",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "picklocalizedtext()"
     },
     {
@@ -9800,8 +9976,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_components_shared_newsteasersection_newsteasersection",
-      "community": 84,
-      "community_name": "register/actions.test.ts",
+      "community": 74,
+      "community_name": "candidates/actions.test.ts",
       "norm_label": "newsteasersection()"
     },
     {
@@ -9811,8 +9987,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_placementsupportsection_test",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "placementsupportsection.test.tsx"
     },
     {
@@ -9822,8 +9998,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_shared_placementsupportsection_test_makeprops",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "makeprops()"
     },
     {
@@ -9833,8 +10009,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_placementsupportsection",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "placementsupportsection.tsx"
     },
     {
@@ -9844,8 +10020,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_shared_placementsupportsection_placementdata",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "placementdata"
     },
     {
@@ -9855,8 +10031,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_components_shared_placementsupportsection_placementsupportsection",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "placementsupportsection()"
     },
     {
@@ -10317,8 +10493,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_emails_invitetoapplyemail",
-      "community": 139,
-      "community_name": "InviteToApplyEmail.tsx",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "invitetoapplyemail.tsx"
     },
     {
@@ -10328,8 +10504,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_emails_invitetoapplyemail_invitetoapplyemailprops",
-      "community": 139,
-      "community_name": "InviteToApplyEmail.tsx",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "invitetoapplyemailprops"
     },
     {
@@ -10339,8 +10515,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_emails_invitetoapplyemail_invitetoapplyemail",
-      "community": 139,
-      "community_name": "InviteToApplyEmail.tsx",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "invitetoapplyemail()"
     },
     {
@@ -10449,8 +10625,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_audit",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "audit.ts"
     },
     {
@@ -10460,8 +10636,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_lib_audit_logadminactioninput",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "logadminactioninput"
     },
     {
@@ -10471,8 +10647,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_lib_audit_logadminaction",
-      "community": 4,
-      "community_name": "package.json",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "logadminaction()"
     },
     {
@@ -10482,8 +10658,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_lib_audit_logsystemactioninput",
-      "community": 77,
-      "community_name": "inviteToApply",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "logsystemactioninput"
     },
     {
@@ -10537,8 +10713,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_lib_auth_requirerole",
-      "community": 74,
-      "community_name": "candidates/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "requirerole()"
     },
     {
@@ -10559,8 +10735,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_lib_auth_permissionkey",
-      "community": 73,
-      "community_name": "candidates/actions.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "permissionkey"
     },
     {
@@ -10614,8 +10790,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_biodata_search_getsearchablecandidates",
-      "community": 24,
-      "community_name": "gallery/actions.ts",
+      "community": 120,
+      "community_name": "candidates/actions.ts",
       "norm_label": "getsearchablecandidates()"
     },
     {
@@ -10625,8 +10801,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_biodata",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "biodata.ts"
     },
     {
@@ -10636,8 +10812,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_biodata_candidateprofilewithcompletion",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "candidateprofilewithcompletion"
     },
     {
@@ -10647,8 +10823,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_lib_biodata_isprofilecomplete",
-      "community": 120,
-      "community_name": "candidates/actions.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "isprofilecomplete()"
     },
     {
@@ -10658,8 +10834,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_certification_partners",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "certification-partners.ts"
     },
     {
@@ -10669,8 +10845,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_certification_partners_publiccertificationpartner",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "publiccertificationpartner"
     },
     {
@@ -10680,8 +10856,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_certification_partners_getcertificationpartners",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 84,
+      "community_name": "register/actions.test.ts",
       "norm_label": "getcertificationpartners()"
     },
     {
@@ -10801,8 +10977,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_courses",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "courses.ts"
     },
     {
@@ -10812,8 +10988,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_courses_publiccourse",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "publiccourse"
     },
     {
@@ -10834,8 +11010,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_lib_courses_coursewithcategory",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "coursewithcategory"
     },
     {
@@ -10845,8 +11021,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_courses_getcoursebyslug",
-      "community": 78,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "getcoursebyslug()"
     },
     {
@@ -10988,8 +11164,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_enquiry_test",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "enquiry.test.ts"
     },
     {
@@ -10999,8 +11175,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockenquirycreate",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockenquirycreate"
     },
     {
@@ -11010,8 +11186,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockcoursefindunique",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcoursefindunique"
     },
     {
@@ -11021,8 +11197,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockresendsend",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockresendsend"
     },
     {
@@ -11032,8 +11208,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockcheckratelimit",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockcheckratelimit"
     },
     {
@@ -11043,8 +11219,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockgetclientip",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "mockgetclientip"
     },
     {
@@ -11054,8 +11230,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_enquiry",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "enquiry.ts"
     },
     {
@@ -11065,8 +11241,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_lib_enquiry_enquirypayload",
-      "community": 88,
-      "community_name": "employers/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "enquirypayload"
     },
     {
@@ -11076,8 +11252,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_lib_enquiry_submitenquiry",
-      "community": 95,
-      "community_name": "i18n.test.tsx",
+      "community": 76,
+      "community_name": "[id]/page.tsx",
       "norm_label": "submitenquiry()"
     },
     {
@@ -11087,8 +11263,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_flash_news",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "flash-news.ts"
     },
     {
@@ -11098,8 +11274,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_flash_news_publicflashnewsitem",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "publicflashnewsitem"
     },
     {
@@ -11109,8 +11285,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_flash_news_getactiveflashnews",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "getactiveflashnews()"
     },
     {
@@ -11120,8 +11296,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_lib_flash_news_getallflashnews",
-      "community": 92,
-      "community_name": "Header.tsx",
+      "community": 9,
+      "community_name": "BiodataForm.test.tsx",
       "norm_label": "getallflashnews()"
     },
     {
@@ -11142,8 +11318,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_gallery_publicgallerycategory",
-      "community": 70,
-      "community_name": "courses.test.ts",
+      "community": 91,
+      "community_name": "[locale]/layout.tsx",
       "norm_label": "publicgallerycategory"
     },
     {
@@ -11153,8 +11329,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_lib_gallery_slugfromname",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "slugfromname()"
     },
     {
@@ -11208,8 +11384,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_i18n_navigation",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "navigation.ts"
     },
     {
@@ -11219,8 +11395,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_i18n_navigation_link_redirect_usepathname_userouter",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "{ link, redirect, usepathname, userouter }"
     },
     {
@@ -11241,8 +11417,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_i18n_routing",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "routing.ts"
     },
     {
@@ -11252,8 +11428,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_i18n_routing_routing",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "routing"
     },
     {
@@ -11263,8 +11439,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_i18n_routing_locale",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 4,
+      "community_name": "package.json",
       "norm_label": "locale"
     },
     {
@@ -11351,8 +11527,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_lib_jobs_getjobdetail",
-      "community": 53,
-      "community_name": "courses.test.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "getjobdetail()"
     },
     {
@@ -11373,8 +11549,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_media",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 70,
+      "community_name": "courses.test.ts",
       "norm_label": "media.ts"
     },
     {
@@ -11384,8 +11560,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_lib_media_getmediaurl",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 70,
+      "community_name": "courses.test.ts",
       "norm_label": "getmediaurl()"
     },
     {
@@ -11395,8 +11571,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_lib_media_getmediaurls",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 70,
+      "community_name": "courses.test.ts",
       "norm_label": "getmediaurls()"
     },
     {
@@ -11736,8 +11912,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_lib_site_settings_getataglancestats",
-      "community": 126,
-      "community_name": "AtAGlanceSection.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "getataglancestats()"
     },
     {
@@ -11824,8 +12000,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_lib_skills_getskillsbyids",
-      "community": 53,
-      "community_name": "courses.test.ts",
+      "community": 103,
+      "community_name": "[id]/actions.ts",
       "norm_label": "getskillsbyids()"
     },
     {
@@ -11846,8 +12022,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_storage",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "storage.ts"
     },
     {
@@ -11857,8 +12033,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_lib_storage_gets3client",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "gets3client()"
     },
     {
@@ -11868,8 +12044,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_lib_storage_uploadfile",
-      "community": 89,
-      "community_name": "job-postings/actions.test.ts",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "uploadfile()"
     },
     {
@@ -11945,8 +12121,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_middleware",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "middleware.ts"
     },
     {
@@ -11956,8 +12132,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_middleware_intlmiddleware",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "intlmiddleware"
     },
     {
@@ -11967,8 +12143,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_middleware_isportalroute",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "isportalroute"
     },
     {
@@ -11978,8 +12154,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_middleware_issignuproute",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "issignuproute"
     },
     {
@@ -11989,8 +12165,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_middleware_isadminroute",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "isadminroute"
     },
     {
@@ -12000,8 +12176,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_middleware_getrequestlocale",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "getrequestlocale()"
     },
     {
@@ -12011,8 +12187,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_middleware_handlerouteprotection",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "handlerouteprotection()"
     },
     {
@@ -12022,8 +12198,8 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_middleware_config",
-      "community": 8,
-      "community_name": "aliases",
+      "community": 73,
+      "community_name": "candidates/actions.ts",
       "norm_label": "config"
     },
     {
@@ -15667,10 +15843,311 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L284",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_all_course_titles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L285",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_all_partner_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L283",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_category_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L247",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_certification_partners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_courses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_courseseed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L260",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_gallery_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L276",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_news_events",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed-data.ts",
+      "source_location": "L267",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_data",
+      "target": "prisma_seed_data_why_choose_us_cards",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_courses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data_courses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_certification_partners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prisma/seed.ts",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_main",
+      "target": "prisma_seed_data_certification_partners"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data_certification_partners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_gallery_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prisma/seed.ts",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_main",
+      "target": "prisma_seed_data_gallery_categories"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data_gallery_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_why_choose_us_cards",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_data_news_events",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "prisma_seed_data_news_events",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "prisma/seed.ts",
-      "source_location": "L15",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed",
+      "target": "prisma_seed_findorcreatecategoryid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "prisma_seed",
@@ -15681,7 +16158,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "prisma/seed.ts",
-      "source_location": "L4",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "prisma_seed",
@@ -15692,7 +16169,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "prisma/seed.ts",
-      "source_location": "L8",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "prisma_seed",
@@ -15704,11 +16181,23 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "prisma/seed.ts",
-      "source_location": "L16",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "prisma_seed_main",
       "target": "prisma_seed_slugfromname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma/seed.ts",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "prisma_seed_main",
+      "target": "prisma_seed_findorcreatecategoryid",
       "confidence_score": 1.0
     },
     {
@@ -16304,6 +16793,51 @@
       "source": "src_tests_portal_role_gating_test",
       "target": "src_tests_portal_role_gating_test_withauth",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "src_tests_seed_verification_test_isplaceholder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "src_tests_seed_verification_test_placeholder_patterns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test",
+      "target": "src_tests_seed_verification_test_slugfromname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/__tests__/seed-verification.test.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_tests_seed_verification_test_isplaceholder",
+      "target": "src_tests_seed_verification_test_placeholder_patterns"
     },
     {
       "relation": "contains",
@@ -39361,5 +39895,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "35df6f75a2ce285a42fabb37f9a994b6e2d2da2f"
+  "built_at_commit": "b05aed3ed46ee67be1fe921e40998c3c57245be8"
 }

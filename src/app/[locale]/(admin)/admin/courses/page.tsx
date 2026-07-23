@@ -269,14 +269,12 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
                             <input type="checkbox" name="featured" defaultChecked={course.featured} />
                             Featured
                           </label>
-                          <div className="flex gap-2">
-                            <Button type="submit" size="xs">Save</Button>
-                            <form action={deleteCourse}>
-                              <input type="hidden" name="id" value={course.id} />
-                              <input type="hidden" name="locale" value={locale} />
-                              <Button type="submit" size="xs" variant="destructive">Delete</Button>
-                            </form>
-                          </div>
+                          <Button type="submit" size="xs">Save</Button>
+                        </form>
+                        <form action={deleteCourse} className="mt-2">
+                          <input type="hidden" name="id" value={course.id} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
                         </form>
                       </details>
                     </div>

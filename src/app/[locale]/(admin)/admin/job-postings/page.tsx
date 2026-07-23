@@ -170,6 +170,11 @@ export default async function JobPostingsPage({
                       ) : (
                         <span className="text-muted-foreground">No</span>
                       )}
+                      {jp.rejectionReason && (
+                        <p className="mt-1 text-xs text-red-600">
+                          {jp.rejectionReason}
+                        </p>
+                      )}
                     </td>
                     {canApprove && !isAutoPublishedView && (
                       <td className="border border-gray-300 px-3 py-2">

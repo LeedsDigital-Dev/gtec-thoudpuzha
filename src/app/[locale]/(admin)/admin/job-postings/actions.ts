@@ -61,7 +61,7 @@ export async function rejectJobPosting(formData: FormData) {
 
   const posting = await prisma.jobPosting.update({
     where: { id: postingId },
-    data: { status: "REJECTED" },
+    data: { status: "REJECTED", rejectionReason: rejectionReason.trim() },
     include: { employer: true },
   });
 

@@ -15,7 +15,7 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1784827309.9650574,
+    "mtime": 1784830812.8437188,
     "ast_hash": "b2a9b987094b381c86d0b7288343cb6a",
     "semantic_hash": ""
   },
@@ -625,8 +625,8 @@
     "semantic_hash": ""
   },
   "prisma/seed.ts": {
-    "mtime": 1784781530.310154,
-    "ast_hash": "093f07d3bab26649c588cb19f04595e8",
+    "mtime": 1784830812.844719,
+    "ast_hash": "aa958583d42a66fa378e3df29ff25f7a",
     "semantic_hash": ""
   },
   "src/components/shared/PlacementSupportSection.test.tsx": {
@@ -1427,6 +1427,16 @@
   "docs/performance-audit-log.md": {
     "mtime": 1784830107.9364042,
     "ast_hash": "a965458f55452c0d9919911ead18b187",
+    "semantic_hash": ""
+  },
+  "prisma/seed-data.ts": {
+    "mtime": 1784830812.844719,
+    "ast_hash": "17b053625f9069e293cfe0f12e652923",
+    "semantic_hash": ""
+  },
+  "src/__tests__/seed-verification.test.ts": {
+    "mtime": 1784830812.844719,
+    "ast_hash": "bb08226e329ae04d1f5b1c3ed9c04236",
     "semantic_hash": ""
   }
 }

@@ -137,7 +137,7 @@ describe("approveJobPosting", () => {
     expect(mockSendModerationNotification).not.toHaveBeenCalled();
   });
 
-  test("3. rejecting with reason sets status=REJECTED and notifies", async () => {
+  test("3. rejecting with reason sets status=REJECTED and persists rejectionReason", async () => {
     mockAuth.mockResolvedValue({
       userId: "super_admin_1",
       sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
@@ -164,7 +164,7 @@ describe("approveJobPosting", () => {
 
     expect(mockUpdate).toHaveBeenCalledWith({
       where: { id: "jp_1" },
-      data: { status: "REJECTED" },
+      data: { status: "REJECTED", rejectionReason: "Missing details" },
       include: { employer: true },
     });
 
@@ -349,5 +349,44 @@ describe("approveJobPosting", () => {
 
     expect(mockUpdate).toHaveBeenCalled();
     expect(mockAuditCreate).toHaveBeenCalled();
+  });
+
+  // ─── Regression: Bug UAT-001 ──────────────────────────────────────────
+
+  test("9. REGRESSION: rejectionReason is persisted in the update call, not silently dropped", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "super_admin_1",
+      sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
+    });
+
+    mockUpdate.mockResolvedValue({
+      id: "jp_1",
+      title: "Software Engineer",
+      status: "REJECTED",
+      rejectionReason: "Incomplete information",
+      employer: {
+        companyName: "Acme Corp",
+        email: "hr@acme.com",
+      },
+    });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+    mockSendModerationNotification.mockResolvedValue(undefined);
+
+    const formData = new FormData();
+    formData.append("postingId", "jp_1");
+    formData.append("rejectionReason", "Incomplete information");
+    formData.append("locale", "en");
+
+    await rejectJobPosting(formData);
+
+    // The old code only set { status: "REJECTED" } — rejectionReason was missing.
+    // This assertion would have failed before the fix.
+    expect(mockUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          rejectionReason: "Incomplete information",
+        }),
+      }),
+    );
   });
 });

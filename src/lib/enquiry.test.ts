@@ -6,6 +6,15 @@ import { submitEnquiry } from "./enquiry";
 const mockEnquiryCreate = vi.hoisted(() => vi.fn());
 const mockCourseFindUnique = vi.hoisted(() => vi.fn());
 const mockResendSend = vi.hoisted(() => vi.fn());
+const mockCheckRateLimit = vi.hoisted(() =>
+  vi.fn(() => ({ allowed: true, remaining: 4, resetAt: Date.now() + 60000 })),
+);
+const mockGetClientIp = vi.hoisted(() => vi.fn(() => Promise.resolve("127.0.0.1")));
+
+vi.mock("@/lib/rate-limiter", () => ({
+  checkRateLimit: mockCheckRateLimit,
+  getClientIp: mockGetClientIp,
+}));
 
 vi.mock("@/lib/db", () => ({
   prisma: {

@@ -7,6 +7,7 @@ import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
 import { uploadFile } from "@/lib/storage";
 import { slugFromName } from "@/lib/gallery";
+import { stripHtml } from "@/lib/sanitize";
 
 function localeFromFormData(formData: FormData): string {
   return (formData.get("locale") as string) || "en";
@@ -167,8 +168,10 @@ export async function uploadGalleryImages(formData: FormData) {
 
   const categoryId = formData.get("categoryId") as string;
   const files = formData.getAll("files") as File[];
-  const captionEn = (formData.get("captionEn") as string) || null;
-  const captionMl = (formData.get("captionMl") as string) || null;
+  const rawCaptionEn = (formData.get("captionEn") as string) || null;
+  const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn) : null;
+  const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl) : null;
 
   if (!files.length) {
     throw new Error("No files provided");
@@ -224,8 +227,10 @@ export async function addVideoItem(formData: FormData) {
 
   const categoryId = formData.get("categoryId") as string;
   const url = formData.get("url") as string;
-  const captionEn = (formData.get("captionEn") as string) || null;
-  const captionMl = (formData.get("captionMl") as string) || null;
+  const rawCaptionEn = (formData.get("captionEn") as string) || null;
+  const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn) : null;
+  const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl) : null;
 
   if (!url) {
     throw new Error("Video URL is required");

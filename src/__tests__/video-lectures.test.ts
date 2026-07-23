@@ -56,6 +56,7 @@ const mockAcFindMany = vi.hoisted(() => vi.fn());
 const mockEnrollFindMany = vi.hoisted(() => vi.fn());
 const mockProfileFindUnique = vi.hoisted(() => vi.fn());
 const mockCourseFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -83,6 +84,9 @@ vi.mock("@/lib/db", () => ({
     },
     course: {
       findMany: mockCourseFindMany,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -120,6 +124,7 @@ vi.mock("next/link", () => ({
 describe("uploadResource — LECTURE type (admin server action)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. adding a LECTURE resource with a valid YouTube URL succeeds", async () => {

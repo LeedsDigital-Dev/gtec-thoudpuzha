@@ -4,6 +4,7 @@ import { createFlashNews } from "./actions";
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
 const mockAggregate = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -21,6 +22,9 @@ vi.mock("@/lib/db", () => ({
     flashNewsItem: {
       create: mockCreate,
       aggregate: mockAggregate,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -43,6 +47,7 @@ describe("createFlashNews", () => {
     mockAggregate.mockReset();
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("writes an audit log entry when creating a flash news item", async () => {

@@ -71,6 +71,7 @@ const mockCourseUpdate = vi.hoisted(() => vi.fn());
 
 const mockUploadFile = vi.hoisted(() => vi.fn());
 const mockLogAdminAction = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
   prisma: {
@@ -81,6 +82,9 @@ vi.mock("@/lib/db", () => ({
     },
     courseCategory: {
       findMany: vi.fn().mockResolvedValue([]),
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
   },
 }));
@@ -187,6 +191,7 @@ describe("Course creation with category", () => {
     vi.clearAllMocks();
     mockStore = [];
     setMockAuth("admin_1", Role.CENTRE_STAFF);
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("creating a course with a category persists correctly", async () => {
@@ -219,6 +224,7 @@ describe("Course creation with category", () => {
 describe("Admin courses authorization", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("/admin/courses is denied to a student-role user (403)", async () => {
@@ -251,6 +257,7 @@ describe("Course cover image upload", () => {
     setMockAuth("admin_1", Role.CENTRE_STAFF);
     mockUploadFile.mockResolvedValue("course-covers/12345-image.png");
     mockCourseUpdate.mockResolvedValue({ id: "course_1" });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("uploading a course cover image stores it in R2 and persists the URL", async () => {

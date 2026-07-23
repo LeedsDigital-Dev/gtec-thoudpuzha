@@ -21,6 +21,8 @@ vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
 }));
 
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
+
 vi.mock("@/lib/db", () => ({
   prisma: {
     galleryItem: {
@@ -31,6 +33,9 @@ vi.mock("@/lib/db", () => ({
     },
     galleryCategory: {
       aggregate: mockCatAggregate,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -78,6 +83,7 @@ describe("uploadGalleryImages", () => {
     mockAuditCreate.mockReset();
     mockUploadFile.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. bulk-uploading 3 images to a category creates 3 GalleryItem rows", async () => {
@@ -185,6 +191,7 @@ describe("addVideoItem", () => {
     mockAuditCreate.mockReset();
     mockUploadFile.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("3. adding a VIDEO-type item stores the external URL without attempting an R2 upload", async () => {

@@ -5,6 +5,7 @@ import { logAdminAction } from "@/lib/audit";
 
 const mockCreate = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
     throw new Error(`redirect:${url}`);
@@ -17,6 +18,9 @@ vi.mock("@/lib/db", () => ({
     auditLogEntry: {
       create: mockCreate,
       findMany: mockFindMany,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
   },
 }));
@@ -95,6 +99,7 @@ describe("AuditLogPage", () => {
     mockRedirect.mockImplementation((url: string) => {
       throw new Error(`redirect:${url}`);
     });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("is denied to a student-role user", async () => {

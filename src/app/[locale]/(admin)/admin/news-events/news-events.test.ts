@@ -9,6 +9,7 @@ const mockAuth = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
 const mockDelete = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -27,6 +28,9 @@ vi.mock("@/lib/db", () => ({
       create: mockCreate,
       update: mockUpdate,
       delete: mockDelete,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -50,6 +54,7 @@ describe("createNewsEvent", () => {
     mockDelete.mockReset();
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("writes an audit log entry when creating a news item", async () => {

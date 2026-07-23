@@ -2,6 +2,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
@@ -11,6 +12,9 @@ vi.mock("@/lib/db", () => ({
   prisma: {
     jobPosting: {
       findMany: mockFindMany,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
   },
 }));
@@ -30,6 +34,8 @@ describe("JobPostingsPage filtering", () => {
     vi.clearAllMocks();
     mockAuth.mockReset();
     mockFindMany.mockReset();
+    mockUserFindUnique.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
     mockRedirect.mockImplementation((url: string) => {
       throw new Error(`redirect:${url}`);
     });

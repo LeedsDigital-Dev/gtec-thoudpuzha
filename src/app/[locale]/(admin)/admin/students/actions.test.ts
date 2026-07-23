@@ -5,6 +5,7 @@ const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -23,6 +24,9 @@ vi.mock("@/lib/db", () => ({
       findUnique: mockFindUnique,
       findMany: mockFindMany,
       create: mockCreate,
+    },
+    user: {
+      findUnique: mockUserFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -46,6 +50,7 @@ describe("createStudentRecord", () => {
     mockCreate.mockReset();
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("1. single-entry creation succeeds with valid data", async () => {
@@ -130,6 +135,7 @@ describe("bulkImportStudents", () => {
     mockCreate.mockReset();
     mockAuditCreate.mockReset();
     mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
   test("2. CSV bulk import with 5 valid rows creates 5 StudentRecord rows", async () => {

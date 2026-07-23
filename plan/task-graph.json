@@ -779,7 +779,7 @@
       "track": "Backend",
       "priority": "Must Have",
       "points": 5,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [],
       "model": "premium",
       "model_reason": "Security review by definition \u2014 rate-limiting, XSS, injection audit."

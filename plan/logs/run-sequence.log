@@ -93,3 +93,5 @@
 [2026-07-23T12:27:12Z] Starting s10-t1
 [2026-07-23T12:36:58Z] s10-t1 done. Checking for next eligible task.
 [2026-07-23T12:36:58Z] Starting s10-t2
+[2026-07-23T15:23:06Z] === run-sequence started ===
+[2026-07-23T15:23:07Z] Starting s10-t3

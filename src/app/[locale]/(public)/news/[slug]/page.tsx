@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getNewsEventBySlug } from "@/lib/news-events";
+import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 
 export const revalidate = 60;
 
@@ -14,6 +15,7 @@ export default async function NewsDetailPage({
 }: NewsDetailPageProps) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: "news" });
+  const loc = locale as Locale;
 
   const item = await getNewsEventBySlug(slug);
 
@@ -52,13 +54,15 @@ export default async function NewsDetailPage({
           {item.type === "NEWS" ? t("news") : t("event")} &middot;{" "}
           {formatDate(item.publishedAt)}
         </p>
-        <h1 className="mt-2 text-3xl font-bold">{item.titleEn}</h1>
+        <h1 className="mt-2 text-3xl font-bold">
+          {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
+        </h1>
 
         {item.coverImageUrl && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={item.coverImageUrl}
-            alt={item.titleEn}
+            alt={pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
             className="mt-6 w-full rounded-lg object-cover"
           />
         )}
@@ -70,7 +74,7 @@ export default async function NewsDetailPage({
         )}
 
         <div className="mt-6 whitespace-pre-line leading-relaxed">
-          {item.bodyEn}
+          {pickLocalizedText({ en: item.bodyEn, ml: item.bodyMl }, loc)}
         </div>
       </article>
     </main>

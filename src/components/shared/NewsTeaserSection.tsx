@@ -18,6 +18,7 @@ interface NewsTeaserSectionProps {
   heading: string;
   viewAll: string;
   upcomingEventLabel: string;
+  locale: "en" | "ml";
 }
 
 function formatDate(date: Date | null): string {
@@ -29,7 +30,14 @@ function formatDate(date: Date | null): string {
   });
 }
 
-export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel }: NewsTeaserSectionProps) {
+function pickLocalizedText(
+  localized: { en: string; ml?: string | null },
+  locale: "en" | "ml",
+): string {
+  return locale === "ml" && localized.ml ? localized.ml : localized.en;
+}
+
+export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel, locale }: NewsTeaserSectionProps) {
   const { newsItems, nextEvent } = teaser;
 
   if (newsItems.length === 0 && !nextEvent) return null;
@@ -58,7 +66,7 @@ export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel
                 {formatDate(item.publishedAt)}
               </p>
               <h3 className="mt-1 line-clamp-2 text-sm font-medium">
-                {item.titleEn}
+                {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, locale)}
               </h3>
             </Link>
           ))}
@@ -71,7 +79,7 @@ export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel
             >
               <p className="text-xs font-semibold text-primary">{upcomingEventLabel}</p>
               <h3 className="mt-1 line-clamp-2 text-sm font-medium">
-                {nextEvent.titleEn}
+                {pickLocalizedText({ en: nextEvent.titleEn, ml: nextEvent.titleMl }, locale)}
               </h3>
               {nextEvent.eventDate && (
                 <p className="mt-1 text-xs text-muted-foreground">

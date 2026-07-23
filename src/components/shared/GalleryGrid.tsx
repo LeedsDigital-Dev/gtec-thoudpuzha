@@ -48,20 +48,30 @@ function getVideoThumbnail(url: string): string | null {
   return null;
 }
 
+function pickLocalizedText(
+  localized: { en: string; ml?: string | null },
+  locale: "en" | "ml",
+): string {
+  return locale === "ml" && localized.ml ? localized.ml : localized.en;
+}
+
 function Lightbox({
   items,
   currentIndex,
   onClose,
   onPrev,
   onNext,
+  locale = "en",
 }: {
   items: PublicGalleryCategory["items"];
   currentIndex: number;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
+  locale?: "en" | "ml";
 }) {
   const item = items[currentIndex];
+  const itemCaption = item ? pickLocalizedText({ en: item.captionEn ?? "", ml: item.captionMl }, locale) : "";
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -184,21 +194,21 @@ function Lightbox({
             className="aspect-video w-full max-w-4xl"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            title={item.captionEn ?? "Video"}
+            title={itemCaption || "Video"}
           />
         ) : (
           <Image
             src={getMediaUrl(item.url)}
-            alt={item.captionEn ?? "Gallery image"}
+            alt={itemCaption || "Gallery image"}
             width={1200}
             height={900}
             className="max-h-[85vh] w-auto rounded-lg object-contain"
             priority
           />
         )}
-        {item.captionEn && (
+        {itemCaption && (
           <p className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded bg-black/60 px-4 py-2 text-sm text-white">
-            {item.captionEn}
+            {itemCaption}
           </p>
         )}
       </div>
@@ -209,9 +219,11 @@ function Lightbox({
 export function GalleryGrid({
   categories,
   initialCategorySlug,
+  locale = "en",
 }: {
   categories: PublicGalleryCategory[];
   initialCategorySlug?: string;
+  locale?: "en" | "ml";
 }) {
   const initialId = initialCategorySlug
     ? categories.find((c) => c.slug === initialCategorySlug)?.id
@@ -271,7 +283,7 @@ export function GalleryGrid({
                 : "text-gray-500 hover:text-gray-700"
             }`}
           >
-            {cat.nameEn}
+            {pickLocalizedText({ en: cat.nameEn, ml: cat.nameMl }, locale)}
           </button>
         ))}
       </div>
@@ -283,7 +295,9 @@ export function GalleryGrid({
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {activeItems.map((item, index) => (
+          {activeItems.map((item, index) => {
+            const itemCaption = pickLocalizedText({ en: item.captionEn ?? "", ml: item.captionMl }, locale);
+            return (
             <button
               key={item.id}
               onClick={() =>
@@ -301,8 +315,8 @@ export function GalleryGrid({
               className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100"
               aria-label={
                 item.mediaType === "VIDEO"
-                  ? `Play video: ${item.captionEn ?? "Video"}`
-                  : `View image: ${item.captionEn ?? "Gallery image"}`
+                  ? `Play video: ${itemCaption || "Video"}`
+                  : `View image: ${itemCaption || "Gallery image"}`
               }
             >
               <Image
@@ -311,7 +325,7 @@ export function GalleryGrid({
                     ? (getVideoThumbnail(item.url) ?? getMediaUrl(item.url))
                     : getMediaUrl(item.url)
                 }
-                alt={item.captionEn ?? "Gallery image"}
+                alt={itemCaption || "Gallery image"}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
@@ -330,15 +344,16 @@ export function GalleryGrid({
                   </div>
                 </div>
               )}
-              {item.captionEn && (
+              {itemCaption && (
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
                   <p className="truncate text-xs text-white">
-                    {item.captionEn}
+                    {itemCaption}
                   </p>
                 </div>
               )}
             </button>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -350,6 +365,7 @@ export function GalleryGrid({
           onClose={closeLightbox}
           onPrev={goToPrev}
           onNext={goToNext}
+          locale={locale}
         />
       )}
     </div>

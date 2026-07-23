@@ -51,7 +51,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
       <AtAGlanceSection heading={atAGlanceT("heading")} settings={settings} />
-      <NewsTeaserSection teaser={teaser} heading={newsT("heading")} viewAll={newsT("viewAll")} upcomingEventLabel={newsT("upcomingEvent")} />
+      <NewsTeaserSection teaser={teaser} heading={newsT("heading")} viewAll={newsT("viewAll")} upcomingEventLabel={newsT("upcomingEvent")} locale={locale} />
       <AboutSection settings={settings} locale={locale} heading={aboutT("heading")} photoPlaceholder={aboutT("photoPlaceholder")} />
       <WhyChooseUsSection heading={whyT("heading")} settings={settings} locale={locale} />
       <CertificationPartnerStrip heading={certT("heading")} />

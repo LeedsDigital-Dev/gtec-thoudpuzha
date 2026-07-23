@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { getGalleryData } from "@/lib/gallery";
 import { GalleryGrid } from "@/components/shared/GalleryGrid";
+import type { Locale } from "@/lib/site-settings";
 
 export const revalidate = 60;
 
@@ -24,6 +25,7 @@ export default async function GalleryPage({
       <GalleryGrid
         categories={categories}
         initialCategorySlug={initialCategorySlug}
+        locale={locale as Locale}
       />
     </main>
   );

@@ -154,7 +154,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                 rel="noopener noreferrer"
                 className="text-sm text-primary hover:underline"
               >
-                See our Google Reviews →
+                {t("googleReviews")}
               </a>
             )}
 
@@ -165,7 +165,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                 onClick={() => setShowEnquiry(true)}
                 className="rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
-                Send us a message
+                {t("sendMessage")}
               </button>
             </div>
           </div>

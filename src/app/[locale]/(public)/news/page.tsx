@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getPublishedNews } from "@/lib/news-events";
+import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 
 export const revalidate = 60;
 
@@ -11,6 +12,7 @@ interface NewsPageProps {
 export default async function NewsPage({ params }: NewsPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "news" });
+  const loc = locale as Locale;
 
   const items = await getPublishedNews();
   const newsItems = items.filter((i) => i.type === "NEWS");
@@ -50,9 +52,11 @@ export default async function NewsPage({ params }: NewsPageProps) {
                 <p className="text-xs text-muted-foreground">
                   {formatDate(item.publishedAt)}
                 </p>
-                <h3 className="mt-1 text-lg font-medium">{item.titleEn}</h3>
+                <h3 className="mt-1 text-lg font-medium">
+                  {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
+                </h3>
                 <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
-                  {item.bodyEn}
+                  {pickLocalizedText({ en: item.bodyEn, ml: item.bodyMl }, loc)}
                 </p>
               </Link>
             ))}
@@ -75,9 +79,11 @@ export default async function NewsPage({ params }: NewsPageProps) {
                     ? formatDate(item.eventDate)
                     : formatDate(item.publishedAt)}
                 </p>
-                <h3 className="mt-1 text-lg font-medium">{item.titleEn}</h3>
+                <h3 className="mt-1 text-lg font-medium">
+                  {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
+                </h3>
                 <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
-                  {item.bodyEn}
+                  {pickLocalizedText({ en: item.bodyEn, ml: item.bodyMl }, loc)}
                 </p>
               </Link>
             ))}

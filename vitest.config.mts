@@ -10,6 +10,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "next/server": "next/server.js",
+      "next/navigation": "next/navigation.js",
+      "next/link": "next/link.js",
     },
   },
   test: {

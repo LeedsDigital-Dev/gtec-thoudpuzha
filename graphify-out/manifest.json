@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/db.test.ts": {
-    "mtime": 1784789849.829868,
-    "ast_hash": "ece913c5f2f627112040c70dd62b70d6",
+    "mtime": 1784847657.5198576,
+    "ast_hash": "7604a070716216671448232292475054",
     "semantic_hash": ""
   },
   "src/lib/db.ts": {
@@ -150,13 +150,13 @@
     "semantic_hash": ""
   },
   "src/__tests__/i18n.test.tsx": {
-    "mtime": 1784818543.682627,
-    "ast_hash": "d69293fd1417dd482b4ab7deeb7936d7",
+    "mtime": 1784847377.0086944,
+    "ast_hash": "6925ce070a691afd377a4cb942874809",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/page.tsx": {
-    "mtime": 1784829058.6641264,
-    "ast_hash": "d40b3cc9051102929fbd62bcb1e4bebe",
+    "mtime": 1784847396.3724978,
+    "ast_hash": "720bce8e5eb1d9d903c8e78b0a133e6c",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/layout.tsx": {
@@ -465,8 +465,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/courses/page.tsx": {
-    "mtime": 1784831716.7894728,
-    "ast_hash": "7623cbe2d4d996bc40049b8d348adabb",
+    "mtime": 1784847389.158571,
+    "ast_hash": "7ac9b8e7fbf0b747f31cc5f8aa62c8bd",
     "semantic_hash": ""
   },
   "src/lib/courses.test.ts": {
@@ -510,8 +510,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/page.tsx": {
-    "mtime": 1784779500.165463,
-    "ast_hash": "bcf27188c7fa2cf055f8a2333469b60e",
+    "mtime": 1784847389.155571,
+    "ast_hash": "c1685f68651cebc0661415144d9a24af",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/gallery/page.tsx": {
@@ -525,13 +525,13 @@
     "semantic_hash": ""
   },
   "src/components/shared/GalleryGrid.test.tsx": {
-    "mtime": 1784781530.310154,
-    "ast_hash": "9577d959abe855c35c1b839e807180b8",
+    "mtime": 1784847480.9886398,
+    "ast_hash": "e86d3cd8db2c7d7353618b0bbda3e0bd",
     "semantic_hash": ""
   },
   "src/components/shared/GalleryGrid.tsx": {
-    "mtime": 1784829058.6651263,
-    "ast_hash": "88e853b44a93a5c1ed63149d075c1e16",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "06a58dddfef9c5ecf9afc5d1009594bb",
     "semantic_hash": ""
   },
   "src/lib/gallery.ts": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts": {
-    "mtime": 1784818543.683627,
-    "ast_hash": "bba5aa6f439f4d2e4fcc5e868cea1e99",
+    "mtime": 1784847389.157571,
+    "ast_hash": "7c7a05a55ba4db369e5df416128c7a67",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/certification-partners/page.tsx": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/news-events/news-events.test.ts": {
-    "mtime": 1784808538.5142653,
-    "ast_hash": "463de66da4d5e1de475933e7cba80231",
+    "mtime": 1784847389.155571,
+    "ast_hash": "a3b38c00e0f9676930ed270052246507",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/news-events/page.tsx": {
@@ -600,8 +600,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/news.test.tsx": {
-    "mtime": 1784780829.1890414,
-    "ast_hash": "c087d788cf2de90bcc6c41f7a5fcc732",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "405cbdd8bbd90aeac5004b21d79c65cd",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/page.tsx": {
@@ -630,8 +630,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/PlacementSupportSection.test.tsx": {
-    "mtime": 1784818543.6876268,
-    "ast_hash": "3e1f921cec58d7c641608a302f46dfde",
+    "mtime": 1784847485.622593,
+    "ast_hash": "a8825089f83c565160ca6067eef54bb0",
     "semantic_hash": ""
   },
   "src/components/shared/PlacementSupportSection.tsx": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {
-    "mtime": 1784792155.2412503,
-    "ast_hash": "e01846aeaca2d7e2ee5798f3d44808de",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "cd7ae0879e718cc357a91ce333a4d341",
     "semantic_hash": ""
   },
   "src/app/[locale]/complete-signup/page.tsx": {
@@ -750,13 +750,13 @@
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.test.tsx": {
-    "mtime": 1784798449.990392,
-    "ast_hash": "321164b445f3add8624f143422912814",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "3f7f822b24c3d26dc7a88eccfb8e91ce",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.tsx": {
-    "mtime": 1784846556.3183024,
-    "ast_hash": "480b184fbdd1d819caba1792c22d0c42",
+    "mtime": 1784847558.7958531,
+    "ast_hash": "327e129609b8c52836333fc2ac6fb456",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723053201_add_skill_model/migration.sql": {
@@ -770,8 +770,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/SkillMultiSelect.tsx": {
-    "mtime": 1784829058.6651263,
-    "ast_hash": "9a2d0e13d472bf0d41cc3c2d2d430ee0",
+    "mtime": 1784847513.205314,
+    "ast_hash": "847dd38b73d58258305ebce0b3c413f4",
     "semantic_hash": ""
   },
   "src/lib/skills.ts": {
@@ -900,8 +900,8 @@
     "semantic_hash": ""
   },
   "src/lib/video.ts": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "c519257f0acceff584da94dfd85e8db9",
+    "mtime": 1784847417.334285,
+    "ast_hash": "bbfbc181782c79397e898a4c38494799",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723095331_add_student_progress_timetable_entries/migration.sql": {
@@ -995,8 +995,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/page.tsx": {
-    "mtime": 1784829058.6641264,
-    "ast_hash": "0ba040b4dced1fc830ec7f191f23ecd4",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "d5efb71c55217e0ee1f695b8f2a06067",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/post-vacancy/actions.test.ts": {
@@ -1110,13 +1110,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/jobs/[id]/page.test.tsx": {
-    "mtime": 1784806132.4135106,
-    "ast_hash": "b76086ad257bea4e6e2d7b7439bb73c1",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "c340dbbf6175d73d7907e075c57032f6",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/jobs/[id]/page.tsx": {
-    "mtime": 1784818543.6846268,
-    "ast_hash": "e98327f905516665ee3d9d436d949f2f",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "ee02f77684f1550ff8613368a93b8088",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723113238_s08_t3_application_entity/migration.sql": {
@@ -1125,8 +1125,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/application-unique.test.ts": {
-    "mtime": 1784806715.8206356,
-    "ast_hash": "2abf7a3c1792a3cd5bfa667ad36dae85",
+    "mtime": 1784847377.0086944,
+    "ast_hash": "ea6448809a2290641f27c4ba9371b15f",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/actions.test.ts": {
@@ -1140,8 +1140,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/applicants-list.tsx": {
-    "mtime": 1784829058.6641264,
-    "ast_hash": "03ea590712b748313209f80a24f673a3",
+    "mtime": 1784847491.0765376,
+    "ast_hash": "1104e17e115b0daab9f1895d9948b180",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/page.test.ts": {
@@ -1175,8 +1175,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/candidates/actions.ts": {
-    "mtime": 1784807277.3584945,
-    "ast_hash": "eab1466e5553c67b2de41c4898adfa78",
+    "mtime": 1784847405.8444016,
+    "ast_hash": "ad16bdcb5479db8276d085c3e8d5f6b7",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/candidates/page.tsx": {
@@ -1185,8 +1185,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/candidates/search-form.tsx": {
-    "mtime": 1784818543.683627,
-    "ast_hash": "affe530c1eaffafd0a430c96a535b551",
+    "mtime": 1784847401.6834438,
+    "ast_hash": "e56aad50f42f19e11944559f95646612",
     "semantic_hash": ""
   },
   "src/emails/InviteToApplyEmail.tsx": {
@@ -1210,8 +1210,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/staff.test.ts": {
-    "mtime": 1784809159.697691,
-    "ast_hash": "cc81a853121bf200748f22b020e68737",
+    "mtime": 1784847377.0086944,
+    "ast_hash": "6fb7b1f09f353c52a25ad8807006e2d5",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/staff/actions.ts": {
@@ -1250,8 +1250,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/bilingual-qa.test.tsx": {
-    "mtime": 1784821076.2836173,
-    "ast_hash": "51200660ca0226bf8564304d8ffa99a2",
+    "mtime": 1784847382.7966356,
+    "ast_hash": "9689ecfdb426ee5f99b0411f17db31a3",
     "semantic_hash": ""
   },
   "docs/bilingual-qa-log.md": {
@@ -1380,8 +1380,8 @@
     "semantic_hash": ""
   },
   "src/lib/security-review.test.ts": {
-    "mtime": 1784827025.1728513,
-    "ast_hash": "c3a0905ec14d64af5f2d8dff357b64d4",
+    "mtime": 1784847417.334285,
+    "ast_hash": "bb5c25fe5311547e12abcbcbee5df8e0",
     "semantic_hash": ""
   },
   "docs/security-review-log.md": {
@@ -1390,8 +1390,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/__tests__/BiodataForm.a11y.test.tsx": {
-    "mtime": 1784829058.6651263,
-    "ast_hash": "16ac4852d8747d02a233ffaefe2a738c",
+    "mtime": 1784847417.3332849,
+    "ast_hash": "a9299003c9766f691c9fdebfd3451cac",
     "semantic_hash": ""
   },
   "src/hooks/useFocusTrap.ts": {
@@ -1415,8 +1415,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/__tests__/rendering-strategy.test.ts": {
-    "mtime": 1784830107.9374042,
-    "ast_hash": "10fd6bb66f9718585c418526116ddcf8",
+    "mtime": 1784847657.5198576,
+    "ast_hash": "dd847ceca784f873694d797d349dd302",
     "semantic_hash": ""
   },
   "tests/e2e/performance-audit.spec.ts": {
@@ -1485,8 +1485,8 @@
     "semantic_hash": ""
   },
   "tests/e2e/post-deploy.spec.ts": {
-    "mtime": 1784832780.0343182,
-    "ast_hash": "c09e94ba094dd6dfb37ac9c51218efd2",
+    "mtime": 1784847417.334285,
+    "ast_hash": "92cce070a029508e8226d05051069d8f",
     "semantic_hash": ""
   },
   "docs/launch-record.md": {

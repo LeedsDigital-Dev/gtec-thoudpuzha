@@ -3,8 +3,20 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
 
 export async function lookupStudentRecord(formData: FormData) {
+  // Rate-limit: 5 per minute per IP — this is a public, unauthenticated
+  // endpoint that acts as an enumeration oracle for Student ID / phone pairs.
+  const ip = await getClientIp();
+  const rateCheck = checkRateLimit(`student-lookup:${ip}`);
+  if (!rateCheck.allowed) {
+    return {
+      success: false as const,
+      error:
+        "Too many attempts. Please try again later.",
+    };
+  }
   const studentId = formData.get("studentId") as string;
   const phone = formData.get("phone") as string;
 

@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1784804913.103443,
-    "ast_hash": "750bf15f2ae84a44b7207bccc17cdf0b",
+    "mtime": 1784821615.130003,
+    "ast_hash": "3b6c385adf29ea8ce923309a7581cd89",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -40,13 +40,13 @@
     "semantic_hash": ""
   },
   "tsconfig.json": {
-    "mtime": 1784692954.0046742,
-    "ast_hash": "ee17fd1c97c735e9f3564e3f5251f125",
+    "mtime": 1784823185.4852262,
+    "ast_hash": "0db6658db1e8ade19f2e2d6a4d69a8e1",
     "semantic_hash": ""
   },
   "vitest.config.mts": {
-    "mtime": 1784758446.2249818,
-    "ast_hash": "5776d2950958f5250add106892048a8f",
+    "mtime": 1784822145.773073,
+    "ast_hash": "aeb01aa32e553322e2f54be7a0305daa",
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
-    "mtime": 1784818543.686627,
-    "ast_hash": "b53953f5cddb5277a46f27432547d3ad",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "6618bdfa40d84343e8b53d816c309dd2",
     "semantic_hash": ""
   },
   "src/app/[locale]/account-setup-incomplete/page.tsx": {
@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784818543.6886268,
-    "ast_hash": "58ee20e15d4dc8300bb07f5741214b9e",
+    "mtime": 1784824033.8680024,
+    "ast_hash": "352e73c50b35d9bcd3d9b6ce3199e5f3",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784818543.6886268,
-    "ast_hash": "7992f58b42f574cf07bb6998fcb1a6bd",
+    "mtime": 1784824062.6166148,
+    "ast_hash": "c88128bc9b54e76a14b87f8c830d9058",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/request.ts": {
-    "mtime": 1784758446.2249818,
-    "ast_hash": "68049315dc303d86fdd1c9e72ae93f1e",
+    "mtime": 1784823046.490334,
+    "ast_hash": "7f1cc933778468ecf8a1cc4c6dedcd70",
     "semantic_hash": ""
   },
   "src/lib/i18n/routing.ts": {
@@ -440,8 +440,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/ContactSection.tsx": {
-    "mtime": 1784818543.686627,
-    "ast_hash": "d07b7e0ae4ac2c4c9cad79ba2d786ab2",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "1eea885de61e7cc0257b280e0ab4d259",
     "semantic_hash": ""
   },
   "src/components/shared/Footer.test.tsx": {
@@ -515,8 +515,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/gallery/page.tsx": {
-    "mtime": 1784818543.686627,
-    "ast_hash": "a989324129f6ef54b2fb68c9c1f01308",
+    "mtime": 1784821076.2836173,
+    "ast_hash": "afc99a1a0e2bdbb27422b9f2e1f910af",
     "semantic_hash": ""
   },
   "src/app/api/media/[...key]/route.ts": {
@@ -530,8 +530,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/GalleryGrid.tsx": {
-    "mtime": 1784781530.310154,
-    "ast_hash": "3126675171e2bae1ca0f012a81b24eca",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "2ad8158d908da53b7643a6996f12c18f",
     "semantic_hash": ""
   },
   "src/lib/gallery.ts": {
@@ -595,8 +595,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/[slug]/page.tsx": {
-    "mtime": 1784818543.686627,
-    "ast_hash": "d174b32f2746ad181629d1813e7cdea4",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "972ec74ce3de0623fbb1147982ebff5d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/news.test.tsx": {
@@ -605,13 +605,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/page.tsx": {
-    "mtime": 1784818543.686627,
-    "ast_hash": "d133ebb3dda3d4dd7813d24a767b8714",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "07ae295e8ae06d98c6e0c390a05b07d0",
     "semantic_hash": ""
   },
   "src/components/shared/NewsTeaserSection.tsx": {
-    "mtime": 1784818543.6876268,
-    "ast_hash": "d5e9df493a7d195c4810971c4129cb33",
+    "mtime": 1784821076.2846172,
+    "ast_hash": "065f007ee6a5c5b1b953d71d253fd9c0",
     "semantic_hash": ""
   },
   "src/lib/news-events.ts": {
@@ -1247,6 +1247,121 @@
   "src/__tests__/bilingual-fields.test.tsx": {
     "mtime": 1784810188.592975,
     "ast_hash": "97444d45035a603cca1ca1af513ad1a5",
+    "semantic_hash": ""
+  },
+  "src/__tests__/bilingual-qa.test.tsx": {
+    "mtime": 1784821076.2836173,
+    "ast_hash": "51200660ca0226bf8564304d8ffa99a2",
+    "semantic_hash": ""
+  },
+  "docs/bilingual-qa-log.md": {
+    "mtime": 1784821076.2796173,
+    "ast_hash": "ad582c6053513ee1bfbd1185db5cf5ad",
+    "semantic_hash": ""
+  },
+  "playwright.config.ts": {
+    "mtime": 1784826421.8707073,
+    "ast_hash": "b79b0a2b1806d57ab0e99e2097556fad",
+    "semantic_hash": ""
+  },
+  "test-results/.last-run.json": {
+    "mtime": 1784826038.1983283,
+    "ast_hash": "f59f4e5cc0621f489ae60742f42d8027",
+    "semantic_hash": ""
+  },
+  "tests/e2e/mobile-viewport.spec.ts": {
+    "mtime": 1784826421.8707073,
+    "ast_hash": "160548ae3715e63da5518ab76048c90a",
+    "semantic_hash": ""
+  },
+  "tests/e2e/pdf-download.spec.ts": {
+    "mtime": 1784826421.8707073,
+    "ast_hash": "21cedb32bac0bc3cff2bbcf2d81a20b2",
+    "semantic_hash": ""
+  },
+  "tests/e2e/smoke.spec.ts": {
+    "mtime": 1784826421.8707073,
+    "ast_hash": "c2401de23a95d857846e0104467f7147",
+    "semantic_hash": ""
+  },
+  "docs/cross-browser-qa-log.md": {
+    "mtime": 1784826421.869707,
+    "ast_hash": "e0d48af880cf548a6fe7626bc71617af",
+    "semantic_hash": ""
+  },
+  "test-results/mobile-viewport-Mobile-vie-2ea25-ble-and-opens-nav-on-mobile-chromium/error-context.md": {
+    "mtime": 1784826026.5784357,
+    "ast_hash": "4a7330e951fb2036de8370b4c6518859",
+    "semantic_hash": ""
+  },
+  "test-results/mobile-viewport-Mobile-vie-367c0--without-overflow-on-mobile-chromium/error-context.md": {
+    "mtime": 1784826026.5974355,
+    "ast_hash": "362d3aae4066f418db4005c70955059e",
+    "semantic_hash": ""
+  },
+  "test-results/mobile-viewport-Mobile-vie-90baf-essible-from-hamburger-menu-chromium/error-context.md": {
+    "mtime": 1784826028.2164204,
+    "ast_hash": "346620267fad913c67f60f8b382b84ac",
+    "semantic_hash": ""
+  },
+  "test-results/mobile-viewport-Mobile-vie-eef14--visible-overflow-on-mobile-chromium/error-context.md": {
+    "mtime": 1784826028.2174206,
+    "ast_hash": "52eaf02b7829875bc434c0414af9dd83",
+    "semantic_hash": ""
+  },
+  "test-results/pdf-download-PDF-download--ed942-ns-401-when-unauthenticated-chromium/error-context.md": {
+    "mtime": 1784826029.9094048,
+    "ast_hash": "a7a9a9e44f52fab177babd333bc086b3",
+    "semantic_hash": ""
+  },
+  "test-results/pdf-download-PDF-download--fb469-load-for-authenticated-user-chromium/error-context.md": {
+    "mtime": 1784826029.9114048,
+    "ast_hash": "4593ca30c474cdeb6b0e4bd0e8200c8b",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-44774-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826036.5383437,
+    "ast_hash": "81440cd0c8d2d9945beff4c900f4c9e7",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-54994-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826033.255374,
+    "ast_hash": "554f525833ebcace60c90cc634ba6630",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-779f6--a-gallery-image-is-clicked-chromium/error-context.md": {
+    "mtime": 1784826038.105329,
+    "ast_hash": "8f39386e88d5643eb601b17e52639328",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-86a42-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826031.623389,
+    "ast_hash": "b7406b3b9a7e68b9bd508608f1829c94",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-b5492-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826031.6063893,
+    "ast_hash": "459afd221dbbe9658d523e088327782d",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-c3b26-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826034.8983588,
+    "ast_hash": "b978eb7cf6cc42bbbbb38d74458ff745",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-ce860--brand-name-and-CTA-buttons-chromium/error-context.md": {
+    "mtime": 1784826036.5383437,
+    "ast_hash": "844ef38b1cddf20b757b9ff8009d4f9a",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-e02d1-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826034.9033587,
+    "ast_hash": "012f95ef7f879330084db74241fc9245",
+    "semantic_hash": ""
+  },
+  "test-results/smoke-Multi-engine-smoke-t-ee73a-00-and-has-expected-content-chromium/error-context.md": {
+    "mtime": 1784826033.254374,
+    "ast_hash": "eeb109ab033a74cba0b61bd22406f376",
     "semantic_hash": ""
   }
 }

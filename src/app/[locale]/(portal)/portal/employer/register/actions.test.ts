@@ -12,6 +12,15 @@ const mockRedirect = vi.hoisted(() =>
     throw new Error(`redirect:${url}`);
   }),
 );
+const mockCheckRateLimit = vi.hoisted(() =>
+  vi.fn(() => ({ allowed: true, remaining: 4, resetAt: Date.now() + 60000 })),
+);
+const mockGetClientIp = vi.hoisted(() => vi.fn(() => Promise.resolve("127.0.0.1")));
+
+vi.mock("@/lib/rate-limiter", () => ({
+  checkRateLimit: mockCheckRateLimit,
+  getClientIp: mockGetClientIp,
+}));
 
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,

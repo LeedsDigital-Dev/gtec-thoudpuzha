@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db";
 import { sendEnquiryNotification } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
 
 export type EnquiryPayload = {
   source: string;
@@ -28,6 +29,15 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
 
   if (!payload.source) {
     throw new Error("Source is required.");
+  }
+
+  // Rate-limit: 5 per minute per IP
+  const ip = await getClientIp();
+  const rateCheck = checkRateLimit(`enquiry:${ip}`);
+  if (!rateCheck.allowed) {
+    throw new Error(
+      "Too many enquiries. Please try again later.",
+    );
   }
 
   const course = await prisma.course.findUnique({

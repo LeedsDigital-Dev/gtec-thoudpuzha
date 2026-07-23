@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
+import { stripHtml } from "@/lib/sanitize";
 
 function localeFromFormData(formData: FormData): string {
   return (formData.get("locale") as string) || "en";
@@ -26,8 +27,10 @@ export async function createNewsEvent(formData: FormData) {
   const type = formData.get("type") as string;
   const titleEn = formData.get("titleEn") as string;
   const titleMl = (formData.get("titleMl") as string) || null;
-  const bodyEn = formData.get("bodyEn") as string;
-  const bodyMl = (formData.get("bodyMl") as string) || null;
+  const bodyEn = stripHtml(formData.get("bodyEn") as string);
+  const bodyMl = formData.get("bodyMl")
+    ? stripHtml(formData.get("bodyMl") as string)
+    : null;
   const coverImageUrl = (formData.get("coverImageUrl") as string) || null;
   const eventDateValue = formData.get("eventDate") as string;
   const eventDate = eventDateValue ? new Date(eventDateValue) : null;
@@ -72,8 +75,10 @@ export async function updateNewsEvent(formData: FormData) {
   const type = formData.get("type") as string;
   const titleEn = formData.get("titleEn") as string;
   const titleMl = (formData.get("titleMl") as string) || null;
-  const bodyEn = formData.get("bodyEn") as string;
-  const bodyMl = (formData.get("bodyMl") as string) || null;
+  const bodyEn = stripHtml(formData.get("bodyEn") as string);
+  const bodyMl = formData.get("bodyMl")
+    ? stripHtml(formData.get("bodyMl") as string)
+    : null;
   const coverImageUrl = (formData.get("coverImageUrl") as string) || null;
   const eventDateValue = formData.get("eventDate") as string;
   const eventDate = eventDateValue ? new Date(eventDateValue) : null;

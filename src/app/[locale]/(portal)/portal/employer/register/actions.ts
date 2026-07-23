@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
 import type {
   IndustrySector,
   EmployeeCountRange,
@@ -20,6 +21,17 @@ export async function submitEmployerRegistration(
   const session = await auth();
   if (!session.userId) {
     redirect("/sign-in");
+  }
+
+  // Rate-limit: 5 per minute per IP
+  const ip = await getClientIp();
+  const rateCheck = checkRateLimit(`employer-reg:${ip}`);
+  if (!rateCheck.allowed) {
+    return {
+      success: false,
+      error:
+        "Too many attempts. Please try again later.",
+    };
   }
 
   const role = session.sessionClaims?.metadata?.role as string | undefined;

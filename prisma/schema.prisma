@@ -79,11 +79,23 @@ enum EducationalQualification {
   OTHER
 }
 
+enum SkillStatus {
+  PENDING
+  APPROVED
+}
+
 enum PreferredJobType {
   FULL_TIME
   PART_TIME
   INTERNSHIP
   WORK_FROM_HOME
+}
+
+model Skill {
+  id        String      @id @default(cuid())
+  label     String      @unique
+  status    SkillStatus @default(PENDING)
+  createdAt DateTime    @default(now())
 }
 
 model CandidateProfile {
@@ -102,6 +114,7 @@ model CandidateProfile {
   yearOfPassing            Int?
   address                  String?
   languagesKnown           String[]
+  skillIds                 String[] @default([])
   preferredJobLocation     String?
   preferredJobType         PreferredJobType?
   careerObjective          String?

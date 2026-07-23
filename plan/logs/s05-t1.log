@@ -1,0 +1,16 @@
+[spawn-engineer] s05-t1  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T05:20:23Z) ===
+**s05-t1 finished successfully.**
+
+Here's what was done:
+
+- **Schema:** ALTERED `CandidateProfile` with 14 new fields + 2 enums (`EducationalQualification`, `PreferredJobType`) — additive migration, no data loss
+- **Component:** `BiodataForm` (`src/components/shared/BiodataForm.tsx`) — renders all fields for students, hides Course Completed / Certification Earned for job seekers
+- **Server action:** `saveBiodata` (`actions.ts`) — upsert-based, no validation blocking so partial saves work
+- **Computed check:** `isProfileComplete()` — requires name, DOB, phone, email, qualification, address, job type; additionally requires `courseCompletedIds` for verified students
+- **Page:** `/portal/student/biodata` now renders the real form with live courses from DB
+- **Tests:** 7 tests (3 component + 4 unit) covering all 4 required scenarios plus extras
+- **Suite:** All 30 test files / 134 tests pass on `main`
+- **Commits:** `6115098` (feature) → `adcf66f` (merge) → `605cd23` (graph status → `"done"`)
+--- exit code: 0 ---
+[spawn-engineer] s05-t1 VERIFIED done (commit landed, status flipped).

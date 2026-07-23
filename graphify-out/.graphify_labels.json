@@ -33,7 +33,7 @@
   "31": "request.ts",
   "32": "clerk.d.ts",
   "33": "audit.test.ts",
-  "34": "flash-news/page.test.tsx",
+  "34": "courses.test.ts",
   "35": "FlashNewsBar.tsx",
   "36": "news-events.test.ts",
   "37": "news.test.tsx",
@@ -41,6 +41,10 @@
   "39": "sign-up/page.tsx",
   "40": "seed.ts",
   "41": "register/page.tsx",
-  "42": "student/page.tsx",
-  "43": "biodata/page.tsx"
+  "42": "FlashNewsBar.tsx",
+  "43": "biodata/page.tsx",
+  "44": "students/actions.test.ts",
+  "45": "jobs/page.tsx",
+  "46": "resources/page.tsx",
+  "47": "flash-news/page.test.tsx"
 }

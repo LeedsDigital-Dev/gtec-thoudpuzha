@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import { BiodataForm } from "@/components/shared/BiodataForm";
 import { getPublishedCourses } from "@/lib/courses";
+import { getApprovedSkills, createPENDINGSkill } from "@/lib/skills";
 import { saveBiodata } from "./actions";
 
 export default async function BiodataPage() {
@@ -15,9 +16,13 @@ export default async function BiodataPage() {
   const isStudent = role === Role.STUDENT;
   const isVerifiedStudent = role === Role.STUDENT;
 
-  const profile = await prisma.candidateProfile.findUnique({
-    where: { userId: session.userId },
-  });
+  const [profile, courses, skills] = await Promise.all([
+    prisma.candidateProfile.findUnique({
+      where: { userId: session.userId },
+    }),
+    getPublishedCourses(),
+    getApprovedSkills(),
+  ]);
 
   const profileWithCompletion = profile
     ? {
@@ -27,14 +32,14 @@ export default async function BiodataPage() {
       }
     : null;
 
-  const courses = await getPublishedCourses();
-
   return (
     <div className="min-h-screen p-6">
       <BiodataForm
         profile={profileWithCompletion}
         isVerifiedStudent={isVerifiedStudent}
         courses={courses}
+        skills={skills}
+        onAddNewSkill={createPENDINGSkill}
         onSubmit={saveBiodata}
       />
     </div>

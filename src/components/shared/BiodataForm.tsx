@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -444,9 +445,9 @@ export function BiodataForm({
             </p>
             <p className="mt-2 text-xs">
               Your data is handled in accordance with our{" "}
-              <a href="/privacy" className="underline hover:no-underline">
+              <Link href="/privacy" className="underline hover:no-underline">
                 Privacy Policy
-              </a>.
+              </Link>.
             </p>
           </div>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -306,9 +307,9 @@ export function RegistrationForm() {
 
         <p className="text-xs text-muted-foreground text-center">
           Your company data is handled in accordance with our{" "}
-          <a href="/privacy" className="underline hover:no-underline">Privacy Policy</a>
+          <Link href="/privacy" className="underline hover:no-underline">Privacy Policy</Link>
           {" "}and{" "}
-          <a href="/terms" className="underline hover:no-underline">Terms of Service</a>.
+          <Link href="/terms" className="underline hover:no-underline">Terms of Service</Link>.
         </p>
       </form>
     </div>

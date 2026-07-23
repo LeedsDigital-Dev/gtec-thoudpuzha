@@ -1,15 +1,15 @@
 // @vitest-environment node
-
 import { describe, expect, test, beforeAll, afterAll } from "vitest";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-const testDbUrl =
-  "postgresql://gtec_dev:gtec_dev_pass@localhost:5432/gtec_thodupuzha_test";
-
 let prisma: PrismaClient;
 
 beforeAll(() => {
+  const testDbUrl = process.env.DATABASE_URL;
+  if (!testDbUrl) {
+    throw new Error("DATABASE_URL is not set — required for db.test.ts");
+  }
   prisma = new PrismaClient({
     adapter: new PrismaPg({ connectionString: testDbUrl }),
   });

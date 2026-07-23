@@ -403,7 +403,7 @@
       "track": "Frontend",
       "priority": "Should Have",
       "points": 3,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s05-t1"
       ],

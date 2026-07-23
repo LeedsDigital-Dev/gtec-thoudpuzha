@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
-    "mtime": 1784783988.4499297,
-    "ast_hash": "c085b8673c16f83a318d9e38825d0023",
+    "mtime": 1784809159.698691,
+    "ast_hash": "8fdc139c14508496443edc5c8ab2b746",
     "semantic_hash": ""
   },
   "src/middleware.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/audit.test.ts": {
-    "mtime": 1784737224.8227317,
-    "ast_hash": "fbcb1fb4a4866942636597c0172b851b",
+    "mtime": 1784808538.5132654,
+    "ast_hash": "6175fe28094a1c81b02c7aedbfb49724",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/audit-log/page.tsx": {
@@ -285,8 +285,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/flash-news/page.test.tsx": {
-    "mtime": 1784759121.0560071,
-    "ast_hash": "bae0ee64a0fce66231ca9f9e823db634",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "3f74eea619e25e5da37881ffc7ec4f6f",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/flash-news/page.tsx": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/enquiries/page.test.tsx": {
-    "mtime": 1784760329.8203473,
-    "ast_hash": "99ce8b5ad238f438e581b0c4e02d25ac",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "1b140a88359535316f11a14c3249b438",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/enquiries/page.tsx": {
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "src/lib/courses.test.ts": {
-    "mtime": 1784778137.960652,
-    "ast_hash": "565ad385d66619f0c8592210c61b7467",
+    "mtime": 1784808538.5152655,
+    "ast_hash": "47d55b3def3873e00189a055b7ffcfb5",
     "semantic_hash": ""
   },
   "src/lib/courses.ts": {
@@ -505,8 +505,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/gallery.test.ts": {
-    "mtime": 1784779500.165463,
-    "ast_hash": "66e795acd24d9d5fd4c1892dc0447982",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "66feb262c7a4fd2019a8da6124b76c62",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/page.tsx": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts": {
-    "mtime": 1784780405.2790062,
-    "ast_hash": "c77c84e606c473ee79062567ccb531bf",
+    "mtime": 1784808538.5132654,
+    "ast_hash": "ff9b9c55296cba246ec28904fc242ba1",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/certification-partners/page.tsx": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/news-events/news-events.test.ts": {
-    "mtime": 1784780829.1890414,
-    "ast_hash": "cb73b65125ea9fd0ebbb3625ba204e4f",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "463de66da4d5e1de475933e7cba80231",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/news-events/page.tsx": {
@@ -675,8 +675,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/actions.test.ts": {
-    "mtime": 1784782595.3238707,
-    "ast_hash": "ea886e8737036fa7d54a56eb3b313ba8",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "c9ba9293cfc7cabc5ffb376585d0aa0d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/actions.ts": {
@@ -825,13 +825,13 @@
     "semantic_hash": ""
   },
   "src/__tests__/video-lectures.test.ts": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "db6488e83ffd0bd84bccd34318e99f25",
+    "mtime": 1784808538.5132654,
+    "ast_hash": "31edd448c21fb1a22368024af0bace7d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/academic-resources/actions.test.ts": {
-    "mtime": 1784799627.0130696,
-    "ast_hash": "2a59b4c761b80768f58b321a8e0dd348",
+    "mtime": 1784808538.5132654,
+    "ast_hash": "51c64e2472dd1ad08ae8537ff4334d95",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/academic-resources/actions.ts": {
@@ -910,8 +910,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/timetable-progress/actions.test.ts": {
-    "mtime": 1784800643.434889,
-    "ast_hash": "068ebf3a6fe6e86b3bbdb28982a79a84",
+    "mtime": 1784808538.5152655,
+    "ast_hash": "497788d9ed3bc6c96e953efd0fffbdeb",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/timetable-progress/actions.ts": {
@@ -960,23 +960,23 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/employers/actions.test.ts": {
-    "mtime": 1784801814.909593,
-    "ast_hash": "0b605f8cd21d9617862bb6caa4f4b53b",
+    "mtime": 1784809159.698691,
+    "ast_hash": "453ef0a1716f8ca63122b19069bf27e2",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/employers/actions.ts": {
-    "mtime": 1784801814.910593,
-    "ast_hash": "6f92323078bb06553e5f8e3e198c234a",
+    "mtime": 1784809159.698691,
+    "ast_hash": "04fa499b266669b3dc2eb37b1356d43c",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/employers/page.test.tsx": {
-    "mtime": 1784801814.910593,
-    "ast_hash": "b64ca61a6e152b0debb3e0d56254f669",
+    "mtime": 1784809159.698691,
+    "ast_hash": "7e0fa88b9b9e10b5b82f50f1fa188575",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/employers/page.tsx": {
-    "mtime": 1784801814.910593,
-    "ast_hash": "dce55b6828ad8229be396e327b951ba6",
+    "mtime": 1784809159.698691,
+    "ast_hash": "281e365246afa64082579b07aad857a0",
     "semantic_hash": ""
   },
   "src/emails/EmployerModerationNotification.tsx": {
@@ -1015,23 +1015,23 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/job-postings/actions.test.ts": {
-    "mtime": 1784802622.1003234,
-    "ast_hash": "97808b5869ad2baf38c275cfbd89d8c8",
+    "mtime": 1784809159.698691,
+    "ast_hash": "20357a787cc8c57311f37fc52b4500e7",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/job-postings/actions.ts": {
-    "mtime": 1784802622.1003234,
-    "ast_hash": "9a27e668c6408a62906d45cd172dbfcb",
+    "mtime": 1784809159.698691,
+    "ast_hash": "e780ce550427436fe236f0b1cf4c3426",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/job-postings/page.test.tsx": {
-    "mtime": 1784802622.1003234,
-    "ast_hash": "e1b582bd7639aa762482295333007f84",
+    "mtime": 1784809159.698691,
+    "ast_hash": "7de9d8474900719a3de1302f8cf78139",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/job-postings/page.tsx": {
-    "mtime": 1784802622.1003234,
-    "ast_hash": "70e6179a8d8f3e685e5b97dbe1e0fb8b",
+    "mtime": 1784809159.698691,
+    "ast_hash": "4268d32f8818ebf81a180e03c9370d07",
     "semantic_hash": ""
   },
   "src/emails/JobPostingModerationNotification.tsx": {
@@ -1195,8 +1195,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/skills-taxonomy/actions.test.ts": {
-    "mtime": 1784807705.3749318,
-    "ast_hash": "fb8fcfc34f68a7b88c22b206bfb9a56f",
+    "mtime": 1784808538.5142653,
+    "ast_hash": "e4bd7ba052c6be2d47d42a608ed497c3",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/skills-taxonomy/actions.ts": {
@@ -1207,6 +1207,31 @@
   "src/app/[locale]/(admin)/admin/skills-taxonomy/page.tsx": {
     "mtime": 1784807705.3749318,
     "ast_hash": "d293a11b5fbe7e3733913fb328970aad",
+    "semantic_hash": ""
+  },
+  "src/__tests__/staff.test.ts": {
+    "mtime": 1784809159.697691,
+    "ast_hash": "cc81a853121bf200748f22b020e68737",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/staff/actions.ts": {
+    "mtime": 1784809159.698691,
+    "ast_hash": "31f634eead1f994465dba5e3b43e519b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/staff/page.tsx": {
+    "mtime": 1784809159.698691,
+    "ast_hash": "fc80c6501c0c9ba9c25ac2c06276561b",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723121313_add_staff_permission/migration.sql": {
+    "mtime": 1784809159.697691,
+    "ast_hash": "1c74425ec41502e39c7d337a91d926cd",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/staff/permissions.ts": {
+    "mtime": 1784809159.698691,
+    "ast_hash": "e815e120f8e02fc2bb9a004b973ce32f",
     "semantic_hash": ""
   }
 }

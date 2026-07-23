@@ -6,6 +6,7 @@ import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
 import { uploadFile } from "@/lib/storage";
+import { slugFromName } from "@/lib/gallery";
 
 function localeFromFormData(formData: FormData): string {
   return (formData.get("locale") as string) || "en";
@@ -28,12 +29,20 @@ export async function createCategory(formData: FormData) {
   const nameEn = formData.get("nameEn") as string;
   const nameMl = (formData.get("nameMl") as string) || null;
 
+  // Generate a unique slug
+  let slug = slugFromName(nameEn);
+  const existing = await prisma.galleryCategory.findUnique({ where: { slug } });
+  if (existing) {
+    slug = `${slug}-${Date.now()}`;
+  }
+
   const maxOrder = await prisma.galleryCategory.aggregate({
     _max: { sortOrder: true },
   });
 
   const category = await prisma.galleryCategory.create({
     data: {
+      slug,
       nameEn,
       nameMl,
       sortOrder: (maxOrder._max.sortOrder ?? 0) + 1,

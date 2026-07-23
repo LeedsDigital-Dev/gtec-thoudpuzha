@@ -5,9 +5,11 @@ import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { AboutSection } from "@/components/shared/AboutSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { ContactSection } from "@/components/shared/ContactSection";
+import { PlacementSupportSection } from "@/components/shared/PlacementSupportSection";
 import { getPublishedCourses } from "@/lib/courses";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
 import { getHomepageTeaser } from "@/lib/news-events";
+import { getPlacementGalleryData } from "@/lib/gallery";
 import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
 
 interface HomePageProps {
@@ -20,6 +22,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const settings = await getSiteSettings();
   const courses = await getPublishedCourses();
   const teaser = await getHomepageTeaser();
+  const placementData = await getPlacementGalleryData();
 
   return (
     <main>
@@ -35,6 +38,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <NewsTeaserSection teaser={teaser} />
       <AboutSection settings={settings} locale={locale} />
       <WhyChooseUsSection settings={settings} locale={locale} />
+      <PlacementSupportSection data={placementData} />
       <ContactSection settings={settings} courses={courses} />
     </main>
   );

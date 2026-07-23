@@ -40,6 +40,7 @@ const imageItems = [
 const categories: PublicGalleryCategory[] = [
   {
     id: "cat1",
+    slug: "events",
     nameEn: "Events",
     nameMl: null,
     sortOrder: 0,
@@ -47,6 +48,7 @@ const categories: PublicGalleryCategory[] = [
   },
   {
     id: "cat2",
+    slug: "classroom",
     nameEn: "Classroom",
     nameMl: null,
     sortOrder: 1,
@@ -54,6 +56,7 @@ const categories: PublicGalleryCategory[] = [
   },
   {
     id: "cat3",
+    slug: "placements",
     nameEn: "Placements",
     nameMl: null,
     sortOrder: 2,

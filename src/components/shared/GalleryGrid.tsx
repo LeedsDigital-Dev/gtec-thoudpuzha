@@ -208,11 +208,16 @@ function Lightbox({
 
 export function GalleryGrid({
   categories,
+  initialCategorySlug,
 }: {
   categories: PublicGalleryCategory[];
+  initialCategorySlug?: string;
 }) {
+  const initialId = initialCategorySlug
+    ? categories.find((c) => c.slug === initialCategorySlug)?.id
+    : undefined;
   const [activeTab, setActiveTab] = useState<string>(
-    categories.length > 0 ? categories[0].id : "",
+    initialId ?? (categories.length > 0 ? categories[0].id : ""),
   );
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 

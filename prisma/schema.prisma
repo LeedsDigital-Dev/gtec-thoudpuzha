@@ -173,6 +173,7 @@ enum GalleryMediaType {
 
 model GalleryCategory {
   id        String   @id @default(cuid())
+  slug      String   @unique
   nameEn    String
   nameMl    String?
   sortOrder Int      @default(0)

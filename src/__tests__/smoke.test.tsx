@@ -6,6 +6,10 @@ vi.mock("next-intl/server", () => ({
   getLocale: vi.fn(() => Promise.resolve("en")),
 }));
 
+vi.mock("@/lib/gallery", () => ({
+  getPlacementGalleryData: vi.fn(() => Promise.resolve(null)),
+}));
+
 vi.mock("@/lib/site-settings", async () => {
   const actual = await vi.importActual("@/lib/site-settings");
   return {

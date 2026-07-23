@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { applyToJob } from "./actions";
 
 interface ApplyButtonProps {
@@ -18,6 +19,7 @@ export function ApplyButton({
   profileComplete,
   alreadyApplied,
 }: ApplyButtonProps) {
+  const t = useTranslations("jobDetail");
   const [state, action, pending] = useActionState(
     async (_prevState: { error?: string; applied?: boolean }, formData: FormData) => {
       return applyToJob(formData);
@@ -30,7 +32,7 @@ export function ApplyButton({
   if (!hasProfile || !profileComplete) {
     return (
       <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center text-amber-800">
-        Complete your profile to apply
+        {t("completeProfileToApply")}
       </div>
     );
   }
@@ -38,7 +40,7 @@ export function ApplyButton({
   if (applied) {
     return (
       <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center">
-        <span className="text-lg font-medium text-green-700">Applied ✓</span>
+        <span className="text-lg font-medium text-green-700">{t("applied")}</span>
       </div>
     );
   }
@@ -52,7 +54,7 @@ export function ApplyButton({
         disabled={pending}
         className="rounded-lg bg-blue-600 px-8 py-3 text-lg font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {pending ? "Applying..." : "Apply Now"}
+        {pending ? t("applying") : t("applyNow")}
       </button>
       {state?.error && state.error !== "Already applied" && (
         <p className="mt-2 text-sm text-red-600">{state.error}</p>

@@ -66,7 +66,7 @@ describe("Student Applications Page — isolation", () => {
     ]);
 
     const mod = await import("./page");
-    const html = renderToString(await mod.default());
+    const html = renderToString(await mod.default({ params: Promise.resolve({ locale: "en" }) }));
 
     expect(html).toContain("Software Engineer");
     expect(html).toContain("DevOps Engineer");
@@ -101,7 +101,7 @@ describe("Student Applications Page — isolation", () => {
     );
 
     const mod = await import("./page");
-    const html = renderToString(await mod.default());
+    const html = renderToString(await mod.default({ params: Promise.resolve({ locale: "en" }) }));
 
     expect(html).toContain("haven&#x27;t applied to any jobs yet");
     // cp_1's application should not be visible to cp_2
@@ -120,7 +120,7 @@ describe("Student Applications Page — isolation", () => {
     mockFindMany.mockResolvedValue([]);
 
     const mod = await import("./page");
-    const html = renderToString(await mod.default());
+    const html = renderToString(await mod.default({ params: Promise.resolve({ locale: "en" }) }));
 
     expect(html).toContain("haven&#x27;t applied to any jobs yet");
     expect(html).toContain("Browse Jobs");

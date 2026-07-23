@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import { getJobDetail } from "@/lib/jobs";
@@ -12,32 +13,6 @@ interface PageProps {
   params: Promise<{ locale: string; id: string }>;
 }
 
-const JOB_TYPE_LABELS: Record<JobType, string> = {
-  FULL_TIME: "Full Time",
-  PART_TIME: "Part Time",
-  CONTRACT: "Contract",
-};
-
-const EMPLOYEE_COUNT_LABELS: Record<string, string> = {
-  RANGE_1_10: "1-10 employees",
-  RANGE_11_50: "11-50 employees",
-  RANGE_51_200: "51-200 employees",
-  RANGE_200_PLUS: "200+ employees",
-};
-
-const INDUSTRY_LABELS: Record<string, string> = {
-  IT_SOFTWARE: "IT & Software",
-  EDUCATION_TRAINING: "Education & Training",
-  HEALTHCARE: "Healthcare",
-  BANKING_FINANCE: "Banking & Finance",
-  MANUFACTURING: "Manufacturing",
-  RETAIL: "Retail",
-  HOSPITALITY: "Hospitality",
-  CONSTRUCTION: "Construction",
-  TELECOMMUNICATION: "Telecommunication",
-  OTHER: "Other",
-};
-
 export default async function JobDetailPage({ params }: PageProps) {
   const { locale, id } = await params;
 
@@ -48,6 +23,11 @@ export default async function JobDetailPage({ params }: PageProps) {
   if (role !== Role.STUDENT && role !== Role.JOB_SEEKER) {
     redirect(`/${locale}/forbidden`);
   }
+
+  const t = await getTranslations({ locale, namespace: "jobDetail" });
+  const jt = await getTranslations({ locale, namespace: "jobType" });
+  const eit = await getTranslations({ locale, namespace: "industry" });
+  const ect = await getTranslations({ locale, namespace: "employeeCountLabel" });
 
   const job = await getJobDetail(id);
   if (!job) notFound();
@@ -88,7 +68,7 @@ export default async function JobDetailPage({ params }: PageProps) {
             ? ` - ₹${job.salaryMax.toLocaleString("en-IN")}`
             : "+"
         }`
-      : "Disclosed at interview";
+      : t("salaryDisclosed");
 
   return (
     <div className="mx-auto max-w-4xl p-4 py-10">
@@ -102,7 +82,7 @@ export default async function JobDetailPage({ params }: PageProps) {
 
       <div className="mb-8 flex flex-wrap gap-2">
         <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
-          {JOB_TYPE_LABELS[job.jobType]}
+          {jt(job.jobType)}
         </span>
         {job.employer.companyAddress && (
           <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
@@ -111,26 +91,26 @@ export default async function JobDetailPage({ params }: PageProps) {
         )}
         {job.employer.industrySector && (
           <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
-            {INDUSTRY_LABELS[job.employer.industrySector] || job.employer.industrySector}
+            {eit(job.employer.industrySector)}
           </span>
         )}
       </div>
 
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div className="rounded-lg border p-4">
-          <p className="text-sm text-gray-500">Salary</p>
+          <p className="text-sm text-gray-500">{t("salary")}</p>
           <p className="mt-1 font-medium">{salaryDisplay}</p>
         </div>
         {job.employer.employeeCountRange && (
           <div className="rounded-lg border p-4">
-            <p className="text-sm text-gray-500">Company Size</p>
+            <p className="text-sm text-gray-500">{t("companySize")}</p>
             <p className="mt-1 font-medium">
-              {EMPLOYEE_COUNT_LABELS[job.employer.employeeCountRange]}
+              {ect(job.employer.employeeCountRange)}
             </p>
           </div>
         )}
         <div className="rounded-lg border p-4">
-          <p className="text-sm text-gray-500">Deadline</p>
+          <p className="text-sm text-gray-500">{t("deadline")}</p>
           <p className="mt-1 font-medium">
             {new Date(job.applicationDeadline).toLocaleDateString()}
           </p>
@@ -138,20 +118,20 @@ export default async function JobDetailPage({ params }: PageProps) {
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-2 text-xl font-semibold">About this role</h2>
+        <h2 className="mb-2 text-xl font-semibold">{t("aboutRole")}</h2>
         <div className="whitespace-pre-wrap text-gray-700">{job.description}</div>
       </div>
 
       {job.employer.aboutCompany && (
         <div className="mb-8">
-          <h2 className="mb-2 text-xl font-semibold">About {job.employer.companyName}</h2>
+          <h2 className="mb-2 text-xl font-semibold">{t("aboutCompany", { name: job.employer.companyName })}</h2>
           <p className="text-gray-700">{job.employer.aboutCompany}</p>
         </div>
       )}
 
       {skills.length > 0 && (
         <div className="mb-8">
-          <h2 className="mb-2 text-xl font-semibold">Skills</h2>
+          <h2 className="mb-2 text-xl font-semibold">{t("skills")}</h2>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <span

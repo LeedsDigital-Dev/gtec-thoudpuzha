@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import { getSearchableCandidates } from "@/lib/biodata-search";
@@ -8,27 +9,11 @@ import { getSearchableCandidates } from "@/lib/biodata-search";
 export const dynamic = "force-dynamic";
 
 interface PageProps {
-  params: Promise<{ candidateId: string }>;
+  params: Promise<{ candidateId: string; locale: string }>;
 }
 
-const QUALIFICATION_LABELS: Record<string, string> = {
-  SSLC: "SSLC",
-  PLUS_TWO: "Plus Two",
-  DIPLOMA: "Diploma",
-  GRADUATE: "Graduate",
-  POST_GRADUATE: "Post Graduate",
-  OTHER: "Other",
-};
-
-const JOB_TYPE_LABELS: Record<string, string> = {
-  FULL_TIME: "Full Time",
-  PART_TIME: "Part Time",
-  INTERNSHIP: "Internship",
-  WORK_FROM_HOME: "Work from Home",
-};
-
 export default async function CandidateDetailPage({ params }: PageProps) {
-  const { candidateId } = await params;
+  const { candidateId, locale } = await params;
   const session = await auth();
   if (!session.userId) redirect("/sign-in");
 
@@ -42,14 +27,16 @@ export default async function CandidateDetailPage({ params }: PageProps) {
     redirect("/portal/employer/register/status");
   }
 
-  // Only allow viewing searchable candidates (reuse getSearchableCandidates)
   const searchable = await getSearchableCandidates();
   const candidate = searchable.find((c) => c.id === candidateId);
   if (!candidate) {
     redirect("/portal/employer/candidates");
   }
 
-  // Resolve course names
+  const ct = await getTranslations({ locale, namespace: "candidateDetail" });
+  const qt = await getTranslations({ locale, namespace: "qualification" });
+  const jt = await getTranslations({ locale, namespace: "jobType" });
+
   let courseNames: { id: string; titleEn: string }[] = [];
   if (candidate.courseCompletedIds.length > 0) {
     courseNames = await prisma.course.findMany({
@@ -58,7 +45,6 @@ export default async function CandidateDetailPage({ params }: PageProps) {
     });
   }
 
-  // Resolve skill labels
   let skillLabels: { id: string; label: string }[] = [];
   if (candidate.skillIds.length > 0) {
     skillLabels = await prisma.skill.findMany({
@@ -76,46 +62,45 @@ export default async function CandidateDetailPage({ params }: PageProps) {
         href="/portal/employer/candidates"
         className="mb-4 inline-flex items-center text-sm text-blue-600 hover:underline"
       >
-        ← Back to Candidate Search
+        {ct("backToSearch")}
       </Link>
 
       <div className="rounded-lg border bg-white p-6">
         <div className="mb-6">
           <h1 className="text-3xl font-semibold">
-            {candidate.fullName ?? "Unnamed Candidate"}
+            {candidate.fullName ?? ct("unnamed")}
           </h1>
           {candidate.isVerifiedStudent && (
             <span className="mt-1 inline-block rounded-full bg-green-100 px-3 py-0.5 text-xs font-medium text-green-800">
-              Verified Student
+              {ct("verifiedStudent")}
             </span>
           )}
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Section title="Contact">
-            <Field label="Email" value={candidate.email} />
-            <Field label="Phone" value={candidate.phone} />
-            <Field label="Address" value={candidate.address} />
+          <Section title={ct("contact")}>
+            <Field label={ct("email")} value={candidate.email} />
+            <Field label={ct("phone")} value={candidate.phone} />
+            <Field label={ct("address")} value={candidate.address} />
           </Section>
 
-          <Section title="Education">
+          <Section title={ct("education")}>
             <Field
-              label="Qualification"
+              label={ct("qualification")}
               value={
                 candidate.educationalQualification
-                  ? QUALIFICATION_LABELS[candidate.educationalQualification] ??
-                    candidate.educationalQualification
+                  ? qt(candidate.educationalQualification)
                   : null
               }
             />
             <Field
-              label="Year of Passing"
+              label={ct("yearOfPassing")}
               value={candidate.yearOfPassing?.toString() ?? null}
             />
             {candidate.isVerifiedStudent && courseNames.length > 0 && (
               <div>
                 <span className="text-sm font-medium text-gray-500">
-                  Courses Completed
+                  {ct("coursesCompleted")}
                 </span>
                 <ul className="mt-1 list-inside list-disc text-sm">
                   {candidate.courseCompletedIds.map((id) => (
@@ -126,31 +111,30 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             )}
           </Section>
 
-          <Section title="Job Preferences">
+          <Section title={ct("jobPreferences")}>
             <Field
-              label="Preferred Location"
+              label={ct("preferredLocation")}
               value={candidate.preferredJobLocation}
             />
             <Field
-              label="Preferred Job Type"
+              label={ct("preferredJobType")}
               value={
                 candidate.preferredJobType
-                  ? JOB_TYPE_LABELS[candidate.preferredJobType] ??
-                    candidate.preferredJobType
+                  ? jt(candidate.preferredJobType)
                   : null
               }
             />
             <Field
-              label="Career Objective"
+              label={ct("careerObjective")}
               value={candidate.careerObjective}
             />
           </Section>
 
-          <Section title="Skills & Languages">
+          <Section title={ct("skillsLanguages")}>
             {skillLabels.length > 0 && (
               <div>
                 <span className="text-sm font-medium text-gray-500">
-                  Skills
+                  {ct("skills")}
                 </span>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {candidate.skillIds.map((id) => (
@@ -167,7 +151,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             {candidate.languagesKnown.length > 0 && (
               <div className="mt-3">
                 <span className="text-sm font-medium text-gray-500">
-                  Languages
+                  {ct("languages")}
                 </span>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {candidate.languagesKnown.map((lang) => (
@@ -189,7 +173,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             href={`/api/biodata/${candidate.id}/pdf`}
             className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
           >
-            Download Biodata (PDF)
+            {ct("downloadBiodata")}
           </Link>
         </div>
       </div>

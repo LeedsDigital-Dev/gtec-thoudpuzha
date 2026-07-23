@@ -1,5 +1,10 @@
 import { VideoLectureList } from "../video-lecture-list";
 
-export default function VideoLecturesPage() {
-  return <VideoLectureList />;
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function VideoLecturesPage({ params }: Props) {
+  const { locale } = await params;
+  return <VideoLectureList locale={locale} />;
 }

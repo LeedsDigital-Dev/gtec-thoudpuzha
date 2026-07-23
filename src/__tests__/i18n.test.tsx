@@ -7,6 +7,8 @@ import middleware from "@/middleware";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import enMessages from "@/lib/i18n/en.json";
 import mlMessages from "@/lib/i18n/ml.json";
+import fs from "node:fs";
+import path from "node:path";
 
 const mockAuthResult = vi.hoisted(() => ({
   userId: null as string | null,
@@ -145,6 +147,126 @@ describe("Dictionary content integrity", () => {
     expect(enMessages.hero?.headline).toContain("Career");
     expect(enMessages.enquiry?.heading).toContain("Apply");
     expect(enMessages.biodata?.save).toContain("Biodata");
+  });
+});
+
+describe("No hardcoded English UI strings in route groups", () => {
+  const ROUTE_GROUP_DIRS = ["(public)", "(portal)"];
+
+  function isTestFile(filePath: string): boolean {
+    return filePath.includes(".test.") || filePath.includes(".spec.");
+  }
+
+  function getTsxFiles(dir: string): string[] {
+    const files: string[] = [];
+    if (!fs.existsSync(dir)) return files;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory() && entry.name !== "node_modules") {
+        files.push(...getTsxFiles(full));
+      } else if (entry.name.endsWith(".tsx") && !isTestFile(full)) {
+        files.push(full);
+      }
+    }
+    return files;
+  }
+
+  // Patterns that detect hardcoded English UI strings in JSX
+  // These catch the most common regression patterns
+  const HARDCODED_STRING_PATTERNS = [
+    // Inline text after JSX tag: >Some Text<  (multi-word, first word capitalized)
+    />[A-Z][a-zA-Z]+ [A-Za-z]/,
+    // Nullish coalescing or OR fallback with English text
+    /\?\? ["']/,
+    /\|\| ["']/,
+    // placeholder / label / title with English text
+    /placeholder=["'][A-Z]/,
+    /label=["'][A-Z]/,
+    // Button/link text in ternary: ? "Text" : "Text"
+    /\? ["'][A-Z][a-z]+[^"']*["']\s*:/,
+    // English text in specific error/status snippets
+    // e.g., applicantCount pluralisation: `${count} applicant`
+    /\$\{[^}]+\} ["']/,
+  ];
+
+  // Patterns that indicate this file uses translations
+  const TRANSLATION_IMPORT_PATTERNS = [
+    /useTranslations/,
+    /getTranslations/,
+  ];
+
+  test("every .tsx file in (public) and (portal) has no hardcoded English UI strings", () => {
+    const appDir = path.resolve(
+      __dirname, "..", "app", "[locale]",
+    );
+
+    const allFiles: string[] = [];
+    for (const group of ROUTE_GROUP_DIRS) {
+      allFiles.push(
+        ...getTsxFiles(path.join(appDir, group)),
+      );
+    }
+
+    const offenders: { file: string; matched: string }[] = [];
+    const falsePositives: string[] = [];
+
+    for (const file of allFiles) {
+      const content = fs.readFileSync(file, "utf-8");
+
+      // Skip files that already use translations
+      const usesTranslations = TRANSLATION_IMPORT_PATTERNS.some((p) =>
+        p.test(content),
+      );
+      if (usesTranslations) continue;
+
+      // Layout files and error files are structural — allow them
+      const baseName = path.basename(file);
+      if (baseName === "layout.tsx" || baseName === "error.tsx" || baseName === "loading.tsx" || baseName === "not-found.tsx") continue;
+
+      // Check each pattern
+      for (const pattern of HARDCODED_STRING_PATTERNS) {
+        const matches = content.match(pattern);
+        if (matches) {
+          offenders.push({ file, matched: matches[0] });
+          break;
+        }
+      }
+    }
+
+    // Known false positives get special-cased here
+    const KNOWN_EXCEPTIONS = [
+      // These pages are structural delegators that receive translated props
+      "resources/assignments/page.tsx",
+      "resources/past-papers/page.tsx",
+      "resources/lectures/page.tsx",
+    ];
+
+    const realOffenders = offenders.filter(
+      (o) => !KNOWN_EXCEPTIONS.some((ex) => o.file.endsWith(ex)),
+    );
+
+    // If there are false positives we need to investigate, log them
+    if (offenders.length !== realOffenders.length) {
+      falsePositives.push(
+        ...offenders
+          .filter((o) => KNOWN_EXCEPTIONS.some((ex) => o.file.endsWith(ex)))
+          .map((o) => `${o.file}: ${o.matched}`),
+      );
+    }
+
+    if (falsePositives.length > 0) {
+      console.log(
+        "Known structural files (receiving translated props, excluded):",
+        falsePositives,
+      );
+    }
+
+    if (realOffenders.length > 0) {
+      const msg = realOffenders
+        .map((o) => `  ${o.file.replace(appDir, "")}: matched "${o.matched}"`)
+        .join("\n");
+      expect(realOffenders, `Found hardcoded English UI strings without t():\n${msg}`).toEqual([]);
+    }
   });
 });
 

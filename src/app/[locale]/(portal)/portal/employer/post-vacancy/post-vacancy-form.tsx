@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,13 +21,9 @@ type PostVacancyFormProps = {
   skills: SkillDto[];
 };
 
-const JOB_TYPES = [
-  { value: "FULL_TIME", label: "Full Time" },
-  { value: "PART_TIME", label: "Part Time" },
-  { value: "CONTRACT", label: "Contract" },
-] as const;
-
 export function PostVacancyForm({ skills }: PostVacancyFormProps) {
+  const t = useTranslations("postVacancy");
+  const jt = useTranslations("jobType");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -57,20 +54,18 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
           setSubmitting(false);
         }
       } catch {
-        setError("Something went wrong. Please try again.");
+        setError(t("error"));
         setSubmitting(false);
       }
     },
-    [selectedSkillIds],
+    [selectedSkillIds, t],
   );
 
   return (
     <div className="mx-auto max-w-2xl p-4 py-10">
       <div className="mb-8 text-center">
-        <h1 className="mb-2 text-3xl font-semibold">Post a Vacancy</h1>
-        <p className="text-gray-600">
-          Fill in the details below to publish a new job posting.
-        </p>
+        <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
+        <p className="text-gray-600">{t("description")}</p>
       </div>
 
       {error && (
@@ -85,7 +80,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
         {/* Title */}
         <div className="space-y-1.5">
-          <Label htmlFor="title">Job Title *</Label>
+          <Label htmlFor="title">{t("jobTitle")}</Label>
           <Input
             id="title"
             name="title"
@@ -98,7 +93,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
 
         {/* Department */}
         <div className="space-y-1.5">
-          <Label htmlFor="department">Department</Label>
+          <Label htmlFor="department">{t("department")}</Label>
           <Input
             id="department"
             name="department"
@@ -110,7 +105,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
 
         {/* Job Type */}
         <div className="space-y-1.5">
-          <Label htmlFor="jobType">Job Type *</Label>
+          <Label htmlFor="jobType">{t("jobType")}</Label>
           <Select
             value={jobType}
             onValueChange={(v) => setJobType(v ?? "")}
@@ -118,12 +113,12 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
             name="jobType"
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select job type..." />
+              <SelectValue placeholder={t("selectJobType")} />
             </SelectTrigger>
             <SelectContent>
-              {JOB_TYPES.map((t) => (
-                <SelectItem key={t.value} value={t.value}>
-                  {t.label}
+              {(["FULL_TIME", "PART_TIME", "CONTRACT"] as const).map((type) => (
+                <SelectItem key={type} value={type}>
+                  {jt(type)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -132,13 +127,13 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
 
         {/* Salary Range */}
         <div className="space-y-1.5">
-          <Label>Salary Range</Label>
+          <Label>{t("salaryRange")}</Label>
           <div className="flex items-center gap-2">
             <Input
               id="salaryMin"
               name="salaryMin"
               type="number"
-              placeholder="Min"
+              placeholder={t("salaryMin")}
               value={salaryMin}
               onChange={(e) => setSalaryMin(e.target.value)}
               disabled={submitting}
@@ -148,7 +143,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
               id="salaryMax"
               name="salaryMax"
               type="number"
-              placeholder="Max"
+              placeholder={t("salaryMax")}
               value={salaryMax}
               onChange={(e) => setSalaryMax(e.target.value)}
               disabled={submitting}
@@ -159,7 +154,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
         {/* Salary Visibility Toggle */}
         <fieldset className="space-y-1.5">
           <span className="text-sm leading-none font-medium select-none">
-            Salary Visibility
+            {t("salaryVisibility")}
           </span>
           <div className="flex gap-6">
             <label className="flex items-center gap-2 text-sm">
@@ -172,7 +167,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
                 className="accent-blue-600"
                 disabled={submitting}
               />
-              Disclose to applicants
+              {t("disclose")}
             </label>
             <label className="flex items-center gap-2 text-sm">
               <input
@@ -184,14 +179,14 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
                 className="accent-blue-600"
                 disabled={submitting}
               />
-              Keep private
+              {t("keepPrivate")}
             </label>
           </div>
         </fieldset>
 
         {/* Skills */}
         <div className="space-y-1.5">
-          <Label>Skills</Label>
+          <Label>{t("skills")}</Label>
           <input type="hidden" name="skillIds" value={JSON.stringify(selectedSkillIds)} />
           <SkillMultiSelect
             skills={skills}
@@ -203,7 +198,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
 
         {/* Application Deadline */}
         <div className="space-y-1.5">
-          <Label htmlFor="applicationDeadline">Application Deadline *</Label>
+          <Label htmlFor="applicationDeadline">{t("deadline")}</Label>
           <Input
             id="applicationDeadline"
             name="applicationDeadline"
@@ -217,7 +212,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
 
         {/* Description */}
         <div className="space-y-1.5">
-          <Label htmlFor="description">Job Description *</Label>
+          <Label htmlFor="description">{t("description")}</Label>
           <textarea
             id="description"
             name="description"
@@ -231,7 +226,7 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
         </div>
 
         <Button type="submit" className="w-full" disabled={submitting}>
-          {submitting ? "Submitting..." : "Post Vacancy"}
+          {submitting ? t("submitting") : t("post")}
         </Button>
       </form>
     </div>

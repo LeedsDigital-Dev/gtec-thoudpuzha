@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import type { ResourceType } from "@prisma/client";
 import Link from "next/link";
@@ -6,11 +7,14 @@ import Link from "next/link";
 interface ResourceListProps {
   type: ResourceType;
   title: string;
+  locale: string;
 }
 
-export async function ResourceList({ type, title }: ResourceListProps) {
+export async function ResourceList({ type, title, locale }: ResourceListProps) {
   const session = await auth();
   if (!session.userId) return null;
+
+  const t = await getTranslations({ locale, namespace: "resources" });
 
   const profile = await prisma.candidateProfile.findUnique({
     where: { userId: session.userId },
@@ -23,7 +27,7 @@ export async function ResourceList({ type, title }: ResourceListProps) {
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{title}</h1>
           <p className="mt-4 text-gray-600">
-            Please complete your profile first.
+            {t("completeProfile")}
           </p>
         </div>
       </div>
@@ -41,14 +45,13 @@ export async function ResourceList({ type, title }: ResourceListProps) {
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{title}</h1>
           <p className="mt-4 text-gray-600">
-            You aren&apos;t enrolled in any courses yet. Contact the centre to get
-            enrolled.
+            {t("notEnrolled")}
           </p>
           <Link
             href="/portal/student"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Back to Dashboard
+            {t("backToDashboard")}
           </Link>
         </div>
       </div>
@@ -74,7 +77,7 @@ export async function ResourceList({ type, title }: ResourceListProps) {
       <div className="p-6">
         <h1 className="mb-2 text-2xl font-semibold">{title}</h1>
         <p className="text-gray-600">
-          No {title.toLowerCase()} available yet for your enrolled courses.
+          {t("noResources", { type: title.toLowerCase() })}
         </p>
       </div>
     );

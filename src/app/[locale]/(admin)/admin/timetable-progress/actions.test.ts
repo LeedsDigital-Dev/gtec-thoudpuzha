@@ -211,7 +211,7 @@ describe("addProgressEntry (admin server action)", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await MyProgressPage();
+    const element = await MyProgressPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("Showing good progress in module 2");
@@ -252,7 +252,7 @@ describe("Progress isolation — student sees own entries only", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await MyProgressPage();
+    const element = await MyProgressPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     // Own entry appears
@@ -280,7 +280,7 @@ describe("Progress isolation — student sees own entries only", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await MyProgressPage();
+    const element = await MyProgressPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("My Progress");
@@ -329,7 +329,7 @@ describe("Timetable — course-scoped retrieval", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await TimetablePage();
+    const element = await TimetablePage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     // Course A's timetable appears
@@ -356,7 +356,7 @@ describe("Timetable — course-scoped retrieval", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await TimetablePage();
+    const element = await TimetablePage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("Timetable");

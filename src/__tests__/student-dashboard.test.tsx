@@ -75,7 +75,7 @@ describe("Student Dashboard — /portal/student", () => {
     const { default: DashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/student/page"
     );
-    const element = await DashboardPage();
+    const element = await DashboardPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("Study Notes");
@@ -93,7 +93,7 @@ describe("Student Dashboard — /portal/student", () => {
     const { default: DashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/student/page"
     );
-    const element = await DashboardPage();
+    const element = await DashboardPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("Welcome to the Student Portal");
@@ -108,7 +108,7 @@ describe("Student Dashboard — /portal/student", () => {
     const { default: DashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/student/page"
     );
-    const element = await DashboardPage();
+    const element = await DashboardPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("&#x27;t for your account type");
@@ -124,7 +124,7 @@ describe("Student Dashboard — /portal/student", () => {
     const { default: DashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/student/page"
     );
-    const element = await DashboardPage();
+    const element = await DashboardPage({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("href=&quot;/portal/student/resources/notes&quot;");

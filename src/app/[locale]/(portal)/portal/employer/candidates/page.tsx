@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import { getSearchableCandidates } from "@/lib/biodata-search";
@@ -7,7 +8,12 @@ import { CandidateSearchForm } from "./search-form";
 
 export const dynamic = "force-dynamic";
 
-export default async function CandidateSearchPage() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function CandidateSearchPage({ params }: PageProps) {
+  const { locale } = await params;
   const session = await auth();
   if (!session.userId) {
     redirect("/sign-in");
@@ -30,6 +36,8 @@ export default async function CandidateSearchPage() {
     redirect("/portal/employer/register/status");
   }
 
+  const t = await getTranslations({ locale, namespace: "candidateSearch" });
+
   const [candidates, employerPostings] = await Promise.all([
     getSearchableCandidates(),
     prisma.jobPosting.findMany({
@@ -46,10 +54,8 @@ export default async function CandidateSearchPage() {
   return (
     <div className="mx-auto max-w-6xl p-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold">Candidate Search</h1>
-        <p className="mt-1 text-gray-600">
-          Browse and search candidate profiles
-        </p>
+        <h1 className="text-3xl font-semibold">{t("heading")}</h1>
+        <p className="mt-1 text-gray-600">{t("description")}</p>
       </div>
 
       <CandidateSearchForm

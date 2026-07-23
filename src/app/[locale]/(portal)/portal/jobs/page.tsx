@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { Role } from "@/lib/auth";
 import { getActiveJobPostings } from "@/lib/jobs";
 import { getApprovedSkills } from "@/lib/skills";
@@ -30,6 +31,9 @@ export default async function JobsPage({
     redirect(`/${locale}/forbidden`);
   }
 
+  const t = await getTranslations({ locale, namespace: "jobs" });
+  const jt = await getTranslations({ locale, namespace: "jobType" });
+
   const activeFilters = {
     ...(jobType && { jobType }),
     ...(skillId && { skillId }),
@@ -43,29 +47,19 @@ export default async function JobsPage({
     getApprovedSkills(),
   ]);
 
-  const JOB_TYPE_LABELS: Record<JobType, string> = {
-    FULL_TIME: "Full Time",
-    PART_TIME: "Part Time",
-    CONTRACT: "Contract",
-  };
-
   return (
     <div className="mx-auto max-w-5xl p-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold">Job Listings</h1>
-        <p className="mt-1 text-gray-600">
-          Browse available job opportunities.
-        </p>
+        <h1 className="text-3xl font-semibold">{t("heading")}</h1>
+        <p className="mt-1 text-gray-600">{t("description")}</p>
       </div>
 
       <JobsFilter skills={skills} />
 
       {postings.length === 0 ? (
         <div className="mt-6 rounded-lg border border-dashed p-12 text-center text-gray-500">
-          <p>No active job listings match your filters.</p>
-          <p className="mt-1 text-sm">
-            Try adjusting your search criteria or check back later.
-          </p>
+          <p>{t("noJobs")}</p>
+          <p className="mt-1 text-sm">{t("noJobsHint")}</p>
         </div>
       ) : (
         <div className="mt-6 space-y-4">
@@ -77,7 +71,7 @@ export default async function JobsPage({
                       ? ` - ₹${posting.salaryMax.toLocaleString("en-IN")}`
                       : "+"
                   }`
-                : "Salary: disclosed at interview";
+                : t("salaryDisclosed");
 
             return (
               <div
@@ -93,7 +87,7 @@ export default async function JobsPage({
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                        {JOB_TYPE_LABELS[posting.jobType]}
+                        {jt(posting.jobType)}
                       </span>
                       {posting.employer.companyAddress && (
                         <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
@@ -105,10 +99,7 @@ export default async function JobsPage({
                       {salaryDisplay}
                     </p>
                     <p className="mt-1 text-xs text-gray-400">
-                      Deadline:{" "}
-                      {new Date(
-                        posting.applicationDeadline,
-                      ).toLocaleDateString()}
+                      {t("deadline", { date: new Date(posting.applicationDeadline).toLocaleDateString() })}
                     </p>
                   </div>
                 </div>
@@ -120,8 +111,7 @@ export default async function JobsPage({
 
       {postings.length > 0 && (
         <p className="mt-6 text-center text-xs text-gray-400">
-          Showing {postings.length} active job
-          {postings.length !== 1 ? "s" : ""}
+          {t("showing", { count: postings.length })}
         </p>
       )}
     </div>

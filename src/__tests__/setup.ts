@@ -24,11 +24,13 @@ vi.mock("next-intl/server", async (importOriginal) => {
     ...mod,
     getLocale: vi.fn(() => Promise.resolve("en")),
     getTranslations: vi.fn(
-      (namespace: string) =>
-        Promise.resolve(
+      (opts: string | { locale?: string; namespace: string }) => {
+        const namespace = typeof opts === "string" ? opts : opts.namespace;
+        return Promise.resolve(
           (key: string, values?: Record<string, string>) =>
             lookup(namespace, key, values),
-        ),
+        );
+      },
     ),
   };
 });

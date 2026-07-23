@@ -1,7 +1,12 @@
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import Link from "next/link";
+
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
 const STATUS_STYLES: Record<string, string> = {
   APPLIED: "bg-blue-100 text-blue-800",
@@ -11,23 +16,25 @@ const STATUS_STYLES: Record<string, string> = {
   HIRED: "bg-green-100 text-green-800",
 };
 
-export default async function StudentApplicationsPage() {
+export default async function StudentApplicationsPage({ params }: PageProps) {
+  const { locale } = await params;
   const session = await auth();
   if (!session.userId) return null;
 
   const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const sa = await getTranslations({ locale, namespace: "studentApplications" });
+  const rgt = await getTranslations({ locale, namespace: "roleGate" });
+
   if (role !== Role.STUDENT && role !== Role.JOB_SEEKER) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">
-            This area isn&apos;t for your account type
-          </h1>
+          <h1 className="text-2xl font-semibold">{rgt("notYourAccount")}</h1>
           <Link
             href="/portal"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Go to Portal Dashboard
+            {rgt("goToPortal")}
           </Link>
         </div>
       </div>
@@ -41,15 +48,13 @@ export default async function StudentApplicationsPage() {
     return (
       <div className="flex min-h-screen items-center justify-center p-6">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">No Profile Found</h1>
-          <p className="mt-2 text-gray-600">
-            Please complete your biodata before applying to jobs.
-          </p>
+          <h1 className="text-2xl font-semibold">{sa("noProfile")}</h1>
+          <p className="mt-2 text-gray-600">{sa("noProfileDesc")}</p>
           <Link
             href="/portal/student/biodata"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Complete Biodata
+            {sa("completeBiodata")}
           </Link>
         </div>
       </div>
@@ -78,16 +83,16 @@ export default async function StudentApplicationsPage() {
 
   return (
     <div className="mx-auto max-w-3xl p-4 py-10">
-      <h1 className="mb-8 text-3xl font-semibold">My Applications</h1>
+      <h1 className="mb-8 text-3xl font-semibold">{sa("heading")}</h1>
 
       {applications.length === 0 ? (
         <div className="rounded-lg border border-dashed p-8 text-center text-gray-500">
-          <p>You haven&apos;t applied to any jobs yet.</p>
+          <p>{sa("noApplications")}</p>
           <Link
             href="/portal/jobs"
             className="mt-2 inline-block text-blue-600 underline"
           >
-            Browse Jobs
+            {sa("browseJobs")}
           </Link>
         </div>
       ) : (
@@ -118,7 +123,7 @@ export default async function StudentApplicationsPage() {
                   </span>
                 </div>
                 <p className="mt-2 text-xs text-gray-400">
-                  Applied {new Date(app.appliedAt).toLocaleDateString()}
+                  {sa("applied", { date: new Date(app.appliedAt).toLocaleDateString() })}
                 </p>
               </div>
             );

@@ -1,4 +1,13 @@
-export default function EmployerRegistrationStatusPage() {
+import { getTranslations } from "next-intl/server";
+
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function EmployerRegistrationStatusPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "employerStatus" });
+
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="max-w-lg text-center">
@@ -19,17 +28,9 @@ export default function EmployerRegistrationStatusPage() {
             </svg>
           </div>
         </div>
-        <h1 className="mb-3 text-2xl font-semibold">
-          Your registration is under review
-        </h1>
-        <p className="mb-2 text-gray-600">
-          Thank you for registering your company. Our team is reviewing your
-          application, and we will notify you once it has been approved.
-        </p>
-        <p className="text-sm text-gray-500">
-          This usually takes 1–2 business days. If you have any questions,
-          please contact the centre.
-        </p>
+        <h1 className="mb-3 text-2xl font-semibold">{t("underReview")}</h1>
+        <p className="mb-2 text-gray-600">{t("thankYou")}</p>
+        <p className="text-sm text-gray-500">{t("note")}</p>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useSignUp } from "@clerk/nextjs";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ type Step = "form" | "verifying" | "otp" | "done" | "error";
 
 export default function StudentSignUpPage() {
   const { signUp } = useSignUp();
+  const t = useTranslations("studentVerification");
 
   const [step, setStep] = useState<Step>("form");
   const [studentId, setStudentId] = useState("");
@@ -47,7 +49,6 @@ export default function StudentSignUpPage() {
         return;
       }
 
-      // Start Clerk sign-up with the phone number on file
       let { error } = await signUp.create({ phoneNumber: result.phone });
       if (error) {
         setError(error.message);
@@ -88,7 +89,6 @@ export default function StudentSignUpPage() {
           return;
         }
 
-        // Finalize: create the session, then set role, create CandidateProfile, link StudentRecord
         ({ error } = await signUp.finalize());
         if (error) {
           setError(error.message);
@@ -96,7 +96,6 @@ export default function StudentSignUpPage() {
         }
 
         await finalizeStudentVerification(studentRecordId);
-        // finalizeStudentVerification redirects on success
       } catch (err: unknown) {
         const message =
           err instanceof Error ? err.message : "Verification failed. Please try again.";
@@ -109,7 +108,7 @@ export default function StudentSignUpPage() {
   );
 
   if (step === "otp") {
-    return <OtpForm onVerify={handleVerifyOtp} submitting={submitting} error={error} />;
+    return <OtpForm onVerify={handleVerifyOtp} submitting={submitting} error={error} t={t} />;
   }
 
   const isError = step === "error";
@@ -118,10 +117,8 @@ export default function StudentSignUpPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-semibold">Student Verification</h1>
-          <p className="text-gray-600">
-            Enter your Student ID and phone number as registered with the centre.
-          </p>
+          <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
+          <p className="text-gray-600">{t("description")}</p>
         </div>
 
         {isError && (
@@ -138,13 +135,13 @@ export default function StudentSignUpPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 rounded-md bg-green-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-green-700"
                 >
-                  WhatsApp
+                  {t("whatsapp")}
                 </a>
                 <a
                   href="tel:+919999999999"
                   className="inline-flex items-center gap-1 rounded-md bg-gray-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800"
                 >
-                  Call Centre
+                  {t("callCentre")}
                 </a>
               </div>
             )}
@@ -159,41 +156,41 @@ export default function StudentSignUpPage() {
           className="space-y-4"
         >
           <div className="space-y-2">
-            <Label htmlFor="studentId">Student ID</Label>
+            <Label htmlFor="studentId">{t("studentId")}</Label>
             <Input
               id="studentId"
               name="studentId"
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
-              placeholder="e.g. GTEC2025001"
+              placeholder={t("studentIdPlaceholder")}
               required
               disabled={submitting}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
+            <Label htmlFor="phone">{t("phone")}</Label>
             <Input
               id="phone"
               name="phone"
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="e.g. 9876543210"
+              placeholder={t("phonePlaceholder")}
               required
               disabled={submitting}
             />
           </div>
 
           <Button type="submit" className="w-full" disabled={submitting}>
-            {submitting ? "Verifying..." : "Verify Details"}
+            {submitting ? t("verifying") : t("verifyDetails")}
           </Button>
         </form>
 
         <p className="text-center text-xs text-gray-500">
-          Don&apos;t have a Student ID?{" "}
+          {t("noStudentId")}{" "}
           <Link href="/contact" className="underline">
-            Contact the centre
+            {t("contactCentre")}
           </Link>
           .
         </p>
@@ -206,10 +203,12 @@ function OtpForm({
   onVerify,
   submitting,
   error,
+  t,
 }: {
   onVerify: (code: string) => Promise<void>;
   submitting: boolean;
   error: string;
+  t: (key: string) => string;
 }) {
   const [code, setCode] = useState("");
 
@@ -217,10 +216,8 @@ function OtpForm({
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-semibold">Verify Your Phone</h1>
-          <p className="text-gray-600">
-            We sent a one-time verification code to your registered phone number.
-          </p>
+          <h1 className="mb-2 text-3xl font-semibold">{t("verifyYourPhone")}</h1>
+          <p className="text-gray-600">{t("otpDescription")}</p>
         </div>
 
         {error && (
@@ -240,7 +237,7 @@ function OtpForm({
           className="space-y-4"
         >
           <div className="space-y-2">
-            <Label htmlFor="otp">Verification Code</Label>
+            <Label htmlFor="otp">{t("verificationCode")}</Label>
             <Input
               id="otp"
               name="otp"
@@ -249,14 +246,14 @@ function OtpForm({
               autoComplete="one-time-code"
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              placeholder="Enter 6-digit code"
+              placeholder={t("otpPlaceholder")}
               required
               disabled={submitting}
             />
           </div>
 
           <Button type="submit" className="w-full" disabled={submitting}>
-            {submitting ? "Verifying..." : "Verify Code"}
+            {submitting ? t("verifying") : t("verifyCode")}
           </Button>
         </form>
       </div>

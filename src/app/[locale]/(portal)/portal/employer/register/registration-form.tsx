@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,26 +15,29 @@ import {
 import { submitEmployerRegistration } from "./actions";
 
 const SECTORS = [
-  { value: "IT_SOFTWARE", label: "IT / Software" },
-  { value: "EDUCATION_TRAINING", label: "Education / Training" },
-  { value: "HEALTHCARE", label: "Healthcare" },
-  { value: "BANKING_FINANCE", label: "Banking / Finance" },
-  { value: "MANUFACTURING", label: "Manufacturing" },
-  { value: "RETAIL", label: "Retail" },
-  { value: "HOSPITALITY", label: "Hospitality" },
-  { value: "CONSTRUCTION", label: "Construction" },
-  { value: "TELECOMMUNICATION", label: "Telecommunication" },
-  { value: "OTHER", label: "Other" },
+  { value: "IT_SOFTWARE", key: "IT_SOFTWARE" },
+  { value: "EDUCATION_TRAINING", key: "EDUCATION_TRAINING" },
+  { value: "HEALTHCARE", key: "HEALTHCARE" },
+  { value: "BANKING_FINANCE", key: "BANKING_FINANCE" },
+  { value: "MANUFACTURING", key: "MANUFACTURING" },
+  { value: "RETAIL", key: "RETAIL" },
+  { value: "HOSPITALITY", key: "HOSPITALITY" },
+  { value: "CONSTRUCTION", key: "CONSTRUCTION" },
+  { value: "TELECOMMUNICATION", key: "TELECOMMUNICATION" },
+  { value: "OTHER", key: "OTHER" },
 ] as const;
 
 const EMPLOYEE_RANGES = [
-  { value: "RANGE_1_10", label: "1-10" },
-  { value: "RANGE_11_50", label: "11-50" },
-  { value: "RANGE_51_200", label: "51-200" },
-  { value: "RANGE_200_PLUS", label: "200+" },
+  { value: "RANGE_1_10", key: "RANGE_1_10" },
+  { value: "RANGE_11_50", key: "RANGE_11_50" },
+  { value: "RANGE_51_200", key: "RANGE_51_200" },
+  { value: "RANGE_200_PLUS", key: "RANGE_200_PLUS" },
 ] as const;
 
 export function RegistrationForm() {
+  const t = useTranslations("employerRegister");
+  const st = useTranslations("sector");
+  const ert = useTranslations("employeeRange");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -77,7 +81,7 @@ export function RegistrationForm() {
           setSubmitting(false);
         }
       } catch {
-        setError("Something went wrong. Please try again.");
+        setError(t("error"));
         setSubmitting(false);
       }
     },
@@ -93,16 +97,15 @@ export function RegistrationForm() {
       websiteUrl,
       employeeCountRange,
       aboutCompany,
+      t,
     ],
   );
 
   return (
     <div className="mx-auto max-w-2xl p-4 py-10">
       <div className="mb-8 text-center">
-        <h1 className="mb-2 text-3xl font-semibold">Employer Registration</h1>
-        <p className="text-gray-600">
-          Register your company to post vacancies and find candidates.
-        </p>
+        <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
+        <p className="text-gray-600">{t("description")}</p>
       </div>
 
       {error && (
@@ -117,7 +120,7 @@ export function RegistrationForm() {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Company Name */}
         <div className="space-y-1.5">
-          <Label htmlFor="companyName">Company Name *</Label>
+          <Label htmlFor="companyName">{t("companyName")}</Label>
           <Input
             id="companyName"
             value={companyName}
@@ -129,19 +132,19 @@ export function RegistrationForm() {
 
         {/* Industry Sector */}
         <div className="space-y-1.5">
-          <Label htmlFor="industrySector">Industry / Sector *</Label>
+          <Label htmlFor="industrySector">{t("industrySector")}</Label>
           <Select
             value={industrySector}
             onValueChange={(v) => setIndustrySector(v ?? "")}
             disabled={submitting}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select industry..." />
+              <SelectValue placeholder={t("selectIndustry")} />
             </SelectTrigger>
             <SelectContent>
               {SECTORS.map((s) => (
                 <SelectItem key={s.value} value={s.value}>
-                  {s.label}
+                  {st(s.key)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -150,7 +153,7 @@ export function RegistrationForm() {
 
         {/* Contact Person Name */}
         <div className="space-y-1.5">
-          <Label htmlFor="contactPersonName">Contact Person Name *</Label>
+          <Label htmlFor="contactPersonName">{t("contactPersonName")}</Label>
           <Input
             id="contactPersonName"
             value={contactPersonName}
@@ -162,7 +165,7 @@ export function RegistrationForm() {
 
         {/* Designation */}
         <div className="space-y-1.5">
-          <Label htmlFor="designation">Designation *</Label>
+          <Label htmlFor="designation">{t("designation")}</Label>
           <Input
             id="designation"
             value={designation}
@@ -174,7 +177,7 @@ export function RegistrationForm() {
 
         {/* Phone */}
         <div className="space-y-1.5">
-          <Label htmlFor="phone">Phone *</Label>
+          <Label htmlFor="phone">{t("phone")}</Label>
           <Input
             id="phone"
             type="tel"
@@ -187,7 +190,7 @@ export function RegistrationForm() {
 
         {/* Email */}
         <div className="space-y-1.5">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">{t("email")}</Label>
           <Input
             id="email"
             type="email"
@@ -200,7 +203,7 @@ export function RegistrationForm() {
 
         {/* Company Address */}
         <div className="space-y-1.5">
-          <Label htmlFor="companyAddress">Company Address *</Label>
+          <Label htmlFor="companyAddress">{t("companyAddress")}</Label>
           <Input
             id="companyAddress"
             value={companyAddress}
@@ -213,7 +216,7 @@ export function RegistrationForm() {
         {/* Website - radio group */}
         <fieldset className="space-y-1.5">
           <span className="flex items-center gap-2 text-sm leading-none font-medium select-none">
-            Website *
+            {t("website")}
           </span>
           <div className="flex gap-4">
             <label className="flex items-center gap-2 text-sm">
@@ -226,7 +229,7 @@ export function RegistrationForm() {
                 className="accent-blue-600"
                 disabled={submitting}
               />
-              Add link
+              {t("addLink")}
             </label>
             <label className="flex items-center gap-2 text-sm">
               <input
@@ -241,7 +244,7 @@ export function RegistrationForm() {
                 className="accent-blue-600"
                 disabled={submitting}
               />
-              No website
+              {t("noWebsite")}
             </label>
           </div>
         </fieldset>
@@ -249,13 +252,13 @@ export function RegistrationForm() {
         {/* Website URL (shown only when "yes" is selected) */}
         {hasWebsite === "yes" && (
           <div className="space-y-1.5">
-            <Label htmlFor="websiteUrl">Website URL *</Label>
+            <Label htmlFor="websiteUrl">{t("websiteUrl")}</Label>
             <Input
               id="websiteUrl"
               type="url"
               value={websiteUrl}
               onChange={(e) => setWebsiteUrl(e.target.value)}
-              placeholder="https://example.com"
+              placeholder={t("websiteUrlPlaceholder")}
               required
               disabled={submitting}
             />
@@ -264,19 +267,19 @@ export function RegistrationForm() {
 
         {/* Employee Count Range */}
         <div className="space-y-1.5">
-          <Label htmlFor="employeeCountRange">Number of Employees *</Label>
+          <Label htmlFor="employeeCountRange">{t("employeeCount")}</Label>
           <Select
             value={employeeCountRange}
             onValueChange={(v) => setEmployeeCountRange(v ?? "")}
             disabled={submitting}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select range..." />
+              <SelectValue placeholder={t("selectRange")} />
             </SelectTrigger>
             <SelectContent>
               {EMPLOYEE_RANGES.map((r) => (
                 <SelectItem key={r.value} value={r.value}>
-                  {r.label}
+                  {ert(r.key)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -285,7 +288,7 @@ export function RegistrationForm() {
 
         {/* About Company */}
         <div className="space-y-1.5">
-          <Label htmlFor="aboutCompany">About Company *</Label>
+          <Label htmlFor="aboutCompany">{t("aboutCompany")}</Label>
           <textarea
             id="aboutCompany"
             value={aboutCompany}
@@ -298,7 +301,7 @@ export function RegistrationForm() {
         </div>
 
         <Button type="submit" className="w-full" disabled={submitting}>
-          {submitting ? "Submitting..." : "Register"}
+          {submitting ? t("submitting") : t("register")}
         </Button>
       </form>
     </div>

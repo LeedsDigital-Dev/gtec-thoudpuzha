@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type {
   CandidateSearchResult,
   EmployerJobPosting,
@@ -21,6 +22,9 @@ export function CandidateSearchForm({
   jobPostings,
 }: CandidateSearchFormProps) {
   const router = useRouter();
+  const t = useTranslations("candidateSearch");
+  const jt = useTranslations("jobType");
+  const qt = useTranslations("qualification");
   const [filters, setFilters] = useState<CandidateSearchFilters>({});
   const [inviteStatus, setInviteStatus] = useState<Record<string, string>>({});
 
@@ -58,7 +62,7 @@ export function CandidateSearchForm({
     } catch {
       setInviteStatus((prev) => ({
         ...prev,
-        [candidateId]: "Error sending invite",
+        [candidateId]: t("errorSending"),
       }));
     }
 
@@ -75,15 +79,15 @@ export function CandidateSearchForm({
     <div className="space-y-6">
       {/* Filter Section */}
       <div className="rounded-lg border bg-white p-4">
-        <h2 className="mb-3 text-lg font-medium">Filters</h2>
+        <h2 className="mb-3 text-lg font-medium">{t("filters")}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Preferred Location
+              {t("preferredLocation")}
             </label>
             <input
               type="text"
-              placeholder="e.g. Kochi"
+              placeholder={t("locationPlaceholder")}
               value={filters.preferredJobLocation ?? ""}
               onChange={(e) =>
                 handleFilterChange("preferredJobLocation", e.target.value)
@@ -94,7 +98,7 @@ export function CandidateSearchForm({
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Preferred Job Type
+              {t("preferredJobType")}
             </label>
             <select
               value={filters.preferredJobType ?? ""}
@@ -106,17 +110,17 @@ export function CandidateSearchForm({
               }
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
             >
-              <option value="">Any</option>
-              <option value="FULL_TIME">Full Time</option>
-              <option value="PART_TIME">Part Time</option>
-              <option value="INTERNSHIP">Internship</option>
-              <option value="WORK_FROM_HOME">Work From Home</option>
+              <option value="">{t("any")}</option>
+              <option value="FULL_TIME">{jt("FULL_TIME")}</option>
+              <option value="PART_TIME">{jt("PART_TIME")}</option>
+              <option value="INTERNSHIP">{jt("INTERNSHIP")}</option>
+              <option value="WORK_FROM_HOME">{jt("WORK_FROM_HOME")}</option>
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Educational Qualification
+              {t("educationalQualification")}
             </label>
             <select
               value={filters.educationalQualification ?? ""}
@@ -128,23 +132,23 @@ export function CandidateSearchForm({
               }
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
             >
-              <option value="">Any</option>
-              <option value="SSLC">SSLC</option>
-              <option value="PLUS_TWO">Plus Two</option>
-              <option value="DIPLOMA">Diploma</option>
-              <option value="GRADUATE">Graduate</option>
-              <option value="POST_GRADUATE">Post Graduate</option>
-              <option value="OTHER">Other</option>
+              <option value="">{t("any")}</option>
+              <option value="SSLC">{qt("SSLC")}</option>
+              <option value="PLUS_TWO">{qt("PLUS_TWO")}</option>
+              <option value="DIPLOMA">{qt("DIPLOMA")}</option>
+              <option value="GRADUATE">{qt("GRADUATE")}</option>
+              <option value="POST_GRADUATE">{qt("POST_GRADUATE")}</option>
+              <option value="OTHER">{qt("OTHER")}</option>
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Languages (comma-separated)
+              {t("languages")}
             </label>
             <input
               type="text"
-              placeholder="e.g. English, Malayalam"
+              placeholder={t("languagesPlaceholder")}
               value={(filters.languagesKnown ?? []).join(", ")}
               onChange={(e) =>
                 handleFilterChange(
@@ -166,10 +170,10 @@ export function CandidateSearchForm({
             onClick={clearFilters}
             className="rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200"
           >
-            Clear Filters
+            {t("clearFilters")}
           </button>
           <span className="text-sm text-gray-500">
-            {filtered.length} candidate{filtered.length !== 1 ? "s" : ""} found
+            {t("candidateCount", { count: filtered.length })}
           </span>
         </div>
       </div>
@@ -178,7 +182,7 @@ export function CandidateSearchForm({
 
       {filtered.length === 0 ? (
         <div className="rounded-lg border border-dashed p-8 text-center text-gray-500">
-          <p>No candidates match your search criteria.</p>
+          <p>{t("noCandidates")}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -210,6 +214,7 @@ function CandidateCard({
   inviteStatus,
   onInvite,
 }: CandidateCardProps) {
+  const t = useTranslations("candidateSearch");
   const [selectedJobId, setSelectedJobId] = useState<string>("");
 
   const handleInviteClick = () => {
@@ -226,7 +231,7 @@ function CandidateCard({
             href={`/portal/employer/candidates/${candidate.id}`}
             className="text-lg font-medium text-blue-600 hover:underline"
           >
-            {candidate.fullName ?? "Unnamed Candidate"}
+            {candidate.fullName ?? t("unnamed")}
           </Link>
 
           <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-500">
@@ -265,7 +270,7 @@ function CandidateCard({
           href={`/portal/employer/candidates/${candidate.id}`}
           className="ml-4 shrink-0 rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-200"
         >
-          View Profile
+          {t("viewProfile")}
         </Link>
       </div>
 
@@ -277,7 +282,7 @@ function CandidateCard({
             onChange={(e) => setSelectedJobId(e.target.value)}
             className="max-w-xs rounded-md border px-3 py-1.5 text-sm"
           >
-            <option value="">Select a job posting...</option>
+            <option value="">{t("selectJobPosting")}</option>
             {employerPostings.map((jp) => (
               <option key={jp.id} value={jp.id}>
                 {jp.title}
@@ -291,7 +296,7 @@ function CandidateCard({
             disabled={!selectedJobId || inviteStatus === "sending..."}
             className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {inviteStatus === "sending..." ? "Sending..." : "Invite to Apply"}
+            {inviteStatus === "sending..." ? t("sending") : t("inviteToApply")}
           </button>
 
           {inviteStatus && inviteStatus !== "sending..." && (
@@ -301,7 +306,7 @@ function CandidateCard({
               }`}
             >
               {inviteStatus === "sent"
-                ? "✓ Invitation sent"
+                ? t("invitationSent")
                 : inviteStatus}
             </span>
           )}

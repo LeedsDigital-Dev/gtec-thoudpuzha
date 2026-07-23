@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
 import Link from "next/link";
@@ -11,62 +12,30 @@ import {
   ScrollText,
 } from "lucide-react";
 
-const TILES = [
-  {
-    title: "Study Notes",
-    href: "/portal/student/resources/notes",
-    icon: BookOpen,
-  },
-  {
-    title: "Video Lectures",
-    href: "/portal/student/resources/lectures",
-    icon: Video,
-  },
-  {
-    title: "Assignments",
-    href: "/portal/student/resources/assignments",
-    icon: FileText,
-  },
-  {
-    title: "My Progress",
-    href: "/portal/student/resources/progress",
-    icon: BarChart3,
-  },
-  {
-    title: "Timetable",
-    href: "/portal/student/resources/timetable",
-    icon: Calendar,
-  },
-  {
-    title: "Past Papers",
-    href: "/portal/student/resources/past-papers",
-    icon: ScrollText,
-  },
-] as const;
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export default async function StudentDashboardPage() {
+export default async function StudentDashboardPage({ params }: PageProps) {
+  const { locale } = await params;
   const session = await auth();
   if (!session.userId) return null;
 
   const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const t = await getTranslations({ locale, namespace: "studentDashboard" });
+  const rgt = await getTranslations({ locale, namespace: "roleGate" });
 
-  // Parent layout gates STUDENT|JOB_SEEKER; dashboard is STUDENT-only
   if (role !== Role.STUDENT) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">
-            This area isn&apos;t for your account type
-          </h1>
-          <p className="mt-2 text-gray-600">
-            This section is intended for Student accounts. Please use the
-            appropriate portal for your account type.
-          </p>
+          <h1 className="text-2xl font-semibold">{rgt("notYourAccount")}</h1>
+          <p className="mt-2 text-gray-600">{rgt("description", { roles: "Student" })}</p>
           <Link
             href="/portal"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Go to Portal Dashboard
+            {rgt("goToPortal")}
           </Link>
         </div>
       </div>
@@ -82,36 +51,61 @@ export default async function StudentDashboardPage() {
     profile && profile.courseCompletedIds.length > 0;
 
   if (!hasLinkedCourse) {
-    return <EmptyState />;
+    return <EmptyState t={t} />;
   }
 
-  return <DashboardGrid />;
+  return <DashboardGrid t={t} />;
 }
 
-function EmptyState() {
+function EmptyState({ t }: { t: (key: string) => string }) {
   return (
     <div className="flex min-h-screen items-center justify-center p-6">
       <div className="max-w-md text-center">
-        <h1 className="text-2xl font-semibold">
-          Welcome to the Student Portal
-        </h1>
-        <p className="mt-4 text-gray-600">
-          You haven&apos;t been linked to any courses yet. Please contact the
-          centre to get enrolled.
-        </p>
-        <p className="mt-2 text-sm text-gray-500">
-          Once you&apos;re linked, you&apos;ll find your study notes, video
-          lectures, assignments, and more right here.
-        </p>
+        <h1 className="text-2xl font-semibold">{t("welcome")}</h1>
+        <p className="mt-4 text-gray-600">{t("noCourses")}</p>
+        <p className="mt-2 text-sm text-gray-500">{t("noCoursesHint")}</p>
       </div>
     </div>
   );
 }
 
-function DashboardGrid() {
+function DashboardGrid({ t }: { t: (key: string) => string }) {
+  const TILES = [
+    {
+      titleKey: "studyNotes",
+      href: "/portal/student/resources/notes",
+      icon: BookOpen,
+    },
+    {
+      titleKey: "videoLectures",
+      href: "/portal/student/resources/lectures",
+      icon: Video,
+    },
+    {
+      titleKey: "assignments",
+      href: "/portal/student/resources/assignments",
+      icon: FileText,
+    },
+    {
+      titleKey: "myProgress",
+      href: "/portal/student/resources/progress",
+      icon: BarChart3,
+    },
+    {
+      titleKey: "timetable",
+      href: "/portal/student/resources/timetable",
+      icon: Calendar,
+    },
+    {
+      titleKey: "pastPapers",
+      href: "/portal/student/resources/past-papers",
+      icon: ScrollText,
+    },
+  ];
+
   return (
     <div className="p-6">
-      <h1 className="mb-8 text-3xl font-semibold">Student Dashboard</h1>
+      <h1 className="mb-8 text-3xl font-semibold">{t("heading")}</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {TILES.map((tile) => {
           const Icon = tile.icon;
@@ -122,7 +116,7 @@ function DashboardGrid() {
               className="flex items-center gap-4 rounded-lg border p-6 transition-shadow hover:shadow-md"
             >
               <Icon className="h-8 w-8 text-blue-600" />
-              <span className="text-lg font-medium">{tile.title}</span>
+              <span className="text-lg font-medium">{t(tile.titleKey)}</span>
             </Link>
           );
         })}

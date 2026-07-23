@@ -248,7 +248,7 @@ describe("VideoLectureList — course-scoped retrieval", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await VideoLectureList();
+    const element = await VideoLectureList({ locale: "en" });
     const html = renderToString(element);
 
     // Course A's lectures appear

@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { updateApplicationStatus } from "./actions";
 import type { ApplicationStatus } from "@prisma/client";
 
@@ -43,6 +44,7 @@ function ApplicantRow({
 }: {
   applicant: Applicant;
 }) {
+  const t = useTranslations("employerApplicants");
   const [state, action, pending] = useActionState(
     async (_prev: unknown, formData: FormData) => {
       const newStatus = formData.get("status") as ApplicationStatus;
@@ -69,7 +71,7 @@ function ApplicantRow({
             )}
             <div>
               <h3 className="font-medium">
-                {applicant.candidateProfile.fullName ?? "Unknown"}
+                {applicant.candidateProfile.fullName ?? t("unknown")}
               </h3>
               <p className="text-sm text-gray-500">
                 {applicant.candidateProfile.preferredJobType?.replace(/_/g, " ") ?? "—"}
@@ -80,25 +82,25 @@ function ApplicantRow({
           <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-gray-600">
             {applicant.candidateProfile.email && (
               <div>
-                <span className="text-xs text-gray-400">Email</span>
+                <span className="text-xs text-gray-400">{t("email")}</span>
                 <p>{applicant.candidateProfile.email}</p>
               </div>
             )}
             {applicant.candidateProfile.phone && (
               <div>
-                <span className="text-xs text-gray-400">Phone</span>
+                <span className="text-xs text-gray-400">{t("phone")}</span>
                 <p>{applicant.candidateProfile.phone}</p>
               </div>
             )}
             {applicant.candidateProfile.educationalQualification && (
               <div>
-                <span className="text-xs text-gray-400">Qualification</span>
+                <span className="text-xs text-gray-400">{t("qualification")}</span>
                 <p>{applicant.candidateProfile.educationalQualification.replace(/_/g, " ")}</p>
               </div>
             )}
             {applicant.candidateProfile.preferredJobLocation && (
               <div>
-                <span className="text-xs text-gray-400">Location</span>
+                <span className="text-xs text-gray-400">{t("location")}</span>
                 <p>{applicant.candidateProfile.preferredJobLocation}</p>
               </div>
             )}
@@ -150,10 +152,12 @@ export function ApplicantsList({
   applicants: Applicant[];
   postingId: string;
 }) {
+  const t = useTranslations("employerApplicants");
+
   return (
     <div className="space-y-4">
       <p className="text-sm text-gray-500">
-        {applicants.length} applicant{applicants.length !== 1 ? "s" : ""}
+        {t("applicantCount", { count: applicants.length })}
       </p>
       {applicants.map((applicant) => (
         <ApplicantRow key={applicant.id} applicant={applicant} />

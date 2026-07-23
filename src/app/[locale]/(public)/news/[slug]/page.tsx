@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { getNewsEventBySlug } from "@/lib/news-events";
 
 export const revalidate = 60;
@@ -11,7 +12,9 @@ interface NewsDetailPageProps {
 export default async function NewsDetailPage({
   params,
 }: NewsDetailPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "news" });
+
   const item = await getNewsEventBySlug(slug);
 
   if (!item) {
@@ -20,11 +23,19 @@ export default async function NewsDetailPage({
 
   function formatDate(date: Date | null): string {
     if (!date) return "";
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    try {
+      return date.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
   }
 
   return (
@@ -33,12 +44,12 @@ export default async function NewsDetailPage({
         href="/news"
         className="text-sm text-primary underline hover:no-underline"
       >
-        &larr; Back to News &amp; Events
+        {t("backToNews")}
       </Link>
 
       <article className="mt-6">
         <p className="text-xs text-muted-foreground">
-          {item.type === "NEWS" ? "News" : "Event"} &middot;{" "}
+          {item.type === "NEWS" ? t("news") : t("event")} &middot;{" "}
           {formatDate(item.publishedAt)}
         </p>
         <h1 className="mt-2 text-3xl font-bold">{item.titleEn}</h1>
@@ -54,7 +65,7 @@ export default async function NewsDetailPage({
 
         {item.eventDate && (
           <p className="mt-4 text-sm font-medium">
-            Event date: {formatDate(item.eventDate)}
+            {t("eventDate", { date: formatDate(item.eventDate) })}
           </p>
         )}
 

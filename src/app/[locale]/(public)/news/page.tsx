@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { getPublishedNews } from "@/lib/news-events";
 
 export const revalidate = 60;
@@ -8,27 +9,37 @@ interface NewsPageProps {
 }
 
 export default async function NewsPage({ params }: NewsPageProps) {
-  await params;
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "news" });
+
   const items = await getPublishedNews();
   const newsItems = items.filter((i) => i.type === "NEWS");
   const eventItems = items.filter((i) => i.type === "EVENT");
 
   function formatDate(date: Date | null): string {
     if (!date) return "";
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    try {
+      return date.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
   }
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="mb-8 text-3xl font-bold">News &amp; Events</h1>
+      <h1 className="mb-8 text-3xl font-bold">{t("heading")}</h1>
 
       {newsItems.length > 0 && (
         <section className="mb-12">
-          <h2 className="mb-4 text-xl font-semibold">Latest News</h2>
+          <h2 className="mb-4 text-xl font-semibold">{t("latestNews")}</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {newsItems.map((item) => (
               <Link
@@ -51,7 +62,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
 
       {eventItems.length > 0 && (
         <section>
-          <h2 className="mb-4 text-xl font-semibold">Upcoming Events</h2>
+          <h2 className="mb-4 text-xl font-semibold">{t("upcomingEvents")}</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {eventItems.map((item) => (
               <Link
@@ -75,7 +86,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
       )}
 
       {items.length === 0 && (
-        <p className="text-muted-foreground">No news or events published yet.</p>
+        <p className="text-muted-foreground">{t("noNews")}</p>
       )}
     </main>
   );

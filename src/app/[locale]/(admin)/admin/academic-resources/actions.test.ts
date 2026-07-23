@@ -213,7 +213,7 @@ describe("ResourceList — student-facing course-scoped retrieval", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await ResourceList({ type: "NOTE", title: "Study Notes" });
+    const element = await ResourceList({ type: "NOTE", title: "Study Notes", locale: "en" });
     const html = renderToString(element);
 
     // Course A's notes appear
@@ -242,7 +242,7 @@ describe("ResourceList — student-facing course-scoped retrieval", () => {
     );
 
     const { renderToString } = await import("react-dom/server");
-    const element = await ResourceList({ type: "NOTE", title: "Study Notes" });
+    const element = await ResourceList({ type: "NOTE", title: "Study Notes", locale: "en" });
     const html = renderToString(element);
 
     expect(html).toContain("Study Notes");

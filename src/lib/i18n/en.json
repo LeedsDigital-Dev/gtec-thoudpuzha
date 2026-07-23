@@ -239,7 +239,8 @@
     "posted": "Posted {date}",
     "applicantCount": "{count} applicant",
     "applicantCount_plural": "{count} applicants",
-    "postVacancy": "Post a Vacancy"
+    "postVacancy": "Post a Vacancy",
+    "deadline": "Deadline: {date}"
   },
   "statusBadge": {
     "PENDING": "Pending Review",
@@ -439,6 +440,40 @@
     "postVacancy": "Post a Vacancy",
     "verifyCertificate": "Verify Certificate",
     "allRightsReserved": "All rights reserved."
+  },
+  "portalDashboard": {
+    "heading": "Welcome, {role}",
+    "subtitle": "Portal dashboard"
+  },
+  "studentVerification": {
+    "heading": "Student Verification",
+    "description": "Enter your Student ID and phone number as registered with the centre.",
+    "studentId": "Student ID",
+    "studentIdPlaceholder": "e.g. GTEC2025001",
+    "phone": "Phone Number",
+    "phonePlaceholder": "e.g. 9876543210",
+    "verifying": "Verifying...",
+    "verifyDetails": "Verify Details",
+    "whatsapp": "WhatsApp",
+    "callCentre": "Call Centre",
+    "noStudentId": "Don&apos;t have a Student ID?",
+    "contactCentre": "Contact the centre",
+    "verifyYourPhone": "Verify Your Phone",
+    "otpDescription": "We sent a one-time verification code to your registered phone number.",
+    "verificationCode": "Verification Code",
+    "otpPlaceholder": "Enter 6-digit code",
+    "verifyCode": "Verify Code"
+  },
+  "progress": {
+    "heading": "My Progress",
+    "noEntries": "No progress entries recorded yet.",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "timetable": {
+    "heading": "Timetable",
+    "noEntries": "No timetable entries available yet for your enrolled courses.",
+    "updated": "Updated {date}",
+    "backToDashboard": "Back to Dashboard"
   },
   "common": {
     "loading": "Loading...",

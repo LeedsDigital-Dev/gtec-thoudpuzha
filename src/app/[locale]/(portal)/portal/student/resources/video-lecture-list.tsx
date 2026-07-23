@@ -1,11 +1,14 @@
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { deriveEmbedUrl } from "@/lib/video";
 import Link from "next/link";
 
-export async function VideoLectureList() {
+export async function VideoLectureList({ locale }: { locale: string }) {
   const session = await auth();
   if (!session.userId) return null;
+
+  const t = await getTranslations({ locale, namespace: "resources" });
 
   const profile = await prisma.candidateProfile.findUnique({
     where: { userId: session.userId },
@@ -16,10 +19,8 @@ export async function VideoLectureList() {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">Video Lectures</h1>
-          <p className="mt-4 text-gray-600">
-            Please complete your profile first.
-          </p>
+          <h1 className="text-2xl font-semibold">{t("videoLectures")}</h1>
+          <p className="mt-4 text-gray-600">{t("completeProfile")}</p>
         </div>
       </div>
     );
@@ -34,16 +35,13 @@ export async function VideoLectureList() {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">Video Lectures</h1>
-          <p className="mt-4 text-gray-600">
-            You aren&apos;t enrolled in any courses yet. Contact the centre to get
-            enrolled.
-          </p>
+          <h1 className="text-2xl font-semibold">{t("videoLectures")}</h1>
+          <p className="mt-4 text-gray-600">{t("notEnrolled")}</p>
           <Link
             href="/portal/student"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Back to Dashboard
+            {t("backToDashboard")}
           </Link>
         </div>
       </div>
@@ -67,9 +65,9 @@ export async function VideoLectureList() {
   if (resources.length === 0) {
     return (
       <div className="p-6">
-        <h1 className="mb-2 text-2xl font-semibold">Video Lectures</h1>
+        <h1 className="mb-2 text-2xl font-semibold">{t("videoLectures")}</h1>
         <p className="text-gray-600">
-          No video lectures available yet for your enrolled courses.
+          {t("noResources", { type: t("videoLectures").toLowerCase() })}
         </p>
       </div>
     );
@@ -77,7 +75,7 @@ export async function VideoLectureList() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-semibold">Video Lectures</h1>
+      <h1 className="mb-6 text-2xl font-semibold">{t("videoLectures")}</h1>
       <div className="space-y-8">
         {courses.map((course) => {
           const courseResources = resources.filter(
@@ -103,7 +101,7 @@ export async function VideoLectureList() {
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">
-                          No video URL available
+                          {t("noVideoUrl")}
                         </div>
                       )}
                     </div>

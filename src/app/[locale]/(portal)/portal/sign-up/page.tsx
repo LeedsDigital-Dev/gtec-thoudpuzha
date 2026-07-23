@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 const roles: Record<string, string> = {
   STUDENT: "/portal",
@@ -10,8 +11,14 @@ const roles: Record<string, string> = {
   SUPER_ADMIN: "/admin",
 };
 
-export default async function SignUpPickerPage() {
+interface SignUpPickerPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function SignUpPickerPage({ params }: SignUpPickerPageProps) {
+  const { locale } = await params;
   const session = await auth();
+  const t = await getTranslations({ locale, namespace: "signUp" });
 
   if (session.userId) {
     const role = session.sessionClaims?.metadata?.role as string | undefined;
@@ -23,10 +30,10 @@ export default async function SignUpPickerPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-3xl">
         <h1 className="mb-2 text-center text-3xl font-bold">
-          Create Your Account
+          {t("createAccount")}
         </h1>
         <p className="mb-8 text-center text-gray-600">
-          Select the option that best describes you
+          {t("selectOption")}
         </p>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -38,10 +45,10 @@ export default async function SignUpPickerPage() {
               🎓
             </div>
             <h2 className="mb-2 text-lg font-semibold">
-              I&apos;m a G-TEC Thodupuzha student
+              {t("studentTitle")}
             </h2>
             <p className="text-sm text-gray-500">
-              Access your academic resources, timetable, and progress
+              {t("studentDesc")}
             </p>
           </Link>
 
@@ -53,10 +60,10 @@ export default async function SignUpPickerPage() {
               💼
             </div>
             <h2 className="mb-2 text-lg font-semibold">
-              I&apos;m looking for a job
+              {t("jobSeekerTitle")}
             </h2>
             <p className="text-sm text-gray-500">
-              Browse vacancies and apply with your profile
+              {t("jobSeekerDesc")}
             </p>
           </Link>
 
@@ -65,13 +72,13 @@ export default async function SignUpPickerPage() {
             className="group rounded-xl border-2 border-gray-200 bg-white p-6 text-center shadow-sm transition hover:border-purple-500 hover:shadow-md"
           >
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 text-2xl">
-                              🏢
+                            🏢
             </div>
             <h2 className="mb-2 text-lg font-semibold">
-              I&apos;m an employer looking to hire
+              {t("employerTitle")}
             </h2>
             <p className="text-sm text-gray-500">
-              Post vacancies and find qualified candidates
+              {t("employerDesc")}
             </p>
           </Link>
         </div>

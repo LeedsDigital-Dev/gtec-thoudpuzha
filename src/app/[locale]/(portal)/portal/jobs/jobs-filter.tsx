@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
+import { useTranslations } from "next-intl";
 import type { SkillDto } from "@/lib/skills";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,15 +18,11 @@ interface JobsFilterProps {
   skills: SkillDto[];
 }
 
-const JOB_TYPE_OPTIONS = [
-  { value: "FULL_TIME", label: "Full Time" },
-  { value: "PART_TIME", label: "Part Time" },
-  { value: "CONTRACT", label: "Contract" },
-] as const;
-
 export function JobsFilter({ skills }: JobsFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("jobs");
+  const jt = useTranslations("jobType");
 
   const currentJobType = searchParams.get("jobType") ?? "";
   const currentSkillId = searchParams.get("skillId") ?? "";
@@ -64,16 +61,16 @@ export function JobsFilter({ skills }: JobsFilterProps) {
     >
       <div className="flex flex-col gap-1">
         <label htmlFor="jobType" className="text-xs font-medium text-gray-600">
-          Job Type
+          {t("filterJobType")}
         </label>
         <Select name="jobType" defaultValue={currentJobType}>
           <SelectTrigger id="jobType" className="w-40">
-            <SelectValue placeholder="All types" />
+            <SelectValue placeholder={t("allTypes")} />
           </SelectTrigger>
           <SelectContent>
-            {JOB_TYPE_OPTIONS.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+            {(["FULL_TIME", "PART_TIME", "CONTRACT"] as const).map((type) => (
+              <SelectItem key={type} value={type}>
+                {jt(type)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -82,11 +79,11 @@ export function JobsFilter({ skills }: JobsFilterProps) {
 
       <div className="flex flex-col gap-1">
         <label htmlFor="skillId" className="text-xs font-medium text-gray-600">
-          Skill
+          {t("filterSkill")}
         </label>
         <Select name="skillId" defaultValue={currentSkillId}>
           <SelectTrigger id="skillId" className="w-48">
-            <SelectValue placeholder="All skills" />
+            <SelectValue placeholder={t("allSkills")} />
           </SelectTrigger>
           <SelectContent>
             {skills.map((skill) => (
@@ -100,20 +97,20 @@ export function JobsFilter({ skills }: JobsFilterProps) {
 
       <div className="flex flex-col gap-1">
         <label htmlFor="location" className="text-xs font-medium text-gray-600">
-          Location
+          {t("filterLocation")}
         </label>
         <Input
           id="location"
           name="location"
           defaultValue={currentLocation}
-          placeholder="City or area..."
+          placeholder={t("locationPlaceholder")}
           className="w-44"
         />
       </div>
 
       <div className="flex gap-2">
         <Button type="submit" size="sm">
-          Apply Filters
+          {t("applyFilters")}
         </Button>
         {hasFilters && (
           <Button
@@ -122,7 +119,7 @@ export function JobsFilter({ skills }: JobsFilterProps) {
             size="sm"
             onClick={handleClear}
           >
-            Clear
+            {t("clear")}
           </Button>
         )}
       </div>

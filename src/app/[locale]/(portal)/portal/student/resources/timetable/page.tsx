@@ -1,10 +1,19 @@
 import { auth } from "@clerk/nextjs/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
 
-export default async function TimetablePage() {
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function TimetablePage({ params }: Props) {
+  const { locale } = await params;
   const session = await auth();
   if (!session.userId) return null;
+
+  const rt = await getTranslations({ locale, namespace: "resources" });
+  const t = await getTranslations({ locale, namespace: "timetable" });
 
   const profile = await prisma.candidateProfile.findUnique({
     where: { userId: session.userId },
@@ -15,10 +24,8 @@ export default async function TimetablePage() {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">Timetable</h1>
-          <p className="mt-4 text-gray-600">
-            Please complete your profile first.
-          </p>
+          <h1 className="text-2xl font-semibold">{t("heading")}</h1>
+          <p className="mt-4 text-gray-600">{rt("completeProfile")}</p>
         </div>
       </div>
     );
@@ -33,16 +40,13 @@ export default async function TimetablePage() {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
-          <h1 className="text-2xl font-semibold">Timetable</h1>
-          <p className="mt-4 text-gray-600">
-            You aren&apos;t enrolled in any courses yet. Contact the centre to get
-            enrolled.
-          </p>
+          <h1 className="text-2xl font-semibold">{t("heading")}</h1>
+          <p className="mt-4 text-gray-600">{rt("notEnrolled")}</p>
           <Link
             href="/portal/student"
             className="mt-4 inline-block text-blue-600 underline"
           >
-            Back to Dashboard
+            {t("backToDashboard")}
           </Link>
         </div>
       </div>
@@ -66,17 +70,15 @@ export default async function TimetablePage() {
   if (entries.length === 0) {
     return (
       <div className="p-6">
-        <h1 className="mb-2 text-2xl font-semibold">Timetable</h1>
-        <p className="text-gray-600">
-          No timetable entries available yet for your enrolled courses.
-        </p>
+        <h1 className="mb-2 text-2xl font-semibold">{t("heading")}</h1>
+        <p className="text-gray-600">{t("noEntries")}</p>
       </div>
     );
   }
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-semibold">Timetable</h1>
+      <h1 className="mb-6 text-2xl font-semibold">{t("heading")}</h1>
       <div className="space-y-6">
         {courses.map((course) => {
           const courseEntries = entries.filter(
@@ -99,7 +101,7 @@ export default async function TimetablePage() {
                     </p>
                     {e.createdAt && (
                       <p className="mt-2 text-xs text-gray-500">
-                        Updated {e.createdAt.toISOString().slice(0, 10)}
+                        {t("updated", { date: e.createdAt.toISOString().slice(0, 10) })}
                       </p>
                     )}
                   </div>

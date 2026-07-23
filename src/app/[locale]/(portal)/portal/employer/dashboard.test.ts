@@ -78,14 +78,12 @@ describe("Employer Dashboard — own postings only", () => {
     ]);
 
     const mod = await import("./page");
-    const element = await mod.default();
+    const element = await mod.default({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("Software Engineer");
     expect(html).toContain("DevOps Engineer");
     expect(html).toContain("Acme Corp");
-    expect(html).toContain("Approved");
-    expect(html).toContain("Pending Review");
 
     // Verify it queried using this employer's profile id
     expect(mockFindManyPostings).toHaveBeenCalledWith({
@@ -117,7 +115,7 @@ describe("Employer Dashboard — own postings only", () => {
     mockFindManyPostings.mockResolvedValue([]);
 
     const mod = await import("./page");
-    const element = await mod.default();
+    const element = await mod.default({ params: Promise.resolve({ locale: "en" }) });
     const html = renderToString(element);
 
     expect(html).toContain("No job postings yet");

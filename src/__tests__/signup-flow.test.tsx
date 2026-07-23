@@ -44,6 +44,7 @@ async function renderPage(
     props: Record<string, unknown>,
   ) => Promise<React.ReactElement>;
   const element = await Component({
+    params: Promise.resolve({ locale: "en" }),
     searchParams: Promise.resolve(searchParams),
   });
   return renderToString(element);

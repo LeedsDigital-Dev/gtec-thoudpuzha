@@ -239,7 +239,8 @@
     "posted": "പോസ്റ്റ് ചെയ്തത് {date}",
     "applicantCount": "{count} അപേക്ഷകൻ",
     "applicantCount_plural": "{count} അപേക്ഷകർ",
-    "postVacancy": "ഒരു ഒഴിവ് പോസ്റ്റ് ചെയ്യുക"
+    "postVacancy": "ഒരു ഒഴിവ് പോസ്റ്റ് ചെയ്യുക",
+    "deadline": "അവസാന തീയതി: {date}"
   },
   "statusBadge": {
     "PENDING": "അവലോകനത്തിലാണ്",
@@ -439,6 +440,40 @@
     "postVacancy": "ഒഴിവ് പോസ്റ്റ് ചെയ്യുക",
     "verifyCertificate": "സർട്ടിഫിക്കറ്റ് പരിശോധിക്കുക",
     "allRightsReserved": "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം."
+  },
+  "portalDashboard": {
+    "heading": "സ്വാഗതം, {role}",
+    "subtitle": "പോർട്ടൽ ഡാഷ്‌ബോർഡ്"
+  },
+  "studentVerification": {
+    "heading": "വിദ്യാർത്ഥി പരിശോധന",
+    "description": "സെന്ററിൽ രജിസ്റ്റർ ചെയ്ത പ്രകാരം നിങ്ങളുടെ വിദ്യാർത്ഥി ഐഡിയും ഫോൺ നമ്പറും നൽകുക.",
+    "studentId": "വിദ്യാർത്ഥി ഐഡി",
+    "studentIdPlaceholder": "ഉദാ: GTEC2025001",
+    "phone": "ഫോൺ നമ്പർ",
+    "phonePlaceholder": "ഉദാ: 9876543210",
+    "verifying": "പരിശോധിക്കുന്നു...",
+    "verifyDetails": "വിശദാംശങ്ങൾ പരിശോധിക്കുക",
+    "whatsapp": "വാട്ട്സ്ആപ്പ്",
+    "callCentre": "സെന്ററിലേക്ക് വിളിക്കുക",
+    "noStudentId": "വിദ്യാർത്ഥി ഐഡി ഇല്ലേ?",
+    "contactCentre": "സെന്ററുമായി ബന്ധപ്പെടുക",
+    "verifyYourPhone": "നിങ്ങളുടെ ഫോൺ പരിശോധിക്കുക",
+    "otpDescription": "നിങ്ങളുടെ രജിസ്റ്റർ ചെയ്ത ഫോൺ നമ്പറിലേക്ക് ഞങ്ങൾ ഒരു തവണ മാത്രം ഉപയോഗിക്കാവുന്ന പരിശോധന കോഡ് അയച്ചു.",
+    "verificationCode": "പരിശോധന കോഡ്",
+    "otpPlaceholder": "6 അക്ക കോഡ് നൽകുക",
+    "verifyCode": "കോഡ് പരിശോധിക്കുക"
+  },
+  "progress": {
+    "heading": "എന്റെ പുരോഗതി",
+    "noEntries": "ഇതുവരെ പുരോഗതി രേഖകളൊന്നും രേഖപ്പെടുത്തിയിട്ടില്ല.",
+    "backToDashboard": "ഡാഷ്‌ബോർഡിലേക്ക് മടങ്ങുക"
+  },
+  "timetable": {
+    "heading": "ടൈംടേബിൾ",
+    "noEntries": "നിങ്ങൾ എൻറോൾ ചെയ്ത കോഴ്‌സുകൾക്ക് ഇതുവരെ ടൈംടേബിൾ എൻട്രികൾ ലഭ്യമല്ല.",
+    "updated": "അപ്ഡേറ്റ് ചെയ്തത് {date}",
+    "backToDashboard": "ഡാഷ്‌ബോർഡിലേക്ക് മടങ്ങുക"
   },
   "common": {
     "loading": "ലോഡ് ചെയ്യുന്നു...",

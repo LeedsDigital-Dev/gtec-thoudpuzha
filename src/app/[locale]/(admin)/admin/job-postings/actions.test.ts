@@ -9,6 +9,7 @@ const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
 const mockUserFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -30,6 +31,9 @@ vi.mock("@/lib/db", () => ({
     },
     user: {
       findUnique: mockUserFindUnique,
+    },
+    staffPermission: {
+      findUnique: mockStaffPermissionFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -59,6 +63,8 @@ describe("approveJobPosting", () => {
     mockSendModerationNotification.mockReset();
     mockUserFindUnique.mockReset();
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockReset();
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
   });
 
   test("1. approving sets status=APPROVED and sends notification", async () => {
@@ -254,5 +260,94 @@ describe("approveJobPosting", () => {
     expect(mockUpdate).not.toHaveBeenCalled();
     expect(mockAuditCreate).not.toHaveBeenCalled();
     expect(mockSendModerationNotification).not.toHaveBeenCalled();
+  });
+
+  // ─── Permission-grant tests ────────────────────────────────────────────────
+
+  test("6. Centre Staff without canApproveJobPostings=true is denied approve", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_no_perm",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
+
+    const formData = new FormData();
+    formData.append("postingId", "jp_1");
+    formData.append("locale", "en");
+
+    await expect(approveJobPosting(formData)).rejects.toThrow(
+      "redirect:/en/forbidden",
+    );
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
+
+  test("7. Centre Staff WITH canApproveJobPostings=true can approve", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_with_perm",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue({
+      id: "sp_1",
+      userId: "staff_with_perm",
+      canApproveJobPostings: true,
+    });
+
+    mockUpdate.mockResolvedValue({
+      id: "jp_1",
+      title: "Software Engineer",
+      status: "APPROVED",
+      employer: {
+        companyName: "Acme Corp",
+        email: "hr@acme.com",
+      },
+    });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+    mockSendModerationNotification.mockResolvedValue(undefined);
+
+    const formData = new FormData();
+    formData.append("postingId", "jp_1");
+    formData.append("locale", "en");
+
+    await approveJobPosting(formData);
+
+    expect(mockUpdate).toHaveBeenCalled();
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        actorUserId: "staff_with_perm",
+        actorRole: "CENTRE_STAFF",
+      }),
+    });
+  });
+
+  test("8. Super Admin always passes regardless of StaffPermission row", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "super_admin_1",
+      sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
+    });
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+
+    mockUpdate.mockResolvedValue({
+      id: "jp_1",
+      title: "Software Engineer",
+      status: "APPROVED",
+      employer: {
+        companyName: "Acme Corp",
+        email: "hr@acme.com",
+      },
+    });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+    mockSendModerationNotification.mockResolvedValue(undefined);
+
+    const formData = new FormData();
+    formData.append("postingId", "jp_1");
+    formData.append("locale", "en");
+
+    await approveJobPosting(formData);
+
+    expect(mockUpdate).toHaveBeenCalled();
+    expect(mockAuditCreate).toHaveBeenCalled();
   });
 });

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { requireRole, Role } from "@/lib/auth";
+import { requireRole, requirePermission, StaffPermissionKeys, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import type { EmployerProfileStatus } from "@prisma/client";
 import {
@@ -36,7 +36,8 @@ export default async function EmployersPage({
     redirect(`/${locale}/forbidden`);
   }
 
-  const isSuperAdmin = authResult.role === Role.SUPER_ADMIN;
+  const permResult = await requirePermission(StaffPermissionKeys.canApproveEmployers);
+  const canApprove = permResult.authorized;
 
   const where =
     filterStatus && ["PENDING", "APPROVED", "REJECTED"].includes(filterStatus)
@@ -110,7 +111,7 @@ export default async function EmployersPage({
                   <th className="border border-gray-300 px-3 py-2 text-left">
                     Auto-Publish
                   </th>
-                  {isSuperAdmin && (
+                  {canApprove && (
                     <th className="border border-gray-300 px-3 py-2 text-left">
                       Actions
                     </th>
@@ -160,7 +161,7 @@ export default async function EmployersPage({
                         <span className="text-muted-foreground">No</span>
                       )}
                     </td>
-                    {isSuperAdmin && (
+                    {canApprove && (
                       <td className="border border-gray-300 px-3 py-2">
                         {ep.status === "PENDING" && (
                           <div className="flex flex-wrap gap-1">

@@ -3,6 +3,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockUserFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
 
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
@@ -15,6 +16,9 @@ vi.mock("@/lib/db", () => ({
     },
     user: {
       findUnique: mockUserFindUnique,
+    },
+    staffPermission: {
+      findUnique: mockStaffPermissionFindUnique,
     },
   },
 }));
@@ -35,6 +39,7 @@ describe("EmployersPage permission gate", () => {
     mockAuth.mockReset();
     mockFindMany.mockReset();
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
     mockRedirect.mockImplementation((url: string) => {
       throw new Error(`redirect:${url}`);
     });

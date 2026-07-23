@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { requireRole, Role } from "@/lib/auth";
+import { requireRole, Role, StaffPermissionKeys, type PermissionKey } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { clerkClient } from "@clerk/nextjs/server";
 import { logAdminAction } from "@/lib/audit";
@@ -87,4 +87,45 @@ export async function reactivateStaff(formData: FormData) {
   });
 
   revalidatePath(`/${locale}/admin/staff`);
+}
+
+export async function setStaffPermission(formData: FormData) {
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
+  if (!authResult.authorized) {
+    redirect(`/${localeFromFormData(formData)}/forbidden`);
+  }
+
+  const targetUserId = formData.get("userId") as string;
+  const permissionKey = formData.get("permissionKey") as PermissionKey;
+  const value = formData.get("value") === "true";
+
+  if (!targetUserId || !permissionKey) {
+    throw new Error("userId and permissionKey are required");
+  }
+
+  if (!(permissionKey in StaffPermissionKeys)) {
+    throw new Error(`Invalid permission key: ${permissionKey}`);
+  }
+
+  await prisma.staffPermission.upsert({
+    where: { userId: targetUserId },
+    create: {
+      userId: targetUserId,
+      [permissionKey]: value,
+    },
+    update: {
+      [permissionKey]: value,
+    },
+  });
+
+  await logAdminAction({
+    actorUserId: authResult.userId,
+    actorRole: authResult.role,
+    action: "staffPermission.set",
+    entityType: "StaffPermission",
+    entityId: targetUserId,
+    metadata: { permissionKey, value, targetUserId },
+  });
+
+  revalidatePath(`/${localeFromFormData(formData)}/admin/staff`);
 }

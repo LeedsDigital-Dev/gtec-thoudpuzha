@@ -56,3 +56,71 @@ export async function requirePortalRole(
 ): Promise<RequireRoleResult> {
   return requireRole(allowedRoles);
 }
+
+export type PermissionKey = keyof typeof StaffPermissionKeys;
+
+export const StaffPermissionKeys = {
+  canEditCourses: "canEditCourses",
+  canEditGallery: "canEditGallery",
+  canEditCertificationPartners: "canEditCertificationPartners",
+  canEditNewsEvents: "canEditNewsEvents",
+  canEditFlashNews: "canEditFlashNews",
+  canProvisionStudents: "canProvisionStudents",
+  canApproveEmployers: "canApproveEmployers",
+  canApproveJobPostings: "canApproveJobPostings",
+  canModerateSkillsTaxonomy: "canModerateSkillsTaxonomy",
+} as const;
+
+export type RequirePermissionResult =
+  | { authorized: false; reason: "unauthenticated" | "no_role" | "forbidden" | "deactivated" | "no_permission" }
+  | { authorized: true; role: Role; userId: string };
+
+/**
+ * Check if the current user has a specific permission.
+ * Super Admin always passes regardless of StaffPermission row state.
+ * Centre Staff must have the specific boolean flag set to true in their StaffPermission row.
+ */
+export async function requirePermission(
+  permissionKey: PermissionKey,
+): Promise<RequirePermissionResult> {
+  const session = await clerkAuth();
+
+  if (!session.userId) {
+    return { authorized: false, reason: "unauthenticated" };
+  }
+
+  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+
+  if (!role) {
+    return { authorized: false, reason: "no_role" };
+  }
+
+  if (role !== Role.CENTRE_STAFF && role !== Role.SUPER_ADMIN) {
+    return { authorized: false, reason: "forbidden" };
+  }
+
+  // Deactivation check
+  const user = await prisma.user.findUnique({
+    where: { id: session.userId },
+    select: { deactivatedAt: true },
+  });
+  if (user?.deactivatedAt) {
+    return { authorized: false, reason: "deactivated" };
+  }
+
+  // Super Admin always passes
+  if (role === Role.SUPER_ADMIN) {
+    return { authorized: true, role, userId: session.userId };
+  }
+
+  // Centre Staff — check the specific permission flag
+  const permission = await prisma.staffPermission.findUnique({
+    where: { userId: session.userId },
+  });
+
+  if (!permission || !permission[permissionKey]) {
+    return { authorized: false, reason: "no_permission" };
+  }
+
+  return { authorized: true, role, userId: session.userId };
+}

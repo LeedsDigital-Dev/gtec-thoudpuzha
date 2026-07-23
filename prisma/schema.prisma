@@ -68,6 +68,7 @@ model User {
   candidateProfile CandidateProfile?
   employerProfile  EmployerProfile?
   auditLogEntries  AuditLogEntry[]
+  staffPermission  StaffPermission?
 }
 
 enum CourseStatus {
@@ -484,6 +485,22 @@ model TimetableEntry {
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@index([courseId])
+}
+
+model StaffPermission {
+  id                           String  @id @default(cuid())
+  userId                       String  @unique
+  canEditCourses               Boolean @default(true)
+  canEditGallery               Boolean @default(true)
+  canEditCertificationPartners Boolean @default(true)
+  canEditNewsEvents            Boolean @default(true)
+  canEditFlashNews             Boolean @default(true)
+  canProvisionStudents         Boolean @default(true)
+  canApproveEmployers          Boolean @default(false)
+  canApproveJobPostings        Boolean @default(false)
+  canModerateSkillsTaxonomy    Boolean @default(true)
+
+  user User @relation(fields: [userId], references: [id])
 }
 
 model AuditLogEntry {

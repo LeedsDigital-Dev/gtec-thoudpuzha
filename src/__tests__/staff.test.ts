@@ -9,6 +9,8 @@ const mockFindUniqueUser = vi.hoisted(() => vi.fn());
 const mockUpdateUser = vi.hoisted(() => vi.fn());
 const mockFindManyUser = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionUpsert = vi.hoisted(() => vi.fn());
 const mockRevalidatePath = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -27,6 +29,10 @@ vi.mock("@/lib/db", () => ({
       findUnique: mockFindUniqueUser,
       update: mockUpdateUser,
       findMany: mockFindManyUser,
+    },
+    staffPermission: {
+      findUnique: mockStaffPermissionFindUnique,
+      upsert: mockStaffPermissionUpsert,
     },
     auditLogEntry: { create: mockAuditCreate },
   },
@@ -271,6 +277,7 @@ describe("staff page", () => {
         role: { in: ["CENTRE_STAFF", "SUPER_ADMIN"] },
       },
       orderBy: { createdAt: "desc" },
+      include: { staffPermission: true },
     });
   });
 });

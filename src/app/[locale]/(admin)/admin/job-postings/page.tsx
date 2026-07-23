@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { requireRole, Role } from "@/lib/auth";
+import { requireRole, requirePermission, StaffPermissionKeys, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import type { JobPostingStatus } from "@prisma/client";
 import {
@@ -44,7 +44,8 @@ export default async function JobPostingsPage({
     redirect(`/${locale}/forbidden`);
   }
 
-  const isSuperAdmin = authResult.role === Role.SUPER_ADMIN;
+  const permResult = await requirePermission(StaffPermissionKeys.canApproveJobPostings);
+  const canApprove = permResult.authorized;
   const isAutoPublishedView = filterStatus === "AUTO_PUBLISHED";
 
   // Determine Prisma filter
@@ -128,7 +129,7 @@ export default async function JobPostingsPage({
                   <th className="border border-gray-300 px-3 py-2 text-left">
                     Auto-published
                   </th>
-                  {isSuperAdmin && !isAutoPublishedView && (
+                  {canApprove && !isAutoPublishedView && (
                     <th className="border border-gray-300 px-3 py-2 text-left">
                       Actions
                     </th>
@@ -170,7 +171,7 @@ export default async function JobPostingsPage({
                         <span className="text-muted-foreground">No</span>
                       )}
                     </td>
-                    {isSuperAdmin && !isAutoPublishedView && (
+                    {canApprove && !isAutoPublishedView && (
                       <td className="border border-gray-300 px-3 py-2">
                         {jp.status === "PENDING" && (
                           <div className="flex flex-wrap gap-1">

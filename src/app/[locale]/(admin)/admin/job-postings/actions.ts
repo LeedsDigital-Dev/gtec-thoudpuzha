@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { requireRole, Role } from "@/lib/auth";
+import { requirePermission, StaffPermissionKeys } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
 import { sendJobPostingModerationNotification } from "@/lib/email";
@@ -12,7 +12,7 @@ function localeFromFormData(formData: FormData): string {
 }
 
 export async function approveJobPosting(formData: FormData) {
-  const authResult = await requireRole([Role.SUPER_ADMIN]);
+  const authResult = await requirePermission(StaffPermissionKeys.canApproveJobPostings);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -46,7 +46,7 @@ export async function approveJobPosting(formData: FormData) {
 }
 
 export async function rejectJobPosting(formData: FormData) {
-  const authResult = await requireRole([Role.SUPER_ADMIN]);
+  const authResult = await requirePermission(StaffPermissionKeys.canApproveJobPostings);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -86,7 +86,7 @@ export async function rejectJobPosting(formData: FormData) {
 }
 
 export async function editAndApproveJobPosting(formData: FormData) {
-  const authResult = await requireRole([Role.SUPER_ADMIN]);
+  const authResult = await requirePermission(StaffPermissionKeys.canApproveJobPostings);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }

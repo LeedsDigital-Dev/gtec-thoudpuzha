@@ -11,6 +11,7 @@ const mockFindMany = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
 const mockUserFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -33,6 +34,9 @@ vi.mock("@/lib/db", () => ({
     },
     user: {
       findUnique: mockUserFindUnique,
+    },
+    staffPermission: {
+      findUnique: mockStaffPermissionFindUnique,
     },
     auditLogEntry: {
       create: mockAuditCreate,
@@ -61,6 +65,7 @@ describe("approveEmployer", () => {
     mockRevalidatePath.mockReset();
     mockSendModerationNotification.mockReset();
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
   });
 
   test("1. approving a PENDING employer sets status=APPROVED and sends notification", async () => {
@@ -316,5 +321,97 @@ describe("approveEmployer", () => {
 
     expect(mockFindUnique).not.toHaveBeenCalled();
     expect(mockUpdate).not.toHaveBeenCalled();
+  });
+
+  // ─── Permission-grant tests ────────────────────────────────────────────────
+
+  test("6. Centre Staff without canApproveEmployers=true is denied approve", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_no_perm",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue(null); // no row = no permission
+
+    const formData = new FormData();
+    formData.append("profileId", "ep_1");
+    formData.append("locale", "en");
+
+    await expect(approveEmployer(formData)).rejects.toThrow(
+      "redirect:/en/forbidden",
+    );
+    expect(mockUpdate).not.toHaveBeenCalled();
+    expect(mockAuditCreate).not.toHaveBeenCalled();
+  });
+
+  test("7. Centre Staff WITH canApproveEmployers=true can approve", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_with_perm",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue({
+      id: "sp_1",
+      userId: "staff_with_perm",
+      canApproveEmployers: true,
+    });
+
+    mockUpdate.mockResolvedValue({
+      id: "ep_1",
+      companyName: "Acme Corp",
+      contactPersonName: "John Doe",
+      email: "john@acme.com",
+      status: "APPROVED",
+      rejectionReason: null,
+      autoPublishTrusted: false,
+      user: { id: "user_1" },
+    });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+    mockSendModerationNotification.mockResolvedValue(undefined);
+
+    const formData = new FormData();
+    formData.append("profileId", "ep_1");
+    formData.append("locale", "en");
+
+    await approveEmployer(formData);
+
+    expect(mockUpdate).toHaveBeenCalled();
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        actorUserId: "staff_with_perm",
+        actorRole: "CENTRE_STAFF",
+      }),
+    });
+  });
+
+  test("8. Super Admin always passes regardless of StaffPermission row", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "super_admin_1",
+      sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
+    });
+    // Even with null StaffPermission, Super Admin should pass
+    mockStaffPermissionFindUnique.mockResolvedValue(null);
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+
+    mockUpdate.mockResolvedValue({
+      id: "ep_1",
+      companyName: "Acme Corp",
+      contactPersonName: "John Doe",
+      email: "john@acme.com",
+      status: "APPROVED",
+      rejectionReason: null,
+      user: { id: "user_1" },
+    });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+    mockSendModerationNotification.mockResolvedValue(undefined);
+
+    const formData = new FormData();
+    formData.append("profileId", "ep_1");
+    formData.append("locale", "en");
+
+    await approveEmployer(formData);
+
+    expect(mockUpdate).toHaveBeenCalled();
+    expect(mockAuditCreate).toHaveBeenCalled();
   });
 });

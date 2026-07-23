@@ -1,0 +1,24 @@
+[spawn-engineer] s09-t2  tier=premium  profile=deepseek-pro  model=deepseek/deepseek-v4-pro
+=== Attempt 1/3 (2026-07-23T12:09:40Z) ===
+**Finished successfully.** Here's the summary:
+
+## Completed — s09-t2: Granular permission toggle matrix per staff member
+
+**What was built:**
+- **`StaffPermission` model** in Prisma schema with 9 boolean permission flags, migrated to dev DB
+- **`requirePermission(permissionKey)`** in `src/lib/auth.ts` — Super Admin always passes, Centre Staff checked against their `StaffPermission` row
+- **Migrated all 7 Sprint 7 gates** in `/admin/employers` and `/admin/job-postings` from hardcoded `requireRole([SUPER_ADMIN])` to `requirePermission('canApproveEmployers'/'canApproveJobPostings')`
+- **Permission toggle UI** on `/admin/staff` — a grid showing ON/OFF buttons per permission per active Centre Staff member, each calling `setStaffPermission` (with audit logging via `logAdminAction`)
+- **Permission constants** moved to a separate non-`"use server"` file (`permissions.ts`) per Rule 14
+
+**Tests:** 274 passing across all 56 test files. The 4 required scenarios covered:
+1. Centre Staff without `canApproveEmployers=true` is denied
+2. Centre Staff with `canApproveEmployers=true` can approve
+3. Super Admin always passes regardless of `StaffPermission` row state
+4. Toggling a permission (via `setStaffPermission`) writes an audit log entry
+
+**Build:** Production build succeeds (Next.js 16.2.11 with Turbopack)
+
+**Branch workflow:** `task-s09-t2` → committed → merged to `main` → pushed → deleted task branch → `task-graph.json` updated to `"done"` → committed and pushed.
+--- exit code: 0 ---
+[spawn-engineer] s09-t2 VERIFIED done (commit landed, status flipped).

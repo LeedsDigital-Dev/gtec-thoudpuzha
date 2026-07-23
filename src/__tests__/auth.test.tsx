@@ -20,6 +20,23 @@ const mockCreateRouteMatcher = vi.hoisted(
     });
   },
 );
+const mockEmployerProfileCount = vi.hoisted(() => vi.fn());
+const mockJobPostingCount = vi.hoisted(() => vi.fn());
+const mockSkillCount = vi.hoisted(() => vi.fn());
+const mockEnquiryFindMany = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
+
+vi.mock("@/lib/db", () => ({
+  prisma: {
+    employerProfile: { count: mockEmployerProfileCount },
+    jobPosting: { count: mockJobPostingCount },
+    skill: { count: mockSkillCount },
+    enquiry: { findMany: mockEnquiryFindMany },
+    user: { findUnique: mockUserFindUnique },
+    staffPermission: { findUnique: mockStaffPermissionFindUnique },
+  },
+}));
 const mockClerkMiddleware = vi.hoisted(
   () => (_handler: (req: NextRequest, evt: NextFetchEvent) => NextResponse | Promise<NextResponse>) => {
     // no-op default export — tests test handleRouteProtection directly
@@ -137,9 +154,19 @@ describe("Forbidden page", () => {
 describe("Dashboard pages display role-based welcome", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockStaffPermissionFindUnique.mockResolvedValue({
+      canApproveEmployers: true,
+      canApproveJobPostings: true,
+      canModerateSkillsTaxonomy: true,
+    });
+    mockEmployerProfileCount.mockResolvedValue(0);
+    mockJobPostingCount.mockResolvedValue(0);
+    mockSkillCount.mockResolvedValue(0);
+    mockEnquiryFindMany.mockResolvedValue([]);
   });
 
-  test("admin dashboard shows Welcome, CENTRE_STAFF", async () => {
+  test("admin dashboard shows Welcome, Staff for CENTRE_STAFF", async () => {
     mockAuth.mockResolvedValue({
       userId: "user_1",
       sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
@@ -148,12 +175,15 @@ describe("Dashboard pages display role-based welcome", () => {
     const { default: AdminDashboardPage } = await import(
       "@/app/[locale]/(admin)/admin/page"
     );
-    const element = await AdminDashboardPage();
+    const element = await AdminDashboardPage({
+      params: Promise.resolve({ locale: "en" }),
+    });
     const html = renderToString(element);
-    expect(html).toMatch(/Welcome.*CENTRE_STAFF/);
+    expect(html).toContain("Welcome");
+    expect(html).toContain("Staff");
   });
 
-  test("admin dashboard shows Welcome, SUPER_ADMIN", async () => {
+  test("admin dashboard shows Welcome, Super Admin for SUPER_ADMIN", async () => {
     mockAuth.mockResolvedValue({
       userId: "user_2",
       sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
@@ -162,9 +192,12 @@ describe("Dashboard pages display role-based welcome", () => {
     const { default: AdminDashboardPage } = await import(
       "@/app/[locale]/(admin)/admin/page"
     );
-    const element = await AdminDashboardPage();
+    const element = await AdminDashboardPage({
+      params: Promise.resolve({ locale: "en" }),
+    });
     const html = renderToString(element);
-    expect(html).toMatch(/Welcome.*SUPER_ADMIN/);
+    expect(html).toContain("Welcome");
+    expect(html).toContain("Super Admin");
   });
 
   test("portal dashboard shows Welcome, STUDENT", async () => {

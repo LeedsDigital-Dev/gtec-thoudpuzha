@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784827025.1718514,
-    "ast_hash": "352e73c50b35d9bcd3d9b6ce3199e5f3",
+    "mtime": 1784832288.78871,
+    "ast_hash": "277e9852714540189fe4deabc51fa8b0",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784827025.1718514,
-    "ast_hash": "c88128bc9b54e76a14b87f8c830d9058",
+    "mtime": 1784832288.78871,
+    "ast_hash": "146ccc38d591f4333239c4ff59f2c1df",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -450,8 +450,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/Footer.tsx": {
-    "mtime": 1784818543.6876268,
-    "ast_hash": "5c6ca201baf2b51e1bb1170882ddbbba",
+    "mtime": 1784832288.78871,
+    "ast_hash": "b9ab4373273b3ba8c4cffd2666658df8",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723033815_add_course_category_and_extend_course/migration.sql": {
@@ -755,8 +755,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.tsx": {
-    "mtime": 1784798449.990392,
-    "ast_hash": "a24260254bd59b0e26950cc295fd02ff",
+    "mtime": 1784832288.78871,
+    "ast_hash": "cb64a96605a7ba80837a2ae26dd78f2e",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723053201_add_skill_model/migration.sql": {
@@ -950,8 +950,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/registration-form.tsx": {
-    "mtime": 1784818543.6846268,
-    "ast_hash": "901292aa2046f6779351bd42b36b23fc",
+    "mtime": 1784832288.7877102,
+    "ast_hash": "36e3bdcce6779bce5d7ccfcdf3132a8f",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/status/page.tsx": {
@@ -1457,6 +1457,21 @@
   "docs/uat-script.md": {
     "mtime": 1784831716.784473,
     "ast_hash": "fa67d99cb25c32dd2dd9cf598a552406",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/__tests__/privacy-terms.test.tsx": {
+    "mtime": 1784832288.7877102,
+    "ast_hash": "6b32e5913043eed184e3fe6748a48303",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/privacy/page.tsx": {
+    "mtime": 1784832288.7877102,
+    "ast_hash": "be3b678ff8adfebcc0fd10827d8f13af",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/terms/page.tsx": {
+    "mtime": 1784832288.78871,
+    "ast_hash": "c4648099f3af07862afc2bf622ba7792",
     "semantic_hash": ""
   }
 }

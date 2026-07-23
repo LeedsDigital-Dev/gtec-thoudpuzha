@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0a7c4251`
+- Built from commit: `8c7f947b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -47,14 +47,14 @@
 - sign-up/page.tsx
 - seed.ts
 - FlashNewsBar.tsx
-- courses.ts
+- cn
+- BiodataForm.tsx
+- FlashNewsBar.tsx
 - students/actions.test.ts
-- resources.ts
-- courses.test.ts
+- news-events.test.ts
+- flash-news/page.test.tsx
 - route.test.tsx
-- button.tsx
-- assignments/page.tsx
-- lectures/page.tsx
+- biodata/page.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `requireRole()` - 64 edges
@@ -106,8 +106,8 @@ Cohesion: 0.10
 Nodes (25): CertificationPartnersPage(), GalleryPage(), GalleryPageProps, CertificationPartnerStrip(), GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl() (+17 more)
 
 ### Community 5 - "EnquiryForm.tsx"
-Cohesion: 0.18
-Nodes (10): EnquiryNotificationEmailProps, EnquiryNotificationInput, getCentreStaffEmails(), getFromEmail(), resend, sendEnquiryNotification(), submitEnquiry(), mockCourseFindUnique (+2 more)
+Cohesion: 0.20
+Nodes (10): ContactSection(), ContactSectionProps, socialIcons, baseSettings, mockCourses, CourseSelect(), CourseSelectProps, publishedCourses (+2 more)
 
 ### Community 6 - "GTEC Thodupuzha"
 Cohesion: 0.22
@@ -122,8 +122,8 @@ Cohesion: 0.07
 Nodes (25): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, buildLocalePath(), LanguageSwitcher() (+17 more)
 
 ### Community 9 - "BiodataForm.test.tsx"
-Cohesion: 0.07
-Nodes (42): finalizeStudentVerification(), lookupStudentRecord(), mockAuth, mockCandidateCreate, mockClerkClient, mockFindFirst, mockFindUnique, mockRecordUpdate (+34 more)
+Cohesion: 0.18
+Nodes (11): deleteResource(), localeFromFormData(), uploadResource(), AcademicResourcesPage(), Props, RESOURCE_TYPES, TYPE_LABELS, VideoLectureList() (+3 more)
 
 ### Community 10 - "enquiries/page.test.tsx"
 Cohesion: 0.50
@@ -142,24 +142,24 @@ Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
 ### Community 22 - "FlashNewsBar.tsx"
-Cohesion: 0.18
-Nodes (16): createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate, mockAuth (+8 more)
-
-### Community 24 - "gallery/actions.ts"
-Cohesion: 0.05
-Nodes (35): AuditLogPageProps, EnquiriesPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews() (+27 more)
-
-### Community 33 - "cn"
-Cohesion: 0.18
-Nodes (9): mockAcCreate, mockAcFindMany, mockAuditCreate, mockAuth, mockCourseFindMany, mockEnrollFindMany, mockProfileFindUnique, mockRedirect (+1 more)
-
-### Community 34 - "courses.test.ts"
-Cohesion: 0.18
-Nodes (9): mockAuditCreate, mockAuth, mockCreate, mockDelete, mockFindMany, mockFindManyCourses, mockFindUnique, mockRedirect (+1 more)
-
-### Community 35 - "FlashNewsBar.tsx"
 Cohesion: 0.10
 Nodes (47): AuditLogPage(), createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), mockAggregate, mockAuditCreate (+39 more)
+
+### Community 24 - "gallery/actions.ts"
+Cohesion: 0.18
+Nodes (10): EnquiryNotificationEmailProps, EnquiryNotificationInput, getCentreStaffEmails(), getFromEmail(), resend, sendEnquiryNotification(), submitEnquiry(), mockCourseFindUnique (+2 more)
+
+### Community 33 - "cn"
+Cohesion: 0.07
+Nodes (42): finalizeStudentVerification(), lookupStudentRecord(), mockAuth, mockCandidateCreate, mockClerkClient, mockFindFirst, mockFindUnique, mockRecordUpdate (+34 more)
+
+### Community 34 - "courses.test.ts"
+Cohesion: 0.22
+Nodes (7): MockCourse, mockCourseCreate, mockCourseFindMany, mockCourseUpdate, mockLogAdminAction, mockStore, mockUploadFile
+
+### Community 35 - "FlashNewsBar.tsx"
+Cohesion: 0.05
+Nodes (35): AuditLogPageProps, EnquiriesPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews() (+27 more)
 
 ### Community 36 - "news-events.test.ts"
 Cohesion: 0.21
@@ -174,36 +174,36 @@ Cohesion: 0.67
 Nodes (3): main(), prisma, slugFromName()
 
 ### Community 42 - "FlashNewsBar.tsx"
+Cohesion: 0.11
+Nodes (16): AdminLayout(), PortalLayout(), PublicLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, Footer() (+8 more)
+
+### Community 43 - "cn"
+Cohesion: 0.18
+Nodes (9): mockAuditCreate, mockAuth, mockCreate, mockDelete, mockFindMany, mockFindManyCourses, mockFindUnique, mockRedirect (+1 more)
+
+### Community 44 - "BiodataForm.tsx"
+Cohesion: 0.18
+Nodes (9): mockAcCreate, mockAcFindMany, mockAuditCreate, mockAuth, mockCourseFindMany, mockEnrollFindMany, mockProfileFindUnique, mockRedirect (+1 more)
+
+### Community 47 - "FlashNewsBar.tsx"
 Cohesion: 0.29
 Nodes (7): EnquiryForm(), EnquiryFormProps, FormErrors, indianMobileRegex(), sanitizePhone(), MOCK_COURSES, EnquiryPayload
-
-### Community 44 - "courses.ts"
-Cohesion: 0.20
-Nodes (10): ContactSection(), ContactSectionProps, socialIcons, baseSettings, mockCourses, CourseSelect(), CourseSelectProps, publishedCourses (+2 more)
 
 ### Community 48 - "students/actions.test.ts"
 Cohesion: 0.16
 Nodes (15): bulkImportStudents(), bulkImportStudentsAction(), createStudentRecord(), CsvRowResult, localeFromFormData(), parseCsvLine(), mockAuditCreate, mockAuth (+7 more)
 
-### Community 49 - "resources.ts"
-Cohesion: 0.16
-Nodes (8): BiodataActionResult, BiodataFormData, saveBiodata(), BiodataPage(), getPublishedCourses(), globalForPrisma, createPENDINGSkill(), getApprovedSkills()
-
-### Community 50 - "courses.test.ts"
-Cohesion: 0.22
-Nodes (7): MockCourse, mockCourseCreate, mockCourseFindMany, mockCourseUpdate, mockLogAdminAction, mockStore, mockUploadFile
+### Community 49 - "news-events.test.ts"
+Cohesion: 0.18
+Nodes (16): createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate, mockAuth (+8 more)
 
 ### Community 51 - "route.test.tsx"
 Cohesion: 0.40
 Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
-### Community 52 - "button.tsx"
-Cohesion: 0.11
-Nodes (16): AdminLayout(), PortalLayout(), PublicLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, Footer() (+8 more)
-
-### Community 55 - "lectures/page.tsx"
-Cohesion: 0.18
-Nodes (11): deleteResource(), localeFromFormData(), uploadResource(), AcademicResourcesPage(), Props, RESOURCE_TYPES, TYPE_LABELS, VideoLectureList() (+3 more)
+### Community 52 - "biodata/page.tsx"
+Cohesion: 0.16
+Nodes (8): BiodataActionResult, BiodataFormData, saveBiodata(), BiodataPage(), getPublishedCourses(), globalForPrisma, createPENDINGSkill(), getApprovedSkills()
 
 ## Knowledge Gaps
 - **305 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+300 more)
@@ -213,11 +213,11 @@ Nodes (11): deleteResource(), localeFromFormData(), uploadResource(), AcademicRe
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Role` connect `gallery/actions.ts` to `FlashNewsBar.tsx`, `news-events.test.ts`, `students/actions.test.ts`, `actions.test.ts`, `resources.ts`, `courses.test.ts`, `FlashNewsBar.tsx`, `lectures/page.tsx`?**
+- **Why does `Role` connect `FlashNewsBar.tsx` to `courses.test.ts`, `news-events.test.ts`, `BiodataForm.test.tsx`, `students/actions.test.ts`, `actions.test.ts`, `news-events.test.ts`, `biodata/page.tsx`, `FlashNewsBar.tsx`?**
   _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `requireRole()` connect `FlashNewsBar.tsx` to `package.json`, `students/actions.test.ts`, `actions.test.ts`, `courses.test.ts`, `FlashNewsBar.tsx`, `lectures/page.tsx`, `gallery/actions.ts`?**
+- **Why does `requireRole()` connect `FlashNewsBar.tsx` to `courses.test.ts`, `FlashNewsBar.tsx`, `package.json`, `BiodataForm.test.tsx`, `students/actions.test.ts`, `actions.test.ts`, `news-events.test.ts`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
-- **Why does `LanguageSwitcher()` connect `aliases` to `button.tsx`?**
+- **Why does `LanguageSwitcher()` connect `aliases` to `FlashNewsBar.tsx`?**
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
   _305 weakly-connected nodes found - possible documentation gaps or missing edges._

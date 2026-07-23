@@ -809,14 +809,39 @@
     "ast_hash": "a2dbbb3fa6b80b20ec10a0cfc2485aa7",
     "semantic_hash": ""
   },
-  "src/lib/biodata-search.ts": {
-    "mtime": 1784798449.990392,
-    "ast_hash": "806f482fc5abe9d3d35d089cc05dca6a",
+  "prisma/migrations/20260723093629_s06_t2_academic_resources/migration.sql": {
+    "mtime": 1784799627.0130696,
+    "ast_hash": "2661d3682e1e3b4e3ee6a9f2967b3ee7",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723094316_s06_t3_embed_url/migration.sql": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "4101e4542e59135f1b0451957de3982c",
     "semantic_hash": ""
   },
   "src/__tests__/student-dashboard.test.tsx": {
     "mtime": 1784799087.802842,
     "ast_hash": "a7722796a4fa11aa9c075d36599314a1",
+    "semantic_hash": ""
+  },
+  "src/__tests__/video-lectures.test.ts": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "db6488e83ffd0bd84bccd34318e99f25",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/actions.test.ts": {
+    "mtime": 1784799627.0130696,
+    "ast_hash": "2a59b4c761b80768f58b321a8e0dd348",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/actions.ts": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "57b42526fadbc7daf66d6793aa9b0303",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/page.tsx": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "535f801355526ca689304393804ba8b4",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/page.tsx": {
@@ -845,33 +870,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/resources/progress/page.tsx": {
-    "mtime": 1784799087.802842,
+    "mtime": 1784800634.7989674,
     "ast_hash": "cb6b9093045c15da5de81b6d65793ece",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(portal)/portal/student/resources/timetable/page.tsx": {
-    "mtime": 1784799087.802842,
-    "ast_hash": "9388f88a7a3f683e7f1a485eabab3512",
-    "semantic_hash": ""
-  },
-  "prisma/migrations/20260723093629_s06_t2_academic_resources/migration.sql": {
-    "mtime": 1784799627.0130696,
-    "ast_hash": "2661d3682e1e3b4e3ee6a9f2967b3ee7",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(admin)/admin/academic-resources/actions.test.ts": {
-    "mtime": 1784799627.0130696,
-    "ast_hash": "2a59b4c761b80768f58b321a8e0dd348",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(admin)/admin/academic-resources/actions.ts": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "57b42526fadbc7daf66d6793aa9b0303",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(admin)/admin/academic-resources/page.tsx": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "535f801355526ca689304393804ba8b4",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/resources/resource-list.tsx": {
@@ -879,24 +879,24 @@
     "ast_hash": "b3792de10bf2c61995970509689fd328",
     "semantic_hash": ""
   },
-  "src/lib/resources.ts": {
-    "mtime": 1784799627.0140696,
-    "ast_hash": "3b88e4e0293e12fecac2ac0529772718",
-    "semantic_hash": ""
-  },
-  "prisma/migrations/20260723094316_s06_t3_embed_url/migration.sql": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "4101e4542e59135f1b0451957de3982c",
-    "semantic_hash": ""
-  },
-  "src/__tests__/video-lectures.test.ts": {
-    "mtime": 1784800152.592336,
-    "ast_hash": "db6488e83ffd0bd84bccd34318e99f25",
+  "src/app/[locale]/(portal)/portal/student/resources/timetable/page.tsx": {
+    "mtime": 1784800634.7989674,
+    "ast_hash": "9388f88a7a3f683e7f1a485eabab3512",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/resources/video-lecture-list.tsx": {
     "mtime": 1784800152.592336,
     "ast_hash": "df5ec88b07bbdb392d8851f98cf87dc7",
+    "semantic_hash": ""
+  },
+  "src/lib/biodata-search.ts": {
+    "mtime": 1784798449.990392,
+    "ast_hash": "806f482fc5abe9d3d35d089cc05dca6a",
+    "semantic_hash": ""
+  },
+  "src/lib/resources.ts": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "3b88e4e0293e12fecac2ac0529772718",
     "semantic_hash": ""
   },
   "src/lib/video.ts": {

@@ -27,6 +27,7 @@ jobs:
 
     env:
       DATABASE_URL: postgresql://test:test@localhost:5432/test
+      RESEND_API_KEY: re_test_fake_key_for_ci_only
 
     steps:
       - uses: actions/checkout@v4

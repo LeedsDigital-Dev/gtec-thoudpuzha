@@ -58,6 +58,7 @@ export default async function EmployerDashboardPage() {
       status: true,
       applicationDeadline: true,
       createdAt: true,
+      _count: { select: { applications: true } },
     },
   });
 
@@ -93,9 +94,10 @@ export default async function EmployerDashboardPage() {
           {postings.map((posting) => {
             const badge = STATUS_BADGE[posting.status];
             return (
-              <div
+              <Link
                 key={posting.id}
-                className="rounded-lg border p-4 transition-colors hover:bg-gray-50"
+                href={`/portal/employer/postings/${posting.id}/applicants`}
+                className="block rounded-lg border p-4 transition-colors hover:bg-gray-50"
               >
                 <div className="flex items-start justify-between">
                   <div>
@@ -111,10 +113,11 @@ export default async function EmployerDashboardPage() {
                     {badge.label}
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-gray-400">
-                  Posted {new Date(posting.createdAt).toLocaleDateString()}
-                </p>
-              </div>
+                <div className="mt-2 flex items-center gap-4 text-xs text-gray-400">
+                  <span>Posted {new Date(posting.createdAt).toLocaleDateString()}</span>
+                  <span>{posting._count.applications} applicant{posting._count.applications !== 1 ? "s" : ""}</span>
+                </div>
+              </Link>
             );
           })}
         </div>

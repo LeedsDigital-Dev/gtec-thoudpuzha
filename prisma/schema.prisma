@@ -218,10 +218,10 @@ model EmployerProfile {
 
 enum ApplicationStatus {
   APPLIED
+  VIEWED
   SHORTLISTED
   REJECTED
   HIRED
-  WITHDRAWN
 }
 
 model Application {
@@ -229,6 +229,8 @@ model Application {
   jobPostingId       String
   candidateProfileId String
   status             ApplicationStatus  @default(APPLIED)
+  appliedAt          DateTime           @default(now())
+  statusUpdatedAt    DateTime           @updatedAt
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt
 

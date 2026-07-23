@@ -66,6 +66,8 @@ model Course {
   enquiries       Enquiry[]
   enrollments     StudentCourseEnrollment[]
   academicResources AcademicResource[]
+  progressEntries   StudentProgressEntry[]
+  timetableEntries  TimetableEntry[]
 
   @@index([categoryId])
   @@index([status])
@@ -137,7 +139,8 @@ model CandidateProfile {
 
   user User @relation(fields: [userId], references: [id])
 
-  enrollments StudentCourseEnrollment[]
+  enrollments     StudentCourseEnrollment[]
+  progressEntries StudentProgressEntry[]
 }
 
 model FlashNewsItem {
@@ -328,6 +331,32 @@ model AcademicResource {
 
   @@index([courseId])
   @@index([type])
+}
+
+model StudentProgressEntry {
+  id               String   @id @default(cuid())
+  studentProfileId String
+  courseId         String
+  noteEn           String
+  recordedAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+
+  studentProfile CandidateProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  course         Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([studentProfileId])
+  @@index([courseId])
+}
+
+model TimetableEntry {
+  id         String   @id @default(cuid())
+  courseId   String
+  contentText String
+  createdAt  DateTime @default(now())
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
 }
 
 model AuditLogEntry {

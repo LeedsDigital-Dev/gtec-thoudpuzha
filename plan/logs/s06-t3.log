@@ -1,0 +1,24 @@
+[spawn-engineer] s06-t3  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T09:40:59Z) ===
+All done. Here's what was completed for **s06-t3**:
+
+**Implementation:**
+- Added `embedUrl` field to `AcademicResource` Prisma model + migration
+- Created `src/lib/video.ts` with `validateVideoUrl()` (YouTube/Vimeo host validation) and `deriveEmbedUrl()` (watch URL → embed URL)
+- Extended admin upload flow in `actions.ts` — validates video URL for LECTURE type before saving
+- Added LECTURE to the resource type dropdown + Video URL input in admin form
+- Built `VideoLectureList` component with course-scoping, embedded iframe players, and empty/enrollment states
+- Replaced lectures placeholder with real `VideoLectureList` page
+
+**Tests:** 10 new tests (165 total, all green across 35 files)
+- 1. LECTURE upload with valid YouTube URL succeeds — server action creates with embedUrl + audit log
+- 2. Non-allowed host (dailymotion) rejected with clear error, `create` never called
+- 3. Student sees only their enrolled course's lectures with derived embed URLs — renders correctly
+- 4. YouTube watch URL → `youtube.com/embed/...`, youtu.be → `youtube.com/embed/...`, Vimeo → `player.vimeo.com/video/...`
+- Plus: validation edge cases (invalid URL format, accept YouTube/Vimeo)
+
+**Build:** `npm run build` passes clean.
+
+**Git workflow:** committed on `task-s06-t3` → merged `→ main` → pushed both → deleted branch → updated `task-graph.json` status to `done` → pushed that too.
+--- exit code: 0 ---
+[spawn-engineer] s06-t3 VERIFIED done (commit landed, status flipped).

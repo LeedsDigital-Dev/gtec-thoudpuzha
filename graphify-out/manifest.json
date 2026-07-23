@@ -745,18 +745,18 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/actions.ts": {
-    "mtime": 1784796164.4966123,
+    "mtime": 1784798449.990392,
     "ast_hash": "7c546be52dd3b40ceefcaaecabd7b6b5",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.test.tsx": {
-    "mtime": 1784796338.2722707,
-    "ast_hash": "48483028058e7f7e7d61ce131173615b",
+    "mtime": 1784798449.990392,
+    "ast_hash": "321164b445f3add8624f143422912814",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.tsx": {
-    "mtime": 1784796184.1324654,
-    "ast_hash": "6d85781e8c269ccf3eaa1863b1778574",
+    "mtime": 1784798449.990392,
+    "ast_hash": "a24260254bd59b0e26950cc295fd02ff",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723053201_add_skill_model/migration.sql": {
@@ -800,8 +800,108 @@
     "semantic_hash": ""
   },
   "src/lib/biodata.ts": {
-    "mtime": 1784796170.6615663,
-    "ast_hash": "b411e737bea9bc7e9d2484d6b9753e85",
+    "mtime": 1784798449.990392,
+    "ast_hash": "cac83d6ac65afa32c25a5d3b146c3dc3",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723091651_add_profile_visible/migration.sql": {
+    "mtime": 1784798449.990392,
+    "ast_hash": "a2dbbb3fa6b80b20ec10a0cfc2485aa7",
+    "semantic_hash": ""
+  },
+  "src/lib/biodata-search.ts": {
+    "mtime": 1784798449.990392,
+    "ast_hash": "806f482fc5abe9d3d35d089cc05dca6a",
+    "semantic_hash": ""
+  },
+  "src/__tests__/student-dashboard.test.tsx": {
+    "mtime": 1784799087.802842,
+    "ast_hash": "a7722796a4fa11aa9c075d36599314a1",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/page.tsx": {
+    "mtime": 1784799087.802842,
+    "ast_hash": "7003153eb7da436a95bce96882dfff6b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/assignments/page.tsx": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "4c93d54dae3c1269610c2549b793facc",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/lectures/page.tsx": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "2912eda3feeced52f86035b7951ba552",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/notes/page.tsx": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "752bfa5b3336a8a4c09a840f3519ea8b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/past-papers/page.tsx": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "e1f1d59b2f48acdfd9b71c90d953a45b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/progress/page.tsx": {
+    "mtime": 1784799087.802842,
+    "ast_hash": "cb6b9093045c15da5de81b6d65793ece",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/timetable/page.tsx": {
+    "mtime": 1784799087.802842,
+    "ast_hash": "9388f88a7a3f683e7f1a485eabab3512",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723093629_s06_t2_academic_resources/migration.sql": {
+    "mtime": 1784799627.0130696,
+    "ast_hash": "2661d3682e1e3b4e3ee6a9f2967b3ee7",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/actions.test.ts": {
+    "mtime": 1784799627.0130696,
+    "ast_hash": "2a59b4c761b80768f58b321a8e0dd348",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/actions.ts": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "57b42526fadbc7daf66d6793aa9b0303",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/academic-resources/page.tsx": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "535f801355526ca689304393804ba8b4",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/resource-list.tsx": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "b3792de10bf2c61995970509689fd328",
+    "semantic_hash": ""
+  },
+  "src/lib/resources.ts": {
+    "mtime": 1784799627.0140696,
+    "ast_hash": "3b88e4e0293e12fecac2ac0529772718",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723094316_s06_t3_embed_url/migration.sql": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "4101e4542e59135f1b0451957de3982c",
+    "semantic_hash": ""
+  },
+  "src/__tests__/video-lectures.test.ts": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "db6488e83ffd0bd84bccd34318e99f25",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/video-lecture-list.tsx": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "df5ec88b07bbdb392d8851f98cf87dc7",
+    "semantic_hash": ""
+  },
+  "src/lib/video.ts": {
+    "mtime": 1784800152.592336,
+    "ast_hash": "c519257f0acceff584da94dfd85e8db9",
     "semantic_hash": ""
   }
 }

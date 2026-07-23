@@ -806,7 +806,7 @@
       "track": "Infra/DevOps",
       "priority": "Should Have",
       "points": 3,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [],
       "model": "cheap"
     },

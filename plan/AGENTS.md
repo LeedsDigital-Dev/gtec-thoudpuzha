@@ -169,3 +169,10 @@ blockers need your input vs. which need debugging.
 placeholder" — these are not blockers. Use the stated placeholder approach and continue. Only
 genuinely unchecked, non-placeholder-approved items trigger the stop-and-block behavior in
 rule 10.
+
+## Rule 11 — lazy-initialize external clients
+Never construct an external service client (Resend, R2/S3, Inngest, etc.) at module scope by
+calling `new Client(process.env.X)` directly in a file's top-level code. This crashes on import
+in any test that doesn't set that env var, even if the test never uses the client. Initialize
+lazily instead — inside the function that needs it, or via a getter — so importing the module
+never has a side effect requiring env vars to be present.

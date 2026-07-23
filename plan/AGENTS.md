@@ -182,3 +182,29 @@ never has a side effect requiring env vars to be present.
 as well before committing — Next.js's build step catches real errors (like a sync function in
 a "use server" file) that Vitest never touches, since tests don't exercise the production
 compilation path at all.
+
+## Rule 14 — Server Actions files may only export async functions
+A file with `"use server"` gets every export turned into a callable server endpoint by
+Next.js. Never put synchronous helper logic (validation, formatting, pure computation) in an
+actions.ts file — put it in a plain lib file with no `"use server"` directive, and import it
+from wherever it's needed, including from actions.ts itself if a server action needs it.
+
+## Rule 15 — form action props must return void
+A function passed to a React `<form action={fn}>` prop must return `void | Promise<void>`.
+If the underlying function returns data (e.g. per-row results from a bulk import), do not pass
+it directly as the form action — wrap it in a thin async function that calls it and discards
+or otherwise handles the return value. If the UI needs to display the results, use
+`useActionState`/`useFormState` properly rather than relying on a direct return value.
+
+## Rule 16 — verify fast-moving external library APIs against what's actually installed
+Libraries like Clerk change their hook/API shapes across versions. Before writing code against
+an external library's API from memory, check the actual installed version's type definitions
+(e.g. `node_modules/<package>/dist/**/*.d.ts`, or run a quick type-check) rather than assuming
+the shape is what you recall from training. This is especially true for auth libraries (Clerk)
+and framework APIs (Next.js) which iterate quickly.
+
+## Rule 17 — confirm your branch before every commit
+Before running `git commit`, run `git branch --show-current` and confirm you're on the expected
+`task-<id>` branch — never assume. Committing to the wrong branch (main when you meant a task
+branch, or vice versa) has caused real lost-time recovery work on this project; the check costs
+one command.

@@ -72,3 +72,5 @@
 [2026-07-23T10:32:07Z] === run-sequence finished ===
 [2026-07-23T10:56:30Z] === run-sequence started ===
 [2026-07-23T10:56:30Z] Starting s07-t5
+[2026-07-23T11:09:39Z] s07-t5 done. Checking for next eligible task.
+[2026-07-23T11:09:39Z] Starting s08-t1

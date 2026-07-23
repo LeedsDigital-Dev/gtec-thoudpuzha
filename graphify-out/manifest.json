@@ -110,12 +110,12 @@
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
-    "mtime": 1784759121.057007,
-    "ast_hash": "5fbb6a3a167b0cc89e3944d9ce2f171e",
+    "mtime": 1784783988.4499297,
+    "ast_hash": "c085b8673c16f83a318d9e38825d0023",
     "semantic_hash": ""
   },
   "src/middleware.ts": {
-    "mtime": 1784781934.8394785,
+    "mtime": 1784782339.9558063,
     "ast_hash": "590c09dd4d9df1b7ca165de7a91e23b3",
     "semantic_hash": ""
   },
@@ -205,7 +205,7 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/sign-up/[[...sign-up]]/page.tsx": {
-    "mtime": 1784782107.6204193,
+    "mtime": 1784782339.9558063,
     "ast_hash": "d836797bf7e5f1872510f3e2d19a874d",
     "semantic_hash": ""
   },
@@ -640,33 +640,123 @@
     "semantic_hash": ""
   },
   "src/__tests__/signup-flow.test.tsx": {
-    "mtime": 1784782290.9931605,
+    "mtime": 1784782339.9548063,
     "ast_hash": "11f4f1c4580786998b1fdec480f13b25",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/page.tsx": {
-    "mtime": 1784782145.7501674,
+    "mtime": 1784782339.9548063,
     "ast_hash": "b1332d38916177456b22a4104df9d425",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/page.tsx": {
-    "mtime": 1784782197.620816,
+    "mtime": 1784782339.9548063,
     "ast_hash": "954eab101620db342ea3538e457063b8",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
-    "mtime": 1784782145.7501674,
-    "ast_hash": "42883cf7cc36c50dff1fc46e83c728f0",
+    "mtime": 1784783618.0884142,
+    "ast_hash": "58280ddd7dcce19f02337911f336a3ab",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {
-    "mtime": 1784782145.7501674,
-    "ast_hash": "1182f65ae272b137caffcd9b2e6990c3",
+    "mtime": 1784784463.4277878,
+    "ast_hash": "1ef0a04b76ab6dbfa487e7dfe57b7682",
     "semantic_hash": ""
   },
   "src/app/[locale]/complete-signup/page.tsx": {
-    "mtime": 1784782145.7501674,
+    "mtime": 1784782339.9548063,
     "ast_hash": "63c94e8fc84e533ef4ecd07d2a7901b0",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723045401_add_student_record/migration.sql": {
+    "mtime": 1784782595.3238707,
+    "ast_hash": "cdbbb5b00b5f1d6f0037a574f729f6ce",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/students/actions.test.ts": {
+    "mtime": 1784782595.3238707,
+    "ast_hash": "ea886e8737036fa7d54a56eb3b313ba8",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/students/actions.ts": {
+    "mtime": 1784782595.3238707,
+    "ast_hash": "7f82ced309c8fb39be9b4d709a897311",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/students/page.tsx": {
+    "mtime": 1784782595.3238707,
+    "ast_hash": "dae381d505d464b54b84cc0988c05683",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/sign-up/student/actions.test.ts": {
+    "mtime": 1784783618.0874143,
+    "ast_hash": "75ffa291e1b553601c5fb8a57ba30ff6",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/sign-up/student/actions.ts": {
+    "mtime": 1784783618.0874143,
+    "ast_hash": "6c0eb997ff4f8dcb103dafab642181c6",
+    "semantic_hash": ""
+  },
+  "src/__tests__/portal-role-gating.test.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "778e0e211af6fc94caf9892ebcdbf7be",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/layout.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "6ea9bd8c1ce3bbef1cc490b9121447ca",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/layout.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "e0afcac3a03ef71e6bef4f31bc89853e",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/page.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "dd9a3325ce5305b9d13886b623d5a693",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/layout.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "083d0373905c524f834167e481bda769",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/layout.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "bf0de1370515dec0838ea83cdf2980d7",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/resources/page.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "6341305c1274a8ce67b44eb09c3a4045",
+    "semantic_hash": ""
+  },
+  "src/components/shared/PortalRoleGate.tsx": {
+    "mtime": 1784783988.4499297,
+    "ast_hash": "a4c9b3a80b8d9ab67fe7e9c21a1cd03d",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723052156_add_biodata_fields/migration.sql": {
+    "mtime": 1784784463.4267879,
+    "ast_hash": "8080396d3a0c788c7d0051dfe2179c7f",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/biodata/actions.ts": {
+    "mtime": 1784784463.4277878,
+    "ast_hash": "f6ac87fced0b72f660afcde1360ebb97",
+    "semantic_hash": ""
+  },
+  "src/components/shared/BiodataForm.test.tsx": {
+    "mtime": 1784784463.4277878,
+    "ast_hash": "53fd287bbd53fa274f6f338289a69a15",
+    "semantic_hash": ""
+  },
+  "src/components/shared/BiodataForm.tsx": {
+    "mtime": 1784784463.4277878,
+    "ast_hash": "86287534e9a425e62d9ccbd58028c84d",
     "semantic_hash": ""
   }
 }

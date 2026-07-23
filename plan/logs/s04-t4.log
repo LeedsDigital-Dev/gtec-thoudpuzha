@@ -1,0 +1,18 @@
+[spawn-engineer] s04-t4  tier=premium  profile=deepseek-pro  model=deepseek/deepseek-v4-pro
+=== Attempt 1/3 (2026-07-23T05:13:51Z) ===
+All 29 test files, 127 tests passing on main after merge. **Finished successfully.**
+
+Here's what I implemented:
+
+- **`src/lib/auth.ts`** — added `requirePortalRole()` helper (same as `requireRole()` but semantically distinct for portal use, enabling the friendly "not your account type" message pattern)
+- **`src/components/shared/PortalRoleGate.tsx`** — async server component that checks user role against allowed list; on `"forbidden"` renders a friendly "This area isn't for your account type" message with a link back to the portal dashboard (not a raw 403/redirect); on `"unauthenticated"`/`"no_role"` redirects as expected
+- **Portal sub-layouts:**
+  - `/portal/employer/*` → `PortalRoleGate([EMPLOYER])`
+  - `/portal/student/*` (parent, covers biodata) → `PortalRoleGate([STUDENT, JOB_SEEKER])`
+  - `/portal/student/resources/*` (nested) → `PortalRoleGate([STUDENT])` — deliberately stricter
+  - `/portal/jobs/*` → `PortalRoleGate([STUDENT, JOB_SEEKER])`
+- **6 new tests in `portal-role-gating.test.tsx`** covering all specified scenarios plus Sprint 0 `/admin/*` regression
+
+Two commits on main (`7bca340`, `0ddde0a`), task status updated to `"done"` in `task-graph.json`.
+--- exit code: 0 ---
+[spawn-engineer] s04-t4 VERIFIED done (commit landed, status flipped).

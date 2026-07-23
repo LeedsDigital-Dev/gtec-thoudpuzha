@@ -1,0 +1,20 @@
+[spawn-engineer] s04-t3  tier=premium  profile=deepseek-pro  model=deepseek/deepseek-v4-pro
+=== Attempt 1/3 (2026-07-23T04:56:59Z) ===
+**Finished — s04-t3 is complete.** Here's what was built:
+
+**Files created/modified:**
+- `actions.ts` — two server actions: `lookupStudentRecord` (looks up StudentRecord by both fields, refuses to reveal which was wrong; rejects already-linked records) and `finalizeStudentVerification` (sets role=STUDENT, creates CandidateProfile with `isVerifiedStudent=true + studentRecordId`, updates `StudentRecord.linkedUserId`)
+- `page.tsx` — replaces the placeholder. Client Component using Clerk's `useSignUp` hook. Two-step flow: step 1 collects Student ID + phone, step 2 sends OTP via Clerk to the phone **on the record** (never user-typed), then finalizes on correct OTP entry. Generic error message on mismatch, specific "already registered" message on linked accounts. WhatsApp/Call CTAs inline.
+- `actions.test.ts` — 8 tests covering all 5 spec requirements plus 3 edge cases
+
+**Tests (all 28 files, 121 tests — green):**
+1. ✓ Correct pair triggers OTP challenge (returns `studentRecordId + phone`)
+2. ✓ Incorrect pair shows generic non-revealing error
+3. ✓ Successful verification sets role=STUDENT, `isVerifiedStudent=true`, links StudentRecord
+4. ✓ Already-linked StudentRecord rejected with specific message
+5. ✓ OTP phone comes from the record, not form input
+- Plus: missing fields error, unauthenticated redirect, missing/already-linked record redirect
+
+**Committed to task-s04-t3, merged to main, pushed, and `plan/task-graph.json` updated to `"done"`.**
+--- exit code: 0 ---
+[spawn-engineer] s04-t3 VERIFIED done (commit landed, status flipped).

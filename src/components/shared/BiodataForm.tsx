@@ -12,7 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SkillMultiSelect } from "@/components/shared/SkillMultiSelect";
 import type { PublicCourse } from "@/lib/courses";
+import type { SkillDto } from "@/lib/skills";
 import { isProfileComplete } from "@/app/[locale]/(portal)/portal/student/biodata/actions";
 import type {
   CandidateProfileWithCompletion,
@@ -40,6 +42,8 @@ type BiodataFormProps = {
   profile: CandidateProfileWithCompletion | null;
   isVerifiedStudent: boolean;
   courses: PublicCourse[];
+  skills: SkillDto[];
+  onAddNewSkill: (label: string) => Promise<SkillDto>;
   onSubmit: (data: BiodataFormData) => Promise<void>;
 };
 
@@ -47,6 +51,8 @@ export function BiodataForm({
   profile,
   isVerifiedStudent,
   courses,
+  skills,
+  onAddNewSkill,
   onSubmit,
 }: BiodataFormProps) {
   const [fullName, setFullName] = useState(profile?.fullName ?? "");
@@ -72,6 +78,9 @@ export function BiodataForm({
   const [address, setAddress] = useState(profile?.address ?? "");
   const [languagesKnownInput, setLanguagesKnownInput] = useState(
     profile?.languagesKnown?.join(", ") ?? "",
+  );
+  const [skillIds, setSkillIds] = useState<string[]>(
+    profile?.skillIds ?? [],
   );
   const [preferredJobLocation, setPreferredJobLocation] = useState(
     profile?.preferredJobLocation ?? "",
@@ -101,6 +110,7 @@ export function BiodataForm({
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
+    skillIds,
     preferredJobLocation: preferredJobLocation || undefined,
     preferredJobType,
     careerObjective: careerObjective || undefined,
@@ -121,6 +131,7 @@ export function BiodataForm({
       yearOfPassing: data.yearOfPassing ?? null,
       address: data.address ?? null,
       languagesKnown: data.languagesKnown,
+      skillIds: data.skillIds,
       preferredJobLocation: data.preferredJobLocation ?? null,
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
@@ -140,6 +151,7 @@ export function BiodataForm({
     yearOfPassing,
     address,
     languagesKnownInput,
+    skillIds,
     preferredJobLocation,
     preferredJobType,
     careerObjective,
@@ -303,6 +315,16 @@ export function BiodataForm({
       {/* Skills & Preferences */}
       <section className="space-y-4">
         <h2 className="text-lg font-medium">Skills & Preferences</h2>
+
+        <div className="space-y-1.5">
+          <Label>Skills</Label>
+          <SkillMultiSelect
+            skills={skills}
+            selectedIds={skillIds}
+            onChange={setSkillIds}
+            onAddNewSkill={onAddNewSkill}
+          />
+        </div>
 
         <div className="space-y-1.5">
           <Label htmlFor="languagesKnown">

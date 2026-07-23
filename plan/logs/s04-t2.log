@@ -1,0 +1,17 @@
+[spawn-engineer] s04-t2  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T04:52:58Z) ===
+**Finished successfully.** Here's what was delivered:
+
+- **StudentRecord model** added to Prisma schema (id, studentId@unique, fullName, phone, linkedUserId?, timestamps) and migrated
+- **`/admin/students` page** — table showing all records with verification status, single-entry create form, CSV bulk import with per-row success/failure reporting. Gated with `requireRole([CENTRE_STAFF, SUPER_ADMIN])`
+- **Server actions** (`createStudentRecord`, `bulkImportStudents`) — both call `logAdminAction`; bulk import logs one summary entry with per-row results
+- **5 tests** (task asked for 4; the 5th is a bonus duplicate-single-entry guard):
+  1. Single-entry creation succeeds with valid data
+  2. CSV bulk import with 5 valid rows creates 5 rows
+  3. CSV bulk with one duplicate + four valid rows creates 4 and reports the duplicate
+  4. `/admin/students` denied to employer (403 redirect)
+  5. (bonus) Single-entry throws on duplicate studentId
+
+**Full suite: 27 test files, 113 tests — all green.** Merged to `main` via fast-forward, `s04-t2` status updated to `done` in `task-graph.json`. The manual prerequisite (client confirmation on CSV availability) remains unchecked but is non-blocking per the logic that both single-entry and CSV modes are built.
+--- exit code: 0 ---
+[spawn-engineer] s04-t2 VERIFIED done (commit landed, status flipped).

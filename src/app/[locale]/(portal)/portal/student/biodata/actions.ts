@@ -19,6 +19,7 @@ export type BiodataFormData = {
   yearOfPassing?: number;
   address?: string;
   languagesKnown: string[];
+  skillIds: string[];
   preferredJobLocation?: string;
   preferredJobType?: PreferredJobType;
   careerObjective?: string;
@@ -49,6 +50,7 @@ export async function saveBiodata(data: BiodataFormData) {
       yearOfPassing: data.yearOfPassing ?? null,
       address: data.address ?? null,
       languagesKnown: data.languagesKnown,
+      skillIds: data.skillIds,
       preferredJobLocation: data.preferredJobLocation ?? null,
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
@@ -66,6 +68,7 @@ export async function saveBiodata(data: BiodataFormData) {
       yearOfPassing: data.yearOfPassing ?? null,
       address: data.address ?? null,
       languagesKnown: data.languagesKnown,
+      skillIds: data.skillIds,
       preferredJobLocation: data.preferredJobLocation ?? null,
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
@@ -93,6 +96,7 @@ export type CandidateProfileWithCompletion = {
   yearOfPassing: number | null;
   address: string | null;
   languagesKnown: string[];
+  skillIds: string[];
   preferredJobLocation: string | null;
   preferredJobType: PreferredJobType | null;
   careerObjective: string | null;

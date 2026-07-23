@@ -1,0 +1,14 @@
+[spawn-engineer] s07-t5  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T10:30:55Z) ===
+## Stuck — cannot proceed with s07-t5
+
+**Why:** The Manual Prerequisites check (rule 10) found that `INNGEST_EVENT_KEY` and `INNGEST_SIGNING_KEY` both equal `REPLACE_ME`. These are required to configure and run Inngest, which the task depends on.
+
+**What I did:**
+1. Created `plan/blockers.md` documenting the exact missing credentials
+2. Updated `plan/task-graph.json` — set `s07-t5` status to `"blocked"` with `blocked_reason`
+3. Did **not** commit — these are pre-work state changes, not completed work
+
+**To unblock:** Create an Inngest account, get the event key and signing key, set them in the environment, then re-run this task. Once the credentials are in place, the task is straightforward — install `inngest`, set up the client + API route handler, write the cron function that queries `JobPosting WHERE status=APPROVED AND deletedAt IS NULL AND applicationDeadline < NOW()` and sets them to CLOSED, and write 4 Vitest tests covering the documented scenarios.
+--- exit code: 0 ---
+[spawn-engineer] s07-t5 BLOCKED — see /home/ubuntu/projects/gtec-thoudpuzha/plan/blockers.md and /home/ubuntu/projects/gtec-thoudpuzha/plan/logs/s07-t5.log

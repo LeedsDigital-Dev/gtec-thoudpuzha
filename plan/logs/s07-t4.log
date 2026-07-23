@@ -1,0 +1,14 @@
+[spawn-engineer] s07-t4  tier=premium  profile=deepseek-pro  model=deepseek/deepseek-v4-pro
+=== Attempt 1/3 (2026-07-23T10:23:52Z) ===
+**Done.** Full task s07-t4 completed end to end. Here's what was built:
+
+- **`src/app/[locale]/(admin)/admin/job-postings/page.tsx`** — Moderation queue page with status filters (All/Pending/Approved/Rejected/Closed/Auto-published audit view), table of postings with company, job type, deadline, status badge, and auto-published indicator. SUPER_ADMIN sees Approve/Reject/Edit & Approve action buttons; Centre Staff have read-only access.
+- **`src/app/[locale]/(admin)/admin/job-postings/actions.ts`** — Three server actions: `approveJobPosting`, `rejectJobPosting` (validates reason required), `editAndApproveJobPosting` (persists edited title/description/salary alongside status change). All call `logAdminAction` and send employer email notifications.
+- **`src/emails/JobPostingModerationNotification.tsx`** — React Email template for approval/rejection notifications.
+- **`src/lib/email.ts`** — Added `sendJobPostingModerationNotification`.
+
+**Tests**: 10 new tests across 2 test files (5 action tests + 5 page tests). Full suite: **44 files, 209 tests — all passed.** Production build: **green**.
+
+**Git**: Committed on `task-s07-t4`, merged `--no-ff` to main, pushed to `origin main`, deleted task branch, and updated `plan/task-graph.json` status to `"done"`.
+--- exit code: 0 ---
+[spawn-engineer] s07-t4 VERIFIED done (commit landed, status flipped).

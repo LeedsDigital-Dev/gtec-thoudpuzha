@@ -62,3 +62,11 @@
 [2026-07-23T09:58:26Z] Starting s07-t1
 [2026-07-23T10:10:48Z] s07-t1 done. Checking for next eligible task.
 [2026-07-23T10:10:48Z] Starting s07-t2
+[2026-07-23T10:17:31Z] s07-t2 done. Checking for next eligible task.
+[2026-07-23T10:17:31Z] Starting s07-t3
+[2026-07-23T10:23:52Z] s07-t3 done. Checking for next eligible task.
+[2026-07-23T10:23:52Z] Starting s07-t4
+[2026-07-23T10:30:55Z] s07-t4 done. Checking for next eligible task.
+[2026-07-23T10:30:55Z] Starting s07-t5
+[2026-07-23T10:32:07Z] s07-t5 did not succeed (exit 1). Stopping sequence rather than continuing past a blocked/failed task. Check plan/blockers.md and plan/logs/s07-t5.log.
+[2026-07-23T10:32:07Z] === run-sequence finished ===

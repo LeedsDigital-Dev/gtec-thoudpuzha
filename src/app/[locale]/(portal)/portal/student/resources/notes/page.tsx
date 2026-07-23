@@ -1,10 +1,5 @@
-export default function StudyNotesPlaceholder() {
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold">Study Notes</h1>
-        <p className="mt-2 text-gray-600">Coming soon.</p>
-      </div>
-    </div>
-  );
+import { ResourceList } from "../resource-list";
+
+export default function StudyNotesPage() {
+  return <ResourceList type="NOTE" title="Study Notes" />;
 }

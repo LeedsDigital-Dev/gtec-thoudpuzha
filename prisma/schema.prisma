@@ -64,6 +64,8 @@ model Course {
 
   category        CourseCategory? @relation(fields: [categoryId], references: [id])
   enquiries       Enquiry[]
+  enrollments     StudentCourseEnrollment[]
+  academicResources AcademicResource[]
 
   @@index([categoryId])
   @@index([status])
@@ -89,6 +91,15 @@ enum PreferredJobType {
   PART_TIME
   INTERNSHIP
   WORK_FROM_HOME
+}
+
+enum ResourceType {
+  NOTE
+  ASSIGNMENT
+  PAST_PAPER
+  LECTURE
+  TIMETABLE
+  PROGRESS
 }
 
 model Skill {
@@ -125,6 +136,8 @@ model CandidateProfile {
   updatedAt        DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id])
+
+  enrollments StudentCourseEnrollment[]
 }
 
 model FlashNewsItem {
@@ -284,6 +297,36 @@ model WhyChooseUsCard {
 
   @@index([siteSettingsId])
   @@index([sortOrder])
+}
+
+model StudentCourseEnrollment {
+  id                String   @id @default(cuid())
+  studentProfileId  String
+  courseId          String
+  enrolledAt        DateTime @default(now())
+  createdAt         DateTime @default(now())
+
+  candidateProfile CandidateProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  course           Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([studentProfileId, courseId])
+  @@index([studentProfileId])
+  @@index([courseId])
+}
+
+model AcademicResource {
+  id         String       @id @default(cuid())
+  courseId   String
+  type       ResourceType
+  title      String
+  fileUrl    String?
+  uploadedAt DateTime     @default(now())
+  createdAt  DateTime     @default(now())
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+  @@index([type])
 }
 
 model AuditLogEntry {

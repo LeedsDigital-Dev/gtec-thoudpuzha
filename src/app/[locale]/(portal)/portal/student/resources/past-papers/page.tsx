@@ -1,10 +1,5 @@
-export default function PastPapersPlaceholder() {
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold">Past Papers</h1>
-        <p className="mt-2 text-gray-600">Coming soon.</p>
-      </div>
-    </div>
-  );
+import { ResourceList } from "../resource-list";
+
+export default function PastPapersPage() {
+  return <ResourceList type="PAST_PAPER" title="Past Papers" />;
 }

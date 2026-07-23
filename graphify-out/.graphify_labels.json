@@ -68,5 +68,15 @@
   "66": "portal-role-gating.test.tsx",
   "67": "enquiries/page.tsx",
   "68": "employer/page.tsx",
-  "69": "application-unique.test.ts"
+  "69": "application-unique.test.ts",
+  "70": "register/actions.test.ts",
+  "71": "search-form.tsx",
+  "72": "[id]/actions.ts",
+  "73": "candidates/actions.ts",
+  "74": "candidates/actions.test.ts",
+  "75": "resource-list.tsx",
+  "76": "[id]/page.tsx",
+  "77": "portal-role-gating.test.tsx",
+  "78": "applications/page.tsx",
+  "79": "InviteToApplyEmail.tsx"
 }

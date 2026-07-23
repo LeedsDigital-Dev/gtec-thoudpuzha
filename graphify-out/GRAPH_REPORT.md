@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-23)
 
 ## Corpus Check
-- 227 files · ~61,948 words
+- 233 files · ~65,216 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 969 nodes · 1703 edges · 70 communities (59 shown, 11 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
+- 1005 nodes · 1772 edges · 80 communities (66 shown, 14 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5fb59484`
+- Built from commit: `c2f414f2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -72,16 +72,26 @@
 - portal-role-gating.test.tsx
 - enquiries/page.tsx
 - employer/page.tsx
+- register/actions.test.ts
+- search-form.tsx
+- [id]/actions.ts
+- candidates/actions.ts
+- candidates/actions.test.ts
+- resource-list.tsx
+- [id]/page.tsx
+- portal-role-gating.test.tsx
+- applications/page.tsx
+- InviteToApplyEmail.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `requireRole()` - 84 edges
 2. `logAdminAction()` - 57 edges
-3. `Role` - 52 edges
+3. `Role` - 55 edges
 4. `cn()` - 19 edges
 5. `Button()` - 18 edges
 6. `compilerOptions` - 16 edges
-7. `getMediaUrl()` - 11 edges
-8. `isProfileComplete()` - 10 edges
+7. `isProfileComplete()` - 12 edges
+8. `getMediaUrl()` - 11 edges
 9. `PublicCourse` - 10 edges
 10. `localeFromFormData()` - 9 edges
 
@@ -100,7 +110,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (70 total, 11 thin omitted)
+## Communities (80 total, 14 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.04
@@ -159,24 +169,24 @@ Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
 ### Community 22 - "FlashNewsBar.tsx"
-Cohesion: 0.10
-Nodes (53): createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), PageProps, createCategory(), createCourse() (+45 more)
+Cohesion: 0.08
+Nodes (67): createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), PageProps, createCategory(), createCourse() (+59 more)
 
 ### Community 24 - "gallery/actions.ts"
-Cohesion: 0.18
-Nodes (16): createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate, mockAuth (+8 more)
+Cohesion: 0.12
+Nodes (7): CandidateDetailPage(), JOB_TYPE_LABELS, PageProps, QUALIFICATION_LABELS, CandidateSearchPage(), getSearchableCandidates(), globalForPrisma
 
 ### Community 33 - "courses.test.ts"
 Cohesion: 0.13
 Nodes (11): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockDelete, mockFindMany, mockRedirect, mockRevalidatePath (+3 more)
 
 ### Community 34 - "courses.test.ts"
-Cohesion: 0.05
-Nodes (22): deleteResource(), localeFromFormData(), uploadResource(), AcademicResourcesPage(), Props, RESOURCE_TYPES, TYPE_LABELS, RegistrationResult (+14 more)
+Cohesion: 0.18
+Nodes (11): deleteResource(), localeFromFormData(), uploadResource(), AcademicResourcesPage(), Props, RESOURCE_TYPES, TYPE_LABELS, VideoLectureList() (+3 more)
 
 ### Community 35 - "FlashNewsBar.tsx"
-Cohesion: 0.14
-Nodes (7): PortalRoleGate(), PortalRoleGateProps, ROLE_LABELS, requirePortalRole(), mockAuth, mockClerkMiddleware, mockCreateRouteMatcher
+Cohesion: 0.23
+Nodes (5): PortalRoleGate(), PortalRoleGateProps, ROLE_LABELS, requirePortalRole(), Role
 
 ### Community 36 - "news-events.test.ts"
 Cohesion: 0.21
@@ -192,7 +202,7 @@ Nodes (3): main(), prisma, slugFromName()
 
 ### Community 41 - "flash-news/page.test.tsx"
 Cohesion: 0.15
-Nodes (9): AuditLogPage(), AuditLogPageProps, EnquiriesPage(), EnquiriesPageProps, STATUS_BADGE, ActionResult, STATUS_STYLES, RequireRoleResult (+1 more)
+Nodes (7): AuditLogPage(), AuditLogPageProps, EnquiriesPage(), EnquiriesPageProps, STATUS_BADGE, ActionResult, RequireRoleResult
 
 ### Community 42 - "FlashNewsBar.tsx"
 Cohesion: 0.17
@@ -235,12 +245,12 @@ Cohesion: 0.40
 Nodes (4): mockAuth, mockCreate, mockFindMany, mockRedirect
 
 ### Community 53 - "courses.test.ts"
-Cohesion: 0.08
-Nodes (24): applyToJob(), mockAuth, mockCreate, mockFindUnique, mockRevalidatePath, ApplyButton(), ApplyButtonProps, EMPLOYEE_COUNT_LABELS (+16 more)
+Cohesion: 0.18
+Nodes (10): JobsFilter(), JobsPage(), JobsPageProps, PlacementPage(), PlacementPageProps, ActiveJobPosting, getActiveJobPostings(), JobDetail (+2 more)
 
 ### Community 54 - "assignments/page.tsx"
 Cohesion: 0.05
-Nodes (63): submitVacancy(), PostVacancyPage(), JOB_TYPES, PostVacancyForm(), PostVacancyFormProps, EMPLOYEE_RANGES, SECTORS, JOB_TYPE_OPTIONS (+55 more)
+Nodes (60): submitVacancy(), PostVacancyPage(), JOB_TYPES, PostVacancyForm(), PostVacancyFormProps, EMPLOYEE_RANGES, SECTORS, JOB_TYPE_OPTIONS (+52 more)
 
 ### Community 56 - "post-vacancy/actions.test.ts"
 Cohesion: 0.33
@@ -255,8 +265,8 @@ Cohesion: 0.40
 Nodes (4): mockAuth, mockFindManyPostings, mockFindUniqueProfile, mockRedirect
 
 ### Community 61 - "student/actions.test.ts"
-Cohesion: 0.22
-Nodes (8): { GET, POST, PUT }, inngest, closeExpiredJobPostings, logSystemAction(), closeExpiredPostings(), mockAuditLogCreate, mockFindMany, mockUpdateMany
+Cohesion: 0.18
+Nodes (10): { GET, POST, PUT }, inngest, closeExpiredJobPostings, LogAdminActionInput, logSystemAction(), LogSystemActionInput, closeExpiredPostings(), mockAuditLogCreate (+2 more)
 
 ### Community 62 - "portal-role-gating.test.tsx"
 Cohesion: 0.18
@@ -286,22 +296,50 @@ Nodes (6): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, m
 Cohesion: 0.40
 Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
+### Community 70 - "register/actions.test.ts"
+Cohesion: 0.17
+Nodes (8): RegistrationResult, submitEmployerRegistration(), mockAuth, mockClerkClient, mockCreate, mockFindUnique, mockRedirect, RegistrationForm()
+
+### Community 71 - "search-form.tsx"
+Cohesion: 0.27
+Nodes (8): CandidateSearchFilters, CandidateSearchResult, EmployerJobPosting, applyFilters(), CandidateCardProps, CandidateSearchForm(), CandidateSearchFormProps, FilterField
+
+### Community 72 - "[id]/actions.ts"
+Cohesion: 0.27
+Nodes (7): applyToJob(), mockAuth, mockCreate, mockFindUnique, mockRevalidatePath, ApplyButton(), ApplyButtonProps
+
+### Community 73 - "candidates/actions.ts"
+Cohesion: 0.44
+Nodes (6): inviteToApply(), InviteToApplyResult, mapResult(), searchCandidates(), CandidateProfileWithCompletion, isProfileComplete()
+
+### Community 74 - "candidates/actions.test.ts"
+Cohesion: 0.22
+Nodes (7): mockAuth, mockFindFirstJobPosting, mockFindUniqueCandidate, mockFindUniqueProfile, mockGetSearchableCandidates, mockRedirect, mockResendSend
+
+### Community 76 - "[id]/page.tsx"
+Cohesion: 0.32
+Nodes (7): EMPLOYEE_COUNT_LABELS, INDUSTRY_LABELS, JOB_TYPE_LABELS, JobDetailPage(), PageProps, getJobDetail(), getSkillsByIds()
+
+### Community 77 - "portal-role-gating.test.tsx"
+Cohesion: 0.40
+Nodes (3): mockAuth, mockClerkMiddleware, mockCreateRouteMatcher
+
 ## Knowledge Gaps
-- **423 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+418 more)
+- **437 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+432 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Role` connect `flash-news/page.test.tsx` to `EmployerModerationNotification.tsx`, `courses.test.ts`, `FlashNewsBar.tsx`, `news-events.test.ts`, `EnquiryForm.tsx`, `FlashNewsBar.tsx`, `students/actions.test.ts`, `actions.test.ts`, `courses.test.ts`, `Role`, `courses.test.ts`, `FlashNewsBar.tsx`, `assignments/page.tsx`, `gallery/actions.ts`, `student-dashboard.test.tsx`, `portal/student/page.tsx`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Why does `requireRole()` connect `FlashNewsBar.tsx` to `EmployerModerationNotification.tsx`, `courses.test.ts`, `FlashNewsBar.tsx`, `package.json`, `EnquiryForm.tsx`, `flash-news/page.test.tsx`, `students/actions.test.ts`, `actions.test.ts`, `courses.test.ts`, `gallery/actions.ts`?**
+- **Why does `Role` connect `FlashNewsBar.tsx` to `EnquiryForm.tsx`, `actions.test.ts`, `FlashNewsBar.tsx`, `gallery/actions.ts`, `courses.test.ts`, `news-events.test.ts`, `flash-news/page.test.tsx`, `FlashNewsBar.tsx`, `students/actions.test.ts`, `courses.test.ts`, `Role`, `courses.test.ts`, `assignments/page.tsx`, `student-dashboard.test.tsx`, `portal/student/page.tsx`, `student/actions.test.ts`, `EmployerModerationNotification.tsx`, `register/actions.test.ts`, `[id]/actions.ts`, `candidates/actions.ts`, `[id]/page.tsx`, `portal-role-gating.test.tsx`, `applications/page.tsx`?**
+  _High betweenness centrality (0.056) - this node is a cross-community bridge._
+- **Why does `requireRole()` connect `FlashNewsBar.tsx` to `EmployerModerationNotification.tsx`, `courses.test.ts`, `FlashNewsBar.tsx`, `package.json`, `EnquiryForm.tsx`, `flash-news/page.test.tsx`, `students/actions.test.ts`, `actions.test.ts`, `courses.test.ts`?**
   _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **Why does `LanguageSwitcher()` connect `aliases` to `BiodataForm.test.tsx`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+- **Why does `getMediaUrl()` connect `package.json` to `FlashNewsBar.tsx`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _423 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _437 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.04081632653061224 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**

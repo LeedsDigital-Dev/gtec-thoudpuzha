@@ -1,9 +1,113 @@
-export default function TimetablePlaceholder() {
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/db";
+import Link from "next/link";
+
+export default async function TimetablePage() {
+  const session = await auth();
+  if (!session.userId) return null;
+
+  const profile = await prisma.candidateProfile.findUnique({
+    where: { userId: session.userId },
+    select: { id: true },
+  });
+
+  if (!profile) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <div className="max-w-md text-center">
+          <h1 className="text-2xl font-semibold">Timetable</h1>
+          <p className="mt-4 text-gray-600">
+            Please complete your profile first.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const enrollments = await prisma.studentCourseEnrollment.findMany({
+    where: { studentProfileId: profile.id },
+    select: { courseId: true },
+  });
+
+  if (enrollments.length === 0) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <div className="max-w-md text-center">
+          <h1 className="text-2xl font-semibold">Timetable</h1>
+          <p className="mt-4 text-gray-600">
+            You aren&apos;t enrolled in any courses yet. Contact the centre to get
+            enrolled.
+          </p>
+          <Link
+            href="/portal/student"
+            className="mt-4 inline-block text-blue-600 underline"
+          >
+            Back to Dashboard
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const courseIds = enrollments.map((e) => e.courseId);
+
+  const [entries, courses] = await Promise.all([
+    prisma.timetableEntry.findMany({
+      where: { courseId: { in: courseIds } },
+      orderBy: { createdAt: "desc" },
+      include: { course: { select: { titleEn: true } } },
+    }),
+    prisma.course.findMany({
+      where: { id: { in: courseIds } },
+      select: { id: true, titleEn: true },
+    }),
+  ]);
+
+  if (entries.length === 0) {
+    return (
+      <div className="p-6">
+        <h1 className="mb-2 text-2xl font-semibold">Timetable</h1>
+        <p className="text-gray-600">
+          No timetable entries available yet for your enrolled courses.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold">Timetable</h1>
-        <p className="mt-2 text-gray-600">Coming soon.</p>
+    <div className="p-6">
+      <h1 className="mb-6 text-2xl font-semibold">Timetable</h1>
+      <div className="space-y-6">
+        {courses.map((course) => {
+          const courseEntries = entries.filter(
+            (e) => e.courseId === course.id,
+          );
+          if (courseEntries.length === 0) return null;
+          return (
+            <div key={course.id}>
+              <h2 className="mb-3 text-lg font-medium text-gray-800">
+                {course.titleEn}
+              </h2>
+              <div className="space-y-3">
+                {courseEntries.map((e) => (
+                  <div
+                    key={e.id}
+                    className="rounded border border-border p-4"
+                  >
+                    <p className="text-sm text-gray-800 whitespace-pre-wrap">
+                      {e.contentText}
+                    </p>
+                    {e.createdAt && (
+                      <p className="mt-2 text-xs text-gray-500">
+                        Updated {e.createdAt.toISOString().slice(0, 10)}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

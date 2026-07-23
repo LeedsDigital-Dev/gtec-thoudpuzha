@@ -1,0 +1,15 @@
+[spawn-engineer] s06-t2  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T09:31:54Z) ===
+Done. Here's the full summary:
+
+**s06-t2 completed end to end.**
+
+- **Prisma**: Added `ResourceType` enum, `StudentCourseEnrollment` join table (FKs to CandidateProfile + Course, unique on both), and `AcademicResource` model (courseId, type, title, fileUrl). Migration applied.
+- **Admin upload**: `/admin/academic-resources` page with a course+type+title upload form and a resource list table with delete. Server action gated by `requireRole([CENTRE_STAFF, SUPER_ADMIN])`, calls `logAdminAction`.
+- **Student pages**: `/portal/student/resources/{notes,assignments,past-papers}` each show an RSC `ResourceList` that queries enrollments → filters `AcademicResource` by enrolled course IDs + type. Empty state when no enrollments; resources grouped by course heading.
+- **Tests (4/4 pass)**: upload persists correct type+courseId, student sees only their course's notes, zero-enrollment shows empty state (no crash), student-role gets 403 redirect.
+- **Full suite**: 34 test files, 155 tests — all passing.
+- **Production build**: `npm run build` — compiled successfully, all routes registered.
+- **Git**: committed on `task-s06-t2` → merged to `main` → pushed to origin main → deleted task branch → updated `task-graph.json` to `"done"` and pushed that too.
+--- exit code: 0 ---
+[spawn-engineer] s06-t2 VERIFIED done (commit landed, status flipped).

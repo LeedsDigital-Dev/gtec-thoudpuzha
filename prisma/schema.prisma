@@ -176,6 +176,17 @@ model GalleryItem {
   @@index([sortOrder])
 }
 
+model CertificationPartner {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String
+  link      String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([sortOrder])
+}
+
 model WhyChooseUsCard {
   id             String       @id @default(cuid())
   siteSettingsId String

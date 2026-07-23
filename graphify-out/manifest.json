@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "next.config.ts": {
-    "mtime": 1784758446.222982,
-    "ast_hash": "f26a7a490175c381ffa13f449b3518ca",
+    "mtime": 1784780083.8217676,
+    "ast_hash": "f3dad290334ec58f8b4eeb20d70e0f95",
     "semantic_hash": ""
   },
   "package.json": {
@@ -500,8 +500,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/actions.ts": {
-    "mtime": 1784779500.165463,
-    "ast_hash": "dad92e1210e308ac15f64caeaa6bdb47",
+    "mtime": 1784780083.8217676,
+    "ast_hash": "498169085068f449476c3bd7b2333594",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/gallery.test.ts": {
@@ -512,6 +512,36 @@
   "src/app/[locale]/(admin)/admin/gallery/page.tsx": {
     "mtime": 1784779500.165463,
     "ast_hash": "bcf27188c7fa2cf055f8a2333469b60e",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/gallery/page.tsx": {
+    "mtime": 1784780083.8217676,
+    "ast_hash": "70cd9d74e77b2fbe3320a20b558ba680",
+    "semantic_hash": ""
+  },
+  "src/app/api/media/[...key]/route.ts": {
+    "mtime": 1784780083.8217676,
+    "ast_hash": "5d204e5fb168040a689206d8312c66c4",
+    "semantic_hash": ""
+  },
+  "src/components/shared/GalleryGrid.test.tsx": {
+    "mtime": 1784780083.8217676,
+    "ast_hash": "c95411f485aaec7e8d74afa063fc5696",
+    "semantic_hash": ""
+  },
+  "src/components/shared/GalleryGrid.tsx": {
+    "mtime": 1784780083.8227675,
+    "ast_hash": "bf9ec86616eefa97f7e644c7988c6a69",
+    "semantic_hash": ""
+  },
+  "src/lib/gallery.ts": {
+    "mtime": 1784780083.8227675,
+    "ast_hash": "d14465ce31ae51a5d70476aaa778bd94",
+    "semantic_hash": ""
+  },
+  "src/lib/media.ts": {
+    "mtime": 1784780083.8227675,
+    "ast_hash": "15f9c44928f3915848b05973603c2f05",
     "semantic_hash": ""
   }
 }

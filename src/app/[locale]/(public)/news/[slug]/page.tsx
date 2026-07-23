@@ -1,10 +1,17 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { getNewsEventBySlug } from "@/lib/news-events";
+import { getNewsEventBySlug, getPublishedNews } from "@/lib/news-events";
+import { getMediaUrl } from "@/lib/media";
 import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 
 export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const items = await getPublishedNews();
+  return items.map((item) => ({ slug: item.slug }));
+}
 
 interface NewsDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -59,11 +66,13 @@ export default async function NewsDetailPage({
         </h1>
 
         {item.coverImageUrl && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={item.coverImageUrl}
+          <Image
+            src={getMediaUrl(item.coverImageUrl)}
             alt={pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
+            width={1200}
+            height={675}
             className="mt-6 w-full rounded-lg object-cover"
+            sizes="(max-width: 768px) 100vw, 768px"
           />
         )}
 

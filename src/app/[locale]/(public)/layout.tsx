@@ -3,6 +3,8 @@ import { FlashNewsBar } from "@/components/shared/FlashNewsBar";
 import { Footer } from "@/components/shared/Footer";
 import { getSiteSettings } from "@/lib/site-settings";
 
+export const revalidate = 60;
+
 export default async function PublicLayout({
   children,
 }: {

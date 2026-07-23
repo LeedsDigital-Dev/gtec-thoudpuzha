@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getCertificationPartners } from "@/lib/certification-partners";
 import { getMediaUrl } from "@/lib/media";
 
@@ -18,10 +19,11 @@ export async function CertificationPartnerStrip({ heading }: { heading: string }
         <div className="flex flex-wrap items-center justify-center gap-8">
           {partners.map((partner) => {
             const img = (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 src={getMediaUrl(partner.logoUrl)}
                 alt={partner.name}
+                width={120}
+                height={48}
                 className="h-12 w-auto object-contain opacity-70 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
               />
             );

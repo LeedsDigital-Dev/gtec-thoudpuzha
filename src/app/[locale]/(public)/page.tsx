@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
@@ -17,21 +17,23 @@ interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
 
+export const revalidate = 60;
+
 export default async function HomePage({ params }: HomePageProps) {
-  await params;
-  const locale = (await getLocale()) as Locale;
+  const { locale: localeStr } = await params;
+  const locale = localeStr as Locale;
   const settings = await getSiteSettings();
   const courses = await getPublishedCourses();
   const teaser = await getHomepageTeaser();
   const placementData = await getPlacementGalleryData();
 
-  const heroT = await getTranslations("hero");
-  const aboutT = await getTranslations("about");
-  const atAGlanceT = await getTranslations("atAGlance");
-  const whyT = await getTranslations("whyChooseUs");
-  const placementT = await getTranslations("placementSupport");
-  const newsT = await getTranslations("newsTeaser");
-  const certT = await getTranslations("certPartners");
+  const heroT = await getTranslations({ locale, namespace: "hero" });
+  const aboutT = await getTranslations({ locale, namespace: "about" });
+  const atAGlanceT = await getTranslations({ locale, namespace: "atAGlance" });
+  const whyT = await getTranslations({ locale, namespace: "whyChooseUs" });
+  const placementT = await getTranslations({ locale, namespace: "placementSupport" });
+  const newsT = await getTranslations({ locale, namespace: "newsTeaser" });
+  const certT = await getTranslations({ locale, namespace: "certPartners" });
 
   return (
     <main>

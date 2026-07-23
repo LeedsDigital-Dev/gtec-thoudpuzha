@@ -14,6 +14,32 @@ enum Role {
   SUPER_ADMIN
 }
 
+enum IndustrySector {
+  IT_SOFTWARE
+  EDUCATION_TRAINING
+  HEALTHCARE
+  BANKING_FINANCE
+  MANUFACTURING
+  RETAIL
+  HOSPITALITY
+  CONSTRUCTION
+  TELECOMMUNICATION
+  OTHER
+}
+
+enum EmployeeCountRange {
+  RANGE_1_10
+  RANGE_11_50
+  RANGE_51_200
+  RANGE_200_PLUS
+}
+
+enum EmployerProfileStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id                String   @id
   role              Role
@@ -21,6 +47,7 @@ model User {
   createdAt         DateTime @default(now())
 
   candidateProfile CandidateProfile?
+  employerProfile  EmployerProfile?
   auditLogEntries  AuditLogEntry[]
 }
 
@@ -141,6 +168,31 @@ model CandidateProfile {
 
   enrollments     StudentCourseEnrollment[]
   progressEntries StudentProgressEntry[]
+}
+
+model EmployerProfile {
+  id                String                @id @default(cuid())
+  userId            String                @unique
+  companyName       String
+  industrySector    IndustrySector
+  contactPersonName String
+  designation       String
+  phone             String
+  email             String
+  companyAddress    String
+  hasWebsite        Boolean               @default(false)
+  websiteUrl        String?
+  employeeCountRange EmployeeCountRange
+  aboutCompany      String
+  status            EmployerProfileStatus @default(PENDING)
+  autoPublishTrusted Boolean              @default(false)
+  rejectionReason   String?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([status])
 }
 
 model FlashNewsItem {

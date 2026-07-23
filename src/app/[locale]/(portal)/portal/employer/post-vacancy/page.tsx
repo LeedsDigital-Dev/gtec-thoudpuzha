@@ -2,9 +2,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
-import { RegistrationForm } from "./registration-form";
 
-export default async function EmployerRegisterPage() {
+export default async function PostVacancyPage() {
   const session = await auth();
   if (!session.userId) {
     redirect("/sign-in");
@@ -15,17 +14,20 @@ export default async function EmployerRegisterPage() {
     redirect("/forbidden");
   }
 
-  const existing = await prisma.employerProfile.findUnique({
+  const profile = await prisma.employerProfile.findUnique({
     where: { userId: session.userId },
   });
 
-  if (existing) {
-    if (existing.status === "APPROVED") {
-      redirect("/portal");
-    }
-    // PENDING or REJECTED — show status page
+  if (!profile || profile.status === "PENDING" || profile.status === "REJECTED") {
     redirect("/portal/employer/register/status");
   }
 
-  return <RegistrationForm />;
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="text-center">
+        <h1 className="mb-3 text-2xl font-semibold">Post a Vacancy</h1>
+        <p className="text-gray-600">Vacancy posting will be available soon.</p>
+      </div>
+    </div>
+  );
 }

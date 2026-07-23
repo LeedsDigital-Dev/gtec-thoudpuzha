@@ -874,7 +874,7 @@
       "track": "Infra/DevOps",
       "priority": "Must Have",
       "points": 2,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s12-t1",
         "s12-t2",

@@ -25,3 +25,11 @@
   placeholder (e.g. "G-TEC THODUPUZHA" in a styled <span>, or a generic placeholder SVG) instead
   of blocking. Replace with the real logo file when available — track as a follow-up, not a
   blocker.
+- [x] Course catalog — APPROVED to use the seeded 15-course/6-category placeholder for initial
+  launch. Replace with client-confirmed catalog post-launch.
+- [x] Certification partner logos — APPROVED to use placeholder URLs for initial launch. Replace
+  with real files uploaded to R2 post-launch.
+- [x] Enrolled-student CSV — APPROVED to launch with zero pre-seeded students; Centre Staff will
+  use the /admin/students bulk-import UI to add real students post-launch.
+- [x] Centre photos/About copy/At a Glance figures — APPROVED to use the seeded
+  Thodupuzha-plausible defaults for initial launch. Replace once client confirms exact figures.

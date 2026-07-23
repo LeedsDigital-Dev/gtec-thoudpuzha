@@ -6,7 +6,7 @@
   "4": "package.json",
   "5": "EnquiryForm.tsx",
   "6": "GTEC Thodupuzha",
-  "7": "smoke.test.tsx",
+  "7": "FlashNewsBar.tsx",
   "8": "aliases",
   "9": "app/layout.tsx",
   "10": "enquiries/page.test.tsx",
@@ -27,9 +27,11 @@
   "25": "[[...sign-in]]/page.tsx",
   "26": "[[...sign-up]]/page.tsx",
   "27": "setup.ts",
+  "28": "courses.test.ts",
   "29": "prisma.config.ts",
   "30": "db.test.ts",
   "31": "request.ts",
   "32": "clerk.d.ts",
-  "33": "audit.test.ts"
+  "33": "audit.test.ts",
+  "34": "flash-news/page.test.tsx"
 }

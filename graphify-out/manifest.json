@@ -990,13 +990,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/dashboard.test.ts": {
-    "mtime": 1784802199.1086717,
-    "ast_hash": "9fba2dc888e6c597f3a0add753d3cba9",
+    "mtime": 1784806715.8206356,
+    "ast_hash": "991ecd62d44dac9c2a387c4f44d36a35",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/page.tsx": {
-    "mtime": 1784802199.1086717,
-    "ast_hash": "888367d9298c00e5f84d4703691e09ee",
+    "mtime": 1784806715.8206356,
+    "ast_hash": "0adde9b0d7a3058e6f02eb202fc21bfc",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/post-vacancy/actions.test.ts": {
@@ -1090,8 +1090,78 @@
     "semantic_hash": ""
   },
   "src/lib/jobs.ts": {
-    "mtime": 1784805446.662333,
-    "ast_hash": "b6bb79ef766419002b1c56637aeba60a",
+    "mtime": 1784806132.4135106,
+    "ast_hash": "0d20306e4c2e8c50069291b2a95d6385",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/[id]/actions.test.ts": {
+    "mtime": 1784806132.4135106,
+    "ast_hash": "0c6df11df14f56b05e8b7e44f1ec5e63",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/[id]/actions.ts": {
+    "mtime": 1784806132.4135106,
+    "ast_hash": "7e0fd01d6c15e5eabc352a5f8648e645",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/[id]/apply-button.tsx": {
+    "mtime": 1784806132.4135106,
+    "ast_hash": "819a67bc2e8bd747dc63ecb48bde8e95",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/[id]/page.test.tsx": {
+    "mtime": 1784806132.4135106,
+    "ast_hash": "b76086ad257bea4e6e2d7b7439bb73c1",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/jobs/[id]/page.tsx": {
+    "mtime": 1784806132.4135106,
+    "ast_hash": "bbc91599381e9d46c2a4bcc4936bc95a",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723113238_s08_t3_application_entity/migration.sql": {
+    "mtime": 1784806715.8206356,
+    "ast_hash": "61923b1d782b2b7dd33c6acfdceec4c6",
+    "semantic_hash": ""
+  },
+  "src/__tests__/application-unique.test.ts": {
+    "mtime": 1784806715.8206356,
+    "ast_hash": "2abf7a3c1792a3cd5bfa667ad36dae85",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/actions.test.ts": {
+    "mtime": 1784806715.8206356,
+    "ast_hash": "368b2fde9bda21c02202a2093c432cb3",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/actions.ts": {
+    "mtime": 1784806715.8206356,
+    "ast_hash": "ea95f3ea7bd8915e41e93c5ebf119e4d",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/applicants-list.tsx": {
+    "mtime": 1784806715.8206356,
+    "ast_hash": "405d06762b6c5f00434149c1dcd723ad",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/page.test.ts": {
+    "mtime": 1784806715.8216355,
+    "ast_hash": "841b871b950679e9a55697fb11721e57",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/page.tsx": {
+    "mtime": 1784806715.8216355,
+    "ast_hash": "c7ce969ecde9c61e8a9cbc87d126a230",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/applications/page.test.ts": {
+    "mtime": 1784806715.8216355,
+    "ast_hash": "eb8f82adf5b88718981b319730327b21",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/student/applications/page.tsx": {
+    "mtime": 1784806715.8216355,
+    "ast_hash": "a57c49aceff090288ea348cfb7048926",
     "semantic_hash": ""
   }
 }

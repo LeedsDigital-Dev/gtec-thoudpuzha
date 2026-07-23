@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-23)
 
 ## Corpus Check
-- 103 files · ~23,020 words
+- 109 files · ~24,800 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 476 nodes · 772 edges · 35 communities (28 shown, 7 thin omitted)
+- 505 nodes · 845 edges · 35 communities (28 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ce865262`
+- Built from commit: `7e9ec4b3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,28 +42,28 @@
 - flash-news/page.test.tsx
 
 ## God Nodes (most connected - your core abstractions)
-1. `requireRole()` - 39 edges
-2. `logAdminAction()` - 27 edges
+1. `requireRole()` - 46 edges
+2. `logAdminAction()` - 32 edges
 3. `cn()` - 19 edges
-4. `compilerOptions` - 16 edges
-5. `Role` - 15 edges
+4. `Role` - 17 edges
+5. `compilerOptions` - 16 edges
 6. `localeFromFormData()` - 9 edges
-7. `localeFromFormData()` - 8 edges
-8. `revalidateGallery()` - 8 edges
-9. `updateSiteSettings()` - 8 edges
-10. `Button()` - 8 edges
+7. `Button()` - 9 edges
+8. `getMediaUrl()` - 9 edges
+9. `uploadFile()` - 9 edges
+10. `localeFromFormData()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `AuditLogPage()` --calls--> `requireRole()`  [EXTRACTED]
   src/app/[locale]/(admin)/admin/audit-log/page.tsx → src/lib/auth.ts
-- `EnquiriesPage()` --calls--> `requireRole()`  [EXTRACTED]
-  src/app/[locale]/(admin)/admin/enquiries/page.tsx → src/lib/auth.ts
-- `SiteSettingsPage()` --calls--> `requireRole()`  [EXTRACTED]
-  src/app/[locale]/(admin)/admin/settings/site/page.tsx → src/lib/auth.ts
+- `CertificationPartnersPage()` --calls--> `getMediaUrl()`  [EXTRACTED]
+  src/app/[locale]/(admin)/admin/certification-partners/page.tsx → src/lib/media.ts
 - `CoursesPage()` --calls--> `requireRole()`  [EXTRACTED]
   src/app/[locale]/(admin)/admin/courses/page.tsx → src/lib/auth.ts
-- `GalleryPage()` --calls--> `requireRole()`  [EXTRACTED]
-  src/app/[locale]/(admin)/admin/gallery/page.tsx → src/lib/auth.ts
+- `EnquiriesPage()` --calls--> `requireRole()`  [EXTRACTED]
+  src/app/[locale]/(admin)/admin/enquiries/page.tsx → src/lib/auth.ts
+- `createFlashNews()` --calls--> `logAdminAction()`  [EXTRACTED]
+  src/app/[locale]/(admin)/admin/flash-news/actions.ts → src/lib/audit.ts
 
 ## Import Cycles
 - None detected.
@@ -87,12 +87,12 @@ Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 4 - "package.json"
-Cohesion: 0.18
-Nodes (16): GalleryPage(), GalleryPageProps, GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl(), getYouTubeVideoId() (+8 more)
+Cohesion: 0.14
+Nodes (19): GalleryPage(), GalleryPageProps, CertificationPartnerStrip(), GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl() (+11 more)
 
 ### Community 5 - "EnquiryForm.tsx"
-Cohesion: 0.06
-Nodes (35): ContactSection(), ContactSectionProps, socialIcons, baseSettings, mockCourses, CourseSelect(), CourseSelectProps, publishedCourses (+27 more)
+Cohesion: 0.08
+Nodes (33): EnquiryForm(), EnquiryFormProps, FormErrors, indianMobileRegex(), sanitizePhone(), MOCK_COURSES, HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once (+25 more)
 
 ### Community 6 - "GTEC Thodupuzha"
 Cohesion: 0.22
@@ -107,55 +107,53 @@ Cohesion: 0.10
 Nodes (18): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, { Link, redirect, usePathname, useRouter }, Locale (+10 more)
 
 ### Community 9 - "app/layout.tsx"
-Cohesion: 0.12
-Nodes (14): AdminLayout(), PortalLayout(), Footer(), portalLinks, quickLinks, Header(), navItems, buildLocalePath() (+6 more)
+Cohesion: 0.08
+Nodes (22): AdminLayout(), PortalLayout(), PublicLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, Footer() (+14 more)
 
 ### Community 10 - "enquiries/page.test.tsx"
 Cohesion: 0.50
 Nodes (3): mockAuth, mockEnquiryFindMany, mockRedirect
 
 ### Community 16 - "(public)/page.tsx"
-Cohesion: 0.15
-Nodes (18): PublicLayout(), HomePage(), HomePageProps, AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, iconMap (+10 more)
+Cohesion: 0.07
+Nodes (33): HomePage(), HomePageProps, AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, ContactSection(), ContactSectionProps (+25 more)
 
 ### Community 17 - "actions.test.ts"
-Cohesion: 0.07
-Nodes (28): AuditLogPage(), AuditLogPageProps, EnquiriesPage(), EnquiriesPageProps, getNullableString(), getString(), localeFromFormData(), mockFindFirst (+20 more)
+Cohesion: 0.20
+Nodes (7): mockFindFirst, mockLogAdminAction, mockRedirect, mockRequireRole, mockRevalidatePath, mockSiteSettingsUpdate, mockWhyCardUpdate
 
 ### Community 21 - "tailwind"
 Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
 ### Community 22 - "FlashNewsBar.tsx"
-Cohesion: 0.27
-Nodes (6): FlashNewsBar(), Locale, mockFindMany, mockGetLocale, getActiveFlashNews(), PublicFlashNewsItem
+Cohesion: 0.13
+Nodes (11): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockDelete, mockFindMany, mockRedirect, mockRevalidatePath (+3 more)
 
 ### Community 24 - "(public)/page.tsx"
-Cohesion: 0.21
-Nodes (15): HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once, Button(), buttonVariants, Label(), SelectContent(), SelectGroup(), SelectItem() (+7 more)
+Cohesion: 0.40
+Nodes (3): mockFindFirst, mockRedirect, mockRequireRole
 
 ### Community 33 - "audit.test.ts"
-Cohesion: 0.14
-Nodes (38): createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory(), slugify(), updateCategory() (+30 more)
+Cohesion: 0.09
+Nodes (53): AuditLogPage(), AuditLogPageProps, createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), CertificationPartnersPage() (+45 more)
 
 ### Community 34 - "flash-news/page.test.tsx"
-Cohesion: 0.29
-Nodes (6): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, mockRevalidatePath
+Cohesion: 0.18
+Nodes (16): createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), FlashNewsPage(), FlashNewsPageProps (+8 more)
 
 ## Knowledge Gaps
-- **198 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+193 more)
+- **211 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+206 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `(public)/page.tsx` to `EnquiryForm.tsx`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `siteConfig` connect `app/layout.tsx` to `(public)/page.tsx`, `EnquiryForm.tsx`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+- **Why does `requireRole()` connect `audit.test.ts` to `(public)/page.tsx`, `flash-news/page.test.tsx`?**
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _198 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _211 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
@@ -164,3 +162,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
 - **Should `components.json` be split into smaller, more focused modules?**
   _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
+- **Should `package.json` be split into smaller, more focused modules?**
+  _Cohesion score 0.14461538461538462 - nodes in this community are weakly interconnected._

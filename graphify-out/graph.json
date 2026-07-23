@@ -1275,8 +1275,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_tests_audit_test",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "audit.test.ts"
     },
     {
@@ -1286,8 +1286,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_tests_audit_test_mockcreate",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "mockcreate"
     },
     {
@@ -1297,8 +1297,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_tests_audit_test_mockfindmany",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "mockfindmany"
     },
     {
@@ -1308,8 +1308,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_tests_audit_test_mockredirect",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "mockredirect"
     },
     {
@@ -1319,8 +1319,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_tests_audit_test_mockauth",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "mockauth"
     },
     {
@@ -1495,8 +1495,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_audit_log_page",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "audit-log/page.tsx"
     },
     {
@@ -1506,8 +1506,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_audit_log_page_auditlogpageprops",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "auditlogpageprops"
     },
     {
@@ -1517,9 +1517,273 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_audit_log_page_auditlogpage",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "auditlogpage()"
+    },
+    {
+      "label": "certification-partners/actions.ts",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "certification-partners/actions.ts"
+    },
+    {
+      "label": "localeFromFormData()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "localefromformdata()"
+    },
+    {
+      "label": "createPartner()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "createpartner()"
+    },
+    {
+      "label": "updatePartner()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "updatepartner()"
+    },
+    {
+      "label": "deletePartner()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "deletepartner()"
+    },
+    {
+      "label": "movePartner()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L113",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "movepartner()"
+    },
+    {
+      "label": "cert-partners.test.ts",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "cert-partners.test.ts"
+    },
+    {
+      "label": "mockAuth",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockauth",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockauth"
+    },
+    {
+      "label": "mockCreate",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockcreate",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockcreate"
+    },
+    {
+      "label": "mockUpdate",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockupdate",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockupdate"
+    },
+    {
+      "label": "mockDelete",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockdelete",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockdelete"
+    },
+    {
+      "label": "mockFindMany",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockfindmany",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockfindmany"
+    },
+    {
+      "label": "mockAggregate",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockaggregate",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockaggregate"
+    },
+    {
+      "label": "mockAuditCreate",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockauditcreate",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockauditcreate"
+    },
+    {
+      "label": "mockUploadFile",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockuploadfile",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockuploadfile"
+    },
+    {
+      "label": "mockRedirect",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockredirect",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockredirect"
+    },
+    {
+      "label": "mockRevalidatePath",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockrevalidatepath",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "mockrevalidatepath"
+    },
+    {
+      "label": "setMockAuth()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_setmockauth",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "setmockauth()"
+    },
+    {
+      "label": "fakeFile()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_fakefile",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "fakefile()"
+    },
+    {
+      "label": "createFormData()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_createformdata",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "createformdata()"
+    },
+    {
+      "label": "partnersInOrder",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_cert_partners_test_partnersinorder",
+      "community": 22,
+      "community_name": "FlashNewsBar.tsx",
+      "norm_label": "partnersinorder"
+    },
+    {
+      "label": "certification-partners/page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_page",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "certification-partners/page.tsx"
+    },
+    {
+      "label": "PageProps",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_page_pageprops",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "pageprops"
+    },
+    {
+      "label": "CertificationPartnersPage()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_app_locale_admin_admin_certification_partners_page_certificationpartnerspage",
+      "community": 33,
+      "community_name": "audit.test.ts",
+      "norm_label": "certificationpartnerspage()"
     },
     {
       "label": "courses/actions.ts",
@@ -1737,8 +2001,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "enquiries/page.tsx"
     },
     {
@@ -1748,8 +2012,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page_enquiriespageprops",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "enquiriespageprops"
     },
     {
@@ -1759,8 +2023,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page_enquiriespage",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "enquiriespage()"
     },
     {
@@ -1770,8 +2034,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "flash-news/actions.ts"
     },
     {
@@ -1781,8 +2045,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_localefromformdata",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -1792,8 +2056,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_createflashnews",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "createflashnews()"
     },
     {
@@ -1803,8 +2067,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_updateflashnews",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "updateflashnews()"
     },
     {
@@ -1814,8 +2078,8 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_deleteflashnews",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "deleteflashnews()"
     },
     {
@@ -1825,8 +2089,8 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_toggleflashnewsactive",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "toggleflashnewsactive()"
     },
     {
@@ -1836,8 +2100,8 @@
       "source_location": "L129",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_actions_moveflashnews",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "moveflashnews()"
     },
     {
@@ -1924,8 +2188,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "flash-news/page.tsx"
     },
     {
@@ -1935,8 +2199,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_flashnewspageprops",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "flashnewspageprops"
     },
     {
@@ -1946,8 +2210,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_formatlocaldatetime",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "formatlocaldatetime()"
     },
     {
@@ -1957,8 +2221,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_isexpired",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "isexpired()"
     },
     {
@@ -1968,8 +2232,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_flash_news_page_flashnewspage",
-      "community": 33,
-      "community_name": "audit.test.ts",
+      "community": 34,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "flashnewspage()"
     },
     {
@@ -2397,8 +2661,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_actions",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "site/actions.ts"
     },
     {
@@ -2408,8 +2672,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_actions_localefromformdata",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "localefromformdata()"
     },
     {
@@ -2419,8 +2683,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_actions_getstring",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "getstring()"
     },
     {
@@ -2430,8 +2694,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_actions_getnullablestring",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "getnullablestring()"
     },
     {
@@ -2441,8 +2705,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_actions_updatesitesettings",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "updatesitesettings()"
     },
     {
@@ -2452,8 +2716,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_test",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 24,
+      "community_name": "(public)/page.tsx",
       "norm_label": "site/page.test.tsx"
     },
     {
@@ -2463,8 +2727,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_test_mockrequirerole",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 24,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockrequirerole"
     },
     {
@@ -2474,8 +2738,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_test_mockredirect",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 24,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockredirect"
     },
     {
@@ -2485,8 +2749,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_test_mockfindfirst",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 24,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockfindfirst"
     },
     {
@@ -2496,8 +2760,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_test_createsettings",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 24,
+      "community_name": "(public)/page.tsx",
       "norm_label": "createsettings()"
     },
     {
@@ -2507,8 +2771,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "site/page.tsx"
     },
     {
@@ -2518,8 +2782,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_sitesettingspageprops",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "sitesettingspageprops"
     },
     {
@@ -2529,8 +2793,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_iconoptions",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "iconoptions"
     },
     {
@@ -2540,8 +2804,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_settings_site_page_sitesettingspage",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "sitesettingspage()"
     },
     {
@@ -2650,8 +2914,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_public_layout",
-      "community": 16,
-      "community_name": "(public)/page.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "(public)/layout.tsx"
     },
     {
@@ -2661,8 +2925,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_public_layout_publiclayout",
-      "community": 16,
-      "community_name": "(public)/page.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "publiclayout()"
     },
     {
@@ -2974,14 +3238,36 @@
       "norm_label": "ataglancesection()"
     },
     {
+      "label": "CertificationPartnerStrip.tsx",
+      "file_type": "code",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_shared_certificationpartnerstrip",
+      "community": 4,
+      "community_name": "package.json",
+      "norm_label": "certificationpartnerstrip.tsx"
+    },
+    {
+      "label": "CertificationPartnerStrip()",
+      "file_type": "code",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_components_shared_certificationpartnerstrip_certificationpartnerstrip",
+      "community": 4,
+      "community_name": "package.json",
+      "norm_label": "certificationpartnerstrip()"
+    },
+    {
       "label": "ContactSection.test.tsx",
       "file_type": "code",
       "source_file": "src/components/shared/ContactSection.test.tsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_test",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "contactsection.test.tsx"
     },
     {
@@ -2991,8 +3277,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_test_basesettings",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "basesettings"
     },
     {
@@ -3002,8 +3288,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_test_mockcourses",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockcourses"
     },
     {
@@ -3013,8 +3299,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_contactsection",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "contactsection.tsx"
     },
     {
@@ -3024,8 +3310,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_contactsectionprops",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "contactsectionprops"
     },
     {
@@ -3035,8 +3321,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_socialicons",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "socialicons"
     },
     {
@@ -3046,8 +3332,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "src_components_shared_contactsection_contactsection",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "contactsection()"
     },
     {
@@ -3057,8 +3343,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_test",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courseselect.test.tsx"
     },
     {
@@ -3068,8 +3354,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_test_publishedcourses",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "publishedcourses"
     },
     {
@@ -3079,8 +3365,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_courseselect",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courseselect.tsx"
     },
     {
@@ -3090,8 +3376,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_courseselectprops",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courseselectprops"
     },
     {
@@ -3101,8 +3387,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_components_shared_courseselect_courseselect",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courseselect()"
     },
     {
@@ -3211,8 +3497,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "flashnewsbar.test.tsx"
     },
     {
@@ -3222,8 +3508,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test_mockfindmany",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "mockfindmany"
     },
     {
@@ -3233,8 +3519,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_test_mockgetlocale",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "mockgetlocale"
     },
     {
@@ -3244,8 +3530,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "flashnewsbar.tsx"
     },
     {
@@ -3255,8 +3541,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_locale",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "locale"
     },
     {
@@ -3266,8 +3552,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_shared_flashnewsbar_flashnewsbar",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "flashnewsbar()"
     },
     {
@@ -3508,8 +3794,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_herosection",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "herosection.tsx"
     },
     {
@@ -3519,8 +3805,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_shared_herosection_herosection",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "herosection()"
     },
     {
@@ -3530,8 +3816,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_shared_herosection_rationale_7",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "todo: super-admin-editable content \u2014 replace with cms-managed fields once"
     },
     {
@@ -3640,8 +3926,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_ui_button",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "button.tsx"
     },
     {
@@ -3651,8 +3937,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_components_ui_button_buttonvariants",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "buttonvariants"
     },
     {
@@ -3662,8 +3948,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_components_ui_button_button",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "button()"
     },
     {
@@ -3695,8 +3981,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_ui_label",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "label.tsx"
     },
     {
@@ -3706,8 +3992,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_ui_label_label",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "label()"
     },
     {
@@ -3717,8 +4003,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_ui_select",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "select.tsx"
     },
     {
@@ -3728,8 +4014,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_ui_select_selectgroup",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectgroup()"
     },
     {
@@ -3739,8 +4025,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_components_ui_select_selectvalue",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectvalue()"
     },
     {
@@ -3750,8 +4036,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_components_ui_select_selecttrigger",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selecttrigger()"
     },
     {
@@ -3761,8 +4047,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_components_ui_select_selectcontent",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectcontent()"
     },
     {
@@ -3772,8 +4058,8 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_components_ui_select_selectlabel",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectlabel()"
     },
     {
@@ -3783,8 +4069,8 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "src_components_ui_select_selectitem",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectitem()"
     },
     {
@@ -3794,8 +4080,8 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "src_components_ui_select_selectseparator",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectseparator()"
     },
     {
@@ -3805,8 +4091,8 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "src_components_ui_select_selectscrollupbutton",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectscrollupbutton()"
     },
     {
@@ -3816,8 +4102,8 @@
       "source_location": "L171",
       "_origin": "ast",
       "id": "src_components_ui_select_selectscrolldownbutton",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "selectscrolldownbutton()"
     },
     {
@@ -3860,8 +4146,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_audit",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "audit.ts"
     },
     {
@@ -3871,8 +4157,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_lib_audit_logadminactioninput",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "logadminactioninput"
     },
     {
@@ -3893,8 +4179,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_auth",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "auth.ts"
     },
     {
@@ -3904,8 +4190,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_auth_role",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "role"
     },
     {
@@ -3915,8 +4201,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_lib_auth_requireroleresult",
-      "community": 17,
-      "community_name": "actions.test.ts",
+      "community": 33,
+      "community_name": "audit.test.ts",
       "norm_label": "requireroleresult"
     },
     {
@@ -3931,14 +4217,47 @@
       "norm_label": "requirerole()"
     },
     {
+      "label": "certification-partners.ts",
+      "file_type": "code",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_certification_partners",
+      "community": 4,
+      "community_name": "package.json",
+      "norm_label": "certification-partners.ts"
+    },
+    {
+      "label": "PublicCertificationPartner",
+      "file_type": "code",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_lib_certification_partners_publiccertificationpartner",
+      "community": 4,
+      "community_name": "package.json",
+      "norm_label": "publiccertificationpartner"
+    },
+    {
+      "label": "getCertificationPartners()",
+      "file_type": "code",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_lib_certification_partners_getcertificationpartners",
+      "community": 4,
+      "community_name": "package.json",
+      "norm_label": "getcertificationpartners()"
+    },
+    {
       "label": "courses.test.ts",
       "file_type": "code",
       "source_file": "src/lib/courses.test.ts",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_courses_test",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courses.test.ts"
     },
     {
@@ -3948,8 +4267,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcourse",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockcourse"
     },
     {
@@ -3959,8 +4278,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockstore",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockstore"
     },
     {
@@ -3970,8 +4289,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcoursefindmany",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockcoursefindmany"
     },
     {
@@ -3981,8 +4300,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcoursecreate",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockcoursecreate"
     },
     {
@@ -3992,8 +4311,8 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcourseupdate",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockcourseupdate"
     },
     {
@@ -4003,8 +4322,8 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockuploadfile",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mockuploadfile"
     },
     {
@@ -4014,8 +4333,8 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "src_lib_courses_test_mocklogadminaction",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "mocklogadminaction"
     },
     {
@@ -4025,8 +4344,8 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_lib_courses_test_setmockauth",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "setmockauth()"
     },
     {
@@ -4036,8 +4355,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_courses",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "courses.ts"
     },
     {
@@ -4047,8 +4366,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_courses_publiccourse",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "publiccourse"
     },
     {
@@ -4069,8 +4388,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_lib_courses_coursewithcategory",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "coursewithcategory"
     },
     {
@@ -4080,8 +4399,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_courses_getcoursebyslug",
-      "community": 5,
-      "community_name": "EnquiryForm.tsx",
+      "community": 16,
+      "community_name": "(public)/page.tsx",
       "norm_label": "getcoursebyslug()"
     },
     {
@@ -4256,8 +4575,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_flash_news",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "flash-news.ts"
     },
     {
@@ -4267,8 +4586,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_flash_news_publicflashnewsitem",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "publicflashnewsitem"
     },
     {
@@ -4278,8 +4597,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_flash_news_getactiveflashnews",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "getactiveflashnews()"
     },
     {
@@ -4289,8 +4608,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_lib_flash_news_getallflashnews",
-      "community": 22,
-      "community_name": "FlashNewsBar.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "getallflashnews()"
     },
     {
@@ -4465,8 +4784,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_site_settings_getsitesettings",
-      "community": 16,
-      "community_name": "(public)/page.tsx",
+      "community": 9,
+      "community_name": "app/layout.tsx",
       "norm_label": "getsitesettings()"
     },
     {
@@ -4575,8 +4894,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_utils",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "utils.ts"
     },
     {
@@ -4586,8 +4905,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_utils_cn",
-      "community": 24,
-      "community_name": "(public)/page.tsx",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "cn()"
     },
     {
@@ -6891,6 +7210,741 @@
       "_origin": "ast",
       "source": "src_app_locale_admin_admin_audit_log_page_auditlogpage",
       "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L113",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_audit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_audit_logadminaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_auth_requirerole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_auth_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions",
+      "target": "src_lib_storage_uploadfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_actions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_actions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_localefromformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "target": "src_lib_audit_logadminaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "target": "src_lib_storage_uploadfile"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_createpartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "target": "src_lib_audit_logadminaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "target": "src_lib_storage_uploadfile"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_updatepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "target": "src_lib_audit_logadminaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_deletepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L145",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "target": "src_lib_audit_logadminaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/actions.ts",
+      "source_location": "L114",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_actions_movepartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_createformdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_fakefile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockaggregate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockauditcreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockcreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockdelete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockfindmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockredirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockrevalidatepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockupdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_mockuploadfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_partnersinorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_cert_partners_test",
+      "target": "src_app_locale_admin_admin_certification_partners_cert_partners_test_setmockauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_page_certificationpartnerspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_app_locale_admin_admin_certification_partners_page_pageprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_components_ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_components_ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_auth_requirerole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_auth_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page",
+      "target": "src_lib_media_getmediaurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page_certificationpartnerspage",
+      "target": "src_lib_auth_requirerole"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(admin)/admin/certification-partners/page.tsx",
+      "source_location": "L131",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_admin_admin_certification_partners_page_certificationpartnerspage",
+      "target": "src_lib_media_getmediaurl"
     },
     {
       "relation": "contains",
@@ -10715,6 +11769,89 @@
       "target": "src_lib_site_settings_getataglancestats"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip",
+      "target": "src_components_shared_certificationpartnerstrip_certificationpartnerstrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip",
+      "target": "src_lib_certification_partners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip",
+      "target": "src_lib_certification_partners_getcertificationpartners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip",
+      "target": "src_lib_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip",
+      "target": "src_lib_media_getmediaurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip_certificationpartnerstrip",
+      "target": "src_lib_certification_partners_getcertificationpartners"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/shared/CertificationPartnerStrip.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_shared_certificationpartnerstrip_certificationpartnerstrip",
+      "target": "src_lib_media_getmediaurl"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -12826,6 +13963,40 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_certification_partners",
+      "target": "src_lib_certification_partners_getcertificationpartners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_certification_partners",
+      "target": "src_lib_certification_partners_publiccertificationpartner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/certification-partners.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_certification_partners",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -14171,5 +15342,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ce8652624086ee0278d0db67bdc394a241dabd81"
+  "built_at_commit": "7e9ec4b38c41da43791d201ee376487aca5597d4"
 }

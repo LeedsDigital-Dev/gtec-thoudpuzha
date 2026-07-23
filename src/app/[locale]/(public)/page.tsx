@@ -7,6 +7,8 @@ import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { ContactSection } from "@/components/shared/ContactSection";
 import { getPublishedCourses } from "@/lib/courses";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
+import { getHomepageTeaser } from "@/lib/news-events";
+import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -17,6 +19,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const locale = (await getLocale()) as Locale;
   const settings = await getSiteSettings();
   const courses = await getPublishedCourses();
+  const teaser = await getHomepageTeaser();
 
   return (
     <main>
@@ -29,6 +32,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
       <AtAGlanceSection settings={settings} />
+      <NewsTeaserSection teaser={teaser} />
       <AboutSection settings={settings} locale={locale} />
       <WhyChooseUsSection settings={settings} locale={locale} />
       <ContactSection settings={settings} courses={courses} />

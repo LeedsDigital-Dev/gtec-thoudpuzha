@@ -18,3 +18,5 @@
 [2026-07-22T22:47:01Z] Starting s01-t5
 [2026-07-22T23:00:36Z] s01-t5 did not succeed (exit 1). Stopping sequence rather than continuing past a blocked/failed task. Check plan/blockers.md and plan/logs/s01-t5.log.
 [2026-07-22T23:00:36Z] === run-sequence finished ===
+[2026-07-23T03:49:41Z] s02-t2 done. Checking for next eligible task.
+[2026-07-23T03:49:41Z] Starting s02-t3

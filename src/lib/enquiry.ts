@@ -30,8 +30,8 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
     throw new Error("Source is required.");
   }
 
-  const course = await prisma.course.findFirst({
-    where: { titleEn: payload.course },
+  const course = await prisma.course.findUnique({
+    where: { id: payload.course },
   });
 
   const enquiry = await prisma.enquiry.create({
@@ -47,7 +47,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
   await sendEnquiryNotification({
     name: enquiry.name,
     phone: enquiry.phone,
-    course: payload.course,
+    course: course?.titleEn ?? payload.course,
     message: enquiry.message,
     source: enquiry.source,
   });

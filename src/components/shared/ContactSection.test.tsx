@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import { renderToString } from "react-dom/server";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ContactSection } from "./ContactSection";
+import type { PublicCourse } from "@/lib/courses";
 
 const baseSettings = {
   address: "123 Main St, Thodupuzha",
@@ -13,15 +14,33 @@ const baseSettings = {
   googleReviewsUrl: "https://g.page/gtec/review",
 };
 
+const mockCourses: PublicCourse[] = [
+  {
+    id: "c1",
+    slug: "python",
+    titleEn: "Python Full Stack",
+    titleMl: null,
+    descriptionEn: null,
+    descriptionMl: null,
+    durationText: null,
+    certifications: [],
+    careerOutcomesEn: null,
+    careerOutcomesMl: null,
+    coverImageUrl: null,
+    featured: false,
+    category: null,
+  },
+];
+
 describe("ContactSection", () => {
   test("the Google Map iframe renders using the configured embed URL", () => {
-    const html = renderToString(<ContactSection settings={baseSettings} />);
+    const html = renderToString(<ContactSection settings={baseSettings} courses={mockCourses} />);
     expect(html).toContain(baseSettings.mapEmbedUrl);
     expect(html).toContain('data-testid="google-map-iframe"');
   });
 
   test('clicking "Send us a message" opens the EnquiryForm modal with source="contact_page"', () => {
-    render(<ContactSection settings={baseSettings} />);
+    render(<ContactSection settings={baseSettings} courses={mockCourses} />);
 
     // Modal should not be visible initially
     expect(screen.queryByRole("dialog")).toBeNull();

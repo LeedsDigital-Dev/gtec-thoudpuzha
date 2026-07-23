@@ -4,7 +4,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 import { submitEnquiry } from "./enquiry";
 
 const mockEnquiryCreate = vi.hoisted(() => vi.fn());
-const mockCourseFindFirst = vi.hoisted(() => vi.fn());
+const mockCourseFindUnique = vi.hoisted(() => vi.fn());
 const mockResendSend = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
@@ -13,7 +13,7 @@ vi.mock("@/lib/db", () => ({
       create: mockEnquiryCreate,
     },
     course: {
-      findFirst: mockCourseFindFirst,
+      findUnique: mockCourseFindUnique,
     },
   },
 }));
@@ -32,14 +32,14 @@ describe("submitEnquiry", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockEnquiryCreate.mockReset();
-    mockCourseFindFirst.mockReset();
+    mockCourseFindUnique.mockReset();
     mockResendSend.mockReset();
     process.env.CENTRE_STAFF_NOTIFICATION_EMAILS = "staff@example.com";
   });
 
   test("creates an Enquiry row with the correct source value", async () => {
     const courseId = "course_1";
-    mockCourseFindFirst.mockResolvedValue({
+    mockCourseFindUnique.mockResolvedValue({
       id: courseId,
       titleEn: "Diploma in Computer Application",
     });
@@ -58,7 +58,7 @@ describe("submitEnquiry", () => {
       source: "homepage-hero",
       fullName: "Jane Doe",
       phone: "9876543210",
-      course: "Diploma in Computer Application",
+      course: courseId,
       message: "I want to know more.",
     });
 
@@ -80,7 +80,7 @@ describe("submitEnquiry", () => {
         source: "homepage-hero",
         fullName: "Jane Doe",
         phone: "",
-        course: "Diploma in Computer Application",
+        course: "course_1",
         message: "",
       }),
     ).rejects.toThrow("Enter a valid 10-digit Indian mobile number.");
@@ -91,7 +91,7 @@ describe("submitEnquiry", () => {
 
   test("triggers exactly one Resend email send call on success", async () => {
     const courseId = "course_1";
-    mockCourseFindFirst.mockResolvedValue({
+    mockCourseFindUnique.mockResolvedValue({
       id: courseId,
       titleEn: "Diploma in Computer Application",
     });
@@ -110,7 +110,7 @@ describe("submitEnquiry", () => {
       source: "contact-page",
       fullName: "Jane Doe",
       phone: "9876543210",
-      course: "Diploma in Computer Application",
+      course: courseId,
       message: "",
     });
 

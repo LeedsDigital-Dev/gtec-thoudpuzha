@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { siteConfig } from "@/lib/site";
+import type { PublicCourse } from "@/lib/courses";
 import type { SiteSettings } from "@prisma/client";
 
 interface ContactSectionProps {
@@ -16,6 +17,7 @@ interface ContactSectionProps {
     | "linkedinUrl"
     | "googleReviewsUrl"
   >;
+  courses: PublicCourse[];
 }
 
 const socialIcons: Record<
@@ -44,7 +46,7 @@ const socialIcons: Record<
   },
 };
 
-export function ContactSection({ settings }: ContactSectionProps) {
+export function ContactSection({ settings, courses }: ContactSectionProps) {
   const [showEnquiry, setShowEnquiry] = useState(false);
 
   const socialLinks = [
@@ -195,7 +197,7 @@ export function ContactSection({ settings }: ContactSectionProps) {
                   <path d="M18 6 6 18M6 6l12 12" />
                 </svg>
               </button>
-              <EnquiryForm source="contact_page" />
+              <EnquiryForm source="contact_page" courses={courses} />
             </div>
           </div>
         )}

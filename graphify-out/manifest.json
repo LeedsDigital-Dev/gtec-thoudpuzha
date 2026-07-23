@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
-    "mtime": 1784778372.6910827,
-    "ast_hash": "c7a6fa4b9878ad1e78fa0a0bc8b8d2fe",
+    "mtime": 1784778542.7151885,
+    "ast_hash": "6cc8b3040a46c0f076138218f4edf9d9",
     "semantic_hash": ""
   },
   "src/app/[locale]/account-setup-incomplete/page.tsx": {
@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/EnquiryForm.tsx": {
-    "mtime": 1784778323.9066217,
-    "ast_hash": "23453e7d1b7eb14a2fd477f37242e77e",
+    "mtime": 1784778542.7151885,
+    "ast_hash": "8bb2fca5192802190d848c19abac65de",
     "semantic_hash": ""
   },
   "src/components/shared/HeroSection.tsx": {
@@ -475,28 +475,13 @@
     "semantic_hash": ""
   },
   "src/lib/courses.ts": {
-    "mtime": 1784778307.8427987,
-    "ast_hash": "2dbba182b5469423ab7b130e07d97726",
+    "mtime": 1784778542.7151885,
+    "ast_hash": "66799d47917f287798d8d37c18853c3c",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
     "mtime": 1784778137.960652,
     "ast_hash": "0f0a7202ab163739ba57a2ad637a7769",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(public)/courses/[slug]/page.tsx": {
-    "mtime": 1784778357.195254,
-    "ast_hash": "77901949ab07f7f3388baeca622de470",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(public)/courses/page.test.tsx": {
-    "mtime": 1784778488.0198002,
-    "ast_hash": "db3e29464d9014993adc4f231afe791b",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(public)/courses/page.tsx": {
-    "mtime": 1784778347.5923603,
-    "ast_hash": "a0156dfdd94d78c27417135c8348a2f3",
     "semantic_hash": ""
   }
 }

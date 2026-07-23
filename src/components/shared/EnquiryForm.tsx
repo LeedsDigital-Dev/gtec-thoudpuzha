@@ -5,20 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { submitEnquiry, type EnquiryPayload } from "@/lib/enquiry";
+import { CourseSelect } from "./CourseSelect";
+import type { PublicCourse } from "@/lib/courses";
 export type { EnquiryPayload };
-
-// TODO: Swap hardcoded course list for live Courses data in Sprint 2.
-const COURSES = [
-  "Diploma in Computer Application",
-  "Advanced Excel & Tally",
-  "Graphic Design & Multimedia",
-  "Spoken English & Soft Skills",
-  "Hardware & Networking",
-  "Python Full Stack Development",
-];
 
 type EnquiryFormProps = {
   source: string;
+  courses: PublicCourse[];
   onSubmit?: (payload: EnquiryPayload) => void | Promise<void>;
 };
 
@@ -36,7 +29,7 @@ function sanitizePhone(value: string) {
   return value.replace(/\D/g, "").slice(0, 10);
 }
 
-export function EnquiryForm({ source, onSubmit }: EnquiryFormProps) {
+export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [course, setCourse] = useState("");
@@ -161,29 +154,14 @@ export function EnquiryForm({ source, onSubmit }: EnquiryFormProps) {
 
       <div className="space-y-1.5">
         <Label htmlFor={`enquiry-course-${source}`}>Course interested in</Label>
-        <select
-          id={`enquiry-course-${source}`}
+        <CourseSelect
+          courses={courses}
+          mode="single"
           value={course}
-          onChange={(e) => setCourse(e.target.value)}
-          aria-invalid={errors.course ? "true" : "false"}
-          aria-describedby={errors.course ? `enquiry-course-${source}-error` : undefined}
-          className="h-9 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-          required
-        >
-          <option value="" disabled>
-            Select a course
-          </option>
-          {COURSES.map((courseName) => (
-            <option key={courseName} value={courseName}>
-              {courseName}
-            </option>
-          ))}
-        </select>
-        {errors.course && (
-          <p id={`enquiry-course-${source}-error`} className="text-sm text-destructive">
-            {errors.course}
-          </p>
-        )}
+          onChange={setCourse}
+          id={`enquiry-course-${source}`}
+          error={errors.course}
+        />
       </div>
 
       <div className="space-y-1.5">

@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-23)
 
 ## Corpus Check
-- 69 files · ~10,684 words
+- 80 files · ~13,507 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 330 nodes · 413 edges · 32 communities (25 shown, 7 thin omitted)
+- 377 nodes · 502 edges · 32 communities (26 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d8980c4d`
+- Built from commit: `6321a18b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -30,10 +30,10 @@
 - eslint.config.mjs
 - next.config.ts
 - postcss.config.mjs
-- enquiries/page.tsx
+- (public)/page.tsx
+- actions.test.ts
 - taste.md
 - tailwind
-- Header.tsx
 - (public)/page.tsx
 - clerk.d.ts
 - audit.test.ts
@@ -41,22 +41,22 @@
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 19 edges
 2. `compilerOptions` - 16 edges
-3. `requireRole()` - 11 edges
+3. `requireRole()` - 13 edges
 4. `logAdminAction()` - 8 edges
-5. `GTEC Thodupuzha` - 8 edges
-6. `scripts` - 7 edges
-7. `Role` - 7 edges
-8. `include` - 7 edges
-9. `EnquiryForm()` - 6 edges
-10. `sendEnquiryNotification()` - 6 edges
+5. `Role` - 8 edges
+6. `GTEC Thodupuzha` - 8 edges
+7. `SiteSettingsWithCards` - 7 edges
+8. `scripts` - 7 edges
+9. `include` - 7 edges
+10. `updateSiteSettings()` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `AtAGlanceSectionProps` --references--> `SiteSettingsWithCards`  [EXTRACTED]
+  src/components/shared/AtAGlanceSection.tsx → src/lib/site-settings.ts
 - `AuditLogPage()` --calls--> `requireRole()`  [EXTRACTED]
   src/app/[locale]/(admin)/admin/audit-log/page.tsx → src/lib/auth.ts
-- `Input()` --calls--> `cn()`  [EXTRACTED]
-  src/components/ui/input.tsx → src/lib/utils.ts
-- `Label()` --calls--> `cn()`  [EXTRACTED]
-  src/components/ui/label.tsx → src/lib/utils.ts
+- `EnquiriesPage()` --calls--> `requireRole()`  [EXTRACTED]
+  src/app/[locale]/(admin)/admin/enquiries/page.tsx → src/lib/auth.ts
 - `SelectGroup()` --calls--> `cn()`  [EXTRACTED]
   src/components/ui/select.tsx → src/lib/utils.ts
 - `SelectValue()` --calls--> `cn()`  [EXTRACTED]
@@ -65,7 +65,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (32 total, 7 thin omitted)
+## Communities (32 total, 6 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.06
@@ -96,12 +96,12 @@ Cohesion: 0.22
 Nodes (8): Deployment, Environment Variables, Getting Started, GTEC Thodupuzha, License, Prerequisites, Project Structure, Scripts
 
 ### Community 7 - "smoke.test.tsx"
-Cohesion: 0.14
-Nodes (12): AdminLayout(), PortalLayout(), PublicLayout(), Header(), navItems, buildLocalePath(), LanguageSwitcher(), siteConfig (+4 more)
+Cohesion: 0.15
+Nodes (12): AdminLayout(), PortalLayout(), PublicLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, Header() (+4 more)
 
 ### Community 8 - "aliases"
-Cohesion: 0.10
-Nodes (18): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, { Link, redirect, usePathname, useRouter }, Locale (+10 more)
+Cohesion: 0.07
+Nodes (24): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, buildLocalePath(), LanguageSwitcher() (+16 more)
 
 ### Community 9 - "app/layout.tsx"
 Cohesion: 0.29
@@ -111,38 +111,42 @@ Nodes (6): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, m
 Cohesion: 0.50
 Nodes (3): mockAuth, mockEnquiryFindMany, mockRedirect
 
+### Community 16 - "(public)/page.tsx"
+Cohesion: 0.17
+Nodes (16): HomePage(), HomePageProps, AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, iconMap, WhyChooseUsSection() (+8 more)
+
+### Community 17 - "actions.test.ts"
+Cohesion: 0.10
+Nodes (16): getNullableString(), getString(), localeFromFormData(), mockFindFirst, mockLogAdminAction, mockRedirect, mockRequireRole, mockRevalidatePath (+8 more)
+
 ### Community 21 - "tailwind"
 Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
-### Community 22 - "Header.tsx"
-Cohesion: 0.27
-Nodes (6): FlashNewsBar(), Locale, mockFindMany, mockGetLocale, getActiveFlashNews(), PublicFlashNewsItem
-
 ### Community 24 - "(public)/page.tsx"
-Cohesion: 0.16
-Nodes (17): HomePage(), HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once, Button(), buttonVariants, Input(), Label(), SelectContent() (+9 more)
+Cohesion: 0.19
+Nodes (16): HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once, Button(), buttonVariants, Input(), Label(), SelectContent(), SelectGroup() (+8 more)
 
 ### Community 33 - "audit.test.ts"
-Cohesion: 0.17
-Nodes (22): AuditLogPage(), AuditLogPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews() (+14 more)
+Cohesion: 0.15
+Nodes (24): AuditLogPage(), AuditLogPageProps, EnquiriesPage(), EnquiriesPageProps, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews() (+16 more)
 
 ## Knowledge Gaps
-- **153 isolated node(s):** `name`, `version`, `private`, `dev`, `build` (+148 more)
+- **167 isolated node(s):** `mockRequireRole`, `mockRedirect`, `mockFindFirst`, `mockSiteSettingsUpdate`, `mockWhyCardUpdate` (+162 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `siteConfig` connect `smoke.test.tsx` to `(public)/page.tsx`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `private` to the rest of the system?**
-  _153 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+- **What connects `mockRequireRole`, `mockRedirect`, `mockFindFirst` to the rest of the system?**
+  _167 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**

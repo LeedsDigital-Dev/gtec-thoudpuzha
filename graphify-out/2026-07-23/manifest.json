@@ -15,7 +15,7 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1784759671.4366684,
+    "mtime": 1784760329.8193474,
     "ast_hash": "d36fc7ceb453e1726568dadd38136589",
     "semantic_hash": ""
   },
@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/smoke.test.tsx": {
-    "mtime": 1784759501.7073197,
-    "ast_hash": "b0c426fe1268005c8006a1bc3fa9b509",
+    "mtime": 1784760972.5524783,
+    "ast_hash": "aa70d5f4707cbf0ff19aa996363891b1",
     "semantic_hash": ""
   },
   "src/components/ui/button.tsx": {
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
-    "mtime": 1784759501.7073197,
-    "ast_hash": "cd0b0a2f6842294404b7f02b89a932c6",
+    "mtime": 1784760965.6235552,
+    "ast_hash": "5db3748c2ccd618e42ed15fdc5fca967",
     "semantic_hash": ""
   },
   "src/app/[locale]/account-setup-incomplete/page.tsx": {
@@ -315,7 +315,7 @@
     "semantic_hash": ""
   },
   "src/components/shared/EnquiryForm.tsx": {
-    "mtime": 1784760235.6463823,
+    "mtime": 1784760329.8203473,
     "ast_hash": "8bb2fca5192802190d848c19abac65de",
     "semantic_hash": ""
   },
@@ -340,38 +340,93 @@
     "semantic_hash": ""
   },
   "prisma/migrations/20260722223515_add_enquiry/migration.sql": {
-    "mtime": 1784759715.6955085,
+    "mtime": 1784760329.8203473,
     "ast_hash": "0fde5f54703d8c12a4478c2019d43d19",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/enquiries/page.test.tsx": {
-    "mtime": 1784759892.1569576,
+    "mtime": 1784760329.8203473,
     "ast_hash": "99ce8b5ad238f438e581b0c4e02d25ac",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/enquiries/page.tsx": {
-    "mtime": 1784759830.6751833,
+    "mtime": 1784760329.8203473,
     "ast_hash": "5df7db1977f5fd72459df29ee4c76937",
     "semantic_hash": ""
   },
   "src/emails/EnquiryNotification.tsx": {
-    "mtime": 1784759762.6344583,
+    "mtime": 1784760329.8203473,
     "ast_hash": "9b0677311ca5fba84d91e9ade7432c28",
     "semantic_hash": ""
   },
   "src/lib/email.ts": {
-    "mtime": 1784759762.629459,
+    "mtime": 1784760329.8203473,
     "ast_hash": "08da9f1449adaf079f21537ab952038f",
     "semantic_hash": ""
   },
   "src/lib/enquiry.test.ts": {
-    "mtime": 1784760155.0704072,
+    "mtime": 1784760329.8203473,
     "ast_hash": "60ed814a8964d7b22aa60183ed15c688",
     "semantic_hash": ""
   },
   "src/lib/enquiry.ts": {
-    "mtime": 1784759762.6364582,
+    "mtime": 1784760329.8203473,
     "ast_hash": "c43bf494f5b01000d7c757b558fbcb4e",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260722224912_add_site_settings/migration.sql": {
+    "mtime": 1784760590.4640808,
+    "ast_hash": "9a1e5a078a9f726a54348125fbea5d6e",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/settings/site/actions.test.ts": {
+    "mtime": 1784760783.5768611,
+    "ast_hash": "bf83d683989ce3eaef9ca9cd0bc8bc79",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/settings/site/actions.ts": {
+    "mtime": 1784760703.285086,
+    "ast_hash": "5e91c8d4d4459fbefb111a20250619a6",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/settings/site/page.test.tsx": {
+    "mtime": 1784760766.3731115,
+    "ast_hash": "661f378d8dd30d9045c5fc6107716744",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/settings/site/page.tsx": {
+    "mtime": 1784760727.499701,
+    "ast_hash": "694fc7bd82e08f8c89844739b9423977",
+    "semantic_hash": ""
+  },
+  "src/components/shared/AboutSection.tsx": {
+    "mtime": 1784760844.0190296,
+    "ast_hash": "e34185343dee4a702aefa4acff093820",
+    "semantic_hash": ""
+  },
+  "src/components/shared/AtAGlanceSection.test.tsx": {
+    "mtime": 1784760873.7836456,
+    "ast_hash": "82737135307438efd7e473d390470947",
+    "semantic_hash": ""
+  },
+  "src/components/shared/AtAGlanceSection.tsx": {
+    "mtime": 1784760835.392144,
+    "ast_hash": "a257309b04f77ac5573eb508bc922e8f",
+    "semantic_hash": ""
+  },
+  "src/components/shared/WhyChooseUsSection.test.tsx": {
+    "mtime": 1784760982.4343696,
+    "ast_hash": "ffcf078ed35a5ba433d70b4b3c099c1c",
+    "semantic_hash": ""
+  },
+  "src/components/shared/WhyChooseUsSection.tsx": {
+    "mtime": 1784760855.9028745,
+    "ast_hash": "818074d4188fd7abe73e860bf1a6d5b9",
+    "semantic_hash": ""
+  },
+  "src/lib/site-settings.ts": {
+    "mtime": 1784760637.7622018,
+    "ast_hash": "b90a69dd14594e7e499c0a83ce66ed02",
     "semantic_hash": ""
   }
 }

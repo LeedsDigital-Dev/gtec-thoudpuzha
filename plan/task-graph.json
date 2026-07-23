@@ -162,7 +162,7 @@
       "track": "Frontend",
       "priority": "Should Have",
       "points": 5,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s00-t3",
         "s00-t5"

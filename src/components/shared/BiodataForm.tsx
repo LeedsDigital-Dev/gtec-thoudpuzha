@@ -442,6 +442,12 @@ export function BiodataForm({
               information will be shared with employers who express interest.
               You can change this setting at any time.
             </p>
+            <p className="mt-2 text-xs">
+              Your data is handled in accordance with our{" "}
+              <a href="/privacy" className="underline hover:no-underline">
+                Privacy Policy
+              </a>.
+            </p>
           </div>
         )}
       </section>

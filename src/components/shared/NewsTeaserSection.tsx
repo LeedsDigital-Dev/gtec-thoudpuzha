@@ -15,6 +15,9 @@ interface NewsTeaserSectionProps {
     newsItems: TeaserItem[];
     nextEvent: TeaserItem | null;
   };
+  heading: string;
+  viewAll: string;
+  upcomingEventLabel: string;
 }
 
 function formatDate(date: Date | null): string {
@@ -26,7 +29,7 @@ function formatDate(date: Date | null): string {
   });
 }
 
-export function NewsTeaserSection({ teaser }: NewsTeaserSectionProps) {
+export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel }: NewsTeaserSectionProps) {
   const { newsItems, nextEvent } = teaser;
 
   if (newsItems.length === 0 && !nextEvent) return null;
@@ -35,12 +38,12 @@ export function NewsTeaserSection({ teaser }: NewsTeaserSectionProps) {
     <section className="bg-muted/30 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-bold">News &amp; Upcoming Events</h2>
+          <h2 className="text-2xl font-bold">{heading}</h2>
           <Link
             href="/news"
             className="text-sm font-medium text-primary underline hover:no-underline"
           >
-            View all news &rarr;
+            {viewAll}
           </Link>
         </div>
 
@@ -66,7 +69,7 @@ export function NewsTeaserSection({ teaser }: NewsTeaserSectionProps) {
               href={`/news/${nextEvent.slug}`}
               className="block rounded border border-border bg-background p-4 transition-shadow hover:shadow-md"
             >
-              <p className="text-xs font-semibold text-primary">Upcoming Event</p>
+              <p className="text-xs font-semibold text-primary">{upcomingEventLabel}</p>
               <h3 className="mt-1 line-clamp-2 text-sm font-medium">
                 {nextEvent.titleEn}
               </h3>

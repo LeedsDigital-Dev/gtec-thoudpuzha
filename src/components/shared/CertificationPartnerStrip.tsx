@@ -1,7 +1,7 @@
 import { getCertificationPartners } from "@/lib/certification-partners";
 import { getMediaUrl } from "@/lib/media";
 
-export async function CertificationPartnerStrip() {
+export async function CertificationPartnerStrip({ heading }: { heading: string }) {
   const partners = await getCertificationPartners();
 
   if (partners.length === 0) return null;
@@ -13,7 +13,7 @@ export async function CertificationPartnerStrip() {
     >
       <div className="mx-auto max-w-6xl px-4">
         <h2 className="mb-8 text-center text-lg font-semibold text-muted-foreground">
-          Our Certification Partners
+          {heading}
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-8">
           {partners.map((partner) => {

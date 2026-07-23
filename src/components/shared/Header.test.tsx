@@ -20,15 +20,7 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-vi.mock("next-intl", async () => {
-  const actual = await vi.importActual<typeof import("next-intl")>(
-    "next-intl",
-  );
-  return {
-    ...actual,
-    useLocale: vi.fn(() => "en"),
-  };
-});
+// useLocale and useTranslations are mocked globally in __tests__/setup.ts
 
 vi.mock("@/components/shared/FlashNewsBar", () => ({
   FlashNewsBar: () => null,

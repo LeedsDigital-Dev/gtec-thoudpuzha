@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { siteConfig } from "@/lib/site";
 import type { PublicCourse } from "@/lib/courses";
@@ -47,6 +48,7 @@ const socialIcons: Record<
 };
 
 export function ContactSection({ settings, courses }: ContactSectionProps) {
+  const t = useTranslations("contact");
   const [showEnquiry, setShowEnquiry] = useState(false);
 
   const socialLinks = [
@@ -59,7 +61,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
   return (
     <section className="bg-muted/40 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-10 text-center text-3xl font-bold">Contact Us</h2>
+        <h2 className="mb-10 text-center text-3xl font-bold">{t("heading")}</h2>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Map */}
@@ -92,7 +94,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
 
             <div className="space-y-2 text-sm">
               <p>
-                <span className="font-medium">Phone:</span>{" "}
+                <span className="font-medium">{t("phone")}</span>{" "}
                 <a
                   href={`tel:${siteConfig.phoneNumber}`}
                   className="text-primary hover:underline"
@@ -101,7 +103,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                 </a>
               </p>
               <p>
-                <span className="font-medium">WhatsApp:</span>{" "}
+                <span className="font-medium">{t("whatsapp")}</span>{" "}
                 <a
                   href={`https://wa.me/${siteConfig.whatsappNumber}`}
                   className="text-primary hover:underline"

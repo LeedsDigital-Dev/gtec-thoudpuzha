@@ -117,7 +117,7 @@ describe("CertificationPartnerStrip rendering", () => {
     const { CertificationPartnerStrip } = await import(
       "@/components/shared/CertificationPartnerStrip"
     );
-    const element = await CertificationPartnerStrip();
+    const element = await CertificationPartnerStrip({ heading: "Our Certification Partners" });
     const html = renderToString(element);
 
     const adobeIdx = html.indexOf("Adobe");
@@ -135,7 +135,7 @@ describe("CertificationPartnerStrip rendering", () => {
     const { CertificationPartnerStrip } = await import(
       "@/components/shared/CertificationPartnerStrip"
     );
-    const element = await CertificationPartnerStrip();
+    const element = await CertificationPartnerStrip({ heading: "Our Certification Partners" });
     const html = renderToString(element);
 
     // No <a> tag for SAP (no link)

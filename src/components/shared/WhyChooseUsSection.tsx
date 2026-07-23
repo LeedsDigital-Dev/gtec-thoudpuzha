@@ -14,9 +14,10 @@ const iconMap: Record<WhyCardIcon, React.ComponentType<{ className?: string }>> 
 interface WhyChooseUsSectionProps {
   settings: SiteSettingsWithCards;
   locale: Locale;
+  heading: string;
 }
 
-export function WhyChooseUsSection({ settings, locale }: WhyChooseUsSectionProps) {
+export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSectionProps) {
   const cards = getLocalizedWhyCards(settings, locale);
 
   return (
@@ -26,7 +27,7 @@ export function WhyChooseUsSection({ settings, locale }: WhyChooseUsSectionProps
           id="why-choose-us-heading"
           className="text-center text-3xl font-bold tracking-tight"
         >
-          Why Choose Us
+          {heading}
         </h2>
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => {

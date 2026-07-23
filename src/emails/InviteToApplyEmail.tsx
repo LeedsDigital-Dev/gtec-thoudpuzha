@@ -33,11 +33,11 @@ export function InviteToApplyEmail({
     <Html>
       <Head />
       <Preview>
-        You've been invited to apply for {jobTitle} at {companyName}
+        You&rsquo;ve been invited to apply for {jobTitle} at {companyName}
       </Preview>
       <Body style={{ fontFamily: "sans-serif", padding: "20px" }}>
         <Container>
-          <Heading>You've Been Invited to Apply!</Heading>
+          <Heading>You&rsquo;ve Been Invited to Apply!</Heading>
           <Section>
             <Text>{greeting},</Text>
             <Text>

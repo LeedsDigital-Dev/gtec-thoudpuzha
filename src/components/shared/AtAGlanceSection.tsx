@@ -2,9 +2,10 @@ import { getAtAGlanceStats, type SiteSettingsWithCards } from "@/lib/site-settin
 
 interface AtAGlanceSectionProps {
   settings: SiteSettingsWithCards;
+  heading: string;
 }
 
-export function AtAGlanceSection({ settings }: AtAGlanceSectionProps) {
+export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
   const stats = getAtAGlanceStats(settings);
 
   return (
@@ -14,7 +15,7 @@ export function AtAGlanceSection({ settings }: AtAGlanceSectionProps) {
           id="at-a-glance-heading"
           className="text-center text-3xl font-bold tracking-tight"
         >
-          G-TEC at a Glance
+          {heading}
         </h2>
         <dl className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat) => (

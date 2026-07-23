@@ -20,7 +20,7 @@ vi.mock("next/image", () => ({
   },
 }));
 
-function makeCategory(itemsCount: number) {
+function makeProps(itemsCount: number) {
   const items = Array.from({ length: itemsCount }, (_, i) => ({
     id: `pi${i + 1}`,
     mediaType: "IMAGE" as const,
@@ -30,13 +30,21 @@ function makeCategory(itemsCount: number) {
     sortOrder: i,
   }));
 
-  return { slug: "placement-support", items };
+  return {
+    data: { slug: "placement-support", items },
+    heading: "Placement & Support",
+    viewFullGallery: "View full gallery →",
+    ctaHeading: "Ready to take the next step?",
+    ctaText: "Explore current job openings or let employers find you.",
+    viewVacancies: "View current vacancies →",
+    hiringCta: "Are you hiring? Post a vacancy →",
+  };
 }
 
 describe("PlacementSupportSection", () => {
   test("1. renders items from the correct category only, not items from other categories", () => {
-    const data = makeCategory(3);
-    const html = renderToString(<PlacementSupportSection data={data} />);
+    const props = makeProps(3);
+    const html = renderToString(<PlacementSupportSection {...props} />);
 
     expect(html).toContain("Placement 1");
     expect(html).toContain("Placement 2");
@@ -46,8 +54,8 @@ describe("PlacementSupportSection", () => {
 
   test("2. limits to the configured item count even if the category has more items", () => {
     // Even with more items in the data, the grid only renders what's passed
-    const data = makeCategory(6);
-    const html = renderToString(<PlacementSupportSection data={data} />);
+    const props = makeProps(6);
+    const html = renderToString(<PlacementSupportSection {...props} />);
 
     expect(html).toContain("Placement 1");
     expect(html).toContain("Placement 6");
@@ -55,15 +63,15 @@ describe("PlacementSupportSection", () => {
   });
 
   test("3. 'View full gallery' link deep-links to /gallery pre-filtered to Placement category", () => {
-    const data = makeCategory(3);
-    const html = renderToString(<PlacementSupportSection data={data} />);
+    const props = makeProps(3);
+    const html = renderToString(<PlacementSupportSection {...props} />);
 
     expect(html).toContain('href="/gallery?category=placement-support"');
   });
 
   test("4. CTA banner links point to correct portal routes", () => {
-    const data = makeCategory(3);
-    const html = renderToString(<PlacementSupportSection data={data} />);
+    const props = makeProps(3);
+    const html = renderToString(<PlacementSupportSection {...props} />);
 
     expect(html).toContain('href="/portal/jobs"');
     expect(html).toContain('href="/portal/employer/register"');

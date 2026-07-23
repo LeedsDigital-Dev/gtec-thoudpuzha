@@ -4,9 +4,11 @@ import { getLocalizedAbout, type Locale, type SiteSettingsWithCards } from "@/li
 interface AboutSectionProps {
   settings: SiteSettingsWithCards;
   locale: Locale;
+  heading: string;
+  photoPlaceholder: string;
 }
 
-export function AboutSection({ settings, locale }: AboutSectionProps) {
+export async function AboutSection({ settings, locale, heading, photoPlaceholder }: AboutSectionProps) {
   const about = getLocalizedAbout(settings, locale);
 
   return (
@@ -16,7 +18,7 @@ export function AboutSection({ settings, locale }: AboutSectionProps) {
           id="about-heading"
           className="text-center text-3xl font-bold tracking-tight"
         >
-          About G-TEC Thodupuzha
+          {heading}
         </h2>
         <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
           {about.photoUrl ? (
@@ -31,7 +33,7 @@ export function AboutSection({ settings, locale }: AboutSectionProps) {
             </div>
           ) : (
             <div className="flex aspect-video items-center justify-center rounded-xl bg-muted text-muted-foreground">
-              Centre photo placeholder
+              {photoPlaceholder}
             </div>
           )}
           <p className="text-lg leading-relaxed text-muted-foreground">

@@ -1,24 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { siteConfig } from "@/lib/site";
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Courses", href: "/courses" },
-  { label: "Placement", href: "/placement" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Resources", href: "/portal/student" },
-  { label: "Contact", href: "/contact" },
+const navItems: { labelKey: string; href: string }[] = [
+  { labelKey: "home", href: "/" },
+  { labelKey: "about", href: "/about" },
+  { labelKey: "courses", href: "/courses" },
+  { labelKey: "placement", href: "/placement" },
+  { labelKey: "gallery", href: "/gallery" },
+  { labelKey: "resources", href: "/portal/student" },
+  { labelKey: "contact", href: "/contact" },
 ];
 
 export function Header() {
   const locale = useLocale();
+  const t = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const localeHref = (path: string) => {
@@ -38,7 +39,7 @@ export function Header() {
             G
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold leading-tight">G-TEC</span>
+            <span className="text-lg font-bold leading-tight">{t("brandName")}</span>
             <span className="text-xs font-semibold tracking-wide text-muted-foreground">
               {siteConfig.centreName}
             </span>
@@ -55,7 +56,7 @@ export function Header() {
               href={localeHref(item.href)}
               className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
             >
-              {item.label}
+              {t(item.labelKey)}
             </Link>
           ))}
         </nav>
@@ -65,35 +66,35 @@ export function Header() {
             href={`https://wa.me/${siteConfig.whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="WhatsApp"
+            aria-label={t("whatsapp")}
             className="inline-flex items-center gap-1.5 rounded-lg bg-green-600 px-2 py-2 text-sm font-medium text-white hover:bg-green-700 md:px-3"
           >
             <MessageCircle className="size-4" />
-            <span className="hidden md:inline">WhatsApp</span>
+            <span className="hidden md:inline">{t("whatsapp")}</span>
           </a>
           <a
             href={`tel:${siteConfig.phoneNumber}`}
-            aria-label="Call Now"
+            aria-label={t("callNow")}
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-2 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 md:px-3"
           >
             <Phone className="size-4" />
-            <span className="hidden md:inline">Call Now</span>
+            <span className="hidden md:inline">{t("callNow")}</span>
           </a>
           <Link
             href={localeHref("/#enquiry")}
-            aria-label="Apply Now"
+            aria-label={t("applyNow")}
             className="inline-flex items-center rounded-lg bg-secondary px-2 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 md:px-3"
           >
-            <span className="hidden md:inline">Apply Now</span>
-            <span className="md:hidden">Apply</span>
+            <span className="hidden md:inline">{t("applyNow")}</span>
+            <span className="md:hidden">{t("apply")}</span>
           </Link>
           <Link
             href={localeHref("/sign-in")}
-            aria-label="Login"
+            aria-label={t("login")}
             className="inline-flex items-center rounded-lg border border-border px-2 py-2 text-sm font-medium hover:bg-muted md:px-3"
           >
-            <span className="hidden md:inline">Login</span>
-            <span className="md:hidden">Log in</span>
+            <span className="hidden md:inline">{t("login")}</span>
+            <span className="md:hidden">{t("logIn")}</span>
           </Link>
           <div className="hidden md:block">
             <LanguageSwitcher />
@@ -102,7 +103,7 @@ export function Header() {
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
             className="inline-flex lg:hidden items-center justify-center rounded-lg p-2 text-foreground hover:bg-muted"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? t("closeMenu") : t("openMenu")}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav"
           >
@@ -129,7 +130,7 @@ export function Header() {
                   className="block text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
               </li>
             ))}

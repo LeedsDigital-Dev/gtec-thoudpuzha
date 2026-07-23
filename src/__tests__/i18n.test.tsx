@@ -5,6 +5,7 @@ import { NextIntlClientProvider, useTranslations } from "next-intl";
 import type { Mock } from "vitest";
 import middleware from "@/middleware";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
+import enMessages from "@/lib/i18n/en.json";
 import mlMessages from "@/lib/i18n/ml.json";
 
 const mockAuthResult = vi.hoisted(() => ({
@@ -47,14 +48,6 @@ vi.mock("@clerk/nextjs/server", () => ({
   createRouteMatcher: mockCreateRouteMatcher,
   clerkMiddleware: mockClerkMiddleware,
 }));
-
-vi.mock("next-intl", async () => {
-  const actual = await vi.importActual<typeof import("next-intl")>("next-intl");
-  return {
-    ...actual,
-    useLocale: vi.fn(),
-  };
-});
 
 vi.mock("@/lib/i18n/navigation", () => ({
   usePathname: vi.fn(),
@@ -111,20 +104,47 @@ describe("i18n auth middleware regression", () => {
   });
 });
 
-describe("Malayalam dictionary rendering", () => {
-  test("2. renders a known Malayalam placeholder string from ml.json", () => {
-    function TestMessage() {
-      const t = useTranslations("common");
-      return <span>{t("loading")}</span>;
+describe("Dictionary content integrity", () => {
+  function checkValidValues(obj: Record<string, unknown>, path: string) {
+    for (const [key, value] of Object.entries(obj)) {
+      if (typeof value === "string") {
+        expect(value, `${path}.${key} is empty`).not.toBe("");
+        expect(value, `${path}.${key} equals its key name`).not.toBe(key);
+      } else if (typeof value === "object" && value !== null) {
+        checkValidValues(value as Record<string, unknown>, `${path}.${key}`);
+      }
     }
+  }
 
-    const html = renderToString(
-      <NextIntlClientProvider locale="ml" messages={mlMessages}>
-        <TestMessage />
-      </NextIntlClientProvider>,
-    );
+  test("EN dictionary has no empty values or literal key references", () => {
+    checkValidValues(enMessages as unknown as Record<string, unknown>, "en");
+  });
 
-    expect(html).toContain("ലോഡ് ചെയ്യുന്നു");
+  test("ML dictionary has no empty values or literal key references", () => {
+    checkValidValues(mlMessages as unknown as Record<string, unknown>, "ml");
+  });
+
+  test("EN and ML dictionaries have the same top-level keys", () => {
+    const enKeys = new Set(Object.keys(enMessages));
+    const mlKeys = new Set(Object.keys(mlMessages));
+    const missingInMl = [...enKeys].filter((k) => !mlKeys.has(k));
+    const extraInMl = [...mlKeys].filter((k) => !enKeys.has(k));
+    expect(missingInMl).toEqual([]);
+    expect(extraInMl).toEqual([]);
+  });
+
+  test("ML dictionary covers sample user-facing strings with real translations", () => {
+    expect(mlMessages.nav?.home).toBe("ഹോം");
+    expect(mlMessages.hero?.headline).toContain("കരിയർ");
+    expect(mlMessages.enquiry?.submit).toContain("അന്വേഷണം");
+    expect(mlMessages.biodata?.save).toContain("ബയോഡാറ്റ");
+    expect(mlMessages.footer?.allRightsReserved).toContain("അവകാശങ്ങളും");
+  });
+
+  test("EN sample strings are English text", () => {
+    expect(enMessages.hero?.headline).toContain("Career");
+    expect(enMessages.enquiry?.heading).toContain("Apply");
+    expect(enMessages.biodata?.save).toContain("Biodata");
   });
 });
 

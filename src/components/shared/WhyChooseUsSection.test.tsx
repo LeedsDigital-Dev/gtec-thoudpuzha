@@ -57,8 +57,8 @@ function createSettings(titleEn: string) {
 }
 
 describe("WhyChooseUsSection", () => {
-  test("renders the Why Choose Us card title from SiteSettings", () => {
-    const element = WhyChooseUsSection({
+  test("renders the Why Choose Us card title from SiteSettings", async () => {
+    const element = await WhyChooseUsSection({
       settings: createSettings("ISO-Authorized Curriculum"),
       locale: "en",
     });
@@ -67,8 +67,8 @@ describe("WhyChooseUsSection", () => {
     expect(html).toContain("ISO-Authorized Curriculum");
   });
 
-  test("reflects an updated card title from SiteSettings", () => {
-    const element = WhyChooseUsSection({
+  test("reflects an updated card title from SiteSettings", async () => {
+    const element = await WhyChooseUsSection({
       settings: createSettings("Updated Card Title"),
       locale: "en",
     });

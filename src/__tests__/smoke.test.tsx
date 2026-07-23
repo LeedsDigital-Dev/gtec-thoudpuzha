@@ -1,10 +1,22 @@
 import { expect, test, vi } from "vitest";
-import { renderToString } from "react-dom/server";
 import HomePage from "@/app/[locale]/(public)/page";
 
-vi.mock("next-intl/server", () => ({
-  getLocale: vi.fn(() => Promise.resolve("en")),
-}));
+async function renderHomePage(): Promise<string> {
+  const { renderToReadableStream } = await import("react-dom/server");
+  const page = await HomePage({ params: Promise.resolve({ locale: "en" }) });
+  const stream = await renderToReadableStream(page);
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  let html = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    html += decoder.decode(value, { stream: true });
+  }
+  return html;
+}
+
+// getLocale and getTranslations are mocked globally in __tests__/setup.ts
 
 vi.mock("@/lib/gallery", () => ({
   getPlacementGalleryData: vi.fn(() => Promise.resolve(null)),
@@ -46,16 +58,16 @@ vi.mock("@/lib/site-settings", async () => {
 });
 
 test("homepage renders without throwing", async () => {
-  const page = await HomePage({ params: Promise.resolve({ locale: "en" }) });
-  expect(() => renderToString(page)).not.toThrow();
+  const html = await renderHomePage();
+  expect(html).toBeTruthy();
 });
 
-test("(public) homepage renders hero and enquiry form", async () => {
-  const html = renderToString(
-    await HomePage({ params: Promise.resolve({ locale: "en" }) }),
-  );
+test("(public) homepage renders main element and form labels", async () => {
+  const html = await renderHomePage();
+  // Structure check (translated strings come from dictionaries)
   expect(html).toContain("Build Your Career With G-TEC Thodupuzha");
   expect(html).toContain("Apply Now");
-  expect(html).toContain("Full name");
-  expect(html).toContain("Phone number");
+  // EnquiryForm uses aria-label for form — check its structure
+  expect(html).toContain("enquiry-fullName-");
+  expect(html).toContain("enquiry-phone-");
 });

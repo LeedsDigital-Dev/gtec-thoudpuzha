@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,6 +31,7 @@ function sanitizePhone(value: string) {
 }
 
 export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
+  const t = useTranslations("enquiry");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [course, setCourse] = useState("");
@@ -49,22 +51,22 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
     const nextErrors: FormErrors = {};
 
     if (!fullName.trim()) {
-      nextErrors.fullName = "Full name is required.";
+      nextErrors.fullName = t("validationNameRequired");
     }
 
     if (!phone) {
-      nextErrors.phone = "Phone number is required.";
+      nextErrors.phone = t("validationPhoneRequired");
     } else if (!indianMobileRegex().test(phone)) {
-      nextErrors.phone = "Enter a valid 10-digit Indian mobile number.";
+      nextErrors.phone = t("validationPhoneInvalid");
     }
 
     if (!course) {
-      nextErrors.course = "Please select a course.";
+      nextErrors.course = t("validationCourseRequired");
     }
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
-  }, [fullName, phone, course]);
+  }, [fullName, phone, course, t]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -107,14 +109,14 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       noValidate
     >
       <div>
-        <h2 className="text-xl font-semibold">Apply Now</h2>
+        <h2 className="text-xl font-semibold">{t("heading")}</h2>
         <p className="text-sm text-muted-foreground">
-          Fill in your details and we will get back to you shortly.
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-fullName-${source}`}>Full name</Label>
+        <Label htmlFor={`enquiry-fullName-${source}`}>{t("fullName")}</Label>
         <Input
           id={`enquiry-fullName-${source}`}
           type="text"
@@ -122,7 +124,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           onChange={(e) => setFullName(e.target.value)}
           aria-invalid={errors.fullName ? "true" : "false"}
           aria-describedby={errors.fullName ? `enquiry-fullName-${source}-error` : undefined}
-          placeholder="John Doe"
+          placeholder={t("fullNamePlaceholder")}
           required
         />
         {errors.fullName && (
@@ -133,7 +135,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-phone-${source}`}>Phone number</Label>
+        <Label htmlFor={`enquiry-phone-${source}`}>{t("phoneNumber")}</Label>
         <Input
           id={`enquiry-phone-${source}`}
           type="tel"
@@ -142,7 +144,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           onChange={(e) => setPhone(sanitizePhone(e.target.value))}
           aria-invalid={errors.phone ? "true" : "false"}
           aria-describedby={errors.phone ? `enquiry-phone-${source}-error` : undefined}
-          placeholder="9876543210"
+          placeholder={t("phonePlaceholder")}
           required
         />
         {errors.phone && (
@@ -153,7 +155,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-course-${source}`}>Course interested in</Label>
+        <Label htmlFor={`enquiry-course-${source}`}>{t("courseInterested")}</Label>
         <CourseSelect
           courses={courses}
           mode="single"
@@ -165,30 +167,30 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-message-${source}`}>Message / query</Label>
+        <Label htmlFor={`enquiry-message-${source}`}>{t("messageQuery")}</Label>
         <textarea
           id={`enquiry-message-${source}`}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
-          placeholder="Tell us what you are looking for..."
+          placeholder={t("messagePlaceholder")}
           className="w-full resize-none rounded-lg border border-input bg-transparent px-2.5 py-1.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         />
       </div>
 
       {status === "success" && (
         <div className="rounded-lg bg-green-100 p-3 text-sm text-green-800 dark:bg-green-900 dark:text-green-100">
-          Thank you! We have received your enquiry and will contact you soon.
+          {t("success")}
         </div>
       )}
       {status === "error" && (
         <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
-          Something went wrong. Please try again.
+          {t("error")}
         </div>
       )}
 
       <Button type="submit" disabled={status === "submitting"} className="w-full">
-        {status === "submitting" ? "Submitting..." : "Submit Enquiry"}
+        {status === "submitting" ? t("submitting") : t("submit")}
       </Button>
     </form>
   );

@@ -1,31 +1,34 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/lib/site";
 
-const quickLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Courses", href: "/courses" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Placement", href: "/placement" },
-  { label: "News & Events", href: "/news" },
-  { label: "Contact", href: "/contact" },
+const quickLinks: { labelKey: string; href: string }[] = [
+  { labelKey: "home", href: "/" },
+  { labelKey: "about", href: "/about" },
+  { labelKey: "courses", href: "/courses" },
+  { labelKey: "gallery", href: "/gallery" },
+  { labelKey: "placement", href: "/placement" },
+  { labelKey: "news", href: "/news" },
+  { labelKey: "contact", href: "/contact" },
 ];
 
-const portalLinks = [
-  { label: "Student Login", href: "/portal/sign-in" },
-  { label: "Academic Resources", href: "/portal/student" },
-  { label: "Job Vacancies", href: "/portal/jobs" },
-  { label: "My Biodata", href: "/portal/biodata" },
-  { label: "Employer Login", href: "/portal/sign-in" },
-  { label: "Post a Vacancy", href: "/portal/employer/post-vacancy" },
+const portalLinks: { labelKey: string; href: string; external?: boolean }[] = [
+  { labelKey: "studentLogin", href: "/portal/sign-in" },
+  { labelKey: "academicResources", href: "/portal/student" },
+  { labelKey: "jobVacancies", href: "/portal/jobs" },
+  { labelKey: "myBiodata", href: "/portal/biodata" },
+  { labelKey: "employerLogin", href: "/portal/sign-in" },
+  { labelKey: "postVacancy", href: "/portal/employer/post-vacancy" },
   {
-    label: "Verify Certificate",
+    labelKey: "verifyCertificate",
     href: "https://gtecadmin.com",
     external: true,
   },
 ];
 
-export function Footer({ address }: { address?: string | null }) {
+export async function Footer({ address }: { address?: string | null }) {
+  const t = await getTranslations("footer");
+  const navT = await getTranslations("nav");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -45,7 +48,7 @@ export function Footer({ address }: { address?: string | null }) {
           {/* Quick Links */}
           <div>
             <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Quick Links
+              {t("quickLinks")}
             </h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
@@ -54,7 +57,7 @@ export function Footer({ address }: { address?: string | null }) {
                     href={link.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {link.label}
+                    {navT(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -64,7 +67,7 @@ export function Footer({ address }: { address?: string | null }) {
           {/* Portals */}
           <div>
             <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Portals
+              {t("portals")}
             </h3>
             <ul className="space-y-2">
               {portalLinks.map((link) => {
@@ -78,7 +81,7 @@ export function Footer({ address }: { address?: string | null }) {
                         className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                         data-testid="verify-certificate-link"
                       >
-                        {link.label} ↗
+                        {t(link.labelKey)} ↗
                     </a>
                     </li>
                   );
@@ -89,7 +92,7 @@ export function Footer({ address }: { address?: string | null }) {
                       href={link.href}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </Link>
                   </li>
                 );
@@ -101,8 +104,7 @@ export function Footer({ address }: { address?: string | null }) {
         {/* Copyright */}
         <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
           <p>
-            &copy; {currentYear} G-TEC {siteConfig.centreName}. All rights
-            reserved.
+            &copy; {currentYear} G-TEC {siteConfig.centreName}. {t("allRightsReserved")}
           </p>
         </div>
       </div>

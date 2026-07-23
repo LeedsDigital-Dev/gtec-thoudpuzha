@@ -20,8 +20,8 @@ function createSettings() {
 }
 
 describe("AtAGlanceSection", () => {
-  test("renders the five stats from SiteSettings", () => {
-    const element = AtAGlanceSection({ settings: createSettings() });
+  test("renders the five stats from SiteSettings", async () => {
+    const element = await AtAGlanceSection({ settings: createSettings() });
     const html = renderToString(element);
 
     expect(html).toContain("30+");

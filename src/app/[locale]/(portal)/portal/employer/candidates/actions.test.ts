@@ -286,7 +286,7 @@ describe("inviteToApply", () => {
     expect(mockFindUniqueCandidate).toHaveBeenCalled();
     // No create call on application
     const prismaModule = await import("@/lib/db");
-    expect((prismaModule.prisma as any).application).toBeUndefined();
+    expect((prismaModule.prisma as Record<string, unknown>).application).toBeUndefined();
   });
 
   test("5. Employer can only select from their OWN approved postings", async () => {

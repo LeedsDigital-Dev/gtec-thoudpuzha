@@ -12,8 +12,20 @@ export type PlacementData = {
 
 export function PlacementSupportSection({
   data,
+  heading,
+  viewFullGallery,
+  ctaHeading,
+  ctaText,
+  viewVacancies,
+  hiringCta,
 }: {
   data: PlacementData;
+  heading: string;
+  viewFullGallery: string;
+  ctaHeading: string;
+  ctaText: string;
+  viewVacancies: string;
+  hiringCta: string;
 }) {
   if (!data || data.items.length === 0) return null;
 
@@ -25,13 +37,13 @@ export function PlacementSupportSection({
             id="placement-support-heading"
             className="text-2xl font-bold"
           >
-            Placement &amp; Support
+            {heading}
           </h2>
           <Link
             href={`/gallery?category=${PLACEMENT_SLUG}`}
             className="text-sm font-medium text-primary underline hover:no-underline"
           >
-            View full gallery &rarr;
+            {viewFullGallery}
           </Link>
         </div>
 
@@ -61,24 +73,20 @@ export function PlacementSupportSection({
 
         {/* CTA Banner */}
         <div className="mt-10 rounded-xl bg-primary/10 p-8 text-center">
-          <h3 className="text-xl font-semibold">
-            Ready to take the next step?
-          </h3>
-          <p className="mt-2 text-muted-foreground">
-            Explore current job openings or let employers find you.
-          </p>
+          <h3 className="text-xl font-semibold">{ctaHeading}</h3>
+          <p className="mt-2 text-muted-foreground">{ctaText}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
               href="/portal/jobs"
               className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             >
-              View current vacancies &rarr;
+              {viewVacancies}
             </Link>
             <Link
               href="/portal/employer/register"
               className="inline-flex items-center rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium hover:bg-muted"
             >
-              Are you hiring? Post a vacancy &rarr;
+              {hiringCta}
             </Link>
           </div>
         </div>

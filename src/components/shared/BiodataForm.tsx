@@ -124,7 +124,27 @@ export function BiodataForm({
   const isFirstSave = !profile?.id;
 
   const complete = useMemo(() => {
-    const data = getFormData();
+    const data: BiodataFormData = {
+      fullName: fullName || undefined,
+      dateOfBirth: dateOfBirth || undefined,
+      phone: phone || undefined,
+      email: email || undefined,
+      courseCompletedIds,
+      certificationIds,
+      educationalQualification,
+      yearOfPassing: yearOfPassing ? parseInt(yearOfPassing, 10) : undefined,
+      address: address || undefined,
+      languagesKnown: languagesKnownInput
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+      skillIds,
+      preferredJobLocation: preferredJobLocation || undefined,
+      preferredJobType,
+      careerObjective: careerObjective || undefined,
+      photoUrl: photoUrl || undefined,
+      profileVisible,
+    };
     const profileForCheck: CandidateProfileWithCompletion = {
       id: profile?.id ?? "",
       fullName: data.fullName ?? null,
@@ -163,6 +183,7 @@ export function BiodataForm({
     preferredJobType,
     careerObjective,
     photoUrl,
+    profileVisible,
     isVerifiedStudent,
     profile,
   ]);

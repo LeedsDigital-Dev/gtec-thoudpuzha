@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef as _useRef } from "react";
 import Image from "next/image";
 import type { PublicGalleryCategory } from "@/lib/gallery";
 import { getMediaUrl } from "@/lib/media";

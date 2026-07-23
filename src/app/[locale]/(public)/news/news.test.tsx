@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
-import { renderToString } from "react-dom/server";
+import { renderToString as _renderToString } from "react-dom/server";
 
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockFindFirst = vi.hoisted(() => vi.fn());

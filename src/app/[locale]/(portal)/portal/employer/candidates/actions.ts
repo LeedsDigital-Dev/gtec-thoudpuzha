@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getSearchableCandidates } from "@/lib/biodata-search";
-import { isProfileComplete } from "@/lib/biodata";
+import { isProfileComplete as _isProfileComplete } from "@/lib/biodata";
 import { Role } from "@/lib/auth";
 import type {
   CandidateProfileWithCompletion,

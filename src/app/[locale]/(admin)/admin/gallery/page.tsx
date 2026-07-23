@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import {
   createCategory,
-  updateCategory,
+  updateCategory as _updateCategory,
   deleteCategory,
   moveCategory,
   uploadGalleryImages,

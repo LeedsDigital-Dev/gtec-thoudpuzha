@@ -6,7 +6,7 @@ import { Role } from "@/lib/auth";
 import { getJobDetail } from "@/lib/jobs";
 import { isProfileComplete } from "@/lib/biodata";
 import { getSkillsByIds } from "@/lib/skills";
-import type { JobType } from "@prisma/client";
+import type { JobType as _JobType } from "@prisma/client";
 import { ApplyButton } from "./apply-button";
 
 interface PageProps {

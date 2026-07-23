@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element, jsx-a11y/alt-text */
 import { describe, expect, test, vi } from "vitest";
 import { renderToString } from "react-dom/server";
 import { PlacementSupportSection } from "./PlacementSupportSection";

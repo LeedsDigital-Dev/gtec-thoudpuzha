@@ -136,6 +136,7 @@ export function SkillMultiSelect({
           }}
           placeholder={selectedIds.length === 0 ? "Type to add skills..." : "Add more..."}
           role="combobox"
+          aria-controls="skill-listbox"
           aria-label="Search skills"
           className="min-w-[120px] flex-1 border-none bg-transparent p-0 text-sm outline-none"
           aria-expanded={open}
@@ -145,6 +146,7 @@ export function SkillMultiSelect({
 
       {open && (
         <ul
+          id="skill-listbox"
           role="listbox"
           className="absolute z-50 mt-1 max-h-48 w-full overflow-auto rounded-lg border bg-popover p-1 shadow-md"
         >
@@ -166,6 +168,7 @@ export function SkillMultiSelect({
               <button
                 type="button"
                 role="option"
+                aria-selected={false}
                 onClick={addNew}
                 disabled={adding}
                 className="w-full rounded-md px-2.5 py-1.5 text-left text-sm text-muted-foreground hover:bg-accent"

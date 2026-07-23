@@ -59,7 +59,7 @@ describe("CandidateProfile", () => {
   test("can be created linked to a User, with isVerifiedStudent defaulting to false", async () => {
     const userId = `test-cp-user-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
-    const user = await prisma.user.create({
+    const _user = await prisma.user.create({
       data: { id: userId, role: "STUDENT" },
     });
 

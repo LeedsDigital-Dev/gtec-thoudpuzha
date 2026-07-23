@@ -7,7 +7,7 @@
 // 3. Gallery caption / News body with script-tag-like content is stored without tags.
 // 4. Full negative-permission regression suite — checked by running the full suite.
 
-import { describe, expect, test, vi, beforeEach } from "vitest";
+import { describe, expect, test, beforeEach } from "vitest";
 import { checkRateLimit, resetRateLimiter } from "./rate-limiter";
 import { stripHtml } from "./sanitize";
 

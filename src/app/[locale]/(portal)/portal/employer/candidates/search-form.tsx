@@ -21,7 +21,7 @@ export function CandidateSearchForm({
   candidates: initialCandidates,
   jobPostings,
 }: CandidateSearchFormProps) {
-  const router = useRouter();
+  const _router = useRouter();
   const t = useTranslations("candidateSearch");
   const jt = useTranslations("jobType");
   const qt = useTranslations("qualification");

@@ -42,7 +42,7 @@ test.describe("Post-deploy: production smoke", () => {
 
   test("submit a full Enquiry against production and confirm success", async ({
     page,
-    context,
+    context: _context,
   }) => {
     skipIfNoUrl();
 

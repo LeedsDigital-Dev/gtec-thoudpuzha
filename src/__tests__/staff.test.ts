@@ -268,7 +268,7 @@ describe("staff page", () => {
       "@/app/[locale]/(admin)/admin/staff/page"
     );
 
-    const element = await StaffPage({
+    const _element = await StaffPage({
       params: Promise.resolve({ locale: "en" }),
     });
 

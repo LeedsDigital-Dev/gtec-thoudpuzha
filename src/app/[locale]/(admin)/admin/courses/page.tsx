@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import {
   createCategory,
-  updateCategory,
+  updateCategory as _updateCategory,
   deleteCategory,
   moveCategory,
   createCourse,
@@ -17,7 +17,7 @@ interface CoursesPageProps {
   params: Promise<{ locale: string }>;
 }
 
-function formatDate(d: Date): string {
+function _formatDate(d: Date): string {
   return d.toISOString().slice(0, 16);
 }
 

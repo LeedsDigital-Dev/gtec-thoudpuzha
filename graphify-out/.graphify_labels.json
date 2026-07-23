@@ -88,10 +88,15 @@
   "86": "mobile-viewport.spec.ts",
   "87": "pdf-download.spec.ts",
   "88": "terms/page.tsx",
+  "89": "gallery.ts",
   "90": "admin/page.test.tsx",
+  "91": "middleware.ts",
+  "92": "NewsTeaserSection.tsx",
   "93": "FlashNewsBar.tsx",
   "94": "scripts",
+  "95": "AtAGlanceSection.tsx",
   "96": "portal/student/page.tsx",
+  "97": "LanguageSwitcher.tsx",
   "98": "middleware.ts",
   "99": "AtAGlanceSection.tsx",
   "100": "accessibility.spec.ts",
@@ -120,6 +125,7 @@
   "123": "jsdom",
   "124": "@playwright/test",
   "125": "tailwindcss",
+  "126": "enquiries/page.tsx",
   "127": "@testing-library/dom",
   "128": "@testing-library/react",
   "129": "@testing-library/user-event",
@@ -134,6 +140,5 @@
   "141": "performance-audit.spec.ts",
   "145": "video-lecture-list.tsx",
   "146": "Findings",
-  "150": "courses/page.test.tsx",
-  "153": "InviteToApplyEmail.tsx"
+  "150": "courses/page.test.tsx"
 }

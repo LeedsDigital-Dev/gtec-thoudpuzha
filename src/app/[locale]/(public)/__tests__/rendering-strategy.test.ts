@@ -21,14 +21,14 @@ describe("Public route rendering strategy audit", () => {
     expect((mod as { revalidate: number }).revalidate).toBe(60);
   });
 
-  test("public layout declares revalidate=60 (checked via file scan)", () => {
+  test("public layout declares revalidate=60 (checked via file scan)", async () => {
     // We check via file read rather than import to avoid transitive import issues
     // with next-intl dependencies in the vitest environment.
     const pattern = /export\s+const\s+revalidate\s*=\s*60/;
     // Can't use import because layout pulls in dependencies that need next/navigation
     // This assertion confirms the export is present in the source.
-    const { existsSync, readFileSync } = require("fs") as typeof import("fs");
-    const { resolve } = require("path") as typeof import("path");
+    const { existsSync, readFileSync } = await import("fs");
+    const { resolve } = await import("path");
     const filePath = resolve(__dirname, "../layout.tsx");
     expect(existsSync(filePath)).toBe(true);
     expect(pattern.test(readFileSync(filePath, "utf-8"))).toBe(true);

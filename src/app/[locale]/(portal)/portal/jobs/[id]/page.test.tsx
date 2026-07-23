@@ -105,7 +105,7 @@ describe("Job detail page", () => {
     });
 
     const mod = await import("./page");
-    const { container } = render(
+    const { container: _container } = render(
       await mod.default({
         params: Promise.resolve({ locale: "en", id: "jp_1" }),
       }),

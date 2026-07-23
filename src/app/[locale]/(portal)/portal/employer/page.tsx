@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
 import { Role } from "@/lib/auth";
-import type { JobPostingStatus } from "@prisma/client";
+import type { JobPostingStatus as _JobPostingStatus } from "@prisma/client";
 
 interface EmployerDashboardPageProps {
   params: Promise<{ locale: string }>;

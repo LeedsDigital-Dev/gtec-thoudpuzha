@@ -17,7 +17,7 @@ export default async function AdminDashboardPage({
     redirect(`/${locale}/forbidden`);
   }
 
-  const { userId, role } = authResult;
+  const { userId: _userId, role } = authResult;
 
   // Check individual permissions
   const canApproveEmployers = (await requirePermission(StaffPermissionKeys.canApproveEmployers)).authorized;

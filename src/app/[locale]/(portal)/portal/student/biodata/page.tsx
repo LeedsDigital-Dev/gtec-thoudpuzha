@@ -13,7 +13,7 @@ export default async function BiodataPage() {
   }
 
   const role = session.sessionClaims?.metadata?.role as Role | undefined;
-  const isStudent = role === Role.STUDENT;
+  const _isStudent = role === Role.STUDENT;
   const isVerifiedStudent = role === Role.STUDENT;
 
   const [profile, courses, skills] = await Promise.all([

@@ -2,7 +2,7 @@
 
 import { describe, expect, test, vi, beforeEach } from "vitest";
 import { renderToString } from "react-dom/server";
-import { createPartner, updatePartner, deletePartner, movePartner } from "./actions";
+import { createPartner as _createPartner, updatePartner as _updatePartner, deletePartner as _deletePartner, movePartner } from "./actions";
 
 /* ─── Hoisted mocks ─── */
 
@@ -57,7 +57,7 @@ function setMockAuth(userId: string, role: string) {
   });
 }
 
-function fakeFile(name: string, type: string): File {
+function _fakeFile(name: string, type: string): File {
   return new File([Buffer.from("fake-image-data")], name, { type });
 }
 

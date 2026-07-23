@@ -16,7 +16,7 @@ vi.mock("@/lib/i18n/navigation", () => ({
 // assert no console errors and no obviously untranslated placeholder strings.
 // ---------------------------------------------------------------------------
 describe("Bilingual route sweep — no untranslated strings", () => {
-  const PUBLIC_PAGES = [
+  const _PUBLIC_PAGES = [
     // public route group
     "src/app/[locale]/(public)/page.tsx",
     "src/app/[locale]/(public)/gallery/page.tsx",
@@ -135,7 +135,7 @@ describe("test 2: LanguageSwitcher preserves dynamic route state", () => {
 // ---------------------------------------------------------------------------
 describe("Test 3: Visual/layout regression — Header + Hero under both locales", () => {
   test("Header renders with translated nav items in EN locale", async () => {
-    const { useLocale, useTranslations } = await import("next-intl");
+    const { useLocale, useTranslations: _useTranslations } = await import("next-intl");
     (useLocale as Mock).mockReturnValue("en");
 
     const { Header } = await import("@/components/shared/Header");
@@ -149,11 +149,11 @@ describe("Test 3: Visual/layout regression — Header + Hero under both locales"
   });
 
   test("Header renders with translated nav items in ML locale", async () => {
-    const { useLocale, useTranslations } = await import("next-intl");
+    const { useLocale, useTranslations: _useTranslations } = await import("next-intl");
     (useLocale as Mock).mockReturnValue("ml");
 
     // Override useTranslations to return Malayalam strings for the Header test
-    const originalUseTranslations = vi.mocked((await import("next-intl")).useTranslations);
+    const _originalUseTranslations = vi.mocked((await import("next-intl")).useTranslations);
     // We just verify the component doesn't crash and still renders structure
     const { Header } = await import("@/components/shared/Header");
     const html = renderToString(<Header />);

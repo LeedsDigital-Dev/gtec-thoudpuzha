@@ -45,7 +45,7 @@ function ApplicantRow({
   applicant: Applicant;
 }) {
   const t = useTranslations("employerApplicants");
-  const [state, action, pending] = useActionState(
+  const [_state, action, pending] = useActionState(
     async (_prev: unknown, formData: FormData) => {
       const newStatus = formData.get("status") as ApplicationStatus;
       await updateApplicationStatus(applicant.id, newStatus);
@@ -63,6 +63,7 @@ function ApplicantRow({
         <div className="flex-1">
           <div className="flex items-center gap-3">
             {applicant.candidateProfile.photoUrl && (
+              /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={applicant.candidateProfile.photoUrl}
                 alt=""

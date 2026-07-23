@@ -2,7 +2,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 import {
   createNewsEvent,
   togglePublishNewsEvent,
-  deleteNewsEvent,
+  deleteNewsEvent as _deleteNewsEvent,
 } from "./actions";
 
 const mockAuth = vi.hoisted(() => vi.fn());

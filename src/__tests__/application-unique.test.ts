@@ -23,7 +23,7 @@ describe("Application DB-level unique constraint", () => {
   test("1. prevents duplicate Application on the same (candidateProfileId, jobPostingId)", async () => {
     // Create a user as EMPLOYER (needed for JobPosting FK)
     const empUserId = `test-unique-emp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-    const employerUser = await prisma.user.create({
+    const _employerUser = await prisma.user.create({
       data: { id: empUserId, role: "EMPLOYER" },
     });
     const employer = await prisma.employerProfile.create({

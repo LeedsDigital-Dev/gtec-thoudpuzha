@@ -1,7 +1,7 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
 import { NextRequest } from "next/server";
 import { renderToString } from "react-dom/server";
-import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { NextIntlClientProvider as _NextIntlClientProvider, useTranslations as _useTranslations } from "next-intl";
 import type { Mock } from "vitest";
 import middleware from "@/middleware";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";

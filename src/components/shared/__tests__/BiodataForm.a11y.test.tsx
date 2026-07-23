@@ -1,4 +1,4 @@
-import { describe, expect, test, vi, beforeAll } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { BiodataForm } from "@/components/shared/BiodataForm";
 import type { PublicCourse } from "@/lib/courses";

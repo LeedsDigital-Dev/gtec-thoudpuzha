@@ -1,4 +1,4 @@
-const ALLOWED_HOSTS = [
+const _ALLOWED_HOSTS = [
   "youtube.com",
   "www.youtube.com",
   "youtu.be",

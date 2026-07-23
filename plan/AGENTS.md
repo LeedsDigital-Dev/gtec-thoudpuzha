@@ -176,3 +176,9 @@ calling `new Client(process.env.X)` directly in a file's top-level code. This cr
 in any test that doesn't set that env var, even if the test never uses the client. Initialize
 lazily instead — inside the function that needs it, or via a getter — so importing the module
 never has a side effect requiring env vars to be present.
+
+## Rule 13 — run a full build before considering a task done
+`npm run test` passing is not sufficient confirmation a task is finished. Run `npm run build`
+as well before committing — Next.js's build step catches real errors (like a sync function in
+a "use server" file) that Vitest never touches, since tests don't exercise the production
+compilation path at all.

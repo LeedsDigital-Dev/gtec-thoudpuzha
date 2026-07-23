@@ -8,11 +8,12 @@ interface Props {
   params: Promise<{ locale: string }>;
 }
 
-const RESOURCE_TYPES = ["NOTE", "ASSIGNMENT", "PAST_PAPER"] as const;
+const RESOURCE_TYPES = ["NOTE", "ASSIGNMENT", "PAST_PAPER", "LECTURE"] as const;
 const TYPE_LABELS: Record<string, string> = {
   NOTE: "Study Notes",
   ASSIGNMENT: "Assignments",
   PAST_PAPER: "Past Papers",
+  LECTURE: "Video Lectures",
 };
 
 export default async function AcademicResourcesPage({ params }: Props) {
@@ -107,6 +108,19 @@ export default async function AcademicResourcesPage({ params }: Props) {
                 placeholder="https://..."
               />
             </div>
+
+            <div className="space-y-1 md:col-span-2">
+              <label htmlFor="ar-embedUrl" className="text-sm font-medium">
+                Video URL (for Video Lectures — YouTube/Vimeo)
+              </label>
+              <input
+                id="ar-embedUrl"
+                name="embedUrl"
+                type="url"
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
           </div>
 
           <Button type="submit">Upload Resource</Button>
@@ -130,7 +144,16 @@ export default async function AcademicResourcesPage({ params }: Props) {
               {resources.map((r) => (
                 <tr key={r.id}>
                   <td className="border border-gray-300 px-3 py-2">
-                    {r.fileUrl ? (
+                    {r.type === "LECTURE" && r.embedUrl ? (
+                      <a
+                        href={r.embedUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline"
+                      >
+                        {r.title}
+                      </a>
+                    ) : r.fileUrl ? (
                       <a
                         href={r.fileUrl}
                         target="_blank"

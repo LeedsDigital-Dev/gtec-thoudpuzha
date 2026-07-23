@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
-import type { ResourceType } from "@prisma/client";
+import { validateVideoUrl } from "@/lib/video";
+import type { Prisma, ResourceType } from "@prisma/client";
 
 function localeFromFormData(formData: FormData): string {
   return (formData.get("locale") as string) || "en";
@@ -21,14 +22,33 @@ export async function uploadResource(formData: FormData) {
   const type = formData.get("type") as ResourceType;
   const title = formData.get("title") as string;
   const fileUrl = (formData.get("fileUrl") as string) || null;
+  const embedUrl = (formData.get("embedUrl") as string) || null;
 
   if (!courseId || !type || !title) {
     throw new Error("courseId, type, and title are required");
   }
 
-  const resource = await prisma.academicResource.create({
-    data: { courseId, type, title, fileUrl },
-  });
+  if (type === "LECTURE") {
+    if (!embedUrl) {
+      throw new Error("A video URL is required for lecture resources.");
+    }
+    const validationError = validateVideoUrl(embedUrl);
+    if (validationError) {
+      throw new Error(validationError);
+    }
+  }
+
+  const data: Prisma.AcademicResourceUncheckedCreateInput = {
+    courseId,
+    type,
+    title,
+    fileUrl,
+  };
+  if (type === "LECTURE") {
+    data.embedUrl = embedUrl;
+  }
+
+  const resource = await prisma.academicResource.create({ data });
 
   await logAdminAction({
     actorUserId: authResult.userId!,

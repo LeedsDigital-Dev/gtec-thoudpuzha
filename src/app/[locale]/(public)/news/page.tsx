@@ -1,0 +1,82 @@
+import Link from "next/link";
+import { getPublishedNews } from "@/lib/news-events";
+
+export const revalidate = 60;
+
+interface NewsPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function NewsPage({ params }: NewsPageProps) {
+  await params;
+  const items = await getPublishedNews();
+  const newsItems = items.filter((i) => i.type === "NEWS");
+  const eventItems = items.filter((i) => i.type === "EVENT");
+
+  function formatDate(date: Date | null): string {
+    if (!date) return "";
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
+  return (
+    <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <h1 className="mb-8 text-3xl font-bold">News &amp; Events</h1>
+
+      {newsItems.length > 0 && (
+        <section className="mb-12">
+          <h2 className="mb-4 text-xl font-semibold">Latest News</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {newsItems.map((item) => (
+              <Link
+                key={item.id}
+                href={`/news/${item.slug}`}
+                className="block rounded border border-border p-4 transition-shadow hover:shadow-md"
+              >
+                <p className="text-xs text-muted-foreground">
+                  {formatDate(item.publishedAt)}
+                </p>
+                <h3 className="mt-1 text-lg font-medium">{item.titleEn}</h3>
+                <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
+                  {item.bodyEn}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {eventItems.length > 0 && (
+        <section>
+          <h2 className="mb-4 text-xl font-semibold">Upcoming Events</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {eventItems.map((item) => (
+              <Link
+                key={item.id}
+                href={`/news/${item.slug}`}
+                className="block rounded border border-border p-4 transition-shadow hover:shadow-md"
+              >
+                <p className="text-xs text-muted-foreground">
+                  {item.eventDate
+                    ? formatDate(item.eventDate)
+                    : formatDate(item.publishedAt)}
+                </p>
+                <h3 className="mt-1 text-lg font-medium">{item.titleEn}</h3>
+                <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
+                  {item.bodyEn}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {items.length === 0 && (
+        <p className="text-muted-foreground">No news or events published yet.</p>
+      )}
+    </main>
+  );
+}

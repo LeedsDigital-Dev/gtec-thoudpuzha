@@ -543,5 +543,35 @@
     "mtime": 1784780083.8227675,
     "ast_hash": "15f9c44928f3915848b05973603c2f05",
     "semantic_hash": ""
+  },
+  "prisma/migrations/20260723041738_add_certification_partner/migration.sql": {
+    "mtime": 1784780405.2790062,
+    "ast_hash": "1a5578eb04830d679b07cb9b3d818a93",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/certification-partners/actions.ts": {
+    "mtime": 1784780405.2790062,
+    "ast_hash": "99781d71c178e1db128b1c6080beafe0",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/certification-partners/cert-partners.test.ts": {
+    "mtime": 1784780405.2790062,
+    "ast_hash": "c77c84e606c473ee79062567ccb531bf",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/certification-partners/page.tsx": {
+    "mtime": 1784780405.2790062,
+    "ast_hash": "32aa3653294ad8af952ec00716f90fac",
+    "semantic_hash": ""
+  },
+  "src/components/shared/CertificationPartnerStrip.tsx": {
+    "mtime": 1784780405.2800062,
+    "ast_hash": "849b29c10e80e1919236f285ab47dd25",
+    "semantic_hash": ""
+  },
+  "src/lib/certification-partners.ts": {
+    "mtime": 1784780405.2800062,
+    "ast_hash": "31ed6bae3bd15cd25573fe464f37156d",
+    "semantic_hash": ""
   }
 }

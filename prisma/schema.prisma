@@ -142,6 +142,30 @@ model SiteSettings {
   updatedAt            DateTime @updatedAt
 }
 
+enum NewsEventType {
+  NEWS
+  EVENT
+}
+
+model NewsEvent {
+  id            String         @id @default(cuid())
+  type          NewsEventType
+  titleEn       String
+  titleMl       String?
+  bodyEn        String
+  bodyMl        String?
+  coverImageUrl String?
+  eventDate     DateTime?
+  publishedAt   DateTime?
+  slug          String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([type])
+  @@index([publishedAt])
+  @@index([eventDate])
+}
+
 enum GalleryMediaType {
   IMAGE
   VIDEO

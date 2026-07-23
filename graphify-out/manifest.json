@@ -493,5 +493,25 @@
     "mtime": 1784779225.4009457,
     "ast_hash": "138bc52681eaebe44ee0900860c3d5ee",
     "semantic_hash": ""
+  },
+  "prisma/migrations/20260723040311_add_gallery_models/migration.sql": {
+    "mtime": 1784779500.165463,
+    "ast_hash": "b885399b9878bf672b93380cefc95516",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/gallery/actions.ts": {
+    "mtime": 1784779500.165463,
+    "ast_hash": "dad92e1210e308ac15f64caeaa6bdb47",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/gallery/gallery.test.ts": {
+    "mtime": 1784779500.165463,
+    "ast_hash": "66e795acd24d9d5fd4c1892dc0447982",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/gallery/page.tsx": {
+    "mtime": 1784779500.165463,
+    "ast_hash": "bcf27188c7fa2cf055f8a2333469b60e",
+    "semantic_hash": ""
   }
 }

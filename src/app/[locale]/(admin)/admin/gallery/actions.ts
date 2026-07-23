@@ -11,6 +11,12 @@ function localeFromFormData(formData: FormData): string {
   return (formData.get("locale") as string) || "en";
 }
 
+function revalidateGallery(locale: string) {
+  revalidatePath(`/${locale}/admin/gallery`);
+  revalidatePath(`/${locale}/gallery`);
+  revalidatePath("/gallery");
+}
+
 /* ─── Category actions ─── */
 
 export async function createCategory(formData: FormData) {
@@ -43,7 +49,7 @@ export async function createCategory(formData: FormData) {
     metadata: { nameEn, nameMl },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 export async function updateCategory(formData: FormData) {
@@ -70,7 +76,7 @@ export async function updateCategory(formData: FormData) {
     metadata: { nameEn, nameMl },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 export async function deleteCategory(formData: FormData) {
@@ -95,7 +101,7 @@ export async function deleteCategory(formData: FormData) {
     metadata: { nameEn },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 export async function moveCategory(formData: FormData) {
@@ -139,7 +145,7 @@ export async function moveCategory(formData: FormData) {
     metadata: { direction, swappedWith: swap.id },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 /* ─── Media actions ─── */
@@ -198,7 +204,7 @@ export async function uploadGalleryImages(formData: FormData) {
     },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 export async function addVideoItem(formData: FormData) {
@@ -241,7 +247,7 @@ export async function addVideoItem(formData: FormData) {
     metadata: { categoryId, url, captionEn },
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }
 
 export async function deleteGalleryItem(formData: FormData) {
@@ -262,5 +268,5 @@ export async function deleteGalleryItem(formData: FormData) {
     entityId: id,
   });
 
-  revalidatePath(`/${localeFromFormData(formData)}/admin/gallery`);
+  revalidateGallery(localeFromFormData(formData));
 }

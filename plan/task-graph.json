@@ -837,7 +837,7 @@
       "track": "Content/Data",
       "priority": "Must Have",
       "points": 2,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s09-t3",
         "s10-t3",

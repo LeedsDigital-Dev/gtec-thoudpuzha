@@ -45,3 +45,38 @@ export async function sendEnquiryNotification(
     react: EnquiryNotificationEmail(input),
   });
 }
+
+export interface EmployerModerationNotificationInput {
+  companyName: string;
+  contactPersonName: string;
+  employerEmail: string;
+  status: "APPROVED" | "REJECTED";
+  rejectionReason?: string | null;
+}
+
+export async function sendEmployerModerationNotification(
+  input: EmployerModerationNotificationInput,
+): Promise<void> {
+  const { EmployerModerationNotification } = await import(
+    "@/emails/EmployerModerationNotification"
+  );
+
+  try {
+    await resend.emails.send({
+      from: getFromEmail(),
+      to: input.employerEmail,
+      subject:
+        input.status === "APPROVED"
+          ? `Employer registration approved — ${input.companyName}`
+          : `Employer registration update — ${input.companyName}`,
+      react: EmployerModerationNotification({
+        companyName: input.companyName,
+        contactPersonName: input.contactPersonName,
+        status: input.status,
+        rejectionReason: input.rejectionReason,
+      }),
+    });
+  } catch (error) {
+    console.error("[email] failed to send moderation notification:", error);
+  }
+}

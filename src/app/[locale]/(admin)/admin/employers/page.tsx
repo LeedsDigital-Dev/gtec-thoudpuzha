@@ -1,0 +1,278 @@
+import { redirect } from "next/navigation";
+import { requireRole, Role } from "@/lib/auth";
+import { prisma } from "@/lib/db";
+import type { EmployerProfileStatus } from "@prisma/client";
+import {
+  approveEmployer,
+  rejectEmployer,
+  approveAndTrustEmployer,
+  toggleAutoPublishTrusted,
+} from "./actions";
+
+interface EmployersPageProps {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ status?: string }>;
+}
+
+const STATUS_LABELS: Record<string, string> = {
+  PENDING: "Pending",
+  APPROVED: "Approved",
+  REJECTED: "Rejected",
+};
+
+export default async function EmployersPage({
+  params,
+  searchParams,
+}: EmployersPageProps) {
+  const { locale } = await params;
+  const { status: filterStatus } = await searchParams;
+
+  const authResult = await requireRole([
+    Role.CENTRE_STAFF,
+    Role.SUPER_ADMIN,
+  ]);
+
+  if (!authResult.authorized) {
+    redirect(`/${locale}/forbidden`);
+  }
+
+  const isSuperAdmin = authResult.role === Role.SUPER_ADMIN;
+
+  const where =
+    filterStatus && ["PENDING", "APPROVED", "REJECTED"].includes(filterStatus)
+      ? { status: filterStatus as EmployerProfileStatus }
+      : {};
+
+  const employers = await prisma.employerProfile.findMany({
+    where,
+    orderBy: { createdAt: "desc" },
+  });
+
+  const statuses = ["PENDING", "APPROVED", "REJECTED"];
+
+  return (
+    <main className="p-6">
+      <h1 className="text-2xl font-semibold">Employer Registrations</h1>
+
+      {/* Status filter */}
+      <section className="mt-4 flex items-center gap-2">
+        <span className="text-sm text-muted-foreground">Filter:</span>
+        <a
+          href={`/${locale}/admin/employers`}
+          className={`rounded px-3 py-1 text-sm ${!filterStatus ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}
+        >
+          All
+        </a>
+        {statuses.map((s) => (
+          <a
+            key={s}
+            href={`/${locale}/admin/employers?status=${s}`}
+            className={`rounded px-3 py-1 text-sm ${filterStatus === s ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}
+          >
+            {STATUS_LABELS[s]}
+          </a>
+        ))}
+      </section>
+
+      {/* Employers table */}
+      <section className="mt-6">
+        <h2 className="text-lg font-medium">
+          {employers.length} registration{employers.length !== 1 ? "s" : ""}
+        </h2>
+
+        {employers.length === 0 ? (
+          <p className="mt-4 text-muted-foreground">
+            No employer registrations found.
+          </p>
+        ) : (
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full border-collapse border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Company
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Contact Person
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Phone
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Email
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Industry
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Status
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">
+                    Auto-Publish
+                  </th>
+                  {isSuperAdmin && (
+                    <th className="border border-gray-300 px-3 py-2 text-left">
+                      Actions
+                    </th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {employers.map((ep) => (
+                  <tr key={ep.id}>
+                    <td className="border border-gray-300 px-3 py-2 font-medium">
+                      {ep.companyName}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      {ep.contactPersonName}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 font-mono text-sm">
+                      {ep.phone}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                      {ep.email}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                      {ep.industrySector.replace(/_/g, " ")}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      <span
+                        className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
+                          ep.status === "APPROVED"
+                            ? "bg-green-100 text-green-800"
+                            : ep.status === "REJECTED"
+                              ? "bg-red-100 text-red-800"
+                              : "bg-amber-100 text-amber-800"
+                        }`}
+                      >
+                        {STATUS_LABELS[ep.status]}
+                      </span>
+                      {ep.rejectionReason && (
+                        <p className="mt-1 text-xs text-red-600">
+                          {ep.rejectionReason}
+                        </p>
+                      )}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                      {ep.autoPublishTrusted ? (
+                        <span className="text-green-600">Trusted</span>
+                      ) : (
+                        <span className="text-muted-foreground">No</span>
+                      )}
+                    </td>
+                    {isSuperAdmin && (
+                      <td className="border border-gray-300 px-3 py-2">
+                        {ep.status === "PENDING" && (
+                          <div className="flex flex-wrap gap-1">
+                            <form action={approveEmployer}>
+                              <input type="hidden" name="locale" value={locale} />
+                              <input
+                                type="hidden"
+                                name="profileId"
+                                value={ep.id}
+                              />
+                              <button
+                                type="submit"
+                                className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                              >
+                                Approve
+                              </button>
+                            </form>
+
+                            <form action={approveAndTrustEmployer}>
+                              <input type="hidden" name="locale" value={locale} />
+                              <input
+                                type="hidden"
+                                name="profileId"
+                                value={ep.id}
+                              />
+                              <button
+                                type="submit"
+                                className="rounded bg-blue-600 px-2 py-1 text-xs text-white hover:bg-blue-700"
+                              >
+                                Approve + Trust
+                              </button>
+                            </form>
+
+                            <details className="inline-block">
+                              <summary className="cursor-pointer rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700">
+                                Reject
+                              </summary>
+                              <form
+                                action={rejectEmployer}
+                                className="mt-1 flex gap-1"
+                              >
+                                <input
+                                  type="hidden"
+                                  name="locale"
+                                  value={locale}
+                                />
+                                <input
+                                  type="hidden"
+                                  name="profileId"
+                                  value={ep.id}
+                                />
+                                <input
+                                  name="rejectionReason"
+                                  placeholder="Reason (required)"
+                                  required
+                                  className="w-40 rounded border border-border px-2 py-1 text-xs"
+                                />
+                                <button
+                                  type="submit"
+                                  className="rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700"
+                                >
+                                  Submit
+                                </button>
+                              </form>
+                            </details>
+                          </div>
+                        )}
+
+                        {ep.status === "REJECTED" && (
+                          <form action={approveEmployer}>
+                            <input type="hidden" name="locale" value={locale} />
+                            <input
+                              type="hidden"
+                              name="profileId"
+                              value={ep.id}
+                            />
+                            <button
+                              type="submit"
+                              className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                            >
+                              Re-approve
+                            </button>
+                          </form>
+                        )}
+
+                        {ep.status === "APPROVED" && (
+                          <form action={toggleAutoPublishTrusted}>
+                            <input type="hidden" name="locale" value={locale} />
+                            <input
+                              type="hidden"
+                              name="profileId"
+                              value={ep.id}
+                            />
+                            <button
+                              type="submit"
+                              className={`rounded px-2 py-1 text-xs text-white ${ep.autoPublishTrusted ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}`}
+                            >
+                              {ep.autoPublishTrusted
+                                ? "Remove Trust"
+                                : "Mark Trusted"}
+                            </button>
+                          </form>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}

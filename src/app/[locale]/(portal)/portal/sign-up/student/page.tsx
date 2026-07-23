@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useSignUp, useClerk } from "@clerk/nextjs";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -178,9 +179,9 @@ export default function StudentSignUpPage() {
 
         <p className="text-center text-xs text-gray-500">
           Don&apos;t have a Student ID?{" "}
-          <a href="/contact" className="underline">
+          <Link href="/contact" className="underline">
             Contact the centre
-          </a>
+          </Link>
           .
         </p>
       </div>

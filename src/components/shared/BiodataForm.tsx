@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -94,7 +94,6 @@ export function BiodataForm({
   const [photoUrl, setPhotoUrl] = useState(profile?.photoUrl ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [complete, setComplete] = useState(false);
 
   const getFormData = (): BiodataFormData => ({
     fullName: fullName || undefined,
@@ -117,7 +116,7 @@ export function BiodataForm({
     photoUrl: photoUrl || undefined,
   });
 
-  useEffect(() => {
+  const complete = useMemo(() => {
     const data = getFormData();
     const profileForCheck: CandidateProfileWithCompletion = {
       id: profile?.id ?? "",
@@ -139,7 +138,7 @@ export function BiodataForm({
       isVerifiedStudent,
       studentRecordId: profile?.studentRecordId ?? null,
     };
-    setComplete(isProfileComplete(profileForCheck));
+    return isProfileComplete(profileForCheck);
   }, [
     fullName,
     dateOfBirth,
@@ -156,6 +155,8 @@ export function BiodataForm({
     preferredJobType,
     careerObjective,
     photoUrl,
+    isVerifiedStudent,
+    profile,
   ]);
 
   const handleSave = async () => {

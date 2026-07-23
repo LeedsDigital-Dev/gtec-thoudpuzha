@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, test, vi, beforeEach } from "vitest";
 
@@ -29,7 +30,7 @@ vi.mock("next/navigation", () => ({
 
 vi.mock("next/link", () => ({
   default: vi.fn(
-    ({ href, children }: any) =>
+    ({ href, children }: { href: string; children: ReactNode }) =>
       `<a href="${href}">${Array.isArray(children) ? children[0]?.toString() ?? "" : children?.toString() ?? ""}</a>`,
   ),
 }));

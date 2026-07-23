@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { Role, requirePortalRole } from "@/lib/auth";
@@ -19,18 +20,18 @@ function NotYourAccountType({
     <div className="flex min-h-screen items-center justify-center">
       <div className="max-w-md text-center">
         <h1 className="text-2xl font-semibold">
-          This area isn't for your account type
+          This area isn&apos;t for your account type
         </h1>
         <p className="mt-2 text-gray-600">
           This section is intended for {allowedRoleNames} accounts. Please use
           the appropriate portal for your account type.
         </p>
-        <a
+        <Link
           href="/portal"
           className="mt-4 inline-block text-blue-600 underline"
         >
           Go to Portal Dashboard
-        </a>
+        </Link>
       </div>
     </div>
   );

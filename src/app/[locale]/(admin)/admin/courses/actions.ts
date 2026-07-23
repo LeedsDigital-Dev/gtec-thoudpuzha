@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import type { Prisma } from "@prisma/client";
 import { logAdminAction } from "@/lib/audit";
 import { uploadFile } from "@/lib/storage";
 
@@ -182,7 +183,7 @@ export async function createCourse(formData: FormData) {
       descriptionEn,
       descriptionMl,
       durationText,
-      syllabus: syllabus as any,
+      syllabus: syllabus as Prisma.InputJsonValue,
       certifications,
       careerOutcomesEn,
       careerOutcomesMl,
@@ -247,7 +248,7 @@ export async function updateCourse(formData: FormData) {
       descriptionEn,
       descriptionMl,
       durationText,
-      syllabus: syllabus as any,
+      syllabus: syllabus as Prisma.InputJsonValue,
       certifications,
       careerOutcomesEn,
       careerOutcomesMl,

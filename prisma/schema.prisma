@@ -40,6 +40,24 @@ enum EmployerProfileStatus {
   REJECTED
 }
 
+enum SalaryVisibility {
+  DISCLOSE
+  PRIVATE
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+}
+
+enum JobPostingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CLOSED
+}
+
 model User {
   id                String   @id
   role              Role
@@ -192,7 +210,34 @@ model EmployerProfile {
 
   user User @relation(fields: [userId], references: [id])
 
+  jobPostings JobPosting[]
+
   @@index([status])
+}
+
+model JobPosting {
+  id                  String            @id @default(cuid())
+  employerId          String
+  title               String
+  department          String?
+  salaryMin           Int?
+  salaryMax           Int?
+  salaryVisibility    SalaryVisibility  @default(PRIVATE)
+  jobType             JobType
+  skillIds            String[]          @default([])
+  applicationDeadline DateTime
+  description         String
+  status              JobPostingStatus  @default(PENDING)
+  autoPublished       Boolean           @default(false)
+  deletedAt           DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  employer EmployerProfile @relation(fields: [employerId], references: [id])
+
+  @@index([employerId])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model FlashNewsItem {

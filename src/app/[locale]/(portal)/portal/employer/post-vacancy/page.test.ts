@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, test, vi, beforeEach } from "vitest";
 
@@ -27,6 +28,16 @@ vi.mock("next/navigation", () => ({
   redirect: mockRedirect,
 }));
 
+vi.mock("@/lib/skills", () => ({
+  getApprovedSkills: vi.fn().mockResolvedValue([]),
+}));
+
+vi.mock("./post-vacancy-form", () => ({
+  PostVacancyForm: vi.fn(() =>
+    createElement("div", null, "Post a Vacancy Form"),
+  ),
+}));
+
 // ─── Tests ──────────────────────────────────────────────────────────────────
 
 describe("Post Vacancy page — employer status gate", () => {
@@ -39,7 +50,7 @@ describe("Post Vacancy page — employer status gate", () => {
     });
   });
 
-  test("4. An employer with status=PENDING is blocked from the post-vacancy route, redirected to status page", async () => {
+  test("An employer with status=PENDING is blocked from the post-vacancy route, redirected to status page", async () => {
     mockAuth.mockResolvedValue({
       userId: "user_emp_1",
       sessionClaims: { metadata: { role: "EMPLOYER" } },
@@ -90,6 +101,6 @@ describe("Post Vacancy page — employer status gate", () => {
 
     const element = await mod.default();
     const html = renderToString(element);
-    expect(html).toContain("Post a Vacancy");
+    expect(html).toContain("Post a Vacancy Form");
   });
 });

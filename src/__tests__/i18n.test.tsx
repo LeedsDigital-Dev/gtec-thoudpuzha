@@ -124,7 +124,7 @@ describe("Malayalam dictionary rendering", () => {
       </NextIntlClientProvider>,
     );
 
-    expect(html).toContain("[ML] Loading");
+    expect(html).toContain("ലോഡ് ചെയ്യുന്നു");
   });
 });
 

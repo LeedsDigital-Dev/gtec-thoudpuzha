@@ -78,6 +78,7 @@ const partnersInOrder = [
   {
     id: "cp_1",
     name: "Adobe",
+    nameMl: null,
     logoUrl: "cert-partners/111-adobe.png",
     link: "https://adobe.com",
     sortOrder: 0,
@@ -86,6 +87,7 @@ const partnersInOrder = [
   {
     id: "cp_2",
     name: "SAP",
+    nameMl: null,
     logoUrl: "cert-partners/222-sap.png",
     link: null,
     sortOrder: 1,
@@ -94,6 +96,7 @@ const partnersInOrder = [
   {
     id: "cp_3",
     name: "Tally",
+    nameMl: null,
     logoUrl: "cert-partners/333-tally.png",
     link: "https://tally.com",
     sortOrder: 2,

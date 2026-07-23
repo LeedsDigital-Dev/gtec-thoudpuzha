@@ -394,6 +394,7 @@ model GalleryItem {
 model CertificationPartner {
   id        String   @id @default(cuid())
   name      String
+  nameMl    String?
   logoUrl   String
   link      String?
   sortOrder Int      @default(0)

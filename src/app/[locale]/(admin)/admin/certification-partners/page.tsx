@@ -39,12 +39,22 @@ export default async function CertificationPartnersPage({
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <label htmlFor="name" className="text-sm font-medium">
-                Name <span className="text-destructive">*</span>
+                Name (English) <span className="text-destructive">*</span>
               </label>
               <input
                 id="name"
                 name="name"
                 required
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="nameMl" className="text-sm font-medium">
+                Name (Malayalam)
+              </label>
+              <input
+                id="nameMl"
+                name="nameMl"
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
@@ -84,7 +94,8 @@ export default async function CertificationPartnersPage({
             <tr>
               <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
               <th className="border border-gray-300 px-3 py-2 text-left">Logo</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Name</th>
+              <th className="border border-gray-300 px-3 py-2 text-left">Name (EN)</th>
+              <th className="border border-gray-300 px-3 py-2 text-left">Name (ML)</th>
               <th className="border border-gray-300 px-3 py-2 text-left">Link</th>
               <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
             </tr>
@@ -135,6 +146,9 @@ export default async function CertificationPartnersPage({
                 </td>
                 <td className="border border-gray-300 px-3 py-2">
                   {partner.name}
+                </td>
+                <td className="border border-gray-300 px-3 py-2">
+                  {partner.nameMl || "—"}
                 </td>
                 <td className="border border-gray-300 px-3 py-2">
                   {partner.link ? (
@@ -189,12 +203,22 @@ export default async function CertificationPartnersPage({
             </div>
             <div className="space-y-1">
               <label htmlFor="edit-name" className="text-sm font-medium">
-                Name <span className="text-destructive">*</span>
+                Name (English) <span className="text-destructive">*</span>
               </label>
               <input
                 id="edit-name"
                 name="name"
                 required
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="edit-nameMl" className="text-sm font-medium">
+                Name (Malayalam)
+              </label>
+              <input
+                id="edit-nameMl"
+                name="nameMl"
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />
             </div>

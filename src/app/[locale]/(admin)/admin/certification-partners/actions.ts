@@ -18,6 +18,7 @@ export async function createPartner(formData: FormData) {
   }
 
   const name = formData.get("name") as string;
+  const nameMl = (formData.get("nameMl") as string) || null;
   const link = (formData.get("link") as string) || null;
   const logoFile = formData.get("logo") as File | null;
 
@@ -33,6 +34,7 @@ export async function createPartner(formData: FormData) {
   const partner = await prisma.certificationPartner.create({
     data: {
       name,
+      nameMl,
       logoUrl,
       link,
       sortOrder: (maxOrder._max.sortOrder ?? 0) + 1,
@@ -45,7 +47,7 @@ export async function createPartner(formData: FormData) {
     action: "certificationPartner.create",
     entityType: "CertificationPartner",
     entityId: partner.id,
-    metadata: { name, link },
+    metadata: { name, nameMl, link },
   });
 
   revalidatePath(`/${localeFromFormData(formData)}/admin/certification-partners`);
@@ -59,6 +61,7 @@ export async function updatePartner(formData: FormData) {
 
   const id = formData.get("id") as string;
   const name = formData.get("name") as string;
+  const nameMl = (formData.get("nameMl") as string) || null;
   const link = (formData.get("link") as string) || null;
   const logoFile = formData.get("logo") as File | null;
 
@@ -69,7 +72,7 @@ export async function updatePartner(formData: FormData) {
     logoUrl = await uploadFile(logoFile, "cert-partners");
   }
 
-  const data: Record<string, unknown> = { name, link };
+  const data: Record<string, unknown> = { name, nameMl, link };
   if (logoUrl) data.logoUrl = logoUrl;
 
   const partner = await prisma.certificationPartner.update({
@@ -83,7 +86,7 @@ export async function updatePartner(formData: FormData) {
     action: "certificationPartner.update",
     entityType: "CertificationPartner",
     entityId: partner.id,
-    metadata: { name, link, logoUpdated: !!logoUrl },
+    metadata: { name, nameMl, link, logoUpdated: !!logoUrl },
   });
 
   revalidatePath(`/${localeFromFormData(formData)}/admin/certification-partners`);

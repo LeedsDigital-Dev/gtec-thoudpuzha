@@ -24,15 +24,50 @@ model User {
   auditLogEntries  AuditLogEntry[]
 }
 
-model Course {
+enum CourseStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model CourseCategory {
   id        String   @id @default(cuid())
-  slug      String   @unique
-  titleEn   String
-  titleMl   String?
+  nameEn    String
+  nameMl    String?
+  sortOrder Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  enquiries Enquiry[]
+  courses   Course[]
+
+  @@index([sortOrder])
+}
+
+model Course {
+  id              String       @id @default(cuid())
+  slug            String       @unique
+  titleEn         String
+  titleMl         String?
+  categoryId      String?
+  descriptionEn   String?
+  descriptionMl   String?
+  durationText    String?
+  syllabus        Json?
+  certifications  String[]
+  careerOutcomesEn String?
+  careerOutcomesMl String?
+  coverImageUrl   String?
+  featured        Boolean      @default(false)
+  status          CourseStatus @default(DRAFT)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  category        CourseCategory? @relation(fields: [categoryId], references: [id])
+  enquiries       Enquiry[]
+
+  @@index([categoryId])
+  @@index([status])
+  @@index([featured])
 }
 
 model CandidateProfile {

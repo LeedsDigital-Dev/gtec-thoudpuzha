@@ -186,6 +186,7 @@ model CandidateProfile {
 
   enrollments     StudentCourseEnrollment[]
   progressEntries StudentProgressEntry[]
+  applications    Application[]
 }
 
 model EmployerProfile {
@@ -215,6 +216,31 @@ model EmployerProfile {
   @@index([status])
 }
 
+enum ApplicationStatus {
+  APPLIED
+  SHORTLISTED
+  REJECTED
+  HIRED
+  WITHDRAWN
+}
+
+model Application {
+  id                 String             @id @default(cuid())
+  jobPostingId       String
+  candidateProfileId String
+  status             ApplicationStatus  @default(APPLIED)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  jobPosting        JobPosting        @relation(fields: [jobPostingId], references: [id])
+  candidateProfile  CandidateProfile  @relation(fields: [candidateProfileId], references: [id])
+
+  @@unique([jobPostingId, candidateProfileId])
+  @@index([jobPostingId])
+  @@index([candidateProfileId])
+  @@index([status])
+}
+
 model JobPosting {
   id                  String            @id @default(cuid())
   employerId          String
@@ -233,7 +259,8 @@ model JobPosting {
   createdAt           DateTime          @default(now())
   updatedAt           DateTime          @updatedAt
 
-  employer EmployerProfile @relation(fields: [employerId], references: [id])
+  employer     EmployerProfile @relation(fields: [employerId], references: [id])
+  applications Application[]
 
   @@index([employerId])
   @@index([status])

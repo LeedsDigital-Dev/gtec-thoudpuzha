@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import type { JobPosting, JobType } from "@prisma/client";
+import type { JobPosting, JobType, EmployerProfile } from "@prisma/client";
 
 export type ActiveJobPosting = Pick<
   JobPosting,
@@ -20,6 +20,62 @@ export type ActiveJobPosting = Pick<
     companyAddress: string;
   };
 };
+
+export type JobDetail = Pick<
+  JobPosting,
+  | "id"
+  | "title"
+  | "department"
+  | "salaryMin"
+  | "salaryMax"
+  | "salaryVisibility"
+  | "jobType"
+  | "skillIds"
+  | "applicationDeadline"
+  | "description"
+  | "createdAt"
+> & {
+  employer: Pick<
+    EmployerProfile,
+    "companyName" | "companyAddress" | "industrySector" | "employeeCountRange" | "aboutCompany"
+  >;
+};
+
+/** Fetch a single active (approved, non-expired, non-deleted) job posting. */
+export async function getJobDetail(id: string): Promise<JobDetail | null> {
+  const posting = await prisma.jobPosting.findFirst({
+    where: {
+      id,
+      status: "APPROVED",
+      deletedAt: null,
+      applicationDeadline: { gt: new Date() },
+    },
+    select: {
+      id: true,
+      title: true,
+      department: true,
+      salaryMin: true,
+      salaryMax: true,
+      salaryVisibility: true,
+      jobType: true,
+      skillIds: true,
+      applicationDeadline: true,
+      description: true,
+      createdAt: true,
+      employer: {
+        select: {
+          companyName: true,
+          companyAddress: true,
+          industrySector: true,
+          employeeCountRange: true,
+          aboutCompany: true,
+        },
+      },
+    },
+  });
+
+  return posting;
+}
 
 export async function getActiveJobPostings(filters?: {
   jobType?: JobType;

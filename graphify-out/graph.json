@@ -1594,8 +1594,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_tests_portal_role_gating_test",
-      "community": 62,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "portal-role-gating.test.tsx"
     },
     {
@@ -1605,8 +1605,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_tests_portal_role_gating_test_mockauth",
-      "community": 62,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockauth"
     },
     {
@@ -1616,8 +1616,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_tests_portal_role_gating_test_mockcreateroutematcher",
-      "community": 62,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockcreateroutematcher"
     },
     {
@@ -1627,8 +1627,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_tests_portal_role_gating_test_mockclerkmiddleware",
-      "community": 62,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "mockclerkmiddleware"
     },
     {
@@ -1638,8 +1638,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_tests_portal_role_gating_test_withauth",
-      "community": 62,
-      "community_name": "portal-role-gating.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "withauth()"
     },
     {
@@ -2078,8 +2078,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_actions",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "academic-resources/actions.ts"
     },
     {
@@ -2089,8 +2089,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_actions_localefromformdata",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "localefromformdata()"
     },
     {
@@ -2100,8 +2100,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_actions_uploadresource",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "uploadresource()"
     },
     {
@@ -2111,8 +2111,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_actions_deleteresource",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "deleteresource()"
     },
     {
@@ -2122,8 +2122,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "academic-resources/page.tsx"
     },
     {
@@ -2133,8 +2133,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_page_props",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "props"
     },
     {
@@ -2144,8 +2144,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_page_resource_types",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "resource_types"
     },
     {
@@ -2155,8 +2155,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_page_type_labels",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "type_labels"
     },
     {
@@ -2166,8 +2166,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_academic_resources_page_academicresourcespage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "academicresourcespage()"
     },
     {
@@ -2936,8 +2936,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page",
-      "community": 63,
-      "community_name": "enquiries/page.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "enquiries/page.tsx"
     },
     {
@@ -2947,8 +2947,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page_enquiriespageprops",
-      "community": 63,
-      "community_name": "enquiries/page.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "enquiriespageprops"
     },
     {
@@ -2958,8 +2958,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_admin_admin_enquiries_page_enquiriespage",
-      "community": 63,
-      "community_name": "enquiries/page.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "enquiriespage()"
     },
     {
@@ -4894,8 +4894,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_post_vacancy_actions",
-      "community": 41,
-      "community_name": "flash-news/page.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "post-vacancy/actions.ts"
     },
     {
@@ -4905,8 +4905,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_employer_post_vacancy_actions_actionresult",
-      "community": 41,
-      "community_name": "flash-news/page.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "actionresult"
     },
     {
@@ -4921,7 +4921,7 @@
       "norm_label": "submitvacancy()"
     },
     {
-      "label": "page.test.ts",
+      "label": "post-vacancy/page.test.ts",
       "file_type": "code",
       "source_file": "src/app/[locale]/(portal)/portal/employer/post-vacancy/page.test.ts",
       "source_location": "L1",
@@ -4929,7 +4929,7 @@
       "id": "src_app_locale_portal_portal_employer_post_vacancy_page_test",
       "community": 57,
       "community_name": "page.test.ts",
-      "norm_label": "page.test.ts"
+      "norm_label": "post-vacancy/page.test.ts"
     },
     {
       "label": "mockAuth",
@@ -5229,6 +5229,50 @@
       "norm_label": "employerregistrationstatuspage()"
     },
     {
+      "label": "jobs-filter.tsx",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
+      "norm_label": "jobs-filter.tsx"
+    },
+    {
+      "label": "JobsFilterProps",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilterprops",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
+      "norm_label": "jobsfilterprops"
+    },
+    {
+      "label": "JOB_TYPE_OPTIONS",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_jobs_filter_job_type_options",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
+      "norm_label": "job_type_options"
+    },
+    {
+      "label": "JobsFilter()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilter",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
+      "norm_label": "jobsfilter()"
+    },
+    {
       "label": "jobs/layout.tsx",
       "file_type": "code",
       "source_file": "src/app/[locale]/(portal)/portal/jobs/layout.tsx",
@@ -5251,25 +5295,91 @@
       "norm_label": "jobsportallayout()"
     },
     {
+      "label": "jobs/page.test.ts",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_test",
+      "community": 63,
+      "community_name": "enquiries/page.tsx",
+      "norm_label": "jobs/page.test.ts"
+    },
+    {
+      "label": "mockAuth",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_test_mockauth",
+      "community": 63,
+      "community_name": "enquiries/page.tsx",
+      "norm_label": "mockauth"
+    },
+    {
+      "label": "mockFindMany",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_test_mockfindmany",
+      "community": 63,
+      "community_name": "enquiries/page.tsx",
+      "norm_label": "mockfindmany"
+    },
+    {
+      "label": "mockSkillsFindMany",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_test_mockskillsfindmany",
+      "community": 63,
+      "community_name": "enquiries/page.tsx",
+      "norm_label": "mockskillsfindmany"
+    },
+    {
+      "label": "mockRedirect",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_test_mockredirect",
+      "community": 63,
+      "community_name": "enquiries/page.tsx",
+      "norm_label": "mockredirect"
+    },
+    {
       "label": "jobs/page.tsx",
       "file_type": "code",
       "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_page",
-      "community": 45,
-      "community_name": "jobs/page.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "jobs/page.tsx"
+    },
+    {
+      "label": "JobsPageProps",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_app_locale_portal_portal_jobs_page_jobspageprops",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
+      "norm_label": "jobspageprops"
     },
     {
       "label": "JobsPage()",
       "file_type": "code",
       "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
-      "source_location": "L1",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_jobs_page_jobspage",
-      "community": 45,
-      "community_name": "jobs/page.tsx",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "jobspage()"
     },
     {
@@ -5334,8 +5444,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "student/actions.test.ts"
     },
     {
@@ -5345,8 +5455,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockauth",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockauth"
     },
     {
@@ -5356,8 +5466,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockclerkclient",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockclerkclient"
     },
     {
@@ -5367,8 +5477,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockupdateuser",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockupdateuser"
     },
     {
@@ -5378,8 +5488,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockfindfirst",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockfindfirst"
     },
     {
@@ -5389,8 +5499,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockfindunique",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockfindunique"
     },
     {
@@ -5400,8 +5510,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockupsert",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockupsert"
     },
     {
@@ -5411,8 +5521,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockcandidatecreate",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockcandidatecreate"
     },
     {
@@ -5422,8 +5532,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockrecordupdate",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockrecordupdate"
     },
     {
@@ -5433,8 +5543,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_test_mockredirect",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "mockredirect"
     },
     {
@@ -5444,8 +5554,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "student/actions.ts"
     },
     {
@@ -5455,8 +5565,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_lookupstudentrecord",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "lookupstudentrecord()"
     },
     {
@@ -5466,8 +5576,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_actions_finalizestudentverification",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "finalizestudentverification()"
     },
     {
@@ -5499,8 +5609,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_sign_up_student_page_studentsignuppage",
-      "community": 61,
-      "community_name": "student/actions.test.ts",
+      "community": 54,
+      "community_name": "assignments/page.tsx",
       "norm_label": "studentsignuppage()"
     },
     {
@@ -5521,8 +5631,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_actions",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodata/actions.ts"
     },
     {
@@ -5532,8 +5642,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_actions_biodataformdata",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodataformdata"
     },
     {
@@ -5543,8 +5653,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_actions_savebiodata",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "savebiodata()"
     },
     {
@@ -5554,8 +5664,8 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_actions_biodataactionresult",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodataactionresult"
     },
     {
@@ -5565,8 +5675,8 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_actions_getcurrentprofile",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "getcurrentprofile()"
     },
     {
@@ -5576,8 +5686,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_page",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodata/page.tsx"
     },
     {
@@ -5587,8 +5697,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_biodata_page_biodatapage",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodatapage()"
     },
     {
@@ -5675,8 +5785,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_assignments_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "assignments/page.tsx"
     },
     {
@@ -5686,8 +5796,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_assignments_page_assignmentspage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "assignmentspage()"
     },
     {
@@ -5719,8 +5829,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_lectures_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "lectures/page.tsx"
     },
     {
@@ -5730,8 +5840,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_lectures_page_videolecturespage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "videolecturespage()"
     },
     {
@@ -5741,8 +5851,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_notes_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "notes/page.tsx"
     },
     {
@@ -5752,8 +5862,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_notes_page_studynotespage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "studynotespage()"
     },
     {
@@ -5785,8 +5895,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_past_papers_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "past-papers/page.tsx"
     },
     {
@@ -5796,8 +5906,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_past_papers_page_pastpaperspage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "pastpaperspage()"
     },
     {
@@ -5807,8 +5917,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_progress_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "progress/page.tsx"
     },
     {
@@ -5818,8 +5928,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_progress_page_myprogresspage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "myprogresspage()"
     },
     {
@@ -5829,8 +5939,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_resource_list",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "resource-list.tsx"
     },
     {
@@ -5840,8 +5950,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_resource_list_resourcelistprops",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "resourcelistprops"
     },
     {
@@ -5851,8 +5961,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_resource_list_resourcelist",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 61,
+      "community_name": "student/actions.test.ts",
       "norm_label": "resourcelist()"
     },
     {
@@ -5862,8 +5972,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_timetable_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "timetable/page.tsx"
     },
     {
@@ -5873,8 +5983,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_timetable_page_timetablepage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "timetablepage()"
     },
     {
@@ -5884,8 +5994,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_video_lecture_list",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "video-lecture-list.tsx"
     },
     {
@@ -5895,8 +6005,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_locale_portal_portal_student_resources_video_lecture_list_videolecturelist",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "videolecturelist()"
     },
     {
@@ -6087,6 +6197,39 @@
       "norm_label": "homepage()"
     },
     {
+      "label": "placement/page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_locale_public_placement_page",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "placement/page.tsx"
+    },
+    {
+      "label": "PlacementPageProps",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_app_locale_public_placement_page_placementpageprops",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "placementpageprops"
+    },
+    {
+      "label": "PlacementPage()",
+      "file_type": "code",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_app_locale_public_placement_page_placementpage",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "placementpage()"
+    },
+    {
       "label": "account-setup-incomplete/page.tsx",
       "file_type": "code",
       "source_file": "src/app/[locale]/account-setup-incomplete/page.tsx",
@@ -6115,8 +6258,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_locale_complete_signup_page",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "complete-signup/page.tsx"
     },
     {
@@ -6126,8 +6269,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_locale_complete_signup_page_completesignuppage",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "completesignuppage()"
     },
     {
@@ -6511,8 +6654,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodataform.test.tsx"
     },
     {
@@ -6522,8 +6665,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test_mockcourses",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "mockcourses"
     },
     {
@@ -6533,8 +6676,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test_mockapprovedskills",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "mockapprovedskills"
     },
     {
@@ -6544,8 +6687,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test_mockpendingskill",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "mockpendingskill"
     },
     {
@@ -6555,8 +6698,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test_emptyprofile",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "emptyprofile()"
     },
     {
@@ -6566,8 +6709,8 @@
       "source_location": "L405",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_test_makeprofile",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "makeprofile()"
     },
     {
@@ -6621,8 +6764,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_components_shared_biodataform_biodataform",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodataform()"
     },
     {
@@ -7490,8 +7633,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_components_shared_portalrolegate_portalrolegateprops",
-      "community": 52,
-      "community_name": "Role",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "portalrolegateprops"
     },
     {
@@ -7996,8 +8139,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_auth",
-      "community": 41,
-      "community_name": "flash-news/page.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "auth.ts"
     },
     {
@@ -8007,8 +8150,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_lib_auth_role",
-      "community": 52,
-      "community_name": "Role",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "role"
     },
     {
@@ -8018,8 +8161,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_lib_auth_requireroleresult",
-      "community": 41,
-      "community_name": "flash-news/page.test.tsx",
+      "community": 35,
+      "community_name": "FlashNewsBar.tsx",
       "norm_label": "requireroleresult"
     },
     {
@@ -8051,8 +8194,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_biodata_search",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodata-search.ts"
     },
     {
@@ -8062,8 +8205,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_biodata_search_getsearchablecandidates",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "getsearchablecandidates()"
     },
     {
@@ -8073,8 +8216,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_biodata",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "biodata.ts"
     },
     {
@@ -8084,8 +8227,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_biodata_candidateprofilewithcompletion",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "candidateprofilewithcompletion"
     },
     {
@@ -8095,8 +8238,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_lib_biodata_isprofilecomplete",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "isprofilecomplete()"
     },
     {
@@ -8139,7 +8282,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_courses_test",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "courses.test.ts"
     },
@@ -8150,7 +8293,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcourse",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockcourse"
     },
@@ -8161,7 +8304,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockstore",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockstore"
     },
@@ -8172,7 +8315,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcoursefindmany",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockcoursefindmany"
     },
@@ -8183,7 +8326,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcoursecreate",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockcoursecreate"
     },
@@ -8194,7 +8337,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockcourseupdate",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockcourseupdate"
     },
@@ -8205,7 +8348,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_lib_courses_test_mockuploadfile",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mockuploadfile"
     },
@@ -8216,7 +8359,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "src_lib_courses_test_mocklogadminaction",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "mocklogadminaction"
     },
@@ -8227,7 +8370,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_lib_courses_test_setmockauth",
-      "community": 53,
+      "community": 33,
       "community_name": "courses.test.ts",
       "norm_label": "setmockauth()"
     },
@@ -8260,8 +8403,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_lib_courses_getpublishedcourses",
-      "community": 54,
-      "community_name": "assignments/page.tsx",
+      "community": 33,
+      "community_name": "courses.test.ts",
       "norm_label": "getpublishedcourses()"
     },
     {
@@ -8293,8 +8436,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_db",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "db.ts"
     },
     {
@@ -8304,8 +8447,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_db_globalforprisma",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "globalforprisma"
     },
     {
@@ -8425,8 +8568,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_enquiry_test",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "enquiry.test.ts"
     },
     {
@@ -8436,8 +8579,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockenquirycreate",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "mockenquirycreate"
     },
     {
@@ -8447,8 +8590,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockcoursefindunique",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "mockcoursefindunique"
     },
     {
@@ -8458,8 +8601,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_lib_enquiry_test_mockresendsend",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "mockresendsend"
     },
     {
@@ -8469,8 +8612,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_enquiry",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "enquiry.ts"
     },
     {
@@ -8491,8 +8634,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_lib_enquiry_submitenquiry",
-      "community": 33,
-      "community_name": "courses.test.ts",
+      "community": 5,
+      "community_name": "EnquiryForm.tsx",
       "norm_label": "submitenquiry()"
     },
     {
@@ -8683,6 +8826,83 @@
       "norm_label": "locale"
     },
     {
+      "label": "jobs.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_jobs_test",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "jobs.test.ts"
+    },
+    {
+      "label": "mockFindMany",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_lib_jobs_test_mockfindmany",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "mockfindmany"
+    },
+    {
+      "label": "mockSkillsFindMany",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_lib_jobs_test_mockskillsfindmany",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "mockskillsfindmany"
+    },
+    {
+      "label": "approvedPosting()",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_lib_jobs_test_approvedposting",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "approvedposting()"
+    },
+    {
+      "label": "jobs.ts",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_jobs",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "jobs.ts"
+    },
+    {
+      "label": "ActiveJobPosting",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_lib_jobs_activejobposting",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "activejobposting"
+    },
+    {
+      "label": "getActiveJobPostings()",
+      "file_type": "code",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_lib_jobs_getactivejobpostings",
+      "community": 53,
+      "community_name": "courses.test.ts",
+      "norm_label": "getactivejobpostings()"
+    },
+    {
       "label": "media.ts",
       "file_type": "code",
       "source_file": "src/lib/media.ts",
@@ -8777,8 +8997,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_resources",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "resources.ts"
     },
     {
@@ -8788,8 +9008,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_resources_getstudentresourcepages",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 41,
+      "community_name": "flash-news/page.test.tsx",
       "norm_label": "getstudentresourcepages()"
     },
     {
@@ -9096,8 +9316,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_video",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "video.ts"
     },
     {
@@ -9107,8 +9327,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_video_allowed_hosts",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "allowed_hosts"
     },
     {
@@ -9118,8 +9338,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_lib_video_validatevideourl",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 45,
+      "community_name": "jobs/page.tsx",
       "norm_label": "validatevideourl()"
     },
     {
@@ -9129,8 +9349,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_lib_video_deriveembedurl",
-      "community": 9,
-      "community_name": "BiodataForm.test.tsx",
+      "community": 62,
+      "community_name": "portal-role-gating.test.tsx",
       "norm_label": "deriveembedurl()"
     },
     {
@@ -20245,6 +20465,207 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_app_locale_portal_portal_jobs_jobs_filter_job_type_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilterprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_select",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_select_selectcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_select_selectitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_select_selecttrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_components_ui_select_selectvalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_lib_skills",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "target": "src_lib_skills_skilldto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_app_locale_portal_portal_jobs_jobs_filter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/jobs-filter.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilterprops",
+      "target": "src_lib_skills_skilldto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_app_locale_portal_portal_jobs_jobs_filter_jobsfilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/[locale]/(portal)/portal/jobs/layout.tsx",
       "source_location": "L4",
       "weight": 1.0,
@@ -20304,13 +20725,164 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_test",
+      "target": "src_app_locale_portal_portal_jobs_page_test_mockauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_test",
+      "target": "src_app_locale_portal_portal_jobs_page_test_mockfindmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_test",
+      "target": "src_app_locale_portal_portal_jobs_page_test_mockredirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_test",
+      "target": "src_app_locale_portal_portal_jobs_page_test_mockskillsfindmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
-      "source_location": "L1",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_locale_portal_portal_jobs_page",
       "target": "src_app_locale_portal_portal_jobs_page_jobspage",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_app_locale_portal_portal_jobs_page_jobspageprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_auth_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_jobs_getactivejobpostings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_skills",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page",
+      "target": "src_lib_skills_getapprovedskills",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_jobspage",
+      "target": "src_lib_jobs_getactivejobpostings"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(portal)/portal/jobs/page.tsx",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_portal_portal_jobs_page_jobspage",
+      "target": "src_lib_skills_getapprovedskills"
     },
     {
       "relation": "contains",
@@ -22194,6 +22766,64 @@
       "_origin": "ast",
       "source": "src_app_locale_public_page_homepage",
       "target": "src_lib_site_settings_getsitesettings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_public_placement_page",
+      "target": "src_app_locale_public_placement_page_placementpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_public_placement_page",
+      "target": "src_app_locale_public_placement_page_placementpageprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_public_placement_page",
+      "target": "src_lib_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_public_placement_page",
+      "target": "src_lib_jobs_getactivejobpostings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/[locale]/(public)/placement/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_locale_public_placement_page_placementpage",
+      "target": "src_lib_jobs_getactivejobpostings"
     },
     {
       "relation": "contains",
@@ -26487,6 +27117,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/lib/news-events.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -26995,6 +27637,85 @@
       "_origin": "ast",
       "source": "src_middleware",
       "target": "src_lib_i18n_routing_routing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs_test",
+      "target": "src_lib_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs_test",
+      "target": "src_lib_jobs_getactivejobpostings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs_test",
+      "target": "src_lib_jobs_test_approvedposting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs_test",
+      "target": "src_lib_jobs_test_mockfindmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs_test",
+      "target": "src_lib_jobs_test_mockskillsfindmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs",
+      "target": "src_lib_jobs_activejobposting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/jobs.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_jobs",
+      "target": "src_lib_jobs_getactivejobpostings",
       "confidence_score": 1.0
     },
     {
@@ -28020,5 +28741,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "032ab28978f66eef18ef4f10edf266f8c14d63c1"
+  "built_at_commit": "300514ce74ae56dc990c85f2593582e4d1ab1930"
 }

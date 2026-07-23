@@ -40,7 +40,7 @@ export default async function BiodataPage() {
         courses={courses}
         skills={skills}
         onAddNewSkill={createPENDINGSkill}
-        onSubmit={saveBiodata}
+        onSubmit={async (data) => { void saveBiodata(data); }}
       />
     </div>
   );

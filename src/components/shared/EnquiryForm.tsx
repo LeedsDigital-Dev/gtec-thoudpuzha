@@ -158,7 +158,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           courses={courses}
           mode="single"
           value={course}
-          onChange={setCourse}
+          onChange={(v: string | string[]) => { if (typeof v === "string") setCourse(v); }}
           id={`enquiry-course-${source}`}
           error={errors.course}
         />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useSignUp, useClerk } from "@clerk/nextjs";
+import { useSignUp } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,8 +11,7 @@ import { lookupStudentRecord, finalizeStudentVerification } from "./actions";
 type Step = "form" | "verifying" | "otp" | "done" | "error";
 
 export default function StudentSignUpPage() {
-  const { signUp, isLoaded: signUpLoaded } = useSignUp();
-  const clerk = useClerk();
+  const { signUp } = useSignUp();
 
   const [step, setStep] = useState<Step>("form");
   const [studentId, setStudentId] = useState("");
@@ -34,7 +33,7 @@ export default function StudentSignUpPage() {
 
       if (!result.success) {
         setError(result.error);
-        setAlreadyLinked("alreadyLinked" in result && result.alreadyLinked);
+        setAlreadyLinked("alreadyLinked" in result && result.alreadyLinked === true);
         setStep("error");
         return;
       }
@@ -42,15 +41,26 @@ export default function StudentSignUpPage() {
       setStudentRecordId(result.studentRecordId);
       setStep("verifying");
 
-      if (!signUpLoaded || !signUp) {
+      if (!signUp) {
         setError("Verification service is not ready. Please try again.");
         setStep("error");
         return;
       }
 
       // Start Clerk sign-up with the phone number on file
-      await signUp.create({ phoneNumber: result.phone });
-      await signUp.preparePhoneVerification();
+      let { error } = await signUp.create({ phoneNumber: result.phone });
+      if (error) {
+        setError(error.message);
+        setStep("error");
+        return;
+      }
+
+      ({ error } = await signUp.verifications.sendPhoneCode());
+      if (error) {
+        setError(error.message);
+        setStep("error");
+        return;
+      }
 
       setStep("otp");
     } catch (err: unknown) {
@@ -61,7 +71,7 @@ export default function StudentSignUpPage() {
     } finally {
       setSubmitting(false);
     }
-  }, [studentId, phone, signUp, signUpLoaded]);
+  }, [studentId, phone, signUp]);
 
   const handleVerifyOtp = useCallback(
     async (code: string) => {
@@ -71,17 +81,20 @@ export default function StudentSignUpPage() {
       setError("");
 
       try {
-        const result = await signUp.attemptPhoneVerification({ code });
+        let { error } = await signUp.verifications.verifyPhoneCode({ code });
 
-        if (result.status !== "complete") {
-          setError("Invalid verification code. Please try again.");
+        if (error) {
+          setError(error.message);
           return;
         }
 
-        // Set the active session so the server action can read the userId
-        await clerk.setActive({ session: result.createdSessionId });
+        // Finalize: create the session, then set role, create CandidateProfile, link StudentRecord
+        ({ error } = await signUp.finalize());
+        if (error) {
+          setError(error.message);
+          return;
+        }
 
-        // Finalize: set role, create CandidateProfile, link StudentRecord
         await finalizeStudentVerification(studentRecordId);
         // finalizeStudentVerification redirects on success
       } catch (err: unknown) {
@@ -92,7 +105,7 @@ export default function StudentSignUpPage() {
         setSubmitting(false);
       }
     },
-    [signUp, clerk, studentRecordId],
+    [signUp, studentRecordId],
   );
 
   if (step === "otp") {

@@ -44,7 +44,7 @@ export async function GET(
     const body = await response.Body.transformToByteArray();
     const contentType = response.ContentType ?? "application/octet-stream";
 
-    return new NextResponse(body, {
+    return new NextResponse(Buffer.from(body), {
       headers: {
         "Content-Type": contentType,
         "Cache-Control": "public, max-age=31536000, immutable",

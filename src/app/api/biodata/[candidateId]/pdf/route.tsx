@@ -112,7 +112,7 @@ export async function GET(
     <BiodataPdfDocument data={pdfData} />,
   );
 
-  return new NextResponse(pdfBuffer, {
+  return new NextResponse(new Uint8Array(pdfBuffer), {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="biodata-${candidateId}.pdf"`,

@@ -70,3 +70,5 @@
 [2026-07-23T10:30:55Z] Starting s07-t5
 [2026-07-23T10:32:07Z] s07-t5 did not succeed (exit 1). Stopping sequence rather than continuing past a blocked/failed task. Check plan/blockers.md and plan/logs/s07-t5.log.
 [2026-07-23T10:32:07Z] === run-sequence finished ===
+[2026-07-23T10:56:30Z] === run-sequence started ===
+[2026-07-23T10:56:30Z] Starting s07-t5

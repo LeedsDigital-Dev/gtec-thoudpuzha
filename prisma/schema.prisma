@@ -458,8 +458,8 @@ model TimetableEntry {
 
 model AuditLogEntry {
   id           String   @id @default(cuid())
-  actorUserId  String
-  actorRole    Role
+  actorUserId  String?
+  actorRole    Role?
   action       String
   entityType   String
   entityId     String
@@ -467,7 +467,7 @@ model AuditLogEntry {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  actor User @relation(fields: [actorUserId], references: [id])
+  actor User? @relation(fields: [actorUserId], references: [id])
 
   @@index([actorUserId])
   @@index([entityType, entityId])

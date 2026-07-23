@@ -48,6 +48,11 @@
   "46": "resources/page.tsx",
   "47": "site/page.test.tsx",
   "48": "students/actions.test.ts",
+  "49": "email.ts",
   "50": "flash-news/page.test.tsx",
-  "51": "route.test.tsx"
+  "51": "route.test.tsx",
+  "52": "news-events.ts",
+  "53": "skills.ts",
+  "54": "route.tsx",
+  "55": "biodata/page.tsx"
 }

@@ -1,0 +1,16 @@
+[spawn-engineer] s05-t3  tier=premium  profile=deepseek-pro  model=deepseek/deepseek-v4-pro
+=== Attempt 1/3 (2026-07-23T05:40:59Z) ===
+**Finished s05-t3 successfully.** Here's what was built and committed to `main` (2 commits, `plan/task-graph.json` updated to `"done"`):
+
+**Files created:**
+- `src/components/shared/BiodataPdfDocument.tsx` — React-PDF template rendering all biodata fields in an A4 layout with section headers (Personal Info, Education, Skills & Languages, Career Preferences, Address), gracefully handling null fields
+- `src/app/api/biodata/[candidateId]/pdf/route.tsx` — API route verifying self (same `userId`) or `EMPLOYER` role, resolving course/skill names from the DB, and streaming the PDF via `renderToBuffer`
+- `src/components/shared/BiodataPdfDocument.test.tsx` — 2 tests verifying valid `%PDF-1.3` buffer output for both complete and incomplete profiles
+- `src/app/api/biodata/[candidateId]/pdf/route.test.tsx` — 2 tests: STUDENT hitting another candidate's PDF gets 403; EMPLOYER downloading another candidate's PDF gets 200
+
+**File modified:**
+- `src/components/shared/BiodataForm.tsx` — Added "Download as PDF" button that renders as a link to `/api/biodata/{profile.id}/pdf` when a saved profile exists
+
+**Full test suite:** 32 files, 142 tests — all green.
+--- exit code: 0 ---
+[spawn-engineer] s05-t3 VERIFIED done (commit landed, status flipped).

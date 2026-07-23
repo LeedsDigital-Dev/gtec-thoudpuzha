@@ -32,7 +32,7 @@
   "30": "db.test.ts",
   "31": "request.ts",
   "32": "clerk.d.ts",
-  "33": "audit.test.ts",
+  "33": "cn",
   "34": "courses.test.ts",
   "35": "FlashNewsBar.tsx",
   "36": "news-events.test.ts",
@@ -46,5 +46,9 @@
   "44": "students/actions.test.ts",
   "45": "jobs/page.tsx",
   "46": "resources/page.tsx",
-  "47": "flash-news/page.test.tsx"
+  "47": "button.tsx",
+  "48": "FlashNewsBar.tsx",
+  "49": "students/actions.test.ts",
+  "50": "flash-news/page.test.tsx",
+  "51": "route.test.tsx"
 }

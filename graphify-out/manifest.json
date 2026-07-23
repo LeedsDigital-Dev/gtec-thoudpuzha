@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1784781530.309154,
-    "ast_hash": "d7b0d586ff92ca1030147cb45a6f0de7",
+    "mtime": 1784786002.439283,
+    "ast_hash": "768155a4ed9d367944797d09488b90c7",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {
-    "mtime": 1784784463.4277878,
-    "ast_hash": "1ef0a04b76ab6dbfa487e7dfe57b7682",
+    "mtime": 1784785204.1632843,
+    "ast_hash": "a314037d4d8044e312355719c61236fb",
     "semantic_hash": ""
   },
   "src/app/[locale]/complete-signup/page.tsx": {
@@ -745,18 +745,58 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/actions.ts": {
-    "mtime": 1784784463.4277878,
-    "ast_hash": "f6ac87fced0b72f660afcde1360ebb97",
+    "mtime": 1784785204.1632843,
+    "ast_hash": "323e51ebfc55005eaab34ce638a04bec",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.test.tsx": {
-    "mtime": 1784784463.4277878,
-    "ast_hash": "53fd287bbd53fa274f6f338289a69a15",
+    "mtime": 1784785204.1632843,
+    "ast_hash": "df731e70454aa9efd5de5821ddbf03fe",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.tsx": {
-    "mtime": 1784784463.4277878,
-    "ast_hash": "86287534e9a425e62d9ccbd58028c84d",
+    "mtime": 1784786002.440283,
+    "ast_hash": "bd8024874e5d37f3cf911eaf28233d45",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723053201_add_skill_model/migration.sql": {
+    "mtime": 1784785204.1632843,
+    "ast_hash": "04ccf3fcbb32dc20ad07a2afcaac50c3",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260723053645_skill_ids_default/migration.sql": {
+    "mtime": 1784785204.1632843,
+    "ast_hash": "41808b00d24e9a4d12a4d8e85d8738bc",
+    "semantic_hash": ""
+  },
+  "src/components/shared/SkillMultiSelect.tsx": {
+    "mtime": 1784785204.1632843,
+    "ast_hash": "fe1181c59c56b0680475c5090f69cfde",
+    "semantic_hash": ""
+  },
+  "src/lib/skills.ts": {
+    "mtime": 1784785204.1632843,
+    "ast_hash": "5809f2a6670ac29c5d7153db28721179",
+    "semantic_hash": ""
+  },
+  "src/app/api/biodata/[candidateId]/pdf/route.test.tsx": {
+    "mtime": 1784786002.440283,
+    "ast_hash": "bd06d31b3a436888a1d279e645144f40",
+    "semantic_hash": ""
+  },
+  "src/app/api/biodata/[candidateId]/pdf/route.tsx": {
+    "mtime": 1784786002.440283,
+    "ast_hash": "c25916bdeac0ea626f56436e6a063e6b",
+    "semantic_hash": ""
+  },
+  "src/components/shared/BiodataPdfDocument.test.tsx": {
+    "mtime": 1784786002.440283,
+    "ast_hash": "da57b3fd0ae403cd2ac070f57c5559de",
+    "semantic_hash": ""
+  },
+  "src/components/shared/BiodataPdfDocument.tsx": {
+    "mtime": 1784786002.440283,
+    "ast_hash": "2ed064d94e7f7500b42046848ace046d",
     "semantic_hash": ""
   }
 }

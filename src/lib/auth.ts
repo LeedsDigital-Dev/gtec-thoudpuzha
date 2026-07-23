@@ -33,3 +33,14 @@ export async function requireRole(
 
   return { authorized: true, role, userId: session.userId };
 }
+
+/**
+ * Portal-specific role gate — same check as requireRole but semantically
+ * distinct so callers can render a friendly "this area isn't for your
+ * account type" message instead of a hard 403 redirect.
+ */
+export async function requirePortalRole(
+  allowedRoles: Role[],
+): Promise<RequireRoleResult> {
+  return requireRole(allowedRoles);
+}

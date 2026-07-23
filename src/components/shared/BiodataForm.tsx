@@ -15,11 +15,8 @@ import {
 import { SkillMultiSelect } from "@/components/shared/SkillMultiSelect";
 import type { PublicCourse } from "@/lib/courses";
 import type { SkillDto } from "@/lib/skills";
-import { isProfileComplete } from "@/app/[locale]/(portal)/portal/student/biodata/actions";
-import type {
-  CandidateProfileWithCompletion,
-  BiodataFormData,
-} from "@/app/[locale]/(portal)/portal/student/biodata/actions";
+import { isProfileComplete, type CandidateProfileWithCompletion } from "@/lib/biodata";
+import type { BiodataFormData } from "@/app/[locale]/(portal)/portal/student/biodata/actions";
 import type { EducationalQualification, PreferredJobType } from "@prisma/client";
 
 const QUALIFICATION_OPTIONS: { value: EducationalQualification; label: string }[] = [

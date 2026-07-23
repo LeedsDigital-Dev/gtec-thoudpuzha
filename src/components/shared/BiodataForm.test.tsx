@@ -2,8 +2,7 @@ import { describe, expect, test, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BiodataForm } from "./BiodataForm";
-import { isProfileComplete } from "@/app/[locale]/(portal)/portal/student/biodata/actions";
-import type { CandidateProfileWithCompletion } from "@/app/[locale]/(portal)/portal/student/biodata/actions";
+import { isProfileComplete, type CandidateProfileWithCompletion } from "@/lib/biodata";
 import type { PublicCourse } from "@/lib/courses";
 import type { SkillDto } from "@/lib/skills";
 

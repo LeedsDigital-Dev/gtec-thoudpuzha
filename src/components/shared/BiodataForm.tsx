@@ -89,6 +89,12 @@ export function BiodataForm({
     profile?.careerObjective ?? "",
   );
   const [photoUrl, setPhotoUrl] = useState(profile?.photoUrl ?? "");
+  const [profileVisible, setProfileVisible] = useState(
+    profile?.profileVisible ?? true,
+  );
+  const [consentAcknowledged, setConsentAcknowledged] = useState(
+    !!profile?.id,
+  );
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -111,7 +117,10 @@ export function BiodataForm({
     preferredJobType,
     careerObjective: careerObjective || undefined,
     photoUrl: photoUrl || undefined,
+    profileVisible,
   });
+
+  const isFirstSave = !profile?.id;
 
   const complete = useMemo(() => {
     const data = getFormData();
@@ -132,6 +141,7 @@ export function BiodataForm({
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
       photoUrl: data.photoUrl ?? null,
+      profileVisible,
       isVerifiedStudent,
       studentRecordId: profile?.studentRecordId ?? null,
     };
@@ -161,6 +171,7 @@ export function BiodataForm({
     try {
       await onSubmit(getFormData());
       setSaved(true);
+      setConsentAcknowledged(true);
       setTimeout(() => setSaved(false), 3000);
     } finally {
       setSaving(false);
@@ -396,6 +407,43 @@ export function BiodataForm({
             placeholder="Enter a URL to your profile photo"
           />
         </div>
+      </section>
+
+      {/* Profile Visibility */}
+      <section className="space-y-4 rounded-lg border p-4">
+        <h2 className="text-lg font-medium">Profile Visibility</h2>
+
+        <div className="flex items-start gap-3">
+          <input
+            id="profileVisible"
+            type="checkbox"
+            checked={profileVisible}
+            onChange={(e) => setProfileVisible(e.target.checked)}
+            className="mt-1 h-4 w-4 rounded border-gray-300"
+          />
+          <div className="space-y-1">
+            <Label htmlFor="profileVisible" className="font-medium cursor-pointer">
+              Allow employers to search and view my profile
+            </Label>
+            <p className="text-sm text-muted-foreground">
+              When enabled, your profile will appear in employer candidate
+              searches. Employers can view your qualifications, skills, and
+              career preferences. You can disable this at any time.
+            </p>
+          </div>
+        </div>
+
+        {isFirstSave && !consentAcknowledged && (
+          <div className="rounded-md bg-blue-50 p-4 text-sm text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+            <p className="font-medium">Consent to profile visibility</p>
+            <p className="mt-1">
+              By saving this profile, you agree to make it visible to
+              registered employers searching for candidates. Your contact
+              information will be shared with employers who express interest.
+              You can change this setting at any time.
+            </p>
+          </div>
+        )}
       </section>
 
       <div className="flex items-center gap-4">

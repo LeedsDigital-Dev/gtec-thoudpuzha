@@ -44,3 +44,9 @@
 [2026-07-23T05:40:59Z] Starting s05-t3
 [2026-07-23T05:53:51Z] s05-t3 done. Checking for next eligible task.
 [2026-07-23T05:53:51Z] Starting s05-t4
+[2026-07-23T08:41:25Z] === run-sequence started ===
+[2026-07-23T08:41:25Z] Starting s05-t4
+[2026-07-23T08:46:02Z] s05-t4 did not succeed (exit 1). Stopping sequence rather than continuing past a blocked/failed task. Check plan/blockers.md and plan/logs/s05-t4.log.
+[2026-07-23T08:46:02Z] === run-sequence finished ===
+[2026-07-23T09:15:47Z] === run-sequence started ===
+[2026-07-23T09:15:47Z] Starting s05-t4

@@ -25,6 +25,7 @@ export type BiodataFormData = {
   preferredJobType?: PreferredJobType;
   careerObjective?: string;
   photoUrl?: string;
+  profileVisible?: boolean;
 };
 
 export async function saveBiodata(data: BiodataFormData) {
@@ -56,6 +57,7 @@ export async function saveBiodata(data: BiodataFormData) {
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
       photoUrl: data.photoUrl ?? null,
+      profileVisible: data.profileVisible ?? true,
     },
     create: {
       userId: session.userId,
@@ -74,6 +76,7 @@ export async function saveBiodata(data: BiodataFormData) {
       preferredJobType: data.preferredJobType ?? null,
       careerObjective: data.careerObjective ?? null,
       photoUrl: data.photoUrl ?? null,
+      profileVisible: data.profileVisible ?? true,
     },
   });
 

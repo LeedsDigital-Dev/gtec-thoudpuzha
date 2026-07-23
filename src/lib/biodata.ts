@@ -20,6 +20,7 @@ export type CandidateProfileWithCompletion = {
   preferredJobType: PreferredJobType | null;
   careerObjective: string | null;
   photoUrl: string | null;
+  profileVisible: boolean;
   isVerifiedStudent: boolean;
   studentRecordId: string | null;
 };

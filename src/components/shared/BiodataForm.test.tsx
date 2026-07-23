@@ -6,6 +6,14 @@ import { isProfileComplete, type CandidateProfileWithCompletion } from "@/lib/bi
 import type { PublicCourse } from "@/lib/courses";
 import type { SkillDto } from "@/lib/skills";
 
+vi.mock("@/lib/db", () => ({
+  prisma: {
+    candidateProfile: {
+      findMany: vi.fn(),
+    },
+  },
+}));
+
 const mockCourses: PublicCourse[] = [
   {
     id: "c1",
@@ -70,6 +78,7 @@ function emptyProfile(isVerifiedStudent: boolean): CandidateProfileWithCompletio
     preferredJobType: null,
     careerObjective: null,
     photoUrl: null,
+    profileVisible: true,
     isVerifiedStudent,
     studentRecordId: null,
   };
@@ -151,6 +160,7 @@ describe("isProfileComplete", () => {
       preferredJobType: "FULL_TIME",
       careerObjective: "Looking for opportunities",
       photoUrl: null,
+      profileVisible: true,
       isVerifiedStudent: false,
       studentRecordId: null,
     };
@@ -175,6 +185,7 @@ describe("isProfileComplete", () => {
       preferredJobType: "FULL_TIME",
       careerObjective: "Aspiring developer",
       photoUrl: null,
+      profileVisible: true,
       isVerifiedStudent: true,
       studentRecordId: "SR001",
     };
@@ -199,6 +210,7 @@ describe("isProfileComplete", () => {
       preferredJobType: "FULL_TIME",
       careerObjective: "Aspiring developer",
       photoUrl: null,
+      profileVisible: true,
       isVerifiedStudent: true,
       studentRecordId: "SR001",
     };
@@ -316,5 +328,140 @@ describe("SkillMultiSelect (inside BiodataForm)", () => {
     expect(submittedData.skillIds).toContain("s1");
     expect(submittedData.skillIds).toContain("s3");
     expect(submittedData.skillIds).toHaveLength(2);
+  });
+});
+
+describe("profileVisible toggle", () => {
+  test("toggling profileVisible to false persists correctly", async () => {
+    const onSubmit = vi.fn().mockResolvedValue(undefined);
+    const user = userEvent.setup();
+
+    render(
+      <BiodataForm
+        profile={emptyProfile(false)}
+        isVerifiedStudent={false}
+        courses={mockCourses}
+        skills={mockApprovedSkills}
+        onAddNewSkill={vi.fn()}
+        onSubmit={onSubmit}
+      />,
+    );
+
+    const toggle = screen.getByLabelText(
+      "Allow employers to search and view my profile",
+    );
+    expect(toggle).toBeChecked();
+
+    await user.click(toggle);
+    expect(toggle).not.toBeChecked();
+
+    const saveButton = screen.getByRole("button", { name: "Save Biodata" });
+    await user.click(saveButton);
+
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+    const data = onSubmit.mock.calls[0][0];
+    expect(data.profileVisible).toBe(false);
+  });
+
+  test("consent copy is shown on first save", () => {
+    render(
+      <BiodataForm
+        profile={emptyProfile(false)}
+        isVerifiedStudent={false}
+        courses={mockCourses}
+        skills={mockApprovedSkills}
+        onAddNewSkill={vi.fn()}
+        onSubmit={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText("Consent to profile visibility")).toBeInTheDocument();
+    expect(
+      screen.getByText(/By saving this profile, you agree/i),
+    ).toBeInTheDocument();
+  });
+
+  test("consent copy is NOT shown for existing profiles (not first save)", () => {
+    const existingProfile = { ...emptyProfile(false), id: "existing-id" };
+
+    render(
+      <BiodataForm
+        profile={existingProfile}
+        isVerifiedStudent={false}
+        courses={mockCourses}
+        skills={mockApprovedSkills}
+        onAddNewSkill={vi.fn()}
+        onSubmit={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.queryByText("Consent to profile visibility"),
+    ).toBeNull();
+  });
+});
+
+describe("getSearchableCandidates", () => {
+  function makeProfile(overrides: Partial<CandidateProfileWithCompletion> = {}): CandidateProfileWithCompletion {
+    return {
+      id: "c1",
+      fullName: "John Doe",
+      dateOfBirth: new Date("2000-01-01"),
+      phone: "9876543210",
+      email: "john@example.com",
+      courseCompletedIds: ["c1"],
+      certificationIds: [],
+      educationalQualification: "GRADUATE",
+      yearOfPassing: 2022,
+      address: "123 Main St",
+      languagesKnown: ["English"],
+      skillIds: [],
+      preferredJobLocation: "Kochi",
+      preferredJobType: "FULL_TIME",
+      careerObjective: "Looking for work",
+      photoUrl: null,
+      profileVisible: true,
+      isVerifiedStudent: false,
+      studentRecordId: null,
+      ...overrides,
+    };
+  }
+
+  test("excludes profiles where profileVisible is false", async () => {
+    const dbModule = await import("@/lib/db");
+    const findManyMock = dbModule.prisma.candidateProfile.findMany as ReturnType<typeof vi.fn>;
+    findManyMock.mockResolvedValue([
+      makeProfile({ id: "p1", profileVisible: true }),
+      makeProfile({ id: "p3", profileVisible: true }),
+    ]);
+
+    const { getSearchableCandidates } = await import("@/lib/biodata-search");
+    const results = await getSearchableCandidates();
+
+    // Verify Prisma was called with the correct where filter
+    expect(findManyMock).toHaveBeenCalledWith({
+      where: { profileVisible: true },
+    });
+    expect(results).toHaveLength(2);
+    expect(results.map((r) => r.id)).toEqual(["p1", "p3"]);
+  });
+
+  test("excludes incomplete profiles even if profileVisible is true", async () => {
+    const dbModule = await import("@/lib/db");
+    const findManyMock = dbModule.prisma.candidateProfile.findMany as ReturnType<typeof vi.fn>;
+    findManyMock.mockResolvedValue([
+      makeProfile({ id: "p1", profileVisible: true, fullName: null }),
+      makeProfile({ id: "p2", profileVisible: true }),
+      makeProfile({ id: "p3", profileVisible: true, phone: null }),
+    ]);
+
+    const { getSearchableCandidates } = await import("@/lib/biodata-search");
+    const results = await getSearchableCandidates();
+
+    expect(findManyMock).toHaveBeenCalledWith({
+      where: { profileVisible: true },
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toBe("p2");
   });
 });

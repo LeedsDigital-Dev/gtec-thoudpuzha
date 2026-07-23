@@ -80,3 +80,41 @@ export async function sendEmployerModerationNotification(
     console.error("[email] failed to send moderation notification:", error);
   }
 }
+
+export interface JobPostingModerationNotificationInput {
+  jobTitle: string;
+  companyName: string;
+  employerEmail: string;
+  status: "APPROVED" | "REJECTED";
+  rejectionReason?: string | null;
+}
+
+export async function sendJobPostingModerationNotification(
+  input: JobPostingModerationNotificationInput,
+): Promise<void> {
+  const { JobPostingModerationNotification } = await import(
+    "@/emails/JobPostingModerationNotification"
+  );
+
+  try {
+    await resend.emails.send({
+      from: getFromEmail(),
+      to: input.employerEmail,
+      subject:
+        input.status === "APPROVED"
+          ? `Job posting approved — ${input.jobTitle}`
+          : `Job posting update — ${input.jobTitle}`,
+      react: JobPostingModerationNotification({
+        jobTitle: input.jobTitle,
+        companyName: input.companyName,
+        status: input.status,
+        rejectionReason: input.rejectionReason,
+      }),
+    });
+  } catch (error) {
+    console.error(
+      "[email] failed to send job posting moderation notification:",
+      error,
+    );
+  }
+}

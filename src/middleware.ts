@@ -12,6 +12,13 @@ const isPortalRoute = createRouteMatcher([
   "/:locale/portal/(.*)",
 ]);
 
+const isSignUpRoute = createRouteMatcher([
+  "/portal/sign-up",
+  "/portal/sign-up/(.*)",
+  "/:locale/portal/sign-up",
+  "/:locale/portal/sign-up/(.*)",
+]);
+
 const isAdminRoute = createRouteMatcher([
   "/admin",
   "/admin/(.*)",
@@ -49,6 +56,11 @@ export function handleRouteProtection(
   }
 
   if (isPortalRoute(req)) {
+    // Sign-up paths are accessible without auth
+    if (isSignUpRoute(req)) {
+      return null;
+    }
+
     if (!userId) {
       const signInUrl = new URL(`/${locale}/sign-in`, req.url);
       signInUrl.searchParams.set("redirect_url", req.url);

@@ -33,5 +33,14 @@
   "31": "request.ts",
   "32": "clerk.d.ts",
   "33": "audit.test.ts",
-  "34": "flash-news/page.test.tsx"
+  "34": "flash-news/page.test.tsx",
+  "35": "FlashNewsBar.tsx",
+  "36": "news-events.test.ts",
+  "37": "news.test.tsx",
+  "38": "getMediaUrl",
+  "39": "sign-up/page.tsx",
+  "40": "seed.ts",
+  "41": "register/page.tsx",
+  "42": "student/page.tsx",
+  "43": "biodata/page.tsx"
 }

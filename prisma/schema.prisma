@@ -70,11 +70,43 @@ model Course {
   @@index([featured])
 }
 
+enum EducationalQualification {
+  SSLC
+  PLUS_TWO
+  DIPLOMA
+  GRADUATE
+  POST_GRADUATE
+  OTHER
+}
+
+enum PreferredJobType {
+  FULL_TIME
+  PART_TIME
+  INTERNSHIP
+  WORK_FROM_HOME
+}
+
 model CandidateProfile {
   id               String   @id @default(cuid())
   userId           String   @unique
   isVerifiedStudent Boolean  @default(false)
   studentRecordId  String?
+
+  fullName                 String?
+  dateOfBirth              DateTime?
+  phone                    String?
+  email                    String?
+  courseCompletedIds       String[]
+  certificationIds         String[]
+  educationalQualification EducationalQualification?
+  yearOfPassing            Int?
+  address                  String?
+  languagesKnown           String[]
+  preferredJobLocation     String?
+  preferredJobType         PreferredJobType?
+  careerObjective          String?
+  photoUrl                 String?
+
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 

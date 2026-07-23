@@ -1,13 +1,42 @@
-export default function BiodataPlaceholderPage() {
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/db";
+import { Role } from "@/lib/auth";
+import { BiodataForm } from "@/components/shared/BiodataForm";
+import { getPublishedCourses } from "@/lib/courses";
+import { saveBiodata } from "./actions";
+
+export default async function BiodataPage() {
+  const session = await auth();
+  if (!session.userId) {
+    return null;
+  }
+
+  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const isStudent = role === Role.STUDENT;
+  const isVerifiedStudent = role === Role.STUDENT;
+
+  const profile = await prisma.candidateProfile.findUnique({
+    where: { userId: session.userId },
+  });
+
+  const profileWithCompletion = profile
+    ? {
+        ...profile,
+        isVerifiedStudent,
+        studentRecordId: profile.studentRecordId,
+      }
+    : null;
+
+  const courses = await getPublishedCourses();
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="mb-4 text-3xl font-semibold">Complete Your Profile</h1>
-        <p className="text-gray-600">
-          Your profile setup is coming soon. You will be able to fill in your
-          biodata, skills, and preferences.
-        </p>
-      </div>
+    <div className="min-h-screen p-6">
+      <BiodataForm
+        profile={profileWithCompletion}
+        isVerifiedStudent={isVerifiedStudent}
+        courses={courses}
+        onSubmit={saveBiodata}
+      />
     </div>
   );
 }

@@ -1,0 +1,22 @@
+[spawn-engineer] s11-t4  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T17:51:45Z) ===
+Finished **s11-t4** end to end. Here's what was done:
+
+**Performance fixes applied:**
+- **Homepage** (`/`) — added `revalidate=60`, replaced `getLocale()` (dynamic API) with `params.locale`, passed explicit locale to `getTranslations()` calls
+- **Public layout** — added `revalidate=60` so `getSiteSettings()` participates in ISR caching
+- **`/news/[slug]`** — added `generateStaticParams` (pre-builds all published slugs), replaced raw `<img>` with `next/image` + `getMediaUrl()`
+- **`CertificationPartnerStrip.tsx`** — replaced raw `<img>` with `next/image` + `getMediaUrl()`
+
+**Tests written** (3 required + bonus coverage):
+1. `tests/e2e/performance-audit.spec.ts` — LCP under 2.5s via Playwright PerformanceObserver
+2. `src/app/[locale]/(public)/__tests__/rendering-strategy.test.ts` — confirms ISR exports on all (public) routes
+3. `src/app/[locale]/(public)/__tests__/no-raw-img.test.ts` — scans for raw `<img>` tags on public pages
+
+**Documentation:** `docs/performance-audit-log.md` committed.
+
+**Validation:** Full test suite — **64 files, 321 tests passing**. Production build — **clean**. Both green before commit.
+
+**Git workflow:** Branch `task-s11-t4` → merged to `main` → pushed to `origin main` → deleted task branch → `plan/task-graph.json` updated to `status: "done"` and pushed.
+--- exit code: 0 ---
+[spawn-engineer] s11-t4 VERIFIED done (commit landed, status flipped).

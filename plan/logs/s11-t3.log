@@ -1,0 +1,27 @@
+[spawn-engineer] s11-t3  tier=cheap  profile=deepseek-flash  model=deepseek/deepseek-v4-flash
+=== Attempt 1/3 (2026-07-23T17:18:07Z) ===
+Error: The API server encountered an error. Please try again later.
+--- exit code: 7 ---
+=== Attempt 2/3 (2026-07-23T17:24:30Z) ===
+Done. Task s11-t3 is fully complete and on `main` at `3edb886`, pushed to origin.
+
+**What was done:**
+
+1. **Accessibility audit** — systematic WCAG 2.1 AA check across all public/portal surfaces. 5 violations found and fixed:
+   - Gallery lightbox: added `useFocusTrap` so Tab doesn't escape the modal (WCAG 2.4.3)
+   - FlashNewsBar: hid duplicated marquee items from screen readers (WCAG 4.1.2)
+   - SkillMultiSelect: added `aria-label="Search skills"` + `role="combobox"` (WCAG 1.3.1 / 4.1.2)
+   - Placement page: fixed heading hierarchy `h1→h3→h2` to `h1→h2→h2` (WCAG 1.3.1)
+   - 11 `text-gray-400` instances → `text-gray-500` for AA contrast (WCAG 1.4.3)
+
+2. **Tests written** (4 total):
+   - Playwright + axe-core: homepage zero critical/serious violations
+   - Vitest + axe-core: BiodataForm zero critical/serious violations
+   - Playwright: keyboard-only EnquiryForm navigation
+   - Playwright: lightbox focus trap + Escape dismiss
+
+3. **docs/accessibility-audit-log.md** committed
+
+4. **Verified** — full Vitest suite: **62 files, 312 tests passed**. Production build: **compiled successfully**.
+--- exit code: 0 ---
+[spawn-engineer] s11-t3 VERIFIED done (commit landed, status flipped).

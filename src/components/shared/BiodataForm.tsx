@@ -404,6 +404,17 @@ export function BiodataForm({
         <Button onClick={handleSave} disabled={saving}>
           {saving ? "Saving..." : "Save Biodata"}
         </Button>
+        {profile?.id && (
+          <a
+            href={`/api/biodata/${profile.id}/pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" type="button">
+              Download as PDF
+            </Button>
+          </a>
+        )}
         {saved && (
           <span className="text-sm text-green-600">
             ✓ Saved successfully

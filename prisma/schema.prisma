@@ -212,6 +212,16 @@ model CertificationPartner {
   @@index([sortOrder])
 }
 
+model StudentRecord {
+  id           String    @id @default(cuid())
+  studentId    String    @unique
+  fullName     String
+  phone        String
+  linkedUserId String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
 model WhyChooseUsCard {
   id             String       @id @default(cuid())
   siteSettingsId String

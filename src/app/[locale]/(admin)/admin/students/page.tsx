@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
-import { createStudentRecord, bulkImportStudents } from "./actions";
+import { createStudentRecord, bulkImportStudentsAction } from "./actions";
 
 interface StudentsPageProps {
   params: Promise<{ locale: string }>;
@@ -75,7 +75,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
           CSV must have columns: studentId,fullName,phone. Header row is
           optional.
         </p>
-        <form action={bulkImportStudents} className="mt-4 space-y-4">
+        <form action={bulkImportStudentsAction} className="mt-4 space-y-4">
           <input type="hidden" name="locale" value={locale} />
           <div className="space-y-1">
             <label htmlFor="csv" className="text-sm font-medium">

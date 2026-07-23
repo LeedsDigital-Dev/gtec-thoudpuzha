@@ -168,6 +168,15 @@ export async function bulkImportStudents(formData: FormData) {
   return results;
 }
 
+/**
+ * Wrapper around bulkImportStudents for use as a form action.
+ * Form action props must return void | Promise<void>, so this discards
+ * the CsvRowResult[] return value that bulkImportStudents produces.
+ */
+export async function bulkImportStudentsAction(formData: FormData) {
+  await bulkImportStudents(formData);
+}
+
 /** Simple CSV line parser that handles quoted fields. */
 function parseCsvLine(line: string): string[] {
   const fields: string[] = [];

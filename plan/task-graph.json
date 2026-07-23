@@ -588,7 +588,7 @@
       "track": "Frontend",
       "priority": "Must Have",
       "points": 5,
-      "status": "not_started",
+      "status": "done",
       "depends_on": [
         "s07-t4",
         "s07-t5"

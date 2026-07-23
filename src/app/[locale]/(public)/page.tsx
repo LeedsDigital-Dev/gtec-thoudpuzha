@@ -4,6 +4,7 @@ import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { AboutSection } from "@/components/shared/AboutSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
+import { ContactSection } from "@/components/shared/ContactSection";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
 
 interface HomePageProps {
@@ -28,6 +29,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <AtAGlanceSection settings={settings} />
       <AboutSection settings={settings} locale={locale} />
       <WhyChooseUsSection settings={settings} locale={locale} />
+      <ContactSection settings={settings} />
     </main>
   );
 }

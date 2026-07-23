@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
-    "mtime": 1784778542.7151885,
-    "ast_hash": "6cc8b3040a46c0f076138218f4edf9d9",
+    "mtime": 1784779225.3999455,
+    "ast_hash": "8c00a2a108cfcebc6e124ba6b5859e28",
     "semantic_hash": ""
   },
   "src/app/[locale]/account-setup-incomplete/page.tsx": {
@@ -310,13 +310,13 @@
     "semantic_hash": ""
   },
   "src/components/shared/EnquiryForm.test.tsx": {
-    "mtime": 1784759501.7073197,
-    "ast_hash": "e1a35c9c9fb166680b3ca17689c76610",
+    "mtime": 1784779225.4009457,
+    "ast_hash": "14dccaf9f87504f6f0b1f4d176dce846",
     "semantic_hash": ""
   },
   "src/components/shared/EnquiryForm.tsx": {
-    "mtime": 1784778542.7151885,
-    "ast_hash": "8bb2fca5192802190d848c19abac65de",
+    "mtime": 1784779225.4009457,
+    "ast_hash": "f6041218c6cc20157100b6b5bcd42bef",
     "semantic_hash": ""
   },
   "src/components/shared/HeroSection.tsx": {
@@ -365,13 +365,13 @@
     "semantic_hash": ""
   },
   "src/lib/enquiry.test.ts": {
-    "mtime": 1784760329.8203473,
-    "ast_hash": "60ed814a8964d7b22aa60183ed15c688",
+    "mtime": 1784779225.4009457,
+    "ast_hash": "c7c7ce6e8fad20ae9f03c2848e1f039e",
     "semantic_hash": ""
   },
   "src/lib/enquiry.ts": {
-    "mtime": 1784760329.8203473,
-    "ast_hash": "c43bf494f5b01000d7c757b558fbcb4e",
+    "mtime": 1784779225.4009457,
+    "ast_hash": "11057b4d262db9dfe2db46d480d92006",
     "semantic_hash": ""
   },
   "prisma/migrations/20260722224912_add_site_settings/migration.sql": {
@@ -435,13 +435,13 @@
     "semantic_hash": ""
   },
   "src/components/shared/ContactSection.test.tsx": {
-    "mtime": 1784777746.7277336,
-    "ast_hash": "61da4f724985697d761ec5c7174e53eb",
+    "mtime": 1784779225.3999455,
+    "ast_hash": "7d1c8de81fcc6f1bbcd2b5380343d2be",
     "semantic_hash": ""
   },
   "src/components/shared/ContactSection.tsx": {
-    "mtime": 1784777746.7277336,
-    "ast_hash": "b7154473a05569a5965d6c1facc474d0",
+    "mtime": 1784779225.3999455,
+    "ast_hash": "6a3a12d32cc70388c7d08205810e988a",
     "semantic_hash": ""
   },
   "src/components/shared/Footer.test.tsx": {
@@ -482,6 +482,16 @@
   "src/lib/storage.ts": {
     "mtime": 1784778137.960652,
     "ast_hash": "0f0a7202ab163739ba57a2ad637a7769",
+    "semantic_hash": ""
+  },
+  "src/components/shared/CourseSelect.test.tsx": {
+    "mtime": 1784779225.3999455,
+    "ast_hash": "ef37ecc0b1376faed6b813576fcbb50e",
+    "semantic_hash": ""
+  },
+  "src/components/shared/CourseSelect.tsx": {
+    "mtime": 1784779225.4009457,
+    "ast_hash": "138bc52681eaebe44ee0900860c3d5ee",
     "semantic_hash": ""
   }
 }

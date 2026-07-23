@@ -64,6 +64,7 @@ describe("Employer Dashboard — own postings only", () => {
         status: "APPROVED",
         applicationDeadline: new Date("2026-12-31"),
         createdAt: new Date("2026-07-20"),
+        _count: { applications: 3 },
       },
       {
         id: "jp_2",
@@ -72,6 +73,7 @@ describe("Employer Dashboard — own postings only", () => {
         status: "PENDING",
         applicationDeadline: new Date("2026-11-30"),
         createdAt: new Date("2026-07-21"),
+        _count: { applications: 0 },
       },
     ]);
 
@@ -89,7 +91,15 @@ describe("Employer Dashboard — own postings only", () => {
     expect(mockFindManyPostings).toHaveBeenCalledWith({
       where: { employerId: "ep_1", deletedAt: null },
       orderBy: { createdAt: "desc" },
-      select: expect.any(Object),
+      select: {
+        id: true,
+        title: true,
+        jobType: true,
+        status: true,
+        applicationDeadline: true,
+        createdAt: true,
+        _count: { select: { applications: true } },
+      },
     });
   });
 

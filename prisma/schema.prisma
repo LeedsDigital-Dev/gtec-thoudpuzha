@@ -142,6 +142,40 @@ model SiteSettings {
   updatedAt            DateTime @updatedAt
 }
 
+enum GalleryMediaType {
+  IMAGE
+  VIDEO
+}
+
+model GalleryCategory {
+  id        String   @id @default(cuid())
+  nameEn    String
+  nameMl    String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items GalleryItem[]
+
+  @@index([sortOrder])
+}
+
+model GalleryItem {
+  id        String           @id @default(cuid())
+  categoryId String
+  mediaType   GalleryMediaType
+  url         String
+  captionEn   String?
+  captionMl   String?
+  sortOrder   Int             @default(0)
+  createdAt   DateTime        @default(now())
+
+  category GalleryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+  @@index([sortOrder])
+}
+
 model WhyChooseUsCard {
   id             String       @id @default(cuid())
   siteSettingsId String

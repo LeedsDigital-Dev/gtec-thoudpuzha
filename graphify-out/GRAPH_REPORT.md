@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-23)
 
 ## Corpus Check
-- 94 files · ~19,664 words
+- 93 files · ~18,961 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 437 nodes · 635 edges · 33 communities (27 shown, 6 thin omitted)
+- 426 nodes · 655 edges · 32 communities (26 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b6e2f868`
+- Built from commit: `337e8401`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -34,7 +34,6 @@
 - taste.md
 - tailwind
 - (public)/page.tsx
-- courses/actions.ts
 - clerk.d.ts
 - audit.test.ts
 - flash-news/page.test.tsx
@@ -47,8 +46,8 @@
 5. `Role` - 13 edges
 6. `localeFromFormData()` - 9 edges
 7. `updateSiteSettings()` - 8 edges
-8. `GTEC Thodupuzha` - 8 edges
-9. `EnquiryForm()` - 7 edges
+8. `PublicCourse` - 8 edges
+9. `GTEC Thodupuzha` - 8 edges
 10. `scripts` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -66,7 +65,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 6 thin omitted)
+## Communities (32 total, 6 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.06
@@ -89,8 +88,8 @@ Cohesion: 0.18
 Nodes (10): name, private, scripts, build, db:studio, dev, lint, start (+2 more)
 
 ### Community 5 - "EnquiryForm.tsx"
-Cohesion: 0.18
-Nodes (10): EnquiryNotificationEmailProps, EnquiryNotificationInput, getCentreStaffEmails(), getFromEmail(), resend, sendEnquiryNotification(), submitEnquiry(), mockCourseFindFirst (+2 more)
+Cohesion: 0.08
+Nodes (27): ContactSection(), ContactSectionProps, socialIcons, baseSettings, mockCourses, CourseSelect(), CourseSelectProps, publishedCourses (+19 more)
 
 ### Community 6 - "GTEC Thodupuzha"
 Cohesion: 0.22
@@ -101,16 +100,16 @@ Cohesion: 0.07
 Nodes (24): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, buildLocalePath(), LanguageSwitcher() (+16 more)
 
 ### Community 9 - "app/layout.tsx"
-Cohesion: 0.09
-Nodes (20): AdminLayout(), PortalLayout(), PublicLayout(), ContactSection(), ContactSectionProps, socialIcons, baseSettings, FlashNewsBar() (+12 more)
+Cohesion: 0.12
+Nodes (14): AdminLayout(), PortalLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, Footer(), portalLinks (+6 more)
 
 ### Community 10 - "enquiries/page.test.tsx"
 Cohesion: 0.50
 Nodes (3): mockAuth, mockEnquiryFindMany, mockRedirect
 
 ### Community 16 - "(public)/page.tsx"
-Cohesion: 0.19
-Nodes (13): AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, iconMap, WhyChooseUsSection(), WhyChooseUsSectionProps, getAtAGlanceStats() (+5 more)
+Cohesion: 0.15
+Nodes (18): PublicLayout(), HomePage(), HomePageProps, AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, iconMap (+10 more)
 
 ### Community 17 - "actions.test.ts"
 Cohesion: 0.10
@@ -124,32 +123,28 @@ Nodes (3): CI Strategy, Setup, Test Database Configuration
 Cohesion: 0.19
 Nodes (16): HeroSection(), TODO: Super-Admin-editable content — replace with CMS-managed fields once, Button(), buttonVariants, Input(), Label(), SelectContent(), SelectGroup() (+8 more)
 
-### Community 28 - "courses/actions.ts"
-Cohesion: 0.06
-Nodes (32): CoursesPage(), groupByCategory(), Grouped, MockCourse, mockGetPublishedCourseBySlug, mockGetPublishedCourses, mockNotFound, CourseDetailPage() (+24 more)
-
 ### Community 33 - "audit.test.ts"
-Cohesion: 0.11
-Nodes (38): AuditLogPage(), AuditLogPageProps, createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory() (+30 more)
+Cohesion: 0.09
+Nodes (45): AuditLogPage(), AuditLogPageProps, createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory() (+37 more)
 
 ### Community 34 - "flash-news/page.test.tsx"
 Cohesion: 0.29
 Nodes (6): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, mockRevalidatePath
 
 ## Knowledge Gaps
-- **189 isolated node(s):** `CourseDetailPageProps`, `mockGetPublishedCourses`, `mockGetPublishedCourseBySlug`, `mockNotFound`, `MockCourse` (+184 more)
+- **183 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+178 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `siteConfig` connect `app/layout.tsx` to `(public)/page.tsx`?**
-  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `LanguageSwitcher()` connect `aliases` to `app/layout.tsx`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **What connects `CourseDetailPageProps`, `mockGetPublishedCourses`, `mockGetPublishedCourseBySlug` to the rest of the system?**
-  _189 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `siteConfig` connect `app/layout.tsx` to `(public)/page.tsx`, `EnquiryForm.tsx`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **What connects `$schema`, `style`, `rsc` to the rest of the system?**
+  _183 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**

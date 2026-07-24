@@ -9,7 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { lookupStudentRecord, finalizeStudentVerification } from "./actions";
 
-type Step = "form" | "verifying" | "otp" | "done" | "error";
+type Step = "form" | "verifying" | "otp" | "password" | "done" | "error";
+
+const MIN_PASSWORD_LENGTH = 8;
+
+function isValidPassword(password: string): boolean {
+  return password.length >= MIN_PASSWORD_LENGTH;
+}
 
 export default function StudentSignUpPage() {
   const { signUp } = useSignUp();
@@ -21,6 +27,7 @@ export default function StudentSignUpPage() {
   const [error, setError] = useState("");
   const [alreadyLinked, setAlreadyLinked] = useState(false);
   const [studentRecordId, setStudentRecordId] = useState("");
+  const [verifiedEmail, setVerifiedEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const handleLookup = useCallback(async () => {
@@ -41,6 +48,7 @@ export default function StudentSignUpPage() {
       }
 
       setStudentRecordId(result.studentRecordId);
+      setVerifiedEmail(result.email);
       setStep("verifying");
 
       if (!signUp) {
@@ -82,8 +90,51 @@ export default function StudentSignUpPage() {
       setError("");
 
       try {
-        let { error } = await signUp.verifications.verifyEmailCode({ code });
+        const { error } = await signUp.verifications.verifyEmailCode({ code });
 
+        if (error) {
+          setError(error.message);
+          return;
+        }
+
+        // Email is now verified. The Clerk instance also requires a
+        // password before the SignUp can be finalized (confirmed via
+        // signUp.missingFields === ["password"]) — this custom flow never
+        // collects one, so ask for it now rather than failing at finalize().
+        setStep("password");
+      } catch (err: unknown) {
+        const message =
+          err instanceof Error ? err.message : "Verification failed. Please try again.";
+        setError(message);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [signUp],
+  );
+
+  const handleSetPassword = useCallback(
+    async (password: string) => {
+      if (!signUp) return;
+
+      if (!isValidPassword(password)) {
+        setError(t("passwordTooShort", { minLength: MIN_PASSWORD_LENGTH }));
+        return;
+      }
+
+      setSubmitting(true);
+      setError("");
+
+      try {
+        // Clerk's `update()` deliberately excludes `password` in this SDK
+        // version — `password()` is the dedicated method for setting it.
+        // Email is already verified on this signUp attempt; re-supplying
+        // it here is required by the method's signature, it does not
+        // re-trigger verification.
+        let { error } = await signUp.password({
+          password,
+          emailAddress: verifiedEmail,
+        });
         if (error) {
           setError(error.message);
           return;
@@ -98,17 +149,29 @@ export default function StudentSignUpPage() {
         await finalizeStudentVerification(studentRecordId);
       } catch (err: unknown) {
         const message =
-          err instanceof Error ? err.message : "Verification failed. Please try again.";
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
         setError(message);
       } finally {
         setSubmitting(false);
       }
     },
-    [signUp, studentRecordId],
+    [signUp, studentRecordId, verifiedEmail, t],
   );
 
   if (step === "otp") {
     return <OtpForm onVerify={handleVerifyOtp} submitting={submitting} error={error} t={t} />;
+  }
+
+  if (step === "password") {
+    return (
+      <PasswordForm
+        onSubmit={handleSetPassword}
+        submitting={submitting}
+        error={error}
+        minLength={MIN_PASSWORD_LENGTH}
+        t={t}
+      />
+    );
   }
 
   const isError = step === "error";
@@ -254,6 +317,91 @@ function OtpForm({
 
           <Button type="submit" className="w-full" disabled={submitting}>
             {submitting ? t("verifying") : t("verifyCode")}
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function PasswordForm({
+  onSubmit,
+  submitting,
+  error,
+  minLength,
+  t,
+}: {
+  onSubmit: (password: string) => Promise<void>;
+  submitting: boolean;
+  error: string;
+  minLength: number;
+  t: (key: string, values?: Record<string, string | number>) => string;
+}) {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [mismatchError, setMismatchError] = useState("");
+
+  return (
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-6">
+        <div className="text-center">
+          <h1 className="mb-2 text-3xl font-semibold">{t("setPasswordHeading")}</h1>
+          <p className="text-gray-600">{t("setPasswordDescription")}</p>
+        </div>
+
+        {(error || mismatchError) && (
+          <div
+            className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+            role="alert"
+          >
+            {mismatchError || error}
+          </div>
+        )}
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setMismatchError("");
+            if (password !== confirmPassword) {
+              setMismatchError(t("passwordMismatch"));
+              return;
+            }
+            onSubmit(password);
+          }}
+          className="space-y-4"
+        >
+          <div className="space-y-2">
+            <Label htmlFor="password">{t("password")}</Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              minLength={minLength}
+              required
+              disabled={submitting}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              autoComplete="new-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              minLength={minLength}
+              required
+              disabled={submitting}
+            />
+          </div>
+
+          <Button type="submit" className="w-full" disabled={submitting}>
+            {submitting ? t("settingPassword") : t("continueButton")}
           </Button>
         </form>
       </div>

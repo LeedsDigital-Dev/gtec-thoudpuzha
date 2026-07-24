@@ -390,7 +390,15 @@
     "verificationCode": "Verification Code",
     "otpPlaceholder": "Enter 6-digit code",
     "verifyCode": "Verify Code",
-    "verifyYourEmail": "Verify Your Email"
+    "verifyYourEmail": "Verify Your Email",
+    "setPasswordHeading": "Set a Password",
+    "setPasswordDescription": "Your email is verified. Set a password to finish creating your account.",
+    "password": "Enter Password",
+    "confirmPassword": "Confirm Password",
+    "settingPassword": "Setting password...",
+    "continueButton": "Continue",
+    "passwordMismatch": "Passwords don't match.",
+    "passwordTooShort": "Password must be at least {minLength} characters."
   },
   "progress": {
     "heading": "My Progress",

@@ -1,7 +1,7 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-24)
 
 ## Corpus Check
-- 298 files · ~100,014 words
+- 298 files · ~100,040 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7c7c3aa3`
+- Built from commit: `3308534d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -957,7 +957,7 @@ Cohesion: 0.50
 Nodes (4): roleGate, description, goToPortal, notYourAccount
 
 ## Knowledge Gaps
-- **1576 isolated node(s):** `home`, `about`, `courses`, `placement`, `gallery` (+1571 more)
+- **1576 isolated node(s):** `Step`, `home`, `about`, `courses`, `placement` (+1571 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **46 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -965,12 +965,12 @@ Nodes (4): roleGate, description, goToPortal, notYourAccount
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `biodata` connect `devDependencies` to `candidates/actions.ts`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `biodata` connect `BiodataForm.test.tsx` to `student-dashboard.test.tsx`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `Role` connect `FlashNewsBar.tsx` to `EnquiryForm.tsx`, `flash-news/page.tsx`, `applicants/actions.test.ts`, `(admin)/layout.tsx`, `(public)/page.tsx`, `Community 155`, `Community 156`, `news-events.test.ts`, `Community 166`, `flash-news/page.test.tsx`, `FlashNewsBar.tsx`, `Role`, `Community 187`, `Community 188`, `search-form.tsx`, `candidates/actions.test.ts`, `[id]/page.tsx`, `NewsTeaserSection.tsx`, `[id]/actions.ts`?**
   _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **What connects `home`, `about`, `courses` to the rest of the system?**
+- **Why does `footer` connect `applications/page.tsx` to `student-dashboard.test.tsx`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `Step`, `home`, `about` to the rest of the system?**
   _1576 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.038461538461538464 - nodes in this community are weakly interconnected._

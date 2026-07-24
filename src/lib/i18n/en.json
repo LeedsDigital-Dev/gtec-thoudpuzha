@@ -392,7 +392,7 @@
     "verifyCode": "Verify Code",
     "verifyYourEmail": "Verify Your Email",
     "setPasswordHeading": "Set a Password",
-    "setPasswordDescription": "Your email is verified. Set a password to finish creating your account.",
+    "setPasswordDescription": "Create a password for your account. We'll send a verification code to your email next.",
     "password": "Enter Password",
     "confirmPassword": "Confirm Password",
     "settingPassword": "Setting password...",

@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
-    "mtime": 1784886640.79583,
-    "ast_hash": "ef1510e46b0087730baa37371c77fb14",
+    "mtime": 1784893027.0850065,
+    "ast_hash": "b33756ae2b7a70b872fde84a0f9f19b5",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {

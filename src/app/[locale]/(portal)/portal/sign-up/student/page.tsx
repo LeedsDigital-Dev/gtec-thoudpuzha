@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { lookupStudentRecord, finalizeStudentVerification } from "./actions";
 
-type Step = "form" | "verifying" | "otp" | "password" | "done" | "error";
+type Step = "form" | "password" | "verifying" | "otp" | "done" | "error";
 
 const MIN_PASSWORD_LENGTH = 8;
 
@@ -49,29 +49,7 @@ export default function StudentSignUpPage() {
 
       setStudentRecordId(result.studentRecordId);
       setVerifiedEmail(result.email);
-      setStep("verifying");
-
-      if (!signUp) {
-        setError("Verification service is not ready. Please try again.");
-        setStep("error");
-        return;
-      }
-
-      let { error } = await signUp.create({ emailAddress: result.email });
-      if (error) {
-        setError(error.message);
-        setStep("error");
-        return;
-      }
-
-      ({ error } = await signUp.verifications.sendEmailCode());
-      if (error) {
-        setError(error.message);
-        setStep("error");
-        return;
-      }
-
-      setStep("otp");
+      setStep("password");
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "Something went wrong. Please try again.";
@@ -80,43 +58,10 @@ export default function StudentSignUpPage() {
     } finally {
       setSubmitting(false);
     }
-  }, [studentId, phone, signUp]);
-
-  const handleVerifyOtp = useCallback(
-    async (code: string) => {
-      if (!signUp) return;
-
-      setSubmitting(true);
-      setError("");
-
-      try {
-        const { error } = await signUp.verifications.verifyEmailCode({ code });
-
-        if (error) {
-          setError(error.message);
-          return;
-        }
-
-        // Email is now verified. The Clerk instance also requires a
-        // password before the SignUp can be finalized (confirmed via
-        // signUp.missingFields === ["password"]) — this custom flow never
-        // collects one, so ask for it now rather than failing at finalize().
-        setStep("password");
-      } catch (err: unknown) {
-        const message =
-          err instanceof Error ? err.message : "Verification failed. Please try again.";
-        setError(message);
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    [signUp],
-  );
+  }, [studentId, phone]);
 
   const handleSetPassword = useCallback(
     async (password: string) => {
-      if (!signUp) return;
-
       if (!isValidPassword(password)) {
         setError(t("passwordTooShort", { minLength: MIN_PASSWORD_LENGTH }));
         return;
@@ -126,32 +71,65 @@ export default function StudentSignUpPage() {
       setError("");
 
       try {
-        // Clerk's `update()` deliberately excludes `password` in this SDK
-        // version — `password()` is the dedicated method for setting it.
-        // Email is already verified on this signUp attempt; re-supplying
-        // it here is required by the method's signature, it does not
-        // re-trigger verification.
+        if (!signUp) {
+          setError("Verification service is not ready. Please try again.");
+          setStep("error");
+          return;
+        }
+
+        // Per Clerk's documented custom email/password flow, password()
+        // is the call that STARTS the sign-up attempt (it plays the role
+        // create() plays for other strategies) — it must come before
+        // sendEmailCode()/verifyEmailCode(), not after. Calling it after
+        // email is already verified re-arms email as unverified, which
+        // is what caused finalize() to fail with "Cannot finalize sign-up
+        // without a created session" earlier.
         let { error } = await signUp.password({
           password,
           emailAddress: verifiedEmail,
         });
         if (error) {
           setError(error.message);
+          setStep("error");
           return;
         }
 
-        // TEMPORARY DIAGNOSTIC — remove once identified.
-        console.log("[password-debug] status:", signUp.status);
-        console.log("[password-debug] abandonAt:", signUp.abandonAt);
-        console.log(
-          "[password-debug] createdSessionId:",
-          signUp.createdSessionId,
-        );
-        console.log("[password-debug] missingFields:", signUp.missingFields);
-        console.log(
-          "[password-debug] unverifiedFields:",
-          signUp.unverifiedFields,
-        );
+        setStep("verifying");
+
+        ({ error } = await signUp.verifications.sendEmailCode());
+        if (error) {
+          setError(error.message);
+          setStep("error");
+          return;
+        }
+
+        setStep("otp");
+      } catch (err: unknown) {
+        const message =
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        setStep("error");
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [signUp, verifiedEmail, t],
+  );
+
+  const handleVerifyOtp = useCallback(
+    async (code: string) => {
+      if (!signUp) return;
+
+      setSubmitting(true);
+      setError("");
+
+      try {
+        let { error } = await signUp.verifications.verifyEmailCode({ code });
+
+        if (error) {
+          setError(error.message);
+          return;
+        }
 
         ({ error } = await signUp.finalize());
         if (error) {
@@ -162,18 +140,14 @@ export default function StudentSignUpPage() {
         await finalizeStudentVerification(studentRecordId);
       } catch (err: unknown) {
         const message =
-          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+          err instanceof Error ? err.message : "Verification failed. Please try again.";
         setError(message);
       } finally {
         setSubmitting(false);
       }
     },
-    [signUp, studentRecordId, verifiedEmail, t],
+    [signUp, studentRecordId],
   );
-
-  if (step === "otp") {
-    return <OtpForm onVerify={handleVerifyOtp} submitting={submitting} error={error} t={t} />;
-  }
 
   if (step === "password") {
     return (
@@ -185,6 +159,10 @@ export default function StudentSignUpPage() {
         t={t}
       />
     );
+  }
+
+  if (step === "otp") {
+    return <OtpForm onVerify={handleVerifyOtp} submitting={submitting} error={error} t={t} />;
   }
 
   const isError = step === "error";

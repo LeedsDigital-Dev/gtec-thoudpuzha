@@ -110,13 +110,13 @@
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
-    "mtime": 1784849051.8575706,
-    "ast_hash": "8fdc139c14508496443edc5c8ab2b746",
+    "mtime": 1784865941.8114822,
+    "ast_hash": "1744135af6bb79f07d5228530f419743",
     "semantic_hash": ""
   },
   "src/middleware.ts": {
-    "mtime": 1784849051.8585706,
-    "ast_hash": "590c09dd4d9df1b7ca165de7a91e23b3",
+    "mtime": 1784865941.8114822,
+    "ast_hash": "3cff526a860cf3b98ae56d2fcd899688",
     "semantic_hash": ""
   },
   "src/types/clerk.d.ts": {
@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784849051.8575706,
-    "ast_hash": "277e9852714540189fe4deabc51fa8b0",
+    "mtime": 1784867375.407728,
+    "ast_hash": "a68456e5c71a76c4303e336c9044f290",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784849051.8585706,
-    "ast_hash": "146ccc38d591f4333239c4ff59f2c1df",
+    "mtime": 1784867375.407728,
+    "ast_hash": "bac59664387f0bb9fab6a5923c301824",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -640,8 +640,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/signup-flow.test.tsx": {
-    "mtime": 1784849051.8485706,
-    "ast_hash": "eb37e9973fb14f55396912e722b18399",
+    "mtime": 1784855077.962851,
+    "ast_hash": "9987d4afb8e7c0d4d729a3a85d152510",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/page.tsx": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
-    "mtime": 1784849051.8535707,
-    "ast_hash": "e680364247842da0b436ac7e978299e6",
+    "mtime": 1784867375.407728,
+    "ast_hash": "d4bf3e7443ee2f152417c71096b8fee7",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/complete-signup/page.tsx": {
-    "mtime": 1784849051.8555706,
-    "ast_hash": "63c94e8fc84e533ef4ecd07d2a7901b0",
+    "mtime": 1784855077.962851,
+    "ast_hash": "ffc038088ec3902d9435721c656d5b83",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723045401_add_student_record/migration.sql": {
@@ -675,33 +675,33 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/actions.test.ts": {
-    "mtime": 1784849051.8515706,
-    "ast_hash": "c9ba9293cfc7cabc5ffb376585d0aa0d",
+    "mtime": 1784867375.407728,
+    "ast_hash": "78d336220d6e61afd055fd1379464259",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/actions.ts": {
-    "mtime": 1784849051.8515706,
-    "ast_hash": "3946a831dbc8ba4b74fc4e3e32eecee0",
+    "mtime": 1784867375.407728,
+    "ast_hash": "fe893b6816c18a59b55ea203dd60595e",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/page.tsx": {
-    "mtime": 1784849051.8515706,
-    "ast_hash": "5a82dd84c2b422576a1af80f8c7ff5e1",
+    "mtime": 1784867375.407728,
+    "ast_hash": "152455ffb4adf2ec35a5b12de40ca91d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/actions.test.ts": {
-    "mtime": 1784849051.8535707,
-    "ast_hash": "78042d2fcb7d7d2673b052a76a195ea1",
+    "mtime": 1784867375.407728,
+    "ast_hash": "a637f47ca93c220a3e4596c8778d164a",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/actions.ts": {
-    "mtime": 1784849051.8535707,
-    "ast_hash": "c57973f2824aa9d9d0a05266b62af968",
+    "mtime": 1784867375.407728,
+    "ast_hash": "3ef63dcaecdfde3cb5b70428e7c7c5cc",
     "semantic_hash": ""
   },
   "src/__tests__/portal-role-gating.test.tsx": {
-    "mtime": 1784849051.8485706,
-    "ast_hash": "778e0e211af6fc94caf9892ebcdbf7be",
+    "mtime": 1784855077.962851,
+    "ast_hash": "0d303146333c137875fe43f5ce6e6569",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/layout.tsx": {
@@ -1495,7 +1495,7 @@
     "semantic_hash": ""
   },
   "next-env.d.ts": {
-    "mtime": 1784850837.1708345,
+    "mtime": 1784865996.590124,
     "ast_hash": "d0f8375ae1199dc7acd3977fc33b78b8",
     "semantic_hash": ""
   },
@@ -1507,6 +1507,21 @@
   ".clerk/.tmp/README.md": {
     "mtime": 1784850846.9467525,
     "ast_hash": "4836f69292e3b5045ec81cee9ed0b2cf",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260724040000_add_student_record_email/migration.sql": {
+    "mtime": 1784867375.407728,
+    "ast_hash": "13e6e37e8e3440956777f2fb84883655",
+    "semantic_hash": ""
+  },
+  "src/__tests__/role-fallback.test.ts": {
+    "mtime": 1784865941.8104823,
+    "ast_hash": "f8a4e45cd868bad6cb8954095929d67f",
+    "semantic_hash": ""
+  },
+  "src/lib/role-fallback.ts": {
+    "mtime": 1784865941.8114822,
+    "ast_hash": "9bcbb5a20268905aaf745ed41affcb64",
     "semantic_hash": ""
   }
 }

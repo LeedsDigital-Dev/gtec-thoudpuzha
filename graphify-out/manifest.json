@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784867375.407728,
-    "ast_hash": "a68456e5c71a76c4303e336c9044f290",
+    "mtime": 1784892764.998739,
+    "ast_hash": "09e155487b4a85a66c1e26faa51f1762",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784886664.1536033,
-    "ast_hash": "82e9ffa62295d66f68e9cbd4bc5648fc",
+    "mtime": 1784892743.7973053,
+    "ast_hash": "a4c35a2d3a2fa753f56da15cae2e668d",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {

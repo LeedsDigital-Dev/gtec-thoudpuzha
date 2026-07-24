@@ -140,6 +140,19 @@ export default function StudentSignUpPage() {
           return;
         }
 
+        // TEMPORARY DIAGNOSTIC — remove once identified.
+        console.log("[password-debug] status:", signUp.status);
+        console.log("[password-debug] abandonAt:", signUp.abandonAt);
+        console.log(
+          "[password-debug] createdSessionId:",
+          signUp.createdSessionId,
+        );
+        console.log("[password-debug] missingFields:", signUp.missingFields);
+        console.log(
+          "[password-debug] unverifiedFields:",
+          signUp.unverifiedFields,
+        );
+
         ({ error } = await signUp.finalize());
         if (error) {
           setError(error.message);

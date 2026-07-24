@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784867375.407728,
-    "ast_hash": "bac59664387f0bb9fab6a5923c301824",
+    "mtime": 1784886664.1536033,
+    "ast_hash": "82e9ffa62295d66f68e9cbd4bc5648fc",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
-    "mtime": 1784867375.407728,
-    "ast_hash": "d4bf3e7443ee2f152417c71096b8fee7",
+    "mtime": 1784886640.79583,
+    "ast_hash": "ef1510e46b0087730baa37371c77fb14",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {

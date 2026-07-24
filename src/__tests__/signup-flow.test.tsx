@@ -6,7 +6,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockClerkClient = vi.hoisted(() => vi.fn());
-const mockUpdateUser = vi.hoisted(() => vi.fn());
+const mockUpdateUserMetadata = vi.hoisted(() => vi.fn());
 const mockUpsert = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
@@ -56,7 +56,7 @@ describe("Complete Signup page — role assignment", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockClerkClient.mockReturnValue(
-      Promise.resolve({ users: { updateUser: mockUpdateUser } }),
+      Promise.resolve({ users: { updateUserMetadata: mockUpdateUserMetadata } }),
     );
     mockAuth.mockResolvedValue({ userId: "user_test_1" });
     mockUpsert.mockResolvedValue({});
@@ -76,7 +76,7 @@ describe("Complete Signup page — role assignment", () => {
       // redirect throws, that's expected
     }
 
-    expect(mockUpdateUser).toHaveBeenCalledWith("user_test_1", {
+    expect(mockUpdateUserMetadata).toHaveBeenCalledWith("user_test_1", {
       publicMetadata: { role: "JOB_SEEKER" },
     });
     expect(mockUpsert).toHaveBeenCalledWith({
@@ -107,7 +107,7 @@ describe("Complete Signup page — role assignment", () => {
       // redirect throws, that's expected
     }
 
-    expect(mockUpdateUser).toHaveBeenCalledWith("user_test_1", {
+    expect(mockUpdateUserMetadata).toHaveBeenCalledWith("user_test_1", {
       publicMetadata: { role: "EMPLOYER" },
     });
     // Should NOT attempt to create CandidateProfile for employer

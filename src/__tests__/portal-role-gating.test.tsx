@@ -32,10 +32,18 @@ const mockClerkMiddleware = vi.hoisted(
     },
 );
 
+const mockGetUser = vi.hoisted(() => vi.fn());
+
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
   createRouteMatcher: mockCreateRouteMatcher,
   clerkMiddleware: mockClerkMiddleware,
+  clerkClient: () =>
+    Promise.resolve({
+      users: {
+        getUser: mockGetUser,
+      },
+    }),
 }));
 
 vi.mock("next/navigation", () => ({
@@ -136,5 +144,59 @@ describe("PortalRoleGate — fine-grained role gating", () => {
     const deniedResult = handleRouteProtection(req, "user_student", "STUDENT");
     expect(deniedResult?.status).toBe(307);
     expect(deniedResult?.headers.get("Location")).toContain("/en/forbidden");
+  });
+
+  test("7. stale-session race: fetchRoleFromApi returns metadata role from Clerk API", async () => {
+    const { fetchRoleFromApi } = await import("@/middleware");
+
+    mockGetUser.mockResolvedValue({
+      publicMetadata: { role: "JOB_SEEKER" },
+    });
+
+    const role = await fetchRoleFromApi("user_new");
+    expect(role).toBe("JOB_SEEKER");
+    expect(mockGetUser).toHaveBeenCalledWith("user_new");
+  });
+
+  test("8. fetchRoleFromApi returns undefined when Clerk API has no role", async () => {
+    const { fetchRoleFromApi } = await import("@/middleware");
+
+    mockGetUser.mockResolvedValue({
+      publicMetadata: {},
+    });
+
+    const role = await fetchRoleFromApi("user_no_role");
+    expect(role).toBeUndefined();
+  });
+
+  test("9. fetchRoleFromApi returns undefined when Clerk API errors", async () => {
+    const { fetchRoleFromApi } = await import("@/middleware");
+
+    mockGetUser.mockRejectedValue(new Error("Network error"));
+
+    const role = await fetchRoleFromApi("user_err");
+    expect(role).toBeUndefined();
+  });
+
+  test("10. handleRouteProtection lets authenticated users through when role is present (no-race path)", async () => {
+    const { handleRouteProtection } = await import("@/middleware");
+    const { NextRequest } = await import("next/server");
+
+    // User has role directly — pre-fallback path
+    const req = new NextRequest(new URL("https://example.com/en/portal/student/biodata"));
+    const result = handleRouteProtection(req, "user_1", "JOB_SEEKER");
+    expect(result).toBeNull();
+  });
+
+  test("11. handleRouteProtection still blocks when role is absent (no-api-fallback, tests the middlewares pre-fallback check)", async () => {
+    const { handleRouteProtection } = await import("@/middleware");
+    const { NextRequest } = await import("next/server");
+
+    // role comes in as undefined — this simulates what happens before
+    // fetchRoleFromApi is called in the middleware handler.
+    const req = new NextRequest(new URL("https://example.com/en/portal/jobs"));
+    const result = handleRouteProtection(req, "user_2", undefined);
+    expect(result?.status).toBe(307);
+    expect(result?.headers.get("Location")).toContain("/account-setup-incomplete");
   });
 });

@@ -19,7 +19,7 @@ export default async function CompleteSignupPage(props: {
   const role = intent === "job_seeker" ? "JOB_SEEKER" : "EMPLOYER";
 
   const client = await clerkClient();
-  await client.users.updateUser(session.userId, {
+  await client.users.updateUserMetadata(session.userId, {
     publicMetadata: { role },
   });
 

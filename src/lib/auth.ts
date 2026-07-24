@@ -1,5 +1,6 @@
 import { auth as clerkAuth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
+import { fetchRoleFromApi } from "@/lib/role-fallback";
 
 export enum Role {
   STUDENT = "STUDENT",
@@ -22,7 +23,15 @@ export async function requireRole(
     return { authorized: false, reason: "unauthenticated" };
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  let role = session.sessionClaims?.metadata?.role as Role | undefined;
+
+  // Fast path: JWT claims have the role — no extra API call needed.
+  // Fallback: if claims are stale (e.g. role was just set), fetch from the
+  // Clerk Backend API — same function middleware.ts uses for the same reason.
+  if (!role) {
+    const apiRole = await fetchRoleFromApi(session.userId);
+    role = apiRole as Role | undefined;
+  }
 
   if (!role) {
     return { authorized: false, reason: "no_role" };
@@ -89,7 +98,13 @@ export async function requirePermission(
     return { authorized: false, reason: "unauthenticated" };
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  let role = session.sessionClaims?.metadata?.role as Role | undefined;
+
+  // Same stale-JWT-claim fallback as requireRole — see that function for details.
+  if (!role) {
+    const apiRole = await fetchRoleFromApi(session.userId);
+    role = apiRole as Role | undefined;
+  }
 
   if (!role) {
     return { authorized: false, reason: "no_role" };

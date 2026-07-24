@@ -1,7 +1,9 @@
-import { clerkMiddleware, clerkClient, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import createMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/lib/i18n/routing";
+import { fetchRoleFromApi } from "@/lib/role-fallback";
+export { fetchRoleFromApi };
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -25,28 +27,6 @@ const isAdminRoute = createRouteMatcher([
   "/:locale/admin",
   "/:locale/admin/(.*)",
 ]);
-
-/**
- * When the session token's JWT claims are stale (e.g. a role was just set
- * via updateUserMetadata but the token hasn't been re-minted), fall back
- * to the Clerk Backend API for the freshest data.
- *
- * The sanctioned Clerk pattern for this scenario is:
- *   - Client-side: `getToken({ skipCache: true })` or `user.reload()`
- *   - Server-side (middleware): fetch from the Backend API directly
- * https://clerk.com/docs/guides/sessions/force-token-refresh
- */
-export async function fetchRoleFromApi(
-  userId: string,
-): Promise<string | undefined> {
-  try {
-    const client = await clerkClient();
-    const user = await client.users.getUser(userId);
-    return user.publicMetadata?.role as string | undefined;
-  } catch {
-    return undefined;
-  }
-}
 
 function getRequestLocale(req: NextRequest): "en" | "ml" {
   const firstSegment = req.nextUrl.pathname.split("/")[1];

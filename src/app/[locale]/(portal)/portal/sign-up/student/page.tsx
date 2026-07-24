@@ -49,14 +49,14 @@ export default function StudentSignUpPage() {
         return;
       }
 
-      let { error } = await signUp.create({ phoneNumber: result.phone });
+      let { error } = await signUp.create({ emailAddress: result.email });
       if (error) {
         setError(error.message);
         setStep("error");
         return;
       }
 
-      ({ error } = await signUp.verifications.sendPhoneCode());
+      ({ error } = await signUp.verifications.sendEmailCode());
       if (error) {
         setError(error.message);
         setStep("error");
@@ -82,7 +82,7 @@ export default function StudentSignUpPage() {
       setError("");
 
       try {
-        let { error } = await signUp.verifications.verifyPhoneCode({ code });
+        let { error } = await signUp.verifications.verifyEmailCode({ code });
 
         if (error) {
           setError(error.message);
@@ -216,7 +216,7 @@ function OtpForm({
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-semibold">{t("verifyYourPhone")}</h1>
+          <h1 className="mb-2 text-3xl font-semibold">{t("verifyYourEmail")}</h1>
           <p className="text-gray-600">{t("otpDescription")}</p>
         </div>
 

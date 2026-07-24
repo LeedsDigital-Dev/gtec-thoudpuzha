@@ -1,10 +1,15 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
-import { createStudentRecord, bulkImportStudents } from "./actions";
+import {
+  createStudentRecord,
+  bulkImportStudents,
+  updateStudentEmail,
+} from "./actions";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockFindMany = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
+const mockUpdate = vi.hoisted(() => vi.fn());
 const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
@@ -24,6 +29,7 @@ vi.mock("@/lib/db", () => ({
       findUnique: mockFindUnique,
       findMany: mockFindMany,
       create: mockCreate,
+      update: mockUpdate,
     },
     user: {
       findUnique: mockUserFindUnique,
@@ -65,6 +71,7 @@ describe("createStudentRecord", () => {
       studentId: "GTEC001",
       fullName: "John Doe",
       phone: "9876543210",
+      email: "john@example.com",
       linkedUserId: null,
       createdAt: new Date(),
     });
@@ -74,6 +81,7 @@ describe("createStudentRecord", () => {
     formData.append("studentId", "GTEC001");
     formData.append("fullName", "John Doe");
     formData.append("phone", "9876543210");
+    formData.append("email", "john@example.com");
     formData.append("locale", "en");
 
     await createStudentRecord(formData);
@@ -87,6 +95,7 @@ describe("createStudentRecord", () => {
         studentId: "GTEC001",
         fullName: "John Doe",
         phone: "9876543210",
+        email: "john@example.com",
       },
     });
     expect(mockAuditCreate).toHaveBeenCalledTimes(1);
@@ -119,9 +128,47 @@ describe("createStudentRecord", () => {
     formData.append("studentId", "GTEC001");
     formData.append("fullName", "John Doe");
     formData.append("phone", "9876543210");
+    formData.append("email", "john@example.com");
 
     await expect(createStudentRecord(formData)).rejects.toThrow(
       'Student ID "GTEC001" already exists',
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  test("rejects when email is missing", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_1",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockFindUnique.mockResolvedValue(null);
+
+    const formData = new FormData();
+    formData.append("studentId", "GTEC001");
+    formData.append("fullName", "John Doe");
+    formData.append("phone", "9876543210");
+
+    await expect(createStudentRecord(formData)).rejects.toThrow(
+      "studentId, fullName, phone, and email are required",
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  test("rejects an invalid email format", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_1",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockFindUnique.mockResolvedValue(null);
+
+    const formData = new FormData();
+    formData.append("studentId", "GTEC001");
+    formData.append("fullName", "John Doe");
+    formData.append("phone", "9876543210");
+    formData.append("email", "not-an-email");
+
+    await expect(createStudentRecord(formData)).rejects.toThrow(
+      '"not-an-email" is not a valid email address',
     );
     expect(mockCreate).not.toHaveBeenCalled();
   });
@@ -158,12 +205,12 @@ describe("bulkImportStudents", () => {
     mockAuditCreate.mockResolvedValue({ id: "audit_1" });
 
     const csv = [
-      "studentId,fullName,phone",
-      "GTEC001,Alice,1111111111",
-      "GTEC002,Bob,2222222222",
-      "GTEC003,Carol,3333333333",
-      "GTEC004,Dave,4444444444",
-      "GTEC005,Eve,5555555555",
+      "studentId,fullName,phone,email",
+      "GTEC001,Alice,1111111111,alice@example.com",
+      "GTEC002,Bob,2222222222,bob@example.com",
+      "GTEC003,Carol,3333333333,carol@example.com",
+      "GTEC004,Dave,4444444444,dave@example.com",
+      "GTEC005,Eve,5555555555,eve@example.com",
     ].join("\n");
 
     const formData = new FormData();
@@ -219,12 +266,12 @@ describe("bulkImportStudents", () => {
     mockAuditCreate.mockResolvedValue({ id: "audit_1" });
 
     const csv = [
-      "studentId,fullName,phone",
-      "GTEC001,Alice,1111111111",
-      "GTEC002,Bob,2222222222",
-      "GTEC003,Carol,3333333333",
-      "GTEC004,Dave,4444444444",
-      "GTEC005,Eve,5555555555",
+      "studentId,fullName,phone,email",
+      "GTEC001,Alice,1111111111,alice@example.com",
+      "GTEC002,Bob,2222222222,bob@example.com",
+      "GTEC003,Carol,3333333333,carol@example.com",
+      "GTEC004,Dave,4444444444,dave@example.com",
+      "GTEC005,Eve,5555555555,eve@example.com",
     ].join("\n");
 
     const formData = new FormData();
@@ -244,6 +291,58 @@ describe("bulkImportStudents", () => {
     expect(failures[0].error).toContain("Duplicate");
 
     expect(mockCreate).toHaveBeenCalledTimes(4);
+  });
+});
+
+describe("updateStudentEmail — backfill for records created before email was required", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockAuth.mockReset();
+    mockUpdate.mockReset();
+    mockAuditCreate.mockReset();
+    mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+  });
+
+  test("updates the record's email and logs the admin action", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_1",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+    mockUpdate.mockResolvedValue({ id: "sr_1", studentId: "GTEC-TEST-001" });
+    mockAuditCreate.mockResolvedValue({ id: "audit_1" });
+
+    const formData = new FormData();
+    formData.append("recordId", "sr_1");
+    formData.append("email", "student@example.com");
+    formData.append("locale", "en");
+
+    await updateStudentEmail(formData);
+
+    expect(mockUpdate).toHaveBeenCalledWith({
+      where: { id: "sr_1" },
+      data: { email: "student@example.com" },
+    });
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      data: expect.objectContaining({ action: "studentRecord.updateEmail" }),
+    });
+    expect(mockRevalidatePath).toHaveBeenCalledWith("/en/admin/students");
+  });
+
+  test("rejects an invalid email", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_1",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+
+    const formData = new FormData();
+    formData.append("recordId", "sr_1");
+    formData.append("email", "bad");
+
+    await expect(updateStudentEmail(formData)).rejects.toThrow(
+      '"bad" is not a valid email address',
+    );
+    expect(mockUpdate).not.toHaveBeenCalled();
   });
 });
 

@@ -2,7 +2,11 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
-import { createStudentRecord, bulkImportStudentsAction } from "./actions";
+import {
+  createStudentRecord,
+  bulkImportStudentsAction,
+  updateStudentEmail,
+} from "./actions";
 
 interface StudentsPageProps {
   params: Promise<{ locale: string }>;
@@ -19,17 +23,31 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
   const records = await prisma.studentRecord.findMany({
     orderBy: { createdAt: "desc" },
   });
+  const missingEmailCount = records.filter((r) => !r.email).length;
 
   return (
     <main className="p-6">
       <h1 className="text-2xl font-semibold">Students</h1>
+
+      {missingEmailCount > 0 && (
+        <div
+          className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
+          role="alert"
+        >
+          {missingEmailCount} student record
+          {missingEmailCount === 1 ? "" : "s"} {missingEmailCount === 1 ? "has" : "have"} no
+          email on file and can&apos;t complete sign-up (sign-up verification now
+          uses email, not phone — see the &quot;Verification&quot; column
+          below). Add an email to each flagged row to unblock them.
+        </div>
+      )}
 
       {/* Single-entry create form */}
       <section className="mt-6 rounded border border-border p-4">
         <h2 className="text-lg font-medium">Add single student</h2>
         <form action={createStudentRecord} className="mt-4 space-y-4">
           <input type="hidden" name="locale" value={locale} />
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-4">
             <div className="space-y-1">
               <label htmlFor="studentId" className="text-sm font-medium">
                 Student ID <span className="text-destructive">*</span>
@@ -63,6 +81,18 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
+            <div className="space-y-1">
+              <label htmlFor="email" className="text-sm font-medium">
+                Email <span className="text-destructive">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
           </div>
           <Button type="submit">Create</Button>
         </form>
@@ -72,8 +102,8 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
       <section className="mt-8 rounded border border-border p-4">
         <h2 className="text-lg font-medium">Bulk import (CSV)</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          CSV must have columns: studentId,fullName,phone. Header row is
-          optional.
+          CSV must have columns: studentId,fullName,phone,email. Header row
+          is optional.
         </p>
         <form action={bulkImportStudentsAction} className="mt-4 space-y-4">
           <input type="hidden" name="locale" value={locale} />
@@ -87,7 +117,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
               required
               rows={8}
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm font-mono"
-              placeholder={`studentId,fullName,phone\nGTEC001,John Doe,9876543210\nGTEC002,Jane Smith,9876543211`}
+              placeholder={`studentId,fullName,phone,email\nGTEC001,John Doe,9876543210,john@example.com\nGTEC002,Jane Smith,9876543211,jane@example.com`}
             />
           </div>
           <Button type="submit">Import CSV</Button>
@@ -112,6 +142,9 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                 Phone
               </th>
               <th className="border border-gray-300 px-3 py-2 text-left">
+                Email
+              </th>
+              <th className="border border-gray-300 px-3 py-2 text-left">
                 Verification
               </th>
               <th className="border border-gray-300 px-3 py-2 text-left">
@@ -132,8 +165,33 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                   {record.phone}
                 </td>
                 <td className="border border-gray-300 px-3 py-2">
+                  {record.email ? (
+                    record.email
+                  ) : (
+                    <form
+                      action={updateStudentEmail}
+                      className="flex items-center gap-2"
+                    >
+                      <input type="hidden" name="locale" value={locale} />
+                      <input type="hidden" name="recordId" value={record.id} />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="student@example.com"
+                        className="w-40 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-xs"
+                      />
+                      <Button type="submit" size="sm" variant="outline">
+                        Add
+                      </Button>
+                    </form>
+                  )}
+                </td>
+                <td className="border border-gray-300 px-3 py-2">
                   {record.linkedUserId ? (
                     <span className="text-green-600">Verified</span>
+                  ) : !record.email ? (
+                    <span className="text-amber-600">Blocked — no email</span>
                   ) : (
                     <span className="text-amber-600">Pending</span>
                   )}

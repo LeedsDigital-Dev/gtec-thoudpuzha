@@ -59,12 +59,13 @@ describe("lookupStudentRecord", () => {
     mockFindFirst.mockReset();
   });
 
-  test("1. Correct Student ID + phone pair returns success with studentRecordId and phone", async () => {
+  test("1. Correct Student ID + phone pair returns success with studentRecordId and email", async () => {
     mockFindFirst.mockResolvedValue({
       id: "sr_1",
       studentId: "GTEC001",
       fullName: "Alice",
       phone: "9876543210",
+      email: "alice@example.com",
       linkedUserId: null,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -79,7 +80,7 @@ describe("lookupStudentRecord", () => {
     expect(result.success).toBe(true);
     if (result.success) {
       expect(result.studentRecordId).toBe("sr_1");
-      expect(result.phone).toBe("9876543210");
+      expect(result.email).toBe("alice@example.com");
     }
     expect(mockFindFirst).toHaveBeenCalledWith({
       where: { studentId: "GTEC001", phone: "9876543210" },
@@ -110,6 +111,7 @@ describe("lookupStudentRecord", () => {
       studentId: "GTEC001",
       fullName: "Alice",
       phone: "9876543210",
+      email: "alice@example.com",
       linkedUserId: "user_existing",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -128,19 +130,20 @@ describe("lookupStudentRecord", () => {
     );
   });
 
-  test("5. Returns the phone number from the StudentRecord on file, not an arbitrary phone", async () => {
+  test("5. Returns the email from the StudentRecord on file, not an arbitrary email", async () => {
     mockFindFirst.mockResolvedValue({
       id: "sr_1",
       studentId: "GTEC001",
       fullName: "Alice",
       phone: "9876543210",
+      email: "alice@example.com",
       linkedUserId: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
 
     const formData = new FormData();
-    // Form uses matching phone to find the record
+    // Form uses matching phone to find the record; email comes from the record, not the form
     formData.append("studentId", "GTEC001");
     formData.append("phone", "9876543210");
 
@@ -148,9 +151,36 @@ describe("lookupStudentRecord", () => {
 
     expect(result.success).toBe(true);
     if (result.success) {
-      // The phone returned must be the record's phone, not anything from the form
-      expect(result.phone).toBe("9876543210");
+      expect(result.email).toBe("alice@example.com");
     }
+  });
+
+  test("6. StudentRecord with no email on file is rejected with a clear message (pending admin backfill)", async () => {
+    // Regression test: records created before email became required for
+    // sign-up (see 04_AUTH_DEBUGGING_LOG.md) have email: null and must be
+    // blocked with a specific, actionable error rather than crashing when
+    // signUp.create({ emailAddress: undefined }) is attempted.
+    mockFindFirst.mockResolvedValue({
+      id: "sr_1",
+      studentId: "GTEC001",
+      fullName: "Alice",
+      phone: "9876543210",
+      email: null,
+      linkedUserId: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    const formData = new FormData();
+    formData.append("studentId", "GTEC001");
+    formData.append("phone", "9876543210");
+
+    const result = await lookupStudentRecord(formData);
+
+    expect(result.success).toBe(false);
+    expect(result.error).toBe(
+      "Your record doesn't have an email on file yet — please contact the centre to add one before verifying.",
+    );
   });
 
   test("returns error if studentId or phone are missing", async () => {

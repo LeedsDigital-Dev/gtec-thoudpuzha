@@ -48,10 +48,18 @@ export async function lookupStudentRecord(formData: FormData) {
     };
   }
 
+  if (!record.email) {
+    return {
+      success: false as const,
+      error:
+        "Your record doesn't have an email on file yet — please contact the centre to add one before verifying.",
+    };
+  }
+
   return {
     success: true as const,
     studentRecordId: record.id,
-    phone: record.phone,
+    email: record.email,
   };
 }
 

@@ -139,7 +139,7 @@
   },
   "postVacancy": {
     "heading": "Post a Vacancy",
-    "description": "Fill in the details below to publish a new job posting.",
+    "description": "Job Description *",
     "jobTitle": "Job Title *",
     "department": "Department",
     "jobType": "Job Type *",
@@ -152,7 +152,6 @@
     "keepPrivate": "Keep private",
     "skills": "Skills",
     "deadline": "Application Deadline *",
-    "description": "Job Description *",
     "post": "Post Vacancy",
     "submitting": "Submitting...",
     "error": "Something went wrong. Please try again."
@@ -387,11 +386,11 @@
     "callCentre": "Call Centre",
     "noStudentId": "Don&apos;t have a Student ID?",
     "contactCentre": "Contact the centre",
-    "verifyYourPhone": "Verify Your Phone",
-    "otpDescription": "We sent a one-time verification code to your registered phone number.",
+    "otpDescription": "We sent a one-time verification code to your email address.",
     "verificationCode": "Verification Code",
     "otpPlaceholder": "Enter 6-digit code",
-    "verifyCode": "Verify Code"
+    "verifyCode": "Verify Code",
+    "verifyYourEmail": "Verify Your Email"
   },
   "progress": {
     "heading": "My Progress",

@@ -409,6 +409,7 @@ model StudentRecord {
   studentId    String    @unique
   fullName     String
   phone        String
+  email        String?
   linkedUserId String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt

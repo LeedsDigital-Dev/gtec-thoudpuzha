@@ -83,6 +83,19 @@ export async function saveBiodata(data: BiodataFormData) {
   return { success: true, profile };
 }
 
+/**
+ * Thin void-returning wrapper around saveBiodata for use as a Client
+ * Component's onSubmit prop. Server Components can't pass inline arrow
+ * functions to Client Components (they aren't serializable — only real
+ * Server Actions can cross that boundary), and BiodataForm's onSubmit
+ * expects `Promise<void>` while saveBiodata returns profile data (see
+ * AGENTS.md rule 15: form-action functions must return void|Promise<void>,
+ * wrap data-returning functions rather than passing them directly).
+ */
+export async function submitBiodataForm(data: BiodataFormData): Promise<void> {
+  await saveBiodata(data);
+}
+
 export type BiodataActionResult = {
   success: boolean;
   isComplete: boolean;

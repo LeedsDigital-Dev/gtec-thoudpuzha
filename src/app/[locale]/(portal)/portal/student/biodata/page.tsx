@@ -4,7 +4,7 @@ import { Role } from "@/lib/auth";
 import { BiodataForm } from "@/components/shared/BiodataForm";
 import { getPublishedCourses } from "@/lib/courses";
 import { getApprovedSkills, createPENDINGSkill } from "@/lib/skills";
-import { saveBiodata } from "./actions";
+import { submitBiodataForm } from "./actions";
 
 export default async function BiodataPage() {
   const session = await auth();
@@ -26,10 +26,10 @@ export default async function BiodataPage() {
 
   const profileWithCompletion = profile
     ? {
-        ...profile,
-        isVerifiedStudent,
-        studentRecordId: profile.studentRecordId,
-      }
+      ...profile,
+      isVerifiedStudent,
+      studentRecordId: profile.studentRecordId,
+    }
     : null;
 
   return (
@@ -40,7 +40,7 @@ export default async function BiodataPage() {
         courses={courses}
         skills={skills}
         onAddNewSkill={createPENDINGSkill}
-        onSubmit={async (data) => { void saveBiodata(data); }}
+        onSubmit={submitBiodataForm}
       />
     </div>
   );

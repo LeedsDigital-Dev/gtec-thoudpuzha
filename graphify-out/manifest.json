@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784892764.998739,
-    "ast_hash": "09e155487b4a85a66c1e26faa51f1762",
+    "mtime": 1784893367.270865,
+    "ast_hash": "3c420d30675208a6addd56e159a25296",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784892743.7973053,
-    "ast_hash": "a4c35a2d3a2fa753f56da15cae2e668d",
+    "mtime": 1784893375.6091318,
+    "ast_hash": "a932535f5bf298399612a6b3083a289e",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
-    "mtime": 1784893027.0850065,
-    "ast_hash": "b33756ae2b7a70b872fde84a0f9f19b5",
+    "mtime": 1784893360.2135606,
+    "ast_hash": "1a05cbe93ad1d53357b7e87560c97513",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/page.tsx": {

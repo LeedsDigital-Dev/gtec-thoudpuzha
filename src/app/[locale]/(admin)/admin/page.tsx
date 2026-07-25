@@ -129,14 +129,22 @@ export default async function AdminDashboardPage({
 
       {/* Quick links */}
       <section className="mt-8">
-        {isSuperAdmin && (
+        <div className="flex flex-wrap gap-3">
           <Link
-            href={`/${locale}/admin/audit-log`}
-            className="inline-block rounded bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            href={`/${locale}/admin/students/course-enrollment`}
+            className="inline-block rounded bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80"
           >
-            View Audit Log
+            Manage Course Enrollments
           </Link>
-        )}
+          {isSuperAdmin && (
+            <Link
+              href={`/${locale}/admin/audit-log`}
+              className="inline-block rounded bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              View Audit Log
+            </Link>
+          )}
+        </div>
       </section>
     </main>
   );

@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
@@ -41,6 +42,15 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
           below). Add an email to each flagged row to unblock them.
         </div>
       )}
+
+      <section className="mt-6">
+        <Link
+          href={`/${locale}/admin/students/course-enrollment`}
+          className="inline-block rounded bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          Manage Course Enrollments →
+        </Link>
+      </section>
 
       {/* Single-entry create form */}
       <section className="mt-6 rounded border border-border p-4">

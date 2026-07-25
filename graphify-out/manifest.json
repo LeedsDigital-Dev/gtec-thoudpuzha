@@ -1515,23 +1515,33 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.ts": {
-    "mtime": 1784940086.6050467,
-    "ast_hash": "d429373cb1804e9c2fb3c527ee6dd95a",
+    "mtime": 1784942867.6934636,
+    "ast_hash": "bd687a19a1054d399437e9026e5c31bf",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.ts": {
-    "mtime": 1784939866.8578098,
-    "ast_hash": "0ae8d03a56cbb496c000c0e23b210fb4",
-    "semantic_hash": ""
-  },
-  "src/app/[locale]/(admin)/admin/students/course-enrollment/enrollment-form.tsx": {
-    "mtime": 1784939899.1363957,
-    "ast_hash": "e416b36d6203203bc6a728ecdfd6e36e",
+    "mtime": 1784942821.647991,
+    "ast_hash": "2824880fdc4d878166785091058f4cff",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/page.tsx": {
-    "mtime": 1784939914.6441982,
-    "ast_hash": "0d527403b39bf89450535e5ca0855ed5",
+    "mtime": 1784942767.5556104,
+    "ast_hash": "48626f052174bba58de54bed34debb61",
+    "semantic_hash": ""
+  },
+  ".commandcode/settings.json": {
+    "mtime": 1784943374.5593188,
+    "ast_hash": "6c9efef032bec57d5026faf4fba7f7da",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
+    "mtime": 1784942951.9904988,
+    "ast_hash": "45a1e07b1cd204105018abf7e857f9ee",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/students/course-enrollment/enrollment-dashboard.tsx": {
+    "mtime": 1784942800.9202282,
+    "ast_hash": "6cffd001e8a412c242ce45b16486e732",
     "semantic_hash": ""
   }
 }

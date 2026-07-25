@@ -510,8 +510,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/page.tsx": {
-    "mtime": 1784847389.155571,
-    "ast_hash": "c1685f68651cebc0661415144d9a24af",
+    "mtime": 1784959496.3050902,
+    "ast_hash": "1b7356f223655135ae506b00607919d5",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/gallery/page.tsx": {
@@ -590,8 +590,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/news-events/page.tsx": {
-    "mtime": 1784780829.1890414,
-    "ast_hash": "303d4767f109b5c485ffe8cbfbc9e6e6",
+    "mtime": 1784959506.2129664,
+    "ast_hash": "9f81ff4ce9aa9ec1610960e9e3ec37ba",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/[slug]/page.tsx": {
@@ -1622,6 +1622,16 @@
   ".commandcode/taste/workflow/taste.md": {
     "mtime": 1784957222.5476131,
     "ast_hash": "c789e7da474dca5272ceb6e8216c4c39",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {
+    "mtime": 1784959473.2723787,
+    "ast_hash": "df9808fd9266f0bf55ce9934cd9dc51b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/news-events/confirm-delete-form.tsx": {
+    "mtime": 1784959473.2723787,
+    "ast_hash": "df9808fd9266f0bf55ce9934cd9dc51b",
     "semantic_hash": ""
   }
 }

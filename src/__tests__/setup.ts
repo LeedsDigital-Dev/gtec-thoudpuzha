@@ -88,3 +88,9 @@ vi.mock("next-intl/middleware", () => ({
       },
   ),
 }));
+
+vi.mock("@clerk/nextjs", () => ({
+  useAuth: vi.fn(() => ({ isSignedIn: false, isLoaded: true })),
+  UserButton: () => null,
+  ClerkProvider: ({ children }: { children: React.ReactNode }) => children,
+}));

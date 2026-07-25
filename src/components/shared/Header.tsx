@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { useAuth, UserButton } from "@clerk/nextjs";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { siteConfig } from "@/lib/site";
 
@@ -21,11 +22,14 @@ export function Header() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isSignedIn } = useAuth();
 
   const localeHref = (path: string) => {
     if (path === "/") return `/${locale}`;
     return `/${locale}${path}`;
   };
+
+  const portalUrl = localeHref("/portal");
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -88,14 +92,30 @@ export function Header() {
             <span className="hidden md:inline">{t("applyNow")}</span>
             <span className="md:hidden">{t("apply")}</span>
           </Link>
-          <Link
-            href={localeHref("/sign-in")}
-            aria-label={t("login")}
-            className="inline-flex items-center rounded-lg border border-border px-2 py-2 text-sm font-medium hover:bg-muted md:px-3"
-          >
-            <span className="hidden md:inline">{t("login")}</span>
-            <span className="md:hidden">{t("logIn")}</span>
-          </Link>
+          {isSignedIn ? (
+            <UserButton
+              appearance={{
+                elements: { avatarBox: "size-9" },
+              }}
+            >
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  href={portalUrl}
+                  label={t("myPortal")}
+                  labelIcon={<span />}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
+          ) : (
+            <Link
+              href={localeHref("/sign-in")}
+              aria-label={t("login")}
+              className="inline-flex items-center rounded-lg border border-border px-2 py-2 text-sm font-medium hover:bg-muted md:px-3"
+            >
+              <span className="hidden md:inline">{t("login")}</span>
+              <span className="md:hidden">{t("logIn")}</span>
+            </Link>
+          )}
           <div className="hidden md:block">
             <LanguageSwitcher />
           </div>

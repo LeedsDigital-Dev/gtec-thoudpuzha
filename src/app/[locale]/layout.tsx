@@ -38,7 +38,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl={`/${locale}`}>
       <html
         lang={locale}
         className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}

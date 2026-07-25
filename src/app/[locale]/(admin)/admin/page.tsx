@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { requireRole, requirePermission, StaffPermissionKeys, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { ADMIN_ROUTES, isRouteVisible, type AdminRoute } from "@/lib/admin-routes";
 
 interface AdminDashboardPageProps {
   params: Promise<{ locale: string }>;
@@ -19,12 +20,20 @@ export default async function AdminDashboardPage({
 
   const { userId: _userId, role } = authResult;
 
-  // Check individual permissions
-  const canApproveEmployers = (await requirePermission(StaffPermissionKeys.canApproveEmployers)).authorized;
-  const canApproveJobPostings = (await requirePermission(StaffPermissionKeys.canApproveJobPostings)).authorized;
-  const canModerateSkillsTaxonomy = (await requirePermission(StaffPermissionKeys.canModerateSkillsTaxonomy)).authorized;
-
   const isSuperAdmin = role === Role.SUPER_ADMIN;
+
+  const permissions = {
+    canEditCourses: (await requirePermission(StaffPermissionKeys.canEditCourses)).authorized,
+    canEditGallery: (await requirePermission(StaffPermissionKeys.canEditGallery)).authorized,
+    canEditCertificationPartners: (await requirePermission(StaffPermissionKeys.canEditCertificationPartners)).authorized,
+    canEditNewsEvents: (await requirePermission(StaffPermissionKeys.canEditNewsEvents)).authorized,
+    canEditFlashNews: (await requirePermission(StaffPermissionKeys.canEditFlashNews)).authorized,
+    canProvisionStudents: (await requirePermission(StaffPermissionKeys.canProvisionStudents)).authorized,
+    canApproveEmployers: (await requirePermission(StaffPermissionKeys.canApproveEmployers)).authorized,
+    canApproveJobPostings: (await requirePermission(StaffPermissionKeys.canApproveJobPostings)).authorized,
+    canModerateSkillsTaxonomy: (await requirePermission(StaffPermissionKeys.canModerateSkillsTaxonomy)).authorized,
+  };
+  const { canApproveEmployers, canApproveJobPostings, canModerateSkillsTaxonomy } = permissions;
 
   // Fetch counts and recent enquiries in parallel
   const [pendingEmployerCount, pendingJobPostingCount, pendingSkillCount, recentEnquiries] =
@@ -146,6 +155,21 @@ export default async function AdminDashboardPage({
           )}
         </div>
       </section>
+
+      {/* Module quick-link cards — all admin modules */}
+      <section className="mt-8">
+        <h2 className="text-lg font-semibold">All Modules</h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {ADMIN_ROUTES.filter((r) => r.href !== "/admin").map((route) => (
+            <QuickLinkCard
+              key={route.href}
+              route={route}
+              locale={locale}
+              hasPermission={isRouteVisible(route, isSuperAdmin, permissions)}
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
@@ -187,6 +211,39 @@ function SummaryCard({
         {count !== null && count > 0 && (
           <p className="mt-1 text-xs text-amber-700">Requires review</p>
         )}
+      </div>
+    </Link>
+  );
+}
+
+function QuickLinkCard({
+  route,
+  locale,
+  hasPermission,
+}: {
+  route: AdminRoute;
+  locale: string;
+  hasPermission: boolean;
+}) {
+  if (!hasPermission) {
+    return (
+      <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
+        <div className="flex items-center gap-2">
+          <route.icon className="size-4 text-gray-400" />
+          <h3 className="text-sm font-medium text-gray-500">{route.label}</h3>
+        </div>
+        <p className="mt-1 text-xs text-gray-500">No access</p>
+      </div>
+    );
+  }
+
+  return (
+    <Link href={`/${locale}${route.href}`} className="block">
+      <div className="rounded border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md">
+        <div className="flex items-center gap-2">
+          <route.icon className="size-4 text-blue-600" />
+          <h3 className="text-sm font-medium text-gray-700">{route.label}</h3>
+        </div>
       </div>
     </Link>
   );

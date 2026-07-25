@@ -190,7 +190,7 @@ describe("AdminDashboardPage", () => {
     }
   });
 
-  test("audit-log quick link is visible to super_admin but not to centre_staff", async () => {
+  test("audit-log quick link button is visible to super_admin but not to centre_staff", async () => {
     // --- Super Admin ---
     mockAuth.mockResolvedValue({
       userId: "super_admin_1",
@@ -209,8 +209,12 @@ describe("AdminDashboardPage", () => {
     });
     let html = renderToString(element);
 
-    expect(html).toContain("audit-log");
+    // Super Admin sees both the explicit "View Audit Log" button and the Audit Log card
     expect(html).toContain("View Audit Log");
+    expect(html).toContain("audit-log");
+    // Also sees super-admin-only cards
+    expect(html).toContain("Site Settings");
+    expect(html).toContain("Staff Management");
 
     // --- Centre Staff ---
     vi.clearAllMocks();
@@ -220,6 +224,12 @@ describe("AdminDashboardPage", () => {
     });
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
     mockStaffPermissionFindUnique.mockResolvedValue({
+      canEditCourses: false,
+      canEditGallery: false,
+      canEditCertificationPartners: false,
+      canEditNewsEvents: false,
+      canEditFlashNews: false,
+      canProvisionStudents: false,
       canApproveEmployers: true,
       canApproveJobPostings: true,
       canModerateSkillsTaxonomy: true,
@@ -240,7 +250,14 @@ describe("AdminDashboardPage", () => {
     });
     html = renderToString(element);
 
-    expect(html).not.toContain("audit-log");
+    // The explicit "View Audit Log" button still requires isSuperAdmin
     expect(html).not.toContain("View Audit Log");
+    // Audit Log card shows for all staff (unrestricted route)
+    expect(html).toContain("Audit Log");
+    // Super admin cards show as "No access" greyed-out cards
+    expect(html).toContain("Site Settings");
+    expect(html).toContain("Staff Management");
+    // Verify those are greyed out, not active links
+    expect(html).toContain("No access");
   });
 });

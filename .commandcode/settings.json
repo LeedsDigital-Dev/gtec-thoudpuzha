@@ -8,7 +8,11 @@
       "Shell(npx eslint src/app/[locale]/(admin)/admin/students/course-enrollment/ 2 >& 1)",
       "Shell(npx vitest run 2 >& 1)",
       "Shell(npm:*)",
-      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: rebuild admin course-enrollment page as a real dashboard (table + filters + multi-select enroll) — previous version was a non-functional search box Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: rebuild admin course-enrollment page as a real dashboard (table + filters + multi-select enroll) — previous version was a non-functional search box Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(npx shadcn@latest add sidebar -y)",
+      "Shell(npx vitest run src/components/admin/__tests__/admin-sidebar.test.tsx --reporter=verbose 2 >& 1)",
+      "Shell(git:*)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: add persistent admin sidebar navigation + complete dashboard quick-links for all admin modules Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
     ],
     "deny": [],
     "defaultMode": "default"

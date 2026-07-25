@@ -95,8 +95,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/taste.md": {
-    "mtime": 1784939354.129997,
-    "ast_hash": "b530c858f3177af5a4c3e3b74c2a2797",
+    "mtime": 1784957222.552613,
+    "ast_hash": "930470675e8945b8a3eadc6a52a2be41",
     "semantic_hash": ""
   },
   "src/__tests__/auth.test.tsx": {
@@ -1617,6 +1617,11 @@
   "src/app/[locale]/(portal)/portal/job-seeker/page.tsx": {
     "mtime": 1784954029.5867603,
     "ast_hash": "66b2a2b06088815be1de6bc2f0fbbe8b",
+    "semantic_hash": ""
+  },
+  ".commandcode/taste/workflow/taste.md": {
+    "mtime": 1784957222.5476131,
+    "ast_hash": "c789e7da474dca5272ceb6e8216c4c39",
     "semantic_hash": ""
   }
 }

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
+import { ConfirmDeleteForm } from "./confirm-delete-form";
 import {
   createNewsEvent,
   updateNewsEvent,
@@ -182,20 +183,20 @@ export default async function NewsEventsPage({
                         {item.publishedAt ? "Unpublish" : "Publish"}
                       </Button>
                     </form>
-                    <form action={deleteNewsEvent}>
+                    <ConfirmDeleteForm
+                      action={deleteNewsEvent}
+                      confirmMessage="Delete this item?"
+                    >
                       <input type="hidden" name="id" value={item.id} />
                       <input type="hidden" name="locale" value={locale} />
                       <Button
                         type="submit"
                         size="xs"
                         variant="destructive"
-                        onSubmit={(e) => {
-                          if (!confirm("Delete this item?")) e.preventDefault();
-                        }}
                       >
                         Delete
                       </Button>
-                    </form>
+                    </ConfirmDeleteForm>
                   </div>
                 </td>
               </tr>

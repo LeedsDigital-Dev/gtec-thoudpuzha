@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
+import { ConfirmDeleteForm } from "./confirm-delete-form";
 import {
   createCategory,
   updateCategory as _updateCategory,
@@ -111,22 +112,19 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                   <td className="border border-gray-300 px-3 py-2">{cat.nameMl || "—"}</td>
                   <td className="border border-gray-300 px-3 py-2">{cat._count.items}</td>
                   <td className="border border-gray-300 px-3 py-2">
-                    <form
+                    <ConfirmDeleteForm
                       action={deleteCategory}
-                      onSubmit={(e) => {
-                        if (cat._count.items > 0) {
-                          const ok = confirm(
-                            `Delete "${cat.nameEn}" and all ${cat._count.items} items in it?`,
-                          );
-                          if (!ok) e.preventDefault();
-                        }
-                      }}
+                      confirmMessage={
+                        cat._count.items > 0
+                          ? `Delete "${cat.nameEn}" and all ${cat._count.items} items in it?`
+                          : `Delete "${cat.nameEn}"?`
+                      }
                     >
                       <input type="hidden" name="id" value={cat.id} />
                       <input type="hidden" name="nameEn" value={cat.nameEn} />
                       <input type="hidden" name="locale" value={locale} />
                       <Button type="submit" size="xs" variant="destructive">Delete</Button>
-                    </form>
+                    </ConfirmDeleteForm>
                   </td>
                 </tr>
               ))}
@@ -266,16 +264,14 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         {item.sortOrder}
                       </td>
                       <td className="border border-gray-300 px-3 py-2">
-                        <form
+                        <ConfirmDeleteForm
                           action={deleteGalleryItem}
-                          onSubmit={(e) => {
-                            if (!confirm("Delete this item?")) e.preventDefault();
-                          }}
+                          confirmMessage="Delete this item?"
                         >
                           <input type="hidden" name="id" value={item.id} />
                           <input type="hidden" name="locale" value={locale} />
                           <Button type="submit" size="xs" variant="destructive">Delete</Button>
-                        </form>
+                        </ConfirmDeleteForm>
                       </td>
                     </tr>
                   ))}

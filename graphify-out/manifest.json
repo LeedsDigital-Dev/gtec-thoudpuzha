@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/auth.test.tsx": {
-    "mtime": 1784809587.803937,
-    "ast_hash": "68a33977ad0452ed904b1e2e5fe22d77",
+    "mtime": 1784954366.8064895,
+    "ast_hash": "15f8fdd0c647520f348159534966ea85",
     "semantic_hash": ""
   },
   "src/__tests__/setup.ts": {
@@ -170,8 +170,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/page.tsx": {
-    "mtime": 1784939228.5640306,
-    "ast_hash": "0eb7bd0308d932d313ea1bb865351f15",
+    "mtime": 1784953240.5168545,
+    "ast_hash": "74413b5d4be35dd20dc719de85b6472b",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/layout.tsx": {
@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784939228.5650306,
-    "ast_hash": "3c420d30675208a6addd56e159a25296",
+    "mtime": 1784953584.9758995,
+    "ast_hash": "0c4f37a59524c88124800466b31fa95d",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784939228.5650306,
-    "ast_hash": "a932535f5bf298399612a6b3083a289e",
+    "mtime": 1784954284.1018946,
+    "ast_hash": "b9f9becf9266e9e14253138db03cad4a",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -640,8 +640,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/signup-flow.test.tsx": {
-    "mtime": 1784854590.1887593,
-    "ast_hash": "9987d4afb8e7c0d4d729a3a85d152510",
+    "mtime": 1784954228.7351365,
+    "ast_hash": "899b9a54682e23e564030a2f4223807c",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/page.tsx": {
@@ -650,8 +650,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/page.tsx": {
-    "mtime": 1784939228.5640306,
-    "ast_hash": "32d77343d3ddbfc68044111033ad97c7",
+    "mtime": 1784953352.9155664,
+    "ast_hash": "9797701a80a6feddfa0fcdd44b2608c2",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/sign-up/student/page.tsx": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/complete-signup/page.tsx": {
-    "mtime": 1784854334.401152,
-    "ast_hash": "ffc038088ec3902d9435721c656d5b83",
+    "mtime": 1784953984.6518364,
+    "ast_hash": "363c7d129fee710e68995acb7ab8079e",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723045401_add_student_record/migration.sql": {
@@ -745,8 +745,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/actions.ts": {
-    "mtime": 1784939228.5650306,
-    "ast_hash": "2d1ca0202229480431695497826cc40a",
+    "mtime": 1784953307.7430835,
+    "ast_hash": "b0266d92afb32261e7b730b7aea4052b",
     "semantic_hash": ""
   },
   "src/components/shared/BiodataForm.test.tsx": {
@@ -1510,8 +1510,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/biodata/actions.test.ts": {
-    "mtime": 1784939228.5640306,
-    "ast_hash": "5bd2114673ad9659f9cce4058594c656",
+    "mtime": 1784954253.2430325,
+    "ast_hash": "77c902bfdb743ef1ae3ced35bd06c86d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.ts": {
@@ -1530,8 +1530,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1784952803.8609378,
-    "ast_hash": "588f31c0bdaea946410b66ea36adfe4d",
+    "mtime": 1784957117.4916103,
+    "ast_hash": "66d52fa348ed21be5aa30cd341e33a63",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1545,8 +1545,8 @@
     "semantic_hash": ""
   },
   "src/components/admin/__tests__/admin-sidebar.test.tsx": {
-    "mtime": 1784950989.7162163,
-    "ast_hash": "3acef6f20ab51f84cbfb493440f6dc53",
+    "mtime": 1784954381.3264132,
+    "ast_hash": "b40bcc368e92fbc600182f90f08c8005",
     "semantic_hash": ""
   },
   "src/components/admin/admin-shell.tsx": {
@@ -1592,6 +1592,31 @@
   "src/lib/admin-routes.ts": {
     "mtime": 1784951180.9804258,
     "ast_hash": "ba0d42489130b6b36d707b19a2b88583",
+    "semantic_hash": ""
+  },
+  "src/__tests__/complete-signup.test.tsx": {
+    "mtime": 1784953394.9300864,
+    "ast_hash": "eeb0131e5580b79e0336a38efb75d6e1",
+    "semantic_hash": ""
+  },
+  "src/__tests__/post-signup-redirects.test.tsx": {
+    "mtime": 1784953406.7209516,
+    "ast_hash": "a8e72502928ee0ded4d097cf3c2b5224",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/job-seeker/layout.tsx": {
+    "mtime": 1784953205.2282603,
+    "ast_hash": "a73b6c819b2f1c9df8fefaed9fbb6d6f",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/job-seeker/page.test.tsx": {
+    "mtime": 1784953592.2539508,
+    "ast_hash": "3543174fdf5839ec62fefbfacc05178f",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/job-seeker/page.tsx": {
+    "mtime": 1784954029.5867603,
+    "ast_hash": "66b2a2b06088815be1de6bc2f0fbbe8b",
     "semantic_hash": ""
   }
 }

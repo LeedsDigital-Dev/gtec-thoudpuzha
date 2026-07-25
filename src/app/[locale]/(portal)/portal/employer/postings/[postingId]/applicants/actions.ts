@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import type { ApplicationStatus } from "@prisma/client";
 
 export async function updateApplicationStatus(
@@ -13,7 +13,7 @@ export async function updateApplicationStatus(
   const session = await auth();
   if (!session.userId) return { error: "Unauthenticated" };
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) return { error: "Forbidden" };
 
   const app = await prisma.application.findUnique({

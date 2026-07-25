@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { BiodataPdfDocument } from "@/components/shared/BiodataPdfDocument";
 import type { BiodataPdfData } from "@/components/shared/BiodataPdfDocument";
@@ -33,7 +33,7 @@ export async function GET(
     return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
   if (!role) {
     return NextResponse.json({ error: "No role assigned" }, { status: 403 });
   }

@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { getEffectiveRole } from "@/lib/auth";
 
 const roles: Record<string, string> = {
   STUDENT: "/portal",
@@ -21,7 +22,7 @@ export default async function SignUpPickerPage({ params }: SignUpPickerPageProps
   const t = await getTranslations({ locale, namespace: "signUp" });
 
   if (session.userId) {
-    const role = session.sessionClaims?.metadata?.role as string | undefined;
+    const role = await getEffectiveRole(session);
     const dest = role && roles[role] ? roles[role] : "/portal";
     redirect(dest);
   }

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { isProfileComplete } from "@/lib/biodata";
 
 export async function applyToJob(formData: FormData): Promise<{ error?: string; applied?: boolean }> {
@@ -12,7 +12,7 @@ export async function applyToJob(formData: FormData): Promise<{ error?: string; 
     return { error: "Unauthenticated" };
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
   if (!role || (role !== Role.STUDENT && role !== Role.JOB_SEEKER)) {
     return { error: "Forbidden" };
   }

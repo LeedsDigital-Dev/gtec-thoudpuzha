@@ -1,9 +1,10 @@
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
+import { getEffectiveRole } from "@/lib/auth";
 
 export default async function PortalDashboardPage() {
   const session = await auth();
-  const role = (session.sessionClaims?.metadata?.role as string) ?? "Unknown";
+  const role = (await getEffectiveRole(session)) ?? "Unknown";
   const t = await getTranslations("portalDashboard");
 
   return (

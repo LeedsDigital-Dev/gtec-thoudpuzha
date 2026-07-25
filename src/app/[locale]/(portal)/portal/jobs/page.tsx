@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { getActiveJobPostings } from "@/lib/jobs";
 import { getApprovedSkills } from "@/lib/skills";
 import type { JobType } from "@prisma/client";
@@ -26,7 +26,7 @@ export default async function JobsPage({
   const session = await auth();
   if (!session.userId) redirect("/sign-in");
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.STUDENT && role !== Role.JOB_SEEKER) {
     redirect(`/${locale}/forbidden`);
   }

@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { BiodataForm } from "@/components/shared/BiodataForm";
 import { getPublishedCourses } from "@/lib/courses";
 import { getApprovedSkills, createPENDINGSkill } from "@/lib/skills";
@@ -12,7 +12,7 @@ export default async function BiodataPage() {
     return null;
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
   const _isStudent = role === Role.STUDENT;
   const isVerifiedStudent = role === Role.STUDENT;
 

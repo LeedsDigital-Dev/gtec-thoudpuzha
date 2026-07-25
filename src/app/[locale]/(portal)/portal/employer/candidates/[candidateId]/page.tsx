@@ -3,7 +3,7 @@ import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { getSearchableCandidates } from "@/lib/biodata-search";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +17,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
   const session = await auth();
   if (!session.userId) redirect("/sign-in");
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) redirect("/forbidden");
 
   const profile = await prisma.employerProfile.findUnique({

@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import Link from "next/link";
 import {
   BookOpen,
@@ -21,7 +21,7 @@ export default async function StudentDashboardPage({ params }: PageProps) {
   const session = await auth();
   if (!session.userId) return null;
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
   const t = await getTranslations({ locale, namespace: "studentDashboard" });
   const rgt = await getTranslations({ locale, namespace: "roleGate" });
 

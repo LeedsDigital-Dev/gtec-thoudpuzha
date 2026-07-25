@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { getApprovedSkills } from "@/lib/skills";
 import { PostVacancyForm } from "./post-vacancy-form";
 
@@ -11,7 +11,7 @@ export default async function PostVacancyPage() {
     redirect("/sign-in");
   }
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) {
     redirect("/forbidden");
   }

@@ -2,7 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import type {
   EducationalQualification,
   PreferredJobType,
@@ -34,7 +34,8 @@ export async function saveBiodata(data: BiodataFormData) {
     throw new Error("Unauthenticated");
   }
 
-  const role = session.sessionClaims?.metadata?.role as Role | undefined;
+  const role = await getEffectiveRole(session);
+
   if (!role || (role !== Role.STUDENT && role !== Role.JOB_SEEKER)) {
     throw new Error("Forbidden");
   }

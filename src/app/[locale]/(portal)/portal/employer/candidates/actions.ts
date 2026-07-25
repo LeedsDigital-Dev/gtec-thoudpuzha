@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getSearchableCandidates } from "@/lib/biodata-search";
 import { isProfileComplete as _isProfileComplete } from "@/lib/biodata";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import type {
   CandidateProfileWithCompletion,
 } from "@/lib/biodata";
@@ -47,7 +47,7 @@ export async function searchCandidates(
     redirect("/sign-in");
   }
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) {
     redirect("/forbidden");
   }
@@ -156,7 +156,7 @@ export async function inviteToApply(
     redirect("/sign-in");
   }
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) {
     redirect("/forbidden");
   }

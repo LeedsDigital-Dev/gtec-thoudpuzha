@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { ApplicantsList } from "./applicants-list";
 
 interface PageProps {
@@ -15,7 +15,7 @@ export default async function ApplicantsPage({ params }: PageProps) {
   const session = await auth();
   if (!session.userId) redirect("/sign-in");
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) redirect("/forbidden");
 
   const profile = await prisma.employerProfile.findUnique({

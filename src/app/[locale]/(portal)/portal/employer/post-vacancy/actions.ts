@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import type { JobType, SalaryVisibility } from "@prisma/client";
 
 interface ActionResult {
@@ -19,7 +19,7 @@ export async function submitVacancy(
     redirect("/sign-in");
   }
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) {
     redirect("/forbidden");
   }

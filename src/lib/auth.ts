@@ -10,6 +10,38 @@ export enum Role {
   SUPER_ADMIN = "SUPER_ADMIN",
 }
 
+/**
+ * Reads the user's role with the stale-JWT-claim fallback applied.
+ *
+ * THE SINGLE SOURCE OF TRUTH for "what is this user's role right now" —
+ * every page and Server Action that needs the role should call this
+ * instead of reading `session.sessionClaims?.metadata?.role` directly.
+ *
+ * Background: Clerk's JWT session claims can lag up to ~60s behind a
+ * role that was just set (e.g. via updateUserMetadata during sign-up).
+ * Reading the raw claim directly reproduces that race — this was found
+ * and patched three separate times in three different files
+ * (middleware.ts, then requireRole()/requirePermission(), then
+ * saveBiodata()) before it was clear the fix needed to be structural,
+ * not file-by-file. See 04_AUTH_DEBUGGING_LOG.md. Nineteen other files
+ * were found still reading the raw claim when this was written — if
+ * you're adding a new role check, this is why that pattern is banned.
+ *
+ * Returns `undefined` if the user has no role in either the JWT or the
+ * Backend API (including if userId is missing from the session).
+ */
+export async function getEffectiveRole(
+  session: Pick<Awaited<ReturnType<typeof clerkAuth>>, "userId" | "sessionClaims">,
+): Promise<Role | undefined> {
+  if (!session.userId) return undefined;
+
+  const claimRole = session.sessionClaims?.metadata?.role as Role | undefined;
+  if (claimRole) return claimRole;
+
+  const apiRole = await fetchRoleFromApi(session.userId);
+  return apiRole as Role | undefined;
+}
+
 export type RequireRoleResult =
   | { authorized: false; reason: "unauthenticated" | "no_role" | "forbidden" | "deactivated" }
   | { authorized: true; role: Role; userId: string };
@@ -23,15 +55,7 @@ export async function requireRole(
     return { authorized: false, reason: "unauthenticated" };
   }
 
-  let role = session.sessionClaims?.metadata?.role as Role | undefined;
-
-  // Fast path: JWT claims have the role — no extra API call needed.
-  // Fallback: if claims are stale (e.g. role was just set), fetch from the
-  // Clerk Backend API — same function middleware.ts uses for the same reason.
-  if (!role) {
-    const apiRole = await fetchRoleFromApi(session.userId);
-    role = apiRole as Role | undefined;
-  }
+  const role = await getEffectiveRole(session);
 
   if (!role) {
     return { authorized: false, reason: "no_role" };
@@ -98,13 +122,7 @@ export async function requirePermission(
     return { authorized: false, reason: "unauthenticated" };
   }
 
-  let role = session.sessionClaims?.metadata?.role as Role | undefined;
-
-  // Same stale-JWT-claim fallback as requireRole — see that function for details.
-  if (!role) {
-    const apiRole = await fetchRoleFromApi(session.userId);
-    role = apiRole as Role | undefined;
-  }
+  const role = await getEffectiveRole(session);
 
   if (!role) {
     return { authorized: false, reason: "no_role" };

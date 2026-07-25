@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/db";
-import { Role } from "@/lib/auth";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { getJobDetail } from "@/lib/jobs";
 import { isProfileComplete } from "@/lib/biodata";
 import { getSkillsByIds } from "@/lib/skills";
@@ -19,7 +19,7 @@ export default async function JobDetailPage({ params }: PageProps) {
   const session = await auth();
   if (!session.userId) redirect("/sign-in");
 
-  const role = session.sessionClaims?.metadata?.role as string | undefined;
+  const role = await getEffectiveRole(session);
   if (role !== Role.STUDENT && role !== Role.JOB_SEEKER) {
     redirect(`/${locale}/forbidden`);
   }

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import EnrollmentForm from "./enrollment-form";
+import EnrollmentDashboard from "./enrollment-dashboard";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -34,7 +34,18 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
   const [candidates, courses] = await Promise.all([
     prisma.candidateProfile.findMany({
       where: { isVerifiedStudent: true },
-      select: { id: true, fullName: true, studentRecordId: true },
+      select: {
+        id: true,
+        fullName: true,
+        phone: true,
+        studentRecordId: true,
+        enrollments: {
+          include: {
+            course: { select: { id: true, titleEn: true } },
+          },
+          orderBy: { enrolledAt: "desc" },
+        },
+      },
       orderBy: { fullName: "asc" },
     }),
     prisma.course.findMany({
@@ -44,28 +55,35 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
     }),
   ]);
 
-  let currentEnrollments: Array<{
-    id: string;
-    courseId: string;
-    enrolledAt: Date;
-    course: { id: string; titleEn: string };
-  }> = [];
-  let enrolledCourseIds: string[] = [];
+  const studentRecordIds = candidates
+    .map((c) => c.studentRecordId)
+    .filter((id): id is string => id !== null);
 
-  if (studentProfileId) {
-    currentEnrollments = await prisma.studentCourseEnrollment.findMany({
-      where: { studentProfileId },
-      include: { course: { select: { id: true, titleEn: true } } },
-      orderBy: { enrolledAt: "desc" },
-    });
-    enrolledCourseIds = currentEnrollments.map((e) => e.courseId);
-  }
+  const studentRecords = studentRecordIds.length > 0
+    ? await prisma.studentRecord.findMany({
+        where: { id: { in: studentRecordIds } },
+        select: { id: true, studentId: true, phone: true },
+      })
+    : [];
+
+  const recordMap = new Map(studentRecords.map((r) => [r.id, r]));
+
+  const students = candidates.map((c) => {
+    const record = c.studentRecordId ? recordMap.get(c.studentRecordId) : undefined;
+    return {
+      id: c.id,
+      fullName: c.fullName,
+      phone: c.phone || record?.phone || null,
+      studentId: record?.studentId ?? c.studentRecordId ?? null,
+      studentRecordId: c.studentRecordId,
+      enrollments: c.enrollments,
+    };
+  });
 
   return (
     <main className="p-6">
       <h1 className="text-2xl font-semibold">Course Enrollment</h1>
 
-      {/* Success banner — created */}
       {created > 0 && (
         <div
           className="mt-4 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
@@ -76,7 +94,6 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
         </div>
       )}
 
-      {/* Skipped banner */}
       {skipped > 0 && (
         <div
           className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
@@ -88,7 +105,6 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
         </div>
       )}
 
-      {/* Unenrolled banner */}
       {unenrolled && (
         <div
           className="mt-4 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
@@ -100,13 +116,11 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
       )}
 
       <div className="mt-6">
-        <EnrollmentForm
-          candidates={candidates}
+        <EnrollmentDashboard
+          students={students}
           courses={courses}
-          currentEnrollments={currentEnrollments}
-          enrolledCourseIds={enrolledCourseIds}
-          studentProfileId={studentProfileId}
           locale={locale}
+          selectedStudentProfileId={studentProfileId}
         />
       </div>
     </main>

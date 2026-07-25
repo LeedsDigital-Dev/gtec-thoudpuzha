@@ -84,7 +84,7 @@ export async function unenrollStudentFromCourse(formData: FormData) {
     action: "studentCourseEnrollment.unenroll",
     entityType: "StudentCourseEnrollment",
     entityId: enrollmentId,
-    metadata: { studentProfileId },
+    metadata: { studentProfileId, courseTitle },
   });
 
   const locale = localeFromFormData(formData);

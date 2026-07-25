@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(rm:*)",
+      "Shell(admin:*)",
+      "Shell(/admin/students/course-enrollment/enrollment-form.tsx:*)",
+      "Shell(npx vitest run src/app/[locale]/(admin)/admin/students/course-enrollment/ 2 >& 1)",
+      "Shell(npx eslint src/app/[locale]/(admin)/admin/students/course-enrollment/ 2 >& 1)",
+      "Shell(npx vitest run 2 >& 1)",
+      "Shell(npm:*)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: rebuild admin course-enrollment page as a real dashboard (table + filters + multi-select enroll) — previous version was a non-functional search box Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

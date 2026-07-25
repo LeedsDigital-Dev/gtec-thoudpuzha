@@ -11,6 +11,7 @@ const mockEnrollmentDelete = vi.hoisted(() => vi.fn());
 const mockUserFindUnique = vi.hoisted(() => vi.fn());
 const mockCandidateFindMany = vi.hoisted(() => vi.fn());
 const mockCourseFindMany = vi.hoisted(() => vi.fn());
+const mockStudentRecordFindMany = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
@@ -35,6 +36,9 @@ vi.mock("@/lib/db", () => ({
     },
     course: {
       findMany: mockCourseFindMany,
+    },
+    studentRecord: {
+      findMany: mockStudentRecordFindMany,
     },
     user: {
       findUnique: mockUserFindUnique,
@@ -244,10 +248,42 @@ describe("enrollStudentInCourses", () => {
     expect(mockEnrollmentDelete).not.toHaveBeenCalled();
   });
 
-  test("3e. page component redirects non-staff roles", async () => {
+  test("3e. page component redirects STUDENT role", async () => {
     mockAuth.mockResolvedValue({
       userId: "student_1",
       sessionClaims: { metadata: { role: "STUDENT" } },
+    });
+
+    const { default: CourseEnrollmentPage } = await import("./page");
+
+    await expect(
+      CourseEnrollmentPage({
+        params: Promise.resolve({ locale: "en" }),
+        searchParams: Promise.resolve({}),
+      }),
+    ).rejects.toThrow("redirect:/en/forbidden");
+  });
+
+  test("3f. page component redirects JOB_SEEKER role", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "jobseeker_1",
+      sessionClaims: { metadata: { role: "JOB_SEEKER" } },
+    });
+
+    const { default: CourseEnrollmentPage } = await import("./page");
+
+    await expect(
+      CourseEnrollmentPage({
+        params: Promise.resolve({ locale: "en" }),
+        searchParams: Promise.resolve({}),
+      }),
+    ).rejects.toThrow("redirect:/en/forbidden");
+  });
+
+  test("3g. page component redirects EMPLOYER role", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "employer_1",
+      sessionClaims: { metadata: { role: "EMPLOYER" } },
     });
 
     const { default: CourseEnrollmentPage } = await import("./page");

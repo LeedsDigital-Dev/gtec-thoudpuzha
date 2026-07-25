@@ -1,18 +1,32 @@
 import { auth } from "@clerk/nextjs/server";
-import { getTranslations } from "next-intl/server";
-import { getEffectiveRole } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { Role, getEffectiveRole } from "@/lib/auth";
 
-export default async function PortalDashboardPage() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function PortalDashboardPage({ params }: PageProps) {
+  const { locale } = await params;
   const session = await auth();
-  const role = (await getEffectiveRole(session)) ?? "Unknown";
-  const t = await getTranslations("portalDashboard");
 
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold">{t("heading", { role })}</h1>
-        <p className="mt-2 text-gray-600">{t("subtitle")}</p>
-      </div>
-    </div>
-  );
+  if (!session.userId) {
+    redirect(`/${locale}/sign-in`);
+  }
+
+  const role = await getEffectiveRole(session);
+
+  switch (role) {
+    case Role.STUDENT:
+      redirect(`/${locale}/portal/student`);
+    case Role.JOB_SEEKER:
+      redirect(`/${locale}/portal/job-seeker`);
+    case Role.EMPLOYER:
+      redirect(`/${locale}/portal/employer`);
+    case Role.CENTRE_STAFF:
+    case Role.SUPER_ADMIN:
+      redirect(`/${locale}/admin`);
+    default:
+      redirect(`/${locale}/sign-in`);
+  }
 }

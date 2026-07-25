@@ -12,7 +12,12 @@
       "Shell(npx shadcn@latest add sidebar -y)",
       "Shell(npx vitest run src/components/admin/__tests__/admin-sidebar.test.tsx --reporter=verbose 2 >& 1)",
       "Shell(git:*)",
-      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: add persistent admin sidebar navigation + complete dashboard quick-links for all admin modules Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: add persistent admin sidebar navigation + complete dashboard quick-links for all admin modules Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(npx vitest run src/__tests__/complete-signup.test.tsx src/__tests__/post-signup-redirects.test.tsx src/app/[locale]/(portal)/portal/job-seeker/page.test.tsx --reporter=verbose 2 >& 1)",
+      "Shell(npx vitest run src/__tests__/complete-signup.test.tsx --reporter=verbose 2 >& 1)",
+      "Shell(npx vitest run src/__tests__/complete-signup.test.tsx -t job_seeker --reporter=verbose 2 >& 1)",
+      "Shell(npx vitest run src/__tests__/complete-signup.test.tsx -t STAFF-invited user gets --reporter=verbose 2 >& 1)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' feat: role-specific dashboards with automatic post-signup redirect, Centre Staff invite flow Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
     ],
     "deny": [],
     "defaultMode": "default"

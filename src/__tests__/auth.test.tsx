@@ -200,7 +200,7 @@ describe("Dashboard pages display role-based welcome", () => {
     expect(html).toContain("Super Admin");
   });
 
-  test("portal dashboard shows Welcome, STUDENT", async () => {
+  test("portal dashboard redirects STUDENT to /portal/student", async () => {
     mockAuth.mockResolvedValue({
       userId: "user_3",
       sessionClaims: { metadata: { role: "STUDENT" } },
@@ -209,12 +209,12 @@ describe("Dashboard pages display role-based welcome", () => {
     const { default: PortalDashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/page"
     );
-    const element = await PortalDashboardPage();
-    const html = renderToString(element);
-    expect(html).toMatch(/Welcome.*STUDENT/);
+    await expect(
+      PortalDashboardPage({ params: Promise.resolve({ locale: "en" }) }),
+    ).rejects.toThrow("NEXT_REDIRECT");
   });
 
-  test("portal dashboard shows Welcome, JOB_SEEKER", async () => {
+  test("portal dashboard redirects JOB_SEEKER to /portal/job-seeker", async () => {
     mockAuth.mockResolvedValue({
       userId: "user_4",
       sessionClaims: { metadata: { role: "JOB_SEEKER" } },
@@ -223,8 +223,8 @@ describe("Dashboard pages display role-based welcome", () => {
     const { default: PortalDashboardPage } = await import(
       "@/app/[locale]/(portal)/portal/page"
     );
-    const element = await PortalDashboardPage();
-    const html = renderToString(element);
-    expect(html).toMatch(/Welcome.*JOB_SEEKER/);
+    await expect(
+      PortalDashboardPage({ params: Promise.resolve({ locale: "en" }) }),
+    ).rejects.toThrow("NEXT_REDIRECT");
   });
 });

@@ -7,9 +7,12 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockClerkClient = vi.hoisted(() => vi.fn());
 const mockUpdateUserMetadata = vi.hoisted(() => vi.fn());
+const mockGetUser = vi.hoisted(() => vi.fn());
 const mockUpsert = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
 const mockCreate = vi.hoisted(() => vi.fn());
+const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
+const mockStaffPermissionCreate = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() => vi.fn());
 
 vi.mock("@clerk/nextjs/server", () => ({
@@ -21,6 +24,10 @@ vi.mock("@/lib/db", () => ({
   prisma: {
     user: { upsert: mockUpsert },
     candidateProfile: { findUnique: mockFindUnique, create: mockCreate },
+    staffPermission: {
+      findUnique: mockStaffPermissionFindUnique,
+      create: mockStaffPermissionCreate,
+    },
   },
 }));
 
@@ -56,8 +63,9 @@ describe("Complete Signup page — role assignment", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockClerkClient.mockReturnValue(
-      Promise.resolve({ users: { updateUserMetadata: mockUpdateUserMetadata } }),
+      Promise.resolve({ users: { updateUserMetadata: mockUpdateUserMetadata, getUser: mockGetUser } }),
     );
+    mockGetUser.mockResolvedValue({ publicMetadata: {} });
     mockAuth.mockResolvedValue({ userId: "user_test_1" });
     mockUpsert.mockResolvedValue({});
   });
@@ -90,7 +98,7 @@ describe("Complete Signup page — role assignment", () => {
     expect(mockCreate).toHaveBeenCalledWith({
       data: { userId: "user_test_1", isVerifiedStudent: false },
     });
-    expect(mockRedirect).toHaveBeenCalledWith("/portal/student/biodata");
+    expect(mockRedirect).toHaveBeenCalledWith("/en/portal/student/biodata");
   });
 
   test("2. Employer path sets publicMetadata.role = EMPLOYER", async () => {
@@ -113,7 +121,7 @@ describe("Complete Signup page — role assignment", () => {
     // Should NOT attempt to create CandidateProfile for employer
     expect(mockFindUnique).not.toHaveBeenCalled();
     expect(mockCreate).not.toHaveBeenCalled();
-    expect(mockRedirect).toHaveBeenCalledWith("/portal/employer/register");
+    expect(mockRedirect).toHaveBeenCalledWith("/en/portal/employer/register");
   });
 });
 
@@ -140,7 +148,7 @@ describe("Sign-up picker page — redirect logic", () => {
       // redirect throws, that's expected
     }
 
-    expect(mockRedirect).toHaveBeenCalledWith("/portal");
+    expect(mockRedirect).toHaveBeenCalledWith("/portal/student");
   });
 
   test("4. Selecting the Student option routes to /portal/sign-up/student WITHOUT setting a role yet", async () => {

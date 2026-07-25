@@ -15,6 +15,16 @@ vi.mock("@/lib/db", () => ({
     },
 }));
 
+vi.mock("next/cache", () => ({
+    revalidatePath: vi.fn(),
+}));
+
+const mockRedirect = vi.hoisted(() => vi.fn());
+
+vi.mock("next/navigation", () => ({
+    redirect: mockRedirect,
+}));
+
 const validData = {
     courseCompletedIds: [],
     certificationIds: [],
@@ -29,33 +39,25 @@ beforeEach(() => {
         sessionClaims: { metadata: { role: "STUDENT" } },
     });
     mockUpsert.mockResolvedValue({ id: "profile_1" });
+    mockRedirect.mockImplementation((url: string) => {
+        throw new Error(`redirect:${url}`);
+    });
 });
 
-// Regression test: BiodataPage previously passed an inline arrow function
-// wrapping saveBiodata as BiodataForm's onSubmit prop. Server Components
-// can't pass non-Server-Action functions to Client Components (Next.js
-// throws "Event handlers cannot be passed to Client Component props" at
-// render time — this only surfaces when the page actually renders, not in
-// unit tests of the action alone, which is why it slipped through). The
-// fix was to export submitBiodataForm as its own real Server Action.
-// Its defining property, and the one this test guards, is that it
-// resolves to undefined — matching BiodataForm's
-// onSubmit: (data) => Promise<void> — rather than returning profile data
-// like saveBiodata does (see AGENTS.md rule 15).
 describe("submitBiodataForm", () => {
-    test("resolves to undefined, not the profile data saveBiodata returns", async () => {
+    test("redirects STUDENT to /portal/student after save", async () => {
         const { submitBiodataForm } = await import("./actions");
 
-        const result = await submitBiodataForm(validData);
-
-        expect(result).toBeUndefined();
+        await expect(submitBiodataForm(validData)).rejects.toThrow(
+            "redirect:/portal/student",
+        );
         expect(mockUpsert).toHaveBeenCalledTimes(1);
     });
 
     test("still persists the profile via saveBiodata's underlying logic", async () => {
         const { submitBiodataForm } = await import("./actions");
 
-        await submitBiodataForm({ ...validData, fullName: "Alice" });
+        try { await submitBiodataForm({ ...validData, fullName: "Alice" }); } catch { /* redirect */ }
 
         expect(mockUpsert).toHaveBeenCalledWith(
             expect.objectContaining({

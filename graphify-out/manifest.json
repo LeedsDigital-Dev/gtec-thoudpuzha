@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/setup.ts": {
-    "mtime": 1784853611.818616,
-    "ast_hash": "2d1c84a6b82f8d7c1860004916c61a85",
+    "mtime": 1784950976.3493414,
+    "ast_hash": "8e6047d1d75c49d9aee4b21756d44ecf",
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
@@ -155,13 +155,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/page.tsx": {
-    "mtime": 1784940218.7874353,
-    "ast_hash": "6fb021c89dfcf6ec4a242dad2fb608a9",
+    "mtime": 1784950852.8014963,
+    "ast_hash": "9409c09a4317779f020aaa5e474d20d2",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/layout.tsx": {
-    "mtime": 1784735793.0284495,
-    "ast_hash": "46b0b341d03efde7ce96f225fe49d6db",
+    "mtime": 1784950852.8014963,
+    "ast_hash": "58e3e0f064d301b979276969f6ac8f7b",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/layout.tsx": {
@@ -1235,8 +1235,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/page.test.tsx": {
-    "mtime": 1784809587.803937,
-    "ast_hash": "16ebbef45cc3ad79789c1b3d3185e6bb",
+    "mtime": 1784951040.2587435,
+    "ast_hash": "90723f83bce9b792ef4b30629e393887",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723122956_add_name_ml_to_certification_partner/migration.sql": {
@@ -1530,8 +1530,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1784943374.5593188,
-    "ast_hash": "6c9efef032bec57d5026faf4fba7f7da",
+    "mtime": 1784952803.8609378,
+    "ast_hash": "588f31c0bdaea946410b66ea36adfe4d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1542,6 +1542,56 @@
   "src/app/[locale]/(admin)/admin/students/course-enrollment/enrollment-dashboard.tsx": {
     "mtime": 1784942800.9202282,
     "ast_hash": "6cffd001e8a412c242ce45b16486e732",
+    "semantic_hash": ""
+  },
+  "src/components/admin/__tests__/admin-sidebar.test.tsx": {
+    "mtime": 1784950989.7162163,
+    "ast_hash": "3acef6f20ab51f84cbfb493440f6dc53",
+    "semantic_hash": ""
+  },
+  "src/components/admin/admin-shell.tsx": {
+    "mtime": 1784951193.9323044,
+    "ast_hash": "ef9ef60b3a8301132f7a4a49451c47dd",
+    "semantic_hash": ""
+  },
+  "src/components/admin/admin-sidebar.tsx": {
+    "mtime": 1784951187.0043695,
+    "ast_hash": "a68510d3ae880473d80eec861a0e2396",
+    "semantic_hash": ""
+  },
+  "src/components/ui/separator.tsx": {
+    "mtime": 1784949406.3356206,
+    "ast_hash": "3de2dca3e47ab29c4b1f632671545628",
+    "semantic_hash": ""
+  },
+  "src/components/ui/sheet.tsx": {
+    "mtime": 1784949406.8096166,
+    "ast_hash": "43ad8bec991f7a28d2aa22d4f374e6b7",
+    "semantic_hash": ""
+  },
+  "src/components/ui/sidebar.tsx": {
+    "mtime": 1784949407.1266139,
+    "ast_hash": "9936c9b77d3af2d69fa40d2eb468bcbd",
+    "semantic_hash": ""
+  },
+  "src/components/ui/skeleton.tsx": {
+    "mtime": 1784949406.4466197,
+    "ast_hash": "0e6e825c43d858d98c9903f4da975382",
+    "semantic_hash": ""
+  },
+  "src/components/ui/tooltip.tsx": {
+    "mtime": 1784949406.5536187,
+    "ast_hash": "6566a444ce6c0a87d6611903430534fa",
+    "semantic_hash": ""
+  },
+  "src/hooks/use-mobile.ts": {
+    "mtime": 1784950890.4721441,
+    "ast_hash": "cf1eccce9584d9bb6874b98c747f2381",
+    "semantic_hash": ""
+  },
+  "src/lib/admin-routes.ts": {
+    "mtime": 1784951180.9804258,
+    "ast_hash": "ba0d42489130b6b36d707b19a2b88583",
     "semantic_hash": ""
   }
 }

@@ -529,5 +529,22 @@
     "submit": "Submit",
     "error": "Something went wrong. Please try again.",
     "back": "Back"
+  },
+  "jobSeekerDashboard": {
+    "heading": "Job Seeker Dashboard",
+    "welcomeBack": "Welcome back, {name}",
+    "readyToApply": "Your profile is ready — browse jobs and apply.",
+    "completeProfileHint": "Complete your profile to start applying for jobs.",
+    "browseJobs": "Browse Jobs",
+    "browseJobsDesc": "Find opportunities matching your skills",
+    "myApplications": "My Applications",
+    "noApplicationsYet": "No applications yet",
+    "applicationsCount": "{count} application(s)",
+    "completeProfile": "Complete Profile",
+    "profileNeeded": "Create your biodata to apply",
+    "updateProfile": "Update Profile",
+    "profileReady": "Your biodata is ready",
+    "recentApplications": "Recent Applications",
+    "viewAll": "View All"
   }
 }

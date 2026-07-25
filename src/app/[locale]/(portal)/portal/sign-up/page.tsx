@@ -5,8 +5,8 @@ import { getTranslations } from "next-intl/server";
 import { getEffectiveRole } from "@/lib/auth";
 
 const roles: Record<string, string> = {
-  STUDENT: "/portal",
-  JOB_SEEKER: "/portal",
+  STUDENT: "/portal/student",
+  JOB_SEEKER: "/portal/job-seeker",
   EMPLOYER: "/portal/employer/register",
   CENTRE_STAFF: "/admin",
   SUPER_ADMIN: "/admin",

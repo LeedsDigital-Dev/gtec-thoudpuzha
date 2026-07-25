@@ -7,6 +7,7 @@ import { ADMIN_ROUTES } from "@/lib/admin-routes";
 const mockUsePathname = vi.hoisted(() => vi.fn(() => "/admin"));
 
 vi.mock("@/lib/i18n/navigation", () => ({
+  // eslint-disable-next-line react/display-name
   Link: React.forwardRef<HTMLAnchorElement, { href: string; className?: string; children: React.ReactNode }>(
     ({ href, className, children }, ref) =>
       React.createElement("a", { ref, href, "data-testid": "nav-link", className }, children),

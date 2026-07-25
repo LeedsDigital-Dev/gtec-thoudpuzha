@@ -1,6 +1,8 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { Role, getEffectiveRole } from "@/lib/auth";
 import type {
@@ -81,7 +83,7 @@ export async function saveBiodata(data: BiodataFormData) {
     },
   });
 
-  return { success: true, profile };
+  return profile;
 }
 
 /**
@@ -95,6 +97,18 @@ export async function saveBiodata(data: BiodataFormData) {
  */
 export async function submitBiodataForm(data: BiodataFormData): Promise<void> {
   await saveBiodata(data);
+
+  const session = await auth();
+  if (!session.userId) return;
+
+  const role = await getEffectiveRole(session);
+  revalidatePath("/portal/student/biodata");
+  revalidatePath("/portal/job-seeker");
+
+  if (role === Role.JOB_SEEKER) {
+    redirect("/portal/job-seeker");
+  }
+  redirect("/portal/student");
 }
 
 export type BiodataActionResult = {

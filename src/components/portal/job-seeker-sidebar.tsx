@@ -12,27 +12,18 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { ADMIN_ROUTES, isRouteVisible, type AdminRoute, type PermissionKey } from "@/lib/admin-routes";
+import { JOB_SEEKER_ROUTES, type PortalRoute } from "@/lib/job-seeker-routes";
 import { cn } from "@/lib/utils";
 
-interface AdminSidebarProps {
-  isSuperAdmin: boolean;
-  permissions: Partial<Record<PermissionKey, boolean>>;
-}
-
-function isRouteActive(route: AdminRoute, pathname: string): boolean {
-  if (route.href === "/admin") {
-    return pathname === "/admin" || pathname === "/admin/";
+function isRouteActive(route: PortalRoute, pathname: string): boolean {
+  if (route.href === "/portal/job-seeker") {
+    return pathname === "/portal/job-seeker" || pathname === "/portal/job-seeker/";
   }
   return pathname.startsWith(route.href);
 }
 
-export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
+export function JobSeekerSidebar() {
   const pathname = usePathname();
-
-  const visibleRoutes = ADMIN_ROUTES.filter((route) =>
-    isRouteVisible(route, isSuperAdmin, permissions),
-  );
 
   return (
     <Sidebar collapsible="icon">
@@ -40,17 +31,17 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
         <SidebarMenu>
           <SidebarMenuItem>
             <Link
-              href="/admin"
+              href="/portal/job-seeker"
               className={cn(
                 "flex items-center gap-2 px-2 py-3",
                 "group-data-[collapsible=icon]:justify-center",
               )}
             >
               <span className="text-lg font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-                Admin
+                Job Seeker
               </span>
               <span className="hidden text-lg font-bold text-sidebar-foreground group-data-[collapsible=icon]:inline">
-                A
+                JS
               </span>
             </Link>
           </SidebarMenuItem>
@@ -60,7 +51,7 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
-            {visibleRoutes.map((route) => {
+            {JOB_SEEKER_ROUTES.map((route) => {
               const active = isRouteActive(route, pathname);
 
               return (

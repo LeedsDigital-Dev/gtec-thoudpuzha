@@ -8,3 +8,5 @@
 - Before using a third-party component or API named in a spec, verify it actually exists in the installed version by checking node_modules type definitions — don't trust specs at face value about API surface. Confidence: 0.85
 - When new library imports break existing tests, add a global mock in the test setup file (setup.ts) rather than wrapping individual test files with providers. Confidence: 0.80
 - When an audit uncovers out-of-scope issues, flag them explicitly in the completion report rather than silently fixing them or staying quiet. Confidence: 0.75
+- Prefers planning before coding: enters plan mode, explores the codebase thoroughly across multiple dimensions, writes a detailed plan (with rationale, file lists, and verification steps) to ~/.commandcode/plans/, presents it for approval, then implements. Confidence: 0.80
+- Prefers parallel exploration: when researching a codebase before implementing, launches multiple independent exploration agents simultaneously to investigate different aspects (auth, layouts, components, i18n) rather than exploring sequentially. Confidence: 0.75

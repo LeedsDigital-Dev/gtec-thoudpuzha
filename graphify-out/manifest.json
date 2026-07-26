@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/setup.ts": {
-    "mtime": 1784950976.3493414,
-    "ast_hash": "8e6047d1d75c49d9aee4b21756d44ecf",
+    "mtime": 1784967677.3448868,
+    "ast_hash": "8dd1f23222fef51971d66b45a52dc0fa",
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/layout.tsx": {
-    "mtime": 1784735793.0284495,
-    "ast_hash": "0d0c9ecea26593a56598689c53567998",
+    "mtime": 1784967489.2581427,
+    "ast_hash": "884a2a30626d371bacb393c91fd7680a",
     "semantic_hash": ""
   },
   "src/app/[locale]/sign-in/[[...sign-in]]/page.tsx": {
@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784953584.9758995,
-    "ast_hash": "0c4f37a59524c88124800466b31fa95d",
+    "mtime": 1784967419.89842,
+    "ast_hash": "34a819795c4f089ac2a67f796969e6ba",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784954284.1018946,
-    "ast_hash": "b9f9becf9266e9e14253138db03cad4a",
+    "mtime": 1784967419.89842,
+    "ast_hash": "5b534e41b61647389ac76ce483e11eda",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -265,8 +265,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/Header.tsx": {
-    "mtime": 1784818543.6876268,
-    "ast_hash": "e303e2e4b3cfe69a39815f7f777d6b65",
+    "mtime": 1784967401.1331124,
+    "ast_hash": "8a27c1a9545abc7bbddcd93c4f610734",
     "semantic_hash": ""
   },
   "src/lib/site.ts": {
@@ -1620,8 +1620,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/workflow/taste.md": {
-    "mtime": 1784957222.5476131,
-    "ast_hash": "c789e7da474dca5272ceb6e8216c4c39",
+    "mtime": 1784967789.4539745,
+    "ast_hash": "1239f4a167a5440511d12ac666bebfe9",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {

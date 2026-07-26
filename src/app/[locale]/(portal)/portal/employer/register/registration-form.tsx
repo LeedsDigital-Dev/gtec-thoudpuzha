@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { submitEmployerRegistration } from "./actions";
+import type { IndustrySector, EmployeeCountRange } from "@prisma/client";
 
 const SECTORS = [
   { value: "IT_SOFTWARE", key: "IT_SOFTWARE" },
@@ -35,24 +36,51 @@ const EMPLOYEE_RANGES = [
   { value: "RANGE_200_PLUS", key: "RANGE_200_PLUS" },
 ] as const;
 
-export function RegistrationForm() {
+interface RegistrationFormProps {
+  initialData?: {
+    companyName: string;
+    industrySector: IndustrySector;
+    contactPersonName: string;
+    designation: string;
+    phone: string;
+    email: string;
+    companyAddress: string;
+    hasWebsite: boolean;
+    websiteUrl?: string | null;
+    employeeCountRange: EmployeeCountRange;
+    aboutCompany: string;
+  };
+  onSubmit?: (
+    formData: FormData,
+  ) => Promise<{ success: false; error: string } | undefined>;
+}
+
+export function RegistrationForm({
+  initialData,
+  onSubmit,
+}: RegistrationFormProps) {
   const t = useTranslations("employerRegister");
   const st = useTranslations("sector");
   const ert = useTranslations("employeeRange");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [saved, setSaved] = useState(false);
 
-  const [companyName, setCompanyName] = useState("");
-  const [industrySector, setIndustrySector] = useState("");
-  const [contactPersonName, setContactPersonName] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [companyAddress, setCompanyAddress] = useState("");
-  const [hasWebsite, setHasWebsite] = useState<"yes" | "no" | "">("");
-  const [websiteUrl, setWebsiteUrl] = useState("");
-  const [employeeCountRange, setEmployeeCountRange] = useState("");
-  const [aboutCompany, setAboutCompany] = useState("");
+  const [companyName, setCompanyName] = useState(initialData?.companyName ?? "");
+  const [industrySector, setIndustrySector] = useState(initialData?.industrySector ?? "");
+  const [contactPersonName, setContactPersonName] = useState(initialData?.contactPersonName ?? "");
+  const [designation, setDesignation] = useState(initialData?.designation ?? "");
+  const [phone, setPhone] = useState(initialData?.phone ?? "");
+  const [email, setEmail] = useState(initialData?.email ?? "");
+  const [companyAddress, setCompanyAddress] = useState(initialData?.companyAddress ?? "");
+  const [hasWebsite, setHasWebsite] = useState<"yes" | "no" | "">(
+    initialData ? (initialData.hasWebsite ? "yes" : "no") : "",
+  );
+  const [websiteUrl, setWebsiteUrl] = useState(initialData?.websiteUrl ?? "");
+  const [employeeCountRange, setEmployeeCountRange] = useState(initialData?.employeeCountRange ?? "");
+  const [aboutCompany, setAboutCompany] = useState(initialData?.aboutCompany ?? "");
+
+  const isEdit = Boolean(initialData);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -76,10 +104,17 @@ export function RegistrationForm() {
       fd.set("aboutCompany", aboutCompany);
 
       try {
-        const result = await submitEmployerRegistration(fd);
+        const submitFn = onSubmit ?? submitEmployerRegistration;
+        const result = await submitFn(fd);
         if (result && !result.success) {
           setError(result.error);
           setSubmitting(false);
+        } else {
+          setSubmitting(false);
+          if (isEdit) {
+            setSaved(true);
+            setTimeout(() => setSaved(false), 3000);
+          }
         }
       } catch {
         setError(t("error"));
@@ -99,14 +134,20 @@ export function RegistrationForm() {
       employeeCountRange,
       aboutCompany,
       t,
+      onSubmit,
+      isEdit,
     ],
   );
 
   return (
     <div className="mx-auto max-w-2xl p-4 py-10">
       <div className="mb-8 text-center">
-        <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
-        <p className="text-gray-600">{t("description")}</p>
+        <h1 className="mb-2 text-3xl font-semibold">
+          {isEdit ? t("editHeading") : t("heading")}
+        </h1>
+        <p className="text-gray-600">
+          {isEdit ? t("editDescription") : t("description")}
+        </p>
       </div>
 
       {error && (
@@ -115,6 +156,12 @@ export function RegistrationForm() {
           role="alert"
         >
           {error}
+        </div>
+      )}
+
+      {saved && (
+        <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800" role="status">
+          {t("saved")}
         </div>
       )}
 
@@ -302,7 +349,7 @@ export function RegistrationForm() {
         </div>
 
         <Button type="submit" className="w-full" disabled={submitting}>
-          {submitting ? t("submitting") : t("register")}
+          {submitting ? t("submitting") : isEdit ? t("saveChanges") : t("register")}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">

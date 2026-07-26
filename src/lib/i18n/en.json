@@ -523,7 +523,11 @@
     "privacyNote": "Your company data is handled in accordance with our {privacyLink} and {termsLink}.",
     "register": "Register",
     "submitting": "Submitting...",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "editHeading": "Edit Company Profile",
+    "editDescription": "Update your company details.",
+    "saveChanges": "Save Changes",
+    "saved": "Profile saved successfully."
   },
   "common": {
     "loading": "Loading...",

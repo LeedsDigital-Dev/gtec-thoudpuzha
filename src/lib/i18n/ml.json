@@ -190,6 +190,10 @@
     "register": "രജിസ്റ്റർ",
     "submitting": "സമർപ്പിക്കുന്നു...",
     "error": "എന്തോ കുഴപ്പം സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക.",
+    "editHeading": "കമ്പനി പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക",
+    "editDescription": "നിങ്ങളുടെ കമ്പനി വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്യുക.",
+    "saveChanges": "മാറ്റങ്ങൾ സംരക്ഷിക്കുക",
+    "saved": "പ്രൊഫൈൽ വിജയകരമായി സംരക്ഷിച്ചു.",
     "privacyNote": "Your company data is handled in accordance with our {privacyLink} and {termsLink}."
   },
   "sector": {

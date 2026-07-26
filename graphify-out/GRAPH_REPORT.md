@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-25)
 
 ## Corpus Check
-- 321 files · ~110,527 words
+- 321 files · ~110,693 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1535 nodes · 2248 edges · 174 communities (124 shown, 50 thin omitted)
+- 1535 nodes · 2242 edges · 175 communities (125 shown, 50 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `172852da`
+- Built from commit: `49ea279c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -98,6 +98,7 @@
 - FlashNewsBar.tsx
 - scripts
 - AtAGlanceSection.tsx
+- [locale]/layout.tsx
 - AtAGlanceSection.tsx
 - @vitejs/plugin-react
 - [id]/actions.ts
@@ -192,7 +193,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (174 total, 50 thin omitted)
+## Communities (175 total, 50 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.22
@@ -212,7 +213,7 @@ Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent 
 
 ### Community 4 - "package.json"
 Cohesion: 0.05
-Nodes (32): PortalLayout(), EMPLOYEE_RANGES, RegistrationForm(), SECTORS, PublicLayout(), BiodataForm(), BiodataFormProps, JOB_TYPE_OPTIONS (+24 more)
+Nodes (31): AdminLayout(), PortalLayout(), EMPLOYEE_RANGES, RegistrationForm(), SECTORS, PublicLayout(), BiodataForm(), BiodataFormProps (+23 more)
 
 ### Community 5 - "EnquiryForm.tsx"
 Cohesion: 0.06
@@ -227,8 +228,8 @@ Cohesion: 0.14
 Nodes (11): mockAuditCreate, mockAuth, mockCatAggregate, mockItemAggregate, mockItemCreate, mockItemDelete, mockItemFindMany, mockRedirect (+3 more)
 
 ### Community 8 - "aliases"
-Cohesion: 0.16
-Nodes (13): geistMono, geistSans, metadata, { Link, redirect, usePathname, useRouter }, Locale, routing, config, getRequestLocale() (+5 more)
+Cohesion: 0.18
+Nodes (12): buildLocalePath(), LanguageSwitcher(), { Link, redirect, usePathname, useRouter }, Locale, routing, config, getRequestLocale(), handleRouteProtection() (+4 more)
 
 ### Community 9 - "BiodataForm.test.tsx"
 Cohesion: 0.10
@@ -243,8 +244,8 @@ Cohesion: 0.22
 Nodes (11): NewsPage(), NewsPageProps, generateStaticParams(), NewsDetailPage(), NewsDetailPageProps, getNewsEventBySlug(), getPublishedNews(), PublicNewsEvent (+3 more)
 
 ### Community 16 - "(public)/page.tsx"
-Cohesion: 0.24
-Nodes (9): CertificationPartnersPage(), CertificationPartnerStrip(), PlacementData, PlacementSupportSection(), getCertificationPartners(), PublicCertificationPartner, PublicGalleryCategory, getMediaUrl() (+1 more)
+Cohesion: 0.31
+Nodes (7): CertificationPartnersPage(), CertificationPartnerStrip(), PlacementSupportSection(), getCertificationPartners(), PublicCertificationPartner, getMediaUrl(), getMediaUrls()
 
 ### Community 17 - "actions.test.ts"
 Cohesion: 0.10
@@ -275,8 +276,8 @@ Cohesion: 0.13
 Nodes (14): mockAuditCreate, mockAuth, mockCountCandidateProfile, mockCountJobPosting, mockDeleteSkill, mockFindManyCandidateProfile, mockFindManyJobPosting, mockFindUniqueSkill (+6 more)
 
 ### Community 34 - "courses.test.ts"
-Cohesion: 0.10
-Nodes (7): Separator(), SidebarContext, SidebarContextProps, Skeleton(), Tooltip(), TooltipContent(), TooltipTrigger()
+Cohesion: 0.09
+Nodes (9): Separator(), SidebarContext, SidebarContextProps, SidebarGroupLabel(), SidebarHeader(), Skeleton(), Tooltip(), TooltipContent() (+1 more)
 
 ### Community 35 - "FlashNewsBar.tsx"
 Cohesion: 0.13
@@ -296,7 +297,7 @@ Nodes (16): ALL_COURSE_TITLES, ALL_PARTNER_NAMES, CATEGORIES, CATEGORY_NAMES, CE
 
 ### Community 41 - "flash-news/page.test.tsx"
 Cohesion: 0.23
-Nodes (10): HomePage(), HomePageProps, formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem, getPublishedCourses() (+2 more)
+Nodes (10): HomePage(), HomePageProps, PlacementData, getPublishedCourses(), getGalleryCategoryBySlug(), getPlacementGalleryData(), PlacementGalleryData, PublicGalleryCategory (+2 more)
 
 ### Community 42 - "FlashNewsBar.tsx"
 Cohesion: 0.25
@@ -335,8 +336,8 @@ Cohesion: 0.40
 Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
 ### Community 52 - "Role"
-Cohesion: 0.36
-Nodes (6): GalleryPage(), GalleryPageProps, getGalleryCategoryBySlug(), getGalleryData(), getPlacementGalleryData(), PlacementGalleryData
+Cohesion: 0.47
+Nodes (5): formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem
 
 ### Community 53 - "courses.test.ts"
 Cohesion: 0.60
@@ -387,12 +388,12 @@ Cohesion: 0.40
 Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
 ### Community 70 - "courses.test.ts"
-Cohesion: 0.27
-Nodes (11): GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl(), getYouTubeVideoId(), Lightbox(), pickLocalizedText() (+3 more)
+Cohesion: 0.20
+Nodes (14): GalleryPage(), GalleryPageProps, GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl(), getYouTubeVideoId() (+6 more)
 
 ### Community 71 - "search-form.tsx"
-Cohesion: 0.17
-Nodes (13): AdminDashboardPage(), AdminDashboardPageProps, AdminSidebar(), isRouteActive(), SidebarContent(), SidebarGroup(), SidebarGroupLabel(), SidebarHeader() (+5 more)
+Cohesion: 0.20
+Nodes (11): AdminDashboardPage(), AdminDashboardPageProps, AdminSidebar(), isRouteActive(), SidebarContent(), SidebarGroup(), SidebarMenu(), SidebarMenuItem() (+3 more)
 
 ### Community 72 - "[id]/actions.ts"
 Cohesion: 0.38
@@ -411,8 +412,8 @@ Cohesion: 0.12
 Nodes (20): ContactSection(), ContactSectionProps, ModalOverlay(), socialIcons, baseSettings, mockCourses, useCloseOnEscape(), CourseSelect() (+12 more)
 
 ### Community 77 - "inviteToApply"
-Cohesion: 0.24
-Nodes (7): AdminLayout(), AdminShell(), AdminShellProps, AdminSidebarProps, SidebarProvider(), useIsMobile(), PermissionKey
+Cohesion: 0.28
+Nodes (6): AdminShell(), AdminShellProps, AdminSidebarProps, SidebarProvider(), useIsMobile(), PermissionKey
 
 ### Community 78 - "portal-role-gating.test.tsx"
 Cohesion: 0.25
@@ -457,6 +458,10 @@ Nodes (9): scripts, build, db:seed, db:studio, dev, lint, start, test (+1 more)
 ### Community 95 - "AtAGlanceSection.tsx"
 Cohesion: 0.20
 Nodes (8): MockCourse, mockCourseCreate, mockCourseFindMany, mockCourseUpdate, mockLogAdminAction, mockStore, mockUploadFile, mockUserFindUnique
+
+### Community 96 - "[locale]/layout.tsx"
+Cohesion: 0.40
+Nodes (3): geistMono, geistSans, metadata
 
 ### Community 99 - "AtAGlanceSection.tsx"
 Cohesion: 0.29
@@ -591,7 +596,7 @@ Cohesion: 0.33
 Nodes (5): mockAuth, mockCreate, mockFindMany, mockRedirect, mockUserFindUnique
 
 ## Knowledge Gaps
-- **744 isolated node(s):** `ConfirmDeleteFormProps`, `GalleryPageProps`, `ConfirmDeleteFormProps`, `NewsEventsPageProps`, `Taste (Continuously Learned by [CommandCode][cmd])` (+739 more)
+- **744 isolated node(s):** `workflow`, `geistSans`, `geistMono`, `metadata`, `navItems` (+739 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -599,12 +604,12 @@ Nodes (5): mockAuth, mockCreate, mockFindMany, mockRedirect, mockUserFindUnique
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Role` connect `FlashNewsBar.tsx` to `devDependencies`, `EmployerModerationNotification.tsx`, `news-events.test.ts`, `EnquiryForm.tsx`, `candidates/actions.ts`, `applicants/actions.test.ts`, `FlashNewsBar.tsx`, `BiodataForm.test.tsx`, `site-settings.ts`, `NewsTeaserSection.tsx`, `actions.test.ts`, `assignments/page.tsx`, `student-dashboard.test.tsx`, `gallery/actions.ts`, `timetable-progress/page.tsx`, `AtAGlanceSection.tsx`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Why does `siteConfig` connect `package.json` to `gallery/actions.ts`, `[id]/page.tsx`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `requireRole()` connect `timetable-progress/page.tsx` to `FlashNewsBar.tsx`, `EnquiryForm.tsx`, `candidates/actions.ts`, `(public)/page.tsx`, `actions.test.ts`, `AtAGlanceSection.tsx`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **What connects `ConfirmDeleteFormProps`, `GalleryPageProps`, `ConfirmDeleteFormProps` to the rest of the system?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `workflow`, `geistSans`, `geistMono` to the rest of the system?**
   _744 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._

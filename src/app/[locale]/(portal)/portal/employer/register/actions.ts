@@ -142,3 +142,107 @@ export async function submitEmployerRegistration(
 
   redirect("/portal/employer/register/status");
 }
+
+export async function updateEmployerProfile(
+  formData: FormData,
+): Promise<RegistrationResult | undefined> {
+  const session = await auth();
+  if (!session.userId) {
+    redirect("/sign-in");
+  }
+
+  const role = await getEffectiveRole(session);
+  if (role !== Role.EMPLOYER) {
+    redirect("/forbidden");
+  }
+
+  const existing = await prisma.employerProfile.findUnique({
+    where: { userId: session.userId },
+  });
+  if (!existing) {
+    redirect("/portal/employer/register");
+  }
+
+  // Parse & validate fields (same as registration)
+  const companyName = formData.get("companyName") as string;
+  const industrySector = formData.get("industrySector") as string;
+  const contactPersonName = formData.get("contactPersonName") as string;
+  const designation = formData.get("designation") as string;
+  const phone = formData.get("phone") as string;
+  const email = formData.get("email") as string;
+  const companyAddress = formData.get("companyAddress") as string;
+  const hasWebsiteRaw = formData.get("hasWebsite") as string;
+  const websiteUrl = formData.get("websiteUrl") as string;
+  const employeeCountRange = formData.get("employeeCountRange") as string;
+  const aboutCompany = formData.get("aboutCompany") as string;
+
+  const required = [
+    "companyName",
+    "industrySector",
+    "contactPersonName",
+    "designation",
+    "phone",
+    "email",
+    "companyAddress",
+    "employeeCountRange",
+    "aboutCompany",
+  ] as const;
+
+  for (const field of required) {
+    if (!formData.get(field)) {
+      return { success: false, error: "Please fill in all required fields." };
+    }
+  }
+
+  const hasWebsite = hasWebsiteRaw === "yes";
+
+  if (hasWebsite && !websiteUrl) {
+    return {
+      success: false,
+      error: "Please provide a website URL, or select 'No website'.",
+    };
+  }
+
+  const validSectors: IndustrySector[] = [
+    "IT_SOFTWARE",
+    "EDUCATION_TRAINING",
+    "HEALTHCARE",
+    "BANKING_FINANCE",
+    "MANUFACTURING",
+    "RETAIL",
+    "HOSPITALITY",
+    "CONSTRUCTION",
+    "TELECOMMUNICATION",
+    "OTHER",
+  ];
+  const validRanges: EmployeeCountRange[] = [
+    "RANGE_1_10",
+    "RANGE_11_50",
+    "RANGE_51_200",
+    "RANGE_200_PLUS",
+  ];
+
+  if (!validSectors.includes(industrySector as IndustrySector)) {
+    return { success: false, error: "Invalid industry sector selected." };
+  }
+  if (!validRanges.includes(employeeCountRange as EmployeeCountRange)) {
+    return { success: false, error: "Invalid employee count range selected." };
+  }
+
+  await prisma.employerProfile.update({
+    where: { userId: session.userId },
+    data: {
+      companyName,
+      industrySector: industrySector as IndustrySector,
+      contactPersonName,
+      designation,
+      phone,
+      email,
+      companyAddress,
+      hasWebsite,
+      websiteUrl: hasWebsite ? websiteUrl : null,
+      employeeCountRange: employeeCountRange as EmployeeCountRange,
+      aboutCompany,
+    },
+  });
+}

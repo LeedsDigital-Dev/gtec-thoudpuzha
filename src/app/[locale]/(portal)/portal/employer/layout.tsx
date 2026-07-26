@@ -1,14 +1,27 @@
-import { Role } from "@/lib/auth";
-import { PortalRoleGate } from "@/components/shared/PortalRoleGate";
+import { redirect } from "next/navigation";
+import { Role, requireRole } from "@/lib/auth";
+import { EmployerShell } from "@/components/portal/employer-shell";
 
-export default function EmployerPortalLayout({
+export default async function EmployerPortalLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  return (
-    <PortalRoleGate allowedRoles={[Role.EMPLOYER]}>
-      {children}
-    </PortalRoleGate>
-  );
+  const { locale } = await params;
+
+  const authResult = await requireRole([Role.EMPLOYER]);
+
+  if (!authResult.authorized) {
+    if (authResult.reason === "unauthenticated") {
+      redirect(`/${locale}/sign-in`);
+    }
+    if (authResult.reason === "no_role") {
+      redirect(`/${locale}/account-setup-incomplete`);
+    }
+    redirect(`/${locale}/forbidden`);
+  }
+
+  return <EmployerShell>{children}</EmployerShell>;
 }

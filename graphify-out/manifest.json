@@ -215,13 +215,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1784967419.89842,
-    "ast_hash": "34a819795c4f089ac2a67f796969e6ba",
+    "mtime": 1785035016.5345347,
+    "ast_hash": "aeedcd0306df5b8580b8d1bb269ae51b",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1784967419.89842,
-    "ast_hash": "5b534e41b61647389ac76ce483e11eda",
+    "mtime": 1785035023.1414635,
+    "ast_hash": "f2c29bc1ae0abaccffe33c119903d779",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -705,13 +705,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/layout.tsx": {
-    "mtime": 1784783988.4499297,
-    "ast_hash": "6ea9bd8c1ce3bbef1cc490b9121447ca",
+    "mtime": 1785034809.2597878,
+    "ast_hash": "7fd3e0cd0539caf96b92ed9536d1122f",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/jobs/layout.tsx": {
-    "mtime": 1784783988.4499297,
-    "ast_hash": "e0afcac3a03ef71e6bef4f31bc89853e",
+    "mtime": 1785034819.1736789,
+    "ast_hash": "d681b9cc561778d33c9566db8e5d60f0",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/jobs/page.tsx": {
@@ -720,8 +720,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/layout.tsx": {
-    "mtime": 1784783988.4499297,
-    "ast_hash": "083d0373905c524f834167e481bda769",
+    "mtime": 1785034797.22492,
+    "ast_hash": "fc6b415d551a1e24146435a7f92a5291",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/student/resources/layout.tsx": {
@@ -945,13 +945,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/actions.ts": {
-    "mtime": 1784939228.5640306,
-    "ast_hash": "b13573f42aeeccd165f841bbd82f8dae",
+    "mtime": 1785034855.61028,
+    "ast_hash": "58bb29e1b9e89a9aa68938deec8476bb",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/registration-form.tsx": {
-    "mtime": 1784846570.9311414,
-    "ast_hash": "605f7caf6e9522e3d603852eb5561b38",
+    "mtime": 1785035121.7844055,
+    "ast_hash": "b24dc9c18b0b6eaa29d5657bf8c4d085",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/register/status/page.tsx": {
@@ -1530,8 +1530,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1784957117.4916103,
-    "ast_hash": "66d52fa348ed21be5aa30cd341e33a63",
+    "mtime": 1785035108.1485512,
+    "ast_hash": "841f7c0cc4d787ef25349519ca0e9d1c",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1555,8 +1555,8 @@
     "semantic_hash": ""
   },
   "src/components/admin/admin-sidebar.tsx": {
-    "mtime": 1784951187.0043695,
-    "ast_hash": "a68510d3ae880473d80eec861a0e2396",
+    "mtime": 1785034830.4365554,
+    "ast_hash": "dadd3c47531a62dda5de417d7a1cfe86",
     "semantic_hash": ""
   },
   "src/components/ui/separator.tsx": {
@@ -1605,8 +1605,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/job-seeker/layout.tsx": {
-    "mtime": 1784953205.2282603,
-    "ast_hash": "a73b6c819b2f1c9df8fefaed9fbb6d6f",
+    "mtime": 1785034803.6078498,
+    "ast_hash": "1b9ded11393dd83e99c6c24c85282868",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/job-seeker/page.test.tsx": {
@@ -1620,8 +1620,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/workflow/taste.md": {
-    "mtime": 1784967789.4539745,
-    "ast_hash": "1239f4a167a5440511d12ac666bebfe9",
+    "mtime": 1785035289.8556173,
+    "ast_hash": "0682d347208e4bb05db440231c2d0bdc",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {
@@ -1632,6 +1632,56 @@
   "src/app/[locale]/(admin)/admin/news-events/confirm-delete-form.tsx": {
     "mtime": 1784959473.2723787,
     "ast_hash": "df9808fd9266f0bf55ce9934cd9dc51b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(portal)/portal/employer/profile/page.tsx": {
+    "mtime": 1785035047.7441988,
+    "ast_hash": "599ecad3e4f581ce793cad87d963c323",
+    "semantic_hash": ""
+  },
+  "src/components/portal/employer-shell.tsx": {
+    "mtime": 1785034757.0443568,
+    "ast_hash": "8aa870b56d04e23f65fc5cbe11f303af",
+    "semantic_hash": ""
+  },
+  "src/components/portal/employer-sidebar.tsx": {
+    "mtime": 1785034740.803525,
+    "ast_hash": "b62bd53f6585de9afe04ba302b1e02ba",
+    "semantic_hash": ""
+  },
+  "src/components/portal/job-seeker-shell.tsx": {
+    "mtime": 1785034752.0354087,
+    "ast_hash": "8b530b4489d908c7c35bd9720ff17132",
+    "semantic_hash": ""
+  },
+  "src/components/portal/job-seeker-sidebar.tsx": {
+    "mtime": 1785034730.7686286,
+    "ast_hash": "7f63d21752d265e3f96583d9c99a75a4",
+    "semantic_hash": ""
+  },
+  "src/components/portal/student-shell.tsx": {
+    "mtime": 1785034745.8944721,
+    "ast_hash": "8a30ee8c2f09efeea0af6505ac74d7a5",
+    "semantic_hash": ""
+  },
+  "src/components/portal/student-sidebar.tsx": {
+    "mtime": 1785034719.6997433,
+    "ast_hash": "27bc1881c448108fa2594952e62e1df3",
+    "semantic_hash": ""
+  },
+  "src/lib/employer-routes.ts": {
+    "mtime": 1785034701.8149283,
+    "ast_hash": "6eb8003cf2d1b7bdb8c8de96c959c6dd",
+    "semantic_hash": ""
+  },
+  "src/lib/job-seeker-routes.ts": {
+    "mtime": 1785034692.9800198,
+    "ast_hash": "13c539105b6470da4baa10930c2ed1f0",
+    "semantic_hash": ""
+  },
+  "src/lib/student-routes.ts": {
+    "mtime": 1785034687.1980798,
+    "ast_hash": "9af44b4691d41c14c4553a4fb3cf34f6",
     "semantic_hash": ""
   }
 }

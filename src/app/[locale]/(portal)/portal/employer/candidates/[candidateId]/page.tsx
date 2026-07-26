@@ -60,18 +60,18 @@ export default async function CandidateDetailPage({ params }: PageProps) {
     <div className="mx-auto max-w-4xl p-4 py-10">
       <Link
         href="/portal/employer/candidates"
-        className="mb-4 inline-flex items-center text-sm text-blue-600 hover:underline"
+        className="mb-4 inline-flex items-center text-sm text-primary hover:underline"
       >
         {ct("backToSearch")}
       </Link>
 
-      <div className="rounded-lg border bg-white p-6">
+      <div className="rounded-lg border bg-card p-6">
         <div className="mb-6">
           <h1 className="text-3xl font-semibold">
             {candidate.fullName ?? ct("unnamed")}
           </h1>
           {candidate.isVerifiedStudent && (
-            <span className="mt-1 inline-block rounded-full bg-green-100 px-3 py-0.5 text-xs font-medium text-green-800">
+            <span className="mt-1 inline-block rounded-full bg-primary/10 px-3 py-0.5 text-xs font-medium text-primary">
               {ct("verifiedStudent")}
             </span>
           )}
@@ -99,7 +99,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             />
             {candidate.isVerifiedStudent && courseNames.length > 0 && (
               <div>
-                <span className="text-sm font-medium text-gray-500">
+                <span className="text-sm font-medium text-muted-foreground">
                   {ct("coursesCompleted")}
                 </span>
                 <ul className="mt-1 list-inside list-disc text-sm">
@@ -133,14 +133,14 @@ export default async function CandidateDetailPage({ params }: PageProps) {
           <Section title={ct("skillsLanguages")}>
             {skillLabels.length > 0 && (
               <div>
-                <span className="text-sm font-medium text-gray-500">
+                <span className="text-sm font-medium text-muted-foreground">
                   {ct("skills")}
                 </span>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {candidate.skillIds.map((id) => (
                     <span
                       key={id}
-                      className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs text-blue-700"
+                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
                     >
                       {skillMap.get(id) ?? id}
                     </span>
@@ -150,14 +150,14 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             )}
             {candidate.languagesKnown.length > 0 && (
               <div className="mt-3">
-                <span className="text-sm font-medium text-gray-500">
+                <span className="text-sm font-medium text-muted-foreground">
                   {ct("languages")}
                 </span>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {candidate.languagesKnown.map((lang) => (
                     <span
                       key={lang}
-                      className="rounded-full bg-green-50 px-2.5 py-0.5 text-xs text-green-700"
+                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
                     >
                       {lang}
                     </span>
@@ -171,7 +171,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
         <div className="mt-6 border-t pt-4">
           <Link
             href={`/api/biodata/${candidate.id}/pdf`}
-            className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+            className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm text-white hover:bg-primary/90"
           >
             {ct("downloadBiodata")}
           </Link>
@@ -190,7 +190,7 @@ function Section({
 }) {
   return (
     <div>
-      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
         {title}
       </h2>
       {children}
@@ -202,7 +202,7 @@ function Field({ label, value }: { label: string; value: string | null }) {
   if (!value) return null;
   return (
     <div className="mb-2">
-      <span className="text-sm font-medium text-gray-500">{label}</span>
+      <span className="text-sm font-medium text-muted-foreground">{label}</span>
       <p className="text-sm">{value}</p>
     </div>
   );

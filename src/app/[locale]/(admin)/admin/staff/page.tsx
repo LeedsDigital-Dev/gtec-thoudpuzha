@@ -54,38 +54,38 @@ export default async function StaffPage({ params }: StaffPageProps) {
       <section>
         <h2 className="text-lg font-medium">All Staff</h2>
         {staff.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">User ID</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Role</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Status</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Created</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">User ID</th>
+                <th className="border border-border px-3 py-2 text-left">Role</th>
+                <th className="border border-border px-3 py-2 text-left">Status</th>
+                <th className="border border-border px-3 py-2 text-left">Created</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {staff.map((user) => (
                 <tr key={user.id}>
-                  <td className="border border-gray-300 px-3 py-2 font-mono text-xs">
+                  <td className="border border-border px-3 py-2 font-mono text-xs">
                     {user.id}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">{user.role}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">{user.role}</td>
+                  <td className="border border-border px-3 py-2">
                     <span
                       className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
                         user.deactivatedAt
-                          ? "bg-red-100 text-red-800"
-                          : "bg-green-100 text-green-800"
+                          ? "bg-destructive/10 text-destructive"
+                          : "bg-primary/10 text-primary"
                       }`}
                     >
                       {user.deactivatedAt ? "Deactivated" : "Active"}
                     </span>
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 text-xs">
+                  <td className="border border-border px-3 py-2 text-xs">
                     {user.createdAt.toISOString().slice(0, 10)}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     {user.role === Role.CENTRE_STAFF && (
                       <>
                         {user.deactivatedAt ? (
@@ -124,14 +124,14 @@ export default async function StaffPage({ params }: StaffPageProps) {
         <section>
           <h2 className="text-lg font-medium">Staff Permissions</h2>
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300">
+            <table className="w-full border-collapse border border-border">
               <thead>
                 <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left">Staff</th>
+                  <th className="border border-border px-3 py-2 text-left">Staff</th>
                   {PERMISSION_KEYS.map((key) => (
                     <th
                       key={key}
-                      className="border border-gray-300 px-3 py-2 text-left text-xs font-medium"
+                      className="border border-border px-3 py-2 text-left text-xs font-medium"
                     >
                       {PERMISSION_LABELS[key]}
                     </th>
@@ -143,7 +143,7 @@ export default async function StaffPage({ params }: StaffPageProps) {
                   .filter((u) => u.role === Role.CENTRE_STAFF && !u.deactivatedAt)
                   .map((user) => (
                     <tr key={user.id}>
-                      <td className="border border-gray-300 px-3 py-2 font-mono text-xs">
+                      <td className="border border-border px-3 py-2 font-mono text-xs">
                         {user.id}
                       </td>
                       {PERMISSION_KEYS.map((key) => {
@@ -152,7 +152,7 @@ export default async function StaffPage({ params }: StaffPageProps) {
                         return (
                           <td
                             key={key}
-                            className="border border-gray-300 px-3 py-2 text-center"
+                            className="border border-border px-3 py-2 text-center"
                           >
                             <form action={setStaffPermission} className="inline">
                               <input type="hidden" name="locale" value={locale} />
@@ -167,8 +167,8 @@ export default async function StaffPage({ params }: StaffPageProps) {
                                 type="submit"
                                 className={`rounded px-2 py-1 text-xs font-medium ${
                                   currentValue
-                                    ? "bg-green-100 text-green-800 hover:bg-green-200"
-                                    : "bg-red-100 text-red-800 hover:bg-red-200"
+                                    ? "bg-primary/10 text-primary hover:bg-green-200"
+                                    : "bg-destructive/10 text-destructive hover:bg-destructive/20"
                                 }`}
                               >
                                 {currentValue ? "ON" : "OFF"}

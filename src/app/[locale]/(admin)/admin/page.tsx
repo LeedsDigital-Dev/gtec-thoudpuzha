@@ -96,13 +96,13 @@ export default async function AdminDashboardPage({
           <h2 className="text-lg font-semibold">Recent Enquiries</h2>
           <Link
             href={`/${locale}/admin/enquiries`}
-            className="text-sm text-blue-600 hover:underline"
+            className="text-sm text-primary hover:underline"
           >
             View all
           </Link>
         </div>
 
-        <div className="mt-3 overflow-x-auto rounded border border-gray-300">
+        <div className="mt-3 overflow-x-auto rounded border border-border">
           {recentEnquiries.length === 0 ? (
             <p className="p-4 text-sm text-muted-foreground">No enquiries yet.</p>
           ) : (
@@ -118,7 +118,7 @@ export default async function AdminDashboardPage({
               </thead>
               <tbody>
                 {recentEnquiries.map((enquiry) => (
-                  <tr key={enquiry.id} className="border-t border-gray-300">
+                  <tr key={enquiry.id} className="border-t border-border">
                     <td className="px-3 py-2 text-sm">{enquiry.name}</td>
                     <td className="px-3 py-2 text-sm">{enquiry.phone}</td>
                     <td className="px-3 py-2 text-sm">
@@ -187,29 +187,29 @@ function SummaryCard({
 }) {
   if (!hasPermission) {
     return (
-      <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
-        <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-        <p className="mt-1 text-xs text-gray-500">No access</p>
+      <div className="rounded border border-border bg-muted/30 p-4 opacity-60">
+        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
+        <p className="mt-1 text-xs text-muted-foreground">No access</p>
       </div>
     );
   }
 
   const colorClass =
     count !== null && count > 0
-      ? "border-amber-300 bg-amber-50"
-      : "border-gray-200 bg-white";
+      ? "border-accent/30 bg-accent/5"
+      : "border-border bg-card";
 
   return (
     <Link href={href} className="block">
       <div
         className={`rounded border p-4 transition-shadow hover:shadow-md ${colorClass}`}
       >
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
+        <h3 className="text-sm font-medium text-foreground">{title}</h3>
         <p className="mt-2 text-3xl font-bold">
           {count !== null ? count : "—"}
         </p>
         {count !== null && count > 0 && (
-          <p className="mt-1 text-xs text-amber-700">Requires review</p>
+          <p className="mt-1 text-xs text-accent">Requires review</p>
         )}
       </div>
     </Link>
@@ -227,22 +227,22 @@ function QuickLinkCard({
 }) {
   if (!hasPermission) {
     return (
-      <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
+      <div className="rounded border border-border bg-muted/30 p-4 opacity-60">
         <div className="flex items-center gap-2">
-          <route.icon className="size-4 text-gray-400" />
-          <h3 className="text-sm font-medium text-gray-500">{route.label}</h3>
+          <route.icon className="size-4 text-muted-foreground" />
+          <h3 className="text-sm font-medium text-muted-foreground">{route.label}</h3>
         </div>
-        <p className="mt-1 text-xs text-gray-500">No access</p>
+        <p className="mt-1 text-xs text-muted-foreground">No access</p>
       </div>
     );
   }
 
   return (
     <Link href={`/${locale}${route.href}`} className="block">
-      <div className="rounded border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md">
+      <div className="rounded border border-border bg-card p-4 transition-shadow hover:shadow-md">
         <div className="flex items-center gap-2">
-          <route.icon className="size-4 text-blue-600" />
-          <h3 className="text-sm font-medium text-gray-700">{route.label}</h3>
+          <route.icon className="size-4 text-primary" />
+          <h3 className="text-sm font-medium text-foreground">{route.label}</h3>
         </div>
       </div>
     </Link>

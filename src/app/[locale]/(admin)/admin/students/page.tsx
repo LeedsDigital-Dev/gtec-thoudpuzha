@@ -32,7 +32,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
 
       {missingEmailCount > 0 && (
         <div
-          className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
+          className="mt-4 rounded-lg border border-accent/30 bg-accent/5 p-4 text-sm text-accent"
           role="alert"
         >
           {missingEmailCount} student record
@@ -139,25 +139,25 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
         <h2 className="text-lg font-medium">
           All records ({records.length})
         </h2>
-        <table className="mt-4 w-full border-collapse border border-gray-300">
+        <table className="mt-4 w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Student ID
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Full Name
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Phone
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Email
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Verification
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Created
               </th>
             </tr>
@@ -165,16 +165,16 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
           <tbody>
             {records.map((record) => (
               <tr key={record.id}>
-                <td className="border border-gray-300 px-3 py-2 font-mono text-sm">
+                <td className="border border-border px-3 py-2 font-mono text-sm">
                   {record.studentId}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {record.fullName}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {record.phone}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {record.email ? (
                     record.email
                   ) : (
@@ -189,7 +189,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                         name="email"
                         required
                         placeholder="student@example.com"
-                        className="w-40 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-xs"
+                        className="w-40 rounded border border-accent/30 bg-accent/5 px-2 py-1 text-xs"
                       />
                       <Button type="submit" size="sm" variant="outline">
                         Add
@@ -197,16 +197,16 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                     </form>
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {record.linkedUserId ? (
-                    <span className="text-green-600">Verified</span>
+                    <span className="text-primary">Verified</span>
                   ) : !record.email ? (
-                    <span className="text-amber-600">Blocked — no email</span>
+                    <span className="text-accent">Blocked — no email</span>
                   ) : (
-                    <span className="text-amber-600">Pending</span>
+                    <span className="text-accent">Pending</span>
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2 text-sm">
+                <td className="border border-border px-3 py-2 text-sm">
                   {record.createdAt.toLocaleDateString()}
                 </td>
               </tr>

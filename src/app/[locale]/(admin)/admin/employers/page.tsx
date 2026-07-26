@@ -87,32 +87,32 @@ export default async function EmployersPage({
           </p>
         ) : (
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300">
+            <table className="w-full border-collapse border border-border">
               <thead>
                 <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Company
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Contact Person
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Phone
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Email
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Industry
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Status
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Auto-Publish
                   </th>
                   {canApprove && (
-                    <th className="border border-gray-300 px-3 py-2 text-left">
+                    <th className="border border-border px-3 py-2 text-left">
                       Actions
                     </th>
                   )}
@@ -121,48 +121,48 @@ export default async function EmployersPage({
               <tbody>
                 {employers.map((ep) => (
                   <tr key={ep.id}>
-                    <td className="border border-gray-300 px-3 py-2 font-medium">
+                    <td className="border border-border px-3 py-2 font-medium">
                       {ep.companyName}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2">
+                    <td className="border border-border px-3 py-2">
                       {ep.contactPersonName}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 font-mono text-sm">
+                    <td className="border border-border px-3 py-2 font-mono text-sm">
                       {ep.phone}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {ep.email}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {ep.industrySector.replace(/_/g, " ")}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2">
+                    <td className="border border-border px-3 py-2">
                       <span
                         className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
                           ep.status === "APPROVED"
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-primary/10 text-primary"
                             : ep.status === "REJECTED"
-                              ? "bg-red-100 text-red-800"
-                              : "bg-amber-100 text-amber-800"
+                              ? "bg-destructive/10 text-destructive"
+                              : "bg-accent/10 text-accent"
                         }`}
                       >
                         {STATUS_LABELS[ep.status]}
                       </span>
                       {ep.rejectionReason && (
-                        <p className="mt-1 text-xs text-red-600">
+                        <p className="mt-1 text-xs text-destructive">
                           {ep.rejectionReason}
                         </p>
                       )}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {ep.autoPublishTrusted ? (
-                        <span className="text-green-600">Trusted</span>
+                        <span className="text-primary">Trusted</span>
                       ) : (
                         <span className="text-muted-foreground">No</span>
                       )}
                     </td>
                     {canApprove && (
-                      <td className="border border-gray-300 px-3 py-2">
+                      <td className="border border-border px-3 py-2">
                         {ep.status === "PENDING" && (
                           <div className="flex flex-wrap gap-1">
                             <form action={approveEmployer}>
@@ -174,7 +174,7 @@ export default async function EmployersPage({
                               />
                               <button
                                 type="submit"
-                                className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                                className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                               >
                                 Approve
                               </button>
@@ -189,14 +189,14 @@ export default async function EmployersPage({
                               />
                               <button
                                 type="submit"
-                                className="rounded bg-blue-600 px-2 py-1 text-xs text-white hover:bg-blue-700"
+                                className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                               >
                                 Approve + Trust
                               </button>
                             </form>
 
                             <details className="inline-block">
-                              <summary className="cursor-pointer rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700">
+                              <summary className="cursor-pointer rounded bg-destructive px-2 py-1 text-xs text-white hover:bg-destructive/90">
                                 Reject
                               </summary>
                               <form
@@ -221,7 +221,7 @@ export default async function EmployersPage({
                                 />
                                 <button
                                   type="submit"
-                                  className="rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700"
+                                  className="rounded bg-destructive px-2 py-1 text-xs text-white hover:bg-destructive/90"
                                 >
                                   Submit
                                 </button>
@@ -240,7 +240,7 @@ export default async function EmployersPage({
                             />
                             <button
                               type="submit"
-                              className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                              className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                             >
                               Re-approve
                             </button>
@@ -257,7 +257,7 @@ export default async function EmployersPage({
                             />
                             <button
                               type="submit"
-                              className={`rounded px-2 py-1 text-xs text-white ${ep.autoPublishTrusted ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}`}
+                              className={`rounded px-2 py-1 text-xs text-white ${ep.autoPublishTrusted ? "bg-accent/80 hover:bg-accent/90" : "bg-primary hover:bg-primary/90"}`}
                             >
                               {ep.autoPublishTrusted
                                 ? "Remove Trust"

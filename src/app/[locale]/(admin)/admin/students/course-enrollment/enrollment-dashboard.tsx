@@ -149,19 +149,19 @@ export default function EnrollmentDashboard({
       </p>
 
       <section>
-        <table className="w-full border-collapse border border-gray-300">
+        <table className="w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Student ID
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Full Name
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Phone
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Enrolled Courses
               </th>
             </tr>
@@ -179,16 +179,16 @@ export default function EnrollmentDashboard({
                   student.id === selectedStudentProfileId ? "bg-muted" : ""
                 }`}
               >
-                <td className="border border-gray-300 px-3 py-2 font-mono text-sm">
+                <td className="border border-border px-3 py-2 font-mono text-sm">
                   {student.studentId || "N/A"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {student.fullName || "Unknown"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {student.phone || "N/A"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {student.enrollments.length === 0 ? (
                     <span className="text-muted-foreground">None</span>
                   ) : (
@@ -246,16 +246,16 @@ export default function EnrollmentDashboard({
                 Not enrolled in any courses.
               </p>
             ) : (
-              <table className="mt-2 w-full border-collapse border border-gray-300">
+              <table className="mt-2 w-full border-collapse border border-border">
                 <thead>
                   <tr>
-                    <th className="border border-gray-300 px-3 py-2 text-left">
+                    <th className="border border-border px-3 py-2 text-left">
                       Course
                     </th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">
+                    <th className="border border-border px-3 py-2 text-left">
                       Enrolled
                     </th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">
+                    <th className="border border-border px-3 py-2 text-left">
                       Action
                     </th>
                   </tr>
@@ -263,15 +263,15 @@ export default function EnrollmentDashboard({
                 <tbody>
                   {selectedStudent.enrollments.map((enrollment) => (
                     <tr key={enrollment.id}>
-                      <td className="border border-gray-300 px-3 py-2 text-sm">
+                      <td className="border border-border px-3 py-2 text-sm">
                         {enrollment.course.titleEn}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2 text-sm">
+                      <td className="border border-border px-3 py-2 text-sm">
                         {new Date(
                           enrollment.enrolledAt,
                         ).toLocaleDateString()}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2">
+                      <td className="border border-border px-3 py-2">
                         <form action={unenrollStudentFromCourse}>
                           <input
                             type="hidden"
@@ -352,7 +352,7 @@ export default function EnrollmentDashboard({
                       />
                       {course.titleEn}
                       {isAlreadyEnrolled && (
-                        <span className="text-xs text-amber-600">
+                        <span className="text-xs text-accent">
                           (already enrolled)
                         </span>
                       )}

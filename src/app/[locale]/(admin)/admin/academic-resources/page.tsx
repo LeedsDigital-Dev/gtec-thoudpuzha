@@ -130,20 +130,20 @@ export default async function AcademicResourcesPage({ params }: Props) {
       <section>
         <h2 className="text-lg font-medium">All Resources</h2>
         {resources.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Title</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Type</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Course</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Uploaded</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Title</th>
+                <th className="border border-border px-3 py-2 text-left">Type</th>
+                <th className="border border-border px-3 py-2 text-left">Course</th>
+                <th className="border border-border px-3 py-2 text-left">Uploaded</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {resources.map((r) => (
                 <tr key={r.id}>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     {r.type === "LECTURE" && r.embedUrl ? (
                       <a
                         href={r.embedUrl}
@@ -166,16 +166,16 @@ export default async function AcademicResourcesPage({ params }: Props) {
                       r.title
                     )}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     {TYPE_LABELS[r.type] || r.type}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     {r.course.titleEn}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 text-xs">
+                  <td className="border border-border px-3 py-2 text-xs">
                     {r.uploadedAt.toISOString().slice(0, 10)}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <form action={deleteResource}>
                       <input type="hidden" name="id" value={r.id} />
                       <input type="hidden" name="locale" value={locale} />

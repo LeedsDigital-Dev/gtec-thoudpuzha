@@ -134,38 +134,38 @@ export default async function NewsEventsPage({
 
       <section className="mt-8">
         <h2 className="text-lg font-medium">All items</h2>
-        <table className="mt-4 w-full border-collapse border border-gray-300">
+        <table className="mt-4 w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">Type</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Title (EN)</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Status</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Event date</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Published</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+              <th className="border border-border px-3 py-2 text-left">Type</th>
+              <th className="border border-border px-3 py-2 text-left">Title (EN)</th>
+              <th className="border border-border px-3 py-2 text-left">Status</th>
+              <th className="border border-border px-3 py-2 text-left">Event date</th>
+              <th className="border border-border px-3 py-2 text-left">Published</th>
+              <th className="border border-border px-3 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
             {items.map((item) => (
               <tr key={item.id}>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {item.type === "NEWS" ? "News" : "Event"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">{item.titleEn}</td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">{item.titleEn}</td>
+                <td className="border border-border px-3 py-2">
                   {item.publishedAt ? (
-                    <span className="text-green-600">Published</span>
+                    <span className="text-primary">Published</span>
                   ) : (
                     <span className="text-muted-foreground">Draft</span>
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {formatDate(item.eventDate)}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {formatDate(item.publishedAt)}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <div className="flex items-center gap-2">
                     <form action={togglePublishNewsEvent}>
                       <input type="hidden" name="id" value={item.id} />

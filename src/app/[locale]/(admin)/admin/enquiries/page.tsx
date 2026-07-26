@@ -28,22 +28,22 @@ export default async function EnquiriesPage({ params }: EnquiriesPageProps) {
       <h1 className="text-2xl font-semibold">Enquiries</h1>
 
       <section className="mt-6">
-        <table className="w-full border-collapse border border-gray-300">
+        <table className="w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Name
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Phone
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Course
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Source
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">
+              <th className="border border-border px-3 py-2 text-left">
                 Created At
               </th>
             </tr>
@@ -51,19 +51,19 @@ export default async function EnquiriesPage({ params }: EnquiriesPageProps) {
           <tbody>
             {enquiries.map((enquiry) => (
               <tr key={enquiry.id}>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {enquiry.name}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {enquiry.phone}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {enquiry.course?.titleEn || "—"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {enquiry.source}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {enquiry.createdAt.toLocaleString()}
                 </td>
               </tr>

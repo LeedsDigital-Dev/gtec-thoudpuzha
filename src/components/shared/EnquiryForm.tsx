@@ -179,7 +179,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       </div>
 
       {status === "success" && (
-        <div className="rounded-lg bg-green-100 p-3 text-sm text-green-800 dark:bg-green-900 dark:text-green-100">
+        <div className="rounded-lg bg-primary/10 p-3 text-sm text-primary dark:bg-primary/20 dark:text-primary-foreground">
           {t("success")}
         </div>
       )}

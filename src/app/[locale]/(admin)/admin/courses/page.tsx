@@ -75,20 +75,20 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
         </form>
 
         {categories.length > 0 && (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">English</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Malayalam</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Courses</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Order</th>
+                <th className="border border-border px-3 py-2 text-left">English</th>
+                <th className="border border-border px-3 py-2 text-left">Malayalam</th>
+                <th className="border border-border px-3 py-2 text-left">Courses</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {categories.map((cat, index) => (
                 <tr key={cat.id}>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <div className="flex items-center gap-1">
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
@@ -105,10 +105,10 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
                       <span className="ml-1 text-xs">{cat.sortOrder}</span>
                     </div>
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameEn}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameMl || "—"}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat._count.courses}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">{cat.nameEn}</td>
+                  <td className="border border-border px-3 py-2">{cat.nameMl || "—"}</td>
+                  <td className="border border-border px-3 py-2">{cat._count.courses}</td>
+                  <td className="border border-border px-3 py-2">
                     <form action={deleteCategory}>
                       <input type="hidden" name="id" value={cat.id} />
                       <input type="hidden" name="locale" value={locale} />
@@ -202,34 +202,34 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
       <section>
         <h2 className="text-lg font-medium">All Courses</h2>
         {courses.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Title</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Slug</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Category</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Status</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Featured</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Cover Image</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Title</th>
+                <th className="border border-border px-3 py-2 text-left">Slug</th>
+                <th className="border border-border px-3 py-2 text-left">Category</th>
+                <th className="border border-border px-3 py-2 text-left">Status</th>
+                <th className="border border-border px-3 py-2 text-left">Featured</th>
+                <th className="border border-border px-3 py-2 text-left">Cover Image</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course) => (
                 <tr key={course.id}>
-                  <td className="border border-gray-300 px-3 py-2">{course.titleEn}</td>
-                  <td className="border border-gray-300 px-3 py-2 text-xs font-mono">{course.slug}</td>
-                  <td className="border border-gray-300 px-3 py-2">{course.category?.nameEn || "—"}</td>
-                  <td className="border border-gray-300 px-3 py-2">{course.status}</td>
-                  <td className="border border-gray-300 px-3 py-2">{course.featured ? "Yes" : "No"}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">{course.titleEn}</td>
+                  <td className="border border-border px-3 py-2 text-xs font-mono">{course.slug}</td>
+                  <td className="border border-border px-3 py-2">{course.category?.nameEn || "—"}</td>
+                  <td className="border border-border px-3 py-2">{course.status}</td>
+                  <td className="border border-border px-3 py-2">{course.featured ? "Yes" : "No"}</td>
+                  <td className="border border-border px-3 py-2">
                     {course.coverImageUrl ? (
                       <span className="text-xs">{course.coverImageUrl}</span>
                     ) : (
                       <span className="text-muted-foreground text-xs">—</span>
                     )}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <div className="flex flex-col gap-2">
                       {/* Upload cover image */}
                       <form action={uploadCourseImage} className="flex items-center gap-2">

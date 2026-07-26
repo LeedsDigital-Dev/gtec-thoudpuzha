@@ -78,20 +78,20 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
         </form>
 
         {categories.length > 0 && (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">English</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Malayalam</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Items</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Order</th>
+                <th className="border border-border px-3 py-2 text-left">English</th>
+                <th className="border border-border px-3 py-2 text-left">Malayalam</th>
+                <th className="border border-border px-3 py-2 text-left">Items</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {categories.map((cat, index) => (
                 <tr key={cat.id}>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <div className="flex items-center gap-1">
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
@@ -108,10 +108,10 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                       <span className="ml-1 text-xs">{cat.sortOrder}</span>
                     </div>
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameEn}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameMl || "—"}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat._count.items}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">{cat.nameEn}</td>
+                  <td className="border border-border px-3 py-2">{cat.nameMl || "—"}</td>
+                  <td className="border border-border px-3 py-2">{cat._count.items}</td>
+                  <td className="border border-border px-3 py-2">
                     <ConfirmDeleteForm
                       action={deleteCategory}
                       confirmMessage={
@@ -238,32 +238,32 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
 
             {/* Items list */}
             {catItems.length > 0 ? (
-              <table className="mt-4 w-full border-collapse border border-gray-300">
+              <table className="mt-4 w-full border-collapse border border-border">
                 <thead>
                   <tr>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Type</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">URL / Key</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Caption</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Sort</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                    <th className="border border-border px-3 py-2 text-left">Type</th>
+                    <th className="border border-border px-3 py-2 text-left">URL / Key</th>
+                    <th className="border border-border px-3 py-2 text-left">Caption</th>
+                    <th className="border border-border px-3 py-2 text-left">Sort</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {catItems.map((item) => (
                     <tr key={item.id}>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
+                      <td className="border border-border px-3 py-2 text-xs">
                         {item.mediaType}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs font-mono max-w-[200px] truncate">
+                      <td className="border border-border px-3 py-2 text-xs font-mono max-w-[200px] truncate">
                         {item.url}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
+                      <td className="border border-border px-3 py-2 text-xs">
                         {item.captionEn || "—"}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
+                      <td className="border border-border px-3 py-2 text-xs">
                         {item.sortOrder}
                       </td>
-                      <td className="border border-gray-300 px-3 py-2">
+                      <td className="border border-border px-3 py-2">
                         <ConfirmDeleteForm
                           action={deleteGalleryItem}
                           confirmMessage="Delete this item?"

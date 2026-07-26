@@ -72,44 +72,44 @@ export default async function SkillsTaxonomyPage({
       </form>
 
       <section className="mt-6">
-        <table className="w-full border-collapse border border-gray-300">
+        <table className="w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">Label</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Status</th>
-              <th className="border border-gray-300 px-3 py-2 text-right">
+              <th className="border border-border px-3 py-2 text-left">Label</th>
+              <th className="border border-border px-3 py-2 text-left">Status</th>
+              <th className="border border-border px-3 py-2 text-right">
                 Candidate refs
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-right">
+              <th className="border border-border px-3 py-2 text-right">
                 Job Posting refs
               </th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+              <th className="border border-border px-3 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((skill) => (
               <tr key={skill.id}>
-                <td className="border border-gray-300 px-3 py-2 font-medium">
+                <td className="border border-border px-3 py-2 font-medium">
                   {skill.label}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <span
                     className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
                       skill.status === "APPROVED"
-                        ? "bg-green-100 text-green-800"
+                        ? "bg-primary/10 text-primary"
                         : "bg-yellow-100 text-yellow-800"
                     }`}
                   >
                     {skill.status}
                   </span>
                 </td>
-                <td className="border border-gray-300 px-3 py-2 text-right">
+                <td className="border border-border px-3 py-2 text-right">
                   {skill.candidateCount}
                 </td>
-                <td className="border border-gray-300 px-3 py-2 text-right">
+                <td className="border border-border px-3 py-2 text-right">
                   {skill.jobPostingCount}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <div className="flex flex-wrap items-center gap-2">
                     {/* Approve */}
                     {skill.status === "PENDING" && (

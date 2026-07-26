@@ -22,36 +22,36 @@ export default async function AuditLogPage({ params }: AuditLogPageProps) {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-semibold">Audit Log</h1>
-      <table className="mt-4 w-full border-collapse border border-gray-300">
+      <table className="mt-4 w-full border-collapse border border-border">
         <thead>
           <tr>
-            <th className="border border-gray-300 px-3 py-2 text-left">Time</th>
-            <th className="border border-gray-300 px-3 py-2 text-left">Actor</th>
-            <th className="border border-gray-300 px-3 py-2 text-left">Role</th>
-            <th className="border border-gray-300 px-3 py-2 text-left">Action</th>
-            <th className="border border-gray-300 px-3 py-2 text-left">Entity</th>
-            <th className="border border-gray-300 px-3 py-2 text-left">Metadata</th>
+            <th className="border border-border px-3 py-2 text-left">Time</th>
+            <th className="border border-border px-3 py-2 text-left">Actor</th>
+            <th className="border border-border px-3 py-2 text-left">Role</th>
+            <th className="border border-border px-3 py-2 text-left">Action</th>
+            <th className="border border-border px-3 py-2 text-left">Entity</th>
+            <th className="border border-border px-3 py-2 text-left">Metadata</th>
           </tr>
         </thead>
         <tbody>
           {entries.map((entry) => (
             <tr key={entry.id}>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.createdAt.toISOString()}
               </td>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.actorUserId}
               </td>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.actorRole}
               </td>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.action}
               </td>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.entityType}:{entry.entityId}
               </td>
-              <td className="border border-gray-300 px-3 py-2">
+              <td className="border border-border px-3 py-2">
                 {entry.metadata
                   ? JSON.stringify(entry.metadata)
                   : "—"}

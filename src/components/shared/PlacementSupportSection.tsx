@@ -51,7 +51,7 @@ export function PlacementSupportSection({
           {data.items.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100"
+              className="group relative aspect-square overflow-hidden rounded-lg bg-muted"
             >
               <Image
                 src={getMediaUrl(item.url)}

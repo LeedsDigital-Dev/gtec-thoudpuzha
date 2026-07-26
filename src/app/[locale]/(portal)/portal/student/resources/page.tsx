@@ -12,7 +12,7 @@ export default async function StudentResourcesPage({ params }: Props) {
     <div className="flex min-h-screen items-center justify-center">
       <div className="text-center">
         <h1 className="text-3xl font-semibold">{t("heading")}</h1>
-        <p className="mt-2 text-gray-600">{t("description")}</p>
+        <p className="mt-2 text-muted-foreground">{t("description")}</p>
       </div>
     </div>
   );

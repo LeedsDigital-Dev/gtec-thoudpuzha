@@ -21,11 +21,11 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 const STATUS_COLORS: Record<string, string> = {
-  PENDING: "bg-amber-100 text-amber-800",
-  APPROVED: "bg-green-100 text-green-800",
-  REJECTED: "bg-red-100 text-red-800",
-  CLOSED: "bg-gray-100 text-gray-800",
-  AUTO_PUBLISHED: "bg-blue-100 text-blue-800",
+  PENDING: "bg-accent/10 text-accent",
+  APPROVED: "bg-primary/10 text-primary",
+  REJECTED: "bg-destructive/10 text-destructive",
+  CLOSED: "bg-muted text-foreground",
+  AUTO_PUBLISHED: "bg-primary/10 text-primary",
 };
 
 export default async function JobPostingsPage({
@@ -108,29 +108,29 @@ export default async function JobPostingsPage({
           <p className="mt-4 text-muted-foreground">No job postings found.</p>
         ) : (
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300">
+            <table className="w-full border-collapse border border-border">
               <thead>
                 <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Title
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Company
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Job Type
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Deadline
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Status
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-left">
+                  <th className="border border-border px-3 py-2 text-left">
                     Auto-published
                   </th>
                   {canApprove && !isAutoPublishedView && (
-                    <th className="border border-gray-300 px-3 py-2 text-left">
+                    <th className="border border-border px-3 py-2 text-left">
                       Actions
                     </th>
                   )}
@@ -139,19 +139,19 @@ export default async function JobPostingsPage({
               <tbody>
                 {postings.map((jp) => (
                   <tr key={jp.id}>
-                    <td className="border border-gray-300 px-3 py-2 font-medium">
+                    <td className="border border-border px-3 py-2 font-medium">
                       {jp.title}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {jp.employer.companyName}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {jp.jobType.replace(/_/g, " ")}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm font-mono">
+                    <td className="border border-border px-3 py-2 text-sm font-mono">
                       {jp.applicationDeadline.toLocaleDateString()}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2">
+                    <td className="border border-border px-3 py-2">
                       <span
                         className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
                           isAutoPublishedView
@@ -164,20 +164,20 @@ export default async function JobPostingsPage({
                           : STATUS_LABELS[jp.status]}
                       </span>
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-sm">
+                    <td className="border border-border px-3 py-2 text-sm">
                       {jp.autoPublished ? (
-                        <span className="text-blue-600">Yes</span>
+                        <span className="text-primary">Yes</span>
                       ) : (
                         <span className="text-muted-foreground">No</span>
                       )}
                       {jp.rejectionReason && (
-                        <p className="mt-1 text-xs text-red-600">
+                        <p className="mt-1 text-xs text-destructive">
                           {jp.rejectionReason}
                         </p>
                       )}
                     </td>
                     {canApprove && !isAutoPublishedView && (
-                      <td className="border border-gray-300 px-3 py-2">
+                      <td className="border border-border px-3 py-2">
                         {jp.status === "PENDING" && (
                           <div className="flex flex-wrap gap-1">
                             <form action={approveJobPosting}>
@@ -189,14 +189,14 @@ export default async function JobPostingsPage({
                               />
                               <button
                                 type="submit"
-                                className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                                className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                               >
                                 Approve
                               </button>
                             </form>
 
                             <details className="inline-block">
-                              <summary className="cursor-pointer rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700">
+                              <summary className="cursor-pointer rounded bg-destructive px-2 py-1 text-xs text-white hover:bg-destructive/90">
                                 Reject
                               </summary>
                               <form
@@ -221,7 +221,7 @@ export default async function JobPostingsPage({
                                 />
                                 <button
                                   type="submit"
-                                  className="rounded bg-red-600 px-2 py-1 text-xs text-white hover:bg-red-700"
+                                  className="rounded bg-destructive px-2 py-1 text-xs text-white hover:bg-destructive/90"
                                 >
                                   Submit
                                 </button>
@@ -229,7 +229,7 @@ export default async function JobPostingsPage({
                             </details>
 
                             <details className="inline-block">
-                              <summary className="cursor-pointer rounded bg-blue-600 px-2 py-1 text-xs text-white hover:bg-blue-700">
+                              <summary className="cursor-pointer rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90">
                                 Edit & Approve
                               </summary>
                               <form
@@ -275,7 +275,7 @@ export default async function JobPostingsPage({
                                 </div>
                                 <button
                                   type="submit"
-                                  className="rounded bg-blue-600 px-2 py-1 text-xs text-white hover:bg-blue-700"
+                                  className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                                 >
                                   Save & Approve
                                 </button>
@@ -294,7 +294,7 @@ export default async function JobPostingsPage({
                             />
                             <button
                               type="submit"
-                              className="rounded bg-green-600 px-2 py-1 text-xs text-white hover:bg-green-700"
+                              className="rounded bg-primary px-2 py-1 text-xs text-white hover:bg-primary/90"
                             >
                               Re-approve
                             </button>

@@ -31,7 +31,7 @@ export function ApplyButton({
 
   if (!hasProfile || !profileComplete) {
     return (
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center text-amber-800">
+      <div className="rounded-lg border border-accent/30 bg-accent/5 p-4 text-center text-accent">
         {t("completeProfileToApply")}
       </div>
     );
@@ -39,8 +39,8 @@ export function ApplyButton({
 
   if (applied) {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center">
-        <span className="text-lg font-medium text-green-700">{t("applied")}</span>
+      <div className="rounded-lg border border-primary/30 bg-primary/10 p-4 text-center">
+        <span className="text-lg font-medium text-primary">{t("applied")}</span>
       </div>
     );
   }
@@ -52,12 +52,12 @@ export function ApplyButton({
       <button
         type="submit"
         disabled={pending}
-        className="rounded-lg bg-blue-600 px-8 py-3 text-lg font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-lg bg-primary px-8 py-3 text-lg font-medium text-white transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {pending ? t("applying") : t("applyNow")}
       </button>
       {state?.error && state.error !== "Already applied" && (
-        <p className="mt-2 text-sm text-red-600">{state.error}</p>
+        <p className="mt-2 text-sm text-destructive">{state.error}</p>
       )}
     </form>
   );

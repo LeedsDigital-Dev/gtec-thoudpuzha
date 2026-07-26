@@ -98,26 +98,26 @@ export default async function TimetableProgressPage({ params }: Props) {
       <section>
         <h2 className="text-lg font-medium">Timetable Entries</h2>
         {timetableEntries.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Course</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Content</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Created</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Course</th>
+                <th className="border border-border px-3 py-2 text-left">Content</th>
+                <th className="border border-border px-3 py-2 text-left">Created</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {timetableEntries.map((e) => (
                 <tr key={e.id}>
-                  <td className="border border-gray-300 px-3 py-2">{e.course.titleEn}</td>
-                  <td className="border border-gray-300 px-3 py-2 text-sm whitespace-pre-wrap">
+                  <td className="border border-border px-3 py-2">{e.course.titleEn}</td>
+                  <td className="border border-border px-3 py-2 text-sm whitespace-pre-wrap">
                     {e.contentText}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 text-xs">
+                  <td className="border border-border px-3 py-2 text-xs">
                     {e.createdAt.toISOString().slice(0, 10)}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <form action={deleteTimetableEntry}>
                       <input type="hidden" name="id" value={e.id} />
                       <input type="hidden" name="locale" value={locale} />
@@ -203,28 +203,28 @@ export default async function TimetableProgressPage({ params }: Props) {
       <section>
         <h2 className="text-lg font-medium">Progress Entries</h2>
         {progressEntries.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
+          <table className="mt-4 w-full border-collapse border border-border">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Student</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Course</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Note</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Recorded</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+                <th className="border border-border px-3 py-2 text-left">Student</th>
+                <th className="border border-border px-3 py-2 text-left">Course</th>
+                <th className="border border-border px-3 py-2 text-left">Note</th>
+                <th className="border border-border px-3 py-2 text-left">Recorded</th>
+                <th className="border border-border px-3 py-2 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {progressEntries.map((e) => (
                 <tr key={e.id}>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     {e.studentProfile.fullName ?? e.studentProfileId}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">{e.course.titleEn}</td>
-                  <td className="border border-gray-300 px-3 py-2 text-sm">{e.noteEn}</td>
-                  <td className="border border-gray-300 px-3 py-2 text-xs">
+                  <td className="border border-border px-3 py-2">{e.course.titleEn}</td>
+                  <td className="border border-border px-3 py-2 text-sm">{e.noteEn}</td>
+                  <td className="border border-border px-3 py-2 text-xs">
                     {e.recordedAt.toISOString().slice(0, 10)}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-border px-3 py-2">
                     <form action={deleteProgressEntry}>
                       <input type="hidden" name="id" value={e.id} />
                       <input type="hidden" name="locale" value={locale} />

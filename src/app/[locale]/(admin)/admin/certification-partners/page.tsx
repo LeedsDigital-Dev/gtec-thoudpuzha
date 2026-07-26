@@ -89,21 +89,21 @@ export default async function CertificationPartnersPage({
 
       <section className="mt-8">
         <h2 className="text-lg font-medium">All partners</h2>
-        <table className="mt-4 w-full border-collapse border border-gray-300">
+        <table className="mt-4 w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Logo</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Name (EN)</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Name (ML)</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Link</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+              <th className="border border-border px-3 py-2 text-left">Order</th>
+              <th className="border border-border px-3 py-2 text-left">Logo</th>
+              <th className="border border-border px-3 py-2 text-left">Name (EN)</th>
+              <th className="border border-border px-3 py-2 text-left">Name (ML)</th>
+              <th className="border border-border px-3 py-2 text-left">Link</th>
+              <th className="border border-border px-3 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
             {partners.map((partner, index) => (
               <tr key={partner.id}>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <div className="flex items-center gap-1">
                     <form action={movePartner}>
                       <input type="hidden" name="id" value={partner.id} />
@@ -136,7 +136,7 @@ export default async function CertificationPartnersPage({
                     <span className="ml-2 text-xs">{partner.sortOrder}</span>
                   </div>
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={getMediaUrl(partner.logoUrl)}
@@ -144,13 +144,13 @@ export default async function CertificationPartnersPage({
                     className="h-10 w-auto object-contain"
                   />
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {partner.name}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {partner.nameMl || "—"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {partner.link ? (
                     <a
                       href={partner.link}
@@ -164,7 +164,7 @@ export default async function CertificationPartnersPage({
                     "—"
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <form action={deletePartner}>
                     <input type="hidden" name="id" value={partner.id} />
                     <input type="hidden" name="locale" value={locale} />

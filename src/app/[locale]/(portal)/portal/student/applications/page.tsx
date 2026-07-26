@@ -9,11 +9,11 @@ interface PageProps {
 }
 
 const STATUS_STYLES: Record<string, string> = {
-  APPLIED: "bg-blue-100 text-blue-800",
+  APPLIED: "bg-primary/10 text-primary",
   VIEWED: "bg-purple-100 text-purple-800",
-  SHORTLISTED: "bg-amber-100 text-amber-800",
-  REJECTED: "bg-red-100 text-red-800",
-  HIRED: "bg-green-100 text-green-800",
+  SHORTLISTED: "bg-accent/10 text-accent",
+  REJECTED: "bg-destructive/10 text-destructive",
+  HIRED: "bg-primary/10 text-primary",
 };
 
 export default async function StudentApplicationsPage({ params }: PageProps) {
@@ -32,7 +32,7 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
           <h1 className="text-2xl font-semibold">{rgt("notYourAccount")}</h1>
           <Link
             href="/portal"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {rgt("goToPortal")}
           </Link>
@@ -49,10 +49,10 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
       <div className="flex min-h-screen items-center justify-center p-6">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{sa("noProfile")}</h1>
-          <p className="mt-2 text-gray-600">{sa("noProfileDesc")}</p>
+          <p className="mt-2 text-muted-foreground">{sa("noProfileDesc")}</p>
           <Link
             href="/portal/student/biodata"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {sa("completeBiodata")}
           </Link>
@@ -86,11 +86,11 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
       <h1 className="mb-8 text-3xl font-semibold">{sa("heading")}</h1>
 
       {applications.length === 0 ? (
-        <div className="rounded-lg border border-dashed p-8 text-center text-gray-500">
+        <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
           <p>{sa("noApplications")}</p>
           <Link
             href="/portal/jobs"
-            className="mt-2 inline-block text-blue-600 underline"
+            className="mt-2 inline-block text-primary underline"
           >
             {sa("browseJobs")}
           </Link>
@@ -98,21 +98,21 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
       ) : (
         <div className="space-y-4">
           {applications.map((app) => {
-            const badgeStyle = STATUS_STYLES[app.status] ?? "bg-gray-100 text-gray-800";
+            const badgeStyle = STATUS_STYLES[app.status] ?? "bg-muted text-foreground";
             return (
               <div
                 key={app.id}
-                className="rounded-lg border p-4 transition-colors hover:bg-gray-50"
+                className="rounded-lg border p-4 transition-colors hover:bg-muted/50"
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <Link
                       href={`/portal/jobs/${app.jobPosting.id}`}
-                      className="font-medium text-blue-600 hover:underline"
+                      className="font-medium text-primary hover:underline"
                     >
                       {app.jobPosting.title}
                     </Link>
-                    <p className="mt-0.5 text-sm text-gray-500">
+                    <p className="mt-0.5 text-sm text-muted-foreground">
                       {app.jobPosting.employer.companyName}
                     </p>
                   </div>
@@ -122,7 +122,7 @@ export default async function StudentApplicationsPage({ params }: PageProps) {
                     {app.status}
                   </span>
                 </div>
-                <p className="mt-2 text-xs text-gray-500">
+                <p className="mt-2 text-xs text-muted-foreground">
                   {sa("applied", { date: new Date(app.appliedAt).toLocaleDateString() })}
                 </p>
               </div>

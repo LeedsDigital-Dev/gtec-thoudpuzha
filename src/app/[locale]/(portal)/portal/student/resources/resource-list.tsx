@@ -26,7 +26,7 @@ export async function ResourceList({ type, title, locale }: ResourceListProps) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{title}</h1>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-muted-foreground">
             {t("completeProfile")}
           </p>
         </div>
@@ -44,12 +44,12 @@ export async function ResourceList({ type, title, locale }: ResourceListProps) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{title}</h1>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-muted-foreground">
             {t("notEnrolled")}
           </p>
           <Link
             href="/portal/student"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {t("backToDashboard")}
           </Link>
@@ -76,7 +76,7 @@ export async function ResourceList({ type, title, locale }: ResourceListProps) {
     return (
       <div className="p-6">
         <h1 className="mb-2 text-2xl font-semibold">{title}</h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {t("noResources", { type: title.toLowerCase() })}
         </p>
       </div>
@@ -94,7 +94,7 @@ export async function ResourceList({ type, title, locale }: ResourceListProps) {
           if (courseResources.length === 0) return null;
           return (
             <div key={course.id}>
-              <h2 className="mb-3 text-lg font-medium text-gray-800">
+              <h2 className="mb-3 text-lg font-medium text-foreground">
                 {course.titleEn}
               </h2>
               <div className="space-y-2">
@@ -117,7 +117,7 @@ export async function ResourceList({ type, title, locale }: ResourceListProps) {
                         <span className="font-medium">{r.title}</span>
                       )}
                     </div>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-muted-foreground">
                       {r.uploadedAt.toISOString().slice(0, 10)}
                     </span>
                   </div>

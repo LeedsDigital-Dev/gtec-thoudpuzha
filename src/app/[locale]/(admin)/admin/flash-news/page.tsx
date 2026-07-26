@@ -96,16 +96,16 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
 
       <section className="mt-8">
         <h2 className="text-lg font-medium">All items</h2>
-        <table className="mt-4 w-full border-collapse border border-gray-300">
+        <table className="mt-4 w-full border-collapse border border-border">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">English</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Malayalam</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Link</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Status</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Expires</th>
-              <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
+              <th className="border border-border px-3 py-2 text-left">Order</th>
+              <th className="border border-border px-3 py-2 text-left">English</th>
+              <th className="border border-border px-3 py-2 text-left">Malayalam</th>
+              <th className="border border-border px-3 py-2 text-left">Link</th>
+              <th className="border border-border px-3 py-2 text-left">Status</th>
+              <th className="border border-border px-3 py-2 text-left">Expires</th>
+              <th className="border border-border px-3 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -118,7 +118,7 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     : ""
                 }
               >
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <div className="flex items-center gap-1">
                     <form action={moveFlashNews}>
                       <input type="hidden" name="id" value={item.id} />
@@ -151,11 +151,11 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     <span className="ml-2 text-xs">{item.sortOrder}</span>
                   </div>
                 </td>
-                <td className="border border-gray-300 px-3 py-2">{item.textEn}</td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">{item.textEn}</td>
+                <td className="border border-border px-3 py-2">
                   {item.textMl || "—"}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {item.link ? (
                     <a
                       href={item.link}
@@ -169,7 +169,7 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     "—"
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <form action={toggleFlashNewsActive}>
                     <input type="hidden" name="id" value={item.id} />
                     <input
@@ -187,7 +187,7 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     </Button>
                   </form>
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   {item.expiresAt ? (
                     <>
                       {formatLocalDateTime(item.expiresAt)}
@@ -201,7 +201,7 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     "—"
                   )}
                 </td>
-                <td className="border border-gray-300 px-3 py-2">
+                <td className="border border-border px-3 py-2">
                   <div className="flex items-center gap-2">
                     <form action={deleteFlashNews}>
                       <input type="hidden" name="id" value={item.id} />

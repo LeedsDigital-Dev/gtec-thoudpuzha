@@ -63,10 +63,10 @@ export default async function ApplicantsPage({ params }: PageProps) {
   return (
     <div className="mx-auto max-w-5xl p-4 py-10">
       <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
-      <p className="mb-8 text-gray-600">{posting.title}</p>
+      <p className="mb-8 text-muted-foreground">{posting.title}</p>
 
       {applicants.length === 0 ? (
-        <div className="rounded-lg border border-dashed p-8 text-center text-gray-500">
+        <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
           <p>{t("noApplicants")}</p>
         </div>
       ) : (

@@ -12,9 +12,9 @@ export default async function EmployerRegistrationStatusPage({ params }: Props) 
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="max-w-lg text-center">
         <div className="mb-6 flex justify-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
             <svg
-              className="h-8 w-8 text-amber-600"
+              className="h-8 w-8 text-accent"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
@@ -29,8 +29,8 @@ export default async function EmployerRegistrationStatusPage({ params }: Props) 
           </div>
         </div>
         <h1 className="mb-3 text-2xl font-semibold">{t("underReview")}</h1>
-        <p className="mb-2 text-gray-600">{t("thankYou")}</p>
-        <p className="text-sm text-gray-500">{t("note")}</p>
+        <p className="mb-2 text-muted-foreground">{t("thankYou")}</p>
+        <p className="text-sm text-muted-foreground">{t("note")}</p>
       </div>
     </div>
   );

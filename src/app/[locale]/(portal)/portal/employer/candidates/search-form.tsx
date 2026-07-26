@@ -78,11 +78,11 @@ export function CandidateSearchForm({
   return (
     <div className="space-y-6">
       {/* Filter Section */}
-      <div className="rounded-lg border bg-white p-4">
+      <div className="rounded-lg border bg-card p-4">
         <h2 className="mb-3 text-lg font-medium">{t("filters")}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               {t("preferredLocation")}
             </label>
             <input
@@ -97,7 +97,7 @@ export function CandidateSearchForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               {t("preferredJobType")}
             </label>
             <select
@@ -119,7 +119,7 @@ export function CandidateSearchForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               {t("educationalQualification")}
             </label>
             <select
@@ -143,7 +143,7 @@ export function CandidateSearchForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               {t("languages")}
             </label>
             <input
@@ -168,11 +168,11 @@ export function CandidateSearchForm({
           <button
             type="button"
             onClick={clearFilters}
-            className="rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200"
+            className="rounded-md bg-muted px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted"
           >
             {t("clearFilters")}
           </button>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-foreground">
             {t("candidateCount", { count: filtered.length })}
           </span>
         </div>
@@ -181,7 +181,7 @@ export function CandidateSearchForm({
       {/* Results */}
 
       {filtered.length === 0 ? (
-        <div className="rounded-lg border border-dashed p-8 text-center text-gray-500">
+        <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
           <p>{t("noCandidates")}</p>
         </div>
       ) : (
@@ -224,17 +224,17 @@ function CandidateCard({
   };
 
   return (
-    <div className="rounded-lg border bg-white p-4 transition-colors hover:border-blue-300">
+    <div className="rounded-lg border bg-card p-4 transition-colors hover:border-primary/50">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <Link
             href={`/portal/employer/candidates/${candidate.id}`}
-            className="text-lg font-medium text-blue-600 hover:underline"
+            className="text-lg font-medium text-primary hover:underline"
           >
             {candidate.fullName ?? t("unnamed")}
           </Link>
 
-          <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-500">
+          <div className="mt-1 flex flex-wrap gap-2 text-sm text-muted-foreground">
             {candidate.preferredJobLocation && (
               <span>📍 {candidate.preferredJobLocation}</span>
             )}
@@ -249,7 +249,7 @@ function CandidateCard({
           </div>
 
           {candidate.careerObjective && (
-            <p className="mt-2 text-sm text-gray-600 italic">
+            <p className="mt-2 text-sm text-muted-foreground italic">
               &ldquo;{candidate.careerObjective}&rdquo;
             </p>
           )}
@@ -258,7 +258,7 @@ function CandidateCard({
             {candidate.languagesKnown.slice(0, 4).map((lang) => (
               <span
                 key={lang}
-                className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs text-blue-700"
+                className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
               >
                 {lang}
               </span>
@@ -268,7 +268,7 @@ function CandidateCard({
 
         <Link
           href={`/portal/employer/candidates/${candidate.id}`}
-          className="ml-4 shrink-0 rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-200"
+          className="ml-4 shrink-0 rounded-md bg-muted px-3 py-1.5 text-sm text-foreground hover:bg-muted"
         >
           {t("viewProfile")}
         </Link>
@@ -294,7 +294,7 @@ function CandidateCard({
             type="button"
             onClick={handleInviteClick}
             disabled={!selectedJobId || inviteStatus === "sending..."}
-            className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-md bg-primary px-3 py-1.5 text-sm text-white hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {inviteStatus === "sending..." ? t("sending") : t("inviteToApply")}
           </button>
@@ -302,7 +302,7 @@ function CandidateCard({
           {inviteStatus && inviteStatus !== "sending..." && (
             <span
               className={`text-sm ${
-                inviteStatus === "sent" ? "text-green-600" : "text-red-600"
+                inviteStatus === "sent" ? "text-primary" : "text-destructive"
               }`}
             >
               {inviteStatus === "sent"

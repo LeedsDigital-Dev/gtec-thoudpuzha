@@ -25,7 +25,7 @@ export default async function MyProgressPage({ params }: Props) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{t("heading")}</h1>
-          <p className="mt-4 text-gray-600">{rt("completeProfile")}</p>
+          <p className="mt-4 text-muted-foreground">{rt("completeProfile")}</p>
         </div>
       </div>
     );
@@ -41,10 +41,10 @@ export default async function MyProgressPage({ params }: Props) {
     return (
       <div className="p-6">
         <h1 className="mb-2 text-2xl font-semibold">{t("heading")}</h1>
-        <p className="text-gray-600">{t("noEntries")}</p>
+        <p className="text-muted-foreground">{t("noEntries")}</p>
         <Link
           href="/portal/student"
-          className="mt-4 inline-block text-blue-600 underline"
+          className="mt-4 inline-block text-primary underline"
         >
           {t("backToDashboard")}
         </Link>
@@ -61,11 +61,11 @@ export default async function MyProgressPage({ params }: Props) {
             key={e.id}
             className="rounded border border-border p-4"
           >
-            <div className="mb-1 text-xs text-gray-500">
+            <div className="mb-1 text-xs text-muted-foreground">
               {e.course.titleEn} &middot;{" "}
               {e.recordedAt.toISOString().slice(0, 10)}
             </div>
-            <p className="text-sm text-gray-800 whitespace-pre-wrap">
+            <p className="text-sm text-foreground whitespace-pre-wrap">
               {e.noteEn}
             </p>
           </div>

@@ -3,7 +3,7 @@ import { NextRequest, NextFetchEvent } from "next/server";
 import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider as _NextIntlClientProvider, useTranslations as _useTranslations } from "next-intl";
 import type { Mock } from "vitest";
-import middleware from "@/middleware";
+import middleware from "@/proxy";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import enMessages from "@/lib/i18n/en.json";
 import mlMessages from "@/lib/i18n/ml.json";

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { siteConfig } from "@/lib/site";
@@ -71,7 +72,7 @@ function ModalOverlay({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -79,11 +80,11 @@ function ModalOverlay({
       aria-modal="true"
       aria-label="Enquiry form"
     >
-      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-background p-6 shadow-xl">
+      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-background p-6 shadow-xl">
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+          className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           aria-label="Close"
         >
           <svg
@@ -114,19 +115,20 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
   ].filter((s): s is { url: string; key: string } => !!s.url);
 
   return (
-    <section className="bg-muted/40 py-16">
+    <section className="bg-muted/40 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-10 text-center text-3xl font-bold">{t("heading")}</h2>
+        <h2 className="mb-12 text-center text-3xl font-bold tracking-tight">
+          {t("heading")}
+        </h2>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Map */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {settings.mapEmbedUrl && (
-            <div className="overflow-hidden rounded-xl border shadow-sm">
+            <div className="overflow-hidden rounded-2xl border shadow-md">
               <iframe
                 title="G-TEC Thodupuzha location"
                 src={settings.mapEmbedUrl}
                 width="100%"
-                height="320"
+                height="360"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -136,43 +138,41 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
             </div>
           )}
 
-          {/* Contact Details */}
           <div className="flex flex-col justify-center gap-6">
             <div>
-              <h3 className="text-xl font-semibold">
-                G-TEC {siteConfig.centreName}
+              <h3 className="text-2xl font-bold tracking-tight">
+                G-TEC <span className="text-primary">{siteConfig.centreName}</span>
               </h3>
               {settings.address && (
-                <p className="mt-1 text-muted-foreground">{settings.address}</p>
+                <div className="mt-2 flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="mt-0.5 size-4 shrink-0" />
+                  <span className="text-sm leading-relaxed">{settings.address}</span>
+                </div>
               )}
             </div>
 
-            <div className="space-y-2 text-sm">
-              <p>
-                <span className="font-medium">{t("phone")}</span>{" "}
-                <a
-                  href={`tel:${siteConfig.phoneNumber}`}
-                  className="text-primary hover:underline"
-                >
-                  {siteConfig.phoneNumber}
-                </a>
-              </p>
-              <p>
-                <span className="font-medium">{t("whatsapp")}</span>{" "}
-                <a
-                  href={`https://wa.me/${siteConfig.whatsappNumber}`}
-                  className="text-primary hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {siteConfig.phoneNumber}
-                </a>
-              </p>
+            <div className="space-y-2.5">
+              <a
+                href={`tel:${siteConfig.phoneNumber}`}
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <Phone className="size-4" />
+                {t("phone")}: {siteConfig.phoneNumber}
+              </a>
+              <br />
+              <a
+                href={`https://wa.me/${siteConfig.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <MessageCircle className="size-4" />
+                {t("whatsapp")}: {siteConfig.phoneNumber}
+              </a>
             </div>
 
-            {/* Social Icons */}
             {socialLinks.length > 0 && (
-              <div className="flex gap-3">
+              <div className="flex gap-2.5">
                 {socialLinks.map(({ url, key }) => {
                   const icon = socialIcons[key];
                   return (
@@ -182,7 +182,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={icon.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border bg-background text-muted-foreground shadow-sm transition-all hover:border-primary hover:text-primary hover:shadow-md"
                     >
                       <svg
                         viewBox={icon.viewBox}
@@ -201,24 +201,22 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
               </div>
             )}
 
-            {/* Reviews link */}
             {settings.googleReviewsUrl && (
               <a
                 href={settings.googleReviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-primary hover:underline"
+                className="text-sm font-medium text-primary hover:underline"
               >
-                {t("googleReviews")}
+                {t("googleReviews")} →
               </a>
             )}
 
-            {/* Send us a message button */}
             <div>
               <button
                 type="button"
                 onClick={() => setShowEnquiry(true)}
-                className="rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                className="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
               >
                 {t("sendMessage")}
               </button>
@@ -226,7 +224,6 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
           </div>
         </div>
 
-        {/* Modal */}
         {showEnquiry && (
           <ModalOverlay onClose={() => setShowEnquiry(false)}>
             <EnquiryForm source="contact_page" courses={courses} />

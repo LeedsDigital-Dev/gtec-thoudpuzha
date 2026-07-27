@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CalendarDays, Newspaper } from "lucide-react";
 
 interface TeaserItem {
   id: string;
@@ -43,29 +44,32 @@ export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel
   if (newsItems.length === 0 && !nextEvent) return null;
 
   return (
-    <section className="bg-muted/30 py-12">
+    <section className="py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-bold">{heading}</h2>
+        <div className="mb-10 flex items-center justify-between">
+          <h2 className="text-3xl font-bold tracking-tight">{heading}</h2>
           <Link
             href="/news"
-            className="text-sm font-medium text-primary underline hover:no-underline"
+            className="text-sm font-semibold text-primary hover:underline"
           >
-            {viewAll}
+            {viewAll} →
           </Link>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {newsItems.map((item) => (
             <Link
               key={item.id}
               href={`/news/${item.slug}`}
-              className="block rounded border border-border bg-background p-4 transition-shadow hover:shadow-md"
+              className="group flex flex-col rounded-xl border border-border bg-background p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
             >
-              <p className="text-xs text-muted-foreground">
-                {formatDate(item.publishedAt)}
-              </p>
-              <h3 className="mt-1 line-clamp-2 text-sm font-medium">
+              <div className="mb-3 flex items-center gap-2">
+                <Newspaper className="size-4 text-muted-foreground" />
+                <p className="text-xs font-medium text-muted-foreground">
+                  {formatDate(item.publishedAt)}
+                </p>
+              </div>
+              <h3 className="line-clamp-2 flex-1 text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
                 {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, locale)}
               </h3>
             </Link>
@@ -75,14 +79,17 @@ export function NewsTeaserSection({ teaser, heading, viewAll, upcomingEventLabel
             <Link
               key={nextEvent.id}
               href={`/news/${nextEvent.slug}`}
-              className="block rounded border border-border bg-background p-4 transition-shadow hover:shadow-md"
+              className="group flex flex-col rounded-xl border-2 border-primary/20 bg-primary/5 p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/30"
             >
-              <p className="text-xs font-semibold text-primary">{upcomingEventLabel}</p>
-              <h3 className="mt-1 line-clamp-2 text-sm font-medium">
+              <div className="mb-3 flex items-center gap-2">
+                <CalendarDays className="size-4 text-primary" />
+                <p className="text-xs font-semibold text-primary">{upcomingEventLabel}</p>
+              </div>
+              <h3 className="line-clamp-2 flex-1 text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
                 {pickLocalizedText({ en: nextEvent.titleEn, ml: nextEvent.titleMl }, locale)}
               </h3>
               {nextEvent.eventDate && (
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="mt-2 text-xs font-medium text-muted-foreground">
                   {formatDate(nextEvent.eventDate)}
                 </p>
               )}

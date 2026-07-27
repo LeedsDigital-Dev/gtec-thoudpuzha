@@ -5,12 +5,12 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1606 nodes · 2771 edges · 157 communities (127 shown, 30 thin omitted)
+- 1606 nodes · 2370 edges · 183 communities (133 shown, 50 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `91607cbe`
+- Built from commit: `c18c0298`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -128,17 +128,43 @@
 - @playwright/test
 - postVacancy
 - studentVerification
+- audit.ts
+- applicants/actions.ts
+- [id]/page.tsx
+- jobs/page.tsx
+- sign-up/student/page.tsx
 - studentDashboard
 - gallery.ts
 - EmployerModerationNotification.tsx
+- flash-news/page.tsx
 - no-raw-img.test.ts
+- job-postings/page.tsx
+- admin/page.tsx
+- portal/student/page.tsx
+- courses/page.tsx
 - video-lecture-list.tsx
 - Findings
+- news-events/page.tsx
 - [id]/page.tsx
+- sign-up/page.tsx
 - courses/page.test.tsx
+- applications/page.tsx
+- audit-log/page.tsx
+- enquiries/page.tsx
+- gallery/confirm-delete-form.tsx
+- admin/gallery/page.tsx
+- news-events/confirm-delete-form.tsx
+- skills-taxonomy/page.tsx
+- staff/page.tsx
+- students/page.tsx
+- timetable-progress/page.tsx
+- employer/page.tsx
+- job-seeker/page.tsx
+- progress/page.tsx
+- timetable/page.tsx
+- placement/page.tsx
 - roleGate
 - timetable-progress/page.tsx
-- sign-up/student/page.tsx
 - @playwright/test
 - @testing-library/dom
 - AtAGlanceSection.tsx
@@ -154,25 +180,25 @@
 - @vitejs/plugin-react
 
 ## God Nodes (most connected - your core abstractions)
-1. `requireRole()` - 107 edges
+1. `requireRole()` - 75 edges
 2. `logAdminAction()` - 70 edges
-3. `Role` - 67 edges
-4. `cn()` - 64 edges
-5. `getEffectiveRole()` - 51 edges
-6. `Button()` - 23 edges
-7. `requirePermission()` - 17 edges
-8. `compilerOptions` - 16 edges
-9. `getMediaUrl()` - 13 edges
-10. `isProfileComplete()` - 12 edges
+3. `cn()` - 64 edges
+4. `Role` - 40 edges
+5. `getEffectiveRole()` - 31 edges
+6. `compilerOptions` - 16 edges
+7. `UAT Script — GTEC Thodupuzha Admin Panel` - 12 edges
+8. `Product` - 11 edges
+9. `requirePermission()` - 11 edges
+10. `SidebarProvider()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `useSidebar()` --references--> `react`  [EXTRACTED]
+  src/components/ui/sidebar.tsx → package.json
 - `renderWithProvider()` --references--> `react`  [EXTRACTED]
   src/components/admin/__tests__/admin-sidebar.test.tsx → package.json
 - `SidebarMenuSkeleton()` --references--> `react`  [EXTRACTED]
   src/components/ui/sidebar.tsx → package.json
 - `SidebarProvider()` --references--> `react`  [EXTRACTED]
-  src/components/ui/sidebar.tsx → package.json
-- `useSidebar()` --references--> `react`  [EXTRACTED]
   src/components/ui/sidebar.tsx → package.json
 - `useIsMobile()` --references--> `react`  [EXTRACTED]
   src/hooks/use-mobile.ts → package.json
@@ -180,11 +206,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (157 total, 30 thin omitted)
-
-### Community 0 - "devDependencies"
-Cohesion: 0.38
-Nodes (11): approveAndTrustEmployer(), approveEmployer(), localeFromFormData(), rejectEmployer(), toggleAutoPublishTrusted(), EmployersPage(), EmployersPageProps, STATUS_LABELS (+3 more)
+## Communities (183 total, 50 thin omitted)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.05
@@ -199,12 +221,12 @@ Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 4 - "package.json"
-Cohesion: 0.06
-Nodes (40): EmployerProfilePage(), ProfilePageProps, RegistrationResult, submitEmployerRegistration(), mockAuth, mockCheckRateLimit, mockClerkClient, mockCreate (+32 more)
+Cohesion: 0.09
+Nodes (25): finalizeStudentVerification(), lookupStudentRecord(), mockAuth, mockCandidateCreate, mockCheckRateLimit, mockClerkClient, mockFindFirst, mockFindUnique (+17 more)
 
 ### Community 5 - "EnquiryForm.tsx"
-Cohesion: 0.15
-Nodes (18): approveJobPosting(), editAndApproveJobPosting(), localeFromFormData(), rejectJobPosting(), mockAuditCreate, mockAuth, mockFindMany, mockRedirect (+10 more)
+Cohesion: 0.06
+Nodes (41): approveAndTrustEmployer(), approveEmployer(), localeFromFormData(), rejectEmployer(), mockAuditCreate, mockAuth, mockFindMany, mockFindUnique (+33 more)
 
 ### Community 6 - "GTEC Thodupuzha"
 Cohesion: 0.22
@@ -215,20 +237,20 @@ Cohesion: 0.14
 Nodes (11): mockAuditCreate, mockAuth, mockCatAggregate, mockItemAggregate, mockItemCreate, mockItemDelete, mockItemFindMany, mockRedirect (+3 more)
 
 ### Community 8 - "aliases"
-Cohesion: 0.05
-Nodes (33): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, buildLocalePath(), LanguageSwitcher() (+25 more)
+Cohesion: 0.06
+Nodes (32): AccountSetupIncompletePage(), ForbiddenPage(), metadata, geistMono, geistSans, metadata, buildLocalePath(), LanguageSwitcher() (+24 more)
 
 ### Community 9 - "BiodataForm.test.tsx"
-Cohesion: 0.29
-Nodes (10): deactivateStaff(), inviteStaff(), localeFromFormData(), reactivateStaff(), setStaffPermission(), StaffPage(), StaffPageProps, PERMISSION_KEYS (+2 more)
+Cohesion: 0.48
+Nodes (6): deactivateStaff(), inviteStaff(), localeFromFormData(), reactivateStaff(), setStaffPermission(), StaffPermissionKeys
 
 ### Community 10 - "enquiries/page.test.tsx"
 Cohesion: 0.40
 Nodes (4): mockAuth, mockEnquiryFindMany, mockRedirect, mockUserFindUnique
 
 ### Community 15 - "(admin)/layout.tsx"
-Cohesion: 0.22
-Nodes (11): NewsPage(), NewsPageProps, generateStaticParams(), NewsDetailPage(), NewsDetailPageProps, getNewsEventBySlug(), getPublishedNews(), PublicNewsEvent (+3 more)
+Cohesion: 0.15
+Nodes (11): mockAuditCreate, mockAuth, mockCandidateFindMany, mockCourseFindMany, mockEnrollmentCreateMany, mockEnrollmentDelete, mockEnrollmentFindMany, mockRedirect (+3 more)
 
 ### Community 16 - "(public)/page.tsx"
 Cohesion: 0.17
@@ -247,32 +269,32 @@ Cohesion: 0.50
 Nodes (3): CI Strategy, Setup, Test Database Configuration
 
 ### Community 22 - "FlashNewsBar.tsx"
-Cohesion: 0.19
-Nodes (12): AboutSection(), AboutSectionProps, AtAGlanceSection(), AtAGlanceSectionProps, iconMap, WhyChooseUsSection(), WhyChooseUsSectionProps, getAtAGlanceStats() (+4 more)
+Cohesion: 0.05
+Nodes (47): PublicLayout(), NewsPage(), NewsPageProps, generateStaticParams(), NewsDetailPage(), NewsDetailPageProps, HomePage(), HomePageProps (+39 more)
 
 ### Community 23 - "portal/page.tsx"
-Cohesion: 0.26
-Nodes (7): JobSeekerPortalLayout(), JobsPortalLayout(), StudentPortalLayout(), JobSeekerShell(), JobSeekerShellProps, StudentShell(), StudentShellProps
+Cohesion: 0.14
+Nodes (15): react, react, JobSeekerPortalLayout(), JobsPortalLayout(), StudentPortalLayout(), renderWithProvider(), EmployerShellProps, JobSeekerShell() (+7 more)
 
 ### Community 24 - "gallery/actions.ts"
-Cohesion: 0.16
-Nodes (24): PostVacancyFormProps, EMPLOYEE_RANGES, RegistrationFormProps, SECTORS, JobsFilter(), JobsFilterProps, HeroSection(), HeroSectionProps (+16 more)
+Cohesion: 0.11
+Nodes (25): HeroSection(), HeroSectionProps, Button(), buttonVariants, Input(), Label(), SelectContent(), SelectGroup() (+17 more)
 
 ### Community 27 - "setup.ts"
-Cohesion: 0.22
-Nodes (8): PublicLayout(), FlashNewsBar(), Locale, mockFindMany, mockGetLocale, getActiveFlashNews(), PublicFlashNewsItem, getSiteSettings()
+Cohesion: 0.24
+Nodes (6): PageProps, applyFilters(), CandidateCardProps, CandidateSearchForm(), CandidateSearchFormProps, FilterField
 
 ### Community 33 - "courses.test.ts"
 Cohesion: 0.13
 Nodes (14): mockAuditCreate, mockAuth, mockCountCandidateProfile, mockCountJobPosting, mockDeleteSkill, mockFindManyCandidateProfile, mockFindManyJobPosting, mockFindUniqueSkill (+6 more)
 
 ### Community 34 - "courses.test.ts"
-Cohesion: 0.08
-Nodes (25): Sheet(), SheetContent(), SheetDescription(), SheetFooter(), SheetHeader(), SheetOverlay(), SheetTitle(), SidebarContext (+17 more)
+Cohesion: 0.11
+Nodes (20): Sidebar(), SidebarContext, SidebarContextProps, SidebarGroupAction(), SidebarGroupContent(), SidebarInput(), SidebarInset(), SidebarMenuAction() (+12 more)
 
 ### Community 35 - "FlashNewsBar.tsx"
-Cohesion: 0.14
-Nodes (10): PortalRoleGate(), PortalRoleGateProps, ROLE_LABELS, RequirePermissionResult, requirePortalRole(), RequireRoleResult, mockAuth, mockClerkMiddleware (+2 more)
+Cohesion: 0.18
+Nodes (7): PortalRoleGate(), PortalRoleGateProps, ROLE_LABELS, mockAuth, mockClerkMiddleware, mockCreateRouteMatcher, mockGetUser
 
 ### Community 36 - "news-events.test.ts"
 Cohesion: 0.21
@@ -283,20 +305,20 @@ Cohesion: 0.17
 Nodes (10): mockAuth, mockClerkClient, mockCreate, mockFindUnique, mockGetUser, mockRedirect, mockStaffPermissionCreate, mockStaffPermissionFindUnique (+2 more)
 
 ### Community 39 - "sign-up/page.tsx"
-Cohesion: 0.33
-Nodes (7): PostVacancyPage(), JobsPage(), JobsPageProps, BiodataPage(), getPublishedCourses(), createPENDINGSkill(), getApprovedSkills()
+Cohesion: 0.27
+Nodes (6): BiodataPage(), SkillMultiSelectProps, getPublishedCourses(), createPENDINGSkill(), getApprovedSkills(), SkillDto
 
 ### Community 40 - "seed.ts"
 Cohesion: 0.18
 Nodes (16): ALL_COURSE_TITLES, ALL_PARTNER_NAMES, CATEGORIES, CATEGORY_NAMES, CERTIFICATION_PARTNERS, COURSES, CourseSeed, GALLERY_CATEGORIES (+8 more)
 
 ### Community 41 - "flash-news/page.test.tsx"
-Cohesion: 0.27
-Nodes (7): HomePage(), HomePageProps, CertificationPartnerStrip(), getCertificationPartners(), PublicCertificationPartner, getHomepageTeaser(), renderHomePage()
+Cohesion: 0.24
+Nodes (6): BiodataForm(), BiodataFormProps, JOB_TYPE_OPTIONS, QUALIFICATION_OPTIONS, mockCourses, mockSkills
 
 ### Community 42 - "FlashNewsBar.tsx"
-Cohesion: 0.16
-Nodes (12): mockAuth, mockFindUnique, mockRevalidatePath, mockUpdate, updateApplicationStatus(), Applicant, ApplicantRow(), ApplicantsList() (+4 more)
+Cohesion: 0.25
+Nodes (5): Applicant, ApplicantsList(), NEXT_TRANSITIONS, STATUS_BADGE, PageProps
 
 ### Community 43 - "academic-resources/actions.test.ts"
 Cohesion: 0.17
@@ -330,17 +352,17 @@ Nodes (41): 1.1 Dashboard as Super Admin, 1.2 Dashboard as Centre Staff, 1.3 Aud
 Cohesion: 0.40
 Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
-### Community 52 - "Role"
-Cohesion: 0.40
-Nodes (8): createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), PageProps, getS3Client(), uploadFile()
-
 ### Community 53 - "courses.test.ts"
 Cohesion: 0.22
 Nodes (8): { GET, POST, PUT }, inngest, closeExpiredJobPostings, logSystemAction(), closeExpiredPostings(), mockAuditLogCreate, mockFindMany, mockUpdateMany
 
+### Community 54 - "assignments/page.tsx"
+Cohesion: 0.12
+Nodes (11): PERMISSION_KEYS, PERMISSION_LABELS, EmployerPortalLayout(), EmployerShell(), PermissionKey, RequirePermissionResult, RequireRoleResult, Role (+3 more)
+
 ### Community 55 - "student-dashboard.test.tsx"
-Cohesion: 0.10
-Nodes (17): EmployerDashboardPage(), EmployerDashboardPageProps, EmployerRegisterPage(), RegistrationForm(), JobSeekerDashboardPage(), PageProps, PageProps, PortalDashboardPage() (+9 more)
+Cohesion: 0.15
+Nodes (15): ActionResult, submitVacancy(), EmployerProfilePage(), ProfilePageProps, RegistrationResult, submitEmployerRegistration(), updateEmployerProfile(), EmployerRegisterPage() (+7 more)
 
 ### Community 56 - "post-vacancy/actions.test.ts"
 Cohesion: 0.33
@@ -352,15 +374,15 @@ Nodes (3): mockAuth, mockFindUnique, mockRedirect
 
 ### Community 58 - "courses.ts"
 Cohesion: 0.12
-Nodes (12): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockDelete, mockFindMany, mockRedirect, mockRevalidatePath (+4 more)
+Nodes (19): createPartner(), deletePartner(), localeFromFormData(), movePartner(), updatePartner(), mockAggregate, mockAuditCreate, mockAuth (+11 more)
 
 ### Community 60 - "dashboard.test.ts"
 Cohesion: 0.40
 Nodes (4): mockAuth, mockFindManyPostings, mockFindUniqueProfile, mockRedirect
 
 ### Community 61 - "student/actions.test.ts"
-Cohesion: 0.06
-Nodes (33): enrollStudentInCourses(), localeFromFormData(), baseProps, mockRouterPush, stubCourses, students, mockAuditCreate, mockAuth (+25 more)
+Cohesion: 0.07
+Nodes (20): baseProps, mockRouterPush, stubCourses, students, mockAuditCreate, mockAuth, mockCandidateFindMany, mockCourseFindMany (+12 more)
 
 ### Community 62 - "portal-role-gating.test.tsx"
 Cohesion: 0.13
@@ -392,35 +414,35 @@ Nodes (3): mockAuth, mockFindMany, mockFindUnique
 
 ### Community 70 - "courses.test.ts"
 Cohesion: 0.16
-Nodes (17): CertificationPartnersPage(), GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl(), getYouTubeVideoId(), Lightbox() (+9 more)
+Nodes (18): GalleryPage(), GalleryPageProps, GalleryGrid(), getEmbedUrl(), getVideoThumbnail(), getVimeoEmbedUrl(), getYouTubeEmbedUrl(), getYouTubeVideoId() (+10 more)
 
 ### Community 71 - "search-form.tsx"
-Cohesion: 0.19
-Nodes (13): AdminDashboardPage(), AdminDashboardPageProps, AdminLayout(), AdminShell(), AdminShellProps, AdminSidebar(), AdminSidebarProps, isRouteActive() (+5 more)
+Cohesion: 0.30
+Nodes (10): AdminShell(), AdminShellProps, AdminSidebar(), AdminSidebarProps, isRouteActive(), mockUsePathname, ADMIN_ROUTES, AdminRoute (+2 more)
 
 ### Community 72 - "[id]/actions.ts"
-Cohesion: 0.27
-Nodes (7): applyToJob(), mockAuth, mockCreate, mockFindUnique, mockRevalidatePath, ApplyButton(), ApplyButtonProps
+Cohesion: 0.40
+Nodes (4): mockAuth, mockCreate, mockFindUnique, mockRevalidatePath
 
 ### Community 73 - "candidates/actions.ts"
 Cohesion: 0.37
 Nodes (12): createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory(), slugify(), updateCategory() (+4 more)
 
 ### Community 74 - "candidates/actions.test.ts"
-Cohesion: 0.18
-Nodes (10): mockAuditCreate, mockAuth, mockFindMany, mockFindUnique, mockRedirect, mockRevalidatePath, mockSendModerationNotification, mockStaffPermissionFindUnique (+2 more)
+Cohesion: 0.29
+Nodes (7): ContactSection(), ModalOverlay(), socialIcons, baseSettings, mockCourses, useCloseOnEscape(), useFocusTrap()
 
 ### Community 75 - "email.ts"
 Cohesion: 0.11
 Nodes (18): Admin (`(admin)`), API routes, Auth/utility, Component-Level Findings, Conclusion, Cross-Browser & Mobile QA Log — Sprint 11, Task 1, CSV Bulk Import (admin/students), Forms (Enquiry, Post-Vacancy, Employer Registration, Biodata) (+10 more)
 
 ### Community 76 - "[id]/page.tsx"
-Cohesion: 0.05
-Nodes (39): PortalLayout(), BiodataForm(), BiodataFormProps, JOB_TYPE_OPTIONS, QUALIFICATION_OPTIONS, mockApprovedSkills, mockCourses, mockPendingSkill (+31 more)
+Cohesion: 0.18
+Nodes (9): AdminLayout(), PortalLayout(), Footer(), legalLinks, portalLinks, quickLinks, Header(), navItems (+1 more)
 
 ### Community 77 - "inviteToApply"
-Cohesion: 0.16
-Nodes (16): AuditLogPage(), AuditLogPageProps, CoursesPage(), EnquiriesPage(), EnquiriesPageProps, approveSkill(), deleteSkill(), localeFromFormData() (+8 more)
+Cohesion: 0.70
+Nodes (4): approveSkill(), deleteSkill(), localeFromFormData(), mergeSkill()
 
 ### Community 78 - "portal-role-gating.test.tsx"
 Cohesion: 0.20
@@ -431,8 +453,8 @@ Cohesion: 0.12
 Nodes (15): 1. Rate-Limiting Implementation, 2. Input Validation & Sanitization Audit, 3. Prisma Schema Review — Soft-Delete Compliance, 4. Regression: Sprint 0 + Sprint 4 Auth Tests, 5. Environment Variables / Secrets, 6. Recommended Follow-Ups (post-v1), Audit method, Backend (+7 more)
 
 ### Community 80 - "employer/page.tsx"
-Cohesion: 0.22
-Nodes (7): mockAuth, mockFindFirstJobPosting, mockFindUniqueCandidate, mockFindUniqueProfile, mockGetSearchableCandidates, mockRedirect, mockResendSend
+Cohesion: 0.29
+Nodes (6): ContactSectionProps, CourseSelect(), CourseSelectProps, publishedCourses, CourseWithCategory, PublicCourse
 
 ### Community 82 - "resource-list.tsx"
 Cohesion: 0.21
@@ -450,10 +472,6 @@ Nodes (10): mockAuth, mockCandidateProfileCreate, mockCandidateProfileFindUnique
 Cohesion: 0.20
 Nodes (8): mockAuth, mockEmployerProfileCount, mockEnquiryFindMany, mockJobPostingCount, mockRedirect, mockSkillCount, mockStaffPermissionFindUnique, mockUserFindUnique
 
-### Community 92 - "NewsTeaserSection.tsx"
-Cohesion: 0.13
-Nodes (8): CandidateDetailPage(), PageProps, CandidateSearchPage(), PageProps, Props, Props, getSearchableCandidates(), globalForPrisma
-
 ### Community 93 - "FlashNewsBar.tsx"
 Cohesion: 0.20
 Nodes (9): Gallery Page Note, Image Optimization Audit, Key Improvements, LCP Measurement, Lighthouse / LCP Status, Performance Audit Log — Sprint 11, Task 4, Recommended Future Work (beyond sprint scope), Remaining Bottlenecks (+1 more)
@@ -463,32 +481,36 @@ Cohesion: 0.22
 Nodes (9): scripts, build, db:seed, db:studio, dev, lint, start, test (+1 more)
 
 ### Community 95 - "AtAGlanceSection.tsx"
-Cohesion: 0.22
-Nodes (8): EnquiryNotificationEmailProps, EmployerModerationNotificationInput, EnquiryNotificationInput, getCentreStaffEmails(), getFromEmail(), JobPostingModerationNotificationInput, resend, sendEnquiryNotification()
+Cohesion: 0.27
+Nodes (7): EnquiryForm(), EnquiryFormProps, FormErrors, indianMobileRegex(), sanitizePhone(), MOCK_COURSES, EnquiryPayload
 
 ### Community 96 - "[locale]/layout.tsx"
-Cohesion: 0.47
-Nodes (5): formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem
+Cohesion: 0.22
+Nodes (7): mockAuth, mockCheckRateLimit, mockClerkClient, mockCreate, mockFindUnique, mockGetClientIp, mockRedirect
 
 ### Community 97 - "LanguageSwitcher.tsx"
-Cohesion: 0.50
-Nodes (3): ActionResult, submitVacancy(), PostVacancyForm()
+Cohesion: 0.25
+Nodes (4): PostVacancyPage(), PostVacancyForm(), PostVacancyFormProps, globalForPrisma
 
 ### Community 98 - "academic-resources/page.tsx"
-Cohesion: 0.15
-Nodes (16): deleteResource(), localeFromFormData(), uploadResource(), AcademicResourcesPage(), Props, RESOURCE_TYPES, TYPE_LABELS, LogAdminActionInput (+8 more)
+Cohesion: 0.33
+Nodes (5): mockAuth, mockCreate, mockFindMany, mockRedirect, mockUserFindUnique
 
 ### Community 99 - "AtAGlanceSection.tsx"
 Cohesion: 0.29
 Nodes (4): mockApplicationCount, mockApplicationFindMany, mockAuth, mockFindUnique
+
+### Community 101 - "job-postings/actions.test.ts"
+Cohesion: 0.39
+Nodes (5): deleteResource(), localeFromFormData(), uploadResource(), _ALLOWED_HOSTS, validateVideoUrl()
 
 ### Community 102 - "@vitejs/plugin-react"
 Cohesion: 0.40
 Nodes (4): BiodataActionResult, BiodataFormData, saveBiodata(), submitBiodataForm()
 
 ### Community 103 - "[id]/actions.ts"
-Cohesion: 0.16
-Nodes (15): CandidateSearchFilters, CandidateSearchResult, EmployerJobPosting, inviteToApply(), InviteToApplyResult, mapResult(), searchCandidates(), applyFilters() (+7 more)
+Cohesion: 0.11
+Nodes (19): CandidateSearchFilters, CandidateSearchResult, EmployerJobPosting, inviteToApply(), InviteToApplyResult, mapResult(), searchCandidates(), mockAuth (+11 more)
 
 ### Community 104 - "mobile-viewport-Mobile-vie-2ea25-ble-and-opens-nav-on-mobile-chromium/error-context.md"
 Cohesion: 0.40
@@ -551,44 +573,76 @@ Cohesion: 0.40
 Nodes (4): Error details, Instructions, Test info, Test source
 
 ### Community 119 - "package.json"
-Cohesion: 0.17
-Nodes (17): createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), FlashNewsPage(), FlashNewsPageProps (+9 more)
+Cohesion: 0.25
+Nodes (7): mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, mockRevalidatePath, mockUserFindUnique
 
 ### Community 120 - "candidates/actions.ts"
-Cohesion: 0.13
-Nodes (20): createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), ConfirmDeleteForm(), ConfirmDeleteFormProps (+12 more)
+Cohesion: 0.19
+Nodes (14): createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate, mockAuth (+6 more)
 
 ### Community 121 - "dotenv"
 Cohesion: 0.18
 Nodes (11): @axe-core/playwright, dotenv, eslint-config-next, devDependencies, @axe-core/playwright, dotenv, eslint-config-next, @tailwindcss/postcss (+3 more)
 
 ### Community 122 - "candidates/actions.test.ts"
-Cohesion: 0.44
-Nodes (7): addProgressEntry(), addTimetableEntry(), deleteProgressEntry(), deleteTimetableEntry(), localeFromFormData(), Props, TimetableProgressPage()
+Cohesion: 0.34
+Nodes (12): createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), addProgressEntry(), addTimetableEntry() (+4 more)
 
 ### Community 123 - "jsdom"
 Cohesion: 0.40
 Nodes (4): mockAuth, mockRedirect, mockUpsert, validData
+
+### Community 129 - "audit.ts"
+Cohesion: 0.38
+Nodes (5): enrollStudentInCourses(), localeFromFormData(), unenrollStudentFromCourse(), LogAdminActionInput, LogSystemActionInput
+
+### Community 130 - "applicants/actions.ts"
+Cohesion: 0.33
+Nodes (5): mockAuth, mockFindUnique, mockRevalidatePath, mockUpdate, updateApplicationStatus()
+
+### Community 131 - "[id]/page.tsx"
+Cohesion: 0.40
+Nodes (3): ApplyButton(), ApplyButtonProps, PageProps
+
+### Community 132 - "jobs/page.tsx"
+Cohesion: 0.40
+Nodes (3): JobsFilter(), JobsFilterProps, JobsPageProps
+
+### Community 133 - "sign-up/student/page.tsx"
+Cohesion: 0.40
+Nodes (3): isValidPassword(), Step, StudentSignUpPage()
 
 ### Community 134 - "studentDashboard"
 Cohesion: 0.14
 Nodes (20): EmployerSidebar(), isRouteActive(), isRouteActive(), JobSeekerSidebar(), isRouteActive(), StudentSidebar(), SidebarContent(), SidebarFooter() (+12 more)
 
 ### Community 135 - "gallery.ts"
-Cohesion: 0.36
-Nodes (6): GalleryPage(), GalleryPageProps, getGalleryCategoryBySlug(), getGalleryData(), getPlacementGalleryData(), PlacementGalleryData
+Cohesion: 0.33
+Nodes (3): mockApprovedSkills, mockCourses, mockPendingSkill
 
-### Community 145 - "video-lecture-list.tsx"
-Cohesion: 0.36
-Nodes (4): Props, VideoLectureList(), _ALLOWED_HOSTS, deriveEmbedUrl()
+### Community 136 - "EmployerModerationNotification.tsx"
+Cohesion: 0.40
+Nodes (3): Props, RESOURCE_TYPES, TYPE_LABELS
+
+### Community 137 - "flash-news/page.tsx"
+Cohesion: 0.60
+Nodes (4): FlashNewsPage(), FlashNewsPageProps, formatLocalDateTime(), isExpired()
+
+### Community 139 - "job-postings/page.tsx"
+Cohesion: 0.40
+Nodes (3): JobPostingsPageProps, STATUS_COLORS, STATUS_LABELS
 
 ### Community 146 - "Findings"
 Cohesion: 0.33
 Nodes (5): Findings, How to use this log, UAT-001: Job Posting rejection reason silently discarded, UAT-002: Nested `<form>` in courses page edit/delete action, UAT Feedback Log — GTEC Thodupuzha
 
+### Community 147 - "news-events/page.tsx"
+Cohesion: 0.67
+Nodes (3): formatDate(), NewsEventsPage(), NewsEventsPageProps
+
 ### Community 148 - "[id]/page.tsx"
-Cohesion: 0.17
-Nodes (11): JobDetailPage(), PageProps, PlacementPage(), PlacementPageProps, ActiveJobPosting, getActiveJobPostings(), getJobDetail(), JobDetail (+3 more)
+Cohesion: 0.25
+Nodes (5): ActiveJobPosting, getActiveJobPostings(), JobDetail, mockFindMany, mockSkillsFindMany
 
 ### Community 150 - "courses/page.test.tsx"
 Cohesion: 0.40
@@ -599,33 +653,29 @@ Cohesion: 0.50
 Nodes (3): name, private, version
 
 ### Community 188 - "timetable-progress/page.tsx"
-Cohesion: 0.29
-Nodes (14): addVideoItem(), createCategory(), deleteCategory(), deleteGalleryItem(), localeFromFormData(), moveCategory(), revalidateGallery(), updateCategory() (+6 more)
-
-### Community 199 - "sign-up/student/page.tsx"
-Cohesion: 0.19
-Nodes (11): react, react, renderWithProvider(), EmployerShellProps, Sidebar(), SidebarMenuSkeleton(), SidebarProvider(), SidebarRail() (+3 more)
+Cohesion: 0.35
+Nodes (11): addVideoItem(), createCategory(), deleteCategory(), deleteGalleryItem(), localeFromFormData(), moveCategory(), revalidateGallery(), updateCategory() (+3 more)
 
 ### Community 218 - "AtAGlanceSection.tsx"
-Cohesion: 0.15
-Nodes (19): bulkImportStudents(), bulkImportStudentsAction(), createStudentRecord(), CsvRowResult, isValidEmail(), localeFromFormData(), parseCsvLine(), mockAuditCreate (+11 more)
+Cohesion: 0.17
+Nodes (17): bulkImportStudents(), bulkImportStudentsAction(), createStudentRecord(), CsvRowResult, isValidEmail(), localeFromFormData(), parseCsvLine(), mockAuditCreate (+9 more)
 
 ## Knowledge Gaps
-- **777 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+772 more)
+- **786 isolated node(s):** `Platform`, `Users`, `Product Purpose`, `Positioning`, `Operating Context` (+781 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `dependencies` connect `dependencies` to `roleGate`, `sign-up/student/page.tsx`?**
-  _High betweenness centrality (0.071) - this node is a cross-community bridge._
-- **Why does `react` connect `sign-up/student/page.tsx` to `dependencies`?**
-  _High betweenness centrality (0.069) - this node is a cross-community bridge._
-- **Why does `SidebarProvider()` connect `sign-up/student/page.tsx` to `gallery/actions.ts`, `courses.test.ts`, `portal/page.tsx`, `search-form.tsx`?**
+- **Why does `dependencies` connect `dependencies` to `roleGate`, `portal/page.tsx`?**
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+- **Why does `react` connect `portal/page.tsx` to `dependencies`, `courses.test.ts`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
+- **Why does `requireRole()` connect `candidates/actions.ts` to `audit.ts`, `job-postings/actions.test.ts`, `candidates/actions.test.ts`, `BiodataForm.test.tsx`, `AtAGlanceSection.tsx`, `[id]/page.tsx`, `inviteToApply`, `portal-role-gating.test.tsx`, `actions.test.ts`, `student-dashboard.test.tsx`, `assignments/page.tsx`, `portal/page.tsx`, `candidates/actions.ts`, `courses.ts`, `timetable-progress/page.tsx`?**
   _High betweenness centrality (0.045) - this node is a cross-community bridge._
-- **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _777 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `Platform`, `Users`, `Product Purpose` to the rest of the system?**
+  _786 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**

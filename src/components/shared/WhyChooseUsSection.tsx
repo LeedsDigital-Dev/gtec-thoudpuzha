@@ -21,7 +21,7 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
   const cards = getLocalizedWhyCards(settings, locale);
 
   return (
-    <section aria-labelledby="why-choose-us-heading" className="py-16">
+    <section aria-labelledby="why-choose-us-heading" className="bg-muted/30 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
           id="why-choose-us-heading"
@@ -29,19 +29,24 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
         >
           {heading}
         </h2>
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => {
             const Icon = iconMap[card.icon];
             return (
               <div
                 key={card.id}
-                className="rounded-xl border border-border bg-card p-6 text-card-foreground shadow-sm"
+                className="group rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold">{card.title}</h3>
-                <p className="mt-2 text-muted-foreground">{card.description}</p>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight">
+                  {card.title}
+                </h3>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  {card.description}
+                </p>
               </div>
             );
           })}

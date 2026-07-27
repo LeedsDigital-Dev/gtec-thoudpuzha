@@ -37,21 +37,30 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <main>
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
-          <HeroSection t={{
-            badge: heroT("badge"),
-            headline: heroT("headline"),
-            subhead: heroT("subhead"),
-            applyNow: heroT("applyNow"),
-            whatsappUs: heroT("whatsappUs"),
-            callNow: heroT("callNow"),
-          }} />
-          <section id="enquiry" className="lg:sticky lg:top-24">
-            <EnquiryForm source="homepage-hero" courses={courses} />
-          </section>
-        </div>
-      </section>
+      <div className="relative overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,var(--color-primary)_/_4%,transparent_60%)]"
+          aria-hidden="true"
+        />
+        <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
+            <HeroSection
+              t={{
+                badge: heroT("badge"),
+                headline: heroT("headline"),
+                subhead: heroT("subhead"),
+                applyNow: heroT("applyNow"),
+                whatsappUs: heroT("whatsappUs"),
+                callNow: heroT("callNow"),
+              }}
+            />
+            <section id="enquiry" className="lg:sticky lg:top-24">
+              <EnquiryForm source="homepage-hero" courses={courses} />
+            </section>
+          </div>
+        </section>
+      </div>
+
       <AtAGlanceSection heading={atAGlanceT("heading")} settings={settings} />
       <NewsTeaserSection teaser={teaser} heading={newsT("heading")} viewAll={newsT("viewAll")} upcomingEventLabel={newsT("upcomingEvent")} locale={locale} />
       <AboutSection settings={settings} locale={locale} heading={aboutT("heading")} photoPlaceholder={aboutT("photoPlaceholder")} />

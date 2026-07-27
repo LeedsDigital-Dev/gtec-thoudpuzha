@@ -104,7 +104,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm"
+      className="flex flex-col gap-4 rounded-2xl border bg-card p-6 shadow-md"
       aria-label={`Enquiry form${source ? ` — ${source}` : ""}`}
       noValidate
     >

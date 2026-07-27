@@ -10,21 +10,21 @@ export async function CertificationPartnerStrip({ heading }: { heading: string }
   return (
     <section
       aria-label="Certification partners"
-      className="bg-muted/30 py-12"
+      className="border-y bg-muted/20 py-14"
     >
-      <div className="mx-auto max-w-6xl px-4">
-        <h2 className="mb-8 text-center text-lg font-semibold text-muted-foreground">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 className="mb-10 text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           {heading}
         </h2>
-        <div className="flex flex-wrap items-center justify-center gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
           {partners.map((partner) => {
             const img = (
               <Image
                 src={getMediaUrl(partner.logoUrl)}
                 alt={partner.name}
-                width={120}
-                height={48}
-                className="h-12 w-auto object-contain opacity-70 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
+                width={140}
+                height={56}
+                className="h-14 w-auto object-contain opacity-60 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
               />
             );
 

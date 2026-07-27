@@ -82,10 +82,10 @@ export async function Footer({ address }: { address?: string | null }) {
               {t("portals")}
             </h3>
             <ul className="space-y-2.5">
-              {portalLinks.map((link) => {
+              {portalLinks.map((link, i) => {
                 if (link.external) {
                   return (
-                    <li key={link.href}>
+                    <li key={`portal-${link.labelKey}-${i}`}>
                       <a
                         href={link.href}
                         target="_blank"
@@ -99,7 +99,7 @@ export async function Footer({ address }: { address?: string | null }) {
                   );
                 }
                 return (
-                  <li key={link.href}>
+                  <li key={`portal-${link.labelKey}-${i}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"

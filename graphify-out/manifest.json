@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
-    "mtime": 1785107403.135611,
-    "ast_hash": "815e7bd1394b9d01b166449942bd4507",
+    "mtime": 1785110911.0398834,
+    "ast_hash": "0ce75d9ef7e689a5f1988ec0f1eae4af",
     "semantic_hash": ""
   },
   "src/app/[locale]/account-setup-incomplete/page.tsx": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/layout.tsx": {
-    "mtime": 1785107403.1366112,
-    "ast_hash": "884a2a30626d371bacb393c91fd7680a",
+    "mtime": 1785110852.7894132,
+    "ast_hash": "c5f556bb5950c0c78b52ea78c6ffc1f6",
     "semantic_hash": ""
   },
   "src/app/[locale]/sign-in/[[...sign-in]]/page.tsx": {
@@ -315,13 +315,13 @@
     "semantic_hash": ""
   },
   "src/components/shared/EnquiryForm.tsx": {
-    "mtime": 1785107403.0126123,
-    "ast_hash": "81f2be493606024f1f572f92839eb108",
+    "mtime": 1785110994.1101484,
+    "ast_hash": "b882d4bd5c23b7251b01c5ad06c7ca86",
     "semantic_hash": ""
   },
   "src/components/shared/HeroSection.tsx": {
-    "mtime": 1785107402.9996123,
-    "ast_hash": "6d54df6d8384614825988abbcfdf963b",
+    "mtime": 1785110917.9348218,
+    "ast_hash": "ef87a273aade7678afb653818cf737cd",
     "semantic_hash": ""
   },
   "src/components/ui/input.tsx": {
@@ -400,8 +400,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/AboutSection.tsx": {
-    "mtime": 1785107403.0096123,
-    "ast_hash": "183e664349ac698c4e0db33cc6f8c418",
+    "mtime": 1785110931.780698,
+    "ast_hash": "edf83d0d1e27a78b0e068343bfc9084c",
     "semantic_hash": ""
   },
   "src/components/shared/AtAGlanceSection.test.tsx": {
@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/AtAGlanceSection.tsx": {
-    "mtime": 1785107403.029612,
-    "ast_hash": "d5c7e51eb209952aa1c42906c2552aa4",
+    "mtime": 1785110925.0207584,
+    "ast_hash": "3c8003c6a78e3499c9d06c9a6e96177d",
     "semantic_hash": ""
   },
   "src/components/shared/WhyChooseUsSection.test.tsx": {
@@ -420,8 +420,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/WhyChooseUsSection.tsx": {
-    "mtime": 1785107403.034612,
-    "ast_hash": "85f24ff0700dd8f3f708313632dfac5c",
+    "mtime": 1785110939.1316323,
+    "ast_hash": "afa161876cd8f5e12c54d99b9a38ae51",
     "semantic_hash": ""
   },
   "src/lib/site-settings.ts": {
@@ -440,8 +440,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/ContactSection.tsx": {
-    "mtime": 1785107402.9896126,
-    "ast_hash": "e08f877863262e3b6e504dbae5bdf5df",
+    "mtime": 1785110978.4942846,
+    "ast_hash": "ae199ba9f6a5c195c827b239333318fb",
     "semantic_hash": ""
   },
   "src/components/shared/Footer.test.tsx": {
@@ -450,8 +450,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/Footer.tsx": {
-    "mtime": 1785107403.0196123,
-    "ast_hash": "b9ab4373273b3ba8c4cffd2666658df8",
+    "mtime": 1785110990.4441803,
+    "ast_hash": "6546b33bfed58bccde1cb9ba2e991cac",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723033815_add_course_category_and_extend_course/migration.sql": {
@@ -565,8 +565,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/CertificationPartnerStrip.tsx": {
-    "mtime": 1785107403.0246122,
-    "ast_hash": "8244c03d41e423625bcdf676e0e811c5",
+    "mtime": 1785111000.0390968,
+    "ast_hash": "1dd8819fa2f14c8fa143f1343644a732",
     "semantic_hash": ""
   },
   "src/lib/certification-partners.ts": {
@@ -610,8 +610,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/NewsTeaserSection.tsx": {
-    "mtime": 1785107403.0166123,
-    "ast_hash": "065f007ee6a5c5b1b953d71d253fd9c0",
+    "mtime": 1785110949.0615442,
+    "ast_hash": "c8ea3cc6e32ba8e0455a51b0d95ca18a",
     "semantic_hash": ""
   },
   "src/lib/news-events.ts": {
@@ -635,8 +635,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/PlacementSupportSection.tsx": {
-    "mtime": 1785107402.9966123,
-    "ast_hash": "1f3851986d9c1c9a3e4ee58b785f2427",
+    "mtime": 1785110958.822458,
+    "ast_hash": "2d9cf3592cb91490e8265be02b27461d",
     "semantic_hash": ""
   },
   "src/__tests__/signup-flow.test.tsx": {

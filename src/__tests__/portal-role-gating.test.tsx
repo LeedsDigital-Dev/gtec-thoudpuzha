@@ -4,21 +4,8 @@ import { PortalRoleGate } from "@/components/shared/PortalRoleGate";
 import { Role } from "@/lib/auth";
 
 const mockAuth = vi.hoisted(() => vi.fn());
-
-const mockCreateRouteMatcher = vi.hoisted(
-  () => (patterns: string[]) => (req: { url: string }) => {
-    const pathname = new URL(req.url).pathname;
-    return patterns.some((pattern) => {
-      const segments = pattern.split("/").filter(Boolean);
-      const regexSegments = segments.map((segment) => {
-        if (segment === ":locale") return "(?:en|ml)";
-        if (segment === "(.*)") return ".*";
-        return segment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      });
-      return new RegExp(`^/${regexSegments.join("/")}$`).test(pathname);
-    });
-  },
-);
+const mockGetUser = vi.hoisted(() => vi.fn());
+const mockUserFindUnique = vi.hoisted(() => vi.fn());
 
 const mockClerkMiddleware = vi.hoisted(
   () =>
@@ -28,15 +15,12 @@ const mockClerkMiddleware = vi.hoisted(
         req: Request,
       ) => Promise<Response | undefined>,
     ) => {
-      // no-op — tests test handleRouteProtection directly
+      // no-op
     },
 );
 
-const mockGetUser = vi.hoisted(() => vi.fn());
-
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
-  createRouteMatcher: mockCreateRouteMatcher,
   clerkMiddleware: mockClerkMiddleware,
   clerkClient: () =>
     Promise.resolve({
@@ -44,6 +28,12 @@ vi.mock("@clerk/nextjs/server", () => ({
         getUser: mockGetUser,
       },
     }),
+}));
+
+vi.mock("@/lib/db", () => ({
+  prisma: {
+    user: { findUnique: mockUserFindUnique },
+  },
 }));
 
 vi.mock("next/navigation", () => ({
@@ -127,23 +117,26 @@ describe("PortalRoleGate — fine-grained role gating", () => {
     expect(html).not.toContain("not for your account type");
   });
 
-  test("6. regression: unauthenticated request to /en/admin still redirects (Sprint 0 protection)", async () => {
-    const { handleRouteProtection } = await import("@/middleware");
-    const { NextRequest } = await import("next/server");
+  test("6. regression: resource-based auth protects admin via requireRole in layout", async () => {
+    const { requireRole, Role } = await import("@/lib/auth");
 
-    const req = new NextRequest(new URL("https://example.com/en/admin"));
-    const result = handleRouteProtection(req, null, undefined);
-    expect(result?.status).toBe(307);
-    expect(result?.headers.get("Location")).toContain("/en/sign-in");
+    // unauthenticated — requireRole returns unauthenticated
+    mockAuth.mockResolvedValue({ userId: null, sessionClaims: {} });
+    const result1 = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+    expect(result1.authorized).toBe(false);
+    if (!result1.authorized) expect(result1.reason).toBe("unauthenticated");
 
-    // Staff still passes
-    const staffResult = handleRouteProtection(req, "user_4", "CENTRE_STAFF");
-    expect(staffResult).toBeNull();
+    // staff passes
+    mockAuth.mockResolvedValue({ userId: "user_4", sessionClaims: { metadata: { role: "CENTRE_STAFF" } } });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    const result2 = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+    expect(result2.authorized).toBe(true);
 
-    // Non-admin role still denied
-    const deniedResult = handleRouteProtection(req, "user_student", "STUDENT");
-    expect(deniedResult?.status).toBe(307);
-    expect(deniedResult?.headers.get("Location")).toContain("/en/forbidden");
+    // non-admin role denied
+    mockAuth.mockResolvedValue({ userId: "user_student", sessionClaims: { metadata: { role: "STUDENT" } } });
+    const result3 = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+    expect(result3.authorized).toBe(false);
+    if (!result3.authorized) expect(result3.reason).toBe("forbidden");
   });
 
   test("7. stale-session race: fetchRoleFromApi returns metadata role from Clerk API", async () => {
@@ -178,25 +171,22 @@ describe("PortalRoleGate — fine-grained role gating", () => {
     expect(role).toBeUndefined();
   });
 
-  test("10. handleRouteProtection lets authenticated users through when role is present (no-race path)", async () => {
-    const { handleRouteProtection } = await import("@/middleware");
-    const { NextRequest } = await import("next/server");
+  test("10. requireRole lets authenticated users through when role is present (no-race path)", async () => {
+    const { requireRole, Role } = await import("@/lib/auth");
 
-    // User has role directly — pre-fallback path
-    const req = new NextRequest(new URL("https://example.com/en/portal/student/biodata"));
-    const result = handleRouteProtection(req, "user_1", "JOB_SEEKER");
-    expect(result).toBeNull();
+    mockAuth.mockResolvedValue({ userId: "user_1", sessionClaims: { metadata: { role: "JOB_SEEKER" } } });
+    const result = await requireRole([Role.STUDENT, Role.JOB_SEEKER]);
+    expect(result.authorized).toBe(true);
+    if (result.authorized) expect(result.role).toBe("JOB_SEEKER");
   });
 
-  test("11. handleRouteProtection still blocks when role is absent (no-api-fallback, tests the middlewares pre-fallback check)", async () => {
-    const { handleRouteProtection } = await import("@/middleware");
-    const { NextRequest } = await import("next/server");
+  test("11. requireRole blocks when role is absent (simulates pre-fallback scenario)", async () => {
+    const { requireRole, Role } = await import("@/lib/auth");
 
-    // role comes in as undefined — this simulates what happens before
-    // fetchRoleFromApi is called in the middleware handler.
-    const req = new NextRequest(new URL("https://example.com/en/portal/jobs"));
-    const result = handleRouteProtection(req, "user_2", undefined);
-    expect(result?.status).toBe(307);
-    expect(result?.headers.get("Location")).toContain("/account-setup-incomplete");
+    mockAuth.mockResolvedValue({ userId: "user_2", sessionClaims: {} });
+    mockGetUser.mockResolvedValueOnce({ publicMetadata: {} });
+    const result = await requireRole([Role.STUDENT, Role.JOB_SEEKER]);
+    expect(result.authorized).toBe(false);
+    if (!result.authorized) expect(result.reason).toBe("no_role");
   });
 });

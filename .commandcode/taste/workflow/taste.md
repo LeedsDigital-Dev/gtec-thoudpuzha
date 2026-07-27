@@ -10,3 +10,5 @@
 - When an audit uncovers out-of-scope issues, flag them explicitly in the completion report rather than silently fixing them or staying quiet. Confidence: 0.75
 - Prefers planning before coding: enters plan mode, explores the codebase thoroughly across multiple dimensions, writes a detailed plan (with rationale, file lists, and verification steps) to ~/.commandcode/plans/, presents it for approval, then implements. Confidence: 0.80
 - Prefers parallel exploration: when researching a codebase before implementing, launches multiple independent exploration agents simultaneously to investigate different aspects (auth, layouts, components, i18n) rather than exploring sequentially. Confidence: 0.75
+- When media assets are missing from storage (R2/S3/CDN), prefers a silent graceful fallback (e.g., 1×1 transparent PNG) over returning a 404 error that clutters the console. Confidence: 0.65
+- When migrating a file to a new convention/location that may still have existing importers, keeps a thin backward-compatible re-export shim with a TODO comment to remove it later. Confidence: 0.70

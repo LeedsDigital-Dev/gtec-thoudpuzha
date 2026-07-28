@@ -67,13 +67,14 @@ export function CoursesDropdown({
       const currentIndex = Array.from(items).indexOf(
         document.activeElement as HTMLAnchorElement,
       );
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
         e.preventDefault();
-        const next = (currentIndex + 1) % items.length;
+        const next = currentIndex < 0 ? 0 : (currentIndex + 1) % items.length;
         items[next]?.focus();
-      } else if (e.key === "ArrowUp") {
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         e.preventDefault();
-        const prev = (currentIndex - 1 + items.length) % items.length;
+        const prev =
+          currentIndex < 0 ? 0 : (currentIndex - 1 + items.length) % items.length;
         items[prev]?.focus();
       }
     },
@@ -88,6 +89,8 @@ export function CoursesDropdown({
     );
   }
 
+  const useThreeColumns = courses.length >= 7;
+
   return (
     <div ref={containerRef} className="relative" onKeyDown={handleArrowKeys}>
       <button
@@ -100,13 +103,13 @@ export function CoursesDropdown({
             if (!open) setOpen(true);
           }
         }}
-        className="text-sm font-medium hover:text-primary transition-colors inline-flex items-center gap-1"
+        className="text-sm font-medium hover:text-primary transition-colors inline-flex items-center gap-1 py-2"
         aria-expanded={open}
         aria-haspopup="true"
       >
         {label}
         <svg
-          className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -120,31 +123,53 @@ export function CoursesDropdown({
         <div
           role="menu"
           aria-label={`${label} menu`}
-          className="absolute top-full left-0 mt-1 min-w-[220px] rounded-lg border border-border bg-card shadow-lg z-50 py-1"
+          className={`absolute top-full left-1/2 -translate-x-1/4 sm:-translate-x-1/3 md:-translate-x-1/2 mt-2 ${
+            useThreeColumns
+              ? "w-[90vw] max-w-[660px] md:w-[680px] lg:w-[720px]"
+              : "w-[85vw] max-w-[480px] md:w-[500px]"
+          } rounded-xl border border-border bg-white dark:bg-zinc-900 bg-background text-foreground p-4 shadow-2xl z-50 animate-in fade-in-50 zoom-in-95 duration-150`}
         >
-          <Link
-            href="/courses"
-            role="menuitem"
-            className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground border-b border-border"
-            tabIndex={-1}
-          >
-            All Courses
-          </Link>
-          {courses.map((course) => (
+          <div className="flex items-center justify-between border-b border-border/80 pb-2.5 mb-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {locale === "ml" ? "ലഭ്യമായ കോഴ്സുകൾ" : "Available Courses"} ({courses.length})
+            </span>
             <Link
-              key={course.slug}
-              href={`/courses/${course.slug}`}
+              href="/courses"
               role="menuitem"
-              className="block px-4 py-2 text-sm hover:bg-muted hover:text-primary transition-colors"
+              className="text-xs font-medium text-primary hover:underline inline-flex items-center gap-1 group"
               tabIndex={-1}
             >
-              {locale === "ml" && course.titleMl
-                ? course.titleMl
-                : course.titleEn}
+              <span>{locale === "ml" ? "എല്ലാ കോഴ്സുകളും" : "All Courses"}</span>
+              <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
             </Link>
-          ))}
+          </div>
+
+          <div
+            className={`grid gap-1.5 ${
+              useThreeColumns
+                ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+                : "grid-cols-1 sm:grid-cols-2"
+            }`}
+          >
+            {courses.map((course) => (
+              <Link
+                key={course.slug}
+                href={`/courses/${course.slug}`}
+                role="menuitem"
+                className="flex items-center rounded-md px-3 py-2 text-xs md:text-sm font-medium text-foreground/90 transition-colors hover:bg-accent hover:text-primary focus:bg-accent focus:text-primary focus:outline-none"
+                tabIndex={-1}
+              >
+                <span className="line-clamp-2">
+                  {locale === "ml" && course.titleMl
+                    ? course.titleMl
+                    : course.titleEn}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
   );
 }
+

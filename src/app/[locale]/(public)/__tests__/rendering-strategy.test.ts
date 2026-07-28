@@ -26,6 +26,11 @@ describe("Public route rendering strategy audit", () => {
     expect((mod as { revalidate: number }).revalidate).toBe(60);
   });
 
+  test("/contact uses ISR via revalidate export", async () => {
+    const mod = await import("../contact/page");
+    expect((mod as { revalidate: number }).revalidate).toBe(60);
+  });
+
   test("public layout declares revalidate=60 (checked via file scan)", async () => {
     // We check via file read rather than import to avoid transitive import issues
     // with next-intl dependencies in the vitest environment.

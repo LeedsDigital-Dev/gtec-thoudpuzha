@@ -82,6 +82,19 @@
     "sendMessage": "Send us a message",
     "close": "Close"
   },
+  "contactPage": {
+    "badge": "Get in Touch",
+    "title": "Contact G-TEC Education Thodupuzha",
+    "subtitle": "Have questions about our courses, admissions, or career opportunities? Reach out to us or visit our centre.",
+    "phoneTitle": "Phone & WhatsApp",
+    "phoneDesc": "Speak directly with our academic counselor",
+    "addressTitle": "Centre Address",
+    "hoursTitle": "Operating Hours",
+    "hoursText": "Monday – Saturday: 8:30 AM – 6:00 PM",
+    "enquiryTitle": "Send Us a Message",
+    "enquirySubtitle": "Fill out the form below and our team will get back to you shortly.",
+    "locationTitle": "Find Us on Google Maps"
+  },
   "enquiry": {
     "heading": "Apply Now",
     "description": "Fill in your details and we will get back to you shortly.",

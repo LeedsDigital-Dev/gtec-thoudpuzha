@@ -590,8 +590,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/[slug]/page.tsx": {
-    "mtime": 1785107403.1266112,
-    "ast_hash": "c5ea34883df8aa9815e9c3f1a33c0ccf",
+    "mtime": 1785277709.8128545,
+    "ast_hash": "69c9a4009a299425b073ec6b84c2c08d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/news/news.test.tsx": {

@@ -27,3 +27,7 @@
 - Adds `Co-authored-by: CommandCodeBot <noreply@commandcode.ai>` trailer to every commit. Confidence: 0.70
 - When reporting `git pull` results, provides a summary including the commit range, merge type (fast-forward vs merge), and a brief classification of what changed — not just a terse "Already up to date." Confidence: 0.60
 - Expects deployment plans to include a complete, structured listing of every environment variable and secret key — with the variable name, whether it's required, where to obtain the value, and any platform-specific notes — not just a narrative summary. Confidence: 0.70
+- When debugging a database connection issue, tests at progressively higher abstraction layers — raw CLI client (`psql`) first, then the native driver library (`pg`), then the ORM (`Prisma`) — to isolate whether the problem is at the protocol, driver, or ORM level. Confidence: 0.75
+- Keeps `.env` for production/infrastructure config and `.env.local` for local development overrides, respecting Next.js's env-file layering so that local dev doesn't accidentally point at production resources. Confidence: 0.70
+- After migrating data between databases, verifies row counts for every affected table — not just spot-checks a few — to confirm the migration is complete and consistent. Confidence: 0.75
+- When a code edit is recognized as incorrect, reverts it immediately rather than leaving it and fixing later — won't let a known-bad change sit in the file. Confidence: 0.70

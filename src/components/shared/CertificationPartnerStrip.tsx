@@ -1,9 +1,16 @@
 import Image from "next/image";
 import { getCertificationPartners } from "@/lib/certification-partners";
+import type { PublicCertificationPartner } from "@/lib/certification-partners";
 import { getMediaUrl } from "@/lib/media";
 
-export async function CertificationPartnerStrip({ heading }: { heading: string }) {
-  const partners = await getCertificationPartners();
+export async function CertificationPartnerStrip({
+  heading,
+  partners: providedPartners,
+}: {
+  heading: string;
+  partners?: PublicCertificationPartner[];
+}) {
+  const partners = providedPartners ?? (await getCertificationPartners());
 
   if (partners.length === 0) return null;
 

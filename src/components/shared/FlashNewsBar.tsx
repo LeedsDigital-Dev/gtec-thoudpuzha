@@ -1,11 +1,16 @@
 import { getLocale } from "next-intl/server";
 import { getActiveFlashNews } from "@/lib/flash-news";
+import type { PublicFlashNewsItem } from "@/lib/flash-news";
 
 type Locale = "en" | "ml";
 
-export async function FlashNewsBar() {
+export async function FlashNewsBar({
+  items: providedItems,
+}: {
+  items?: PublicFlashNewsItem[];
+} = {}) {
   const locale = (await getLocale()) as Locale;
-  const items = await getActiveFlashNews(locale);
+  const items = providedItems ?? (await getActiveFlashNews(locale));
 
   if (items.length === 0) {
     return null;

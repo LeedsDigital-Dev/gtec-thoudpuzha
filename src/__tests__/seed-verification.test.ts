@@ -16,6 +16,12 @@ import {
   CATEGORIES,
   GALLERY_CATEGORIES,
   NEWS_EVENTS,
+  FLASH_NEWS,
+  GALLERY_ITEMS,
+  PLACEMENT_SUPPORT_GALLERY_ITEMS,
+  SKILLS,
+  STUDENT_RECORDS,
+  SEED_JOB_POSTINGS,
 } from "../../prisma/seed-data";
 
 /* ─── Placeholder detection patterns ─── */
@@ -75,6 +81,12 @@ describe("Seed data integrity (no DB required)", () => {
     expect(CATEGORIES.length).toBeGreaterThan(0);
     expect(GALLERY_CATEGORIES.length).toBeGreaterThan(0);
     expect(NEWS_EVENTS.length).toBeGreaterThan(0);
+    expect(FLASH_NEWS.length).toBeGreaterThan(0);
+    expect(GALLERY_ITEMS.length).toBeGreaterThan(0);
+    expect(PLACEMENT_SUPPORT_GALLERY_ITEMS.length).toBeGreaterThan(0);
+    expect(SKILLS.length).toBeGreaterThan(0);
+    expect(STUDENT_RECORDS.length).toBeGreaterThan(0);
+    expect(SEED_JOB_POSTINGS.length).toBeGreaterThan(0);
   });
 });
 
@@ -187,6 +199,39 @@ describe.skipIf(!shouldVerifySeed)(
       expect(sample!.fullName).toBeTruthy();
       expect(sample!.phone).toBeTruthy();
       expect(sample!.phone).toMatch(/^\+?91?\d{10}$/);
+    });
+
+    test("5a. Flash news count matches seed data", async () => {
+      const count = await prisma.flashNewsItem.count();
+      expect(count).toBeGreaterThanOrEqual(FLASH_NEWS.length);
+    });
+
+    test("5b. Skills count matches seed data", async () => {
+      const count = await prisma.skill.count();
+      expect(count).toBeGreaterThanOrEqual(SKILLS.length);
+    });
+
+    test("5c. Gallery items exist across categories", async () => {
+      const count = await prisma.galleryItem.count();
+      const expectedItemCount =
+        GALLERY_ITEMS.length + PLACEMENT_SUPPORT_GALLERY_ITEMS.length;
+      expect(count).toBeGreaterThanOrEqual(expectedItemCount);
+    });
+
+    test("5d. Seed employer and job postings exist", async () => {
+      const employer = await prisma.employerProfile.findFirst({
+        where: { status: "APPROVED" },
+      });
+      expect(employer).toBeTruthy();
+
+      const approvedJobs = await prisma.jobPosting.count({
+        where: {
+          status: "APPROVED",
+          deletedAt: null,
+          applicationDeadline: { gt: new Date() },
+        },
+      });
+      expect(approvedJobs).toBeGreaterThan(0);
     });
   },
 );

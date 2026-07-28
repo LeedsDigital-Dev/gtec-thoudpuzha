@@ -170,8 +170,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/layout.tsx": {
-    "mtime": 1785107403.131611,
-    "ast_hash": "a5cafd25ee31dcb605018a4d61e9e0b8",
+    "mtime": 1785230439.944599,
+    "ast_hash": "6fc80e808e9cd5a5288865ab2fc82577",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/page.tsx": {
@@ -210,13 +210,13 @@
     "semantic_hash": ""
   },
   "src/lib/i18n/en.json": {
-    "mtime": 1785035016.5345347,
-    "ast_hash": "aeedcd0306df5b8580b8d1bb269ae51b",
+    "mtime": 1785230854.5007725,
+    "ast_hash": "8e3873b0df41e6debee8b775ac2c1e10",
     "semantic_hash": ""
   },
   "src/lib/i18n/ml.json": {
-    "mtime": 1785035023.1414635,
-    "ast_hash": "f2c29bc1ae0abaccffe33c119903d779",
+    "mtime": 1785230881.0215988,
+    "ast_hash": "a5b892aa11bb18ae967119db8612bed1",
     "semantic_hash": ""
   },
   "src/lib/i18n/navigation.ts": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/Header.tsx": {
-    "mtime": 1785107403.0106122,
-    "ast_hash": "c5d16a3a661bedc8cb7d1c824e1ba168",
+    "mtime": 1785230427.109691,
+    "ast_hash": "55cbb86dece900159ed60507dcb8741b",
     "semantic_hash": ""
   },
   "src/lib/site.ts": {
@@ -460,8 +460,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/courses/page.tsx": {
-    "mtime": 1785107403.152611,
-    "ast_hash": "1f012403d6d25ff20f7710d385f8c82a",
+    "mtime": 1785230301.3536136,
+    "ast_hash": "d98741a87263331fc9c78b95b1b685d9",
     "semantic_hash": ""
   },
   "src/lib/courses.test.ts": {
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "src/lib/courses.ts": {
-    "mtime": 1784778542.7151885,
-    "ast_hash": "66799d47917f287798d8d37c18853c3c",
+    "mtime": 1785230180.2405438,
+    "ast_hash": "7dfdc1a787448ec0facb8c402b077737",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -1525,8 +1525,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1785115150.8708744,
-    "ast_hash": "b6e0806646c0193ece1fd588689acfef",
+    "mtime": 1785230746.0464895,
+    "ast_hash": "0e57840ede2d4eff0b55bfd9b103421d",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1615,8 +1615,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/workflow/taste.md": {
-    "mtime": 1785113006.5315974,
-    "ast_hash": "ed03ba1aa524ba2f6137783ffde8cb6c",
+    "mtime": 1785231015.8317258,
+    "ast_hash": "7927bc6c004fe4f87aefe5b4bd7b74a0",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {
@@ -1687,6 +1687,71 @@
   "src/proxy.ts": {
     "mtime": 1785111713.1743772,
     "ast_hash": "246e1d52625a083435de3db565708095",
+    "semantic_hash": ""
+  },
+  "prisma/migrations/20260728091557_add_course_content_blocks/migration.sql": {
+    "mtime": 1785230157.8297215,
+    "ast_hash": "31e818c6f6a27526173eb3a08fb9d3ff",
+    "semantic_hash": ""
+  },
+  "src/__tests__/course-content-actions.test.ts": {
+    "mtime": 1785230771.4343204,
+    "ast_hash": "f0f9f54340d4fa054cc136eb9acc8e2b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/courses/[courseId]/content/actions.ts": {
+    "mtime": 1785230215.0712717,
+    "ast_hash": "e295888dfc1af913bf9cadae8ff4c11b",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/courses/[courseId]/content/content-tabs.tsx": {
+    "mtime": 1785230604.148449,
+    "ast_hash": "c296da65c66e4535e68a6e893b9803a5",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(admin)/admin/courses/[courseId]/content/page.tsx": {
+    "mtime": 1785230295.5316572,
+    "ast_hash": "9172e4a1eee9614ca8d3f1626fa57623",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/courses/[slug]/page.tsx": {
+    "mtime": 1785230352.4062343,
+    "ast_hash": "637c9d53141d366e4023d786682c3d4e",
+    "semantic_hash": ""
+  },
+  "src/app/[locale]/(public)/courses/page.tsx": {
+    "mtime": 1785230315.2595096,
+    "ast_hash": "8a7de6903f8bc91acd03e51b1aa23c0b",
+    "semantic_hash": ""
+  },
+  "src/components/courses/CourseCard.tsx": {
+    "mtime": 1785230324.8284383,
+    "ast_hash": "ceb7ef36936d1c6fba11d2064edf695d",
+    "semantic_hash": ""
+  },
+  "src/components/courses/CoursePageContent.tsx": {
+    "mtime": 1785230288.0277138,
+    "ast_hash": "42a0cf2038c2632d0766dc1bef637601",
+    "semantic_hash": ""
+  },
+  "src/components/shared/CoursesDropdown.tsx": {
+    "mtime": 1785230373.0500827,
+    "ast_hash": "966b54f881352a69b8ac63874801accc",
+    "semantic_hash": ""
+  },
+  "src/lib/course-content.schema.test.ts": {
+    "mtime": 1785230758.9254036,
+    "ast_hash": "f83988221177913c212ec65095c87720",
+    "semantic_hash": ""
+  },
+  "src/lib/course-content.schema.ts": {
+    "mtime": 1785230147.1738064,
+    "ast_hash": "2ee93b7803f12cb8eb29376475b754c0",
+    "semantic_hash": ""
+  },
+  "src/lib/course-content.types.ts": {
+    "mtime": 1785230133.9719124,
+    "ast_hash": "56b199d84e981ac4e0e9554dc0e3cc6a",
     "semantic_hash": ""
   }
 }

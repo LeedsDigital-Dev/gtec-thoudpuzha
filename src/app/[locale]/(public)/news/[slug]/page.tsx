@@ -9,8 +9,12 @@ import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const items = await getPublishedNews();
-  return items.map((item) => ({ slug: item.slug }));
+  try {
+    const items = await getPublishedNews();
+    return items.map((item) => ({ slug: item.slug }));
+  } catch {
+    return [];
+  }
 }
 
 interface NewsDetailPageProps {

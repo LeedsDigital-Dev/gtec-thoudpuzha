@@ -1525,8 +1525,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1785276322.663496,
-    "ast_hash": "9638a337471c972810b4f419699c0679",
+    "mtime": 1785276426.4270453,
+    "ast_hash": "ca3a1e6cc9e7a23d301de0c04e5b3896",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {

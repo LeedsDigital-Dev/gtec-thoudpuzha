@@ -7,18 +7,28 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { siteConfig } from "@/lib/site";
+import { CoursesDropdown } from "@/components/shared/CoursesDropdown";
 
 const navItems: { labelKey: string; href: string }[] = [
   { labelKey: "home", href: "/" },
   { labelKey: "about", href: "/about" },
-  { labelKey: "courses", href: "/courses" },
   { labelKey: "placement", href: "/placement" },
   { labelKey: "gallery", href: "/gallery" },
   { labelKey: "resources", href: "/portal/student" },
   { labelKey: "contact", href: "/contact" },
 ];
 
-export function Header() {
+interface CourseDropdownItem {
+  slug: string;
+  titleEn: string;
+  titleMl: string | null;
+}
+
+export function Header({
+  courses,
+}: {
+  courses?: CourseDropdownItem[];
+}) {
   const locale = useLocale();
   const t = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,7 +64,32 @@ export function Header() {
           className="hidden lg:flex items-center gap-6"
           aria-label="Primary navigation"
         >
-          {navItems.map((item) => (
+          {navItems.slice(0, 2).map((item) => (
+            <Link
+              key={item.href}
+              href={localeHref(item.href)}
+              className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+            >
+              {t(item.labelKey)}
+            </Link>
+          ))}
+
+          {courses && courses.length > 0 ? (
+            <CoursesDropdown
+              courses={courses}
+              label={t("courses")}
+              locale={locale}
+            />
+          ) : (
+            <Link
+              href={localeHref("/courses")}
+              className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+            >
+              {t("courses")}
+            </Link>
+          )}
+
+          {navItems.slice(2).map((item) => (
             <Link
               key={item.href}
               href={localeHref(item.href)}
@@ -143,7 +178,27 @@ export function Header() {
           aria-label="Mobile navigation"
         >
           <ul className="space-y-3">
-            {navItems.map((item) => (
+            {navItems.slice(0, 2).map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={localeHref(item.href)}
+                  className="block text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t(item.labelKey)}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href={localeHref("/courses")}
+                className="block text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t("courses")}
+              </Link>
+            </li>
+            {navItems.slice(2).map((item) => (
               <li key={item.href}>
                 <Link
                   href={localeHref(item.href)}

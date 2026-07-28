@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import type { Course, CourseCategory } from "@prisma/client";
+import type { CourseContent } from "@/lib/course-content.types";
 
 export type PublicCourse = Pick<
   Course,
@@ -17,6 +18,7 @@ export type PublicCourse = Pick<
   | "featured"
 > & {
   category: Pick<CourseCategory, "id" | "nameEn" | "nameMl"> | null;
+  contentBlocks: CourseContent | null;
 };
 
 export async function getPublishedCourses(): Promise<PublicCourse[]> {
@@ -31,7 +33,10 @@ export async function getPublishedCourses(): Promise<PublicCourse[]> {
   });
 
   return courses.map(
-    ({ syllabus: _syllabus, status: _status, ...rest }) => rest,
+    ({ syllabus: _syllabus, status: _status, contentBlocks, ...rest }) => ({
+      ...rest,
+      contentBlocks: contentBlocks as unknown as CourseContent | null,
+    }),
   );
 }
 

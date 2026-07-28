@@ -550,6 +550,13 @@
     "updateProfile": "Update Profile",
     "profileReady": "Your biodata is ready",
     "recentApplications": "Recent Applications",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "allCourses": "All Courses",
+    "enquireHeading": "Interested in this course?",
+    "enquireButton": "Submit Enquiry",
+    "benefitsHeading": "Benefits of the course",
+    "noCoursesAvailable": "No courses available at the moment. Check back soon.",
+    "exploreMoreCourses": "Explore More Courses",
+    "noContentPreview": "No content configured yet. Fill in the tabs above to build this page."
   }
 }

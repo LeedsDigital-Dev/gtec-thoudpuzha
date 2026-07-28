@@ -2,6 +2,7 @@ import { Header } from "@/components/shared/Header";
 import { FlashNewsBar } from "@/components/shared/FlashNewsBar";
 import { Footer } from "@/components/shared/Footer";
 import { getSiteSettings } from "@/lib/site-settings";
+import { getPublishedCourses } from "@/lib/courses";
 
 export const revalidate = 60;
 
@@ -18,9 +19,19 @@ export default async function PublicLayout({
     // SiteSettings not initialized yet — render footer without address
   }
 
+  const courses = await getPublishedCourses()
+    .then((c) =>
+      c.map(({ slug, titleEn, titleMl }) => ({
+        slug,
+        titleEn,
+        titleMl,
+      })),
+    )
+    .catch(() => []);
+
   return (
     <>
-      <Header />
+      <Header courses={courses} />
       <FlashNewsBar />
       {children}
       <Footer address={address} />

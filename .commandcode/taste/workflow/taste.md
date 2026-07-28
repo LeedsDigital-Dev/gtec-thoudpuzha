@@ -8,7 +8,18 @@
 - Before using a third-party component or API named in a spec, verify it actually exists in the installed version by checking node_modules type definitions — don't trust specs at face value about API surface. Confidence: 0.85
 - When new library imports break existing tests, add a global mock in the test setup file (setup.ts) rather than wrapping individual test files with providers. Confidence: 0.80
 - When an audit uncovers out-of-scope issues, flag them explicitly in the completion report rather than silently fixing them or staying quiet. Confidence: 0.75
-- Prefers planning before coding: enters plan mode, explores the codebase thoroughly across multiple dimensions, writes a detailed plan (with rationale, file lists, and verification steps) to ~/.commandcode/plans/, presents it for approval, then implements. Confidence: 0.80
+- Prefers planning before coding: enters plan mode, explores the codebase thoroughly across multiple dimensions, writes a detailed plan (with rationale, file lists, and verification steps) to ~/.commandcode/plans/, presents it for approval, then implements. Confidence: 0.85
 - Prefers parallel exploration: when researching a codebase before implementing, launches multiple independent exploration agents simultaneously to investigate different aspects (auth, layouts, components, i18n) rather than exploring sequentially. Confidence: 0.75
 - When media assets are missing from storage (R2/S3/CDN), prefers a silent graceful fallback (e.g., 1×1 transparent PNG) over returning a 404 error that clutters the console. Confidence: 0.65
 - When migrating a file to a new convention/location that may still have existing importers, keeps a thin backward-compatible re-export shim with a TODO comment to remove it later. Confidence: 0.70
+- Prefers conventional commits format (`type: summary`) with a descriptive body explaining the "why" of the change, not just the "what". Confidence: 0.80
+- Prefers staging specific files (`git add <file1> <file2>`) over bulk staging (`git add .` or `git add -A`). Confidence: 0.70
+- For multi-step tasks, uses structured todo lists (todo_write) to plan, track progress, and mark phases complete — not ad-hoc sequencing. Confidence: 0.75
+- Verifies build succeeds (`npm run build`) before committing deployment-readiness or infrastructure changes, not just after. Confidence: 0.70
+- Avoids importing devDependencies (e.g., dotenv) in files that run in production builds; relies on the platform's native env-var injection instead. Confidence: 0.70
+- When a deployment platform provides its own dynamic URL env var (e.g., VERCEL_URL), prefers it over a custom NEXT_PUBLIC_* variable for resolving the canonical app URL at runtime. Confidence: 0.65
+- Prefers JSON/JSONB columns (via Prisma `Json` type) for storing heterogeneous, user-editable content structures where different entities may have different sets of fields — the UI adapts to whatever data is present rather than enforcing a rigid schema. Confidence: 0.75
+- Demands runtime validation (Zod) on all user-submitted data, not just TypeScript compile-time types — "proper typechecks" means Zod schemas with min/max length, required fields, and discriminated unions. Confidence: 0.80
+- Prefers a "preview before publish" pattern for admin-edited content: the admin sees a live preview tab rendering the same public-facing component with in-memory state before saving/publishing to the database. Confidence: 0.70
+- Writes unit tests for validation schemas (valid, invalid, edge cases, boundary lengths) and server actions (success, auth rejection, malformed input, audit logging) for every new feature — not just integration/E2E tests. Confidence: 0.75
+- Prefers content-blocks architecture for pages with heterogeneous sections: each section (hero, course lists, benefits) is a typed block in a JSON array, and the rendering component iterates them, only rendering sections with non-empty data. Confidence: 0.70

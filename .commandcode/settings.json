@@ -21,7 +21,15 @@
       "Shell(mkdir:*)",
       "Shell(npx eslint src/lib/student-routes.ts src/lib/job-seeker-routes.ts src/lib/employer-routes.ts src/components/portal/student-sidebar.tsx src/components/portal/job-seeker-sidebar.tsx src/components/portal/employer-sidebar.tsx src/components/portal/student-shell.tsx src/components/portal/job-seeker-shell.tsx src/components/portal/employer-shell.tsx src/components/admin/admin-sidebar.tsx src/app/[locale]/(portal)/portal/employer/profile/page.tsx src/app/[locale]/(portal)/portal/employer/register/actions.ts src/app/[locale]/(portal)/portal/employer/register/registration-form.tsx src/app/[locale]/(portal)/portal/student/layout.tsx src/app/[locale]/(portal)/portal/job-seeker/layout.tsx src/app/[locale]/(portal)/portal/employer/layout.tsx src/app/[locale]/(portal)/portal/jobs/layout.tsx 2 >& 1)",
       "Shell(npx vitest run --reporter=verbose 2 >& 1)",
-      "Shell(npx tsc --noEmit --pretty 2 >& 1)"
+      "Shell(npx tsc --noEmit --pretty 2 >& 1)",
+      "Shell(npx next dev --port 3099 2 >& 1)",
+      "Shell(sleep:*)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add src/middleware.ts src/__tests__/i18n.test.tsx && git commit -F - <<'EOF' fix: remove deprecated middleware.ts, use proxy.ts exclusively Next.js 16.2.11 no longer allows both middleware.ts and proxy.ts to coexist. Deleted the compatibility re-export shim and pointed the test import directly at the canonical proxy.ts module. Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git commit -F - <<'EOF' chore: prepare app for Vercel deployment - Remove dotenv import from prisma.config.ts (dotenv is dev-only) - Add postinstall script with prisma generate for build-time client gen - Auto-detect Vercel deployment URL for job application emails, falling back to NEXT_PUBLIC_BASE_URL and localhost Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(npx prisma migrate dev --name add_course_content_blocks 2 >& 1)",
+      "Shell(npx next build 2 >& 1)",
+      "Shell(npx prisma generate 2 >& 1)",
+      "Shell(npx vitest run --reporter=verbose src/lib/course-content.schema.test.ts src/__tests__/course-content-actions.test.ts 2 >& 1)"
     ],
     "deny": [],
     "defaultMode": "default"

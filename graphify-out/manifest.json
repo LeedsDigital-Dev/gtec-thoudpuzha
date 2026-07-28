@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1784832780.0333183,
-    "ast_hash": "e5665bd02a46db291666fbd23e6424ab",
+    "mtime": 1785115051.9633691,
+    "ast_hash": "4133dfd7c584f56ca1d374c02f00edae",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/auth.test.tsx": {
-    "mtime": 1785107403.2006106,
-    "ast_hash": "15f8fdd0c647520f348159534966ea85",
+    "mtime": 1785112033.1919818,
+    "ast_hash": "5011907cf7f06e3bfbcd3660ae84f0d2",
     "semantic_hash": ""
   },
   "src/__tests__/setup.ts": {
@@ -114,19 +114,14 @@
     "ast_hash": "e03dee9aef1671a89e24a23387447d7d",
     "semantic_hash": ""
   },
-  "src/middleware.ts": {
-    "mtime": 1784864302.3094373,
-    "ast_hash": "3cff526a860cf3b98ae56d2fcd899688",
-    "semantic_hash": ""
-  },
   "src/types/clerk.d.ts": {
     "mtime": 1784722263.4767306,
     "ast_hash": "b3cc1430aa5ba499bfd632efc689c9f4",
     "semantic_hash": ""
   },
   "prisma.config.ts": {
-    "mtime": 1784724045.003317,
-    "ast_hash": "c9410c8647d08df29454165c64783cf4",
+    "mtime": 1785115035.8444426,
+    "ast_hash": "d57c1cab372627b2ac902f58326948c2",
     "semantic_hash": ""
   },
   "prisma/migrations/20260722122406_init/migration.sql": {
@@ -150,8 +145,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/i18n.test.tsx": {
-    "mtime": 1785107403.2066104,
-    "ast_hash": "6925ce070a691afd377a4cb942874809",
+    "mtime": 1785112337.7107346,
+    "ast_hash": "ffdbf4945644a400c48a74220ec531a7",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/page.tsx": {
@@ -450,8 +445,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/Footer.tsx": {
-    "mtime": 1785110990.4441803,
-    "ast_hash": "6546b33bfed58bccde1cb9ba2e991cac",
+    "mtime": 1785111466.1282773,
+    "ast_hash": "c5d2ed430ab4080361f95c3561f84ab7",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723033815_add_course_category_and_extend_course/migration.sql": {
@@ -520,8 +515,8 @@
     "semantic_hash": ""
   },
   "src/app/api/media/[...key]/route.ts": {
-    "mtime": 1784792347.468088,
-    "ast_hash": "44f74532ca5db8204df4b383d93d923b",
+    "mtime": 1785111483.4721422,
+    "ast_hash": "ffbb7d5dc87fec14d442ae6bc36ca602",
     "semantic_hash": ""
   },
   "src/components/shared/GalleryGrid.test.tsx": {
@@ -700,8 +695,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/portal-role-gating.test.tsx": {
-    "mtime": 1785107403.1926105,
-    "ast_hash": "0d303146333c137875fe43f5ce6e6569",
+    "mtime": 1785112017.9210947,
+    "ast_hash": "3e0bb804a46c598746e7e487cf063beb",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/layout.tsx": {
@@ -1175,8 +1170,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/candidates/actions.ts": {
-    "mtime": 1784939228.5630305,
-    "ast_hash": "467e2476846487cf6961306be22f137a",
+    "mtime": 1785115075.0932603,
+    "ast_hash": "87e5530fe89c598ac7ed9597ce4b54ed",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/candidates/page.tsx": {
@@ -1500,8 +1495,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/role-fallback.test.ts": {
-    "mtime": 1784864214.2712693,
-    "ast_hash": "f8a4e45cd868bad6cb8954095929d67f",
+    "mtime": 1785111830.696492,
+    "ast_hash": "85cefed598584d312f33e958f9d7e85e",
     "semantic_hash": ""
   },
   "src/lib/role-fallback.ts": {
@@ -1530,8 +1525,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1785035108.1485512,
-    "ast_hash": "841f7c0cc4d787ef25349519ca0e9d1c",
+    "mtime": 1785115150.8708744,
+    "ast_hash": "b6e0806646c0193ece1fd588689acfef",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1620,8 +1615,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/workflow/taste.md": {
-    "mtime": 1785035289.8556173,
-    "ast_hash": "0682d347208e4bb05db440231c2d0bdc",
+    "mtime": 1785113006.5315974,
+    "ast_hash": "ed03ba1aa524ba2f6137783ffde8cb6c",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {
@@ -1687,6 +1682,11 @@
   "PRODUCT.md": {
     "mtime": 1785105398.914796,
     "ast_hash": "1c4751074d4819b669fb35b7e7069b2a",
+    "semantic_hash": ""
+  },
+  "src/proxy.ts": {
+    "mtime": 1785111713.1743772,
+    "ast_hash": "246e1d52625a083435de3db565708095",
     "semantic_hash": ""
   }
 }

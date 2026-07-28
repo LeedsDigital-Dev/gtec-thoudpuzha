@@ -231,6 +231,12 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
                   </td>
                   <td className="border border-border px-3 py-2">
                     <div className="flex flex-col gap-2">
+                      <a
+                        href={`/${locale}/admin/courses/${course.id}/content`}
+                        className="text-xs text-primary hover:underline"
+                      >
+                        Edit Content
+                      </a>
                       {/* Upload cover image */}
                       <form action={uploadCourseImage} className="flex items-center gap-2">
                         <input type="hidden" name="courseId" value={course.id} />

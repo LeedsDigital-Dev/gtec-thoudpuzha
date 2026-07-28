@@ -36,6 +36,22 @@
     "photoPlaceholder": "Centre photo placeholder",
     "aboutUs": "About Us"
   },
+  "aboutPage": {
+    "badge": "25+ Years of Excellence",
+    "title": "About G-TEC Education Thodupuzha",
+    "subtitle": "Transforming careers with world-class computer education, multimedia, accounting, and soft skills training.",
+    "missionTitle": "Our Mission",
+    "missionText": "To empower students and job seekers with high-demand technical and professional skills, fostering career growth and global opportunity.",
+    "visionTitle": "Our Vision",
+    "visionText": "To remain the most trusted skill development center in Idukki, bridging academia and industry with hands-on, practical education.",
+    "valuesTitle": "Core Values",
+    "valuesText": "Practical Training, Certified Excellence, Student Success, and Ethical Learning.",
+    "exploreCourses": "Explore Courses",
+    "contactUs": "Contact Us",
+    "locationTitle": "Visit Our Centre in Thodupuzha",
+    "addressTitle": "Centre Address",
+    "getInTouch": "Get in Touch"
+  },
   "atAGlance": {
     "heading": "G-TEC at a Glance"
   },

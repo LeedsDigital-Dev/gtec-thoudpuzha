@@ -1,6 +1,6 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import createMiddleware from "next-intl/middleware";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/lib/i18n/routing";
 import { fetchRoleFromApi } from "@/lib/role-fallback";
 export { fetchRoleFromApi };
@@ -12,8 +12,7 @@ export default clerkMiddleware(async (_auth, req: NextRequest) => {
   if (intlResponse.status === 307 || intlResponse.status === 308) {
     return intlResponse;
   }
-  // Resource-based auth is handled in layouts and pages.
-  // No route-pattern gating here.
+  return NextResponse.next();
 });
 
 export const config = {

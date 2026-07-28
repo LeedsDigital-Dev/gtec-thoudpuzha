@@ -31,3 +31,6 @@
 - Keeps `.env` for production/infrastructure config and `.env.local` for local development overrides, respecting Next.js's env-file layering so that local dev doesn't accidentally point at production resources. Confidence: 0.70
 - After migrating data between databases, verifies row counts for every affected table — not just spot-checks a few — to confirm the migration is complete and consistent. Confidence: 0.75
 - When a code edit is recognized as incorrect, reverts it immediately rather than leaving it and fixing later — won't let a known-bad change sit in the file. Confidence: 0.70
+- After migrating away from a dependency across multiple files, performs a final codebase-wide grep sweep (matching the old package name/import path across all source files) to confirm zero remaining references before considering the migration complete. Confidence: 0.75
+- After npm install/uninstall operations, explicitly verifies the final dependency state in package.json (new packages present in the correct dep category, old packages absent) rather than trusting the npm CLI output alone. Confidence: 0.70
+- When a fork remote exists alongside origin, pushes commits to both remotes (not just origin) — user expects changes synced to both. Confidence: 0.75

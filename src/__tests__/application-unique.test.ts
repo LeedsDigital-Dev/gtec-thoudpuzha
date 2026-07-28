@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, test, beforeAll, afterAll } from "vitest";
 import { PrismaClient } from "@prisma/client";
-import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaNeonHttp } from "@prisma/adapter-neon";
 
 let prisma: PrismaClient;
 
@@ -11,7 +11,7 @@ beforeAll(() => {
     throw new Error("DATABASE_URL is not set — required for application-unique.test.ts");
   }
   prisma = new PrismaClient({
-    adapter: new PrismaNeon({ connectionString: testDbUrl }),
+    adapter: new PrismaNeonHttp(testDbUrl, {}),
   });
 });
 

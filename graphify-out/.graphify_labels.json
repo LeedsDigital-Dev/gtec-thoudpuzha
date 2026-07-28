@@ -54,6 +54,7 @@
   "52": "student-dashboard.test.tsx",
   "53": "courses.test.ts",
   "54": "assignments/page.tsx",
+  "55": "seed-verification.test.ts",
   "56": "post-vacancy/actions.test.ts",
   "57": "page.test.ts",
   "58": "courses.ts",

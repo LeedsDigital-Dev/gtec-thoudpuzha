@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
-import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaNeonHttp } from "@prisma/adapter-neon";
 import {
   CATEGORIES,
   COURSES,
@@ -19,7 +19,7 @@ import {
 
 
 const prisma = new PrismaClient({
-  adapter: new PrismaNeon({ connectionString: process.env.DATABASE_URL! }),
+  adapter: new PrismaNeonHttp(process.env.DATABASE_URL!, {}),
 });
 
 function slugFromName(name: string): string {

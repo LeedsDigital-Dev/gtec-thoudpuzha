@@ -12,7 +12,7 @@
 - Prefers parallel exploration: when researching a codebase before implementing, launches multiple independent exploration agents simultaneously to investigate different aspects (auth, layouts, components, i18n) rather than exploring sequentially. Confidence: 0.75
 - When media assets are missing from storage (R2/S3/CDN), prefers a silent graceful fallback (e.g., 1×1 transparent PNG) over returning a 404 error that clutters the console. Confidence: 0.65
 - When migrating a file to a new convention/location that may still have existing importers, keeps a thin backward-compatible re-export shim with a TODO comment to remove it later. Confidence: 0.70
-- Prefers conventional commits format (`type: summary`) with a descriptive body explaining the "why" of the change, not just the "what". Confidence: 0.80
+- Prefers conventional commits format (`type: summary`) with a descriptive body explaining the "why" of the change, not just the "what". Confidence: 0.85
 - Prefers staging specific files (`git add <file1> <file2>`) over bulk staging (`git add .` or `git add -A`). Confidence: 0.70
 - For multi-step tasks, uses structured todo lists (todo_write) to plan, track progress, and mark phases complete — not ad-hoc sequencing. Confidence: 0.75
 - Verifies build succeeds (`npm run build`) before committing deployment-readiness or infrastructure changes, not just after. Confidence: 0.70

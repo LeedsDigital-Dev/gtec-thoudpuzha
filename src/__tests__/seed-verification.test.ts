@@ -102,9 +102,9 @@ describe.skipIf(!shouldVerifySeed)(
 
     test.beforeAll(async () => {
       const { PrismaClient } = await import("@prisma/client");
-      const { PrismaNeonHttp } = await import("@prisma/adapter-neon");
+      const { PrismaNeon } = await import("@prisma/adapter-neon");
       prisma = new PrismaClient({
-        adapter: new PrismaNeonHttp(process.env.DATABASE_URL!, {}),
+        adapter: new PrismaNeon({ connectionString: process.env.DATABASE_URL! }),
       });
     });
 

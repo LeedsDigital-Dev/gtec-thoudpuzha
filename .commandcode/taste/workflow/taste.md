@@ -23,3 +23,7 @@
 - Prefers a "preview before publish" pattern for admin-edited content: the admin sees a live preview tab rendering the same public-facing component with in-memory state before saving/publishing to the database. Confidence: 0.70
 - Writes unit tests for validation schemas (valid, invalid, edge cases, boundary lengths) and server actions (success, auth rejection, malformed input, audit logging) for every new feature — not just integration/E2E tests. Confidence: 0.75
 - Prefers content-blocks architecture for pages with heterogeneous sections: each section (hero, course lists, benefits) is a typed block in a JSON array, and the rendering component iterates them, only rendering sections with non-empty data. Confidence: 0.70
+- Prefers idempotent seed scripts: uses `upsert` or `findFirst` + `update`/`create` so the seed is safe to run multiple times without duplicating data or throwing constraint errors — never delete-then-recreate. Confidence: 0.80
+- Adds `Co-authored-by: CommandCodeBot <noreply@commandcode.ai>` trailer to every commit. Confidence: 0.70
+- When reporting `git pull` results, provides a summary including the commit range, merge type (fast-forward vs merge), and a brief classification of what changed — not just a terse "Already up to date." Confidence: 0.60
+- Expects deployment plans to include a complete, structured listing of every environment variable and secret key — with the variable name, whether it's required, where to obtain the value, and any platform-specific notes — not just a narrative summary. Confidence: 0.70

@@ -99,7 +99,17 @@
       "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add graphify-out/ && git commit -F - <<'EOF' chore: update graphify metadata after build changes Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
       "Shell(node -e const n = require('@prisma/adapter-neon'); console.log(Object.keys(n)))",
       "Shell(node -e  try { const neon = require('@neondatabase/serverless'); const url = new URL(neon.neonConfig.fetchEndpoint || ''); console.log('default fetchEndpoint:', neon.neonConfig.fetchEndpoint); console.log('poolQueryViaFetch:', neon.neonConfig.poolQueryViaFetch); } catch(e) { console.log('Error:', e.message); }  2 >& 1)",
-      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' fix: revert to PrismaNeon (WebSocket) adapter PrismaNeonHttp internally uses neon.neon() which constructs a malformed HTTP API URL from the connection string hostname, causing ENOTFOUND on Netlify. Reverting to PrismaNeon's WebSocket driver which correctly connects to the database. The earlier [object ErrorEvent] was caused by the middleware returning undefined instead of NextResponse.next(), which was fixed in the previous commit — not by PrismaNeon itself. Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add -A && git commit -F - <<'EOF' fix: revert to PrismaNeon (WebSocket) adapter PrismaNeonHttp internally uses neon.neon() which constructs a malformed HTTP API URL from the connection string hostname, causing ENOTFOUND on Netlify. Reverting to PrismaNeon's WebSocket driver which correctly connects to the database. The earlier [object ErrorEvent] was caused by the middleware returning undefined instead of NextResponse.next(), which was fixed in the previous commit — not by PrismaNeon itself. Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "Shell(which:*)",
+      "Shell(npx netlify-cli --version 2 >& 1)",
+      "Shell(netlify:*)",
+      "Shell(cat:*)",
+      "Shell(curl -s -o /dev/null -w \"HTTP %{http_code} | Time: %{time_total}s | Size: %{size_download}\" https://gtecthodupuzha.netlify.app/en 2>&1)",
+      "Shell(curl -s -o /dev/null -w \"HTTP %{http_code} | Time: %{time_total}s\" https://gtecthodupuzha.netlify.app/en/courses 2>&1)",
+      "Shell(curl -s -o /dev/null -w \"HTTP %{http_code} | Time: %{time_total}s\" https://gtecthodupuzha.netlify.app/en/admin 2>&1)",
+      "Shell(curl -s -o /dev/null -w \"HTTP %{http_code} | Time: %{time_total}s\" https://gtecthodupuzha.netlify.app/en/contact 2>&1)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add .netlify && git commit -F - <<'EOF' chore: add netlify link state after CLI linking Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF git push origin test-deployment 2>&1 && git push fork test-deployment 2>&1)",
+      "Shell(cd /home/ubuntu/projects/gtec-thoudpuzha && git add src/app/\\[locale\\]/sign-up/\\[\\[...sign-up\\]\\]/page.tsx && git commit -F - <<'EOF' fix: redirect /sign-up to portal sign-up picker when no intent is set Previously Clerk's hosted <SignIn /> \"Don't have an account?\" link pointed to /sign-up which rendered Clerk's generic <SignUp /> component instead of the custom portal sign-up picker at /portal/sign-up. Now /sign-up without an intent parameter redirects to the portal picker, while /sign-up?intent=job_seeker and /sign-up?intent=employer still use Clerk's hosted component for the OAuth/email flow. Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)"
     ],
     "deny": [],
     "defaultMode": "default"

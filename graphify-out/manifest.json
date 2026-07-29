@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1785281449.7021663,
-    "ast_hash": "d4cff56c9e600a717a65605fef4b8d11",
+    "mtime": 1785282045.262762,
+    "ast_hash": "7c8219f1f59dfd13e7c8bbf0d341df3b",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -130,13 +130,13 @@
     "semantic_hash": ""
   },
   "src/__tests__/db.test.ts": {
-    "mtime": 1785281570.4427195,
-    "ast_hash": "40a88f7ec3b4b3811ae6fbec0f496457",
+    "mtime": 1785282073.193045,
+    "ast_hash": "8d792070d77eca3758ed4ee5da2d4854",
     "semantic_hash": ""
   },
   "src/lib/db.ts": {
-    "mtime": 1785281570.4427195,
-    "ast_hash": "8f452829a3fa5189624bf326e047823e",
+    "mtime": 1785282073.193045,
+    "ast_hash": "c69be352d9fa9cd14e278cb8c7d4a3f1",
     "semantic_hash": ""
   },
   "tests/README.md": {
@@ -200,8 +200,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/sign-up/[[...sign-up]]/page.tsx": {
-    "mtime": 1785107403.1856108,
-    "ast_hash": "b0a14a2e5f3f526febc57d43a21eda8a",
+    "mtime": 1785283252.0284412,
+    "ast_hash": "b0772220df9907df8e4e1e453f300b15",
     "semantic_hash": ""
   },
   "src/components/shared/LanguageSwitcher.tsx": {
@@ -620,8 +620,8 @@
     "semantic_hash": ""
   },
   "prisma/seed.ts": {
-    "mtime": 1785281570.4427195,
-    "ast_hash": "6f1c25960036d67ccc7269f48afe4a81",
+    "mtime": 1785282073.3170416,
+    "ast_hash": "77c8eb8ca8332f213ccdad0799888354",
     "semantic_hash": ""
   },
   "src/components/shared/PlacementSupportSection.test.tsx": {
@@ -1120,8 +1120,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/application-unique.test.ts": {
-    "mtime": 1785281570.4427195,
-    "ast_hash": "9653c473728f54e1a5b2fc06ca74ea90",
+    "mtime": 1785282073.193045,
+    "ast_hash": "6514e81319415ad1fed7bf9caa11fbe9",
     "semantic_hash": ""
   },
   "src/app/[locale]/(portal)/portal/employer/postings/[postingId]/applicants/actions.test.ts": {
@@ -1430,8 +1430,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/seed-verification.test.ts": {
-    "mtime": 1785281570.4427195,
-    "ast_hash": "7549e556878419eb30d247b4b85eaa39",
+    "mtime": 1785282073.193045,
+    "ast_hash": "c294f2620aae69613a66fb89aed32836",
     "semantic_hash": ""
   },
   "prisma/migrations/20260723182848_add_job_posting_rejection_reason/migration.sql": {
@@ -1525,8 +1525,8 @@
     "semantic_hash": ""
   },
   ".commandcode/settings.json": {
-    "mtime": 1785281707.696986,
-    "ast_hash": "688662263d719786df03104d2bf4de1e",
+    "mtime": 1785283355.791582,
+    "ast_hash": "191db943327281804186eb61c4ba8255",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/students/course-enrollment/actions.test.tsx": {
@@ -1615,8 +1615,8 @@
     "semantic_hash": ""
   },
   ".commandcode/taste/workflow/taste.md": {
-    "mtime": 1785280991.3917572,
-    "ast_hash": "864e5e3ea41f4a7e3b06781592800105",
+    "mtime": 1785282466.387692,
+    "ast_hash": "16210340b0640d040e177d640b92d41b",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/gallery/confirm-delete-form.tsx": {

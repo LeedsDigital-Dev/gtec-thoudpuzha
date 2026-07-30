@@ -310,7 +310,7 @@ export default async function NewsEventsPage({
                     </div>
 
                     <details className="pt-1 border-t">
-                      <summary className="cursor-pointer text-xs font-medium text-primary py-1">Edit Item Details</summary>
+                      <summary className="cursor-pointer text-xs font-medium text-primary py-1">Edit</summary>
                       <form action={updateNewsEvent} className="mt-2 space-y-2.5 border border-border rounded p-3 bg-muted/20 text-left">
                         <input type="hidden" name="id" value={item.id} />
                         <input type="hidden" name="locale" value={locale} />

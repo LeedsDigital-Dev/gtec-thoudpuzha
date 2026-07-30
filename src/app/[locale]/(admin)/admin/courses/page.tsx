@@ -409,7 +409,7 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
                     </form>
 
                     <details className="pt-1">
-                      <summary className="cursor-pointer text-xs font-medium text-primary">Edit Details & Delete</summary>
+                      <summary className="cursor-pointer text-xs font-medium text-primary">Edit</summary>
                       <form action={updateCourse} className="mt-2 space-y-2.5 border border-border rounded p-3 bg-muted/20 text-left">
                         <input type="hidden" name="id" value={course.id} />
                         <input type="hidden" name="locale" value={locale} />

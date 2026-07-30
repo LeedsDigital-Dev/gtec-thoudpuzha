@@ -1,6 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -84,6 +85,27 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
                 </SidebarMenuItem>
               );
             })}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup className="mt-auto">
+          <SidebarGroupLabel>Main Site</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <Link
+                href="/"
+                className={cn(
+                  "flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm text-sidebar-foreground/80",
+                  "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                  "outline-hidden focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                  "transition-[width,height,padding]",
+                  "[&_svg]:size-4 [&_svg]:shrink-0",
+                  "[&>span:last-child]:truncate",
+                )}
+              >
+                <Home />
+                <span>Back to Website</span>
+              </Link>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

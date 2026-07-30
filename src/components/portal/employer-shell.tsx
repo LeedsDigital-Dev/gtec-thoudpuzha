@@ -5,7 +5,9 @@ import {
   Building2,
   PlusCircle,
   Users,
+  Home,
 } from "lucide-react";
+import { Link } from "@/lib/i18n/navigation";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { EmployerSidebar } from "@/components/portal/employer-sidebar";
 import { PortalBottomNav } from "@/components/portal/portal-bottom-nav";
@@ -27,6 +29,16 @@ export function EmployerShell({ children }: EmployerShellProps) {
     <SidebarProvider defaultOpen>
       <EmployerSidebar />
       <main className="flex min-h-svh flex-1 flex-col bg-background pb-20 md:pb-0">
+        <div className="flex items-center justify-between border-b px-4 py-3 md:hidden bg-background">
+          <span className="font-semibold text-base">Employer Portal</span>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+          >
+            <Home className="size-3.5" />
+            Website Home
+          </Link>
+        </div>
         {children}
         <PortalBottomNav routes={TOP_EMPLOYER_ROUTES} />
       </main>

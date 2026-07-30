@@ -137,6 +137,8 @@
   "signUp": {
     "createAccount": "Create Your Account",
     "selectOption": "Select the option that best describes you",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
     "studentTitle": "I'm a G-TEC Thodupuzha student",
     "studentDesc": "Access your academic resources, timetable, and progress",
     "jobSeekerTitle": "I'm looking for a job",

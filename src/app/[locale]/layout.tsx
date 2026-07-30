@@ -38,7 +38,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider afterSignOutUrl={`/${locale}`}>
+    <ClerkProvider
+      signInUrl={`/${locale}/sign-in`}
+      signUpUrl={`/${locale}/portal/sign-up`}
+      afterSignOutUrl={`/${locale}`}
+    >
       <html
         lang={locale}
         className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}

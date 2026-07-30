@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useSignUp } from "@clerk/nextjs";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,9 @@ function isValidPassword(password: string): boolean {
 
 export default function StudentSignUpPage() {
   const { signUp } = useSignUp();
+  const locale = useLocale();
   const t = useTranslations("studentVerification");
+  const signUpT = useTranslations("signUp");
 
   const [step, setStep] = useState<Step>("form");
   const [studentId, setStudentId] = useState("");
@@ -241,13 +243,21 @@ export default function StudentSignUpPage() {
           </Button>
         </form>
 
-        <p className="text-center text-xs text-muted-foreground">
-          {t("noStudentId")}{" "}
-          <Link href="/contact" className="underline">
-            {t("contactCentre")}
-          </Link>
-          .
-        </p>
+        <div className="space-y-2 text-center text-xs text-muted-foreground">
+          <p>
+            {t("noStudentId")}{" "}
+            <Link href={`/${locale}/contact`} className="underline">
+              {t("contactCentre")}
+            </Link>
+            .
+          </p>
+          <p>
+            {signUpT("alreadyHaveAccount")}{" "}
+            <Link href={`/${locale}/sign-in`} className="font-semibold text-primary underline">
+              {signUpT("signIn")}
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

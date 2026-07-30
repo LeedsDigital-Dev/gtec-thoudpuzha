@@ -83,6 +83,16 @@ export default async function SignUpPickerPage({ params }: SignUpPickerPageProps
             </p>
           </Link>
         </div>
+
+        <div className="mt-8 text-center text-sm text-muted-foreground">
+          {t("alreadyHaveAccount")}{" "}
+          <Link
+            href={`/${locale}/sign-in`}
+            className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+          >
+            {t("signIn")}
+          </Link>
+        </div>
       </div>
     </div>
   );

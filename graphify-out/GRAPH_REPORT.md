@@ -1,16 +1,16 @@
 # Graph Report - gtec-thoudpuzha  (2026-07-30)
 
 ## Corpus Check
-- 354 files · ~145,791 words
+- 354 files · ~145,907 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1715 nodes · 2357 edges · 200 communities (145 shown, 55 thin omitted)
+- 1720 nodes · 2362 edges · 199 communities (145 shown, 54 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9db6aeff`
+- Built from commit: `0335f70a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -135,6 +135,7 @@
 - [[_COMMUNITY_EmployerModerationNotification.tsx|EmployerModerationNotification.tsx]]
 - [[_COMMUNITY_flash-newspage.test.tsx|flash-news/page.test.tsx]]
 - [[_COMMUNITY_no-raw-img.test.ts|no-raw-img.test.ts]]
+- [[_COMMUNITY_Community 142|Community 142]]
 - [[_COMMUNITY_NewsTeaserSection.tsx|NewsTeaserSection.tsx]]
 - [[_COMMUNITY_student-dashboard.test.tsx|student-dashboard.test.tsx]]
 - [[_COMMUNITY_portalstudentpage.tsx|portal/student/page.tsx]]
@@ -164,7 +165,6 @@
 - [[_COMMUNITY_Community 173|Community 173]]
 - [[_COMMUNITY_Community 174|Community 174]]
 - [[_COMMUNITY_Community 175|Community 175]]
-- [[_COMMUNITY_Community 176|Community 176]]
 - [[_COMMUNITY_job-seekerpage.test.tsx|job-seeker/page.test.tsx]]
 - [[_COMMUNITY_Community 179|Community 179]]
 - [[_COMMUNITY_Community 180|Community 180]]
@@ -214,7 +214,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (200 total, 55 thin omitted)
+## Communities (199 total, 54 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.21
@@ -233,8 +233,8 @@ Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 4 - "package.json"
-Cohesion: 0.08
-Nodes (31): student/actions.ts, finalizeStudentVerification(), lookupStudentRecord(), student/actions.test.ts, mockAuth, mockCandidateCreate, mockCheckRateLimit, mockClerkClient (+23 more)
+Cohesion: 0.06
+Nodes (42): register/actions.ts, RegistrationResult, submitEmployerRegistration(), register/actions.test.ts, mockAuth, mockCheckRateLimit, mockClerkClient, mockCreate (+34 more)
 
 ### Community 5 - "EnquiryForm.tsx"
 Cohesion: 0.06
@@ -269,8 +269,8 @@ Cohesion: 0.17
 Nodes (11): Accessibility & Inclusion, Brand Commitments, Capabilities and Constraints, Evidence on Hand, Operating Context, Platform, Positioning, Product (+3 more)
 
 ### Community 17 - "actions.test.ts"
-Cohesion: 0.20
-Nodes (8): site/actions.test.ts, mockFindFirst, mockLogAdminAction, mockRedirect, mockRequireRole, mockRevalidatePath, mockSiteSettingsUpdate, mockWhyCardUpdate
+Cohesion: 0.17
+Nodes (13): site/actions.ts, getNullableString(), getString(), localeFromFormData(), site/actions.test.ts, mockFindFirst, mockLogAdminAction, mockRedirect (+5 more)
 
 ### Community 20 - "taste.md"
 Cohesion: 0.67
@@ -433,16 +433,16 @@ Cohesion: 0.10
 Nodes (20): A0 — Admin Shell, A10 — Job Postings Moderation, A11 — Skills Taxonomy, A12 — Academic Resources, A13 — Enquiries, A14 — Audit Log, A15 — Timetable & Progress, A16 — Site Settings (Super Admin only) (+12 more)
 
 ### Community 72 - "[id]/actions.ts"
-Cohesion: 0.19
-Nodes (15): news-events/actions.ts, createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate (+7 more)
+Cohesion: 0.18
+Nodes (16): news-events/actions.ts, createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate (+8 more)
 
 ### Community 73 - "@types/react"
-Cohesion: 0.06
-Nodes (41): (portal)/layout.tsx, PortalLayout(), contact/page.tsx, ContactPage(), ContactPageProps, (public)/courses/page.tsx, CoursesPage(), CoursesPageProps (+33 more)
+Cohesion: 0.29
+Nodes (7): (portal)/layout.tsx, PortalLayout(), contact/page.tsx, ContactPage(), ContactPageProps, getSiteSettings(), siteConfig
 
 ### Community 74 - "ContactSection.tsx"
-Cohesion: 0.11
-Nodes (21): content/actions.ts, getCourseContent(), localeFromFormData(), saveCourseContent(), content/page.tsx, ContentPageProps, CourseContentPage(), BenefitsBlockSchema (+13 more)
+Cohesion: 0.17
+Nodes (15): content/actions.ts, getCourseContent(), localeFromFormData(), saveCourseContent(), content/page.tsx, ContentPageProps, CourseContentPage(), BenefitsBlockSchema (+7 more)
 
 ### Community 75 - "email.ts"
 Cohesion: 0.11
@@ -489,8 +489,8 @@ Cohesion: 0.20
 Nodes (9): Gallery Page Note, Image Optimization Audit, Key Improvements, LCP Measurement, Lighthouse / LCP Status, Performance Audit Log — Sprint 11, Task 4, Recommended Future Work (beyond sprint scope), Remaining Bottlenecks (+1 more)
 
 ### Community 94 - "scripts"
-Cohesion: 0.50
-Nodes (4): post-vacancy/actions.ts, ActionResult, submitVacancy(), PostVacancyForm()
+Cohesion: 0.29
+Nodes (7): ContactSection(), ModalOverlay(), socialIcons, baseSettings, mockCourses, useCloseOnEscape(), useFocusTrap()
 
 ### Community 96 - "(public)/page.tsx"
 Cohesion: 0.25
@@ -505,20 +505,20 @@ Cohesion: 0.18
 Nodes (8): config, intlMiddleware, getTsxFiles(), isTestFile(), mockAuth, mockAuthResult, mockClerkMiddleware, mockEvent
 
 ### Community 102 - "@vitejs/plugin-react"
-Cohesion: 0.13
-Nodes (22): profile/page.tsx, EmployerProfilePage(), ProfilePageProps, register/actions.ts, RegistrationResult, submitEmployerRegistration(), updateEmployerProfile(), register/page.tsx (+14 more)
+Cohesion: 0.09
+Nodes (32): post-vacancy/actions.ts, ActionResult, submitVacancy(), post-vacancy/page.tsx, PostVacancyPage(), PostVacancyForm(), profile/page.tsx, EmployerProfilePage() (+24 more)
 
 ### Community 103 - "[id]/actions.ts"
-Cohesion: 0.19
-Nodes (16): candidates/actions.ts, CandidateSearchFilters, CandidateSearchResult, EmployerJobPosting, InviteToApplyResult, mapResult(), searchCandidates(), candidates/page.tsx (+8 more)
+Cohesion: 0.15
+Nodes (20): candidates/actions.ts, CandidateSearchFilters, CandidateSearchResult, EmployerJobPosting, inviteToApply(), InviteToApplyResult, mapResult(), searchCandidates() (+12 more)
 
 ### Community 104 - "mobile-viewport-Mobile-vie-2ea25-ble-and-opens-nav-on-mobile-chromium/error-context.md"
-Cohesion: 0.70
-Nodes (5): site/actions.ts, getNullableString(), getString(), localeFromFormData(), updateSiteSettings()
+Cohesion: 0.29
+Nodes (7): EnquiryForm(), EnquiryFormProps, FormErrors, indianMobileRegex(), sanitizePhone(), MOCK_COURSES, EnquiryPayload
 
 ### Community 106 - "Community 106"
 Cohesion: 0.13
-Nodes (18): PostVacancyFormProps, EMPLOYEE_RANGES, RegistrationFormProps, SECTORS, JobsFilterProps, BiodataForm(), BiodataFormProps, JOB_TYPE_OPTIONS (+10 more)
+Nodes (20): PostVacancyFormProps, EMPLOYEE_RANGES, RegistrationForm(), RegistrationFormProps, SECTORS, JobsFilterProps, BiodataForm(), BiodataFormProps (+12 more)
 
 ### Community 107 - "mobile-viewport-Mobile-vie-eef14--visible-overflow-on-mobile-chromium/error-context.md"
 Cohesion: 0.28
@@ -529,12 +529,12 @@ Cohesion: 0.33
 Nodes (4): GoBackButton(), ForbiddenPageProps, metadata, REASON_DETAILS
 
 ### Community 110 - "Community 110"
-Cohesion: 0.24
-Nodes (11): post-vacancy/page.tsx, PostVacancyPage(), biodata/actions.ts, BiodataActionResult, BiodataFormData, saveBiodata(), submitBiodataForm(), biodata/page.tsx (+3 more)
+Cohesion: 0.22
+Nodes (7): BenefitsBlock, BenefitsItem, CourseContent, CourseContentBlock, CourseListBlock, CourseListItem, CourseWithCategory
 
 ### Community 111 - "Community 111"
-Cohesion: 0.18
-Nodes (9): PERMISSION_KEYS, PERMISSION_LABELS, complete-signup/page.tsx, job-seeker/layout.tsx, JobSeekerPortalLayout(), PermissionKey, RequirePermissionResult, RequireRoleResult (+1 more)
+Cohesion: 0.22
+Nodes (7): PERMISSION_KEYS, PERMISSION_LABELS, complete-signup/page.tsx, PermissionKey, RequirePermissionResult, RequireRoleResult, fetchRoleFromApi()
 
 ### Community 112 - "smoke-Multi-engine-smoke-t-779f6--a-gallery-image-is-clicked-chromium/error-context.md"
 Cohesion: 0.29
@@ -565,12 +565,12 @@ Cohesion: 0.47
 Nodes (5): formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem
 
 ### Community 125 - "Community 125"
-Cohesion: 0.38
-Nodes (12): skills-taxonomy/actions.ts, approveSkill(), deleteSkill(), localeFromFormData(), mergeSkill(), timetable-progress/actions.ts, addProgressEntry(), addTimetableEntry() (+4 more)
+Cohesion: 0.27
+Nodes (16): staff/actions.ts, deactivateStaff(), inviteStaff(), localeFromFormData(), reactivateStaff(), setStaffPermission(), timetable-progress/actions.ts, addProgressEntry() (+8 more)
 
 ### Community 131 - "[id]/page.tsx"
-Cohesion: 0.33
-Nodes (10): [id]/actions.ts, applyToJob(), ApplyButton(), ApplyButtonProps, [id]/page.tsx, JobDetailPage(), PageProps, isProfileComplete() (+2 more)
+Cohesion: 0.19
+Nodes (14): [id]/actions.ts, applyToJob(), [id]/actions.test.ts, mockAuth, mockCreate, mockFindUnique, mockRevalidatePath, ApplyButton() (+6 more)
 
 ### Community 133 - "course-content-actions.test.ts"
 Cohesion: 0.40
@@ -587,6 +587,10 @@ Nodes (6): AdminBottomNav(), AdminBottomNavProps, AdminShell(), AdminShellProps,
 ### Community 137 - "flash-news/page.test.tsx"
 Cohesion: 0.40
 Nodes (4): site/page.test.tsx, mockFindFirst, mockRedirect, mockRequireRole
+
+### Community 142 - "Community 142"
+Cohesion: 0.20
+Nodes (8): MockCourse, mockCourseCreate, mockCourseFindMany, mockCourseUpdate, mockLogAdminAction, mockStore, mockUploadFile, mockUserFindUnique
 
 ### Community 146 - "Findings"
 Cohesion: 0.33
@@ -633,20 +637,20 @@ Cohesion: 0.18
 Nodes (7): Sheet(), SheetContent(), SheetDescription(), SheetFooter(), SheetHeader(), SheetOverlay(), SheetTitle()
 
 ### Community 161 - "timetable-progress/page.tsx"
-Cohesion: 0.30
-Nodes (15): flash-news/actions.ts, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), staff/actions.ts (+7 more)
+Cohesion: 0.22
+Nodes (19): flash-news/actions.ts, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), skills-taxonomy/actions.ts (+11 more)
 
 ### Community 162 - "Community 162"
-Cohesion: 0.22
-Nodes (8): register/actions.test.ts, mockAuth, mockCheckRateLimit, mockClerkClient, mockCreate, mockFindUnique, mockGetClientIp, mockRedirect
+Cohesion: 0.32
+Nodes (6): (public)/courses/page.tsx, CoursesPage(), CoursesPageProps, CourseCard(), CourseCardProps, getPublishedCourses()
 
 ### Community 163 - "Community 163"
-Cohesion: 0.28
-Nodes (4): mockApprovedSkills, mockCourses, mockPendingSkill, CandidateProfileWithCompletion
+Cohesion: 0.33
+Nodes (3): mockApprovedSkills, mockCourses, mockPendingSkill
 
 ### Community 164 - "Community 164"
 Cohesion: 0.38
-Nodes (6): course-enrollment/actions.ts, enrollStudentInCourses(), localeFromFormData(), unenrollStudentFromCourse(), LogAdminActionInput, LogSystemActionInput
+Nodes (5): ContactSectionProps, CourseSelect(), CourseSelectProps, publishedCourses, PublicCourse
 
 ### Community 166 - "Community 166"
 Cohesion: 0.40
@@ -661,12 +665,12 @@ Cohesion: 0.40
 Nodes (3): JobPostingsPageProps, STATUS_COLORS, STATUS_LABELS
 
 ### Community 170 - "gallery/actions.ts"
-Cohesion: 0.38
-Nodes (12): gallery/actions.ts, addVideoItem(), createCategory(), deleteCategory(), deleteGalleryItem(), localeFromFormData(), moveCategory(), revalidateGallery() (+4 more)
+Cohesion: 0.45
+Nodes (11): gallery/actions.ts, addVideoItem(), createCategory(), deleteCategory(), deleteGalleryItem(), localeFromFormData(), moveCategory(), revalidateGallery() (+3 more)
 
 ### Community 171 - "Community 171"
-Cohesion: 0.40
-Nodes (5): [id]/actions.test.ts, mockAuth, mockCreate, mockFindUnique, mockRevalidatePath
+Cohesion: 0.33
+Nodes (4): adapter, CONTENT_BLOCKS, pool, prisma
 
 ### Community 175 - "Community 175"
 Cohesion: 0.13
@@ -681,21 +685,21 @@ Cohesion: 0.17
 Nodes (19): students/actions.ts, bulkImportStudents(), bulkImportStudentsAction(), createStudentRecord(), CsvRowResult, isValidEmail(), localeFromFormData(), parseCsvLine() (+11 more)
 
 ## Knowledge Gaps
-- **874 isolated node(s):** `AdminShellProps`, `AdminSidebarProps`, `TOP_EMPLOYER_ROUTES`, `EmployerShellProps`, `TOP_JOB_SEEKER_ROUTES` (+869 more)
+- **878 isolated node(s):** `allow`, `deny`, `defaultMode`, `workflow`, `pool` (+873 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **55 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **54 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `Community 154`, `Community 135`?**
-  _High betweenness centrality (0.033) - this node is a cross-community bridge._
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
 - **Why does `react` connect `Community 154` to `dependencies`, `courses.test.ts`?**
-  _High betweenness centrality (0.033) - this node is a cross-community bridge._
-- **Why does `Role` connect `flash-news/page.test.tsx` to `[id]/page.tsx`, `timetable-progress/page.tsx`, `news-events.test.ts`, `Community 164`, `gallery/actions.ts`, `FlashNewsBar.tsx`, `job-seeker/page.test.tsx`, `courses.ts`, `[id]/actions.ts`, `@types/react`, `ContactSection.tsx`, `portal-role-gating.test.tsx`, `AtAGlanceSection.tsx`, `content/actions.ts`, `scripts`, `@vitejs/plugin-react`, `[id]/actions.ts`, `mobile-viewport-Mobile-vie-2ea25-ble-and-opens-nav-on-mobile-chromium/error-context.md`, `Community 110`, `Community 111`, `Community 113`, `Community 125`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
-- **What connects `AdminShellProps`, `AdminSidebarProps`, `TOP_EMPLOYER_ROUTES` to the rest of the system?**
-  _874 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+- **Why does `Role` connect `flash-news/page.test.tsx` to `[id]/page.tsx`, `package.json`, `Community 142`, `actions.test.ts`, `timetable-progress/page.tsx`, `news-events.test.ts`, `gallery/actions.ts`, `FlashNewsBar.tsx`, `job-seeker/page.test.tsx`, `courses.ts`, `[id]/actions.ts`, `ContactSection.tsx`, `portal-role-gating.test.tsx`, `AtAGlanceSection.tsx`, `content/actions.ts`, `@vitejs/plugin-react`, `[id]/actions.ts`, `Community 111`, `Community 113`, `Community 125`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **What connects `allow`, `deny`, `defaultMode` to the rest of the system?**
+  _878 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**

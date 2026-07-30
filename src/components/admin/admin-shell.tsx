@@ -22,7 +22,7 @@ export function AdminShell({
     <SidebarProvider defaultOpen>
       <AdminSidebar isSuperAdmin={isSuperAdmin} permissions={permissions} />
       <main className="flex min-h-svh flex-1 flex-col bg-background pb-20 md:pb-0">
-        <div className="flex items-center justify-between border-b px-4 py-3 md:hidden bg-background">
+        <div className="sticky top-0 z-40 flex items-center justify-between border-b px-4 py-3 md:hidden bg-background/95 backdrop-blur-md">
           <span className="font-semibold text-base">Admin Portal</span>
           <Link
             href="/"

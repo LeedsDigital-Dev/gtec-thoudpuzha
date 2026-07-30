@@ -29,7 +29,7 @@ export function JobSeekerShell({ children }: JobSeekerShellProps) {
     <SidebarProvider defaultOpen>
       <JobSeekerSidebar />
       <main className="flex min-h-svh flex-1 flex-col bg-background pb-20 md:pb-0">
-        <div className="flex items-center justify-between border-b px-4 py-3 md:hidden bg-background">
+        <div className="sticky top-0 z-40 flex items-center justify-between border-b px-4 py-3 md:hidden bg-background/95 backdrop-blur-md">
           <span className="font-semibold text-base">Job Seeker Portal</span>
           <Link
             href="/"

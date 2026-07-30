@@ -31,6 +31,7 @@ export async function CertificationPartnerStrip({
                 alt={partner.name}
                 width={140}
                 height={56}
+                style={{ width: "auto" }}
                 className="h-14 w-auto object-contain opacity-60 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
               />
             );

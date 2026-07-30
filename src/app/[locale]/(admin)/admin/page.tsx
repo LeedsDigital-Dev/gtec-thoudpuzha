@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { requireRole, requirePermission, StaffPermissionKeys, Role } from "@/lib/auth";
+import { requireRole, getAllStaffPermissions, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { ADMIN_ROUTES, isRouteVisible, type AdminRoute } from "@/lib/admin-routes";
 
@@ -22,17 +22,20 @@ export default async function AdminDashboardPage({
 
   const isSuperAdmin = role === Role.SUPER_ADMIN;
 
-  const permissions = {
-    canEditCourses: (await requirePermission(StaffPermissionKeys.canEditCourses)).authorized,
-    canEditGallery: (await requirePermission(StaffPermissionKeys.canEditGallery)).authorized,
-    canEditCertificationPartners: (await requirePermission(StaffPermissionKeys.canEditCertificationPartners)).authorized,
-    canEditNewsEvents: (await requirePermission(StaffPermissionKeys.canEditNewsEvents)).authorized,
-    canEditFlashNews: (await requirePermission(StaffPermissionKeys.canEditFlashNews)).authorized,
-    canProvisionStudents: (await requirePermission(StaffPermissionKeys.canProvisionStudents)).authorized,
-    canApproveEmployers: (await requirePermission(StaffPermissionKeys.canApproveEmployers)).authorized,
-    canApproveJobPostings: (await requirePermission(StaffPermissionKeys.canApproveJobPostings)).authorized,
-    canModerateSkillsTaxonomy: (await requirePermission(StaffPermissionKeys.canModerateSkillsTaxonomy)).authorized,
-  };
+  // Super Admin gets all permissions; Centre Staff fetches in one query
+  const permissions = isSuperAdmin
+    ? ({
+        canEditCourses: true,
+        canEditGallery: true,
+        canEditCertificationPartners: true,
+        canEditNewsEvents: true,
+        canEditFlashNews: true,
+        canProvisionStudents: true,
+        canApproveEmployers: true,
+        canApproveJobPostings: true,
+        canModerateSkillsTaxonomy: true,
+      } as Record<string, boolean>)
+    : await getAllStaffPermissions(authResult.userId);
   const { canApproveEmployers, canApproveJobPostings, canModerateSkillsTaxonomy } = permissions;
 
   // Fetch counts and recent enquiries in parallel

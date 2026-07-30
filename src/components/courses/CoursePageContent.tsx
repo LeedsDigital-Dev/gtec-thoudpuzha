@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CourseContent, CourseListBlock } from "@/lib/course-content.types";
 
 interface CoursePageContentProps {
@@ -82,10 +83,11 @@ export function CoursePageContent({
       {/* Content Image */}
       {detailedImage && (
         <section className="flex justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={detailedImage}
             alt=""
+            width={800}
+            height={400}
             className="w-full max-w-full rounded-xl object-cover max-h-80 shadow-xs"
             loading="lazy"
           />

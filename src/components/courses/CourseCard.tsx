@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
+import { getMediaUrl } from "@/lib/media";
 
 interface CourseCardProps {
   slug: string;
@@ -30,13 +32,13 @@ export function CourseCard({
       className="group rounded-lg border border-border overflow-hidden bg-card hover:shadow-md transition-shadow"
     >
       {coverImageUrl ? (
-        <div className="h-48 overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={coverImageUrl}
+        <div className="relative h-48 overflow-hidden">
+          <Image
+            src={getMediaUrl(coverImageUrl)}
             alt={title}
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform"
-            loading="lazy"
+            fill
+            className="object-cover group-hover:scale-105 transition-transform"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
       ) : (

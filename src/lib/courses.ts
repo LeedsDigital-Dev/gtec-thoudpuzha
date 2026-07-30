@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "@/lib/db";
 import type { Course, CourseCategory } from "@prisma/client";
 import type { CourseContent } from "@/lib/course-content.types";
@@ -44,13 +45,34 @@ export type CourseWithCategory = Course & {
   category: CourseCategory | null;
 };
 
-export async function getCourseBySlug(
-  slug: string,
-): Promise<CourseWithCategory | null> {
-  const course = await prisma.course.findUnique({
-    where: { slug },
-    include: { category: true },
-  });
+export const getCourseBySlug = cache(
+  async (slug: string): Promise<CourseWithCategory | null> => {
+    const course = await prisma.course.findUnique({
+      where: { slug },
+      include: { category: true },
+    });
+    return course;
+  },
+);
 
-  return course;
+export async function getCourseSlugs(): Promise<string[]> {
+  const courses = await prisma.course.findMany({
+    where: { status: "PUBLISHED" },
+    select: { slug: true },
+  });
+  return courses.map((c) => c.slug);
+}
+
+export type RelatedCourse = Pick<Course, "slug" | "titleEn" | "titleMl" | "coverImageUrl">;
+
+export async function getRelatedCourses(
+  excludeSlug: string,
+  limit = 3,
+): Promise<RelatedCourse[]> {
+  return prisma.course.findMany({
+    where: { status: "PUBLISHED", slug: { not: excludeSlug } },
+    select: { slug: true, titleEn: true, titleMl: true, coverImageUrl: true },
+    take: limit,
+    orderBy: { createdAt: "desc" },
+  });
 }

@@ -157,3 +157,39 @@ export async function requirePermission(
 
   return { authorized: true, role, userId: session.userId };
 }
+
+/**
+ * Fetches all staff permissions in a single DB query.
+ * Super Admin should bypass this — they always have all permissions.
+ */
+export async function getAllStaffPermissions(
+  userId: string,
+): Promise<Record<PermissionKey, boolean>> {
+  const permission = await prisma.staffPermission.findUnique({
+    where: { userId },
+  });
+  if (!permission) {
+    return {
+      canEditCourses: false,
+      canEditGallery: false,
+      canEditCertificationPartners: false,
+      canEditNewsEvents: false,
+      canEditFlashNews: false,
+      canProvisionStudents: false,
+      canApproveEmployers: false,
+      canApproveJobPostings: false,
+      canModerateSkillsTaxonomy: false,
+    };
+  }
+  return {
+    canEditCourses: permission.canEditCourses,
+    canEditGallery: permission.canEditGallery,
+    canEditCertificationPartners: permission.canEditCertificationPartners,
+    canEditNewsEvents: permission.canEditNewsEvents,
+    canEditFlashNews: permission.canEditFlashNews,
+    canProvisionStudents: permission.canProvisionStudents,
+    canApproveEmployers: permission.canApproveEmployers,
+    canApproveJobPostings: permission.canApproveJobPostings,
+    canModerateSkillsTaxonomy: permission.canModerateSkillsTaxonomy,
+  };
+}

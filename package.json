@@ -10,8 +10,15 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "db:studio": "prisma studio",
-    "db:seed": "npx tsx prisma/seed.ts"
+    "test:e2e:flows": "playwright test tests/e2e/flows/",
+    "test:e2e:visitor": "playwright test tests/e2e/flows/visitor.spec.ts",
+    "test:e2e:student": "playwright test tests/e2e/flows/student.spec.ts",
+    "test:e2e:job-seeker": "playwright test tests/e2e/flows/job-seeker.spec.ts",
+    "test:e2e:employer": "playwright test tests/e2e/flows/employer.spec.ts",
+    "test:e2e:admin": "playwright test tests/e2e/flows/admin.spec.ts",
+    "db:seed": "npx tsx prisma/seed.ts",
+    "db:seed:e2e": "npx tsx tests/e2e/flows/seed-e2e.ts",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1093.0",
@@ -41,6 +48,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
+    "@clerk/backend": "^3.14.0",
+    "@clerk/testing": "^2.2.15",
     "@netlify/plugin-nextjs": "^5.15.13",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.3",

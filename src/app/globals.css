@@ -320,12 +320,12 @@
   html {
     @apply font-sans;
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
     width: 100%;
   }

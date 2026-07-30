@@ -31,7 +31,7 @@ export default async function PublicLayout({
     .catch(() => []);
 
   return (
-    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden flex flex-col">
+    <div className="relative min-h-screen w-full flex flex-col">
       <PreloaderCleanup />
       <Header courses={courses} />
       <FlashNewsBar />

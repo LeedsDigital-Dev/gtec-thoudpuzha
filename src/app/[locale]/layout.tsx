@@ -45,7 +45,7 @@ export default async function LocaleLayout({
     >
       <html
         lang={locale}
-        className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased max-w-full overflow-x-hidden`}
+        className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased max-w-full overflow-x-clip`}
       >
         <head>
           <script
@@ -54,7 +54,7 @@ export default async function LocaleLayout({
             }}
           />
         </head>
-        <body className="min-h-full flex flex-col w-full max-w-full overflow-x-hidden relative">
+        <body className="min-h-full flex flex-col w-full max-w-full overflow-x-clip relative">
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>

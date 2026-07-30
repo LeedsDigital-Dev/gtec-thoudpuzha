@@ -17,10 +17,14 @@ vi.mock("@/lib/i18n/navigation", () => ({
   redirect: vi.fn(),
 }));
 
-vi.mock("@/lib/utils", () => ({
-  cn: (...args: (string | undefined | null | false)[]) =>
-    args.filter(Boolean).join(" "),
-}));
+vi.mock("@/lib/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/utils")>();
+  return {
+    ...actual,
+    cn: (...args: (string | undefined | null | false)[]) =>
+      args.filter(Boolean).join(" "),
+  };
+});
 
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
 

@@ -14,17 +14,11 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { JOB_SEEKER_ROUTES, type PortalRoute } from "@/lib/job-seeker-routes";
-import { cn } from "@/lib/utils";
-
-function isRouteActive(route: PortalRoute, pathname: string): boolean {
-  if (route.href === "/portal/job-seeker") {
-    return pathname === "/portal/job-seeker" || pathname === "/portal/job-seeker/";
-  }
-  return pathname.startsWith(route.href);
-}
+import { cn, isRouteActive } from "@/lib/utils";
 
 export function JobSeekerSidebar() {
   const pathname = usePathname();
+  const allHrefs = JOB_SEEKER_ROUTES.map((r) => r.href);
 
   return (
     <Sidebar collapsible="icon" className="hidden md:flex">
@@ -53,7 +47,7 @@ export function JobSeekerSidebar() {
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
             {JOB_SEEKER_ROUTES.map((route) => {
-              const active = isRouteActive(route, pathname);
+              const active = isRouteActive(route.href, pathname, allHrefs);
 
               return (
                 <SidebarMenuItem key={route.href}>

@@ -14,17 +14,11 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { EMPLOYER_ROUTES, type PortalRoute } from "@/lib/employer-routes";
-import { cn } from "@/lib/utils";
-
-function isRouteActive(route: PortalRoute, pathname: string): boolean {
-  if (route.href === "/portal/employer") {
-    return pathname === "/portal/employer" || pathname === "/portal/employer/";
-  }
-  return pathname.startsWith(route.href);
-}
+import { cn, isRouteActive } from "@/lib/utils";
 
 export function EmployerSidebar() {
   const pathname = usePathname();
+  const allHrefs = EMPLOYER_ROUTES.map((r) => r.href);
 
   return (
     <Sidebar collapsible="icon" className="hidden md:flex">
@@ -53,7 +47,7 @@ export function EmployerSidebar() {
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
             {EMPLOYER_ROUTES.map((route) => {
-              const active = isRouteActive(route, pathname);
+              const active = isRouteActive(route.href, pathname, allHrefs);
 
               return (
                 <SidebarMenuItem key={route.href}>

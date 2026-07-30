@@ -17,18 +17,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn, isRouteActive } from "@/lib/utils";
 
 interface AdminBottomNavProps {
   isSuperAdmin: boolean;
   permissions: Partial<Record<PermissionKey, boolean>>;
-}
-
-function isRouteActive(route: AdminRoute, pathname: string): boolean {
-  if (route.href === "/admin") {
-    return pathname === "/admin" || pathname === "/admin/";
-  }
-  return pathname.startsWith(route.href);
 }
 
 export function AdminBottomNav({
@@ -41,6 +34,7 @@ export function AdminBottomNav({
   const visibleRoutes = ADMIN_ROUTES.filter((route) =>
     isRouteVisible(route, isSuperAdmin, permissions),
   );
+  const allHrefs = visibleRoutes.map((r) => r.href);
 
   // Preferred primary routes for the bottom bar
   const preferredHrefs = ["/admin", "/admin/students", "/admin/courses", "/admin/enquiries"];
@@ -61,7 +55,7 @@ export function AdminBottomNav({
     >
       <div className="flex h-16 items-center justify-around px-1">
         {primaryRoutes.map((route) => {
-          const active = isRouteActive(route, pathname);
+          const active = isRouteActive(route.href, pathname, allHrefs);
           return (
             <Link
               key={route.href}
@@ -86,7 +80,7 @@ export function AdminBottomNav({
               "flex flex-col items-center justify-center gap-1 flex-1 h-full min-w-0 px-1 text-xs",
               "text-muted-foreground transition-colors hover:text-foreground",
               visibleRoutes.some(
-                (r) => !primaryRoutes.includes(r) && isRouteActive(r, pathname),
+                (r) => !primaryRoutes.includes(r) && isRouteActive(r.href, pathname, allHrefs),
               ) && "font-semibold text-primary",
             )}
           >
@@ -103,7 +97,7 @@ export function AdminBottomNav({
 
             <div className="grid grid-cols-1 gap-1 py-2">
               {visibleRoutes.map((route) => {
-                const active = isRouteActive(route, pathname);
+                const active = isRouteActive(route.href, pathname, allHrefs);
                 return (
                   <Link
                     key={route.href}

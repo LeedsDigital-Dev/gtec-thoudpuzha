@@ -2,7 +2,7 @@
 
 import { UserButton } from "@clerk/nextjs";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { cn } from "@/lib/utils";
+import { cn, isRouteActive } from "@/lib/utils";
 import type { PortalRoute } from "@/lib/student-routes";
 
 interface PortalBottomNavProps {
@@ -11,13 +11,7 @@ interface PortalBottomNavProps {
 
 export function PortalBottomNav({ routes }: PortalBottomNavProps) {
   const pathname = usePathname();
-
-  function isRouteActive(route: PortalRoute): boolean {
-    if (route.href === routes[0].href) {
-      return pathname === route.href || pathname === route.href + "/";
-    }
-    return pathname.startsWith(route.href);
-  }
+  const allHrefs = routes.map((r) => r.href);
 
   return (
     <nav
@@ -26,7 +20,7 @@ export function PortalBottomNav({ routes }: PortalBottomNavProps) {
     >
       <div className="flex h-16 items-center justify-around px-1">
         {routes.map((route) => {
-          const active = isRouteActive(route);
+          const active = isRouteActive(route.href, pathname, allHrefs);
           return (
             <Link
               key={route.href}

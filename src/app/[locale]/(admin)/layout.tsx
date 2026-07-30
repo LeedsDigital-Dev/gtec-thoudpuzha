@@ -14,7 +14,7 @@ export default async function AdminLayout({
 
   const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
-    redirect(`/${locale}/forbidden`);
+    redirect(`/${locale}/forbidden?reason=${authResult.reason}&from=admin`);
   }
 
   const { role, userId } = authResult;

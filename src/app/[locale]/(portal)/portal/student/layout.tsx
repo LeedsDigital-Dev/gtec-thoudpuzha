@@ -26,7 +26,7 @@ export default async function StudentPortalLayout({
     if (authResult.reason === "no_role") {
       redirect(`/${locale}/account-setup-incomplete`);
     }
-    redirect(`/${locale}/forbidden`);
+    redirect(`/${locale}/forbidden?reason=${authResult.reason}&from=student-portal`);
   }
 
   if (authResult.role === Role.STUDENT) {

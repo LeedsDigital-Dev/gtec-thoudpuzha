@@ -259,12 +259,12 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                     !item.active || isExpired(item.expiresAt) ? "opacity-75 bg-muted/20" : ""
                   }`}
                 >
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm block">{item.textEn}</span>
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">{item.textEn}</span>
                       {item.textMl && <span className="text-xs text-muted-foreground block">ML: {item.textMl}</span>}
                     </div>
-                    <form action={toggleFlashNewsActive}>
+                    <form action={toggleFlashNewsActive} className="shrink-0">
                       <input type="hidden" name="id" value={item.id} />
                       <input type="hidden" name="active" value={String(!item.active)} />
                       <input type="hidden" name="locale" value={locale} />
@@ -272,6 +272,7 @@ export default async function FlashNewsPage({ params }: FlashNewsPageProps) {
                         type="submit"
                         size="xs"
                         variant={item.active ? "default" : "outline"}
+                        className="shrink-0 whitespace-nowrap text-xs font-semibold uppercase tracking-wider"
                       >
                         {item.active ? "Active" : "Inactive"}
                       </Button>

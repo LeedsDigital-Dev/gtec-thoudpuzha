@@ -314,13 +314,13 @@ export default async function JobPostingsPage({
             <div className="space-y-3 mt-4 md:hidden">
               {postings.map((jp) => (
                 <div key={jp.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm block">{jp.title}</span>
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">{jp.title}</span>
                       <span className="text-xs text-muted-foreground">{jp.employer.companyName}</span>
                     </div>
                     <span
-                      className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
+                      className={`shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-semibold uppercase tracking-wider ${
                         isAutoPublishedView
                           ? STATUS_COLORS["AUTO_PUBLISHED"]
                           : STATUS_COLORS[jp.status] || STATUS_COLORS["PENDING"]

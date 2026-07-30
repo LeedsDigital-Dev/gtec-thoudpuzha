@@ -252,12 +252,11 @@ export default async function NewsEventsPage({
             <div className="space-y-3 mt-4 md:hidden">
               {items.map((item) => (
                 <div key={item.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm block">{item.titleEn}</span>
-                      <span className="text-xs font-mono text-muted-foreground">ID: {item.id}</span>
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">{item.titleEn}</span>
                     </div>
-                    <span className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${item.publishedAt ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
+                    <span className={`shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-semibold uppercase tracking-wider ${item.publishedAt ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
                       {item.publishedAt ? "Published" : "Draft"}
                     </span>
                   </div>

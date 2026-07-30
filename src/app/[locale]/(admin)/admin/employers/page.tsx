@@ -285,7 +285,7 @@ export default async function EmployersPage({
                       <span className="text-xs text-muted-foreground">{ep.contactPersonName}</span>
                     </div>
                     <span
-                      className={`inline-block shrink-0 rounded px-2 py-0.5 text-xs font-medium ${
+                      className={`shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-semibold uppercase tracking-wider ${
                         ep.status === "APPROVED"
                           ? "bg-primary/10 text-primary"
                           : ep.status === "REJECTED"

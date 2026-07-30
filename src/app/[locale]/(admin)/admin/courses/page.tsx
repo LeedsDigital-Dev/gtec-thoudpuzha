@@ -372,12 +372,11 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
             <div className="space-y-3 mt-4 md:hidden">
               {courses.map((course) => (
                 <div key={course.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm block">{course.titleEn}</span>
-                      <span className="text-[11px] font-mono text-muted-foreground">/{course.slug}</span>
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">{course.titleEn}</span>
                     </div>
-                    <span className="rounded bg-primary/10 text-primary px-2 py-0.5 text-xs font-medium">
+                    <span className="shrink-0 whitespace-nowrap rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary">
                       {course.status}
                     </span>
                   </div>

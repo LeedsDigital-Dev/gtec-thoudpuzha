@@ -227,9 +227,9 @@ export default async function AcademicResourcesPage({ params }: Props) {
             <div className="space-y-3 mt-4 md:hidden">
               {resources.map((r) => (
                 <div key={r.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm block">
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">
                         {r.type === "LECTURE" && r.embedUrl ? (
                           <a href={r.embedUrl} target="_blank" rel="noopener noreferrer" className="text-primary underline">
                             {r.title}
@@ -244,7 +244,7 @@ export default async function AcademicResourcesPage({ params }: Props) {
                       </span>
                       <span className="text-xs text-muted-foreground">{r.course.titleEn}</span>
                     </div>
-                    <span className="rounded bg-primary/10 text-primary px-2 py-0.5 text-xs font-medium">
+                    <span className="shrink-0 whitespace-nowrap rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary">
                       {TYPE_LABELS[r.type] || r.type}
                     </span>
                   </div>

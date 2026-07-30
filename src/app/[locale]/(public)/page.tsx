@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { AboutSection } from "@/components/shared/AboutSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
-import { ContactSection } from "@/components/shared/ContactSection";
 import { PlacementSupportSection } from "@/components/shared/PlacementSupportSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
 import type { Locale } from "@/lib/site-settings";
@@ -17,6 +17,16 @@ import {
 } from "@/lib/data-cache";
 import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
 
+const ContactSection = dynamic(
+  () =>
+    import("@/components/shared/ContactSection").then(
+      (mod) => mod.ContactSection,
+    ),
+  {
+    loading: () => <div className="h-96 bg-muted/40" />,
+  },
+);
+
 interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
@@ -27,37 +37,25 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeStr } = await params;
   const locale = localeStr as Locale;
 
-  const [
-    settings,
-    courses,
-    teaser,
-    placementData,
-    certPartners,
-  ] = await Promise.all([
-    getCachedSiteSettings(),
-    getCachedPublishedCourses(),
-    getCachedHomepageTeaser(),
-    getCachedPlacementGalleryData(),
-    getCachedCertificationPartners(),
-  ]);
+  const [settings, courses, teaser, placementData, certPartners] =
+    await Promise.all([
+      getCachedSiteSettings(),
+      getCachedPublishedCourses(),
+      getCachedHomepageTeaser(),
+      getCachedPlacementGalleryData(),
+      getCachedCertificationPartners(),
+    ]);
 
-  const [
-    heroT,
-    aboutT,
-    atAGlanceT,
-    whyT,
-    placementT,
-    newsT,
-    certT,
-  ] = await Promise.all([
-    getTranslations({ locale, namespace: "hero" }),
-    getTranslations({ locale, namespace: "about" }),
-    getTranslations({ locale, namespace: "atAGlance" }),
-    getTranslations({ locale, namespace: "whyChooseUs" }),
-    getTranslations({ locale, namespace: "placementSupport" }),
-    getTranslations({ locale, namespace: "newsTeaser" }),
-    getTranslations({ locale, namespace: "certPartners" }),
-  ]);
+  const [heroT, aboutT, atAGlanceT, whyT, placementT, newsT, certT] =
+    await Promise.all([
+      getTranslations({ locale, namespace: "hero" }),
+      getTranslations({ locale, namespace: "about" }),
+      getTranslations({ locale, namespace: "atAGlance" }),
+      getTranslations({ locale, namespace: "whyChooseUs" }),
+      getTranslations({ locale, namespace: "placementSupport" }),
+      getTranslations({ locale, namespace: "newsTeaser" }),
+      getTranslations({ locale, namespace: "certPartners" }),
+    ]);
 
   return (
     <main>
@@ -85,12 +83,41 @@ export default async function HomePage({ params }: HomePageProps) {
         </section>
       </div>
 
-      <AtAGlanceSection heading={atAGlanceT("heading")} settings={settings} />
-      <NewsTeaserSection teaser={teaser} heading={newsT("heading")} viewAll={newsT("viewAll")} upcomingEventLabel={newsT("upcomingEvent")} locale={locale} />
-      <AboutSection settings={settings} locale={locale} heading={aboutT("heading")} photoPlaceholder={aboutT("photoPlaceholder")} />
-      <WhyChooseUsSection heading={whyT("heading")} settings={settings} locale={locale} />
-      <CertificationPartnerStrip heading={certT("heading")} partners={certPartners} />
-      <PlacementSupportSection data={placementData} heading={placementT("heading")} viewFullGallery={placementT("viewFullGallery")} ctaHeading={placementT("ctaHeading")} ctaText={placementT("ctaText")} viewVacancies={placementT("viewVacancies")} hiringCta={placementT("hiringCta")} />
+      <AtAGlanceSection
+        heading={atAGlanceT("heading")}
+        settings={settings}
+      />
+      <NewsTeaserSection
+        teaser={teaser}
+        heading={newsT("heading")}
+        viewAll={newsT("viewAll")}
+        upcomingEventLabel={newsT("upcomingEvent")}
+        locale={locale}
+      />
+      <AboutSection
+        settings={settings}
+        locale={locale}
+        heading={aboutT("heading")}
+        photoPlaceholder={aboutT("photoPlaceholder")}
+      />
+      <WhyChooseUsSection
+        heading={whyT("heading")}
+        settings={settings}
+        locale={locale}
+      />
+      <CertificationPartnerStrip
+        heading={certT("heading")}
+        partners={certPartners}
+      />
+      <PlacementSupportSection
+        data={placementData}
+        heading={placementT("heading")}
+        viewFullGallery={placementT("viewFullGallery")}
+        ctaHeading={placementT("ctaHeading")}
+        ctaText={placementT("ctaText")}
+        viewVacancies={placementT("viewVacancies")}
+        hiringCta={placementT("hiringCta")}
+      />
       <ContactSection settings={settings} courses={courses} />
     </main>
   );

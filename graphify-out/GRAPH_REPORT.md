@@ -1,16 +1,16 @@
-# Graph Report - gtec-thoudpuzha  (2026-07-30)
+# Graph Report - gtec-thoudpuzha  (2026-07-31)
 
 ## Corpus Check
-- 359 files · ~147,152 words
+- 359 files · ~219,167 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1725 nodes · 2128 edges · 210 communities (150 shown, 60 thin omitted)
+- 2225 nodes · 2604 edges · 269 communities (207 shown, 62 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3b096c70`
+- Built from commit: `a6596985`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,7 +37,6 @@
 - [[_COMMUNITY_tailwind|tailwind]]
 - [[_COMMUNITY_FlashNewsBar.tsx|FlashNewsBar.tsx]]
 - [[_COMMUNITY_portalpage.tsx|portal/page.tsx]]
-- [[_COMMUNITY_galleryactions.ts|gallery/actions.ts]]
 - [[_COMMUNITY_...sign-inpage.tsx|[[...sign-in]]/page.tsx]]
 - [[_COMMUNITY_...sign-uppage.tsx|[[...sign-up]]/page.tsx]]
 - [[_COMMUNITY_setup.ts|setup.ts]]
@@ -105,6 +104,7 @@
 - [[_COMMUNITY_newspage.tsx|news/page.tsx]]
 - [[_COMMUNITY_@vitejsplugin-react|@vitejs/plugin-react]]
 - [[_COMMUNITY_idactions.ts|[id]/actions.ts]]
+- [[_COMMUNITY_mobile-viewport-Mobile-vie-367c0--without-overflow-on-mobile-chromiumerror-context|mobile-viewport-Mobile-vie-367c0--without-overflow-on-mobile-chromium/error-context.md]]
 - [[_COMMUNITY_Community 106|Community 106]]
 - [[_COMMUNITY_mobile-viewport-Mobile-vie-eef14--visible-overflow-on-mobile-chromiumerror-context|mobile-viewport-Mobile-vie-eef14--visible-overflow-on-mobile-chromium/error-context.md]]
 - [[_COMMUNITY_pdf-download-PDF-download--fb469-load-for-authenticated-user-chromiumerror-context|pdf-download-PDF-download--fb469-load-for-authenticated-user-chromium/error-context.md]]
@@ -191,15 +191,74 @@
 - [[_COMMUNITY_Community 201|Community 201]]
 - [[_COMMUNITY_Community 203|Community 203]]
 - [[_COMMUNITY_Community 204|Community 204]]
+- [[_COMMUNITY_Community 208|Community 208]]
+- [[_COMMUNITY_Community 209|Community 209]]
+- [[_COMMUNITY_Community 210|Community 210]]
+- [[_COMMUNITY_Community 211|Community 211]]
+- [[_COMMUNITY_Community 212|Community 212]]
+- [[_COMMUNITY_Community 213|Community 213]]
+- [[_COMMUNITY_Community 214|Community 214]]
+- [[_COMMUNITY_Community 215|Community 215]]
+- [[_COMMUNITY_Community 216|Community 216]]
+- [[_COMMUNITY_Community 217|Community 217]]
 - [[_COMMUNITY_AtAGlanceSection.tsx|AtAGlanceSection.tsx]]
+- [[_COMMUNITY_Community 219|Community 219]]
+- [[_COMMUNITY_Community 220|Community 220]]
+- [[_COMMUNITY_Community 221|Community 221]]
+- [[_COMMUNITY_Community 222|Community 222]]
+- [[_COMMUNITY_Community 223|Community 223]]
+- [[_COMMUNITY_Community 224|Community 224]]
+- [[_COMMUNITY_Community 225|Community 225]]
+- [[_COMMUNITY_Community 226|Community 226]]
+- [[_COMMUNITY_Community 228|Community 228]]
+- [[_COMMUNITY_Community 229|Community 229]]
+- [[_COMMUNITY_Community 230|Community 230]]
+- [[_COMMUNITY_Community 231|Community 231]]
+- [[_COMMUNITY_Community 232|Community 232]]
+- [[_COMMUNITY_Community 233|Community 233]]
+- [[_COMMUNITY_Community 234|Community 234]]
+- [[_COMMUNITY_Community 235|Community 235]]
+- [[_COMMUNITY_Community 236|Community 236]]
+- [[_COMMUNITY_Community 237|Community 237]]
+- [[_COMMUNITY_Community 238|Community 238]]
+- [[_COMMUNITY_Community 239|Community 239]]
+- [[_COMMUNITY_Community 240|Community 240]]
+- [[_COMMUNITY_Community 241|Community 241]]
+- [[_COMMUNITY_Community 242|Community 242]]
+- [[_COMMUNITY_Community 243|Community 243]]
+- [[_COMMUNITY_Community 244|Community 244]]
+- [[_COMMUNITY_Community 245|Community 245]]
+- [[_COMMUNITY_Community 246|Community 246]]
+- [[_COMMUNITY_Community 247|Community 247]]
+- [[_COMMUNITY_Community 248|Community 248]]
+- [[_COMMUNITY_Community 249|Community 249]]
+- [[_COMMUNITY_Community 250|Community 250]]
+- [[_COMMUNITY_Community 251|Community 251]]
+- [[_COMMUNITY_Community 252|Community 252]]
+- [[_COMMUNITY_Community 253|Community 253]]
+- [[_COMMUNITY_Community 254|Community 254]]
+- [[_COMMUNITY_Community 255|Community 255]]
+- [[_COMMUNITY_Community 256|Community 256]]
+- [[_COMMUNITY_Community 257|Community 257]]
+- [[_COMMUNITY_Community 258|Community 258]]
+- [[_COMMUNITY_Community 259|Community 259]]
+- [[_COMMUNITY_Community 260|Community 260]]
+- [[_COMMUNITY_Community 261|Community 261]]
+- [[_COMMUNITY_Community 262|Community 262]]
+- [[_COMMUNITY_Community 263|Community 263]]
+- [[_COMMUNITY_Community 264|Community 264]]
+- [[_COMMUNITY_Community 265|Community 265]]
+- [[_COMMUNITY_Community 266|Community 266]]
+- [[_COMMUNITY_Community 267|Community 267]]
+- [[_COMMUNITY_Community 268|Community 268]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `logAdminAction()` - 60 edges
-2. `cn()` - 42 edges
-3. `(public)/page.tsx` - 23 edges
+1. `audits` - 60 edges
+2. `logAdminAction()` - 52 edges
+3. `cn()` - 42 edges
 4. `ADMIN (CENTRE STAFF) WORKFLOWS` - 20 edges
-5. `compilerOptions` - 17 edges
-6. `scripts` - 17 edges
+5. `scripts` - 17 edges
+6. `compilerOptions` - 17 edges
 7. `gallery/actions.ts` - 17 edges
 8. `timetable-progress/actions.test.ts` - 16 edges
 9. `employers/actions.test.ts` - 15 edges
@@ -220,7 +279,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (210 total, 60 thin omitted)
+## Communities (269 total, 62 thin omitted)
 
 ### Community 0 - "devDependencies"
 Cohesion: 0.21
@@ -239,8 +298,8 @@ Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 4 - "package.json"
-Cohesion: 0.13
-Nodes (15): finalizeStudentVerification(), student/actions.test.ts, mockAuth, mockCandidateCreate, mockCheckRateLimit, mockClerkClient, mockFindFirst, mockFindUnique (+7 more)
+Cohesion: 0.17
+Nodes (12): student/actions.test.ts, mockAuth, mockCandidateCreate, mockCheckRateLimit, mockClerkClient, mockFindFirst, mockFindUnique, mockGetClientIp (+4 more)
 
 ### Community 5 - "EnquiryForm.tsx"
 Cohesion: 0.06
@@ -255,8 +314,8 @@ Cohesion: 0.14
 Nodes (11): mockAuditCreate, mockAuth, mockCatAggregate, mockItemAggregate, mockItemCreate, mockItemDelete, mockItemFindMany, mockRedirect (+3 more)
 
 ### Community 8 - "aliases"
-Cohesion: 0.30
-Nodes (9): submitEmployerRegistration(), student/actions.ts, lookupStudentRecord(), checkRateLimit(), getClientIp(), RateLimitConfig, RateLimitResult, resetRateLimiter() (+1 more)
+Cohesion: 0.39
+Nodes (5): checkRateLimit(), RateLimitConfig, RateLimitResult, resetRateLimiter(), store
 
 ### Community 9 - "BiodataForm.test.tsx"
 Cohesion: 0.07
@@ -275,8 +334,8 @@ Cohesion: 0.17
 Nodes (11): Accessibility & Inclusion, Brand Commitments, Capabilities and Constraints, Evidence on Hand, Operating Context, Platform, Positioning, Product (+3 more)
 
 ### Community 17 - "actions.test.ts"
-Cohesion: 0.17
-Nodes (13): site/actions.ts, getNullableString(), getString(), localeFromFormData(), site/actions.test.ts, mockFindFirst, mockLogAdminAction, mockRedirect (+5 more)
+Cohesion: 0.11
+Nodes (18): environment, benchmarkIndex, credits, hostUserAgent, fetchTime, finalDisplayedUrl, finalUrl, gatherMode (+10 more)
 
 ### Community 20 - "taste.md"
 Cohesion: 0.67
@@ -294,10 +353,6 @@ Nodes (5): news/page.tsx, NewsPage(), NewsPageProps, getPublishedNews(), PublicN
 Cohesion: 0.09
 Nodes (14): EmployerShell(), EmployerShellProps, TOP_EMPLOYER_ROUTES, EmployerSidebar(), JobSeekerShell(), JobSeekerShellProps, TOP_JOB_SEEKER_ROUTES, JobSeekerSidebar() (+6 more)
 
-### Community 24 - "gallery/actions.ts"
-Cohesion: 0.36
-Nodes (5): AtAGlanceSection(), AtAGlanceSectionProps, statIcons, getAtAGlanceStats(), SiteSettingsWithCards
-
 ### Community 28 - "courses.test.ts"
 Cohesion: 1.00
 Nodes (3): [...key]/route.ts, GET(), getS3Client()
@@ -307,12 +362,8 @@ Cohesion: 0.13
 Nodes (15): skills-taxonomy/actions.test.ts, mockAuditCreate, mockAuth, mockCountCandidateProfile, mockCountJobPosting, mockDeleteSkill, mockFindManyCandidateProfile, mockFindManyJobPosting (+7 more)
 
 ### Community 34 - "courses.test.ts"
-Cohesion: 0.05
-Nodes (56): react, register/page.tsx, EMPLOYEE_RANGES, RegistrationForm(), RegistrationFormProps, SECTORS, sign-up/student/page.tsx, Step (+48 more)
-
-### Community 35 - "FlashNewsBar.tsx"
-Cohesion: 0.25
-Nodes (11): (public)/page.tsx, HomePage(), HomePageProps, PublicCertificationPartner, getCachedActiveFlashNews, getCachedCertificationPartners, getCachedHomepageTeaser, getCachedPlacementGalleryData (+3 more)
+Cohesion: 0.06
+Nodes (54): react, register/page.tsx, EMPLOYEE_RANGES, RegistrationForm(), RegistrationFormProps, SECTORS, mockUsePathname, renderWithProvider() (+46 more)
 
 ### Community 36 - "news-events.test.ts"
 Cohesion: 0.21
@@ -443,8 +494,8 @@ Cohesion: 0.18
 Nodes (16): news-events/actions.ts, createNewsEvent(), deleteNewsEvent(), localeFromFormData(), slugify(), togglePublishNewsEvent(), updateNewsEvent(), mockAuditCreate (+8 more)
 
 ### Community 73 - "@types/react"
-Cohesion: 0.18
-Nodes (11): (portal)/layout.tsx, PortalLayout(), ContactSection(), ContactSectionProps, ModalOverlay(), socialIcons, baseSettings, mockCourses (+3 more)
+Cohesion: 0.25
+Nodes (8): ContactSection(), ContactSectionProps, ModalOverlay(), socialIcons, baseSettings, mockCourses, useCloseOnEscape(), useFocusTrap()
 
 ### Community 74 - "ContactSection.tsx"
 Cohesion: 0.11
@@ -455,12 +506,12 @@ Cohesion: 0.11
 Nodes (18): Admin (`(admin)`), API routes, Auth/utility, Component-Level Findings, Conclusion, Cross-Browser & Mobile QA Log — Sprint 11, Task 1, CSV Bulk Import (admin/students), Forms (Enquiry, Post-Vacancy, Employer Registration, Biodata) (+10 more)
 
 ### Community 76 - "[id]/page.tsx"
-Cohesion: 0.27
-Nodes (8): AboutSection(), AboutSectionProps, getLocalizedAbout(), getLocalizedWhyCards(), Locale, pickLocalizedText(), mockFindFirst, mockRequireRole
+Cohesion: 0.24
+Nodes (9): AboutSection(), AboutSectionProps, getLocalizedAbout(), getLocalizedWhyCards(), Locale, pickLocalizedText(), SiteSettingsWithCards, mockFindFirst (+1 more)
 
 ### Community 77 - "EnquiryForm.tsx"
-Cohesion: 0.30
-Nodes (11): createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory(), slugify(), updateCategory() (+3 more)
+Cohesion: 0.12
+Nodes (17): scripts, build, db:seed, db:seed:e2e, db:studio, dev, lint, postinstall (+9 more)
 
 ### Community 79 - "progress/page.tsx"
 Cohesion: 0.12
@@ -491,16 +542,16 @@ Cohesion: 0.20
 Nodes (9): admin/page.test.tsx, mockAuth, mockEmployerProfileCount, mockEnquiryFindMany, mockJobPostingCount, mockRedirect, mockSkillCount, mockStaffPermissionFindUnique (+1 more)
 
 ### Community 92 - "content/actions.ts"
-Cohesion: 0.22
-Nodes (7): LogAdminActionInput, LogSystemActionInput, mockAuth, mockCreate, mockFindMany, mockRedirect, mockUserFindUnique
+Cohesion: 0.33
+Nodes (5): mockAuth, mockCreate, mockFindMany, mockRedirect, mockUserFindUnique
 
 ### Community 93 - "FlashNewsBar.tsx"
 Cohesion: 0.20
 Nodes (9): Gallery Page Note, Image Optimization Audit, Key Improvements, LCP Measurement, Lighthouse / LCP Status, Performance Audit Log — Sprint 11, Task 4, Recommended Future Work (beyond sprint scope), Remaining Bottlenecks (+1 more)
 
 ### Community 96 - "(public)/page.tsx"
-Cohesion: 0.25
-Nodes (8): flash-news/page.test.tsx, mockAggregate, mockAuditCreate, mockAuth, mockCreate, mockRedirect, mockRevalidatePath, mockUserFindUnique
+Cohesion: 0.22
+Nodes (9): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, audits (+1 more)
 
 ### Community 97 - "course-content.schema.ts"
 Cohesion: 0.22
@@ -517,6 +568,10 @@ Nodes (15): post-vacancy/actions.ts, ActionResult, submitVacancy(), post-vacancy
 ### Community 103 - "[id]/actions.ts"
 Cohesion: 0.21
 Nodes (14): candidates/actions.ts, inviteToApply(), InviteToApplyResult, mapResult(), searchCandidates(), [candidateId]/page.tsx, CandidateDetailPage(), PageProps (+6 more)
+
+### Community 105 - "mobile-viewport-Mobile-vie-367c0--without-overflow-on-mobile-chromium/error-context.md"
+Cohesion: 0.22
+Nodes (9): bootup-time, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
 
 ### Community 106 - "Community 106"
 Cohesion: 0.15
@@ -547,8 +602,8 @@ Cohesion: 0.09
 Nodes (17): ContactPage(), ContactPageProps, CourseContentEditorProps, Tab, CoursePageContent(), CoursePageContentProps, CourseWithCategory, getCourseBySlug (+9 more)
 
 ### Community 121 - "dotenv"
-Cohesion: 0.04
-Nodes (45): devDependencies, @axe-core/playwright, @clerk/backend, @clerk/testing, dotenv, eslint, eslint-config-next, jsdom (+37 more)
+Cohesion: 0.08
+Nodes (26): devDependencies, @axe-core/playwright, @clerk/backend, @clerk/testing, dotenv, eslint, eslint-config-next, jsdom (+18 more)
 
 ### Community 122 - "requireRole"
 Cohesion: 0.15
@@ -559,12 +614,12 @@ Cohesion: 0.40
 Nodes (5): biodata/actions.test.ts, mockAuth, mockRedirect, mockUpsert, validData
 
 ### Community 124 - "@playwright/test"
-Cohesion: 0.47
-Nodes (5): formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem
+Cohesion: 0.25
+Nodes (9): (public)/page.tsx, HomePage(), HomePageProps, formatDate(), NewsTeaserSection(), NewsTeaserSectionProps, pickLocalizedText(), TeaserItem (+1 more)
 
 ### Community 125 - "Community 125"
-Cohesion: 0.34
-Nodes (14): flash-news/actions.ts, createFlashNews(), deleteFlashNews(), localeFromFormData(), moveFlashNews(), toggleFlashNewsActive(), updateFlashNews(), staff/actions.ts (+6 more)
+Cohesion: 0.21
+Nodes (20): skills-taxonomy/actions.ts, approveSkill(), deleteSkill(), localeFromFormData(), mergeSkill(), staff/actions.ts, deactivateStaff(), inviteStaff() (+12 more)
 
 ### Community 131 - "[id]/page.tsx"
 Cohesion: 0.27
@@ -587,12 +642,12 @@ Cohesion: 0.40
 Nodes (4): site/page.test.tsx, mockFindFirst, mockRedirect, mockRequireRole
 
 ### Community 139 - "Footer.tsx"
-Cohesion: 0.60
-Nodes (6): timetable-progress/actions.ts, addProgressEntry(), addTimetableEntry(), deleteProgressEntry(), deleteTimetableEntry(), localeFromFormData()
+Cohesion: 0.22
+Nodes (9): layout-shifts, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
 
 ### Community 142 - "Community 142"
-Cohesion: 0.40
-Nodes (5): profile/page.tsx, ProfilePageProps, register/actions.ts, RegistrationResult, updateEmployerProfile()
+Cohesion: 0.32
+Nodes (7): profile/page.tsx, ProfilePageProps, register/actions.ts, RegistrationResult, submitEmployerRegistration(), updateEmployerProfile(), getClientIp()
 
 ### Community 146 - "Findings"
 Cohesion: 0.33
@@ -607,8 +662,8 @@ Cohesion: 0.33
 Nodes (7): deleteResource(), localeFromFormData(), updateResource(), uploadResource(), Props, RESOURCE_TYPES, TYPE_LABELS
 
 ### Community 150 - "courses/page.test.tsx"
-Cohesion: 0.40
-Nodes (5): courses/page.test.tsx, mockAuth, mockFindManyCategories, mockFindManyCourses, mockRedirect
+Cohesion: 0.22
+Nodes (9): long-tasks, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
 
 ### Community 153 - "Community 153"
 Cohesion: 0.36
@@ -639,8 +694,8 @@ Cohesion: 0.33
 Nodes (5): mockCheckRateLimit, mockCourseFindUnique, mockEnquiryCreate, mockGetClientIp, mockResendSend
 
 ### Community 161 - "timetable-progress/page.tsx"
-Cohesion: 0.70
-Nodes (5): skills-taxonomy/actions.ts, approveSkill(), deleteSkill(), localeFromFormData(), mergeSkill()
+Cohesion: 0.22
+Nodes (9): mainthread-work-breakdown, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
 
 ### Community 162 - "Community 162"
 Cohesion: 0.50
@@ -655,8 +710,8 @@ Cohesion: 0.50
 Nodes (3): applications/page.tsx, PageProps, STATUS_STYLES
 
 ### Community 165 - "Community 165"
-Cohesion: 0.19
-Nodes (12): AdminDashboardPage(), AdminDashboardPageProps, getAllStaffPermissions(), getEffectiveRole(), PermissionKey, requirePermission(), RequirePermissionResult, requirePortalRole() (+4 more)
+Cohesion: 0.05
+Nodes (47): AdminDashboardPage(), AdminDashboardPageProps, createCategory(), createCourse(), deleteCategory(), deleteCourse(), localeFromFormData(), moveCategory() (+39 more)
 
 ### Community 166 - "Community 166"
 Cohesion: 0.40
@@ -679,33 +734,265 @@ Cohesion: 0.33
 Nodes (4): adapter, CONTENT_BLOCKS, pool, prisma
 
 ### Community 175 - "Community 175"
-Cohesion: 0.13
-Nodes (12): FlashNewsBar(), Locale, Footer(), legalLinks, portalLinks, quickLinks, CourseDropdownItem, Header() (+4 more)
+Cohesion: 0.10
+Nodes (18): getCachedCertificationPartners, getCachedHomepageTeaser, getCachedPlacementGalleryData, getCachedPublishedCourses, getCachedSiteSettings, PublicLayout(), FlashNewsBar(), Locale (+10 more)
 
 ### Community 178 - "job-seeker/page.test.tsx"
 Cohesion: 0.29
 Nodes (5): job-seeker/page.test.tsx, mockApplicationCount, mockApplicationFindMany, mockAuth, mockFindUnique
 
+### Community 208 - "Community 208"
+Cohesion: 0.22
+Nodes (9): non-composited-animations, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
+
+### Community 209 - "Community 209"
+Cohesion: 0.22
+Nodes (9): redirects, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
+
+### Community 210 - "Community 210"
+Cohesion: 0.22
+Nodes (9): server-response-time, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
+
+### Community 211 - "Community 211"
+Cohesion: 0.22
+Nodes (9): unsized-images, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
+
+### Community 212 - "Community 212"
+Cohesion: 0.22
+Nodes (9): user-timings, description, errorMessage, errorStack, guidanceLevel, id, score, scoreDisplayMode (+1 more)
+
+### Community 213 - "Community 213"
+Cohesion: 0.36
+Nodes (7): student/actions.ts, finalizeStudentVerification(), lookupStudentRecord(), sign-up/student/page.tsx, isValidPassword(), Step, StudentSignUpPage()
+
+### Community 214 - "Community 214"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, accesskeys
+
+### Community 215 - "Community 215"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-allowed-attr
+
+### Community 216 - "Community 216"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-allowed-role
+
+### Community 217 - "Community 217"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-command-name
+
 ### Community 218 - "AtAGlanceSection.tsx"
 Cohesion: 0.17
 Nodes (19): students/actions.ts, bulkImportStudents(), bulkImportStudentsAction(), createStudentRecord(), CsvRowResult, isValidEmail(), localeFromFormData(), parseCsvLine() (+11 more)
 
+### Community 219 - "Community 219"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-conditional-attr
+
+### Community 220 - "Community 220"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-deprecated-role
+
+### Community 221 - "Community 221"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-hidden-body
+
+### Community 222 - "Community 222"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-hidden-focus
+
+### Community 223 - "Community 223"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-input-field-name
+
+### Community 224 - "Community 224"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-meter-name
+
+### Community 225 - "Community 225"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-progressbar-name
+
+### Community 226 - "Community 226"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-prohibited-attr
+
+### Community 228 - "Community 228"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-required-attr
+
+### Community 229 - "Community 229"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-required-children
+
+### Community 230 - "Community 230"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-required-parent
+
+### Community 231 - "Community 231"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-roles
+
+### Community 232 - "Community 232"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-text
+
+### Community 233 - "Community 233"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-toggle-field-name
+
+### Community 234 - "Community 234"
+Cohesion: 0.25
+Nodes (8): description, errorMessage, errorStack, id, score, scoreDisplayMode, title, aria-tooltip-name
+
+### Community 235 - "Community 235"
+Cohesion: 0.25
+Nodes (8): clickjacking-mitigation, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 236 - "Community 236"
+Cohesion: 0.25
+Nodes (8): csp-xss, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 237 - "Community 237"
+Cohesion: 0.25
+Nodes (8): cumulative-layout-shift, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 238 - "Community 238"
+Cohesion: 0.25
+Nodes (8): deprecations, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 239 - "Community 239"
+Cohesion: 0.25
+Nodes (8): diagnostics, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 240 - "Community 240"
+Cohesion: 0.25
+Nodes (8): errors-in-console, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 241 - "Community 241"
+Cohesion: 0.25
+Nodes (8): final-screenshot, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 242 - "Community 242"
+Cohesion: 0.25
+Nodes (8): first-contentful-paint, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 243 - "Community 243"
+Cohesion: 0.25
+Nodes (8): has-hsts, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 244 - "Community 244"
+Cohesion: 0.25
+Nodes (8): image-aspect-ratio, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 245 - "Community 245"
+Cohesion: 0.25
+Nodes (8): image-size-responsive, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 246 - "Community 246"
+Cohesion: 0.25
+Nodes (8): interactive, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 247 - "Community 247"
+Cohesion: 0.25
+Nodes (8): is-on-https, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 248 - "Community 248"
+Cohesion: 0.25
+Nodes (8): largest-contentful-paint, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 249 - "Community 249"
+Cohesion: 0.25
+Nodes (8): main-thread-tasks, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 250 - "Community 250"
+Cohesion: 0.25
+Nodes (8): max-potential-fid, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 251 - "Community 251"
+Cohesion: 0.25
+Nodes (8): metrics, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 252 - "Community 252"
+Cohesion: 0.25
+Nodes (8): network-requests, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 253 - "Community 253"
+Cohesion: 0.25
+Nodes (8): network-rtt, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 254 - "Community 254"
+Cohesion: 0.25
+Nodes (8): network-server-latency, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 255 - "Community 255"
+Cohesion: 0.25
+Nodes (8): origin-isolation, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 256 - "Community 256"
+Cohesion: 0.25
+Nodes (8): redirects-http, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 257 - "Community 257"
+Cohesion: 0.25
+Nodes (8): resource-summary, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 258 - "Community 258"
+Cohesion: 0.25
+Nodes (8): screenshot-thumbnails, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 259 - "Community 259"
+Cohesion: 0.25
+Nodes (8): script-treemap-data, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 260 - "Community 260"
+Cohesion: 0.25
+Nodes (8): speed-index, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 261 - "Community 261"
+Cohesion: 0.25
+Nodes (8): third-party-cookies, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 262 - "Community 262"
+Cohesion: 0.25
+Nodes (8): total-blocking-time, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 263 - "Community 263"
+Cohesion: 0.25
+Nodes (8): trusted-types-xss, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 264 - "Community 264"
+Cohesion: 0.25
+Nodes (8): valid-source-maps, description, errorMessage, errorStack, id, score, scoreDisplayMode, title
+
+### Community 265 - "Community 265"
+Cohesion: 0.40
+Nodes (4): mockAuth, mockFindManyCategories, mockFindManyCourses, mockRedirect
+
+### Community 266 - "Community 266"
+Cohesion: 0.60
+Nodes (3): (portal)/layout.tsx, PortalLayout(), siteConfig
+
+### Community 267 - "Community 267"
+Cohesion: 0.50
+Nodes (3): name, private, version
+
 ## Knowledge Gaps
-- **880 isolated node(s):** `withNextIntl`, `nextConfig`, `AdminDashboardPageProps`, `AboutPageProps`, `ContactPageProps` (+875 more)
+- **1323 isolated node(s):** `allow`, `deny`, `defaultMode`, `workflow`, `name` (+1318 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **60 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **62 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `logAdminAction()` connect `Community 125` to `timetable-progress/page.tsx`, `EnquiryForm.tsx`, `[id]/actions.ts`, `AtAGlanceSection.tsx`, `gallery/actions.ts`, `ContactSection.tsx`, `Footer.tsx`, `actions.test.ts`, `courses.ts`, `content/actions.ts`, `student/actions.test.ts`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
-- **Why does `react` connect `courses.test.ts` to `dependencies`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `dotenv`, `courses.test.ts`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
-- **What connects `withNextIntl`, `nextConfig`, `AdminDashboardPageProps` to the rest of the system?**
-  _880 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `audits` connect `(public)/page.tsx` to `Community 256`, `Community 257`, `Community 258`, `Community 259`, `Community 260`, `Community 261`, `Community 262`, `Community 263`, `Community 264`, `Footer.tsx`, `actions.test.ts`, `courses/page.test.tsx`, `timetable-progress/page.tsx`, `Community 208`, `Community 209`, `Community 210`, `Community 211`, `Community 212`, `Community 214`, `Community 215`, `Community 216`, `Community 217`, `Community 219`, `Community 220`, `Community 221`, `Community 222`, `Community 223`, `Community 224`, `Community 225`, `Community 226`, `Community 247`, `Community 228`, `Community 229`, `Community 230`, `Community 231`, `Community 232`, `Community 233`, `Community 234`, `mobile-viewport-Mobile-vie-367c0--without-overflow-on-mobile-chromium/error-context.md`, `Community 235`, `Community 236`, `Community 237`, `Community 238`, `Community 239`, `Community 240`, `Community 241`, `Community 242`, `Community 243`, `Community 244`, `Community 245`, `Community 246`, `Community 248`, `Community 249`, `Community 250`, `Community 251`, `Community 252`, `Community 253`, `Community 254`, `Community 255`?**
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
+- **Why does `logAdminAction()` connect `Community 125` to `EnquiryForm.tsx`, `[id]/actions.ts`, `AtAGlanceSection.tsx`, `gallery/actions.ts`, `ContactSection.tsx`, `courses.ts`, `content/actions.ts`, `student/actions.test.ts`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `job-postings/actions.ts` connect `EnquiryForm.tsx` to `Community 125`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `allow`, `deny`, `defaultMode` to the rest of the system?**
+  _1323 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**

@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
+import { PWARegistry } from "@/components/shared/PWARegistry";
 import "../globals.css";
 
 const inter = Inter({
@@ -17,9 +18,32 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const APP_NAME = "GTEC Thodupuzha";
+const APP_DESCRIPTION = "GTEC Education Centre, Thodupuzha";
+
 export const metadata: Metadata = {
-  title: "GTEC Thodupuzha",
-  description: "GTEC Education Centre, Thodupuzha",
+  applicationName: APP_NAME,
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: APP_NAME,
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b2d5e",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default async function LocaleLayout({
@@ -48,9 +72,11 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased max-w-full overflow-x-clip`}
       >
         <body className="min-h-full flex flex-col w-full max-w-full overflow-x-clip relative">
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-          </NextIntlClientProvider>
+          <PWARegistry>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </PWARegistry>
         </body>
       </html>
     </ClerkProvider>

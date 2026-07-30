@@ -20,7 +20,7 @@ test.describe("Visitor Flow", () => {
 
     // Header
     await expect(page.getByLabel("G-TEC Thodupuzha home")).toBeVisible();
-    await expect(page.getByLabel("Call Now")).toBeVisible();
+    await expect(page.locator("header").getByLabel("Call Now").first()).toBeVisible();
 
     // Footer
     await expect(page.locator("footer")).toBeVisible();
@@ -75,9 +75,9 @@ test.describe("Visitor Flow", () => {
     // Courses shown as link with sub-items
     await expect(mobileNav.getByText("Courses")).toBeVisible();
 
-    // Language switcher in mobile nav — use aria-label
+    // Language switcher in mobile nav
     await expect(
-      mobileNav.getByLabel("Switch to Malayalam"),
+      mobileNav.getByText("മലയാളം"),
     ).toBeVisible();
 
     // Close menu
@@ -90,15 +90,15 @@ test.describe("Visitor Flow", () => {
     await page.goto(BASE);
     await page.waitForLoadState("networkidle");
 
-    // Find the language switcher link in the header (desktop) — use aria-label
-    let langLink = page.locator("header").getByLabel("Switch to Malayalam");
+    // Desktop — LanguageSwitcher is a Link with text "മലയാളം"
+    let langLink = page.locator("header").getByText("മലയാളം");
 
     if ((await langLink.count()) === 0) {
       // Mobile — open hamburger first
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(BASE);
       await page.getByLabel("Open menu").click();
-      langLink = page.getByLabel("Mobile navigation").getByLabel("Switch to Malayalam");
+      langLink = page.getByLabel("Mobile navigation").getByText("മലയാളം");
     }
 
     await langLink.click();
@@ -242,8 +242,8 @@ test.describe("Visitor Flow", () => {
     await page.goto(BASE);
     await page.waitForLoadState("networkidle");
 
-    // WhatsApp button
-    const waButton = page.getByLabel("WhatsApp");
+    // WhatsApp button — at 375px the compact variant is visible
+    const waButton = page.locator("header").getByLabel("WhatsApp").last();
     await expect(waButton).toBeVisible();
     await expect(waButton).toHaveAttribute("href", /wa\.me\//);
 

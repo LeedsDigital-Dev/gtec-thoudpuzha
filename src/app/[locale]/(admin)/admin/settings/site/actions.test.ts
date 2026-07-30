@@ -25,6 +25,8 @@ vi.mock("next/navigation", () => ({
 
 vi.mock("next/cache", () => ({
   revalidatePath: mockRevalidatePath,
+  revalidateTag: vi.fn(),
+  unstable_cache: (fn: any) => fn,
 }));
 
 vi.mock("@/lib/db", () => ({

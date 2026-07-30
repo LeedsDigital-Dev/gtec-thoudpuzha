@@ -36,6 +36,8 @@ vi.mock("next/navigation", () => ({
 
 vi.mock("next/cache", () => ({
   revalidatePath: vi.fn(),
+  revalidateTag: vi.fn(),
+  unstable_cache: (fn: any) => fn,
 }));
 
 describe("CoursesPage", () => {

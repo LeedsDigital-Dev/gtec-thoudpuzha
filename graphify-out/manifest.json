@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "next.config.ts": {
-    "mtime": 1785429327.27446,
-    "ast_hash": "201c61b0bf83f5398186862bcf5d6ac2",
+    "mtime": 1785431066.4739614,
+    "ast_hash": "a0fc9353959b10084ff647230a5bbabc",
     "semantic_hash": ""
   },
   "package.json": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/lib/auth.ts": {
-    "mtime": 1784896031.5026023,
-    "ast_hash": "e03dee9aef1671a89e24a23387447d7d",
+    "mtime": 1785430904.0674853,
+    "ast_hash": "1eed3b2a39b4083216e54be7ce53a248",
     "semantic_hash": ""
   },
   "src/types/clerk.d.ts": {
@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/admin/page.tsx": {
-    "mtime": 1785411047.411576,
-    "ast_hash": "b58baeb7a4289bbc6cc36444f96be17e",
+    "mtime": 1785430924.934291,
+    "ast_hash": "ff0b7210de226966e631e9ff8d22b5b3",
     "semantic_hash": ""
   },
   "src/app/[locale]/(admin)/layout.tsx": {
@@ -325,8 +325,8 @@
     "semantic_hash": ""
   },
   "src/components/ui/label.tsx": {
-    "mtime": 1784849051.8575706,
-    "ast_hash": "a70440da86bfc6a07f15197cca48cb08",
+    "mtime": 1785431030.7622986,
+    "ast_hash": "117706e4888ace9b8625adfd81d3cf47",
     "semantic_hash": ""
   },
   "src/components/ui/select.tsx": {
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "src/lib/courses.ts": {
-    "mtime": 1785231164.035909,
-    "ast_hash": "7dfdc1a787448ec0facb8c402b077737",
+    "mtime": 1785430941.0931401,
+    "ast_hash": "b96cdf31ad2e2caf2842f0e1caf941b0",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -1075,8 +1075,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/placement/page.tsx": {
-    "mtime": 1785108717.9371138,
-    "ast_hash": "5d8a858c1b6e96656f038aef824b8f8d",
+    "mtime": 1785431041.4801974,
+    "ast_hash": "790b45eefd4eda6f4c705d2e033463f7",
     "semantic_hash": ""
   },
   "src/lib/jobs.test.ts": {
@@ -1385,13 +1385,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/privacy/page.tsx": {
-    "mtime": 1784849051.8555706,
-    "ast_hash": "be3b678ff8adfebcc0fd10827d8f13af",
+    "mtime": 1785431041.4801974,
+    "ast_hash": "d34cd640c110cf92827b270fa0da3efd",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/terms/page.tsx": {
-    "mtime": 1784849051.8555706,
-    "ast_hash": "c4648099f3af07862afc2bf622ba7792",
+    "mtime": 1785431041.4801974,
+    "ast_hash": "519d95f0788b97d848b9759235b800b2",
     "semantic_hash": ""
   },
   "src/app/api/sentry-test/route.ts": {
@@ -1640,8 +1640,8 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/courses/[slug]/page.tsx": {
-    "mtime": 1785423859.992251,
-    "ast_hash": "b6d6e23fba6188e041344c490bf98c0e",
+    "mtime": 1785430964.8109183,
+    "ast_hash": "239a8d2ffe46a1c78538ead94b6e228f",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/courses/page.tsx": {
@@ -1650,13 +1650,13 @@
     "semantic_hash": ""
   },
   "src/components/courses/CourseCard.tsx": {
-    "mtime": 1785231164.0349088,
-    "ast_hash": "ceb7ef36936d1c6fba11d2064edf695d",
+    "mtime": 1785430975.30582,
+    "ast_hash": "a5eaa364ce6247f50f5662894126a481",
     "semantic_hash": ""
   },
   "src/components/courses/CoursePageContent.tsx": {
-    "mtime": 1785423851.1703267,
-    "ast_hash": "a097b0e0411d32fe2b01ec0eb65e9162",
+    "mtime": 1785431006.7465246,
+    "ast_hash": "bdb1b5891e6a8f00fc740cb1ae6fdfda",
     "semantic_hash": ""
   },
   "src/components/shared/CoursesDropdown.tsx": {
@@ -1690,13 +1690,13 @@
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/about/page.tsx": {
-    "mtime": 1785402080.8464627,
-    "ast_hash": "2278b938f95be0d0f7c308a253d16e4b",
+    "mtime": 1785431041.4801974,
+    "ast_hash": "50e25a75b41f2770a11cace647106291",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/contact/page.tsx": {
-    "mtime": 1785234581.6135583,
-    "ast_hash": "2a4f35c5083cff2d55a50dd162e9eea2",
+    "mtime": 1785431041.4801974,
+    "ast_hash": "bb0e890d91d87f7ac86ea03d932a6e47",
     "semantic_hash": ""
   },
   "src/app/[locale]/(public)/loading.tsx": {
@@ -1725,7 +1725,7 @@
     "semantic_hash": ""
   },
   "next-env.d.ts": {
-    "mtime": 1785429366.7431216,
+    "mtime": 1785431092.3217165,
     "ast_hash": "2a74d3909800ca5467fa83b0ab4a4890",
     "semantic_hash": ""
   },

@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
@@ -45,6 +45,7 @@ export async function createFlashNews(formData: FormData) {
     metadata: { textEn, textMl, link, expiresAt: expiresAt?.toISOString() },
   });
 
+  revalidateTag("flash-news", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/flash-news`);
 }
 
@@ -76,6 +77,7 @@ export async function updateFlashNews(formData: FormData) {
     metadata: { textEn, textMl, link, active, expiresAt: expiresAt?.toISOString() },
   });
 
+  revalidateTag("flash-news", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/flash-news`);
 }
 
@@ -97,6 +99,7 @@ export async function deleteFlashNews(formData: FormData) {
     entityId: id,
   });
 
+  revalidateTag("flash-news", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/flash-news`);
 }
 
@@ -123,6 +126,7 @@ export async function toggleFlashNewsActive(formData: FormData) {
     metadata: { active },
   });
 
+  revalidateTag("flash-news", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/flash-news`);
 }
 
@@ -167,5 +171,6 @@ export async function moveFlashNews(formData: FormData) {
     metadata: { direction, swappedWith: swap.id },
   });
 
+  revalidateTag("flash-news", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/flash-news`);
 }

@@ -1,7 +1,6 @@
 import { Header } from "@/components/shared/Header";
 import { FlashNewsBar } from "@/components/shared/FlashNewsBar";
 import { Footer } from "@/components/shared/Footer";
-import { PreloaderCleanup } from "@/components/shared/preloader";
 import { getCachedSiteSettings } from "@/lib/data-cache";
 import { getCachedPublishedCourses } from "@/lib/data-cache";
 
@@ -32,9 +31,10 @@ export default async function PublicLayout({
 
   return (
     <div className="relative min-h-screen w-full flex flex-col">
-      <PreloaderCleanup />
       <Header courses={courses} />
-      <FlashNewsBar />
+      <div className="min-h-[36px]">
+        <FlashNewsBar />
+      </div>
       <div className="flex-1 w-full max-w-full overflow-x-hidden">
         {children}
       </div>

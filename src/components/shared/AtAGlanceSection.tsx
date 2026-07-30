@@ -27,27 +27,28 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
           {heading}
         </h2>
 
-        <dl className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5" role="list">
           {stats.map((stat, i) => {
             const Icon = statIcons[i] ?? Award;
             return (
               <div
                 key={stat.label}
+                role="listitem"
                 className="group flex flex-col items-center rounded-xl border border-border/60 bg-background p-6 text-center shadow-sm transition-shadow hover:shadow-md"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" />
                 </div>
-                <dd className="text-3xl font-bold tracking-tight text-primary lg:text-4xl">
+                <span className="text-3xl font-bold tracking-tight text-primary lg:text-4xl">
                   {stat.value}
-                </dd>
-                <dt className="mt-1 text-sm font-medium text-muted-foreground">
+                </span>
+                <span className="mt-1 text-sm font-medium text-muted-foreground">
                   {stat.label}
-                </dt>
+                </span>
               </div>
             );
           })}
-        </dl>
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
@@ -44,6 +44,8 @@ export async function createCategory(formData: FormData) {
     metadata: { nameEn, nameMl },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -71,6 +73,8 @@ export async function updateCategory(formData: FormData) {
     metadata: { nameEn, nameMl },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -92,6 +96,8 @@ export async function deleteCategory(formData: FormData) {
     entityId: id,
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -136,6 +142,8 @@ export async function moveCategory(formData: FormData) {
     metadata: { direction, swappedWith: swap.id },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -201,6 +209,8 @@ export async function createCourse(formData: FormData) {
     metadata: { titleEn, slug, categoryId, status },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -266,6 +276,8 @@ export async function updateCourse(formData: FormData) {
     metadata: { titleEn, slug, categoryId, status },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -287,6 +299,8 @@ export async function deleteCourse(formData: FormData) {
     entityId: id,
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 
@@ -320,6 +334,8 @@ export async function uploadCourseImage(formData: FormData) {
     metadata: { storageKey: key },
   });
 
+  revalidateTag("published-courses", "max");
+  revalidateTag("courses", "max");
   revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
 }
 

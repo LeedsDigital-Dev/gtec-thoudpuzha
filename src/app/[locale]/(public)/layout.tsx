@@ -31,12 +31,14 @@ export default async function PublicLayout({
     .catch(() => []);
 
   return (
-    <>
+    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden flex flex-col">
       <PreloaderCleanup />
       <Header courses={courses} />
       <FlashNewsBar />
-      {children}
+      <div className="flex-1 w-full max-w-full overflow-x-hidden">
+        {children}
+      </div>
       <Footer address={address} />
-    </>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
   const relatedCourses = allCourses.filter((c) => c.slug !== slug);
 
   return (
-    <main className="py-8 px-4 max-w-4xl mx-auto">
+    <main className="py-6 sm:py-10 px-4 sm:px-6 max-w-4xl mx-auto w-full max-w-full overflow-x-hidden">
       <CoursePageContent
         titleEn={course.titleEn}
         titleMl={course.titleMl}

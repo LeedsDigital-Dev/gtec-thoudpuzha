@@ -1,4 +1,7 @@
 # workflow
+- When populating seed/demo data for visual review, fills every available field with realistic, comprehensive content — not minimal stubs — so the UI looks complete and can be properly inspected. The goal is production-quality demo data, not just enough to make tests pass. Confidence: 0.85
+- Before running a data mutation script (enrichment, migration, seeding), verifies the actual database state matches the script's assumptions — e.g., checking actual slugs/IDs against the script's lookup keys — rather than blindly running and hoping they align. Confidence: 0.75
+- For non-trivial one-off data operations (seeding, enrichment, migration), prefers writing a standalone TypeScript script in `scripts/` run with `npx tsx` — with proper imports, error handling, and a `main()` function — rather than inline `node -e` one-liners or raw SQL. Confidence: 0.65
 - For long-running shell commands (npm install, test suites, builds): start in background and poll with a short command instead of waiting directly and hitting the tool-call timeout. Confidence: 0.75
 - Treat tool-call timeouts on long commands as expected behavior to route around with background+poll, not as bugs to be solved. Confidence: 0.70
 - When resolving divergence on main/master branch: always sync local to match remote exactly and discard all local changes (`git reset --hard origin/main && git clean -fd`). Favors remote over local. Confidence: 0.70

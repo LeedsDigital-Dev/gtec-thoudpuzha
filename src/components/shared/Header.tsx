@@ -100,29 +100,29 @@ export function Header({
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <a
             href={`https://wa.me/${siteConfig.whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("whatsapp")}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-2 py-2 text-sm font-medium text-accent-foreground hover:bg-accent/90 md:px-3"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-2 py-2 text-sm font-medium text-accent-foreground hover:bg-accent/90 md:px-3 min-h-[44px] min-w-[44px] justify-center"
           >
-            <MessageCircle className="size-4" />
+            <MessageCircle className="size-4 shrink-0" />
             <span className="hidden md:inline">{t("whatsapp")}</span>
           </a>
           <a
             href={`tel:${siteConfig.phoneNumber}`}
             aria-label={t("callNow")}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-2 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 md:px-3"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-2 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 md:px-3 min-h-[44px] min-w-[44px] justify-center"
           >
-            <Phone className="size-4" />
+            <Phone className="size-4 shrink-0" />
             <span className="hidden md:inline">{t("callNow")}</span>
           </a>
           <Link
             href={localeHref("/#enquiry")}
             aria-label={t("applyNow")}
-            className="inline-flex items-center rounded-lg bg-secondary px-2 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 md:px-3"
+            className="inline-flex items-center rounded-lg bg-secondary px-2 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 md:px-3 min-h-[44px] min-w-[44px] justify-center"
           >
             <span className="hidden md:inline">{t("applyNow")}</span>
             <span className="md:hidden">{t("apply")}</span>
@@ -145,13 +145,13 @@ export function Header({
             <Link
               href={localeHref("/sign-in")}
               aria-label={t("login")}
-              className="inline-flex items-center rounded-lg border border-border px-2 py-2 text-sm font-medium hover:bg-muted md:px-3"
+              className="inline-flex items-center rounded-lg border border-border px-2 py-2 text-sm font-medium hover:bg-muted md:px-3 min-h-[44px] min-w-[44px] justify-center"
             >
               <span className="hidden md:inline">{t("login")}</span>
               <span className="md:hidden">{t("logIn")}</span>
             </Link>
           )}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <LanguageSwitcher />
           </div>
           <button
@@ -197,6 +197,23 @@ export function Header({
               >
                 {t("courses")}
               </Link>
+              {courses && courses.length > 0 && (
+                <ul className="mt-2 ml-4 space-y-2 border-l-2 border-muted pl-3">
+                  {courses.map((course) => (
+                    <li key={course.slug}>
+                      <Link
+                        href={localeHref(`/courses/${course.slug}`)}
+                        className="block text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {locale === "ml" && course.titleMl
+                          ? course.titleMl
+                          : course.titleEn}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
             {navItems.slice(2).map((item) => (
               <li key={item.href}>
@@ -209,7 +226,7 @@ export function Header({
                 </Link>
               </li>
             ))}
-            <li className="md:hidden">
+            <li className="lg:hidden">
               <LanguageSwitcher />
             </li>
           </ul>

@@ -89,11 +89,11 @@ export default function EnrollmentDashboard({
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-end gap-3">
-        <div className="space-y-1">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+        <div className="flex-1 space-y-1">
           <label
             htmlFor="enrollment-search"
-            className="text-sm font-medium"
+            className="block text-sm font-medium"
           >
             Search
           </label>
@@ -103,13 +103,13 @@ export default function EnrollmentDashboard({
             placeholder="Name or Student ID…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-64 rounded border border-border bg-background px-3 py-2 text-sm"
+            className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
           />
         </div>
-        <div className="space-y-1">
+        <div className="w-full sm:w-64 space-y-1">
           <label
             htmlFor="enrollment-course-filter"
-            className="text-sm font-medium"
+            className="block text-sm font-medium"
           >
             Course Filter
           </label>
@@ -117,7 +117,7 @@ export default function EnrollmentDashboard({
             id="enrollment-course-filter"
             value={courseFilter}
             onChange={(e) => setCourseFilter(e.target.value)}
-            className="w-56 rounded border border-border bg-background px-3 py-2 text-sm"
+            className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
           >
             <option value="">All Courses</option>
             {courses.map((c) => (
@@ -136,6 +136,7 @@ export default function EnrollmentDashboard({
                 setSearchQuery("");
                 setCourseFilter("");
               }}
+              className="w-full sm:w-auto"
             >
               Clear Filters
             </Button>
@@ -149,67 +150,108 @@ export default function EnrollmentDashboard({
       </p>
 
       <section>
-        <table className="w-full border-collapse border border-border">
-          <thead>
-            <tr>
-              <th className="border border-border px-3 py-2 text-left">
-                Student ID
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Full Name
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Phone
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Enrolled Courses
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredStudents.map((student) => (
-              <tr
-                key={student.id}
-                onClick={() =>
-                  router.push(
-                    `/${locale}/admin/students/course-enrollment?studentProfileId=${encodeURIComponent(student.id)}`,
-                  )
-                }
-                className={`cursor-pointer hover:bg-muted ${
-                  student.id === selectedStudentProfileId ? "bg-muted" : ""
-                }`}
-              >
-                <td className="border border-border px-3 py-2 font-mono text-sm">
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto">
+          <table className="w-full border-collapse border border-border">
+            <thead>
+              <tr className="bg-muted/50">
+                <th className="border border-border px-3 py-2 text-left">
+                  Student ID
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Full Name
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Phone
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Enrolled Courses
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.map((student) => (
+                <tr
+                  key={student.id}
+                  onClick={() =>
+                    router.push(
+                      `/${locale}/admin/students/course-enrollment?studentProfileId=${encodeURIComponent(student.id)}`,
+                    )
+                  }
+                  className={`cursor-pointer hover:bg-muted ${
+                    student.id === selectedStudentProfileId ? "bg-muted" : ""
+                  }`}
+                >
+                  <td className="border border-border px-3 py-2 font-mono text-sm">
+                    {student.studentId || "N/A"}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {student.fullName || "Unknown"}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {student.phone || "N/A"}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {student.enrollments.length === 0 ? (
+                      <span className="text-muted-foreground">None</span>
+                    ) : (
+                      <div className="flex flex-wrap items-center gap-1">
+                        {student.enrollments.length > 1 && (
+                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                            {student.enrollments.length}
+                          </span>
+                        )}
+                        <span>
+                          {student.enrollments
+                            .map((e) => e.course.titleEn)
+                            .join(", ")}
+                        </span>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="space-y-3 md:hidden">
+          {filteredStudents.map((student) => (
+            <div
+              key={student.id}
+              onClick={() =>
+                router.push(
+                  `/${locale}/admin/students/course-enrollment?studentProfileId=${encodeURIComponent(student.id)}`,
+                )
+              }
+              className={`cursor-pointer rounded-lg border p-4 space-y-2 transition-colors ${
+                student.id === selectedStudentProfileId
+                  ? "border-primary bg-primary/5 shadow-xs"
+                  : "border-border bg-card hover:bg-muted/50"
+              }`}
+            >
+              <div className="flex items-center justify-between border-b pb-2">
+                <span className="font-semibold text-foreground">{student.fullName || "Unknown"}</span>
+                <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-foreground">
                   {student.studentId || "N/A"}
-                </td>
-                <td className="border border-border px-3 py-2">
-                  {student.fullName || "Unknown"}
-                </td>
-                <td className="border border-border px-3 py-2">
-                  {student.phone || "N/A"}
-                </td>
-                <td className="border border-border px-3 py-2">
+                </span>
+              </div>
+              <div className="text-xs space-y-1 text-muted-foreground">
+                <div><span className="font-medium text-foreground">Phone:</span> {student.phone || "N/A"}</div>
+                <div>
+                  <span className="font-medium text-foreground">Enrolled Courses:</span>{" "}
                   {student.enrollments.length === 0 ? (
                     <span className="text-muted-foreground">None</span>
                   ) : (
-                    <div className="flex flex-wrap items-center gap-1">
-                      {student.enrollments.length > 1 && (
-                        <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                          {student.enrollments.length}
-                        </span>
-                      )}
-                      <span>
-                        {student.enrollments
-                          .map((e) => e.course.titleEn)
-                          .join(", ")}
-                      </span>
-                    </div>
+                    <span className="text-foreground">{student.enrollments.map((e) => e.course.titleEn).join(", ")}</span>
                   )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {filteredStudents.length === 0 && (
           <p className="mt-4 text-muted-foreground">No students found.</p>
         )}
@@ -246,66 +288,92 @@ export default function EnrollmentDashboard({
                 Not enrolled in any courses.
               </p>
             ) : (
-              <table className="mt-2 w-full border-collapse border border-border">
-                <thead>
-                  <tr>
-                    <th className="border border-border px-3 py-2 text-left">
-                      Course
-                    </th>
-                    <th className="border border-border px-3 py-2 text-left">
-                      Enrolled
-                    </th>
-                    <th className="border border-border px-3 py-2 text-left">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+              <>
+                {/* Desktop Table */}
+                <div className="hidden md:block overflow-x-auto mt-2">
+                  <table className="w-full border-collapse border border-border">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="border border-border px-3 py-2 text-left">
+                          Course
+                        </th>
+                        <th className="border border-border px-3 py-2 text-left">
+                          Enrolled
+                        </th>
+                        <th className="border border-border px-3 py-2 text-left">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {selectedStudent.enrollments.map((enrollment) => (
+                        <tr key={enrollment.id}>
+                          <td className="border border-border px-3 py-2 text-sm">
+                            {enrollment.course.titleEn}
+                          </td>
+                          <td className="border border-border px-3 py-2 text-sm">
+                            {new Date(
+                              enrollment.enrolledAt,
+                            ).toLocaleDateString()}
+                          </td>
+                          <td className="border border-border px-3 py-2">
+                            <form action={unenrollStudentFromCourse}>
+                              <input
+                                type="hidden"
+                                name="enrollmentId"
+                                value={enrollment.id}
+                              />
+                              <input
+                                type="hidden"
+                                name="studentProfileId"
+                                value={selectedStudent.id}
+                              />
+                              <input
+                                type="hidden"
+                                name="courseTitle"
+                                value={enrollment.course.titleEn}
+                              />
+                              <input
+                                type="hidden"
+                                name="locale"
+                                value={locale}
+                              />
+                              <Button
+                                type="submit"
+                                variant="destructive"
+                                size="sm"
+                              >
+                                Unenroll
+                              </Button>
+                            </form>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile Cards */}
+                <div className="space-y-2 mt-2 md:hidden">
                   {selectedStudent.enrollments.map((enrollment) => (
-                    <tr key={enrollment.id}>
-                      <td className="border border-border px-3 py-2 text-sm">
-                        {enrollment.course.titleEn}
-                      </td>
-                      <td className="border border-border px-3 py-2 text-sm">
-                        {new Date(
-                          enrollment.enrolledAt,
-                        ).toLocaleDateString()}
-                      </td>
-                      <td className="border border-border px-3 py-2">
-                        <form action={unenrollStudentFromCourse}>
-                          <input
-                            type="hidden"
-                            name="enrollmentId"
-                            value={enrollment.id}
-                          />
-                          <input
-                            type="hidden"
-                            name="studentProfileId"
-                            value={selectedStudent.id}
-                          />
-                          <input
-                            type="hidden"
-                            name="courseTitle"
-                            value={enrollment.course.titleEn}
-                          />
-                          <input
-                            type="hidden"
-                            name="locale"
-                            value={locale}
-                          />
-                          <Button
-                            type="submit"
-                            variant="destructive"
-                            size="sm"
-                          >
-                            Unenroll
-                          </Button>
-                        </form>
-                      </td>
-                    </tr>
+                    <div key={enrollment.id} className="rounded-md border p-3 bg-card flex items-center justify-between">
+                      <div>
+                        <div className="font-medium text-sm text-foreground">{enrollment.course.titleEn}</div>
+                        <div className="text-xs text-muted-foreground">Enrolled: {new Date(enrollment.enrolledAt).toLocaleDateString()}</div>
+                      </div>
+                      <form action={unenrollStudentFromCourse}>
+                        <input type="hidden" name="enrollmentId" value={enrollment.id} />
+                        <input type="hidden" name="studentProfileId" value={selectedStudent.id} />
+                        <input type="hidden" name="courseTitle" value={enrollment.course.titleEn} />
+                        <input type="hidden" name="locale" value={locale} />
+                        <Button type="submit" variant="destructive" size="sm">
+                          Unenroll
+                        </Button>
+                      </form>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </>
             )}
           </div>
 

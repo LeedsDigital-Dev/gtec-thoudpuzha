@@ -115,7 +115,7 @@ function Lightbox({
           e.stopPropagation();
           onClose();
         }}
-        className="absolute right-4 top-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+        className="absolute right-2 top-2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70 sm:right-4 sm:top-4"
         aria-label="Close lightbox"
       >
         <svg
@@ -140,12 +140,12 @@ function Lightbox({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-4 z-10 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+          className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 sm:p-3 text-white hover:bg-black/70"
           aria-label="Previous image"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="size-5 sm:size-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -166,13 +166,12 @@ function Lightbox({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-4 z-10 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+          className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 sm:p-3 text-white hover:bg-black/70"
           aria-label="Next image"
-          style={{ right: "5rem" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="size-5 sm:size-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

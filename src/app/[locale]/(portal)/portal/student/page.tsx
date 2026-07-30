@@ -104,7 +104,7 @@ function DashboardGrid({ t }: { t: (key: string) => string }) {
   ];
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6 lg:p-8">
       <h1 className="mb-8 text-3xl font-semibold">{t("heading")}</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {TILES.map((tile) => {

@@ -41,8 +41,8 @@ export async function Footer({ address }: { address?: string | null }) {
     <footer className="border-t bg-muted/20">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-2">
+          <div className="text-center sm:text-left">
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 <GraduationCap className="size-5" />
               </div>
@@ -53,7 +53,7 @@ export async function Footer({ address }: { address?: string | null }) {
               </div>
             </div>
             {address && (
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-center sm:text-left">
                 {address}
               </p>
             )}

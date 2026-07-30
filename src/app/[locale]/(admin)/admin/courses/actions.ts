@@ -300,7 +300,8 @@ export async function uploadCourseImage(formData: FormData) {
   const file = formData.get("coverImage") as File | null;
 
   if (!file || file.size === 0) {
-    throw new Error("No file provided");
+    revalidatePath(`/${localeFromFormData(formData)}/admin/courses`);
+    return;
   }
 
   const key = await uploadFile(file, "course-covers");

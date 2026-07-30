@@ -81,7 +81,7 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
   });
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Course Enrollment</h1>
 
       {created > 0 && (

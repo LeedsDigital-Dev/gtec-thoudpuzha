@@ -22,11 +22,11 @@ export function HeroSection({ t }: HeroSectionProps) {
         {t.badge}
       </span>
 
-      <h1 className="max-w-xl text-4xl font-bold leading-[1.1] tracking-tighter sm:text-5xl lg:text-6xl">
+      <h1 className="max-w-xl text-3xl font-bold leading-[1.1] tracking-tighter sm:text-5xl lg:text-6xl">
         {t.headline}
       </h1>
 
-      <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
+      <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
         {t.subhead}
       </p>
 

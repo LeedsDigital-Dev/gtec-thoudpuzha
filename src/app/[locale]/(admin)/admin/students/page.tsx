@@ -27,7 +27,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
   const missingEmailCount = records.filter((r) => !r.email).length;
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Students</h1>
 
       {missingEmailCount > 0 && (
@@ -139,48 +139,129 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
         <h2 className="text-lg font-medium">
           All records ({records.length})
         </h2>
-        <table className="mt-4 w-full border-collapse border border-border">
-          <thead>
-            <tr>
-              <th className="border border-border px-3 py-2 text-left">
-                Student ID
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Full Name
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Phone
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Email
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Verification
-              </th>
-              <th className="border border-border px-3 py-2 text-left">
-                Created
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.map((record) => (
-              <tr key={record.id}>
-                <td className="border border-border px-3 py-2 font-mono text-sm">
+
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto mt-4">
+          <table className="w-full min-w-[700px] border-collapse border border-border">
+            <thead>
+              <tr className="bg-muted/50">
+                <th className="border border-border px-3 py-2 text-left">
+                  Student ID
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Full Name
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Phone
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Email
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Verification
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Created
+                </th>
+                <th className="border border-border px-3 py-2 text-left">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record) => (
+                <tr key={record.id}>
+                  <td className="border border-border px-3 py-2 font-mono text-sm">
+                    {record.studentId}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {record.fullName}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {record.phone}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {record.email ? (
+                      record.email
+                    ) : (
+                      <form
+                        action={updateStudentEmail}
+                        className="flex items-center gap-2"
+                      >
+                        <input type="hidden" name="locale" value={locale} />
+                        <input type="hidden" name="recordId" value={record.id} />
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          placeholder="student@example.com"
+                          className="w-40 rounded border border-accent/30 bg-accent/5 px-2 py-1 text-xs"
+                        />
+                        <Button type="submit" size="sm" variant="outline">
+                          Add
+                        </Button>
+                      </form>
+                    )}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    {record.linkedUserId ? (
+                      <span className="text-primary font-medium">Verified</span>
+                    ) : !record.email ? (
+                      <span className="text-accent font-medium">Blocked — no email</span>
+                    ) : (
+                      <span className="text-accent font-medium">Pending</span>
+                    )}
+                  </td>
+                  <td className="border border-border px-3 py-2 text-sm">
+                    {record.createdAt.toLocaleDateString()}
+                  </td>
+                  <td className="border border-border px-3 py-2">
+                    <Link
+                      href={`/${locale}/admin/students/${record.id}`}
+                      className="inline-block rounded bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary hover:bg-primary/20"
+                    >
+                      View Student →
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Card Stack */}
+        <div className="space-y-3 mt-4 md:hidden">
+          {records.map((record) => (
+            <div key={record.id} className="rounded-lg border border-border bg-card p-4 space-y-2 shadow-xs">
+              <div className="flex items-center justify-between border-b pb-2">
+                <span className="font-semibold text-foreground">{record.fullName}</span>
+                <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs font-medium text-foreground">
                   {record.studentId}
-                </td>
-                <td className="border border-border px-3 py-2">
-                  {record.fullName}
-                </td>
-                <td className="border border-border px-3 py-2">
-                  {record.phone}
-                </td>
-                <td className="border border-border px-3 py-2">
+                </span>
+              </div>
+              <div className="text-sm space-y-1.5 text-muted-foreground">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium text-foreground">Phone:</span>
+                  <a href={`tel:${record.phone}`} className="text-primary font-mono hover:underline">{record.phone}</a>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="font-medium text-foreground">Status:</span>
+                  {record.linkedUserId ? (
+                    <span className="text-primary font-medium text-xs">Verified</span>
+                  ) : !record.email ? (
+                    <span className="text-accent font-medium text-xs">Blocked — no email</span>
+                  ) : (
+                    <span className="text-accent font-medium text-xs">Pending</span>
+                  )}
+                </div>
+                <div className="pt-1">
+                  <span className="font-medium text-foreground block mb-1">Email:</span>
                   {record.email ? (
-                    record.email
+                    <span className="text-foreground text-xs font-mono break-all">{record.email}</span>
                   ) : (
                     <form
                       action={updateStudentEmail}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 mt-1"
                     >
                       <input type="hidden" name="locale" value={locale} />
                       <input type="hidden" name="recordId" value={record.id} />
@@ -189,30 +270,29 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                         name="email"
                         required
                         placeholder="student@example.com"
-                        className="w-40 rounded border border-accent/30 bg-accent/5 px-2 py-1 text-xs"
+                        className="flex-1 rounded border border-accent/30 bg-accent/5 px-2 py-1 text-xs"
                       />
                       <Button type="submit" size="sm" variant="outline">
                         Add
                       </Button>
                     </form>
                   )}
-                </td>
-                <td className="border border-border px-3 py-2">
-                  {record.linkedUserId ? (
-                    <span className="text-primary">Verified</span>
-                  ) : !record.email ? (
-                    <span className="text-accent">Blocked — no email</span>
-                  ) : (
-                    <span className="text-accent">Pending</span>
-                  )}
-                </td>
-                <td className="border border-border px-3 py-2 text-sm">
-                  {record.createdAt.toLocaleDateString()}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+                <div className="pt-2 border-t flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">
+                    Created: {record.createdAt.toLocaleDateString()}
+                  </span>
+                  <Link
+                    href={`/${locale}/admin/students/${record.id}`}
+                    className="inline-block rounded bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20"
+                  >
+                    View Student →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {records.length === 0 && (
           <p className="mt-4 text-muted-foreground">

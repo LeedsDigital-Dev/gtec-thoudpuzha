@@ -71,31 +71,31 @@ export function CourseContentEditor({
   }
 
   return (
-    <main className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">
+    <main className="w-full max-w-full overflow-x-hidden p-4 sm:p-6 lg:p-8 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-4">
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground break-words min-w-0 flex-1">
           Course Content — {courseTitleEn}
         </h1>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           {message && (
             <span
-              className={`text-sm ${message.type === "success" ? "text-green-600" : "text-destructive"}`}
+              className={`text-xs sm:text-sm font-medium ${message.type === "success" ? "text-green-600" : "text-destructive"}`}
             >
               {message.text}
             </span>
           )}
-          <Button onClick={handleSave} disabled={saving}>
+          <Button onClick={handleSave} disabled={saving} size="sm" className="whitespace-nowrap">
             {saving ? "Saving..." : "Save Content"}
           </Button>
         </div>
       </div>
 
-      <div className="flex gap-2 border-b border-border">
+      <div className="flex gap-2 border-b border-border overflow-x-auto whitespace-nowrap pb-px scrollbar-none">
         {(["hero", "detailed", "lists", "benefits", "preview"] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-medium border-b-2 transition-colors shrink-0 ${
               tab === t
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -110,7 +110,7 @@ export function CourseContentEditor({
         ))}
       </div>
 
-      <div className="max-w-3xl">
+      <div className="w-full max-w-3xl overflow-x-hidden">
         {tab === "hero" && (
           <HeroTab content={content} updateContent={updateContent} />
         )}

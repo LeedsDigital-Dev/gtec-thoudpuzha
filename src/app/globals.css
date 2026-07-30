@@ -325,6 +325,22 @@
   }
 }
 
+/* ── Mobile touch improvements ── */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* ── Safe area inset for bottom nav ── */
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
 /* ============================================================
    ANIMATIONS
    ============================================================ */

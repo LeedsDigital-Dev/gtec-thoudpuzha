@@ -46,7 +46,7 @@ export default async function TimetableProgressPage({ params }: Props) {
     ]);
 
   return (
-    <main className="p-6 space-y-10">
+    <main className="p-4 sm:p-6 lg:p-8 space-y-10">
       <h1 className="text-2xl font-semibold">Timetable &amp; Progress</h1>
 
       {/* ───── Timetable Entry ───── */}
@@ -98,38 +98,67 @@ export default async function TimetableProgressPage({ params }: Props) {
       <section>
         <h2 className="text-lg font-medium">Timetable Entries</h2>
         {timetableEntries.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-border">
-            <thead>
-              <tr>
-                <th className="border border-border px-3 py-2 text-left">Course</th>
-                <th className="border border-border px-3 py-2 text-left">Content</th>
-                <th className="border border-border px-3 py-2 text-left">Created</th>
-                <th className="border border-border px-3 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto mt-4">
+              <table className="w-full border-collapse border border-border">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-3 py-2 text-left">Course</th>
+                    <th className="border border-border px-3 py-2 text-left">Content</th>
+                    <th className="border border-border px-3 py-2 text-left">Created</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {timetableEntries.map((e) => (
+                    <tr key={e.id}>
+                      <td className="border border-border px-3 py-2 font-medium">{e.course.titleEn}</td>
+                      <td className="border border-border px-3 py-2 text-sm whitespace-pre-wrap">
+                        {e.contentText}
+                      </td>
+                      <td className="border border-border px-3 py-2 text-xs font-mono">
+                        {e.createdAt.toISOString().slice(0, 10)}
+                      </td>
+                      <td className="border border-border px-3 py-2">
+                        <form action={deleteTimetableEntry}>
+                          <input type="hidden" name="id" value={e.id} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <Button type="submit" size="xs" variant="destructive">
+                            Delete
+                          </Button>
+                        </form>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="space-y-3 mt-4 md:hidden">
               {timetableEntries.map((e) => (
-                <tr key={e.id}>
-                  <td className="border border-border px-3 py-2">{e.course.titleEn}</td>
-                  <td className="border border-border px-3 py-2 text-sm whitespace-pre-wrap">
-                    {e.contentText}
-                  </td>
-                  <td className="border border-border px-3 py-2 text-xs">
-                    {e.createdAt.toISOString().slice(0, 10)}
-                  </td>
-                  <td className="border border-border px-3 py-2">
-                    <form action={deleteTimetableEntry}>
+                <div key={e.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
+                  <div className="flex items-center justify-between border-b pb-2">
+                    <span className="font-semibold text-foreground text-sm">{e.course.titleEn}</span>
+                    <span className="text-xs font-mono text-muted-foreground">{e.createdAt.toISOString().slice(0, 10)}</span>
+                  </div>
+
+                  <p className="text-xs text-foreground whitespace-pre-wrap">{e.contentText}</p>
+
+                  <div className="pt-2 border-t flex justify-end">
+                    <form action={deleteTimetableEntry} className="w-full">
                       <input type="hidden" name="id" value={e.id} />
                       <input type="hidden" name="locale" value={locale} />
-                      <Button type="submit" size="xs" variant="destructive">
-                        Delete
+                      <Button type="submit" size="xs" variant="destructive" className="w-full">
+                        Delete Timetable Entry
                       </Button>
                     </form>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         ) : (
           <p className="mt-4 text-muted-foreground">No timetable entries yet.</p>
         )}
@@ -203,40 +232,72 @@ export default async function TimetableProgressPage({ params }: Props) {
       <section>
         <h2 className="text-lg font-medium">Progress Entries</h2>
         {progressEntries.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-border">
-            <thead>
-              <tr>
-                <th className="border border-border px-3 py-2 text-left">Student</th>
-                <th className="border border-border px-3 py-2 text-left">Course</th>
-                <th className="border border-border px-3 py-2 text-left">Note</th>
-                <th className="border border-border px-3 py-2 text-left">Recorded</th>
-                <th className="border border-border px-3 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto mt-4">
+              <table className="w-full border-collapse border border-border">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-3 py-2 text-left">Student</th>
+                    <th className="border border-border px-3 py-2 text-left">Course</th>
+                    <th className="border border-border px-3 py-2 text-left">Note</th>
+                    <th className="border border-border px-3 py-2 text-left">Recorded</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {progressEntries.map((e) => (
+                    <tr key={e.id}>
+                      <td className="border border-border px-3 py-2 font-medium">
+                        {e.studentProfile.fullName ?? e.studentProfileId}
+                      </td>
+                      <td className="border border-border px-3 py-2">{e.course.titleEn}</td>
+                      <td className="border border-border px-3 py-2 text-sm">{e.noteEn}</td>
+                      <td className="border border-border px-3 py-2 text-xs font-mono">
+                        {e.recordedAt.toISOString().slice(0, 10)}
+                      </td>
+                      <td className="border border-border px-3 py-2">
+                        <form action={deleteProgressEntry}>
+                          <input type="hidden" name="id" value={e.id} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <Button type="submit" size="xs" variant="destructive">
+                            Delete
+                          </Button>
+                        </form>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="space-y-3 mt-4 md:hidden">
               {progressEntries.map((e) => (
-                <tr key={e.id}>
-                  <td className="border border-border px-3 py-2">
-                    {e.studentProfile.fullName ?? e.studentProfileId}
-                  </td>
-                  <td className="border border-border px-3 py-2">{e.course.titleEn}</td>
-                  <td className="border border-border px-3 py-2 text-sm">{e.noteEn}</td>
-                  <td className="border border-border px-3 py-2 text-xs">
-                    {e.recordedAt.toISOString().slice(0, 10)}
-                  </td>
-                  <td className="border border-border px-3 py-2">
-                    <form action={deleteProgressEntry}>
+                <div key={e.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
+                  <div className="flex items-center justify-between border-b pb-2">
+                    <div>
+                      <span className="font-semibold text-foreground text-sm block">{e.studentProfile.fullName ?? e.studentProfileId}</span>
+                      <span className="text-xs text-muted-foreground">{e.course.titleEn}</span>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground">{e.recordedAt.toISOString().slice(0, 10)}</span>
+                  </div>
+
+                  <p className="text-xs text-foreground">{e.noteEn}</p>
+
+                  <div className="pt-2 border-t flex justify-end">
+                    <form action={deleteProgressEntry} className="w-full">
                       <input type="hidden" name="id" value={e.id} />
                       <input type="hidden" name="locale" value={locale} />
-                      <Button type="submit" size="xs" variant="destructive">
-                        Delete
+                      <Button type="submit" size="xs" variant="destructive" className="w-full">
+                        Delete Progress Entry
                       </Button>
                     </form>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         ) : (
           <p className="mt-4 text-muted-foreground">No progress entries yet.</p>
         )}

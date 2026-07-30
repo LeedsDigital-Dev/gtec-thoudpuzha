@@ -57,7 +57,7 @@ export default async function AdminDashboardPage({
     ]);
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         Welcome, {role === Role.SUPER_ADMIN ? "Super Admin" : "Staff"}
@@ -102,36 +102,58 @@ export default async function AdminDashboardPage({
           </Link>
         </div>
 
-        <div className="mt-3 overflow-x-auto rounded border border-border">
+        <div className="mt-3">
           {recentEnquiries.length === 0 ? (
-            <p className="p-4 text-sm text-muted-foreground">No enquiries yet.</p>
+            <p className="p-4 text-sm text-muted-foreground border rounded">No enquiries yet.</p>
           ) : (
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-muted/50">
-                  <th className="px-3 py-2 text-left text-sm font-medium">Name</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Phone</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Course</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Source</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Date</th>
-                </tr>
-              </thead>
-              <tbody>
+            <>
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto rounded border border-border">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="px-3 py-2 text-left text-sm font-medium">Name</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Phone</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Course</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Source</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentEnquiries.map((enquiry) => (
+                      <tr key={enquiry.id} className="border-t border-border">
+                        <td className="px-3 py-2 text-sm">{enquiry.name}</td>
+                        <td className="px-3 py-2 text-sm">{enquiry.phone}</td>
+                        <td className="px-3 py-2 text-sm">
+                          {enquiry.course?.titleEn || "—"}
+                        </td>
+                        <td className="px-3 py-2 text-sm">{enquiry.source}</td>
+                        <td className="px-3 py-2 text-sm">
+                          {enquiry.createdAt.toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card Stack */}
+              <div className="space-y-3 md:hidden">
                 {recentEnquiries.map((enquiry) => (
-                  <tr key={enquiry.id} className="border-t border-border">
-                    <td className="px-3 py-2 text-sm">{enquiry.name}</td>
-                    <td className="px-3 py-2 text-sm">{enquiry.phone}</td>
-                    <td className="px-3 py-2 text-sm">
-                      {enquiry.course?.titleEn || "—"}
-                    </td>
-                    <td className="px-3 py-2 text-sm">{enquiry.source}</td>
-                    <td className="px-3 py-2 text-sm">
-                      {enquiry.createdAt.toLocaleDateString()}
-                    </td>
-                  </tr>
+                  <div key={enquiry.id} className="rounded-lg border border-border bg-card p-4 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-foreground text-sm">{enquiry.name}</span>
+                      <span className="text-xs text-muted-foreground">{enquiry.createdAt.toLocaleDateString()}</span>
+                    </div>
+                    <div className="text-xs space-y-1 text-muted-foreground">
+                      <div><span className="font-medium text-foreground">Phone:</span> <a href={`tel:${enquiry.phone}`} className="text-primary underline">{enquiry.phone}</a></div>
+                      <div><span className="font-medium text-foreground">Course:</span> {enquiry.course?.titleEn || "—"}</div>
+                      <div><span className="font-medium text-foreground">Source:</span> <span className="inline-block rounded bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">{enquiry.source}</span></div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </>
           )}
         </div>
       </section>

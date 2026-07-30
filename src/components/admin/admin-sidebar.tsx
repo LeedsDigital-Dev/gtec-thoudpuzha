@@ -35,7 +35,7 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
   );
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="hidden md:flex">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

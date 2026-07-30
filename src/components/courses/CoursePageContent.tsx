@@ -134,14 +134,14 @@ function CourseListSection({ list }: { list: CourseListBlock }) {
       {list.heading && (
         <h3 className="text-xl font-semibold mb-3">{list.heading}</h3>
       )}
-      <div className="rounded border border-border overflow-hidden">
-        <table className="w-full border-collapse text-sm">
+      <div className="rounded border border-border overflow-x-auto">
+        <table className="w-full min-w-[400px] border-collapse text-sm">
           <thead className="bg-muted/50">
             <tr>
-              <th className="border border-border px-4 py-2 text-left font-medium w-1/3">
+              <th className="border border-border px-4 py-2 text-left font-medium w-1/3 whitespace-nowrap">
                 Code
               </th>
-              <th className="border border-border px-4 py-2 text-left font-medium">
+              <th className="border border-border px-4 py-2 text-left font-medium whitespace-nowrap">
                 Course Name
               </th>
             </tr>
@@ -149,7 +149,7 @@ function CourseListSection({ list }: { list: CourseListBlock }) {
           <tbody>
             {list.items.map((item, idx) => (
               <tr key={idx} className="even:bg-muted/20">
-                <td className="border border-border px-4 py-2 font-mono text-xs">
+                <td className="border border-border px-4 py-2 font-mono text-xs whitespace-nowrap">
                   {item.code}
                 </td>
                 <td className="border border-border px-4 py-2">{item.name}</td>

@@ -88,7 +88,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Mission */}
-            <div className="rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-md">
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm transition-all hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Target className="h-6 w-6" />
               </div>
@@ -101,7 +101,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
 
             {/* Vision */}
-            <div className="rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-md">
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm transition-all hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Compass className="h-6 w-6" />
               </div>

@@ -41,7 +41,7 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
   ]);
 
   return (
-    <main className="p-6 space-y-10">
+    <main className="p-4 sm:p-6 lg:p-8 space-y-10">
       <h1 className="text-2xl font-semibold">Courses</h1>
 
       {/* ── Categories ── */}
@@ -75,50 +75,90 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
         </form>
 
         {categories.length > 0 && (
-          <table className="mt-4 w-full border-collapse border border-border">
-            <thead>
-              <tr>
-                <th className="border border-border px-3 py-2 text-left">Order</th>
-                <th className="border border-border px-3 py-2 text-left">English</th>
-                <th className="border border-border px-3 py-2 text-left">Malayalam</th>
-                <th className="border border-border px-3 py-2 text-left">Courses</th>
-                <th className="border border-border px-3 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop Categories Table */}
+            <div className="hidden md:block overflow-x-auto mt-4">
+              <table className="w-full border-collapse border border-border">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-3 py-2 text-left">Order</th>
+                    <th className="border border-border px-3 py-2 text-left">English</th>
+                    <th className="border border-border px-3 py-2 text-left">Malayalam</th>
+                    <th className="border border-border px-3 py-2 text-left">Courses</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categories.map((cat, index) => (
+                    <tr key={cat.id}>
+                      <td className="border border-border px-3 py-2">
+                        <div className="flex items-center gap-1">
+                          <form action={moveCategory}>
+                            <input type="hidden" name="id" value={cat.id} />
+                            <input type="hidden" name="direction" value="up" />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0} aria-label="Move up">↑</Button>
+                          </form>
+                          <form action={moveCategory}>
+                            <input type="hidden" name="id" value={cat.id} />
+                            <input type="hidden" name="direction" value="down" />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1} aria-label="Move down">↓</Button>
+                          </form>
+                          <span className="ml-1 text-xs">{cat.sortOrder}</span>
+                        </div>
+                      </td>
+                      <td className="border border-border px-3 py-2">{cat.nameEn}</td>
+                      <td className="border border-border px-3 py-2">{cat.nameMl || "—"}</td>
+                      <td className="border border-border px-3 py-2">{cat._count.courses}</td>
+                      <td className="border border-border px-3 py-2">
+                        <form action={deleteCategory}>
+                          <input type="hidden" name="id" value={cat.id} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                        </form>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Categories Cards */}
+            <div className="space-y-3 mt-4 md:hidden">
               {categories.map((cat, index) => (
-                <tr key={cat.id}>
-                  <td className="border border-border px-3 py-2">
+                <div key={cat.id} className="rounded-lg border border-border bg-card p-3 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-sm">{cat.nameEn}</span>
+                    <span className="text-xs text-muted-foreground">{cat._count.courses} courses</span>
+                  </div>
+                  {cat.nameMl && <div className="text-xs text-muted-foreground">ML: {cat.nameMl}</div>}
+                  <div className="flex items-center justify-between pt-2 border-t text-xs">
                     <div className="flex items-center gap-1">
+                      <span className="text-muted-foreground mr-1">Order ({cat.sortOrder}):</span>
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
                         <input type="hidden" name="direction" value="up" />
                         <input type="hidden" name="locale" value={locale} />
-                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0} aria-label="Move up">↑</Button>
+                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0}>↑</Button>
                       </form>
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
                         <input type="hidden" name="direction" value="down" />
                         <input type="hidden" name="locale" value={locale} />
-                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1} aria-label="Move down">↓</Button>
+                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1}>↓</Button>
                       </form>
-                      <span className="ml-1 text-xs">{cat.sortOrder}</span>
                     </div>
-                  </td>
-                  <td className="border border-border px-3 py-2">{cat.nameEn}</td>
-                  <td className="border border-border px-3 py-2">{cat.nameMl || "—"}</td>
-                  <td className="border border-border px-3 py-2">{cat._count.courses}</td>
-                  <td className="border border-border px-3 py-2">
                     <form action={deleteCategory}>
                       <input type="hidden" name="id" value={cat.id} />
                       <input type="hidden" name="locale" value={locale} />
                       <Button type="submit" size="xs" variant="destructive">Delete</Button>
                     </form>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
 
         {categories.length === 0 && (
@@ -202,93 +242,251 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
       <section>
         <h2 className="text-lg font-medium">All Courses</h2>
         {courses.length > 0 ? (
-          <table className="mt-4 w-full border-collapse border border-border">
-            <thead>
-              <tr>
-                <th className="border border-border px-3 py-2 text-left">Title</th>
-                <th className="border border-border px-3 py-2 text-left">Slug</th>
-                <th className="border border-border px-3 py-2 text-left">Category</th>
-                <th className="border border-border px-3 py-2 text-left">Status</th>
-                <th className="border border-border px-3 py-2 text-left">Featured</th>
-                <th className="border border-border px-3 py-2 text-left">Cover Image</th>
-                <th className="border border-border px-3 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop Courses Table */}
+            <div className="hidden md:block overflow-x-auto mt-4">
+              <table className="w-full border-collapse border border-border">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-3 py-2 text-left">Title</th>
+                    <th className="border border-border px-3 py-2 text-left">Slug</th>
+                    <th className="border border-border px-3 py-2 text-left">Category</th>
+                    <th className="border border-border px-3 py-2 text-left">Status</th>
+                    <th className="border border-border px-3 py-2 text-left">Featured</th>
+                    <th className="border border-border px-3 py-2 text-left">Cover Image</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {courses.map((course) => (
+                    <tr key={course.id}>
+                      <td className="border border-border px-3 py-2">{course.titleEn}</td>
+                      <td className="border border-border px-3 py-2 text-xs font-mono">{course.slug}</td>
+                      <td className="border border-border px-3 py-2">{course.category?.nameEn || "—"}</td>
+                      <td className="border border-border px-3 py-2">{course.status}</td>
+                      <td className="border border-border px-3 py-2">{course.featured ? "Yes" : "No"}</td>
+                      <td className="border border-border px-3 py-2">
+                        {course.coverImageUrl ? (
+                          <span className="text-xs">{course.coverImageUrl}</span>
+                        ) : (
+                          <span className="text-muted-foreground text-xs">—</span>
+                        )}
+                      </td>
+                      <td className="border border-border px-3 py-2">
+                        <div className="flex flex-col gap-2">
+                          <a
+                            href={`/${locale}/admin/courses/${course.id}/content`}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            Edit Content
+                          </a>
+                          <form action={uploadCourseImage} className="flex items-center gap-2">
+                            <input type="hidden" name="courseId" value={course.id} />
+                            <input type="hidden" name="locale" value={locale} />
+                            <input type="file" name="coverImage" accept="image/*" required className="text-xs" />
+                            <Button type="submit" size="xs" variant="outline">Upload Cover</Button>
+                          </form>
+                          <details>
+                            <summary className="cursor-pointer text-xs text-primary">Edit</summary>
+                            <form action={updateCourse} className="mt-2 space-y-2 border border-border rounded p-2 text-left">
+                              <input type="hidden" name="id" value={course.id} />
+                              <input type="hidden" name="locale" value={locale} />
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Title (English) *</label>
+                                <input name="titleEn" defaultValue={course.titleEn} className="w-full rounded border border-border px-2 py-1 text-xs" required />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Title (Malayalam)</label>
+                                <input name="titleMl" defaultValue={course.titleMl ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Slug *</label>
+                                <input name="slug" defaultValue={course.slug} className="w-full rounded border border-border px-2 py-1 text-xs" required />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Category</label>
+                                <select name="categoryId" defaultValue={course.categoryId ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs">
+                                  <option value="">— None —</option>
+                                  {categories.map((cat) => (
+                                    <option key={cat.id} value={cat.id}>{cat.nameEn}</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Description (English)</label>
+                                <textarea name="descriptionEn" defaultValue={course.descriptionEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Description (Malayalam)</label>
+                                <textarea name="descriptionMl" defaultValue={course.descriptionMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Duration</label>
+                                <input name="durationText" defaultValue={course.durationText ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Certifications (comma-separated)</label>
+                                <input name="certifications" defaultValue={course.certifications.join(", ")} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Career Outcomes (English)</label>
+                                <textarea name="careerOutcomesEn" defaultValue={course.careerOutcomesEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Career Outcomes (Malayalam)</label>
+                                <textarea name="careerOutcomesMl" defaultValue={course.careerOutcomesMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Syllabus (JSON)</label>
+                                <textarea name="syllabus" defaultValue={course.syllabus ? JSON.stringify(course.syllabus, null, 2) : ""} rows={3} className="w-full rounded border border-border px-2 py-1 text-xs font-mono" />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-foreground mb-0.5">Status</label>
+                                <select name="status" defaultValue={course.status} className="w-full rounded border border-border px-2 py-1 text-xs">
+                                  <option value="DRAFT">Draft</option>
+                                  <option value="PUBLISHED">Published</option>
+                                  <option value="ARCHIVED">Archived</option>
+                                </select>
+                              </div>
+                              <label className="flex items-center gap-2 text-xs pt-1">
+                                <input type="checkbox" name="featured" defaultChecked={course.featured} />
+                                Featured
+                              </label>
+                              <Button type="submit" size="xs" className="w-full">Save Changes</Button>
+                            </form>
+                            <form action={deleteCourse} className="mt-2">
+                              <input type="hidden" name="id" value={course.id} />
+                              <input type="hidden" name="locale" value={locale} />
+                              <Button type="submit" size="xs" variant="destructive" className="w-full">Delete</Button>
+                            </form>
+                          </details>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Courses Cards */}
+            <div className="space-y-3 mt-4 md:hidden">
               {courses.map((course) => (
-                <tr key={course.id}>
-                  <td className="border border-border px-3 py-2">{course.titleEn}</td>
-                  <td className="border border-border px-3 py-2 text-xs font-mono">{course.slug}</td>
-                  <td className="border border-border px-3 py-2">{course.category?.nameEn || "—"}</td>
-                  <td className="border border-border px-3 py-2">{course.status}</td>
-                  <td className="border border-border px-3 py-2">{course.featured ? "Yes" : "No"}</td>
-                  <td className="border border-border px-3 py-2">
-                    {course.coverImageUrl ? (
-                      <span className="text-xs">{course.coverImageUrl}</span>
-                    ) : (
-                      <span className="text-muted-foreground text-xs">—</span>
-                    )}
-                  </td>
-                  <td className="border border-border px-3 py-2">
-                    <div className="flex flex-col gap-2">
-                      <a
-                        href={`/${locale}/admin/courses/${course.id}/content`}
-                        className="text-xs text-primary hover:underline"
-                      >
-                        Edit Content
-                      </a>
-                      {/* Upload cover image */}
-                      <form action={uploadCourseImage} className="flex items-center gap-2">
-                        <input type="hidden" name="courseId" value={course.id} />
+                <div key={course.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
+                  <div className="flex items-center justify-between border-b pb-2">
+                    <div>
+                      <span className="font-semibold text-foreground text-sm block">{course.titleEn}</span>
+                      <span className="text-[11px] font-mono text-muted-foreground">/{course.slug}</span>
+                    </div>
+                    <span className="rounded bg-primary/10 text-primary px-2 py-0.5 text-xs font-medium">
+                      {course.status}
+                    </span>
+                  </div>
+
+                  <div className="text-xs space-y-1.5 text-muted-foreground">
+                    <div className="flex justify-between">
+                      <span className="font-medium text-foreground">Category:</span>
+                      <span>{course.category?.nameEn || "—"}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-medium text-foreground">Featured:</span>
+                      <span>{course.featured ? "Yes" : "No"}</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 border-t space-y-2">
+                    <a
+                      href={`/${locale}/admin/courses/${course.id}/content`}
+                      className="inline-block w-full text-center rounded bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20"
+                    >
+                      Edit Course Content →
+                    </a>
+
+                    <form action={uploadCourseImage} className="flex items-center gap-2 pt-1">
+                      <input type="hidden" name="courseId" value={course.id} />
+                      <input type="hidden" name="locale" value={locale} />
+                      <input type="file" name="coverImage" accept="image/*" required className="text-xs max-w-[170px]" />
+                      <Button type="submit" size="xs" variant="outline">Upload Cover</Button>
+                    </form>
+
+                    <details className="pt-1">
+                      <summary className="cursor-pointer text-xs font-medium text-primary">Edit Details & Delete</summary>
+                      <form action={updateCourse} className="mt-2 space-y-2.5 border border-border rounded p-3 bg-muted/20 text-left">
+                        <input type="hidden" name="id" value={course.id} />
                         <input type="hidden" name="locale" value={locale} />
-                        <input type="file" name="coverImage" accept="image/*" className="text-xs" />
-                        <Button type="submit" size="xs" variant="outline">Upload Cover</Button>
-                      </form>
-                      {/* Edit form inline */}
-                      <details>
-                        <summary className="cursor-pointer text-xs text-primary">Edit</summary>
-                        <form action={updateCourse} className="mt-2 space-y-2 border border-border rounded p-2">
-                          <input type="hidden" name="id" value={course.id} />
-                          <input type="hidden" name="locale" value={locale} />
-                          <input name="titleEn" defaultValue={course.titleEn} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Title EN" required />
-                          <input name="titleMl" defaultValue={course.titleMl ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Title ML" />
-                          <input name="slug" defaultValue={course.slug} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Slug" required />
-                          <select name="categoryId" defaultValue={course.categoryId ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs">
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Title (English) *</label>
+                          <input name="titleEn" defaultValue={course.titleEn} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" required />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Title (Malayalam)</label>
+                          <input name="titleMl" defaultValue={course.titleMl ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Slug *</label>
+                          <input name="slug" defaultValue={course.slug} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" required />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Category</label>
+                          <select name="categoryId" defaultValue={course.categoryId ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background">
                             <option value="">— None —</option>
                             {categories.map((cat) => (
                               <option key={cat.id} value={cat.id}>{cat.nameEn}</option>
                             ))}
                           </select>
-                          <textarea name="descriptionEn" defaultValue={course.descriptionEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Description EN" />
-                          <textarea name="descriptionMl" defaultValue={course.descriptionMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Description ML" />
-                          <input name="durationText" defaultValue={course.durationText ?? ""} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Duration" />
-                          <input name="certifications" defaultValue={course.certifications.join(", ")} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Certifications (comma-sep)" />
-                          <textarea name="careerOutcomesEn" defaultValue={course.careerOutcomesEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Career Outcomes EN" />
-                          <textarea name="careerOutcomesMl" defaultValue={course.careerOutcomesMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1 text-xs" placeholder="Career Outcomes ML" />
-                          <textarea name="syllabus" defaultValue={course.syllabus ? JSON.stringify(course.syllabus, null, 2) : ""} rows={3} className="w-full rounded border border-border px-2 py-1 text-xs font-mono" placeholder="Syllabus JSON" />
-                          <select name="status" defaultValue={course.status} className="w-full rounded border border-border px-2 py-1 text-xs">
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Description (English)</label>
+                          <textarea name="descriptionEn" defaultValue={course.descriptionEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Description (Malayalam)</label>
+                          <textarea name="descriptionMl" defaultValue={course.descriptionMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Duration</label>
+                          <input name="durationText" defaultValue={course.durationText ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Certifications (comma-separated)</label>
+                          <input name="certifications" defaultValue={course.certifications.join(", ")} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Career Outcomes (English)</label>
+                          <textarea name="careerOutcomesEn" defaultValue={course.careerOutcomesEn ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Career Outcomes (Malayalam)</label>
+                          <textarea name="careerOutcomesMl" defaultValue={course.careerOutcomesMl ?? ""} rows={2} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Syllabus (JSON)</label>
+                          <textarea name="syllabus" defaultValue={course.syllabus ? JSON.stringify(course.syllabus, null, 2) : ""} rows={3} className="w-full rounded border border-border px-2 py-1.5 text-xs font-mono bg-background" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-foreground mb-1">Status</label>
+                          <select name="status" defaultValue={course.status} className="w-full rounded border border-border px-2 py-1.5 text-xs bg-background">
                             <option value="DRAFT">Draft</option>
                             <option value="PUBLISHED">Published</option>
                             <option value="ARCHIVED">Archived</option>
                           </select>
-                          <label className="flex items-center gap-2 text-xs">
-                            <input type="checkbox" name="featured" defaultChecked={course.featured} />
-                            Featured
-                          </label>
-                          <Button type="submit" size="xs">Save</Button>
-                        </form>
-                        <form action={deleteCourse} className="mt-2">
-                          <input type="hidden" name="id" value={course.id} />
-                          <input type="hidden" name="locale" value={locale} />
-                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
-                        </form>
-                      </details>
-                    </div>
-                  </td>
-                </tr>
+                        </div>
+                        <label className="flex items-center gap-2 text-xs pt-1">
+                          <input type="checkbox" name="featured" defaultChecked={course.featured} />
+                          Featured
+                        </label>
+                        <Button type="submit" size="xs" className="w-full">Save Changes</Button>
+                      </form>
+                      <form action={deleteCourse} className="mt-2">
+                        <input type="hidden" name="id" value={course.id} />
+                        <input type="hidden" name="locale" value={locale} />
+                        <Button type="submit" size="xs" variant="destructive" className="w-full">Delete Course</Button>
+                      </form>
+                    </details>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         ) : (
           <p className="mt-4 text-muted-foreground">No courses yet.</p>
         )}

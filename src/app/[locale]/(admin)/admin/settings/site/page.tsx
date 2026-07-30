@@ -42,7 +42,7 @@ export default async function SiteSettingsPage({
   const cards = settings.whyChooseUsCards;
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Site Settings</h1>
 
       <form action={updateSiteSettings} className="mt-6 space-y-8">

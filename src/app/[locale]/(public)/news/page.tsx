@@ -18,16 +18,18 @@ export default async function NewsPage({ params }: NewsPageProps) {
   const newsItems = items.filter((i) => i.type === "NEWS");
   const eventItems = items.filter((i) => i.type === "EVENT");
 
-  function formatDate(date: Date | null): string {
+  function formatDate(date: Date | string | null | undefined): string {
     if (!date) return "";
+    const d = typeof date === "string" ? new Date(date) : date;
+    if (!(d instanceof Date) || isNaN(d.getTime())) return "";
     try {
-      return date.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
+      return d.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       });
     } catch {
-      return date.toLocaleDateString("en-US", {
+      return d.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",

@@ -91,7 +91,7 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
           </div>
           <div className="min-w-0">
             <span className="text-muted-foreground block text-xs font-medium">Created On</span>
-            <span className="text-foreground">{record.createdAt.toLocaleDateString()}</span>
+            <span className="text-foreground">{new Date(record.createdAt).toLocaleDateString()}</span>
           </div>
           <div className="min-w-0">
             <span className="text-muted-foreground block text-xs font-medium">Linked Account ID</span>

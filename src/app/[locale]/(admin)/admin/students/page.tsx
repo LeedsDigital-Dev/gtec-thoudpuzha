@@ -213,7 +213,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                     )}
                   </td>
                   <td className="border border-border px-3 py-2 text-sm">
-                    {record.createdAt.toLocaleDateString()}
+                    {new Date(record.createdAt).toLocaleDateString()}
                   </td>
                   <td className="border border-border px-3 py-2">
                     <Link
@@ -280,7 +280,7 @@ export default async function StudentsPage({ params }: StudentsPageProps) {
                 </div>
                 <div className="pt-2 border-t flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">
-                    Created: {record.createdAt.toLocaleDateString()}
+                    Created: {new Date(record.createdAt).toLocaleDateString()}
                   </span>
                   <Link
                     href={`/${locale}/admin/students/${record.id}`}

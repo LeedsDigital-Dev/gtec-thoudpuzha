@@ -7,8 +7,8 @@ interface TeaserItem {
   titleEn: string;
   titleMl: string | null;
   slug: string;
-  publishedAt: Date | null;
-  eventDate: Date | null;
+  publishedAt: Date | string | null;
+  eventDate: Date | string | null;
 }
 
 interface NewsTeaserSectionProps {
@@ -22,9 +22,11 @@ interface NewsTeaserSectionProps {
   locale: "en" | "ml";
 }
 
-function formatDate(date: Date | null): string {
+function formatDate(date: Date | string | null | undefined): string {
   if (!date) return "";
-  return date.toLocaleDateString("en-US", {
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (!(d instanceof Date) || isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",

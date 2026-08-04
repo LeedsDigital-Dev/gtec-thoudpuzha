@@ -132,7 +132,7 @@ export default async function AdminDashboardPage({
                         </td>
                         <td className="px-3 py-2 text-sm">{enquiry.source}</td>
                         <td className="px-3 py-2 text-sm">
-                          {enquiry.createdAt.toLocaleDateString()}
+                          {new Date(enquiry.createdAt).toLocaleDateString()}
                         </td>
                       </tr>
                     ))}
@@ -146,7 +146,7 @@ export default async function AdminDashboardPage({
                   <div key={enquiry.id} className="rounded-lg border border-border bg-card p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-semibold text-foreground text-sm">{enquiry.name}</span>
-                      <span className="text-xs text-muted-foreground">{enquiry.createdAt.toLocaleDateString()}</span>
+                      <span className="text-xs text-muted-foreground">{new Date(enquiry.createdAt).toLocaleDateString()}</span>
                     </div>
                     <div className="text-xs space-y-1 text-muted-foreground">
                       <div><span className="font-medium text-foreground">Phone:</span> <a href={`tel:${enquiry.phone}`} className="text-primary underline">{enquiry.phone}</a></div>

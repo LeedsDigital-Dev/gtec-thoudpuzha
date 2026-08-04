@@ -151,7 +151,7 @@ export default async function JobPostingsPage({
                         {jp.jobType.replace(/_/g, " ")}
                       </td>
                       <td className="border border-border px-3 py-2 text-sm font-mono">
-                        {jp.applicationDeadline.toLocaleDateString()}
+                        {new Date(jp.applicationDeadline).toLocaleDateString()}
                       </td>
                       <td className="border border-border px-3 py-2">
                         <span
@@ -339,7 +339,7 @@ export default async function JobPostingsPage({
                     </div>
                     <div className="flex justify-between">
                       <span className="font-medium text-foreground">Deadline:</span>
-                      <span className="font-mono text-foreground">{jp.applicationDeadline.toLocaleDateString()}</span>
+                      <span className="font-mono text-foreground">{new Date(jp.applicationDeadline).toLocaleDateString()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-medium text-foreground">Auto-published:</span>

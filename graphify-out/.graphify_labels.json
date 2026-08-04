@@ -121,7 +121,6 @@
   "119": "package.json",
   "120": "candidates/actions.ts",
   "121": "dotenv",
-  "122": "candidates/actions.test.ts",
   "123": "jsdom",
   "124": "@playwright/test",
   "125": "postVacancy",

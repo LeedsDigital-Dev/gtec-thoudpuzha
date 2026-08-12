@@ -1,4 +1,5 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
+import { Role } from "@/lib/auth";
 
 // ─── Hoisted mocks ──────────────────────────────────────────────────────────
 
@@ -191,7 +192,7 @@ describe("requireRole — deactivation enforcement", () => {
 
     const result = await (
       await import("@/lib/auth")
-    ).requireRole(["CENTRE_STAFF", "SUPER_ADMIN"]);
+    ).requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
 
     expect(result).toEqual({
       authorized: false,
@@ -210,7 +211,7 @@ describe("requireRole — deactivation enforcement", () => {
 
     const result = await (
       await import("@/lib/auth")
-    ).requireRole(["CENTRE_STAFF", "SUPER_ADMIN"]);
+    ).requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
 
     expect(result).toEqual({
       authorized: true,
@@ -227,7 +228,7 @@ describe("requireRole — deactivation enforcement", () => {
 
     const result = await (
       await import("@/lib/auth")
-    ).requireRole(["STUDENT"]);
+    ).requireRole([Role.STUDENT]);
 
     // Should succeed without even querying the DB for student roles
     expect(result).toEqual({

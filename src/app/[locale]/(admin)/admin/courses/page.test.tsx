@@ -37,7 +37,7 @@ vi.mock("next/navigation", () => ({
 vi.mock("next/cache", () => ({
   revalidatePath: vi.fn(),
   revalidateTag: vi.fn(),
-  unstable_cache: (fn: any) => fn,
+  unstable_cache: (fn: (...args: unknown[]) => unknown) => fn,
 }));
 
 describe("CoursesPage", () => {
@@ -90,7 +90,7 @@ describe("CoursesPage", () => {
     const html = renderToString(element);
 
     // Both Save (edit form) and Delete (separate form) buttons must be present
-    expect(html).toContain(">Save</button>");
+    expect(html).toContain(">Save Changes</button>");
     expect(html).toContain(">Delete</button>");
 
     // Verify no nested form-inside-form: count total <form> tags. A cleaned-up
@@ -103,7 +103,7 @@ describe("CoursesPage", () => {
     // Verify the course delete form is its own sibling form, not nested inside
     // the edit form. Look for a pattern: edit form's Save button, then </form>,
     // then <form, then Delete button.
-    const afterSaveFormClose = html.split(">Save</button>")[1] || "";
+    const afterSaveFormClose = html.split(">Save Changes</button>")[1] || "";
     expect(afterSaveFormClose).toMatch(/<\/form>/);
     const afterFirstFormClose = afterSaveFormClose.split("</form>")[1] || "";
     expect(afterFirstFormClose).toMatch(/<form/);

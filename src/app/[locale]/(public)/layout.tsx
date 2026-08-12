@@ -3,6 +3,7 @@ import { FlashNewsBar } from "@/components/shared/FlashNewsBar";
 import { Footer } from "@/components/shared/Footer";
 import { getCachedSiteSettings } from "@/lib/data-cache";
 import { getCachedPublishedCourses } from "@/lib/data-cache";
+import { logger } from "@/lib/logger";
 
 export const revalidate = 60;
 
@@ -16,7 +17,9 @@ export default async function PublicLayout({
     const settings = await getCachedSiteSettings();
     address = settings.address;
   } catch {
-    // SiteSettings not initialized yet — render footer without address
+    logger.warn("public-layout", "Failed to load SiteSettings", {
+      source: "getCachedSiteSettings",
+    });
   }
 
   const courses = await getCachedPublishedCourses()
@@ -27,7 +30,10 @@ export default async function PublicLayout({
         titleMl,
       })),
     )
-    .catch(() => []);
+    .catch((err) => {
+      logger.exception("public-layout", "Failed to load published courses", err);
+      return [];
+    });
 
   return (
     <div className="relative min-h-screen w-full flex flex-col">

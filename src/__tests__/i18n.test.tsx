@@ -10,7 +10,7 @@ import mlMessages from "@/lib/i18n/ml.json";
 import fs from "node:fs";
 import path from "node:path";
 
-const mockEvent = { waitUntil: vi.fn() };
+const _mockEvent = { waitUntil: vi.fn() };
 
 const mockAuthResult = vi.hoisted(() => ({
   userId: null as string | null,

@@ -42,7 +42,12 @@ describe("Account Setup Incomplete page", () => {
 
 describe("Forbidden page", () => {
   test("renders the 403 forbidden message", () => {
-    const html = renderToString(<ForbiddenPage />);
+    const html = renderToString(
+      <ForbiddenPage
+        params={Promise.resolve({ locale: "en" })}
+        searchParams={Promise.resolve({})}
+      />,
+    );
     expect(html).toContain("403");
     expect(html).toContain("Forbidden");
   });

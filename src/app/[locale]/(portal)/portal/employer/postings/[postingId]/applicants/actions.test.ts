@@ -45,6 +45,22 @@ describe("updateApplicationStatus", () => {
     ).mockResolvedValueOnce({
       id: "ep_1",
       userId: "user_emp_1",
+      companyName: "Acme Corp",
+      industrySector: "IT_SOFTWARE",
+      contactPersonName: "Alice",
+      designation: "HR Manager",
+      phone: "9876543210",
+      email: "alice@acme.com",
+      companyAddress: "123 Main St",
+      hasWebsite: false,
+      websiteUrl: null,
+      employeeCountRange: "RANGE_11_50",
+      aboutCompany: "A great company",
+      status: "APPROVED",
+      autoPublishTrusted: false,
+      rejectionReason: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     mockUpdate.mockResolvedValueOnce({ id: "app_1", status: "SHORTLISTED" });
 
@@ -71,6 +87,22 @@ describe("updateApplicationStatus", () => {
     ).mockResolvedValueOnce({
       id: "ep_1",
       userId: "user_emp_1",
+      companyName: "Acme Corp",
+      industrySector: "IT_SOFTWARE",
+      contactPersonName: "Alice",
+      designation: "HR Manager",
+      phone: "9876543210",
+      email: "alice@acme.com",
+      companyAddress: "123 Main St",
+      hasWebsite: false,
+      websiteUrl: null,
+      employeeCountRange: "RANGE_11_50",
+      aboutCompany: "A great company",
+      status: "APPROVED",
+      autoPublishTrusted: false,
+      rejectionReason: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     mockUpdate.mockResolvedValueOnce({ id: "app_2", status: "REJECTED" });
 
@@ -96,6 +128,22 @@ describe("updateApplicationStatus", () => {
     ).mockResolvedValueOnce({
       id: "ep_1",
       userId: "user_emp_1",
+      companyName: "Acme Corp",
+      industrySector: "IT_SOFTWARE",
+      contactPersonName: "Alice",
+      designation: "HR Manager",
+      phone: "9876543210",
+      email: "alice@acme.com",
+      companyAddress: "123 Main St",
+      hasWebsite: false,
+      websiteUrl: null,
+      employeeCountRange: "RANGE_11_50",
+      aboutCompany: "A great company",
+      status: "APPROVED",
+      autoPublishTrusted: false,
+      rejectionReason: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     mockUpdate.mockResolvedValueOnce({ id: "app_3", status: "HIRED" });
 
@@ -121,6 +169,22 @@ describe("updateApplicationStatus", () => {
     ).mockResolvedValueOnce({
       id: "ep_other",
       userId: "user_emp_other",
+      companyName: "Other Corp",
+      industrySector: "RETAIL",
+      contactPersonName: "Bob",
+      designation: "CTO",
+      phone: "1234567890",
+      email: "bob@othercorp.com",
+      companyAddress: "456 Other St",
+      hasWebsite: true,
+      websiteUrl: "https://othercorp.com",
+      employeeCountRange: "RANGE_51_200",
+      aboutCompany: "Another great company",
+      status: "APPROVED",
+      autoPublishTrusted: false,
+      rejectionReason: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     const result = await updateApplicationStatus("app_other", "SHORTLISTED");

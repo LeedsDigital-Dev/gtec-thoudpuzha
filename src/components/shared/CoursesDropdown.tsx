@@ -26,6 +26,7 @@ export function CoursesDropdown({
   const pathname = usePathname();
 
   useEffect(() => {
+    // eslint-disable-next-line -- close dropdown on navigation; this is a legitimate UI responsiveness concern
     setOpen(false);
   }, [pathname]);
 

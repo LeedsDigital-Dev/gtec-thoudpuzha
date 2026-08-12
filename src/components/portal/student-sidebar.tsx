@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { STUDENT_ROUTES, type PortalRoute } from "@/lib/student-routes";
+import { STUDENT_ROUTES } from "@/lib/student-routes";
 import { cn, isRouteActive } from "@/lib/utils";
 
 export function StudentSidebar() {

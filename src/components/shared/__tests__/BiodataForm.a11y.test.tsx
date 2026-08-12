@@ -29,6 +29,7 @@ const mockCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: false,
     category: null,
+    contentBlocks: null,
   },
 ];
 

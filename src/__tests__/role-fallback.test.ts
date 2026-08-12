@@ -115,7 +115,7 @@ describe("fetchRoleFromApi — same function is shared", () => {
     // logic into middleware.ts instead of importing the shared function,
     // this test fails — preventing the two implementations from drifting apart.
     const { fetchRoleFromApi: middlewareReExport } = await import(
-      "@/middleware"
+      "@/proxy"
     );
     const { fetchRoleFromApi: sharedFn } = await import(
       "@/lib/role-fallback"

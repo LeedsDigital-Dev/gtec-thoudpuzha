@@ -104,7 +104,7 @@ describe("Header layout presence", () => {
 
   test("Header does not render inside an (admin) placeholder page", () => {
     render(
-      <AdminLayout>
+      <AdminLayout params={Promise.resolve({ locale: "en" })}>
         <main>Admin page content</main>
       </AdminLayout>,
     );

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getCourseBySlug, getRelatedCourses, getCourseSlugs } from "@/lib/courses";
+import { getCourseBySlug, getRelatedCourses } from "@/lib/courses";
 import { CoursePageContent } from "@/components/courses/CoursePageContent";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { getPublishedCourses } from "@/lib/courses";
@@ -13,10 +13,7 @@ interface CourseDetailProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const slugs = await getCourseSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

@@ -36,13 +36,24 @@ describe("Public route rendering strategy audit", () => {
     expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/courses/[slug] is dynamic (no revalidate — verified via file scan)", async () => {
+  test("/courses/[slug] is force-dynamic (no generateStaticParams)", async () => {
     const { existsSync, readFileSync } = await import("fs");
     const { resolve } = await import("path");
     const filePath = resolve(__dirname, "../courses/[slug]/page.tsx");
     expect(existsSync(filePath)).toBe(true);
     const source = readFileSync(filePath, "utf-8");
-    expect(source).not.toMatch(/export\s+const\s+revalidate/);
+    expect(source).not.toMatch(/generateStaticParams/);
+    expect(source).toMatch(/force-dynamic/);
+  });
+
+  test("/news/[slug] is force-dynamic (no generateStaticParams)", async () => {
+    const { existsSync, readFileSync } = await import("fs");
+    const { resolve } = await import("path");
+    const filePath = resolve(__dirname, "../news/[slug]/page.tsx");
+    expect(existsSync(filePath)).toBe(true);
+    const source = readFileSync(filePath, "utf-8");
+    expect(source).not.toMatch(/generateStaticParams/);
+    expect(source).toMatch(/force-dynamic/);
   });
 
   test("privacy and terms retain ISR (no DB queries, safe)", async () => {

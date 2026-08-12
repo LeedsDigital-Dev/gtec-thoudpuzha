@@ -2,22 +2,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { getNewsEventBySlug, getPublishedNews } from "@/lib/news-events";
+import { getNewsEventBySlug } from "@/lib/news-events";
 import { getMediaUrl } from "@/lib/media";
 import { pickLocalizedText, type Locale } from "@/lib/site-settings";
-
-export async function generateStaticParams() {
-  try {
-    const items = await getPublishedNews();
-    return items.map((item) => ({ slug: item.slug }));
-  } catch {
-    return [];
-  }
-}
 
 interface NewsDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
+
+export const dynamic = "force-dynamic";
 
 export default async function NewsDetailPage({
   params,

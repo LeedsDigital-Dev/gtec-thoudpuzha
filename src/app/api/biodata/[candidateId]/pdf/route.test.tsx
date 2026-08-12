@@ -1,4 +1,5 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
+import { NextRequest } from "next/server";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockFindUnique = vi.hoisted(() => vi.fn());
@@ -64,7 +65,7 @@ describe("GET /api/biodata/[candidateId]/pdf — access control", () => {
 
     const { GET } = await import("./route");
     const response = await GET(
-      new Request("http://localhost/api/biodata/profile_other/pdf"),
+      new NextRequest("http://localhost/api/biodata/profile_other/pdf"),
       makeParams("profile_other"),
     );
 
@@ -103,7 +104,7 @@ describe("GET /api/biodata/[candidateId]/pdf — access control", () => {
 
     const { GET } = await import("./route");
     const response = await GET(
-      new Request("http://localhost/api/biodata/profile_candidate/pdf"),
+      new NextRequest("http://localhost/api/biodata/profile_candidate/pdf"),
       makeParams("profile_candidate"),
     );
 

@@ -17,7 +17,7 @@ export function CoursePageContent({
   titleMl,
   descriptionEn,
   descriptionMl,
-  coverImageUrl,
+  coverImageUrl: _coverImageUrl,
   contentBlocks,
   preview = false,
   locale = "en",

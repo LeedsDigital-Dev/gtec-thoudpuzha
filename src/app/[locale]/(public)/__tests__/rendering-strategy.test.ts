@@ -18,17 +18,17 @@ describe("Public route rendering strategy audit", () => {
 
   test("/placement uses ISR via revalidate export", async () => {
     const mod = await import("../placement/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate: number }).revalidate).toBe(3600);
   });
 
   test("/about uses ISR via revalidate export", async () => {
     const mod = await import("../about/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate: number }).revalidate).toBe(3600);
   });
 
   test("/contact uses ISR via revalidate export", async () => {
     const mod = await import("../contact/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate: number }).revalidate).toBe(3600);
   });
 
   test("public layout declares revalidate=60 (checked via file scan)", async () => {

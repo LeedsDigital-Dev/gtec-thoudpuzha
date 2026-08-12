@@ -588,6 +588,11 @@
     "benefitsHeading": "Benefits of the course",
     "noCoursesAvailable": "No courses available at the moment. Check back soon.",
     "exploreMoreCourses": "Explore More Courses",
-    "noContentPreview": "No content configured yet. Fill in the tabs above to build this page."
+  "noContentPreview": "No content configured yet. Fill in the tabs above to build this page.",
+  "errors": {
+    "title": "Something went wrong",
+    "description": "We encountered an unexpected error. Please try again or come back later.",
+    "tryAgain": "Try again"
   }
+}
 }

@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import type { Course, CourseCategory } from "@prisma/client";
 import type { CourseContent } from "@/lib/course-content.types";
 
@@ -31,6 +32,9 @@ export async function getPublishedCourses(): Promise<PublicCourse[]> {
       },
     },
     orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+  }).catch((err) => {
+    logger.exception("courses", "Failed to fetch published courses", err);
+    throw err;
   });
 
   return courses.map(
@@ -47,11 +51,16 @@ export type CourseWithCategory = Course & {
 
 export const getCourseBySlug = cache(
   async (slug: string): Promise<CourseWithCategory | null> => {
-    const course = await prisma.course.findUnique({
-      where: { slug },
-      include: { category: true },
-    });
-    return course;
+    try {
+      const course = await prisma.course.findUnique({
+        where: { slug },
+        include: { category: true },
+      });
+      return course;
+    } catch (err) {
+      logger.exception("courses", "Failed to fetch course by slug", err);
+      return null;
+    }
   },
 );
 
@@ -74,5 +83,8 @@ export async function getRelatedCourses(
     select: { slug: true, titleEn: true, titleMl: true, coverImageUrl: true },
     take: limit,
     orderBy: { createdAt: "desc" },
+  }).catch((err) => {
+    logger.exception("courses", "Failed to fetch related courses", err);
+    throw err;
   });
 }

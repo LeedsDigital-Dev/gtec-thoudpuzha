@@ -112,7 +112,7 @@ vi.mock("next/link", () => ({
         } else if (Array.isArray(nodes)) {
           nodes.forEach(extract);
         } else if (nodes && typeof nodes === "object" && "props" in nodes) {
-          extract((nodes as Record<string, unknown>).props.children as React.ReactNode);
+          extract(((nodes as unknown) as { props: { children: React.ReactNode } }).props.children);
         }
       }
       extract(children);

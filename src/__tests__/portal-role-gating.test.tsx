@@ -140,7 +140,7 @@ describe("PortalRoleGate — fine-grained role gating", () => {
   });
 
   test("7. stale-session race: fetchRoleFromApi returns metadata role from Clerk API", async () => {
-    const { fetchRoleFromApi } = await import("@/middleware");
+    const { fetchRoleFromApi } = await import("@/proxy");
 
     mockGetUser.mockResolvedValue({
       publicMetadata: { role: "JOB_SEEKER" },
@@ -152,7 +152,7 @@ describe("PortalRoleGate — fine-grained role gating", () => {
   });
 
   test("8. fetchRoleFromApi returns undefined when Clerk API has no role", async () => {
-    const { fetchRoleFromApi } = await import("@/middleware");
+    const { fetchRoleFromApi } = await import("@/proxy");
 
     mockGetUser.mockResolvedValue({
       publicMetadata: {},
@@ -163,7 +163,7 @@ describe("PortalRoleGate — fine-grained role gating", () => {
   });
 
   test("9. fetchRoleFromApi returns undefined when Clerk API errors", async () => {
-    const { fetchRoleFromApi } = await import("@/middleware");
+    const { fetchRoleFromApi } = await import("@/proxy");
 
     mockGetUser.mockRejectedValue(new Error("Network error"));
 

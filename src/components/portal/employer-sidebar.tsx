@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { EMPLOYER_ROUTES, type PortalRoute } from "@/lib/employer-routes";
+import { EMPLOYER_ROUTES } from "@/lib/employer-routes";
 import { cn, isRouteActive } from "@/lib/utils";
 
 export function EmployerSidebar() {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { MapPin, Phone, MessageSquare, Clock, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Phone, MessageSquare, Clock, ExternalLink } from "lucide-react";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
 import { getPublishedCourses } from "@/lib/courses";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";

@@ -18,6 +18,7 @@ const publishedCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: false,
     category: null,
+    contentBlocks: null,
   },
   {
     id: "c2",
@@ -33,6 +34,7 @@ const publishedCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: true,
     category: null,
+    contentBlocks: null,
   },
   {
     id: "c3",
@@ -48,6 +50,7 @@ const publishedCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: false,
     category: null,
+    contentBlocks: null,
   },
 ];
 
@@ -147,6 +150,7 @@ describe("CourseSelect", () => {
       coverImageUrl: null,
       featured: false,
       category: null,
+      contentBlocks: null,
     };
 
     // Pass only published courses (as getPublishedCourses() would)
@@ -180,6 +184,7 @@ describe("CourseSelect", () => {
       coverImageUrl: null,
       featured: false,
       category: null,
+      contentBlocks: null,
     };
 
     render(

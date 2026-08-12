@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { ADMIN_ROUTES, isRouteVisible, type AdminRoute, type PermissionKey } from "@/lib/admin-routes";
+import { ADMIN_ROUTES, isRouteVisible, type PermissionKey } from "@/lib/admin-routes";
 import { cn, isRouteActive } from "@/lib/utils";
 
 interface AdminSidebarProps {

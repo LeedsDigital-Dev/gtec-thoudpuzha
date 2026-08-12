@@ -13,6 +13,13 @@ function createSettings() {
     aboutBodyEn: "About",
     aboutBodyMl: null,
     aboutPhotoUrl: null,
+    address: null,
+    mapEmbedUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    youtubeUrl: null,
+    linkedinUrl: null,
+    googleReviewsUrl: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     whyChooseUsCards: [],
@@ -21,7 +28,7 @@ function createSettings() {
 
 describe("AtAGlanceSection", () => {
   test("renders the five stats from SiteSettings", async () => {
-    const element = await AtAGlanceSection({ settings: createSettings() });
+    const element = await AtAGlanceSection({ settings: createSettings(), heading: "At a Glance" });
     const html = renderToString(element);
 
     expect(html).toContain("30+");

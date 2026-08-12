@@ -27,7 +27,7 @@ if (typeof window !== "undefined") {
 import enMessages from "@/lib/i18n/en.json";
 
 function lookup(namespace: string, key: string, values?: Record<string, string>): string {
-  const ns = (enMessages as Record<string, Record<string, string>>)[namespace];
+  const ns = (enMessages as unknown as Record<string, Record<string, string>>)[namespace];
   let msg = ns?.[key] ?? key;
   if (values) {
     for (const [k, v] of Object.entries(values)) {

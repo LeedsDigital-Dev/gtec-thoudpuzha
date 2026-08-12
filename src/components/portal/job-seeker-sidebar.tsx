@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { JOB_SEEKER_ROUTES, type PortalRoute } from "@/lib/job-seeker-routes";
+import { JOB_SEEKER_ROUTES } from "@/lib/job-seeker-routes";
 import { cn, isRouteActive } from "@/lib/utils";
 
 export function JobSeekerSidebar() {

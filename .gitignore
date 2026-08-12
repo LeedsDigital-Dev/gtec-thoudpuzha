@@ -48,3 +48,4 @@ graphify-out/cache/
 
 # Local Netlify folder
 .netlify
+.dev-agent/

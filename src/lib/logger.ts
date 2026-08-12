@@ -30,15 +30,8 @@ type LogMeta = Record<string, unknown>;
 type Level = "debug" | "info" | "warn" | "error";
 
 function log(level: Level, context: string, message: string, meta?: LogMeta) {
-  const entry = {
-    level,
-    context,
-    message,
-    timestamp: timestamp(),
-    ...(meta ? { meta } : {}),
-  };
-
-  const line = `[${entry.timestamp}] [${context}]: ${message}`;
+  const ts = timestamp();
+  const line = `[${ts}] [${context}]: ${message}`;
   const details = meta ? ` ${serialize(meta)}` : "";
 
   switch (level) {

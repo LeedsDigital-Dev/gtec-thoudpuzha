@@ -13,7 +13,13 @@ export default async function AdminLayout({
 }) {
   const { locale } = await params;
 
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  let authResult;
+  try {
+    authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  } catch (err) {
+    logger.exception("admin-layout", "Auth check failed", err);
+    redirect(`/${locale}/forbidden?reason=error&from=admin`);
+  }
   if (!authResult.authorized) {
     logger.warn("admin-layout", "Unauthorized access attempt", {
       reason: authResult.reason,

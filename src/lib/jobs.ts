@@ -111,7 +111,7 @@ export async function getActiveJobPostings(filters?: {
     orderBy: { createdAt: "desc" },
   }).catch((err) => {
     logger.exception("jobs", "Failed to fetch active job postings", err);
-    return [];
+    throw err;
   });
 
   if (filters?.location) {

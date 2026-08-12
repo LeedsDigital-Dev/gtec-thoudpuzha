@@ -23,8 +23,6 @@ const GalleryGrid = dynamic(
   },
 );
 
-export const revalidate = 60;
-
 interface GalleryPageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string }>;

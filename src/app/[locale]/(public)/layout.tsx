@@ -5,8 +5,6 @@ import { getCachedSiteSettings } from "@/lib/data-cache";
 import { getCachedPublishedCourses } from "@/lib/data-cache";
 import { logger } from "@/lib/logger";
 
-export const revalidate = 60;
-
 export default async function PublicLayout({
   children,
 }: {

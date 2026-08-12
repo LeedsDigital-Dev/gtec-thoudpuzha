@@ -3,8 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { getPublishedNews } from "@/lib/news-events";
 import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 
-export const revalidate = 60;
-
 interface NewsPageProps {
   params: Promise<{ locale: string }>;
 }

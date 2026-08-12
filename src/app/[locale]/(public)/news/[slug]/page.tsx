@@ -6,8 +6,6 @@ import { getNewsEventBySlug, getPublishedNews } from "@/lib/news-events";
 import { getMediaUrl } from "@/lib/media";
 import { pickLocalizedText, type Locale } from "@/lib/site-settings";
 
-export const revalidate = 60;
-
 export async function generateStaticParams() {
   try {
     const items = await getPublishedNews();

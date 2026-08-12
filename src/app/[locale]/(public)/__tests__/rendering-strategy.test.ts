@@ -1,46 +1,54 @@
 import { describe, expect, test } from "vitest";
 
 describe("Public route rendering strategy audit", () => {
-  test("/ (homepage) uses ISR via revalidate export", async () => {
+  test("/ (homepage) is dynamic (no revalidate — Prisma/Neon incompatible with ISR)", async () => {
     const mod = await import("../page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/news listing uses ISR via revalidate export", async () => {
+  test("/news listing is dynamic (no revalidate)", async () => {
     const mod = await import("../news/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/news/[slug] uses ISR via revalidate export", async () => {
+  test("/news/[slug] is dynamic (no revalidate)", async () => {
     const mod = await import("../news/[slug]/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(60);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/placement uses ISR via revalidate export", async () => {
+  test("/placement is dynamic (no revalidate)", async () => {
     const mod = await import("../placement/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(3600);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/about uses ISR via revalidate export", async () => {
+  test("/about is dynamic (no revalidate)", async () => {
     const mod = await import("../about/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(3600);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("/contact uses ISR via revalidate export", async () => {
+  test("/contact is dynamic (no revalidate)", async () => {
     const mod = await import("../contact/page");
-    expect((mod as { revalidate: number }).revalidate).toBe(3600);
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
   });
 
-  test("public layout declares revalidate=60 (checked via file scan)", async () => {
-    // We check via file read rather than import to avoid transitive import issues
-    // with next-intl dependencies in the vitest environment.
-    const pattern = /export\s+const\s+revalidate\s*=\s*60/;
-    // Can't use import because layout pulls in dependencies that need next/navigation
-    // This assertion confirms the export is present in the source.
+  test("/gallery is dynamic (no revalidate)", async () => {
+    const mod = await import("../gallery/page");
+    expect((mod as { revalidate?: number }).revalidate).toBeUndefined();
+  });
+
+  test("/courses/[slug] is dynamic (no revalidate — verified via file scan)", async () => {
     const { existsSync, readFileSync } = await import("fs");
     const { resolve } = await import("path");
-    const filePath = resolve(__dirname, "../layout.tsx");
+    const filePath = resolve(__dirname, "../courses/[slug]/page.tsx");
     expect(existsSync(filePath)).toBe(true);
-    expect(pattern.test(readFileSync(filePath, "utf-8"))).toBe(true);
+    const source = readFileSync(filePath, "utf-8");
+    expect(source).not.toMatch(/export\s+const\s+revalidate/);
+  });
+
+  test("privacy and terms retain ISR (no DB queries, safe)", async () => {
+    const privacy = await import("../privacy/page");
+    expect((privacy as { revalidate: number }).revalidate).toBe(86400);
+    const terms = await import("../terms/page");
+    expect((terms as { revalidate: number }).revalidate).toBe(86400);
   });
 });

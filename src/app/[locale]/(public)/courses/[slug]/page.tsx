@@ -13,8 +13,6 @@ interface CourseDetailProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export const revalidate = 3600;
-
 export async function generateStaticParams() {
   const slugs = await getCourseSlugs();
   return slugs.map((slug) => ({ slug }));

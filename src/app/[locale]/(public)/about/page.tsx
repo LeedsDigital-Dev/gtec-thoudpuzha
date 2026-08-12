@@ -8,8 +8,6 @@ import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
 import { Target, Compass, Heart, MapPin, Phone, MessageSquare } from "lucide-react";
 
-export const revalidate = 3600;
-
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
 }

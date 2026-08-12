@@ -2,8 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getActiveJobPostings } from "@/lib/jobs";
 
-export const revalidate = 3600;
-
 interface PlacementPageProps {
   params: Promise<{ locale: string }>;
 }

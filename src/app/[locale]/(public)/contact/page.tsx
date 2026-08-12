@@ -6,8 +6,6 @@ import { getPublishedCourses } from "@/lib/courses";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { siteConfig } from "@/lib/site";
 
-export const revalidate = 3600;
-
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
 }

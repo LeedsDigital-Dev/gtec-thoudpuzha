@@ -94,3 +94,13 @@ vi.mock("@clerk/nextjs", () => ({
   UserButton: () => null,
   ClerkProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
+
+vi.mock("next/cache", async (importOriginal) => {
+  const mod = await importOriginal<typeof import("next/cache")>();
+  return {
+    ...mod,
+    revalidatePath: vi.fn(),
+    revalidateTag: vi.fn(),
+    unstable_cache: <T extends (...args: any[]) => Promise<any>>(fn: T) => fn,
+  };
+});

@@ -41,15 +41,14 @@ describe("Account Setup Incomplete page", () => {
 });
 
 describe("Forbidden page", () => {
-  test("renders the 403 forbidden message", () => {
-    const html = renderToString(
-      <ForbiddenPage
-        params={Promise.resolve({ locale: "en" })}
-        searchParams={Promise.resolve({})}
-      />,
-    );
+  test("renders the 403 forbidden message", async () => {
+    const element = await ForbiddenPage({
+      params: Promise.resolve({ locale: "en" }),
+      searchParams: Promise.resolve({}),
+    });
+    const html = renderToString(element);
     expect(html).toContain("403");
-    expect(html).toContain("Forbidden");
+    expect(html).toContain("Access Restricted");
   });
 });
 

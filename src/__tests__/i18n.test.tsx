@@ -62,7 +62,7 @@ describe("i18n routing middleware", () => {
   test("2. visiting /ml passes through without redirecting to /en", async () => {
     const req = makeRequest("/ml");
     const response = await middleware(req, {} as NextFetchEvent);
-    expect(response).toBeUndefined();
+    expect(response?.headers.get("Location")).toBeNull();
   });
 });
 
@@ -77,14 +77,14 @@ describe("i18n auth proxy regression", () => {
     const req = makeRequest("/en/portal");
     const response = await middleware(req, {} as NextFetchEvent);
     // Proxy no longer redirects — auth is handled by layouts/pages
-    expect(response).toBeUndefined();
+    expect(response?.headers.get("Location")).toBeNull();
   });
 
   test("4b. unauthenticated /ml/admin passes through proxy (auth is resource-based)", async () => {
     const req = makeRequest("/ml/admin");
     const response = await middleware(req, {} as NextFetchEvent);
     // Proxy no longer redirects — auth is handled by layouts/pages
-    expect(response).toBeUndefined();
+    expect(response?.headers.get("Location")).toBeNull();
   });
 });
 

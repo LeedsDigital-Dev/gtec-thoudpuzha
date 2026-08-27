@@ -94,7 +94,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
                   </div>
                 ) : (
                   <div className="h-40 w-full bg-muted rounded-md mb-3 flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">No image</span>
+                    <span className="text-muted-foreground text-sm">{locale === "ml" ? "ചിത്രമില്ല" : "No image"}</span>
                   </div>
                 )}
                 <h3 className="font-medium">

@@ -1,15 +1,8 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
-
-<!-- BEGIN dev-agent-skills managed block (do not edit by hand -- source of truth is /Users/gauthamkrishna/Code/personal/dev-agent-skills/config/AGENT-STANDING-RULES.md) -->
 # Standing rules for any AI coding session in this environment
 
 These rules apply to every request, regardless of harness (OpenCode, Claude Code, or otherwise), regardless of project, regardless of how simple, routine, or urgent the request looks. They compose alongside any project-specific AGENTS.md — this file does not replace it.
 
-<!-- BEGIN dev-agent-skills sync script pointer (managed by setup.sh -- do not edit this block manually; it self-corrects on every `bash setup.sh` run regardless of where this repo is checked out) -->
+<!-- BEGIN dev-agent-skills sync script pointer (placeholder resolved in memory by agents-md-sync.sh's resolve_placeholders at write/append time -- never resolved here, this stays a stable template on every machine and in every commit) -->
 Rule 0 below uses this script to manage a project's AGENTS.md: /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh
 <!-- END dev-agent-skills sync script pointer -->
 
@@ -24,14 +17,14 @@ If you ever find yourself weighing whether a rule below "really applies" to this
 Before doing anything else in response to **any** request — before Rule 1's graph check, before grepping, before globbing, before asking the user anything — run:
 
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ status
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh status
 ```
 
 This prints exactly one of five states. Do not guess at the state from `test -f AGENTS.md` yourself, and do not hand-copy standing rules into a file yourself — the script is the only source of truth for both the check and the write, because it reads the canonical rules file directly (no risk of an LLM-driven copy silently dropping or paraphrasing content) and because a project's `AGENTS.md` existing is not the same thing as it being ours — that distinction is exactly what the script's sha256 sidecar (`.agents-md.sha256`, committed alongside `AGENTS.md`) exists to make reliable instead of guessed at.
 
 **`NO_AGENTS`** — no `AGENTS.md` in this project yet.
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ write
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh write
 ```
 Do not wait for permission — the standing rules demand it. Run it, then proceed to Rule 1 immediately.
 
@@ -39,13 +32,13 @@ Do not wait for permission — the standing rules demand it. Run it, then procee
 
 **`AGENTS_OURS_STALE`** — ours, and untouched by anyone since we last wrote it, but the canonical standing rules have changed since then (the sidecar's integrity hash matches the file, but its recorded rules-hash doesn't match the current rules file). Safe to refresh automatically, since nothing else has touched it:
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ write
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh write
 ```
 State in one line that you refreshed it because it was out of date, then proceed to Rule 1.
 
 **`AGENTS_TAMPERED`** — a sidecar exists but no longer matches the file's actual content, meaning someone edited this `AGENTS.md` by hand (or some other tool did) after dev-agent-skills last wrote it. Do not silently overwrite content someone deliberately changed. Follow the same ask-before-acting flow as `AGENTS_FOREIGN` below, with one difference: since this file already carries our rules (just with an edit on top), offer `accept` as the resolution instead of `append` — it re-baselines the sidecar to the file exactly as it stands, touching no content, so the edit stops being flagged on every future session:
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ accept
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh accept
 ```
 
 **`AGENTS_FOREIGN`** — an `AGENTS.md` already exists but there's no sidecar at all, meaning dev-agent-skills never wrote it. Most commonly this means another tool's own init/scaffolding command (for example OpenCode's `/init`) wrote one before this environment's skills were set up, or someone hand-wrote one. This file contains none of the rules you are currently reading — no graph-first investigation, no skill-loading, no clarification protocol — and any harness or session that only reads `AGENTS.md` (rather than also receiving these standing rules as instructions, the way this session did) will behave as if none of this exists.
@@ -56,7 +49,7 @@ Do **not** silently proceed as if this file were equivalent to your own standing
 2. Ask exactly one closed question: "Want me to append the dev-agent-skills rules to the bottom of the existing AGENTS.md (nothing in it gets removed or changed), or leave it as-is?"
 3. If yes:
    ```bash
-   bash __AGENTS_MD_SYNC_SCRIPT__ append
+   bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh append
    ```
    This appends a clearly delimited block to the end of the file and leaves everything above it untouched. State in one line that you did this, then proceed to Rule 1.
 4. If no: proceed to Rule 1 without modifying the file. Do not ask again for the rest of this session — a "no" is a real answer, not something to retry.
@@ -118,7 +111,7 @@ of this session — a "no" is a real answer, not something to retry.
 
 ## Rule 0c — Initialize and read this project's session history
 
-<!-- BEGIN dev-agent-skills work-log script pointer (managed by setup.sh -- do not edit this block manually; it self-corrects on every `bash setup.sh` run regardless of where this repo is checked out) -->
+<!-- BEGIN dev-agent-skills work-log script pointer (placeholder resolved in memory by agents-md-sync.sh's resolve_placeholders at write/append time -- never resolved here, this stays a stable template on every machine and in every commit) -->
 Rule 0c below uses this script to initialize and read a project's session history: /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/work-log-cli.mjs
 <!-- END dev-agent-skills work-log script pointer -->
 
@@ -129,7 +122,7 @@ running, but every session, regardless of what it turns out to be about,
 benefits from knowing what happened last time.
 
 ```bash
-node __WORK_LOG_CLI_SCRIPT__ init --repo-root .
+node /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/work-log-cli.mjs init --repo-root .
 cat .dev-agent/KICKOFF.md
 ```
 
@@ -323,8 +316,33 @@ Work out what actually happened (Step 1, using Step 2's investigation if the fee
 
 ---
 
+---
+
+## Rule 3b — Database mutations always require their own explicit confirmation
+
+A script or command that performs a CREATE, UPDATE, DELETE, TRUNCATE, or migration against a database is a fundamentally different action from writing or running an ordinary script — even when Rule 3's plan for "write a script to do X" was already confirmed. Running that script against a real database, including a dev, local, or staging one, is itself a new plan under Rule 3 Step 3's own "wider blast radius" language, and needs its own explicit confirmation before it happens, every time, separate from whatever was confirmed about writing the script.
+
+**"It's just the dev database" is not an exemption.** A dev database holds real data other people rely on — seed data, a colleague's test fixtures, manually-reproduced state for an open bug someone is actively working — and this file's governing meta-principle applies here exactly as it does everywhere else: weighing whether this rule "really" applies to this particular database is the failure mode the rule exists to prevent, not a legitimate judgment call.
+
+This applies regardless of how the mutation is invoked — a raw SQL statement, an ORM call, a migration runner, a seed script, or a one-off script that happens to write to a database connection as an incidental step in doing something else. If you cannot state confidently that a specific command is read-only, treat it as a mutation for the purposes of this rule.
+
+**Read operations are not gated by this rule.** A `SELECT`, a read-only query, or inspecting schema is covered by Rule 3 as normal — gating every read the same way would make ordinary debugging and investigation unusable, and a read does not carry a write's risk.
+
+### What "its own confirmation" means
+
+- Confirming "yes, write a script that backfills X" authorizes writing the script. It does **not** authorize running it against a real database.
+- Before running it, state the specific mutation plainly — what table/collection, what operation, roughly how many rows/documents it will touch if that's knowable, and which database by name or host, not just "the dev database" — then stop and wait, the same as Rule 3 Step 3.
+- If the mutation is meant to run automatically as part of a larger task (a migration step inside a deploy, for example), the confirmation must happen immediately before that step runs, not be inferred from an earlier go-ahead on the larger task.
+
+### Anti-patterns — explicitly forbidden for Rule 3b
+
+- Treating confirmation to write a script as also covering running it. These are two different actions and need two different explicit yeses.
+- Skipping this because the environment is labeled dev, local, staging, or test. No environment carries an exemption.
+- Running a mutation "just to check if it works" or "as a quick test" without stating plainly that this is a real write against a real database, and getting a yes first.
+- Treating an earlier confirmation anywhere else in the same conversation as covering a later, different mutation. Each mutation gets its own confirmation, same as Rule 3 Step 3's own rule for a plan that turns out different from what was approved.
+
+---
+
 ## What to do if a step fails
 
 Each rule above includes its own fallback for when the thing it asks for genuinely isn't available (no graph, no matching skill, can't reach full confidence after several exchanges). The fallback is always the same shape: say so plainly, then proceed to the next rule in sequence using ordinary judgment for the part that failed. Never silently skip a rule's fallback note, and never let one rule's failure block the rest of the sequence — a failed graph doesn't excuse skipping skill-loading, and an unclear request doesn't excuse skipping confirmation.
-
-<!-- END dev-agent-skills managed block -->

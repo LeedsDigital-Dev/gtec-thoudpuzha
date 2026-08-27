@@ -1,0 +1,52 @@
+name: gtec-thodupuzha-dev
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: gtec_postgres_dev
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: gtec_thodupuzha_dev
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: gtec_nextjs_dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DATABASE_URL=postgresql://postgres:postgrespassword@db:5432/gtec_thodupuzha_dev?schema=public
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-pk_test_d2VsY29tZS1tb2NraW5nLWtleXMuY2xlcmsuYWNjb3VudHMuZGV2JA}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY:-sk_test_mock_secret_key_for_dev}
+      - NEXT_PUBLIC_CLERK_SIGN_IN_URL=/en/sign-in
+      - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/en/portal/sign-up
+      - NEXT_PUBLIC_GTEC_WHATSAPP_NUMBER=+919876543210
+      - NEXT_PUBLIC_GTEC_PHONE_NUMBER=+914862200000
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+
+volumes:
+  pgdata:

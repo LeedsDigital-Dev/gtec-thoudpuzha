@@ -9,14 +9,34 @@ Built with [Next.js](https://nextjs.org/) (App Router), TypeScript, Tailwind CSS
 - Node.js >= 20.9 (see `.nvmrc`)
 - npm
 
-## Getting Started
+## Quick Start (1-Command Docker Setup)
+
+Any developer can clone the repository and launch the full environment (PostgreSQL + Next.js + Seeded Database) with **a single Docker command** without needing shared production `.env` credentials:
 
 ```bash
-npm install
-npm run dev
+docker compose up
+# Or: npm run dev:docker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+This will automatically:
+1. Start a local PostgreSQL container (`localhost:5432`).
+2. Push the Prisma database schema.
+3. Seed the database with sample courses, news, students, job postings, and site settings.
+4. Launch the Next.js development server at [http://localhost:3000](http://localhost:3000) with hot-reloading enabled.
+
+---
+
+## Manual Setup (Without Docker)
+
+If you prefer running Node.js directly on your machine:
+
+```bash
+cp .env.example .env.local
+npm install
+npx prisma db push
+npm run db:seed
+npm run dev
+```
 
 ## Scripts
 

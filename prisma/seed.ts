@@ -1,6 +1,8 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
 import {
   CATEGORIES,
   COURSES,
@@ -17,10 +19,23 @@ import {
   SEED_JOB_POSTINGS,
 } from "./seed-data";
 
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL is not set");
+}
 
-const prisma = new PrismaClient({
-  adapter: new PrismaNeon({ connectionString: process.env.DATABASE_URL! }),
-});
+function createPrismaClient(): PrismaClient {
+  if (databaseUrl!.includes("neon.tech")) {
+    const adapter = new PrismaNeon({ connectionString: databaseUrl! });
+    return new PrismaClient({ adapter });
+  }
+
+  const pool = new pg.Pool({ connectionString: databaseUrl! });
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({ adapter });
+}
+
+const prisma = createPrismaClient();
 
 function slugFromName(name: string): string {
   return name

@@ -201,7 +201,7 @@ test.describe("Visitor Flow", () => {
 
     // Tab buttons should exist for categories
     const tabs = page.getByRole("tab");
-    const tabCount = await tabs.count();
+    const _tabCount = await tabs.count();
 
     // Click an image if there is one — gallery items from seed
     const galleryBtn = page

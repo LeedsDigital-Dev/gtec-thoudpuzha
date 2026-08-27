@@ -101,6 +101,6 @@ vi.mock("next/cache", async (importOriginal) => {
     ...mod,
     revalidatePath: vi.fn(),
     revalidateTag: vi.fn(),
-    unstable_cache: <T extends (...args: any[]) => Promise<any>>(fn: T) => fn,
+    unstable_cache: <T extends (...args: unknown[]) => Promise<unknown>>(fn: T) => fn,
   };
 });

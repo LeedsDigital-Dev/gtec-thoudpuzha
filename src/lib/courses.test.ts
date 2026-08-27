@@ -32,7 +32,7 @@ let mockStore: MockCourse[] = [];
 const mockCourseFindMany = vi.hoisted(() =>
   vi.fn().mockImplementation((args?: { where?: { status?: string } }) => {
     if (args?.where?.status) {
-      return Promise.resolve(mockStore.filter((c) => c.status === args.where.status));
+      return Promise.resolve(mockStore.filter((c) => c.status === args.where?.status));
     }
     return Promise.resolve(mockStore);
   }),

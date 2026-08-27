@@ -74,8 +74,8 @@ test.describe("Post-deploy: production smoke", () => {
 
     // Expect a success message
     await expect(
-      page.getByText(/Thank you/i, { timeout: 15000 }),
-    ).toBeVisible();
+      page.getByText(/Thank you/i),
+    ).toBeVisible({ timeout: 15000 });
   });
 
   // ── 3. Sentry captures a deliberately triggered test error ───────────
@@ -107,7 +107,7 @@ test.describe("Post-deploy: production smoke", () => {
 
     // Verify Sentry's DSN is configured (client-side check via injected SDK)
     const sentryConfigured = await page.evaluate(() => {
-      return !!(window as Record<string, unknown>).__SENTRY__;
+      return !!(window as unknown as Record<string, unknown>).__SENTRY__;
     });
     expect(sentryConfigured).toBe(true);
   });

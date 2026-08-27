@@ -133,7 +133,7 @@ test.describe("Visitor Flow", () => {
     await submitBtn.click();
 
     // Expect success message
-    await expect(page.getByText(/Thank you/i, { timeout: 15000 })).toBeVisible();
+    await expect(page.getByText(/Thank you/i)).toBeVisible({ timeout: 15000 });
   });
 
   // ── Step 6: About page ──

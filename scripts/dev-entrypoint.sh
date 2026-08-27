@@ -24,7 +24,7 @@ echo "⚙️ Generating Prisma Client..."
 npx prisma generate
 
 echo "🚀 Syncing database schema with Prisma..."
-npx prisma db push --skip-generate
+npx prisma db push
 
 echo "🌱 Seeding initial database records..."
 npm run db:seed || echo "⚠️ Seeding finished with warnings."

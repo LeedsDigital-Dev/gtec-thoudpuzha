@@ -1,16 +1,9 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
-
-<!-- BEGIN dev-agent-skills managed block (do not edit by hand -- source of truth is /Users/gauthamkrishna/Code/personal/dev-agent-skills/config/AGENT-STANDING-RULES.md) -->
 # Standing rules for any AI coding session in this environment
 
 These rules apply to every request, regardless of harness (OpenCode, Claude Code, or otherwise), regardless of project, regardless of how simple, routine, or urgent the request looks. They compose alongside any project-specific AGENTS.md — this file does not replace it.
 
-<!-- BEGIN dev-agent-skills sync script pointer (managed by setup.sh -- do not edit this block manually; it self-corrects on every `bash setup.sh` run regardless of where this repo is checked out) -->
-Rule 0 below uses this script to manage a project's AGENTS.md: /home/claude/dev-agent-skills/scripts/agents-md-sync.sh
+<!-- BEGIN dev-agent-skills sync script pointer (placeholder resolved in memory by agents-md-sync.sh's resolve_placeholders at write/append time -- never resolved here, this stays a stable template on every machine and in every commit) -->
+Rule 0 below uses this script to manage a project's AGENTS.md: /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh
 <!-- END dev-agent-skills sync script pointer -->
 
 ## The governing meta-principle — read this before anything else
@@ -24,14 +17,14 @@ If you ever find yourself weighing whether a rule below "really applies" to this
 Before doing anything else in response to **any** request — before Rule 1's graph check, before grepping, before globbing, before asking the user anything — run:
 
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ status
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh status
 ```
 
 This prints exactly one of five states. Do not guess at the state from `test -f AGENTS.md` yourself, and do not hand-copy standing rules into a file yourself — the script is the only source of truth for both the check and the write, because it reads the canonical rules file directly (no risk of an LLM-driven copy silently dropping or paraphrasing content) and because a project's `AGENTS.md` existing is not the same thing as it being ours — that distinction is exactly what the script's sha256 sidecar (`.agents-md.sha256`, committed alongside `AGENTS.md`) exists to make reliable instead of guessed at.
 
 **`NO_AGENTS`** — no `AGENTS.md` in this project yet.
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ write
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh write
 ```
 Do not wait for permission — the standing rules demand it. Run it, then proceed to Rule 1 immediately.
 
@@ -39,11 +32,14 @@ Do not wait for permission — the standing rules demand it. Run it, then procee
 
 **`AGENTS_OURS_STALE`** — ours, and untouched by anyone since we last wrote it, but the canonical standing rules have changed since then (the sidecar's integrity hash matches the file, but its recorded rules-hash doesn't match the current rules file). Safe to refresh automatically, since nothing else has touched it:
 ```bash
-bash __AGENTS_MD_SYNC_SCRIPT__ write
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh write
 ```
 State in one line that you refreshed it because it was out of date, then proceed to Rule 1.
 
-**`AGENTS_TAMPERED`** — a sidecar exists but no longer matches the file's actual content, meaning someone edited this `AGENTS.md` by hand (or some other tool did) after dev-agent-skills last wrote it. Treat this exactly like `AGENTS_FOREIGN` below — do not silently overwrite content someone deliberately changed.
+**`AGENTS_TAMPERED`** — a sidecar exists but no longer matches the file's actual content, meaning someone edited this `AGENTS.md` by hand (or some other tool did) after dev-agent-skills last wrote it. Do not silently overwrite content someone deliberately changed. Follow the same ask-before-acting flow as `AGENTS_FOREIGN` below, with one difference: since this file already carries our rules (just with an edit on top), offer `accept` as the resolution instead of `append` — it re-baselines the sidecar to the file exactly as it stands, touching no content, so the edit stops being flagged on every future session:
+```bash
+bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh accept
+```
 
 **`AGENTS_FOREIGN`** — an `AGENTS.md` already exists but there's no sidecar at all, meaning dev-agent-skills never wrote it. Most commonly this means another tool's own init/scaffolding command (for example OpenCode's `/init`) wrote one before this environment's skills were set up, or someone hand-wrote one. This file contains none of the rules you are currently reading — no graph-first investigation, no skill-loading, no clarification protocol — and any harness or session that only reads `AGENTS.md` (rather than also receiving these standing rules as instructions, the way this session did) will behave as if none of this exists.
 
@@ -53,7 +49,7 @@ Do **not** silently proceed as if this file were equivalent to your own standing
 2. Ask exactly one closed question: "Want me to append the dev-agent-skills rules to the bottom of the existing AGENTS.md (nothing in it gets removed or changed), or leave it as-is?"
 3. If yes:
    ```bash
-   bash __AGENTS_MD_SYNC_SCRIPT__ append
+   bash /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/agents-md-sync.sh append
    ```
    This appends a clearly delimited block to the end of the file and leaves everything above it untouched. State in one line that you did this, then proceed to Rule 1.
 4. If no: proceed to Rule 1 without modifying the file. Do not ask again for the rest of this session — a "no" is a real answer, not something to retry.
@@ -71,36 +67,104 @@ Do **not** silently proceed as if this file were equivalent to your own standing
 
 ## Rule 0b — Offer to gitignore local tooling artifacts
 
-Immediately after Rule 0, before Rule 1: check whether this project's
-`.gitignore` already lists `graphify-out/`:
+Immediately after Rule 0, before Rule 0c: check whether this project's
+`.gitignore` already lists both `graphify-out/` (the local knowledge graph
+and its build artifacts) and `.dev-agent/` (session history, fix-attempt
+ledger, and other local tooling state — see Rule 0c):
 
 ```bash
-test -f .gitignore && grep -q "graphify-out" .gitignore && echo "ALREADY_IGNORED" || echo "NOT_IGNORED"
+NEEDED=""
+{ test -f .gitignore && grep -q "graphify-out" .gitignore; } || NEEDED="${NEEDED}graphify-out/ "
+{ test -f .gitignore && grep -q "\.dev-agent" .gitignore; } || NEEDED="${NEEDED}.dev-agent/ "
+if [ -z "$NEEDED" ]; then echo "ALL_IGNORED"; else echo "NEEDED: $NEEDED"; fi
 ```
 
-**If it prints `NOT_IGNORED`:** ask once, as a single closed question: "This
-project doesn't gitignore `graphify-out/` yet (the local knowledge graph and
-its build artifacts) — want me to add it?" Add the entry only after an
-explicit yes. If `.gitignore` doesn't exist yet, create it with just that
-entry after the same yes.
+**If it prints `NEEDED: ...`:** ask once, as a single closed question naming
+whichever entries are actually missing — e.g. "This project doesn't
+gitignore `.dev-agent/` yet (session history and local tooling state) —
+want me to add it?" or, if both are missing, name both in the same
+question rather than asking twice. Add only the entries the check actually
+reported missing, after an explicit yes. If `.gitignore` doesn't exist yet,
+create it with just those entries after the same yes.
 
-**If it prints `ALREADY_IGNORED`:** proceed to Rule 1, say nothing.
+**If it prints `ALL_IGNORED`:** proceed to Rule 0c, say nothing.
 
-**If the answer is no:** proceed to Rule 1. Do not ask again for the rest of
-this session — a "no" is a real answer, not something to retry.
+**If the answer is no:** proceed to Rule 0c. Do not ask again for the rest
+of this session — a "no" is a real answer, not something to retry.
 
 ### Anti-patterns — explicitly forbidden for Rule 0b
 
-- Adding the `.gitignore` entry without asking first, even though it's a
+- Adding either `.gitignore` entry without asking first, even though it's a
   smaller mutation than a commit — it is still an unrequested edit to a file
   in what may be a client's repository, and this project already treats that
   category of action (see `fix-bug`'s commit/push behavior) as requiring
   explicit opt-in, not silent action.
+- Asking two separate questions (one for `graphify-out/`, one for
+  `.dev-agent/`) when both are missing. One combined question, naming both.
 - Asking again in the same session after a "no." One answer covers the whole
   session.
-- Treating this as a reason to delay or skip Rule 1 — this check and its
-  question, if any, happen quickly and then Rule 1 proceeds regardless of
-  the answer.
+- Treating this as a reason to delay or skip Rule 0c or Rule 1 — this check
+  and its question, if any, happen quickly and then the sequence proceeds
+  regardless of the answer.
+
+---
+
+## Rule 0c — Initialize and read this project's session history
+
+<!-- BEGIN dev-agent-skills work-log script pointer (placeholder resolved in memory by agents-md-sync.sh's resolve_placeholders at write/append time -- never resolved here, this stays a stable template on every machine and in every commit) -->
+Rule 0c below uses this script to initialize and read a project's session history: /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/work-log-cli.mjs
+<!-- END dev-agent-skills work-log script pointer -->
+
+Immediately after Rule 0b, before Rule 1. This is what makes session
+continuity automatic instead of dependent on a specific skill being
+invoked — the fix-attempt ledger and quiz-back only apply once fix-bug is
+running, but every session, regardless of what it turns out to be about,
+benefits from knowing what happened last time.
+
+```bash
+node /Users/gauthamkrishna/Code/personal/dev-agent-skills/scripts/work-log-cli.mjs init --repo-root .
+cat .dev-agent/KICKOFF.md
+```
+
+`init` is idempotent — safe to run every session, every time, same posture
+as Rule 1's graph-prep. On a repo with no `.dev-agent/` yet, it creates
+`.dev-agent/work-log/` and writes a placeholder `KICKOFF.md` saying plainly
+that there's no prior history yet. On a repo that already has real session
+history, it changes nothing and reports how many sessions are on record.
+Either way, the `cat` that follows always has something valid to read.
+
+Hold what `KICKOFF.md` contains in context for the rest of this session, so
+a question like "what did we last work on" or "where did we leave off" can
+be answered directly from it — without the user needing to invoke a skill
+or paste the file in themselves. **Only do this once per session, at the
+very first request** — not on every subsequent message in an ongoing
+conversation. If this session's own work later updates
+`.dev-agent/KICKOFF.md` (via fix-bug's Step 6b/12 or plan-feature's Step
+7), that reflects on disk for next time; there's no need to re-read it
+mid-session since you already know what you changed.
+
+### Anti-patterns — explicitly forbidden for Rule 0c
+
+- Waiting for the user to explicitly ask "what did we last talk about"
+  before checking. By then it's too late to have context ready — run `init`
+  and read the file unconditionally, at the start, same as Rule 1's graph
+  prep never waits to be asked either.
+- Asking permission before running `init` or reading `KICKOFF.md`. `init`
+  only ever creates a placeholder if nothing exists, or reports and changes
+  nothing if something does — never destructive, never a reason to ask,
+  same as Rule 1's graph query needing no confirmation.
+- Skipping this because the project has no `.dev-agent/` yet, or assuming
+  that means there's nothing to do. No-history is itself a valid, expected
+  first-run state that `init` handles — it is not a reason to skip the
+  rule, the same way "no graph yet" in Rule 1 is a reason to build one, not
+  a reason to skip graph-prep entirely.
+- Re-running `init` or re-reading `KICKOFF.md` on every turn within the
+  same session. Once is enough — after that, the content is already in
+  context.
+- Treating this rule as satisfied by a skill's own logging step (fix-bug's
+  Step 6b/12, plan-feature's Step 7). Those steps *write* to the file; this
+  rule is what makes sure something also *reads* it, regardless of which
+  skill — if any — ends up being invoked for the actual request.
 
 ---
 
@@ -238,10 +302,47 @@ Only after explicit, unambiguous confirmation, proceed with the actual change �
 
 **Anti-pattern:** Treating "the user clearly wants this" or "this is obviously what they meant" as a substitute for Step 3's actual confirmation. Inferred intent is never a replacement for an explicit yes.
 
+### Step 5 — Feedback after Step 4 re-enters at Step 1
+
+This rule has four steps, but it is not finished the first time Step 4 runs — any message that arrives afterward saying the result is wrong, incomplete, still broken, or needs a different approach is a new problem report, and it re-enters this rule at Step 1. It is not authorization to jump back to Step 4.
+
+Work out what actually happened (Step 1, using Step 2's investigation if the feedback alone doesn't explain it), present what you now believe went wrong and what you're going to do differently (Step 3), and get a real, explicit confirmation before touching anything again. This is the same gate as the first pass through this rule, in full — not an abbreviated version of it because the developer already said yes once.
+
+**Anti-pattern:** Treating feedback about the result of a completed action as itself sufficient authorization for the change that addresses it. Feedback identifies a problem — it is not a plan and not a yes.
+
+**Anti-pattern:** Skipping straight to a fix because the feedback already reads like an instruction ("also handle X," "it should do Y instead"). That's a description of the new problem, not an approved plan — it still needs its own Step 3 before anything is touched.
+
+**Anti-pattern:** A skill's own dedicated re-entry point (e.g. `fix-bug`'s Step 13, or `plan-feature`'s revision step) silently assuming this is covered rather than pointing back at this rule explicitly. If a skill has a place where the developer's feedback on a completed action loops back into more file changes, that place must say so.
+
+---
+
+---
+
+## Rule 3b — Database mutations always require their own explicit confirmation
+
+A script or command that performs a CREATE, UPDATE, DELETE, TRUNCATE, or migration against a database is a fundamentally different action from writing or running an ordinary script — even when Rule 3's plan for "write a script to do X" was already confirmed. Running that script against a real database, including a dev, local, or staging one, is itself a new plan under Rule 3 Step 3's own "wider blast radius" language, and needs its own explicit confirmation before it happens, every time, separate from whatever was confirmed about writing the script.
+
+**"It's just the dev database" is not an exemption.** A dev database holds real data other people rely on — seed data, a colleague's test fixtures, manually-reproduced state for an open bug someone is actively working — and this file's governing meta-principle applies here exactly as it does everywhere else: weighing whether this rule "really" applies to this particular database is the failure mode the rule exists to prevent, not a legitimate judgment call.
+
+This applies regardless of how the mutation is invoked — a raw SQL statement, an ORM call, a migration runner, a seed script, or a one-off script that happens to write to a database connection as an incidental step in doing something else. If you cannot state confidently that a specific command is read-only, treat it as a mutation for the purposes of this rule.
+
+**Read operations are not gated by this rule.** A `SELECT`, a read-only query, or inspecting schema is covered by Rule 3 as normal — gating every read the same way would make ordinary debugging and investigation unusable, and a read does not carry a write's risk.
+
+### What "its own confirmation" means
+
+- Confirming "yes, write a script that backfills X" authorizes writing the script. It does **not** authorize running it against a real database.
+- Before running it, state the specific mutation plainly — what table/collection, what operation, roughly how many rows/documents it will touch if that's knowable, and which database by name or host, not just "the dev database" — then stop and wait, the same as Rule 3 Step 3.
+- If the mutation is meant to run automatically as part of a larger task (a migration step inside a deploy, for example), the confirmation must happen immediately before that step runs, not be inferred from an earlier go-ahead on the larger task.
+
+### Anti-patterns — explicitly forbidden for Rule 3b
+
+- Treating confirmation to write a script as also covering running it. These are two different actions and need two different explicit yeses.
+- Skipping this because the environment is labeled dev, local, staging, or test. No environment carries an exemption.
+- Running a mutation "just to check if it works" or "as a quick test" without stating plainly that this is a real write against a real database, and getting a yes first.
+- Treating an earlier confirmation anywhere else in the same conversation as covering a later, different mutation. Each mutation gets its own confirmation, same as Rule 3 Step 3's own rule for a plan that turns out different from what was approved.
+
 ---
 
 ## What to do if a step fails
 
 Each rule above includes its own fallback for when the thing it asks for genuinely isn't available (no graph, no matching skill, can't reach full confidence after several exchanges). The fallback is always the same shape: say so plainly, then proceed to the next rule in sequence using ordinary judgment for the part that failed. Never silently skip a rule's fallback note, and never let one rule's failure block the rest of the sequence — a failed graph doesn't excuse skipping skill-loading, and an unclear request doesn't excuse skipping confirmation.
-
-<!-- END dev-agent-skills managed block -->

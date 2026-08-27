@@ -1,6 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,21 +13,15 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { STUDENT_ROUTES, type PortalRoute } from "@/lib/student-routes";
-import { cn } from "@/lib/utils";
-
-function isRouteActive(route: PortalRoute, pathname: string): boolean {
-  if (route.href === "/portal/student") {
-    return pathname === "/portal/student" || pathname === "/portal/student/";
-  }
-  return pathname.startsWith(route.href);
-}
+import { STUDENT_ROUTES } from "@/lib/student-routes";
+import { cn, isRouteActive } from "@/lib/utils";
 
 export function StudentSidebar() {
   const pathname = usePathname();
+  const allHrefs = STUDENT_ROUTES.map((r) => r.href);
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="hidden md:flex">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -52,7 +47,7 @@ export function StudentSidebar() {
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
             {STUDENT_ROUTES.map((route) => {
-              const active = isRouteActive(route, pathname);
+              const active = isRouteActive(route.href, pathname, allHrefs);
 
               return (
                 <SidebarMenuItem key={route.href}>
@@ -75,6 +70,27 @@ export function StudentSidebar() {
                 </SidebarMenuItem>
               );
             })}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup className="mt-auto">
+          <SidebarGroupLabel>Main Site</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <Link
+                href="/"
+                className={cn(
+                  "flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm text-sidebar-foreground/80",
+                  "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                  "outline-hidden focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                  "transition-[width,height,padding]",
+                  "[&_svg]:size-4 [&_svg]:shrink-0",
+                  "[&>span:last-child]:truncate",
+                )}
+              >
+                <Home />
+                <span>Back to Website</span>
+              </Link>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

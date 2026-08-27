@@ -62,6 +62,51 @@ export async function uploadResource(formData: FormData) {
   revalidatePath(`/${localeFromFormData(formData)}/admin/academic-resources`);
 }
 
+export async function updateResource(formData: FormData) {
+  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  if (!authResult.authorized) {
+    redirect(`/${localeFromFormData(formData)}/forbidden`);
+  }
+
+  const id = formData.get("id") as string;
+  const type = formData.get("type") as ResourceType;
+  const title = formData.get("title") as string;
+  const fileUrl = (formData.get("fileUrl") as string) || null;
+  const embedUrl = (formData.get("embedUrl") as string) || null;
+
+  if (!id || !title) {
+    throw new Error("Resource ID and title are required.");
+  }
+
+  if (type === "LECTURE" && embedUrl) {
+    const validationError = validateVideoUrl(embedUrl);
+    if (validationError) {
+      throw new Error(validationError);
+    }
+  }
+
+  await prisma.academicResource.update({
+    where: { id },
+    data: {
+      type,
+      title,
+      fileUrl,
+      embedUrl: type === "LECTURE" ? embedUrl : null,
+    },
+  });
+
+  await logAdminAction({
+    actorUserId: authResult.userId!,
+    actorRole: authResult.role,
+    action: "academicResource.update",
+    entityType: "AcademicResource",
+    entityId: id,
+    metadata: { title, type },
+  });
+
+  revalidatePath(`/${localeFromFormData(formData)}/admin/academic-resources`);
+}
+
 export async function deleteResource(formData: FormData) {
   const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
   if (!authResult.authorized) {

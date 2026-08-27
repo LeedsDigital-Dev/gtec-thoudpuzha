@@ -2,8 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getActiveJobPostings } from "@/lib/jobs";
 
-export const revalidate = 60;
-
 interface PlacementPageProps {
   params: Promise<{ locale: string }>;
 }
@@ -27,13 +25,13 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
           >
             {t("heading")}
           </h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-muted-foreground">
             {t("description")}
           </p>
         </div>
 
         {recent.length === 0 ? (
-          <div className="rounded-lg border border-dashed p-12 text-center text-gray-500">
+          <div className="rounded-lg border border-dashed p-12 text-center text-muted-foreground">
             <p>{t("noPositions")}</p>
             <p className="mt-1 text-sm">
               {t("noPositionsHint")}
@@ -44,18 +42,18 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
             {recent.map((posting) => (
               <div
                 key={posting.id}
-                className="rounded-lg border p-5 transition-colors hover:bg-gray-50"
+                className="rounded-lg border p-5 transition-colors hover:bg-muted/50"
               >
                 <h2 className="font-semibold">{posting.title}</h2>
-                <p className="mt-0.5 text-sm text-gray-600">
+                <p className="mt-0.5 text-sm text-muted-foreground">
                   {posting.employer.companyName}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
+                  <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
                     {jt(posting.jobType)}
                   </span>
                   {posting.employer.companyAddress && (
-                    <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700">
+                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-foreground">
                       {posting.employer.companyAddress}
                     </span>
                   )}

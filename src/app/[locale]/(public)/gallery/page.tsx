@@ -1,9 +1,27 @@
+import dynamic from "next/dynamic";
 import { getTranslations } from "next-intl/server";
 import { getGalleryData } from "@/lib/gallery";
-import { GalleryGrid } from "@/components/shared/GalleryGrid";
 import type { Locale } from "@/lib/site-settings";
 
-export const revalidate = 60;
+const GalleryGrid = dynamic(
+  () =>
+    import("@/components/shared/GalleryGrid").then((mod) => mod.GalleryGrid),
+  {
+    loading: () => (
+      <div className="space-y-4">
+        <div className="h-10 w-64 animate-pulse rounded bg-muted" />
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="aspect-square animate-pulse rounded-lg bg-muted"
+            />
+          ))}
+        </div>
+      </div>
+    ),
+  },
+);
 
 interface GalleryPageProps {
   params: Promise<{ locale: string }>;

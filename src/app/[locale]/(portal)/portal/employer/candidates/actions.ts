@@ -223,7 +223,7 @@ export async function inviteToApply(
         candidateName: candidate.fullName,
         jobTitle: posting.title,
         companyName: profile.companyName,
-        jobUrl: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/portal/jobs/${posting.id}`,
+        jobUrl: `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/portal/jobs/${posting.id}`,
         employerName: profile.contactPersonName,
       }),
     });

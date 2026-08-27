@@ -1,14 +1,16 @@
 import { describe, expect, test, vi, beforeEach } from "vitest";
-import { NextRequest } from "next/server";
+import { NextRequest, NextFetchEvent } from "next/server";
 import { renderToString } from "react-dom/server";
 import { NextIntlClientProvider as _NextIntlClientProvider, useTranslations as _useTranslations } from "next-intl";
 import type { Mock } from "vitest";
-import middleware from "@/middleware";
+import middleware from "@/proxy";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import enMessages from "@/lib/i18n/en.json";
 import mlMessages from "@/lib/i18n/ml.json";
 import fs from "node:fs";
 import path from "node:path";
+
+const _mockEvent = { waitUntil: vi.fn() };
 
 const mockAuthResult = vi.hoisted(() => ({
   userId: null as string | null,
@@ -16,21 +18,6 @@ const mockAuthResult = vi.hoisted(() => ({
 }));
 
 const mockAuth = vi.hoisted(() => vi.fn(() => Promise.resolve(mockAuthResult)));
-
-const mockCreateRouteMatcher = vi.hoisted(
-  () => (patterns: string[]) => (req: { url: string }) => {
-    const pathname = new URL(req.url).pathname;
-    return patterns.some((pattern) => {
-      const segments = pattern.split("/").filter(Boolean);
-      const regexSegments = segments.map((segment) => {
-        if (segment === ":locale") return "(?:en|ml)";
-        if (segment === "(.*)") return ".*";
-        return segment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      });
-      return new RegExp(`^/${regexSegments.join("/")}$`).test(pathname);
-    });
-  },
-);
 
 const mockClerkMiddleware = vi.hoisted(
   () =>
@@ -40,14 +27,13 @@ const mockClerkMiddleware = vi.hoisted(
         req: NextRequest,
       ) => Promise<Response | undefined>,
     ) =>
-      async (req: NextRequest) => {
+      async (req: NextRequest, _evt?: unknown) => {
         return handler(mockAuth, req);
       },
 );
 
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
-  createRouteMatcher: mockCreateRouteMatcher,
   clerkMiddleware: mockClerkMiddleware,
 }));
 
@@ -68,41 +54,37 @@ describe("i18n routing middleware", () => {
 
   test("1. visiting / redirects to /en as the default locale", async () => {
     const req = makeRequest("/");
-    const response = await middleware(req);
+    const response = await middleware(req, {} as NextFetchEvent);
     expect(response?.status).toBe(307);
     expect(response?.headers.get("Location")).toBe("https://example.com/en");
   });
 
   test("2. visiting /ml passes through without redirecting to /en", async () => {
     const req = makeRequest("/ml");
-    const response = await middleware(req);
-    expect(response).toBeUndefined();
+    const response = await middleware(req, {} as NextFetchEvent);
+    expect(response?.headers.get("Location")).toBeNull();
   });
 });
 
-describe("i18n auth middleware regression", () => {
+describe("i18n auth proxy regression", () => {
   beforeEach(() => {
     mockAuthResult.userId = null;
     mockAuthResult.sessionClaims = undefined;
     vi.clearAllMocks();
   });
 
-  test("4. unauthenticated /en/portal redirects to /en/sign-in", async () => {
+  test("4. unauthenticated /en/portal passes through proxy (auth is resource-based)", async () => {
     const req = makeRequest("/en/portal");
-    const response = await middleware(req);
-    expect(response?.status).toBe(307);
-    const location = response?.headers.get("Location") ?? "";
-    expect(location).toContain("/en/sign-in");
-    expect(location).toContain("redirect_url=");
+    const response = await middleware(req, {} as NextFetchEvent);
+    // Proxy no longer redirects — auth is handled by layouts/pages
+    expect(response?.headers.get("Location")).toBeNull();
   });
 
-  test("4b. unauthenticated /ml/admin redirects to /ml/sign-in", async () => {
+  test("4b. unauthenticated /ml/admin passes through proxy (auth is resource-based)", async () => {
     const req = makeRequest("/ml/admin");
-    const response = await middleware(req);
-    expect(response?.status).toBe(307);
-    const location = response?.headers.get("Location") ?? "";
-    expect(location).toContain("/ml/sign-in");
-    expect(location).toContain("redirect_url=");
+    const response = await middleware(req, {} as NextFetchEvent);
+    // Proxy no longer redirects — auth is handled by layouts/pages
+    expect(response?.headers.get("Location")).toBeNull();
   });
 });
 

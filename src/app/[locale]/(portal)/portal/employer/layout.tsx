@@ -20,7 +20,7 @@ export default async function EmployerPortalLayout({
     if (authResult.reason === "no_role") {
       redirect(`/${locale}/account-setup-incomplete`);
     }
-    redirect(`/${locale}/forbidden`);
+    redirect(`/${locale}/forbidden?reason=${authResult.reason}&from=employer-portal`);
   }
 
   return <EmployerShell>{children}</EmployerShell>;

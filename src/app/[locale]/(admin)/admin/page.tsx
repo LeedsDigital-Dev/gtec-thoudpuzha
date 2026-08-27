@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { requireRole, requirePermission, StaffPermissionKeys, Role } from "@/lib/auth";
+import { requireRole, getAllStaffPermissions, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { ADMIN_ROUTES, isRouteVisible, type AdminRoute } from "@/lib/admin-routes";
 
@@ -22,17 +22,20 @@ export default async function AdminDashboardPage({
 
   const isSuperAdmin = role === Role.SUPER_ADMIN;
 
-  const permissions = {
-    canEditCourses: (await requirePermission(StaffPermissionKeys.canEditCourses)).authorized,
-    canEditGallery: (await requirePermission(StaffPermissionKeys.canEditGallery)).authorized,
-    canEditCertificationPartners: (await requirePermission(StaffPermissionKeys.canEditCertificationPartners)).authorized,
-    canEditNewsEvents: (await requirePermission(StaffPermissionKeys.canEditNewsEvents)).authorized,
-    canEditFlashNews: (await requirePermission(StaffPermissionKeys.canEditFlashNews)).authorized,
-    canProvisionStudents: (await requirePermission(StaffPermissionKeys.canProvisionStudents)).authorized,
-    canApproveEmployers: (await requirePermission(StaffPermissionKeys.canApproveEmployers)).authorized,
-    canApproveJobPostings: (await requirePermission(StaffPermissionKeys.canApproveJobPostings)).authorized,
-    canModerateSkillsTaxonomy: (await requirePermission(StaffPermissionKeys.canModerateSkillsTaxonomy)).authorized,
-  };
+  // Super Admin gets all permissions; Centre Staff fetches in one query
+  const permissions = isSuperAdmin
+    ? ({
+        canEditCourses: true,
+        canEditGallery: true,
+        canEditCertificationPartners: true,
+        canEditNewsEvents: true,
+        canEditFlashNews: true,
+        canProvisionStudents: true,
+        canApproveEmployers: true,
+        canApproveJobPostings: true,
+        canModerateSkillsTaxonomy: true,
+      } as Record<string, boolean>)
+    : await getAllStaffPermissions(authResult.userId);
   const { canApproveEmployers, canApproveJobPostings, canModerateSkillsTaxonomy } = permissions;
 
   // Fetch counts and recent enquiries in parallel
@@ -57,7 +60,7 @@ export default async function AdminDashboardPage({
     ]);
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         Welcome, {role === Role.SUPER_ADMIN ? "Super Admin" : "Staff"}
@@ -96,42 +99,64 @@ export default async function AdminDashboardPage({
           <h2 className="text-lg font-semibold">Recent Enquiries</h2>
           <Link
             href={`/${locale}/admin/enquiries`}
-            className="text-sm text-blue-600 hover:underline"
+            className="text-sm text-primary hover:underline"
           >
             View all
           </Link>
         </div>
 
-        <div className="mt-3 overflow-x-auto rounded border border-gray-300">
+        <div className="mt-3">
           {recentEnquiries.length === 0 ? (
-            <p className="p-4 text-sm text-muted-foreground">No enquiries yet.</p>
+            <p className="p-4 text-sm text-muted-foreground border rounded">No enquiries yet.</p>
           ) : (
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-muted/50">
-                  <th className="px-3 py-2 text-left text-sm font-medium">Name</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Phone</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Course</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Source</th>
-                  <th className="px-3 py-2 text-left text-sm font-medium">Date</th>
-                </tr>
-              </thead>
-              <tbody>
+            <>
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto rounded border border-border">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="px-3 py-2 text-left text-sm font-medium">Name</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Phone</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Course</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Source</th>
+                      <th className="px-3 py-2 text-left text-sm font-medium">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentEnquiries.map((enquiry) => (
+                      <tr key={enquiry.id} className="border-t border-border">
+                        <td className="px-3 py-2 text-sm">{enquiry.name}</td>
+                        <td className="px-3 py-2 text-sm">{enquiry.phone}</td>
+                        <td className="px-3 py-2 text-sm">
+                          {enquiry.course?.titleEn || "—"}
+                        </td>
+                        <td className="px-3 py-2 text-sm">{enquiry.source}</td>
+                        <td className="px-3 py-2 text-sm">
+                          {new Date(enquiry.createdAt).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card Stack */}
+              <div className="space-y-3 md:hidden">
                 {recentEnquiries.map((enquiry) => (
-                  <tr key={enquiry.id} className="border-t border-gray-300">
-                    <td className="px-3 py-2 text-sm">{enquiry.name}</td>
-                    <td className="px-3 py-2 text-sm">{enquiry.phone}</td>
-                    <td className="px-3 py-2 text-sm">
-                      {enquiry.course?.titleEn || "—"}
-                    </td>
-                    <td className="px-3 py-2 text-sm">{enquiry.source}</td>
-                    <td className="px-3 py-2 text-sm">
-                      {enquiry.createdAt.toLocaleDateString()}
-                    </td>
-                  </tr>
+                  <div key={enquiry.id} className="rounded-lg border border-border bg-card p-4 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-foreground text-sm">{enquiry.name}</span>
+                      <span className="text-xs text-muted-foreground">{new Date(enquiry.createdAt).toLocaleDateString()}</span>
+                    </div>
+                    <div className="text-xs space-y-1 text-muted-foreground">
+                      <div><span className="font-medium text-foreground">Phone:</span> <a href={`tel:${enquiry.phone}`} className="text-primary underline">{enquiry.phone}</a></div>
+                      <div><span className="font-medium text-foreground">Course:</span> {enquiry.course?.titleEn || "—"}</div>
+                      <div><span className="font-medium text-foreground">Source:</span> <span className="inline-block rounded bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">{enquiry.source}</span></div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </>
           )}
         </div>
       </section>
@@ -187,29 +212,29 @@ function SummaryCard({
 }) {
   if (!hasPermission) {
     return (
-      <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
-        <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-        <p className="mt-1 text-xs text-gray-500">No access</p>
+      <div className="rounded border border-border bg-muted/30 p-4 opacity-60">
+        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
+        <p className="mt-1 text-xs text-muted-foreground">No access</p>
       </div>
     );
   }
 
   const colorClass =
     count !== null && count > 0
-      ? "border-amber-300 bg-amber-50"
-      : "border-gray-200 bg-white";
+      ? "border-accent/30 bg-accent/5"
+      : "border-border bg-card";
 
   return (
     <Link href={href} className="block">
       <div
         className={`rounded border p-4 transition-shadow hover:shadow-md ${colorClass}`}
       >
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
+        <h3 className="text-sm font-medium text-foreground">{title}</h3>
         <p className="mt-2 text-3xl font-bold">
           {count !== null ? count : "—"}
         </p>
         {count !== null && count > 0 && (
-          <p className="mt-1 text-xs text-amber-700">Requires review</p>
+          <p className="mt-1 text-xs text-accent">Requires review</p>
         )}
       </div>
     </Link>
@@ -227,22 +252,22 @@ function QuickLinkCard({
 }) {
   if (!hasPermission) {
     return (
-      <div className="rounded border border-gray-200 bg-gray-50 p-4 opacity-60">
+      <div className="rounded border border-border bg-muted/30 p-4 opacity-60">
         <div className="flex items-center gap-2">
-          <route.icon className="size-4 text-gray-400" />
-          <h3 className="text-sm font-medium text-gray-500">{route.label}</h3>
+          <route.icon className="size-4 text-muted-foreground" />
+          <h3 className="text-sm font-medium text-muted-foreground">{route.label}</h3>
         </div>
-        <p className="mt-1 text-xs text-gray-500">No access</p>
+        <p className="mt-1 text-xs text-muted-foreground">No access</p>
       </div>
     );
   }
 
   return (
     <Link href={`/${locale}${route.href}`} className="block">
-      <div className="rounded border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md">
+      <div className="rounded border border-border bg-card p-4 transition-shadow hover:shadow-md">
         <div className="flex items-center gap-2">
-          <route.icon className="size-4 text-blue-600" />
-          <h3 className="text-sm font-medium text-gray-700">{route.label}</h3>
+          <route.icon className="size-4 text-primary" />
+          <h3 className="text-sm font-medium text-foreground">{route.label}</h3>
         </div>
       </div>
     </Link>

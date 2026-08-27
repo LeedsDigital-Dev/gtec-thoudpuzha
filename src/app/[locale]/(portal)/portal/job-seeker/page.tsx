@@ -23,12 +23,12 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
       <div className="flex min-h-screen items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{rgt("notYourAccount")}</h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-muted-foreground">
             {rgt("description", { roles: "Job Seeker" })}
           </p>
           <Link
             href="/portal"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {rgt("goToPortal")}
           </Link>
@@ -67,15 +67,15 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
     : [];
 
   const STATUS_STYLES: Record<string, string> = {
-    APPLIED: "bg-blue-100 text-blue-800",
+    APPLIED: "bg-primary/10 text-primary",
     VIEWED: "bg-purple-100 text-purple-800",
-    SHORTLISTED: "bg-amber-100 text-amber-800",
-    REJECTED: "bg-red-100 text-red-800",
-    HIRED: "bg-green-100 text-green-800",
+    SHORTLISTED: "bg-accent/10 text-accent",
+    REJECTED: "bg-destructive/10 text-destructive",
+    HIRED: "bg-primary/10 text-primary",
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6 lg:p-8">
       <h1 className="mb-2 text-3xl font-semibold">
         {profile?.fullName
           ? t("welcomeBack", { name: profile.fullName })
@@ -91,7 +91,7 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
           href="/portal/jobs"
           className="flex items-center gap-4 rounded-lg border p-6 transition-shadow hover:shadow-md"
         >
-          <Search className="h-8 w-8 text-blue-600" />
+          <Search className="h-8 w-8 text-primary" />
           <div>
             <span className="text-lg font-medium">{t("browseJobs")}</span>
             <p className="text-sm text-muted-foreground">
@@ -104,7 +104,7 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
           href="/portal/student/applications"
           className="flex items-center gap-4 rounded-lg border p-6 transition-shadow hover:shadow-md"
         >
-          <Briefcase className="h-8 w-8 text-green-600" />
+          <Briefcase className="h-8 w-8 text-primary" />
           <div>
             <span className="text-lg font-medium">{t("myApplications")}</span>
             <p className="text-sm text-muted-foreground">
@@ -138,7 +138,7 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
             <h2 className="text-xl font-semibold">{t("recentApplications")}</h2>
             <Link
               href="/portal/student/applications"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-primary hover:underline"
             >
               {t("viewAll")}
             </Link>
@@ -146,7 +146,7 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
           <div className="mt-4 space-y-3">
             {recentApplications.map((app) => {
               const badgeStyle =
-                STATUS_STYLES[app.status] ?? "bg-gray-100 text-gray-800";
+                STATUS_STYLES[app.status] ?? "bg-muted text-foreground";
               return (
                 <div
                   key={app.id}
@@ -155,7 +155,7 @@ export default async function JobSeekerDashboardPage({ params }: PageProps) {
                   <div>
                     <Link
                       href={`/portal/jobs/${app.jobPosting.id}`}
-                      className="font-medium text-blue-600 hover:underline"
+                      className="font-medium text-primary hover:underline"
                     >
                       {app.jobPosting.title}
                     </Link>

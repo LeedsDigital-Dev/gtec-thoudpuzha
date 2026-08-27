@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { Role, requireRole } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
+import { Role, getEffectiveRole } from "@/lib/auth";
 import { StudentShell } from "@/components/portal/student-shell";
 import { JobSeekerShell } from "@/components/portal/job-seeker-shell";
 
@@ -11,21 +12,33 @@ export default async function JobsPortalLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const session = await auth();
 
-  const authResult = await requireRole([Role.STUDENT, Role.JOB_SEEKER]);
-
-  if (!authResult.authorized) {
-    if (authResult.reason === "unauthenticated") {
-      redirect(`/${locale}/sign-in`);
-    }
-    if (authResult.reason === "no_role") {
-      redirect(`/${locale}/account-setup-incomplete`);
-    }
-    redirect(`/${locale}/forbidden`);
+  if (!session.userId) {
+    redirect(`/${locale}/sign-in`);
   }
 
-  if (authResult.role === Role.STUDENT) {
+  const role = await getEffectiveRole(session);
+
+  if (!role) {
+    redirect(`/${locale}/account-setup-incomplete`);
+  }
+
+  if (role === Role.SUPER_ADMIN || role === Role.CENTRE_STAFF) {
+    redirect(`/${locale}/admin/job-postings`);
+  }
+
+  if (role === Role.EMPLOYER) {
+    redirect(`/${locale}/portal/employer`);
+  }
+
+  if (role === Role.STUDENT) {
     return <StudentShell>{children}</StudentShell>;
   }
-  return <JobSeekerShell>{children}</JobSeekerShell>;
+
+  if (role === Role.JOB_SEEKER) {
+    return <JobSeekerShell>{children}</JobSeekerShell>;
+  }
+
+  redirect(`/${locale}/forbidden`);
 }

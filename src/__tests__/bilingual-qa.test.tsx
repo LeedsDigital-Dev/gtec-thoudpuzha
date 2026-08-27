@@ -11,6 +11,31 @@ vi.mock("@/lib/i18n/navigation", () => ({
   usePathname: vi.fn(() => "/"),
 }));
 
+vi.mock("@/lib/data-cache", () => ({
+  getCachedSiteSettings: vi.fn(() => Promise.resolve({
+    id: "settings_1",
+    yearsInOperation: "25+",
+    studentsTrained: "3.2M+",
+    centresWorldwide: "800+",
+    affiliations: "100+",
+    countries: "23",
+    aboutBodyEn: "About",
+    aboutBodyMl: null,
+    aboutPhotoUrl: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    whyChooseUsCards: [],
+  })),
+  getCachedPublishedCourses: vi.fn(() => Promise.resolve([])),
+  getCachedHomepageTeaser: vi.fn(() => Promise.resolve({ newsItems: [], nextEvent: null, flashNews: [], featuredNews: null })),
+  getCachedPlacementGalleryData: vi.fn(() => Promise.resolve(null)),
+  getCachedCertificationPartners: vi.fn(() => Promise.resolve([])),
+}));
+
+vi.mock("@/lib/gallery", () => ({
+  getPlacementGalleryData: vi.fn(() => Promise.resolve(null)),
+}));
+
 // ---------------------------------------------------------------------------
 // Test 1: Route sweep — render representative pages under both locales and
 // assert no console errors and no obviously untranslated placeholder strings.

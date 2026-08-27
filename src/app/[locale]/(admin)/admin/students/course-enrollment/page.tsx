@@ -81,12 +81,12 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
   });
 
   return (
-    <main className="p-6">
+    <main className="p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-semibold">Course Enrollment</h1>
 
       {created > 0 && (
         <div
-          className="mt-4 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
+          className="mt-4 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm text-primary"
           role="alert"
         >
           Successfully enrolled in {created} course
@@ -96,7 +96,7 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
 
       {skipped > 0 && (
         <div
-          className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
+          className="mt-4 rounded-lg border border-accent/30 bg-accent/5 p-4 text-sm text-accent"
           role="alert"
         >
           {skipped} course{skipped !== 1 ? "s" : ""} already enrolled and
@@ -107,7 +107,7 @@ export default async function CourseEnrollmentPage({ params, searchParams }: Pro
 
       {unenrolled && (
         <div
-          className="mt-4 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
+          className="mt-4 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm text-primary"
           role="alert"
         >
           Successfully unenrolled from

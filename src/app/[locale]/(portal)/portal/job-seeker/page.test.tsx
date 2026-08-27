@@ -38,7 +38,7 @@ vi.mock("next/link", () => ({
           typeof nodes === "object" &&
           "props" in nodes
         ) {
-          extract((nodes as Record<string, unknown>).props.children as ReactNode);
+          extract(((nodes as unknown) as { props: { children: ReactNode } }).props.children);
         }
       }
       extract(children);

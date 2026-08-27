@@ -36,6 +36,22 @@
     "photoPlaceholder": "Centre photo placeholder",
     "aboutUs": "About Us"
   },
+  "aboutPage": {
+    "badge": "25+ Years of Excellence",
+    "title": "About G-TEC Education Thodupuzha",
+    "subtitle": "Transforming careers with world-class computer education, multimedia, accounting, and soft skills training.",
+    "missionTitle": "Our Mission",
+    "missionText": "To empower students and job seekers with high-demand technical and professional skills, fostering career growth and global opportunity.",
+    "visionTitle": "Our Vision",
+    "visionText": "To remain the most trusted skill development center in Idukki, bridging academia and industry with hands-on, practical education.",
+    "valuesTitle": "Core Values",
+    "valuesText": "Practical Training, Certified Excellence, Student Success, and Ethical Learning.",
+    "exploreCourses": "Explore Courses",
+    "contactUs": "Contact Us",
+    "locationTitle": "Visit Our Centre in Thodupuzha",
+    "addressTitle": "Centre Address",
+    "getInTouch": "Get in Touch"
+  },
   "atAGlance": {
     "heading": "G-TEC at a Glance"
   },
@@ -65,6 +81,19 @@
     "googleReviews": "See our Google Reviews →",
     "sendMessage": "Send us a message",
     "close": "Close"
+  },
+  "contactPage": {
+    "badge": "Get in Touch",
+    "title": "Contact G-TEC Education Thodupuzha",
+    "subtitle": "Have questions about our courses, admissions, or career opportunities? Reach out to us or visit our centre.",
+    "phoneTitle": "Phone & WhatsApp",
+    "phoneDesc": "Speak directly with our academic counselor",
+    "addressTitle": "Centre Address",
+    "hoursTitle": "Operating Hours",
+    "hoursText": "Monday – Saturday: 8:30 AM – 6:00 PM",
+    "enquiryTitle": "Send Us a Message",
+    "enquirySubtitle": "Fill out the form below and our team will get back to you shortly.",
+    "locationTitle": "Find Us on Google Maps"
   },
   "enquiry": {
     "heading": "Apply Now",
@@ -108,6 +137,8 @@
   "signUp": {
     "createAccount": "Create Your Account",
     "selectOption": "Select the option that best describes you",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
     "studentTitle": "I'm a G-TEC Thodupuzha student",
     "studentDesc": "Access your academic resources, timetable, and progress",
     "jobSeekerTitle": "I'm looking for a job",
@@ -550,6 +581,18 @@
     "updateProfile": "Update Profile",
     "profileReady": "Your biodata is ready",
     "recentApplications": "Recent Applications",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "allCourses": "All Courses",
+    "enquireHeading": "Interested in this course?",
+    "enquireButton": "Submit Enquiry",
+    "benefitsHeading": "Benefits of the course",
+    "noCoursesAvailable": "No courses available at the moment. Check back soon.",
+    "exploreMoreCourses": "Explore More Courses",
+  "noContentPreview": "No content configured yet. Fill in the tabs above to build this page.",
+  "errors": {
+    "title": "Something went wrong",
+    "description": "We encountered an unexpected error. Please try again or come back later.",
+    "tryAgain": "Try again"
   }
+}
 }

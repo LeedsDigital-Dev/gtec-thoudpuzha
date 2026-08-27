@@ -12,7 +12,7 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
   const about = getLocalizedAbout(settings, locale);
 
   return (
-    <section aria-labelledby="about-heading" className="py-16">
+    <section aria-labelledby="about-heading" className="py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
           id="about-heading"
@@ -20,9 +20,10 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
         >
           {heading}
         </h2>
-        <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
+
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {about.photoUrl ? (
-            <div className="relative aspect-video overflow-hidden rounded-xl">
+            <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src={about.photoUrl}
                 alt="G-TEC Thodupuzha centre"
@@ -32,13 +33,16 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
               />
             </div>
           ) : (
-            <div className="flex aspect-video items-center justify-center rounded-xl bg-muted text-muted-foreground">
+            <div className="flex aspect-video items-center justify-center rounded-2xl bg-muted text-muted-foreground shadow-inner">
               {photoPlaceholder}
             </div>
           )}
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            {about.body}
-          </p>
+
+          <div className="flex flex-col justify-center">
+            <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">
+              {about.body}
+            </p>
+          </div>
         </div>
       </div>
     </section>

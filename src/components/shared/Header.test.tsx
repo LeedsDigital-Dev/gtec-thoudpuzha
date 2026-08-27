@@ -46,15 +46,15 @@ describe("Header", () => {
   test("renders all four CTA buttons with correct hrefs", () => {
     render(<Header />);
 
-    expect(screen.getByLabelText("WhatsApp")).toHaveAttribute(
+    expect(screen.getAllByLabelText("WhatsApp")[0]).toHaveAttribute(
       "href",
       `https://wa.me/${siteConfig.whatsappNumber}`,
     );
-    expect(screen.getByLabelText("Call Now")).toHaveAttribute(
+    expect(screen.getAllByLabelText("Call Now")[0]).toHaveAttribute(
       "href",
       `tel:${siteConfig.phoneNumber}`,
     );
-    expect(screen.getByLabelText("Apply Now")).toHaveAttribute(
+    expect(screen.getAllByLabelText("Apply Now")[0]).toHaveAttribute(
       "href",
       "/en/#enquiry",
     );
@@ -104,7 +104,7 @@ describe("Header layout presence", () => {
 
   test("Header does not render inside an (admin) placeholder page", () => {
     render(
-      <AdminLayout>
+      <AdminLayout params={Promise.resolve({ locale: "en" })}>
         <main>Admin page content</main>
       </AdminLayout>,
     );

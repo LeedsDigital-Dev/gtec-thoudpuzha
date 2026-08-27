@@ -65,12 +65,12 @@ export function PostVacancyForm({ skills }: PostVacancyFormProps) {
     <div className="mx-auto max-w-2xl p-4 py-10">
       <div className="mb-8 text-center">
         <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
-        <p className="text-gray-600">{t("description")}</p>
+        <p className="text-muted-foreground">{t("description")}</p>
       </div>
 
       {error && (
         <div
-          className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+          className="mb-6 rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive"
           role="alert"
         >
           {error}

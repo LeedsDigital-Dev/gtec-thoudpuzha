@@ -30,10 +30,10 @@ export default async function StudentDashboardPage({ params }: PageProps) {
       <div className="flex min-h-screen items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{rgt("notYourAccount")}</h1>
-          <p className="mt-2 text-gray-600">{rgt("description", { roles: "Student" })}</p>
+          <p className="mt-2 text-muted-foreground">{rgt("description", { roles: "Student" })}</p>
           <Link
             href="/portal"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {rgt("goToPortal")}
           </Link>
@@ -62,8 +62,8 @@ function EmptyState({ t }: { t: (key: string) => string }) {
     <div className="flex min-h-screen items-center justify-center p-6">
       <div className="max-w-md text-center">
         <h1 className="text-2xl font-semibold">{t("welcome")}</h1>
-        <p className="mt-4 text-gray-600">{t("noCourses")}</p>
-        <p className="mt-2 text-sm text-gray-500">{t("noCoursesHint")}</p>
+        <p className="mt-4 text-muted-foreground">{t("noCourses")}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{t("noCoursesHint")}</p>
       </div>
     </div>
   );
@@ -104,7 +104,7 @@ function DashboardGrid({ t }: { t: (key: string) => string }) {
   ];
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6 lg:p-8">
       <h1 className="mb-8 text-3xl font-semibold">{t("heading")}</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {TILES.map((tile) => {
@@ -115,7 +115,7 @@ function DashboardGrid({ t }: { t: (key: string) => string }) {
               href={tile.href}
               className="flex items-center gap-4 rounded-lg border p-6 transition-shadow hover:shadow-md"
             >
-              <Icon className="h-8 w-8 text-blue-600" />
+              <Icon className="h-8 w-8 text-primary" />
               <span className="text-lg font-medium">{t(tile.titleKey)}</span>
             </Link>
           );

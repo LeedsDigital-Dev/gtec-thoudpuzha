@@ -24,11 +24,11 @@ interface Applicant {
 }
 
 const STATUS_BADGE: Record<string, string> = {
-  APPLIED: "bg-blue-100 text-blue-800",
+  APPLIED: "bg-primary/10 text-primary",
   VIEWED: "bg-purple-100 text-purple-800",
-  SHORTLISTED: "bg-amber-100 text-amber-800",
-  REJECTED: "bg-red-100 text-red-800",
-  HIRED: "bg-green-100 text-green-800",
+  SHORTLISTED: "bg-accent/10 text-accent",
+  REJECTED: "bg-destructive/10 text-destructive",
+  HIRED: "bg-primary/10 text-primary",
 };
 
 const NEXT_TRANSITIONS: Record<string, ApplicationStatus[]> = {
@@ -54,11 +54,11 @@ function ApplicantRow({
     {},
   );
 
-  const badgeStyle = STATUS_BADGE[applicant.status] ?? "bg-gray-100 text-gray-800";
+  const badgeStyle = STATUS_BADGE[applicant.status] ?? "bg-muted text-foreground";
   const transitions = NEXT_TRANSITIONS[applicant.status] ?? [];
 
   return (
-    <div className="rounded-lg border p-4 transition-colors hover:bg-gray-50">
+    <div className="rounded-lg border p-4 transition-colors hover:bg-muted/50">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-3">
@@ -74,41 +74,41 @@ function ApplicantRow({
               <h3 className="font-medium">
                 {applicant.candidateProfile.fullName ?? t("unknown")}
               </h3>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 {applicant.candidateProfile.preferredJobType?.replace(/_/g, " ") ?? "—"}
               </p>
             </div>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-gray-600">
+          <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-muted-foreground">
             {applicant.candidateProfile.email && (
               <div>
-                <span className="text-xs text-gray-500">{t("email")}</span>
+                <span className="text-xs text-muted-foreground">{t("email")}</span>
                 <p>{applicant.candidateProfile.email}</p>
               </div>
             )}
             {applicant.candidateProfile.phone && (
               <div>
-                <span className="text-xs text-gray-500">{t("phone")}</span>
+                <span className="text-xs text-muted-foreground">{t("phone")}</span>
                 <p>{applicant.candidateProfile.phone}</p>
               </div>
             )}
             {applicant.candidateProfile.educationalQualification && (
               <div>
-                <span className="text-xs text-gray-500">{t("qualification")}</span>
+                <span className="text-xs text-muted-foreground">{t("qualification")}</span>
                 <p>{applicant.candidateProfile.educationalQualification.replace(/_/g, " ")}</p>
               </div>
             )}
             {applicant.candidateProfile.preferredJobLocation && (
               <div>
-                <span className="text-xs text-gray-500">{t("location")}</span>
+                <span className="text-xs text-muted-foreground">{t("location")}</span>
                 <p>{applicant.candidateProfile.preferredJobLocation}</p>
               </div>
             )}
           </div>
 
           {applicant.candidateProfile.careerObjective && (
-            <p className="mt-2 text-sm italic text-gray-500">
+            <p className="mt-2 text-sm italic text-muted-foreground">
               &ldquo;{applicant.candidateProfile.careerObjective}&rdquo;
             </p>
           )}
@@ -132,7 +132,7 @@ function ApplicantRow({
                     name="status"
                     value={nextStatus}
                     disabled={pending}
-                    className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 disabled:opacity-50"
+                    className="rounded bg-muted px-2 py-1 text-xs font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-50"
                   >
                     {nextStatus}
                   </button>
@@ -157,7 +157,7 @@ export function ApplicantsList({
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         {t("applicantCount", { count: applicants.length })}
       </p>
       {applicants.map((applicant) => (

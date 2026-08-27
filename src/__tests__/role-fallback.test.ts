@@ -4,20 +4,6 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockGetUser = vi.hoisted(() => vi.fn());
-const mockCreateRouteMatcher = vi.hoisted(
-  () => (patterns: string[]) => (req: { url: string }) => {
-    const pathname = new URL(req.url).pathname;
-    return patterns.some((pattern) => {
-      const segments = pattern.split("/").filter(Boolean);
-      const regexSegments = segments.map((segment) => {
-        if (segment === ":locale") return "(?:en|ml)";
-        if (segment === "(.*)") return ".*";
-        return segment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      });
-      return new RegExp(`^/${regexSegments.join("/")}$`).test(pathname);
-    });
-  },
-);
 const mockClerkMiddleware = vi.hoisted(
   () =>
     (
@@ -35,7 +21,6 @@ const mockStaffPermissionFindUnique = vi.hoisted(() => vi.fn());
 vi.mock("@clerk/nextjs/server", () => ({
   auth: mockAuth,
   clerkClient: () => Promise.resolve({ users: { getUser: mockGetUser } }),
-  createRouteMatcher: mockCreateRouteMatcher,
   clerkMiddleware: mockClerkMiddleware,
 }));
 
@@ -130,7 +115,7 @@ describe("fetchRoleFromApi — same function is shared", () => {
     // logic into middleware.ts instead of importing the shared function,
     // this test fails — preventing the two implementations from drifting apart.
     const { fetchRoleFromApi: middlewareReExport } = await import(
-      "@/middleware"
+      "@/proxy"
     );
     const { fetchRoleFromApi: sharedFn } = await import(
       "@/lib/role-fallback"

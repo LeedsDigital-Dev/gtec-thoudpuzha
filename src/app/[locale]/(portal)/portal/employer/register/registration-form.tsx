@@ -145,14 +145,14 @@ export function RegistrationForm({
         <h1 className="mb-2 text-3xl font-semibold">
           {isEdit ? t("editHeading") : t("heading")}
         </h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {isEdit ? t("editDescription") : t("description")}
         </p>
       </div>
 
       {error && (
         <div
-          className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+          className="mb-6 rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive"
           role="alert"
         >
           {error}
@@ -160,7 +160,7 @@ export function RegistrationForm({
       )}
 
       {saved && (
-        <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800" role="status">
+        <div className="mb-6 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm text-primary" role="status">
           {t("saved")}
         </div>
       )}

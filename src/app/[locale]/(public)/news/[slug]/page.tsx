@@ -2,20 +2,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { getNewsEventBySlug, getPublishedNews } from "@/lib/news-events";
+import { getNewsEventBySlug } from "@/lib/news-events";
 import { getMediaUrl } from "@/lib/media";
 import { pickLocalizedText, type Locale } from "@/lib/site-settings";
-
-export const revalidate = 60;
-
-export async function generateStaticParams() {
-  const items = await getPublishedNews();
-  return items.map((item) => ({ slug: item.slug }));
-}
 
 interface NewsDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
+
+export const dynamic = "force-dynamic";
 
 export default async function NewsDetailPage({
   params,
@@ -30,16 +25,18 @@ export default async function NewsDetailPage({
     notFound();
   }
 
-  function formatDate(date: Date | null): string {
+  function formatDate(date: Date | string | null | undefined): string {
     if (!date) return "";
+    const d = typeof date === "string" ? new Date(date) : date;
+    if (!(d instanceof Date) || isNaN(d.getTime())) return "";
     try {
-      return date.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
+      return d.toLocaleDateString(locale === "ml" ? "ml-IN" : "en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       });
     } catch {
-      return date.toLocaleDateString("en-US", {
+      return d.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",

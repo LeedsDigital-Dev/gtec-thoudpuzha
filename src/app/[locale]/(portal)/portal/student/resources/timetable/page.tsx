@@ -25,7 +25,7 @@ export default async function TimetablePage({ params }: Props) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{t("heading")}</h1>
-          <p className="mt-4 text-gray-600">{rt("completeProfile")}</p>
+          <p className="mt-4 text-muted-foreground">{rt("completeProfile")}</p>
         </div>
       </div>
     );
@@ -41,10 +41,10 @@ export default async function TimetablePage({ params }: Props) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{t("heading")}</h1>
-          <p className="mt-4 text-gray-600">{rt("notEnrolled")}</p>
+          <p className="mt-4 text-muted-foreground">{rt("notEnrolled")}</p>
           <Link
             href="/portal/student"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {t("backToDashboard")}
           </Link>
@@ -71,7 +71,7 @@ export default async function TimetablePage({ params }: Props) {
     return (
       <div className="p-6">
         <h1 className="mb-2 text-2xl font-semibold">{t("heading")}</h1>
-        <p className="text-gray-600">{t("noEntries")}</p>
+        <p className="text-muted-foreground">{t("noEntries")}</p>
       </div>
     );
   }
@@ -87,7 +87,7 @@ export default async function TimetablePage({ params }: Props) {
           if (courseEntries.length === 0) return null;
           return (
             <div key={course.id}>
-              <h2 className="mb-3 text-lg font-medium text-gray-800">
+              <h2 className="mb-3 text-lg font-medium text-foreground">
                 {course.titleEn}
               </h2>
               <div className="space-y-3">
@@ -96,11 +96,11 @@ export default async function TimetablePage({ params }: Props) {
                     key={e.id}
                     className="rounded border border-border p-4"
                   >
-                    <p className="text-sm text-gray-800 whitespace-pre-wrap">
+                    <p className="text-sm text-foreground whitespace-pre-wrap">
                       {e.contentText}
                     </p>
                     {e.createdAt && (
-                      <p className="mt-2 text-xs text-gray-500">
+                      <p className="mt-2 text-xs text-muted-foreground">
                         {t("updated", { date: e.createdAt.toISOString().slice(0, 10) })}
                       </p>
                     )}

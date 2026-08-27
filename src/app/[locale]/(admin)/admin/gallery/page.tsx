@@ -44,7 +44,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
   }
 
   return (
-    <main className="p-6 space-y-10">
+    <main className="p-4 sm:p-6 lg:p-8 space-y-10">
       <h1 className="text-2xl font-semibold">Gallery</h1>
 
       {/* ── Categories ── */}
@@ -78,40 +78,94 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
         </form>
 
         {categories.length > 0 && (
-          <table className="mt-4 w-full border-collapse border border-gray-300">
-            <thead>
-              <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left">Order</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">English</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Malayalam</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Items</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto mt-4">
+              <table className="w-full border-collapse border border-border">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-3 py-2 text-left">Order</th>
+                    <th className="border border-border px-3 py-2 text-left">English</th>
+                    <th className="border border-border px-3 py-2 text-left">Malayalam</th>
+                    <th className="border border-border px-3 py-2 text-left">Items</th>
+                    <th className="border border-border px-3 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categories.map((cat, index) => (
+                    <tr key={cat.id}>
+                      <td className="border border-border px-3 py-2">
+                        <div className="flex items-center gap-1">
+                          <form action={moveCategory}>
+                            <input type="hidden" name="id" value={cat.id} />
+                            <input type="hidden" name="direction" value="up" />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0} aria-label="Move up">↑</Button>
+                          </form>
+                          <form action={moveCategory}>
+                            <input type="hidden" name="id" value={cat.id} />
+                            <input type="hidden" name="direction" value="down" />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1} aria-label="Move down">↓</Button>
+                          </form>
+                          <span className="ml-1 text-xs">{cat.sortOrder}</span>
+                        </div>
+                      </td>
+                      <td className="border border-border px-3 py-2 font-medium">{cat.nameEn}</td>
+                      <td className="border border-border px-3 py-2">{cat.nameMl || "—"}</td>
+                      <td className="border border-border px-3 py-2">{cat._count.items}</td>
+                      <td className="border border-border px-3 py-2">
+                        <ConfirmDeleteForm
+                          action={deleteCategory}
+                          confirmMessage={
+                            cat._count.items > 0
+                              ? `Delete "${cat.nameEn}" and all ${cat._count.items} items in it?`
+                              : `Delete "${cat.nameEn}"?`
+                          }
+                        >
+                          <input type="hidden" name="id" value={cat.id} />
+                          <input type="hidden" name="nameEn" value={cat.nameEn} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                        </ConfirmDeleteForm>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="space-y-3 mt-4 md:hidden">
               {categories.map((cat, index) => (
-                <tr key={cat.id}>
-                  <td className="border border-gray-300 px-3 py-2">
-                    <div className="flex items-center gap-1">
+                <div key={cat.id} className="rounded-lg border border-border bg-card p-4 space-y-3 shadow-xs">
+                  <div className="flex items-start justify-between gap-2 border-b pb-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-foreground text-sm block leading-snug">{cat.nameEn}</span>
+                      {cat.nameMl && <span className="text-xs text-muted-foreground block">{cat.nameMl}</span>}
+                    </div>
+                    <span className="shrink-0 whitespace-nowrap rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary">
+                      {cat._count.items} items
+                    </span>
+                  </div>
+
+                  <div className="pt-2 border-t flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1 text-xs">
+                      <span className="text-muted-foreground mr-1">Order ({cat.sortOrder}):</span>
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
                         <input type="hidden" name="direction" value="up" />
                         <input type="hidden" name="locale" value={locale} />
-                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0} aria-label="Move up">↑</Button>
+                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === 0}>↑</Button>
                       </form>
                       <form action={moveCategory}>
                         <input type="hidden" name="id" value={cat.id} />
                         <input type="hidden" name="direction" value="down" />
                         <input type="hidden" name="locale" value={locale} />
-                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1} aria-label="Move down">↓</Button>
+                        <Button type="submit" size="icon-xs" variant="outline" disabled={index === categories.length - 1}>↓</Button>
                       </form>
-                      <span className="ml-1 text-xs">{cat.sortOrder}</span>
                     </div>
-                  </td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameEn}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat.nameMl || "—"}</td>
-                  <td className="border border-gray-300 px-3 py-2">{cat._count.items}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+
                     <ConfirmDeleteForm
                       action={deleteCategory}
                       confirmMessage={
@@ -125,11 +179,11 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                       <input type="hidden" name="locale" value={locale} />
                       <Button type="submit" size="xs" variant="destructive">Delete</Button>
                     </ConfirmDeleteForm>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
 
         {categories.length === 0 && (
@@ -238,45 +292,83 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
 
             {/* Items list */}
             {catItems.length > 0 ? (
-              <table className="mt-4 w-full border-collapse border border-gray-300">
-                <thead>
-                  <tr>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Type</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">URL / Key</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Caption</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Sort</th>
-                    <th className="border border-gray-300 px-3 py-2 text-left">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <>
+                {/* Desktop Table View */}
+                <div className="hidden md:block overflow-x-auto mt-4">
+                  <table className="w-full border-collapse border border-border">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="border border-border px-3 py-2 text-left">Type</th>
+                        <th className="border border-border px-3 py-2 text-left">URL / Key</th>
+                        <th className="border border-border px-3 py-2 text-left">Caption</th>
+                        <th className="border border-border px-3 py-2 text-left">Sort</th>
+                        <th className="border border-border px-3 py-2 text-left">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {catItems.map((item) => (
+                        <tr key={item.id}>
+                          <td className="border border-border px-3 py-2 text-xs font-medium">
+                            {item.mediaType}
+                          </td>
+                          <td className="border border-border px-3 py-2 text-xs font-mono max-w-[200px] truncate">
+                            {item.url}
+                          </td>
+                          <td className="border border-border px-3 py-2 text-xs">
+                            {item.captionEn || "—"}
+                          </td>
+                          <td className="border border-border px-3 py-2 text-xs font-mono">
+                            {item.sortOrder}
+                          </td>
+                          <td className="border border-border px-3 py-2">
+                            <ConfirmDeleteForm
+                              action={deleteGalleryItem}
+                              confirmMessage="Delete this item?"
+                            >
+                              <input type="hidden" name="id" value={item.id} />
+                              <input type="hidden" name="locale" value={locale} />
+                              <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                            </ConfirmDeleteForm>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile Card View */}
+                <div className="space-y-3 mt-4 md:hidden">
                   {catItems.map((item) => (
-                    <tr key={item.id}>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
-                        {item.mediaType}
-                      </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs font-mono max-w-[200px] truncate">
-                        {item.url}
-                      </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
-                        {item.captionEn || "—"}
-                      </td>
-                      <td className="border border-gray-300 px-3 py-2 text-xs">
-                        {item.sortOrder}
-                      </td>
-                      <td className="border border-gray-300 px-3 py-2">
+                    <div key={item.id} className="rounded-lg border border-border bg-card p-4 space-y-2 shadow-xs">
+                      <div className="flex items-center justify-between border-b pb-2">
+                        <span className="font-semibold text-foreground text-xs">{item.captionEn || "Untitled Item"}</span>
+                        <span className="rounded bg-muted px-2 py-0.5 text-[10px] font-mono text-muted-foreground">{item.mediaType}</span>
+                      </div>
+
+                      <div className="text-xs space-y-1 text-muted-foreground">
+                        <div className="truncate font-mono text-[11px] text-foreground">
+                          {item.url}
+                        </div>
+                        <div className="flex justify-between text-[11px]">
+                          <span>Sort Order:</span>
+                          <span className="font-mono text-foreground">{item.sortOrder}</span>
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t flex justify-end">
                         <ConfirmDeleteForm
                           action={deleteGalleryItem}
                           confirmMessage="Delete this item?"
                         >
                           <input type="hidden" name="id" value={item.id} />
                           <input type="hidden" name="locale" value={locale} />
-                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                          <Button type="submit" size="xs" variant="destructive" className="w-full">Delete Item</Button>
                         </ConfirmDeleteForm>
-                      </td>
-                    </tr>
+                      </div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </>
             ) : (
               <p className="mt-4 text-xs text-muted-foreground">No items yet.</p>
             )}

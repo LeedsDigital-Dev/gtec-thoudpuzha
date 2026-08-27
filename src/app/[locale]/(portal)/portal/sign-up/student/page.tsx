@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useSignUp } from "@clerk/nextjs";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,9 @@ function isValidPassword(password: string): boolean {
 
 export default function StudentSignUpPage() {
   const { signUp } = useSignUp();
+  const locale = useLocale();
   const t = useTranslations("studentVerification");
+  const signUpT = useTranslations("signUp");
 
   const [step, setStep] = useState<Step>("form");
   const [studentId, setStudentId] = useState("");
@@ -172,12 +174,12 @@ export default function StudentSignUpPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="mb-2 text-3xl font-semibold">{t("heading")}</h1>
-          <p className="text-gray-600">{t("description")}</p>
+          <p className="text-muted-foreground">{t("description")}</p>
         </div>
 
         {isError && (
           <div
-            className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
+            className="rounded-lg border border-accent/30 bg-accent/5 p-4 text-sm text-accent"
             role="alert"
           >
             <p>{error}</p>
@@ -187,13 +189,13 @@ export default function StudentSignUpPage() {
                   href="https://wa.me/yournumber"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 rounded-md bg-green-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-green-700"
+                  className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90"
                 >
                   {t("whatsapp")}
                 </a>
                 <a
                   href="tel:+919999999999"
-                  className="inline-flex items-center gap-1 rounded-md bg-gray-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800"
+                  className="inline-flex items-center gap-1 rounded-md bg-muted-foreground px-3 py-1.5 text-xs font-medium text-white hover:bg-foreground/10"
                 >
                   {t("callCentre")}
                 </a>
@@ -241,13 +243,21 @@ export default function StudentSignUpPage() {
           </Button>
         </form>
 
-        <p className="text-center text-xs text-gray-500">
-          {t("noStudentId")}{" "}
-          <Link href="/contact" className="underline">
-            {t("contactCentre")}
-          </Link>
-          .
-        </p>
+        <div className="space-y-2 text-center text-xs text-muted-foreground">
+          <p>
+            {t("noStudentId")}{" "}
+            <Link href={`/${locale}/contact`} className="underline">
+              {t("contactCentre")}
+            </Link>
+            .
+          </p>
+          <p>
+            {signUpT("alreadyHaveAccount")}{" "}
+            <Link href={`/${locale}/sign-in`} className="font-semibold text-primary underline">
+              {signUpT("signIn")}
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -271,12 +281,12 @@ function OtpForm({
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="mb-2 text-3xl font-semibold">{t("verifyYourEmail")}</h1>
-          <p className="text-gray-600">{t("otpDescription")}</p>
+          <p className="text-muted-foreground">{t("otpDescription")}</p>
         </div>
 
         {error && (
           <div
-            className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+            className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive"
             role="alert"
           >
             {error}
@@ -337,12 +347,12 @@ function PasswordForm({
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="mb-2 text-3xl font-semibold">{t("setPasswordHeading")}</h1>
-          <p className="text-gray-600">{t("setPasswordDescription")}</p>
+          <p className="text-muted-foreground">{t("setPasswordDescription")}</p>
         </div>
 
         {(error || mismatchError) && (
           <div
-            className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+            className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive"
             role="alert"
           >
             {mismatchError || error}

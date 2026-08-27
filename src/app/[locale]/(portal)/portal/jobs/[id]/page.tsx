@@ -74,23 +74,23 @@ export default async function JobDetailPage({ params }: PageProps) {
     <div className="mx-auto max-w-4xl p-4 py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-semibold">{job.title}</h1>
-        <p className="mt-1 text-lg text-gray-600">
+        <p className="mt-1 text-lg text-muted-foreground">
           {job.employer.companyName}
           {job.department && ` · ${job.department}`}
         </p>
       </div>
 
       <div className="mb-8 flex flex-wrap gap-2">
-        <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+        <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
           {jt(job.jobType)}
         </span>
         {job.employer.companyAddress && (
-          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
+          <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
             {job.employer.companyAddress}
           </span>
         )}
         {job.employer.industrySector && (
-          <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
+          <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
             {eit(job.employer.industrySector)}
           </span>
         )}
@@ -98,19 +98,19 @@ export default async function JobDetailPage({ params }: PageProps) {
 
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div className="rounded-lg border p-4">
-          <p className="text-sm text-gray-500">{t("salary")}</p>
+          <p className="text-sm text-muted-foreground">{t("salary")}</p>
           <p className="mt-1 font-medium">{salaryDisplay}</p>
         </div>
         {job.employer.employeeCountRange && (
           <div className="rounded-lg border p-4">
-            <p className="text-sm text-gray-500">{t("companySize")}</p>
+            <p className="text-sm text-muted-foreground">{t("companySize")}</p>
             <p className="mt-1 font-medium">
               {ect(job.employer.employeeCountRange)}
             </p>
           </div>
         )}
         <div className="rounded-lg border p-4">
-          <p className="text-sm text-gray-500">{t("deadline")}</p>
+          <p className="text-sm text-muted-foreground">{t("deadline")}</p>
           <p className="mt-1 font-medium">
             {new Date(job.applicationDeadline).toLocaleDateString()}
           </p>
@@ -119,13 +119,13 @@ export default async function JobDetailPage({ params }: PageProps) {
 
       <div className="mb-8">
         <h2 className="mb-2 text-xl font-semibold">{t("aboutRole")}</h2>
-        <div className="whitespace-pre-wrap text-gray-700">{job.description}</div>
+        <div className="whitespace-pre-wrap text-foreground">{job.description}</div>
       </div>
 
       {job.employer.aboutCompany && (
         <div className="mb-8">
           <h2 className="mb-2 text-xl font-semibold">{t("aboutCompany", { name: job.employer.companyName })}</h2>
-          <p className="text-gray-700">{job.employer.aboutCompany}</p>
+          <p className="text-foreground">{job.employer.aboutCompany}</p>
         </div>
       )}
 

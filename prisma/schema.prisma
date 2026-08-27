@@ -104,6 +104,7 @@ model Course {
   careerOutcomesEn String?
   careerOutcomesMl String?
   coverImageUrl   String?
+  contentBlocks   Json?
   featured        Boolean      @default(false)
   status          CourseStatus @default(DRAFT)
   createdAt       DateTime     @default(now())

@@ -211,7 +211,7 @@ export function BiodataForm({
           back later.
         </p>
         {complete && (
-          <p className="text-sm font-medium text-green-600">
+          <p className="text-sm font-medium text-primary">
             ✓ Your profile is complete
           </p>
         )}
@@ -441,7 +441,7 @@ export function BiodataForm({
             type="checkbox"
             checked={profileVisible}
             onChange={(e) => setProfileVisible(e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-gray-300"
+            className="mt-1 h-4 w-4 rounded border-border"
           />
           <div className="space-y-1">
             <Label htmlFor="profileVisible" className="font-medium cursor-pointer">
@@ -456,7 +456,7 @@ export function BiodataForm({
         </div>
 
         {isFirstSave && !consentAcknowledged && (
-          <div className="rounded-md bg-blue-50 p-4 text-sm text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+          <div className="rounded-md bg-primary/10 p-4 text-sm text-primary dark:bg-primary/20 dark:text-primary-foreground">
             <p className="font-medium">Consent to profile visibility</p>
             <p className="mt-1">
               By saving this profile, you agree to make it visible to
@@ -490,7 +490,7 @@ export function BiodataForm({
           </a>
         )}
         {saved && (
-          <span className="text-sm text-green-600">
+          <span className="text-sm text-primary">
             ✓ Saved successfully
           </span>
         )}

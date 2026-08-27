@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+RUN apk add --no-cache postgresql-client bash
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY prisma ./prisma/
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+RUN chmod +x ./scripts/dev-entrypoint.sh
+
+ENTRYPOINT ["./scripts/dev-entrypoint.sh"]

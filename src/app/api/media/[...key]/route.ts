@@ -51,6 +51,16 @@ export async function GET(
       },
     });
   } catch {
-    return new NextResponse("Not found", { status: 404 });
+    // Return a 1×1 transparent PNG as a silent fallback for missing images
+    const FALLBACK_PNG = Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      "base64",
+    );
+    return new NextResponse(FALLBACK_PNG, {
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
   }
 }

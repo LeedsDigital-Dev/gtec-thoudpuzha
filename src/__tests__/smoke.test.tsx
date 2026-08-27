@@ -22,6 +22,21 @@ vi.mock("@/lib/gallery", () => ({
   getPlacementGalleryData: vi.fn(() => Promise.resolve(null)),
 }));
 
+vi.mock("@/lib/courses", () => ({
+  getPublishedCourses: vi.fn(() => Promise.resolve([])),
+  getCachedPublishedCourses: vi.fn(() => Promise.resolve([])),
+}));
+
+vi.mock("@/lib/certification-partners", () => ({
+  getCertificationPartners: vi.fn(() => Promise.resolve([])),
+  getCachedCertificationPartners: vi.fn(() => Promise.resolve([])),
+}));
+
+vi.mock("@/lib/news-events", () => ({
+  getHomepageTeaser: vi.fn(() => Promise.resolve({ newsItems: [], nextEvent: null, flashNews: [], featuredNews: null })),
+  getCachedHomepageTeaser: vi.fn(() => Promise.resolve({ newsItems: [], nextEvent: null, flashNews: [], featuredNews: null })),
+}));
+
 vi.mock("@/lib/site-settings", async () => {
   const actual = await vi.importActual("@/lib/site-settings");
   return {

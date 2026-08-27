@@ -1,25 +1,55 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
+import { PWARegistry } from "@/components/shared/PWARegistry";
+import { Preloader } from "@/components/shared/Preloader";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
+
+const APP_NAME = "GTEC Thodupuzha";
+const APP_DESCRIPTION =
+  "G-TEC Education Centre, Thodupuzha — IT, Multimedia, Accounting & Language courses";
 
 export const metadata: Metadata = {
-  title: "GTEC Thodupuzha",
-  description: "GTEC Education Centre, Thodupuzha",
+  applicationName: APP_NAME,
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
+  robots: {
+    index: true,
+    follow: true,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: APP_NAME,
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b2d5e",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default async function LocaleLayout({
@@ -38,15 +68,22 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider afterSignOutUrl={`/${locale}`}>
+    <ClerkProvider
+      signInUrl={`/${locale}/sign-in`}
+      signUpUrl={`/${locale}/portal/sign-up`}
+      afterSignOutUrl={`/${locale}`}
+    >
       <html
         lang={locale}
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased max-w-full overflow-x-clip`}
       >
-        <body className="min-h-full flex flex-col">
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-          </NextIntlClientProvider>
+        <body className="min-h-full flex flex-col w-full max-w-full overflow-x-clip relative">
+          <Preloader />
+          <PWARegistry>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </PWARegistry>
         </body>
       </html>
     </ClerkProvider>

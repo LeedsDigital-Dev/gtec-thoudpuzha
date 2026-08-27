@@ -20,7 +20,7 @@ export async function VideoLectureList({ locale }: { locale: string }) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{t("videoLectures")}</h1>
-          <p className="mt-4 text-gray-600">{t("completeProfile")}</p>
+          <p className="mt-4 text-muted-foreground">{t("completeProfile")}</p>
         </div>
       </div>
     );
@@ -36,10 +36,10 @@ export async function VideoLectureList({ locale }: { locale: string }) {
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-semibold">{t("videoLectures")}</h1>
-          <p className="mt-4 text-gray-600">{t("notEnrolled")}</p>
+          <p className="mt-4 text-muted-foreground">{t("notEnrolled")}</p>
           <Link
             href="/portal/student"
-            className="mt-4 inline-block text-blue-600 underline"
+            className="mt-4 inline-block text-primary underline"
           >
             {t("backToDashboard")}
           </Link>
@@ -66,7 +66,7 @@ export async function VideoLectureList({ locale }: { locale: string }) {
     return (
       <div className="p-6">
         <h1 className="mb-2 text-2xl font-semibold">{t("videoLectures")}</h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {t("noResources", { type: t("videoLectures").toLowerCase() })}
         </p>
       </div>
@@ -84,7 +84,7 @@ export async function VideoLectureList({ locale }: { locale: string }) {
           if (courseResources.length === 0) return null;
           return (
             <div key={course.id}>
-              <h2 className="mb-4 text-lg font-medium text-gray-800">
+              <h2 className="mb-4 text-lg font-medium text-foreground">
                 {course.titleEn}
               </h2>
               <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
@@ -106,7 +106,7 @@ export async function VideoLectureList({ locale }: { locale: string }) {
                       )}
                     </div>
                     <h3 className="font-medium">{r.title}</h3>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {r.uploadedAt.toISOString().slice(0, 10)}
                     </p>
                   </div>

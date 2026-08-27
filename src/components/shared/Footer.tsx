@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { GraduationCap } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
 const quickLinks: { labelKey: string; href: string }[] = [
@@ -37,25 +38,32 @@ export async function Footer({ address }: { address?: string | null }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground/5 border-t">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand + Address */}
-          <div>
-            <p className="text-lg font-bold tracking-tight">
-              G-TEC <span className="text-primary">{siteConfig.centreName}</span>
-            </p>
+    <footer className="border-t bg-muted/20">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="text-center sm:text-left">
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <GraduationCap className="size-5" />
+              </div>
+              <div>
+                <p className="text-lg font-bold tracking-tight">
+                  G-TEC <span className="text-primary">{siteConfig.centreName}</span>
+                </p>
+              </div>
+            </div>
             {address && (
-              <p className="mt-2 text-sm text-muted-foreground">{address}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-center sm:text-left">
+                {address}
+              </p>
             )}
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               {t("quickLinks")}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -69,16 +77,15 @@ export async function Footer({ address }: { address?: string | null }) {
             </ul>
           </div>
 
-          {/* Portals */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               {t("portals")}
             </h3>
-            <ul className="space-y-2">
-              {portalLinks.map((link) => {
+            <ul className="space-y-2.5">
+              {portalLinks.map((link, i) => {
                 if (link.external) {
                   return (
-                    <li key={link.href}>
+                    <li key={`portal-${link.labelKey}-${i}`}>
                       <a
                         href={link.href}
                         target="_blank"
@@ -87,12 +94,12 @@ export async function Footer({ address }: { address?: string | null }) {
                         data-testid="verify-certificate-link"
                       >
                         {t(link.labelKey)} ↗
-                    </a>
+                      </a>
                     </li>
                   );
                 }
                 return (
-                  <li key={link.href}>
+                  <li key={`portal-${link.labelKey}-${i}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -105,12 +112,11 @@ export async function Footer({ address }: { address?: string | null }) {
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               {t("legal")}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -126,8 +132,7 @@ export async function Footer({ address }: { address?: string | null }) {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
+        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
           <p>
             &copy; {currentYear} G-TEC {siteConfig.centreName}. {t("allRightsReserved")}
           </p>

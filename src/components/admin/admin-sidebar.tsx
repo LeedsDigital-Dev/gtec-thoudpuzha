@@ -1,6 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,19 +13,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { ADMIN_ROUTES, isRouteVisible, type AdminRoute, type PermissionKey } from "@/lib/admin-routes";
-import { cn } from "@/lib/utils";
+import { ADMIN_ROUTES, isRouteVisible, type PermissionKey } from "@/lib/admin-routes";
+import { cn, isRouteActive } from "@/lib/utils";
 
 interface AdminSidebarProps {
   isSuperAdmin: boolean;
   permissions: Partial<Record<PermissionKey, boolean>>;
-}
-
-function isRouteActive(route: AdminRoute, pathname: string): boolean {
-  if (route.href === "/admin") {
-    return pathname === "/admin" || pathname === "/admin/";
-  }
-  return pathname.startsWith(route.href);
 }
 
 export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
@@ -33,9 +27,10 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
   const visibleRoutes = ADMIN_ROUTES.filter((route) =>
     isRouteVisible(route, isSuperAdmin, permissions),
   );
+  const allHrefs = visibleRoutes.map((r) => r.href);
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="hidden md:flex">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -61,7 +56,7 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
             {visibleRoutes.map((route) => {
-              const active = isRouteActive(route, pathname);
+              const active = isRouteActive(route.href, pathname, allHrefs);
 
               return (
                 <SidebarMenuItem key={route.href}>
@@ -84,6 +79,27 @@ export function AdminSidebar({ isSuperAdmin, permissions }: AdminSidebarProps) {
                 </SidebarMenuItem>
               );
             })}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup className="mt-auto">
+          <SidebarGroupLabel>Main Site</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <Link
+                href="/"
+                className={cn(
+                  "flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm text-sidebar-foreground/80",
+                  "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                  "outline-hidden focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                  "transition-[width,height,padding]",
+                  "[&_svg]:size-4 [&_svg]:shrink-0",
+                  "[&>span:last-child]:truncate",
+                )}
+              >
+                <Home />
+                <span>Back to Website</span>
+              </Link>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

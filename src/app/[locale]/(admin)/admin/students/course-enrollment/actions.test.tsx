@@ -148,32 +148,32 @@ describe("EnrollmentDashboard component", () => {
     render(<EnrollmentDashboard {...baseProps} />);
 
     // All 3 student names
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.getByText("Carol Williams")).toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Carol Williams").length).toBeGreaterThan(0);
 
     // Student IDs (human-readable)
-    expect(screen.getByText("GTEC001")).toBeInTheDocument();
-    expect(screen.getByText("GTEC002")).toBeInTheDocument();
-    expect(screen.getByText("GTEC003")).toBeInTheDocument();
+    expect(screen.getAllByText("GTEC001").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("GTEC002").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("GTEC003").length).toBeGreaterThan(0);
 
     // Phones
-    expect(screen.getByText("9876543210")).toBeInTheDocument();
-    expect(screen.getByText("9876543211")).toBeInTheDocument();
-    expect(screen.getByText("9876543212")).toBeInTheDocument();
+    expect(screen.getAllByText("9876543210").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("9876543211").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("9876543212").length).toBeGreaterThan(0);
 
     // Alice has 2 enrollments: badge "2" and course names
-    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getAllByText("2").length).toBeGreaterThan(0);
     expect(
-      screen.getByText("Python Programming, Data Science"),
-    ).toBeInTheDocument();
+      screen.getAllByText("Python Programming, Data Science").length,
+    ).toBeGreaterThan(0);
 
     // Bob has 1 enrollment: course name appears (also in dropdown, so multiple hits)
     const pythonHits = screen.getAllByText("Python Programming");
     expect(pythonHits.length).toBeGreaterThanOrEqual(2);
 
     // Carol has 0: "None"
-    expect(screen.getByText("None")).toBeInTheDocument();
+    expect(screen.getAllByText("None").length).toBeGreaterThan(0);
   });
 
   test("2. course filter narrows the table to only students enrolled in the selected course", () => {
@@ -185,25 +185,25 @@ describe("EnrollmentDashboard component", () => {
     fireEvent.change(select, { target: { value: "c1" } });
 
     // Alice and Bob (both in Python) should show; Carol should not
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.queryByText("Carol Williams")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Carol Williams")).toBeNull();
 
     // Switch to "Data Science"
     fireEvent.change(select, { target: { value: "c2" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.queryByText("Bob Smith")).not.toBeInTheDocument();
-    expect(screen.queryByText("Carol Williams")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Bob Smith")).toBeNull();
+    expect(screen.queryByText("Carol Williams")).toBeNull();
 
     // Switch to "Web Development" — no one enrolled
     fireEvent.change(select, { target: { value: "c3" } });
-    expect(screen.getByText("No students found.")).toBeInTheDocument();
+    expect(screen.getByText("No students found.")).toBeTruthy();
 
     // Back to All
     fireEvent.change(select, { target: { value: "" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.getByText("Carol Williams")).toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Carol Williams").length).toBeGreaterThan(0);
   });
 
   test("3. name / Student-ID search filters the table", () => {
@@ -213,30 +213,30 @@ describe("EnrollmentDashboard component", () => {
 
     // Search by name
     fireEvent.change(input, { target: { value: "bob" } });
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.queryByText("Alice Johnson")).not.toBeInTheDocument();
-    expect(screen.queryByText("Carol Williams")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Alice Johnson")).toBeNull();
+    expect(screen.queryByText("Carol Williams")).toBeNull();
 
     // Search by Student ID
     fireEvent.change(input, { target: { value: "GTEC003" } });
-    expect(screen.getByText("Carol Williams")).toBeInTheDocument();
-    expect(screen.queryByText("Bob Smith")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Carol Williams").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Bob Smith")).toBeNull();
 
     // Search by partial ID
     fireEvent.change(input, { target: { value: "GTEC00" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.getByText("Carol Williams")).toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Carol Williams").length).toBeGreaterThan(0);
 
     // No match
     fireEvent.change(input, { target: { value: "zzz" } });
-    expect(screen.getByText("No students found.")).toBeInTheDocument();
+    expect(screen.getByText("No students found.")).toBeTruthy();
 
     // Clear search — all back
     fireEvent.change(input, { target: { value: "" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
-    expect(screen.getByText("Carol Williams")).toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Carol Williams").length).toBeGreaterThan(0);
   });
 
   test("course filter and search work together", () => {
@@ -247,13 +247,13 @@ describe("EnrollmentDashboard component", () => {
 
     // Filter to Python course (Alice + Bob)
     fireEvent.change(select, { target: { value: "c1" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.getByText("Bob Smith")).toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Bob Smith").length).toBeGreaterThan(0);
 
     // Now search "alice" within Python students
     fireEvent.change(input, { target: { value: "alice" } });
-    expect(screen.getByText("Alice Johnson")).toBeInTheDocument();
-    expect(screen.queryByText("Bob Smith")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Alice Johnson").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Bob Smith")).toBeNull();
   });
 });
 

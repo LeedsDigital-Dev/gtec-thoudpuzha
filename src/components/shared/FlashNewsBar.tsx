@@ -1,11 +1,16 @@
 import { getLocale } from "next-intl/server";
 import { getActiveFlashNews } from "@/lib/flash-news";
+import type { PublicFlashNewsItem } from "@/lib/flash-news";
 
 type Locale = "en" | "ml";
 
-export async function FlashNewsBar() {
+export async function FlashNewsBar({
+  items: providedItems,
+}: {
+  items?: PublicFlashNewsItem[];
+} = {}) {
   const locale = (await getLocale()) as Locale;
-  const items = await getActiveFlashNews(locale);
+  const items = providedItems ?? (await getActiveFlashNews(locale));
 
   if (items.length === 0) {
     return null;
@@ -13,11 +18,11 @@ export async function FlashNewsBar() {
 
   return (
     <div
-      className="bg-primary text-primary-foreground overflow-hidden whitespace-nowrap py-2 text-sm font-medium"
+      className="relative w-full max-w-full overflow-x-hidden bg-primary text-primary-foreground py-2 text-sm font-medium"
       aria-label="Flash news"
       role="region"
     >
-      <div className="flash-marquee inline-block will-change-transform">
+      <div className="flash-marquee flex items-center whitespace-nowrap will-change-transform max-w-full">
         <span className="inline-flex items-center gap-8 px-4">
           {items.map((item) => (
             <span key={item.id} className="inline-flex items-center">

@@ -13,6 +13,13 @@ function createSettings(titleEn: string) {
     aboutBodyEn: "About",
     aboutBodyMl: null,
     aboutPhotoUrl: null,
+    address: null,
+    mapEmbedUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    youtubeUrl: null,
+    linkedinUrl: null,
+    googleReviewsUrl: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     whyChooseUsCards: [
@@ -60,6 +67,7 @@ describe("WhyChooseUsSection", () => {
   test("renders the Why Choose Us card title from SiteSettings", async () => {
     const element = await WhyChooseUsSection({
       settings: createSettings("ISO-Authorized Curriculum"),
+      heading: "Why Choose Us",
       locale: "en",
     });
     const html = renderToString(element);
@@ -70,6 +78,7 @@ describe("WhyChooseUsSection", () => {
   test("reflects an updated card title from SiteSettings", async () => {
     const element = await WhyChooseUsSection({
       settings: createSettings("Updated Card Title"),
+      heading: "Why Choose Us",
       locale: "en",
     });
     const html = renderToString(element);

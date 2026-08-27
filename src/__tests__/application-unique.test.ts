@@ -1,25 +1,15 @@
-// @vitest-environment node
-import { describe, expect, test, beforeAll, afterAll } from "vitest";
-import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { describe, expect, test, afterAll } from "vitest";
+import { prisma } from "@/lib/db";
 
-let prisma: PrismaClient;
-
-beforeAll(() => {
-  const testDbUrl = process.env.DATABASE_URL;
-  if (!testDbUrl) {
-    throw new Error("DATABASE_URL is not set — required for application-unique.test.ts");
-  }
-  prisma = new PrismaClient({
-    adapter: new PrismaPg({ connectionString: testDbUrl }),
-  });
-});
+const hasDb = !!process.env.DATABASE_URL && process.env.SKIP_DB_TESTS !== "true";
 
 afterAll(async () => {
-  await prisma.$disconnect();
+  if (hasDb) {
+    await prisma.$disconnect();
+  }
 });
 
-describe("Application DB-level unique constraint", () => {
+describe.skipIf(!hasDb)("Application DB-level unique constraint", () => {
   test("1. prevents duplicate Application on the same (candidateProfileId, jobPostingId)", async () => {
     // Create a user as EMPLOYER (needed for JobPosting FK)
     const empUserId = `test-unique-emp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;

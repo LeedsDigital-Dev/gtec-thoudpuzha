@@ -22,13 +22,13 @@ function NotYourAccountType({
         <h1 className="text-2xl font-semibold">
           This area isn&apos;t for your account type
         </h1>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-muted-foreground">
           This section is intended for {allowedRoleNames} accounts. Please use
           the appropriate portal for your account type.
         </p>
         <Link
           href="/portal"
-          className="mt-4 inline-block text-blue-600 underline"
+          className="mt-4 inline-block text-primary underline"
         >
           Go to Portal Dashboard
         </Link>

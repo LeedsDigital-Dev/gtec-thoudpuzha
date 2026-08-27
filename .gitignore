@@ -40,8 +40,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-graphify-out/*/
-graphify-out/cache/
+graphify-out/
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# Local Netlify folder
+.netlify
+.dev-agent/

@@ -115,7 +115,7 @@ function Lightbox({
           e.stopPropagation();
           onClose();
         }}
-        className="absolute right-4 top-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+        className="absolute right-2 top-2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70 sm:right-4 sm:top-4"
         aria-label="Close lightbox"
       >
         <svg
@@ -140,12 +140,12 @@ function Lightbox({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-4 z-10 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+          className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 sm:p-3 text-white hover:bg-black/70"
           aria-label="Previous image"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="size-5 sm:size-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -166,13 +166,12 @@ function Lightbox({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-4 z-10 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+          className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 sm:p-3 text-white hover:bg-black/70"
           aria-label="Next image"
-          style={{ right: "5rem" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="size-5 sm:size-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -261,8 +260,8 @@ export function GalleryGrid({
 
   if (categories.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
-        <p className="text-lg text-gray-500">No gallery categories yet.</p>
+      <div className="rounded-lg border border-dashed border-border p-12 text-center">
+        <p className="text-lg text-muted-foreground">No gallery categories yet.</p>
       </div>
     );
   }
@@ -271,7 +270,7 @@ export function GalleryGrid({
     <div>
       {/* Tabs */}
       <div
-        className="mb-8 flex flex-wrap gap-2 border-b border-gray-200 pb-2"
+        className="mb-8 flex flex-wrap gap-2 border-b border-border pb-2"
         role="tablist"
       >
         {categories.map((cat) => (
@@ -282,8 +281,8 @@ export function GalleryGrid({
             onClick={() => setActiveTab(cat.id)}
             className={`rounded-t-lg px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === cat.id
-                ? "border-b-2 border-blue-600 text-blue-600"
-                : "text-gray-500 hover:text-gray-700"
+                ? "border-b-2 border-primary text-primary"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {pickLocalizedText({ en: cat.nameEn, ml: cat.nameMl }, locale)}
@@ -293,8 +292,8 @@ export function GalleryGrid({
 
       {/* Grid */}
       {activeItems.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-gray-200 p-10 text-center">
-          <p className="text-gray-500">No photos yet.</p>
+        <div className="rounded-lg border border-dashed border-border p-10 text-center">
+          <p className="text-muted-foreground">No photos yet.</p>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -315,7 +314,7 @@ export function GalleryGrid({
                       }
                     })()
               }
-              className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100"
+              className="group relative aspect-square overflow-hidden rounded-lg bg-muted"
               aria-label={
                 item.mediaType === "VIDEO"
                   ? `Play video: ${itemCaption || "Video"}`
@@ -338,7 +337,7 @@ export function GalleryGrid({
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="ml-0.5 h-6 w-6 text-gray-900"
+                      className="ml-0.5 h-6 w-6 text-foreground"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >

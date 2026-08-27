@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 
 export default async function PrivacyPage() {
   const t = await getTranslations("privacy");

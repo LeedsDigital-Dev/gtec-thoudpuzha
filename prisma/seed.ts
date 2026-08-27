@@ -1,7 +1,8 @@
 import "dotenv/config";
-import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
 import {
   CATEGORIES,
   COURSES,
@@ -9,11 +10,32 @@ import {
   GALLERY_CATEGORIES,
   WHY_CHOOSE_US_CARDS,
   NEWS_EVENTS,
+  FLASH_NEWS,
+  GALLERY_ITEMS,
+  PLACEMENT_SUPPORT_GALLERY_ITEMS,
+  SKILLS,
+  STUDENT_RECORDS,
+  SEED_EMPLOYER,
+  SEED_JOB_POSTINGS,
 } from "./seed-data";
 
-const prisma = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL! }),
-});
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL is not set");
+}
+
+function createPrismaClient(): PrismaClient {
+  if (databaseUrl!.includes("neon.tech")) {
+    const adapter = new PrismaNeon({ connectionString: databaseUrl! });
+    return new PrismaClient({ adapter });
+  }
+
+  const pool = new pg.Pool({ connectionString: databaseUrl! });
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({ adapter });
+}
+
+const prisma = createPrismaClient();
 
 function slugFromName(name: string): string {
   return name
@@ -225,6 +247,216 @@ async function main() {
     });
   }
   console.log(`  OK: ${NEWS_EVENTS.length} news/events\n`);
+
+  /* 7. Flash News */
+  console.log("Seeding flash news...");
+  for (const fn of FLASH_NEWS) {
+    const existing = await prisma.flashNewsItem.findFirst({
+      where: { textEn: fn.textEn },
+    });
+    if (existing) {
+      await prisma.flashNewsItem.update({
+        where: { id: existing.id },
+        data: {
+          textMl: fn.textMl,
+          link: fn.link,
+          active: fn.active,
+          sortOrder: fn.sortOrder,
+        },
+      });
+    } else {
+      await prisma.flashNewsItem.create({
+        data: {
+          textEn: fn.textEn,
+          textMl: fn.textMl,
+          link: fn.link,
+          active: fn.active,
+          sortOrder: fn.sortOrder,
+        },
+      });
+    }
+  }
+  console.log(`  OK: ${FLASH_NEWS.length} flash news items\n`);
+
+  /* 8. Gallery Items */
+  console.log("Seeding gallery items...");
+
+  // Combine both gallery item arrays
+  const allGalleryItems = [...GALLERY_ITEMS, ...PLACEMENT_SUPPORT_GALLERY_ITEMS];
+
+  for (const gi of allGalleryItems) {
+    const category = await prisma.galleryCategory.findUnique({
+      where: { slug: gi.categorySlug },
+    });
+    if (!category) {
+      console.warn(`  ⚠ gallery category "${gi.categorySlug}" not found, skipping item`);
+      continue;
+    }
+
+    const existing = await prisma.galleryItem.findFirst({
+      where: { url: gi.url },
+    });
+    if (existing) {
+      await prisma.galleryItem.update({
+        where: { id: existing.id },
+        data: {
+          categoryId: category.id,
+          mediaType: gi.mediaType,
+          captionEn: gi.captionEn,
+          captionMl: gi.captionMl,
+          sortOrder: gi.sortOrder,
+        },
+      });
+    } else {
+      await prisma.galleryItem.create({
+        data: {
+          categoryId: category.id,
+          mediaType: gi.mediaType,
+          url: gi.url,
+          captionEn: gi.captionEn,
+          captionMl: gi.captionMl,
+          sortOrder: gi.sortOrder,
+        },
+      });
+    }
+  }
+  console.log(`  OK: ${allGalleryItems.length} gallery items\n`);
+
+  /* 9. Skills */
+  console.log("Seeding skills...");
+  for (const skill of SKILLS) {
+    await prisma.skill.upsert({
+      where: { label: skill.label },
+      create: {
+        label: skill.label,
+        status: skill.status,
+      },
+      update: {
+        status: skill.status,
+      },
+    });
+  }
+  console.log(`  OK: ${SKILLS.length} skills\n`);
+
+  /* 10. Student Records */
+  console.log("Seeding student records...");
+  for (const sr of STUDENT_RECORDS) {
+    await prisma.studentRecord.upsert({
+      where: { studentId: sr.studentId },
+      create: {
+        studentId: sr.studentId,
+        fullName: sr.fullName,
+        phone: sr.phone,
+        email: sr.email,
+      },
+      update: {
+        fullName: sr.fullName,
+        phone: sr.phone,
+        email: sr.email,
+      },
+    });
+  }
+  console.log(`  OK: ${STUDENT_RECORDS.length} student records\n`);
+
+  /* 11. Job Postings (with seed employer profile) */
+  console.log("Seeding job postings...");
+
+  // Upsert seed employer user
+  await prisma.user.upsert({
+    where: { id: SEED_EMPLOYER.userId },
+    create: {
+      id: SEED_EMPLOYER.userId,
+      role: "EMPLOYER",
+    },
+    update: {},
+  });
+
+  // Upsert seed employer profile
+  await prisma.employerProfile.upsert({
+    where: { userId: SEED_EMPLOYER.userId },
+    create: {
+      id: SEED_EMPLOYER.id,
+      userId: SEED_EMPLOYER.userId,
+      companyName: SEED_EMPLOYER.companyName,
+      industrySector: SEED_EMPLOYER.industrySector,
+      contactPersonName: SEED_EMPLOYER.contactPersonName,
+      designation: SEED_EMPLOYER.designation,
+      phone: SEED_EMPLOYER.phone,
+      email: SEED_EMPLOYER.email,
+      companyAddress: SEED_EMPLOYER.companyAddress,
+      hasWebsite: true,
+      websiteUrl: SEED_EMPLOYER.websiteUrl,
+      employeeCountRange: SEED_EMPLOYER.employeeCountRange,
+      aboutCompany: SEED_EMPLOYER.aboutCompany,
+      status: "APPROVED",
+    },
+    update: {
+      companyName: SEED_EMPLOYER.companyName,
+      industrySector: SEED_EMPLOYER.industrySector,
+      contactPersonName: SEED_EMPLOYER.contactPersonName,
+      designation: SEED_EMPLOYER.designation,
+      phone: SEED_EMPLOYER.phone,
+      email: SEED_EMPLOYER.email,
+      companyAddress: SEED_EMPLOYER.companyAddress,
+      hasWebsite: true,
+      websiteUrl: SEED_EMPLOYER.websiteUrl,
+      employeeCountRange: SEED_EMPLOYER.employeeCountRange,
+      aboutCompany: SEED_EMPLOYER.aboutCompany,
+      status: "APPROVED",
+    },
+  });
+
+  // Build skill lookup map
+  const allSkills = await prisma.skill.findMany();
+  const skillLabelToId = new Map(allSkills.map((s) => [s.label, s.id]));
+
+  for (const jp of SEED_JOB_POSTINGS) {
+    const skillIds = jp.skillLabels
+      .map((l) => skillLabelToId.get(l))
+      .filter((id): id is string => id != null);
+
+    const deadline = new Date();
+    deadline.setDate(deadline.getDate() + jp.applicationDeadlineDaysFromNow);
+
+    const existing = await prisma.jobPosting.findFirst({
+      where: { employerId: SEED_EMPLOYER.id, title: jp.title },
+    });
+
+    if (existing) {
+      await prisma.jobPosting.update({
+        where: { id: existing.id },
+        data: {
+          department: jp.department,
+          salaryMin: jp.salaryMin,
+          salaryMax: jp.salaryMax,
+          salaryVisibility: jp.salaryVisibility,
+          jobType: jp.jobType,
+          skillIds,
+          applicationDeadline: deadline,
+          description: jp.description,
+          status: "APPROVED",
+          deletedAt: null,
+        },
+      });
+    } else {
+      await prisma.jobPosting.create({
+        data: {
+          employerId: SEED_EMPLOYER.id,
+          title: jp.title,
+          department: jp.department,
+          salaryMin: jp.salaryMin,
+          salaryMax: jp.salaryMax,
+          salaryVisibility: jp.salaryVisibility,
+          jobType: jp.jobType,
+          skillIds,
+          applicationDeadline: deadline,
+          description: jp.description,
+          status: "APPROVED",
+        },
+      });
+    }
+  }
+  console.log(`  OK: 1 employer + ${SEED_JOB_POSTINGS.length} job postings\n`);
 
   console.log("Seed complete.");
 }

@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import type { JobPosting, JobType, EmployerProfile } from "@prisma/client";
 
 export type ActiveJobPosting = Pick<
@@ -43,38 +44,42 @@ export type JobDetail = Pick<
 
 /** Fetch a single active (approved, non-expired, non-deleted) job posting. */
 export async function getJobDetail(id: string): Promise<JobDetail | null> {
-  const posting = await prisma.jobPosting.findFirst({
-    where: {
-      id,
-      status: "APPROVED",
-      deletedAt: null,
-      applicationDeadline: { gt: new Date() },
-    },
-    select: {
-      id: true,
-      title: true,
-      department: true,
-      salaryMin: true,
-      salaryMax: true,
-      salaryVisibility: true,
-      jobType: true,
-      skillIds: true,
-      applicationDeadline: true,
-      description: true,
-      createdAt: true,
-      employer: {
-        select: {
-          companyName: true,
-          companyAddress: true,
-          industrySector: true,
-          employeeCountRange: true,
-          aboutCompany: true,
+  try {
+    const posting = await prisma.jobPosting.findFirst({
+      where: {
+        id,
+        status: "APPROVED",
+        deletedAt: null,
+        applicationDeadline: { gt: new Date() },
+      },
+      select: {
+        id: true,
+        title: true,
+        department: true,
+        salaryMin: true,
+        salaryMax: true,
+        salaryVisibility: true,
+        jobType: true,
+        skillIds: true,
+        applicationDeadline: true,
+        description: true,
+        createdAt: true,
+        employer: {
+          select: {
+            companyName: true,
+            companyAddress: true,
+            industrySector: true,
+            employeeCountRange: true,
+            aboutCompany: true,
+          },
         },
       },
-    },
-  });
-
-  return posting;
+    });
+    return posting;
+  } catch (err) {
+    logger.exception("jobs", "Failed to fetch job detail", err);
+    return null;
+  }
 }
 
 export async function getActiveJobPostings(filters?: {
@@ -104,6 +109,9 @@ export async function getActiveJobPostings(filters?: {
       },
     },
     orderBy: { createdAt: "desc" },
+  }).catch((err) => {
+    logger.exception("jobs", "Failed to fetch active job postings", err);
+    throw err;
   });
 
   if (filters?.location) {

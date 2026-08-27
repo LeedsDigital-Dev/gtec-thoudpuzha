@@ -48,16 +48,16 @@ export default async function JobsPage({
   ]);
 
   return (
-    <div className="mx-auto max-w-5xl p-4 py-10">
+    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-semibold">{t("heading")}</h1>
-        <p className="mt-1 text-gray-600">{t("description")}</p>
+        <p className="mt-1 text-muted-foreground">{t("description")}</p>
       </div>
 
       <JobsFilter skills={skills} />
 
       {postings.length === 0 ? (
-        <div className="mt-6 rounded-lg border border-dashed p-12 text-center text-gray-500">
+        <div className="mt-6 rounded-lg border border-dashed p-12 text-center text-muted-foreground">
           <p>{t("noJobs")}</p>
           <p className="mt-1 text-sm">{t("noJobsHint")}</p>
         </div>
@@ -76,29 +76,29 @@ export default async function JobsPage({
             return (
               <div
                 key={posting.id}
-                className="rounded-lg border p-5 transition-colors hover:bg-gray-50"
+                className="rounded-lg border p-5 transition-colors hover:bg-muted/50"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">
                     <h2 className="text-lg font-semibold">{posting.title}</h2>
-                    <p className="mt-0.5 text-sm text-gray-600">
+                    <p className="mt-0.5 text-sm text-muted-foreground">
                       {posting.employer.companyName}
                       {posting.department && ` · ${posting.department}`}
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                      <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
                         {jt(posting.jobType)}
                       </span>
                       {posting.employer.companyAddress && (
-                        <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+                        <span className="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-foreground">
                           {posting.employer.companyAddress}
                         </span>
                       )}
                     </div>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-muted-foreground">
                       {salaryDisplay}
                     </p>
-                    <p className="mt-1 text-xs text-gray-500">
+                    <p className="mt-1 text-xs text-muted-foreground">
                       {t("deadline", { date: new Date(posting.applicationDeadline).toLocaleDateString() })}
                     </p>
                   </div>
@@ -110,7 +110,7 @@ export default async function JobsPage({
       )}
 
       {postings.length > 0 && (
-        <p className="mt-6 text-center text-xs text-gray-500">
+        <p className="mt-6 text-center text-xs text-muted-foreground">
           {t("showing", { count: postings.length })}
         </p>
       )}

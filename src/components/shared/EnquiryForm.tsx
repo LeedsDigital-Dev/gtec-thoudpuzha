@@ -104,7 +104,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm"
+      className="flex flex-col gap-4 rounded-2xl border bg-card p-6 shadow-md"
       aria-label={`Enquiry form${source ? ` — ${source}` : ""}`}
       noValidate
     >
@@ -179,7 +179,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       </div>
 
       {status === "success" && (
-        <div className="rounded-lg bg-green-100 p-3 text-sm text-green-800 dark:bg-green-900 dark:text-green-100">
+        <div className="rounded-lg bg-primary/10 p-3 text-sm text-primary dark:bg-primary/20 dark:text-primary-foreground">
           {t("success")}
         </div>
       )}

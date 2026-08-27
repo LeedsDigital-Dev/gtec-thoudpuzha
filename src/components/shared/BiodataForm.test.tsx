@@ -29,6 +29,7 @@ const mockCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: false,
     category: null,
+    contentBlocks: null,
   },
   {
     id: "c2",
@@ -44,6 +45,7 @@ const mockCourses: PublicCourse[] = [
     coverImageUrl: null,
     featured: false,
     category: null,
+    contentBlocks: null,
   },
 ];
 

@@ -1,1 +1,7 @@
+# Ensure merge driver for graphify
 graphify-out/graph.json merge=graphify
+
+# Force LF line endings for scripts & docker files across Windows & Unix hosts
+*.sh text eol=lf
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf

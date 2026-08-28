@@ -40,6 +40,8 @@ services:
       - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/en/portal/sign-up
       - NEXT_PUBLIC_GTEC_WHATSAPP_NUMBER=+919876543210
       - NEXT_PUBLIC_GTEC_PHONE_NUMBER=+914862200000
+      - WATCHPACK_POLLING=${WATCHPACK_POLLING:-true}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING:-true}
     depends_on:
       db:
         condition: service_healthy

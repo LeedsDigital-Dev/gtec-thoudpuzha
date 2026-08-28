@@ -79,15 +79,25 @@ For maximum file system speed on Windows, run the repo directly inside WSL 2:
   ```
   Or change the mapped port in `docker-compose.yml` (`"5433:5432"`).
 
-### 3. Hot Reloading (HMR) Not Updating on Windows Drives
-- **Problem**: Editing a file on Windows mounted drives (`C:\...`) sometimes does not trigger live hot-reload inside Docker.
-- **Solution**: `docker-compose.yml` includes `WATCHPACK_POLLING=true` & `CHOKIDAR_USEPOLLING=true` by default, which ensures changes are detected instantly on Windows filesystem mounts.
+### 3. Hot Reloading & CPU Performance Optimization
+- **Problem**: Polling for file changes on Windows mounted drives (`C:\...`) can cause high CPU usage if thousands of dependency files are watched.
+- **Solution**:
+  - `docker-compose.yml` mounts `/app/node_modules` and `/app/.next` as isolated Docker volumes, so file watching **only monitors your actual source code** (`src/`, `prisma/`, `public/`). This keeps CPU usage below 1%.
+  - `WATCHPACK_POLLING=true` & `CHOKIDAR_USEPOLLING=true` are pre-configured in `docker-compose.yml` for instant live reload when saving files in VS Code on Windows.
 
-### 4. Clerk Auth Error (`host_invalid`)
+### 4. Network Host Binding (`HOSTNAME=0.0.0.0`)
+- **Solution**: `HOSTNAME=0.0.0.0` is pre-configured in `docker-compose.yml` so Next.js binds to all container network interfaces, ensuring Windows host browsers (`http://localhost:3000` or `http://127.0.0.1:3000`) never receive connection refused errors.
+
+### 5. Clerk Auth Error (`host_invalid`)
 - **Solution**: Working Clerk Development Sandbox keys are pre-configured in `.env.example` and `docker-compose.yml`. Copy `.env.example` to `.env.local` if running outside Docker:
-  ```powershell
-  copy .env.example .env.local
-  ```
+  - **PowerShell**:
+    ```powershell
+    Copy-Item .env.example .env.local
+    ```
+  - **Command Prompt (CMD)**:
+    ```cmd
+    copy .env.example .env.local
+    ```
 
 ---
 

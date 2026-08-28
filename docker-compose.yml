@@ -30,6 +30,7 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - HOSTNAME=0.0.0.0
       - DATABASE_URL=postgresql://postgres:postgrespassword@db:5432/gtec_thodupuzha_dev?schema=public
       - DB_HOST=db
       - DB_PORT=5432

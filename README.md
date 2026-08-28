@@ -26,6 +26,12 @@ This will automatically:
 
 ---
 
+## 🪟 Windows Developer Setup
+
+Developing on Windows? Check out the dedicated **[Windows Developer Guide & Instruction Manual](file:///Users/gauthamkrishna/Code/leedsdigital/gtec-thoudpuzha/docs/WINDOWS_DEVELOPMENT_GUIDE.md)** (`docs/WINDOWS_DEVELOPMENT_GUIDE.md`) for WSL 2 recommendations, PowerShell commands, and troubleshooting tips.
+
+---
+
 ## Manual Setup (Without Docker)
 
 If you prefer running Node.js directly on your machine:

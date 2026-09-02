@@ -370,3 +370,44 @@
     transform: translateX(-50%);
   }
 }
+
+/* ============================================================
+   PREMIUM UI UTILITIES
+   ============================================================ */
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, oklch(0.358 0.123 253 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.358 0.123 253 / 0.04) 1px, transparent 1px);
+  }
+
+  .dark .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, oklch(0.97 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.97 0 0 / 0.04) 1px, transparent 1px);
+  }
+
+  .bg-radial-glow {
+    background-image: radial-gradient(circle at 50% 0%, oklch(0.358 0.123 253 / 0.08) 0%, transparent 70%);
+  }
+
+  .dark .bg-radial-glow {
+    background-image: radial-gradient(circle at 50% 0%, oklch(0.72 0.12 253 / 0.12) 0%, transparent 70%);
+  }
+
+  .glass-card {
+    background: oklch(0.996 0 0 / 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.891 0.015 253 / 0.6);
+  }
+
+  .dark .glass-card {
+    background: oklch(0.22 0.072 253 / 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.97 0 0 / 0.1);
+  }
+}
+

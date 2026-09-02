@@ -23,7 +23,7 @@ const ContactSection = dynamic(
       (mod) => mod.ContactSection,
     ),
   {
-    loading: () => <div className="h-96 bg-muted/40" />,
+    loading: () => <div className="h-96 bg-muted/40 animate-pulse" />,
   },
 );
 
@@ -56,14 +56,11 @@ export default async function HomePage({ params }: HomePageProps) {
     ]);
 
   return (
-    <main>
-      <div className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,var(--color-primary)_/_4%,transparent_60%)]"
-          aria-hidden="true"
-        />
-        <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
-          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
+    <main className="relative flex flex-col w-full min-h-screen">
+      {/* Hero & Admission Fast Track Section */}
+      <section className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
             <HeroSection
               t={{
                 badge: heroT("badge"),
@@ -74,17 +71,21 @@ export default async function HomePage({ params }: HomePageProps) {
                 callNow: heroT("callNow"),
               }}
             />
-            <section id="enquiry" className="lg:sticky lg:top-24">
-              <EnquiryForm source="homepage-hero" courses={courses} />
-            </section>
           </div>
-        </section>
-      </div>
+          <section id="enquiry" className="lg:col-span-5 lg:sticky lg:top-24">
+            <EnquiryForm source="homepage-hero" courses={courses} />
+          </section>
+        </div>
+      </section>
 
+
+      {/* Numerical Highlights */}
       <AtAGlanceSection
         heading={atAGlanceT("heading")}
         settings={settings}
       />
+
+      {/* Latest News & Events */}
       <NewsTeaserSection
         teaser={teaser}
         heading={newsT("heading")}
@@ -92,21 +93,29 @@ export default async function HomePage({ params }: HomePageProps) {
         upcomingEventLabel={newsT("upcomingEvent")}
         locale={locale}
       />
+
+      {/* About Institution */}
       <AboutSection
         settings={settings}
         locale={locale}
         heading={aboutT("heading")}
         photoPlaceholder={aboutT("photoPlaceholder")}
       />
+
+      {/* Why Choose Us */}
       <WhyChooseUsSection
         heading={whyT("heading")}
         settings={settings}
         locale={locale}
       />
+
+      {/* Certification Partners */}
       <CertificationPartnerStrip
         heading={certT("heading")}
         partners={certPartners}
       />
+
+      {/* Placement Support & Student Success */}
       <PlacementSupportSection
         data={placementData}
         heading={placementT("heading")}
@@ -116,7 +125,10 @@ export default async function HomePage({ params }: HomePageProps) {
         viewVacancies={placementT("viewVacancies")}
         hiringCta={placementT("hiringCta")}
       />
+
+      {/* Contact & Map Section */}
       <ContactSection settings={settings} courses={courses} />
     </main>
   );
 }
+

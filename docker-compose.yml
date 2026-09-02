@@ -54,6 +54,5 @@ services:
       - ./tsconfig.json:/app/tsconfig.json
       - ./postcss.config.mjs:/app/postcss.config.mjs
       - ./prisma.config.ts:/app/prisma.config.ts
-
 volumes:
   pgdata:

@@ -23,6 +23,7 @@ export async function CertificationPartnerStrip({
         <h2 className="mb-10 text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           {heading}
         </h2>
+         
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
           {partners.map((partner) => {
             const img = (
@@ -32,7 +33,7 @@ export async function CertificationPartnerStrip({
                 width={140}
                 height={56}
                 style={{ width: "auto" }}
-                className="h-14 w-auto object-contain opacity-60 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
+                 className="h-14 w-auto object-contain opacity-60 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
               />
             );
 

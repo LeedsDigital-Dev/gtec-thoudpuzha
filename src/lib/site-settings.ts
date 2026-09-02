@@ -7,20 +7,40 @@ export type SiteSettingsWithCards = SiteSettings & {
 
 export type Locale = "en" | "ml";
 
+const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
+  id: "default",
+  updatedAt: new Date(),
+  yearsInOperation: "25+",
+  studentsTrained: "10,000+",
+  centresWorldwide: "500+",
+  affiliations: "50+",
+  countries: "15+",
+  aboutTextEn:
+    "G-TEC EDUCATION Thodupuzha is a premier skill development and computer education centre.",
+  aboutTextMl:
+    "ജി-ടെക് എഡ്യൂക്കേഷൻ തൊടുപുഴ ഒരു പ്രമുഖ കമ്പ്യൂട്ടർ വിദ്യാഭ്യാസ സ്ഥാപനമാണ്.",
+  address: "Near Private Bus Stand, Thodupuzha, Idukki, Kerala - 685584",
+  whyChooseUsCards: [],
+};
+
 export async function getSiteSettings(): Promise<SiteSettingsWithCards> {
-  const settings = await prisma.siteSettings.findFirst({
-    include: {
-      whyChooseUsCards: {
-        orderBy: { sortOrder: "asc" },
+  try {
+    const settings = await prisma.siteSettings.findFirst({
+      include: {
+        whyChooseUsCards: {
+          orderBy: { sortOrder: "asc" },
+        },
       },
-    },
-  });
+    });
 
-  if (!settings) {
-    throw new Error("Site settings have not been initialized.");
+    if (!settings) {
+      return DEFAULT_SITE_SETTINGS;
+    }
+
+    return settings;
+  } catch {
+    return DEFAULT_SITE_SETTINGS;
   }
-
-  return settings;
 }
 
 export function pickLocalizedText(

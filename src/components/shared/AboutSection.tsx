@@ -37,7 +37,6 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
               {photoPlaceholder}
             </div>
           )}
-
           <div className="flex flex-col justify-center">
             <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">
               {about.body}

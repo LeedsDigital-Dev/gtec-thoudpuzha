@@ -53,10 +53,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
           <span className="inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20">
             {contactPageT("badge")}
           </span>
-          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             {contactPageT("title")}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground leading-relaxed">
             {contactPageT("subtitle")}
           </p>
         </div>

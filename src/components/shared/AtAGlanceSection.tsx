@@ -31,7 +31,7 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
           </div>
           <h2
             id="at-a-glance-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground"
           >
             {heading}
           </h2>
@@ -44,15 +44,15 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
               <div
                 key={stat.label}
                 role="listitem"
-                className="group relative flex flex-col items-center rounded-2xl border border-border/70 bg-card/90 backdrop-blur-md p-6 sm:p-7 text-center shadow-xs transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/40"
+                className="group relative flex flex-col items-center rounded-2xl border border-border/70 bg-card/90 backdrop-blur-md p-5 sm:p-6 text-center shadow-xs transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/40"
               >
-                <div className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/40">
-                  <Icon className="size-6" />
+                <div className="mb-3.5 flex size-12 sm:size-13 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/40">
+                  <Icon className="size-5 sm:size-6" />
                 </div>
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground transition-colors group-hover:text-primary">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground transition-colors group-hover:text-primary">
                   {stat.value}
                 </span>
-                <span className="mt-2 text-sm sm:text-base font-semibold text-muted-foreground leading-snug">
+                <span className="mt-1.5 text-sm font-semibold text-muted-foreground leading-snug">
                   {stat.label}
                 </span>
               </div>

@@ -37,26 +37,26 @@ export function HeroSection({ t }: HeroSectionProps) {
       </div>
 
       {/* Main Impact Headline */}
-      <h1 className="max-w-3xl text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black tracking-tight text-foreground leading-[1.12]">
+      <h1 className="max-w-3xl text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.18]">
         {t.headline}
       </h1>
 
       {/* Subhead narrative */}
-      <p className="max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-muted-foreground font-normal">
+      <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground font-normal">
         {t.subhead}
       </p>
 
       {/* Action CTA Button Cluster */}
-      <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 pt-2">
+      <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
         <Link
           href="#enquiry"
           className={cn(
             buttonVariants({ size: "lg" }),
-            "relative w-full sm:w-auto justify-center rounded-2xl bg-primary text-primary-foreground font-bold text-base sm:text-lg px-7 py-3.5 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 group overflow-hidden"
+            "relative w-full sm:w-auto justify-center rounded-2xl bg-primary text-primary-foreground font-bold text-sm sm:text-base px-6 py-3 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 group overflow-hidden"
           )}
         >
           <span>{t.applyNow}</span>
-          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="ml-2 size-4.5 transition-transform group-hover:translate-x-1" />
           <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
         </Link>
         <a
@@ -65,33 +65,33 @@ export function HeroSection({ t }: HeroSectionProps) {
           rel="noopener noreferrer"
           className={cn(
             buttonVariants({ size: "lg" }),
-            "w-full sm:w-auto justify-center rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base sm:text-lg px-6 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            "w-full sm:w-auto justify-center rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base px-5 py-3 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           )}
         >
-          <MessageCircle className="mr-2 size-5" />
+          <MessageCircle className="mr-2 size-4.5" />
           {t.whatsappUs}
         </a>
         <a
           href={`tel:${siteConfig.phoneNumber}`}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "w-full sm:w-auto justify-center rounded-2xl border-border/80 bg-background/80 hover:bg-muted/80 text-foreground font-bold text-base sm:text-lg px-6 py-3.5 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            "w-full sm:w-auto justify-center rounded-2xl border-border/80 bg-background/80 hover:bg-muted/80 text-foreground font-bold text-sm sm:text-base px-5 py-3 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           )}
         >
-          <Phone className="mr-2 size-5 text-muted-foreground" />
+          <Phone className="mr-2 size-4.5 text-muted-foreground" />
           {t.callNow}
         </a>
       </div>
 
       {/* Trust Highlights Strip */}
-      <div className="pt-5 border-t border-border/60">
-        <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
+      <div className="pt-4 border-t border-border/60">
+        <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-x-7 sm:gap-y-2.5">
           {trustHighlights.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="flex items-center gap-2 text-sm sm:text-base font-semibold text-muted-foreground"
+                className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"
               >
                 <Icon className="size-4 text-primary shrink-0" />
                 <span className="truncate">{item.text}</span>

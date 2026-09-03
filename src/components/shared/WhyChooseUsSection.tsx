@@ -33,7 +33,7 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
           </div>
           <h2
             id="why-choose-us-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground"
           >
             {heading}
           </h2>
@@ -57,11 +57,11 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-xl sm:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="mt-6 text-lg sm:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
                     {card.title}
                   </h3>
 
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground font-normal">
+                  <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground font-normal">
                     {card.description}
                   </p>
                 </div>

@@ -21,11 +21,11 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
         <div className="mb-8">
           <h1
             id="placement-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight"
           >
             {t("heading")}
           </h1>
-          <p className="mt-2 text-base sm:text-lg text-muted-foreground">
+          <p className="mt-2 text-base text-muted-foreground">
             {t("description")}
           </p>
         </div>
@@ -44,7 +44,7 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
                 key={posting.id}
                 className="rounded-2xl border p-5 transition-colors hover:bg-muted/50"
               >
-                <h2 className="font-bold text-lg">{posting.title}</h2>
+                <h2 className="font-bold text-base sm:text-lg">{posting.title}</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   {posting.employer.companyName}
                 </p>
@@ -63,11 +63,11 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
           </div>
         )}
 
-        <div className="mt-10 rounded-2xl bg-primary/10 p-8 sm:p-10 text-center">
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
+        <div className="mt-10 rounded-2xl bg-primary/10 p-7 sm:p-9 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight">
             {t("ctaHeading")}
           </h2>
-          <p className="mt-2 text-base sm:text-lg text-muted-foreground">
+          <p className="mt-2 text-sm sm:text-base text-muted-foreground">
             {t("ctaText")}
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">

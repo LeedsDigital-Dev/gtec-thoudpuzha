@@ -42,17 +42,17 @@ export function PlacementSupportSection({
             </div>
             <h2
               id="placement-support-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground"
             >
               {heading}
             </h2>
           </div>
           <Link
             href={`/gallery?category=${PLACEMENT_SLUG}`}
-            className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-primary hover:text-primary/80 group self-start sm:self-auto transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 group self-start sm:self-auto transition-colors"
           >
             <span>{viewFullGallery}</span>
-            <ArrowRight className="size-4.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -82,28 +82,28 @@ export function PlacementSupportSection({
         </div>
 
         {/* High Conversion Placement & Hiring Banner */}
-        <div className="relative mt-14 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/12 via-card to-amber-500/10 p-8 sm:p-12 text-center shadow-lg">
+        <div className="relative mt-12 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/12 via-card to-amber-500/10 p-7 sm:p-10 text-center shadow-lg">
           <div className="mx-auto max-w-2xl">
-            <h3 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground">
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
               {ctaHeading}
             </h3>
-            <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-2.5 text-sm sm:text-base text-muted-foreground leading-relaxed">
               {ctaText}
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-4">
+            <div className="mt-7 flex flex-col sm:flex-row flex-wrap justify-center gap-3.5">
               <Link
                 href="/portal/jobs"
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-primary px-7 py-4 text-base sm:text-lg font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm sm:text-base font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Briefcase className="size-5" />
+                <Briefcase className="size-4.5" />
                 <span>{viewVacancies}</span>
-                <ArrowRight className="size-5" />
+                <ArrowRight className="size-4.5" />
               </Link>
               <Link
                 href="/portal/employer/register"
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl border-2 border-primary/40 bg-background/80 px-7 py-4 text-base sm:text-lg font-bold text-foreground shadow-xs transition-all hover:bg-muted/80 hover:border-primary hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-primary/40 bg-background/80 px-6 py-3 text-sm sm:text-base font-bold text-foreground shadow-xs transition-all hover:bg-muted/80 hover:border-primary hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Building className="size-5 text-primary" />
+                <Building className="size-4.5 text-primary" />
                 <span>{hiringCta}</span>
               </Link>
             </div>

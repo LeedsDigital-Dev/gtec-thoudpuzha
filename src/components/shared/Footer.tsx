@@ -48,7 +48,7 @@ export async function Footer({ address }: { address?: string | null }) {
                 <GraduationCap className="size-6" />
               </div>
               <div>
-                <p className="text-xl font-black tracking-tight text-foreground">
+                <p className="text-lg sm:text-xl font-bold tracking-tight text-foreground">
                   G-TEC <span className="text-primary">{siteConfig.centreName}</span>
                 </p>
                 <p className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
@@ -58,7 +58,7 @@ export async function Footer({ address }: { address?: string | null }) {
             </div>
 
             {address && (
-              <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground max-w-sm">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-w-sm">
                 {address}
               </p>
             )}

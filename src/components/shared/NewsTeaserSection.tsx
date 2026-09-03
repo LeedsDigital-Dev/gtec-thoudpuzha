@@ -61,16 +61,16 @@ export function NewsTeaserSection({
               <Sparkles className="size-3.5 text-amber-500" />
               <span>Campus Buzz</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground">
               {heading}
             </h2>
           </div>
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-primary hover:text-primary/80 group self-start sm:self-auto transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 group self-start sm:self-auto transition-colors"
           >
             <span>{viewAll}</span>
-            <ArrowRight className="size-4.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -94,7 +94,7 @@ export function NewsTeaserSection({
                     </span>
                   )}
                 </div>
-                <h3 className="line-clamp-3 text-base sm:text-lg font-bold leading-snug text-foreground group-hover:text-primary transition-colors">
+                <h3 className="line-clamp-3 text-base font-bold leading-snug text-foreground group-hover:text-primary transition-colors">
                   {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, locale)}
                 </h3>
               </div>
@@ -120,7 +120,7 @@ export function NewsTeaserSection({
                     </span>
                   )}
                 </div>
-                <h3 className="line-clamp-3 text-base sm:text-lg font-bold leading-snug text-foreground">
+                <h3 className="line-clamp-3 text-base font-bold leading-snug text-foreground">
                   {pickLocalizedText({ en: nextEvent.titleEn, ml: nextEvent.titleMl }, locale)}
                 </h3>
               </div>

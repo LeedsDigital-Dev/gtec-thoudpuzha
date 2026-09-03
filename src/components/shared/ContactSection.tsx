@@ -127,7 +127,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
           </div>
           <h2
             id="contact-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground"
           >
             {t("heading")}
           </h2>
@@ -153,31 +153,31 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
           )}
 
           {/* Contact Details Card */}
-          <div className="flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-xl p-7 sm:p-9 shadow-lg">
-            <div className="space-y-6">
+          <div className="flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-xl p-6 sm:p-8 shadow-lg">
+            <div className="space-y-5">
               <div>
                 <span className="text-sm font-bold uppercase tracking-wider text-primary">
                   Campus Centre
                 </span>
-                <h3 className="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-foreground">
+                <h3 className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                   G-TEC <span className="text-primary">{siteConfig.centreName}</span>
                 </h3>
                 {settings.address && (
-                  <div className="mt-3.5 flex items-start gap-2.5 text-muted-foreground">
-                    <MapPin className="mt-1 size-5 shrink-0 text-primary" />
-                    <span className="text-base leading-relaxed">{settings.address}</span>
+                  <div className="mt-3 flex items-start gap-2.5 text-muted-foreground">
+                    <MapPin className="mt-1 size-4.5 shrink-0 text-primary" />
+                    <span className="text-sm sm:text-base leading-relaxed">{settings.address}</span>
                   </div>
                 )}
               </div>
 
               {/* Direct Action Chips */}
-              <div className="grid gap-3.5 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <a
                   href={`tel:${siteConfig.phoneNumber}`}
-                  className="flex items-center gap-3.5 rounded-2xl border border-border/70 bg-muted/40 p-4 text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
+                  className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
                 >
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Phone className="size-5" />
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Phone className="size-4.5" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-muted-foreground">{t("phone")}</p>
@@ -189,10 +189,10 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                   href={`https://wa.me/${siteConfig.whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3.5 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-base font-bold text-foreground transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:shadow-xs group"
+                  className="flex items-center gap-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:shadow-xs group"
                 >
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                    <MessageCircle className="size-5" />
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <MessageCircle className="size-4.5" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">{t("whatsapp")}</p>

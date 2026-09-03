@@ -26,10 +26,10 @@ export async function CertificationPartnerStrip({
             <ShieldCheck className="size-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>Authorized Alliances</span>
           </div>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-foreground">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-foreground">
             {heading}
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-xl">
+          <p className="mt-2 text-sm text-muted-foreground max-w-xl">
             Globally recognized curriculum backed by multinational technology giants and certification bodies.
           </p>
         </div>

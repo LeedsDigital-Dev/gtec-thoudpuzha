@@ -37,11 +37,11 @@ export function CoursePageContent({
     <div className="w-full max-w-full overflow-x-hidden space-y-6 sm:space-y-10">
       {/* Hero */}
       {tagline && (
-        <section className="rounded-xl border border-border/60 bg-muted/40 p-5 sm:p-8 text-center shadow-xs">
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3 text-foreground break-words">
+        <section className="rounded-xl border border-border/60 bg-muted/40 p-5 sm:p-7 text-center shadow-xs">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2.5 text-foreground break-words">
             {t(titleEn, titleMl)}
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto break-words leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto break-words leading-relaxed">
             {tagline}
           </p>
         </section>
@@ -50,7 +50,7 @@ export function CoursePageContent({
       {/* Fallback hero when no tagline */}
       {!tagline && (
         <section className="py-4 sm:py-6">
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3 text-foreground break-words">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2.5 text-foreground break-words">
             {t(titleEn, titleMl)}
           </h1>
           {description && (
@@ -61,7 +61,7 @@ export function CoursePageContent({
 
       {/* Overview */}
       {overview && (
-        <section className="prose prose-base sm:prose-lg max-w-none break-words leading-relaxed text-muted-foreground">
+        <section className="prose prose-base max-w-none break-words leading-relaxed text-muted-foreground">
           <p className="break-words">{overview}</p>
         </section>
       )}

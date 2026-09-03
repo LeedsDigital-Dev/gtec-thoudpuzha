@@ -118,10 +118,10 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           <Sparkles className="size-3.5 text-amber-500" />
           <span>Quick Admission Enquiry</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           {t("heading")}
         </h2>
-        <p className="text-sm sm:text-base text-muted-foreground mt-1.5 leading-relaxed">
+        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
           {t("description")}
         </p>
       </div>
@@ -140,7 +140,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           aria-describedby={errors.fullName ? `enquiry-fullName-${source}-error` : undefined}
           placeholder={t("fullNamePlaceholder")}
           required
-          className="rounded-xl border-border/80 bg-background/80 px-3.5 py-2.5 text-base transition-all focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+          className="rounded-xl border-border/80 bg-background/80 px-3.5 py-2 text-sm transition-all focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {errors.fullName && (
           <p id={`enquiry-fullName-${source}-error`} className="text-sm font-semibold text-destructive flex items-center gap-1 mt-1">
@@ -165,7 +165,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           aria-describedby={errors.phone ? `enquiry-phone-${source}-error` : undefined}
           placeholder={t("phonePlaceholder")}
           required
-          className="rounded-xl border-border/80 bg-background/80 px-3.5 py-2.5 text-base transition-all focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+          className="rounded-xl border-border/80 bg-background/80 px-3.5 py-2 text-sm transition-all focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {errors.phone && (
           <p id={`enquiry-phone-${source}-error`} className="text-sm font-semibold text-destructive flex items-center gap-1 mt-1">
@@ -201,20 +201,20 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder={t("messagePlaceholder")}
-          className="w-full resize-none rounded-xl border border-border/80 bg-background/80 px-3.5 py-2.5 text-base outline-none transition-all placeholder:text-muted-foreground/60 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+          className="w-full resize-none rounded-xl border border-border/80 bg-background/80 px-3.5 py-2 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
         />
       </div>
 
       {/* Notifications */}
       {status === "success" && (
-        <div className="flex items-start gap-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5 text-sm sm:text-base font-semibold text-emerald-700 dark:text-emerald-300">
-          <CheckCircle2 className="size-5 shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5" />
+        <div className="flex items-start gap-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
+          <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5" />
           <span>{t("success")}</span>
         </div>
       )}
       {status === "error" && (
-        <div className="flex items-start gap-2.5 rounded-xl bg-destructive/10 border border-destructive/20 p-3.5 text-sm sm:text-base font-semibold text-destructive">
-          <AlertCircle className="size-5 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2.5 rounded-xl bg-destructive/10 border border-destructive/20 p-3 text-sm font-semibold text-destructive">
+          <AlertCircle className="size-4.5 shrink-0 mt-0.5" />
           <span>{t("error")}</span>
         </div>
       )}
@@ -223,7 +223,7 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
       <Button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-2xl bg-primary py-4 text-base sm:text-lg font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 cursor-pointer"
+        className="w-full rounded-2xl bg-primary py-3 text-sm sm:text-base font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 cursor-pointer"
       >
         {status === "submitting" ? (
           <span className="inline-flex items-center gap-2">

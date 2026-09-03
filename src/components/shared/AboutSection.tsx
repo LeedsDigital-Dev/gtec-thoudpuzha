@@ -53,8 +53,8 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
                   <Award className="size-6" />
                 </div>
                 <div>
-                  <p className="text-sm sm:text-base font-extrabold text-foreground">30+ Years Legacy</p>
-                  <p className="text-sm font-semibold text-muted-foreground">Excellence in IT Training</p>
+                  <p className="text-sm font-bold text-foreground">30+ Years Legacy</p>
+                  <p className="text-sm font-medium text-muted-foreground">Excellence in IT Training</p>
                 </div>
               </div>
             </div>
@@ -69,23 +69,23 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
 
             <h2
               id="about-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2]"
             >
               {heading}
             </h2>
 
-            <p className="mt-6 text-lg sm:text-xl md:text-2xl leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground">
               {about.body}
             </p>
 
             {/* Value Pillars Mini-List */}
-            <div className="mt-8 grid gap-4 sm:grid-cols-3 pt-6 border-t border-border/60">
+            <div className="mt-7 grid gap-3.5 sm:grid-cols-3 pt-5 border-t border-border/60">
               {pillars.map((pillar, idx) => {
                 const Icon = pillar.icon;
                 return (
-                  <div key={idx} className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-muted/25 p-4">
-                    <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base">
-                      <Icon className="size-4.5 shrink-0" />
+                  <div key={idx} className="flex flex-col gap-1.5 rounded-2xl border border-border/60 bg-muted/25 p-3.5">
+                    <div className="flex items-center gap-2 text-primary font-bold text-sm">
+                      <Icon className="size-4 shrink-0" />
                       <span className="truncate">{pillar.title}</span>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">

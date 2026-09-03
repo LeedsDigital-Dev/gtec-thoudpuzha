@@ -502,7 +502,7 @@ export function Header({
             </div>
 
             <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3.5">
-              <span className="text-base sm:text-lg lg:text-xl font-black leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-base sm:text-lg font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
                 <span>{t("brandName")}</span>
               </span>
               <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">
@@ -525,10 +525,10 @@ export function Header({
                   key={item.href}
                   href={localeHref(item.href)}
                   className={cn(
-                    "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                    "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
-                      : "text-foreground/80 hover:text-foreground hover:bg-background/60"
+                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
+                      : "text-foreground/75 hover:text-foreground hover:bg-background/60"
                   )}
                 >
                   {t(item.labelKey)}
@@ -547,10 +547,10 @@ export function Header({
               <Link
                 href={localeHref("/courses")}
                 className={cn(
-                  "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                  "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                   pathname.startsWith("/courses")
-                    ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
-                    : "text-foreground/80 hover:text-foreground hover:bg-background/60"
+                    ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
+                    : "text-foreground/75 hover:text-foreground hover:bg-background/60"
                 )}
               >
                 {t("courses")}
@@ -565,10 +565,10 @@ export function Header({
                   key={item.href}
                   href={localeHref(item.href)}
                   className={cn(
-                    "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                    "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
-                      : "text-foreground/80 hover:text-foreground hover:bg-background/60"
+                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
+                      : "text-foreground/75 hover:text-foreground hover:bg-background/60"
                   )}
                 >
                   {t(item.labelKey)}

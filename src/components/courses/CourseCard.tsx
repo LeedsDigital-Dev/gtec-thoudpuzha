@@ -50,11 +50,11 @@ export function CourseCard({
           </div>
         )}
         <div className="p-5">
-          <h2 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors leading-snug">
+          <h2 className="font-bold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors leading-snug">
             {title}
           </h2>
           {description && (
-            <p className="mt-2 text-sm sm:text-base text-muted-foreground line-clamp-2 leading-relaxed">
+            <p className="mt-2 text-sm text-muted-foreground line-clamp-2 leading-relaxed">
               {description}
             </p>
           )}

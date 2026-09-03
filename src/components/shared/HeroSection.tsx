@@ -85,15 +85,15 @@ export function HeroSection({ t }: HeroSectionProps) {
 
       {/* Trust Highlights Strip */}
       <div className="pt-4 border-t border-border/60">
-        <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-x-7 sm:gap-y-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
           {trustHighlights.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"
+                className="flex items-center gap-2.5 text-sm font-semibold text-muted-foreground"
               >
-                <Icon className="size-4 text-primary shrink-0" />
+                <Icon className="size-4.5 text-primary shrink-0" />
                 <span className="truncate">{item.text}</span>
               </div>
             );

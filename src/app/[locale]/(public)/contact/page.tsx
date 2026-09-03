@@ -50,7 +50,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-xs font-semibold text-primary ring-1 ring-inset ring-primary/20">
+          <span className="inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20">
             {contactPageT("badge")}
           </span>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
@@ -74,7 +74,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
               <h3 className="mt-4 text-lg font-bold text-foreground">
                 {contactPageT("phoneTitle")}
               </h3>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {contactPageT("phoneDesc")}
               </p>
 
@@ -136,7 +136,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-8 px-2.5 items-center justify-center rounded-lg border border-border bg-background text-xs font-medium text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                      className="inline-flex h-8 px-2.5 items-center justify-center rounded-lg border border-border bg-background text-sm font-medium text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                     >
                       {social.label}
                     </a>
@@ -192,7 +192,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     <div className="flex flex-col items-center gap-2">
                       <MapPin className="h-8 w-8 text-primary/60" />
                       <p className="text-sm font-medium">G-TEC Education Centre</p>
-                      <p className="text-xs">Temple Bypass Road, Thodupuzha</p>
+                      <p className="text-sm text-muted-foreground">Temple Bypass Road, Thodupuzha</p>
                     </div>
                   </div>
                 )}

@@ -90,7 +90,7 @@ export function CoursesDropdown({
       <Link
         href="/courses"
         className={cn(
-          "relative text-xs xl:text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+          "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
           isCoursesActive
             ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
             : "text-foreground/75 hover:text-foreground hover:bg-background/60"
@@ -116,7 +116,7 @@ export function CoursesDropdown({
           }
         }}
         className={cn(
-          "relative text-xs xl:text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center gap-1 cursor-pointer select-none whitespace-nowrap",
+          "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center gap-1 cursor-pointer select-none whitespace-nowrap",
           isCoursesActive || open
             ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
             : "text-foreground/75 hover:text-foreground hover:bg-background/60"
@@ -149,14 +149,14 @@ export function CoursesDropdown({
               <div className="size-6 rounded-md bg-primary/10 text-primary flex items-center justify-center">
                 <GraduationCap className="size-3.5" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 {locale === "ml" ? "ലഭ്യമായ കോഴ്സുകൾ" : "Available Courses"} ({courses.length})
               </span>
             </div>
             <Link
               href="/courses"
               role="menuitem"
-              className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 group"
+              className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1 group"
               tabIndex={-1}
             >
               <span>{locale === "ml" ? "എല്ലാ കോഴ്സുകളും" : "All Courses"}</span>
@@ -177,7 +177,7 @@ export function CoursesDropdown({
                 key={course.slug}
                 href={`/courses/${course.slug}`}
                 role="menuitem"
-                className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-xs md:text-sm font-medium text-foreground/90 transition-all hover:bg-muted hover:text-primary focus:bg-muted focus:text-primary focus:outline-none"
+                className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/90 transition-all hover:bg-muted hover:text-primary focus:bg-muted focus:text-primary focus:outline-none"
                 tabIndex={-1}
               >
                 <span className="line-clamp-2">

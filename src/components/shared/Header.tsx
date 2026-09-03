@@ -162,10 +162,10 @@ export function Header({
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground">
+                <span className="text-sm font-bold uppercase tracking-wider text-foreground">
                   Navigation & Profile
                 </span>
-                <span className="text-[10px] font-semibold text-muted-foreground uppercase">
+                <span className="text-sm font-medium text-muted-foreground uppercase">
                   {siteConfig.centreName} Centre
                 </span>
               </div>
@@ -204,7 +204,7 @@ export function Header({
                       <span className="block font-bold text-sm text-foreground">
                         {t("myPortal")}
                       </span>
-                      <span className="text-muted-foreground text-xs">
+                      <span className="text-muted-foreground text-sm">
                         {t("brandName")} Account
                       </span>
                     </div>
@@ -214,7 +214,7 @@ export function Header({
                 <Link
                   href={portalUrl}
                   onClick={() => setDrawerOpen(false)}
-                  className="flex items-center justify-between rounded-xl bg-primary/10 border border-primary/20 px-3 py-2 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors mt-1"
+                  className="flex items-center justify-between rounded-xl bg-primary/10 border border-primary/20 px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/20 transition-colors mt-1"
                 >
                   <span>Open Student / Job Portal</span>
                   <ChevronRight className="size-3.5" />
@@ -222,13 +222,13 @@ export function Header({
               </div>
             ) : (
               <div className="flex flex-col gap-2.5">
-                <div className="flex items-center gap-2.5 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
                   <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <User className="size-3.5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground text-xs">Student & Portal Access</p>
-                    <p className="text-[11px]">Sign in to access resources and job matches</p>
+                    <p className="font-semibold text-foreground text-sm">Student & Portal Access</p>
+                    <p className="text-sm text-muted-foreground">Sign in to access resources and job matches</p>
                   </div>
                 </div>
 
@@ -236,7 +236,7 @@ export function Header({
                   href={localeHref("/sign-in")}
                   aria-label={t("login")}
                   onClick={() => setDrawerOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 transition-all active:scale-[0.99] mt-1"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 transition-all active:scale-[0.99] mt-1"
                 >
                   <User className="size-3.5" />
                   <span>{t("login")}</span>
@@ -251,7 +251,7 @@ export function Header({
               className="lg:hidden space-y-1 py-2 border-y border-border/70"
               aria-label="Mobile navigation"
             >
-              <p className="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+              <p className="px-2 py-1 text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 Navigation
               </p>
               <Link
@@ -323,7 +323,7 @@ export function Header({
                       <Link
                         key={course.slug}
                         href={localeHref(`/courses/${course.slug}`)}
-                        className="block rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                        className="block rounded-lg px-2 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60"
                         onClick={() => setDrawerOpen(false)}
                       >
                         {locale === "ml" && course.titleMl
@@ -395,7 +395,7 @@ export function Header({
 
           {/* 2. Language Selection */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
               <Globe className="size-3.5 text-primary" />
               <span>Language / ഭാഷ</span>
             </div>
@@ -404,7 +404,7 @@ export function Header({
 
           {/* 3. WhatsApp & Direct Contact Channels */}
           <div className="space-y-2.5 pt-1">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
               <Phone className="size-3.5 text-primary" />
               <span>Direct Support</span>
             </div>
@@ -415,14 +415,14 @@ export function Header({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("whatsapp")}
-              className="flex items-center gap-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-3.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/20 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-3.5 text-sm font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/20 transition-all group"
             >
               <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
                 <MessageCircle className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-xs text-foreground">WhatsApp Admission Desk</p>
-                <p className="text-[11px] text-emerald-700 dark:text-emerald-400 truncate">Chat directly with counsellor</p>
+                <p className="font-bold text-sm text-foreground">WhatsApp Admission Desk</p>
+                <p className="text-sm text-emerald-700 dark:text-emerald-400 truncate">Chat directly with counsellor</p>
               </div>
               <ChevronRight className="size-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
             </a>
@@ -431,14 +431,14 @@ export function Header({
             <a
               href={`tel:${siteConfig.phoneNumber}`}
               aria-label={t("callNow")}
-              className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-3.5 text-xs font-semibold text-foreground hover:bg-primary/10 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-3.5 text-sm font-semibold text-foreground hover:bg-primary/10 transition-all group"
             >
               <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
                 <Phone className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-xs">{t("callNow")}</p>
-                <p className="text-[11px] text-muted-foreground truncate">{siteConfig.phoneNumber}</p>
+                <p className="font-bold text-sm">{t("callNow")}</p>
+                <p className="text-sm text-muted-foreground truncate">{siteConfig.phoneNumber}</p>
               </div>
               <ChevronRight className="size-4 text-primary group-hover:translate-x-0.5 transition-transform" />
             </a>
@@ -461,11 +461,11 @@ export function Header({
 
         {/* Sidebar Footer */}
         <div className="p-5 sm:p-6 border-t border-border/70 bg-muted/20">
-          <div className="flex items-center gap-2 text-primary font-bold text-xs">
+          <div className="flex items-center gap-2 text-primary font-bold text-sm">
             <ShieldCheck className="size-4 shrink-0" />
             <span>ISO 9001:2015 Certified Centre</span>
           </div>
-          <p className="mt-1 text-[11px] text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground">
             G-TEC Education Centre, Thodupuzha
           </p>
         </div>
@@ -483,14 +483,14 @@ export function Header({
             : "bg-background/85 backdrop-blur-lg border-b border-border/50 supports-[backdrop-filter]:bg-background/75"
         )}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
           {/* Brand Logo & Centre Identity */}
           <Link
             href={localeHref("/")}
-            className="flex items-center gap-2.5 sm:gap-3 shrink-0 group py-1"
+            className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group py-1"
             aria-label="G-TEC Thodupuzha home"
           >
-            <div className="relative h-10 sm:h-11 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-10 sm:h-12 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/icons/gtec.jpeg"
                 alt="G-TEC Thodupuzha"
@@ -501,12 +501,12 @@ export function Header({
               />
             </div>
 
-            <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3">
-              <span className="text-sm sm:text-base font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
+            <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3.5">
+              <span className="text-base sm:text-lg lg:text-xl font-black leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
                 <span>{t("brandName")}</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">
-                <span className="size-1.5 rounded-full bg-emerald-500 shrink-0 inline-block animate-pulse" />
+              <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">
+                <span className="size-2 rounded-full bg-emerald-500 shrink-0 inline-block animate-pulse" />
                 <span>{siteConfig.centreName}</span>
               </span>
             </div>
@@ -525,9 +525,9 @@ export function Header({
                   key={item.href}
                   href={localeHref(item.href)}
                   className={cn(
-                    "relative text-xs xl:text-sm font-medium px-3 xl:px-4 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                    "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/60"
+                      ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
                       : "text-foreground/80 hover:text-foreground hover:bg-background/60"
                   )}
                 >
@@ -547,9 +547,9 @@ export function Header({
               <Link
                 href={localeHref("/courses")}
                 className={cn(
-                  "relative text-xs xl:text-sm font-medium px-3 xl:px-4 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                  "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                   pathname.startsWith("/courses")
-                    ? "bg-background text-foreground font-semibold shadow-xs border border-border/60"
+                    ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
                     : "text-foreground/80 hover:text-foreground hover:bg-background/60"
                 )}
               >
@@ -565,9 +565,9 @@ export function Header({
                   key={item.href}
                   href={localeHref(item.href)}
                   className={cn(
-                    "relative text-xs xl:text-sm font-medium px-3 xl:px-4 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
+                    "relative text-sm xl:text-base font-semibold px-3.5 xl:px-4.5 py-2 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/60"
+                      ? "bg-background text-foreground font-bold shadow-xs border border-border/60"
                       : "text-foreground/80 hover:text-foreground hover:bg-background/60"
                   )}
                 >
@@ -582,17 +582,17 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="group flex items-center gap-2 rounded-full border border-border/80 bg-muted/40 hover:bg-muted/80 px-3.5 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
+              className="group flex items-center gap-2.5 rounded-full border border-border/80 bg-muted/40 hover:bg-muted/80 px-4 py-2 text-sm font-bold text-foreground transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
               aria-label="Open account menu"
               aria-expanded={drawerOpen}
             >
-              <div className="flex size-6 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <User className="size-3.5" />
+              <div className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <User className="size-4" />
               </div>
-              <span className="font-semibold text-xs">
+              <span className="font-bold text-sm">
                 {isSignedIn ? t("myPortal") : "Menu"}
               </span>
-              <Menu className="size-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+              <Menu className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
             </button>
           </div>
 
@@ -601,7 +601,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(!drawerOpen)}
-              className="size-9 inline-flex items-center justify-center rounded-full bg-muted/60 text-foreground hover:bg-muted border border-border/70 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
+              className="size-10 inline-flex items-center justify-center rounded-full bg-muted/60 text-foreground hover:bg-muted border border-border/70 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
               aria-label={drawerOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={drawerOpen}
               aria-controls="slideout-sidebar"

@@ -43,41 +43,41 @@ export async function Footer({ address }: { address?: string | null }) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           {/* Brand Info */}
           <div className="sm:col-span-2 lg:col-span-4 text-left">
-            <div className="flex items-center gap-2.5">
-              <div className="flex size-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
-                <GraduationCap className="size-5.5" />
+            <div className="flex items-center gap-3">
+              <div className="flex size-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
+                <GraduationCap className="size-6" />
               </div>
               <div>
-                <p className="text-lg font-black tracking-tight text-foreground">
+                <p className="text-xl font-black tracking-tight text-foreground">
                   G-TEC <span className="text-primary">{siteConfig.centreName}</span>
                 </p>
-                <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                <p className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
                   Computer Education
                 </p>
               </div>
             </div>
 
             {address && (
-              <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-sm">
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground max-w-sm">
                 {address}
               </p>
             )}
 
-            <div className="mt-5 flex flex-wrap gap-2 pt-1">
+            <div className="mt-5 flex flex-wrap gap-2.5 pt-1">
               <a
                 href={`tel:${siteConfig.phoneNumber}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-card px-2.5 py-1.5 text-xs font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card px-3 py-2 text-sm font-bold text-foreground hover:border-primary/40 hover:text-primary transition-colors"
               >
-                <Phone className="size-3 text-primary" />
+                <Phone className="size-3.5 text-primary" />
                 <span>{siteConfig.phoneNumber}</span>
               </a>
               <a
                 href={`https://wa.me/${siteConfig.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/10 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-3 py-2 text-sm font-bold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/10 transition-colors"
               >
-                <MessageCircle className="size-3 text-emerald-600 dark:text-emerald-400" />
+                <MessageCircle className="size-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>WhatsApp</span>
               </a>
             </div>
@@ -85,15 +85,15 @@ export async function Footer({ address }: { address?: string | null }) {
 
           {/* Quick Links */}
           <div className="lg:col-span-3">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-foreground">
+            <h3 className="mb-4 text-sm sm:text-base font-black uppercase tracking-wider text-foreground">
               {t("quickLinks")}
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary font-medium"
                   >
                     {navT(link.labelKey)}
                   </Link>
@@ -104,10 +104,10 @@ export async function Footer({ address }: { address?: string | null }) {
 
           {/* Portals & Verification */}
           <div className="lg:col-span-3">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-foreground">
+            <h3 className="mb-4 text-sm sm:text-base font-black uppercase tracking-wider text-foreground">
               {t("portals")}
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {portalLinks.map((link, i) => {
                 if (link.external) {
                   return (
@@ -116,11 +116,11 @@ export async function Footer({ address }: { address?: string | null }) {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-primary hover:underline"
+                        className="inline-flex items-center gap-1 text-sm sm:text-base font-bold text-primary hover:underline"
                         data-testid="verify-certificate-link"
                       >
                         <span>{t(link.labelKey)}</span>
-                        <ArrowUpRight className="size-3" />
+                        <ArrowUpRight className="size-3.5" />
                       </a>
                     </li>
                   );
@@ -129,7 +129,7 @@ export async function Footer({ address }: { address?: string | null }) {
                   <li key={`portal-${link.labelKey}-${i}`}>
                     <Link
                       href={link.href}
-                      className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-primary"
+                      className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary font-medium"
                     >
                       {t(link.labelKey)}
                     </Link>
@@ -141,15 +141,15 @@ export async function Footer({ address }: { address?: string | null }) {
 
           {/* Legal & ISO Accreditation */}
           <div className="lg:col-span-2">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-foreground">
+            <h3 className="mb-4 text-sm sm:text-base font-black uppercase tracking-wider text-foreground">
               {t("legal")}
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary font-medium"
                     data-testid={link.labelKey === "privacyPolicy" ? "footer-privacy-link" : "footer-terms-link"}
                   >
                     {t(link.labelKey)}
@@ -158,12 +158,12 @@ export async function Footer({ address }: { address?: string | null }) {
               ))}
             </ul>
 
-            <div className="mt-6 rounded-xl border border-border/80 bg-card p-3">
-              <div className="flex items-center gap-2 text-primary font-bold text-xs">
-                <ShieldCheck className="size-4 shrink-0" />
+            <div className="mt-6 rounded-2xl border border-border/80 bg-card p-3.5 shadow-xs">
+              <div className="flex items-center gap-2 text-primary font-bold text-sm">
+                <ShieldCheck className="size-4.5 shrink-0" />
                 <span>ISO 9001:2015</span>
               </div>
-              <p className="mt-1 text-[11px] text-muted-foreground leading-tight">
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                 Certified Quality Management in Computer Training
               </p>
             </div>
@@ -171,11 +171,11 @@ export async function Footer({ address }: { address?: string | null }) {
         </div>
 
         {/* Copyright Bar */}
-        <div className="mt-12 border-t border-border/60 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-muted-foreground">
+        <div className="mt-12 border-t border-border/60 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-sm text-muted-foreground font-medium">
           <p>
             &copy; {currentYear} G-TEC {siteConfig.centreName}. {t("allRightsReserved")}
           </p>
-          <p className="text-[11px]">
+          <p className="text-sm text-muted-foreground/80">
             Official Digital Portal for G-TEC Education Centre, Thodupuzha
           </p>
         </div>

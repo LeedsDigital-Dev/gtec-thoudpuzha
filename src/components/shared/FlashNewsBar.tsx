@@ -19,7 +19,7 @@ export async function FlashNewsBar({
 
   return (
     <div
-      className="relative w-full max-w-full overflow-x-hidden bg-primary/95 text-primary-foreground py-2 text-xs sm:text-sm font-medium border-b border-primary-foreground/10 shadow-xs backdrop-blur-sm"
+      className="relative w-full max-w-full overflow-x-hidden bg-primary/95 text-primary-foreground py-2 text-sm sm:text-base font-medium border-b border-primary-foreground/10 shadow-xs backdrop-blur-sm"
       aria-label="Flash news"
       role="region"
     >

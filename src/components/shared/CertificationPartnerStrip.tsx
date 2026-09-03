@@ -22,14 +22,14 @@ export async function CertificationPartnerStrip({
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
-            <ShieldCheck className="size-3 text-emerald-600 dark:text-emerald-400" />
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary mb-3">
+            <ShieldCheck className="size-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>Authorized Alliances</span>
           </div>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-foreground">
             {heading}
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-muted-foreground max-w-xl">
+          <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-xl">
             Globally recognized curriculum backed by multinational technology giants and certification bodies.
           </p>
         </div>

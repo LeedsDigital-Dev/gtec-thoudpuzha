@@ -48,13 +48,13 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
               )}
 
               {/* Floating Excellence Pill Badge */}
-              <div className="absolute -bottom-5 -right-3 sm:-right-5 rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl p-3.5 sm:p-4 shadow-xl flex items-center gap-3">
-                <div className="flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-                  <Award className="size-5 sm:size-6" />
+              <div className="absolute -bottom-5 -right-3 sm:-right-5 rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl p-4 sm:p-5 shadow-xl flex items-center gap-3.5">
+                <div className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+                  <Award className="size-6" />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-extrabold text-foreground">30+ Years Legacy</p>
-                  <p className="text-[11px] font-medium text-muted-foreground">Excellence in IT Training</p>
+                  <p className="text-sm sm:text-base font-extrabold text-foreground">30+ Years Legacy</p>
+                  <p className="text-sm font-semibold text-muted-foreground">Excellence in IT Training</p>
                 </div>
               </div>
             </div>
@@ -62,19 +62,19 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
 
           {/* Narrative Content & Value Pillars */}
           <div className="flex flex-col justify-center lg:col-span-7">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3 w-fit">
-              <Sparkles className="size-3 text-amber-500" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-sm font-bold text-primary mb-3.5 w-fit">
+              <Sparkles className="size-3.5 text-amber-500" />
               <span>Who We Are</span>
             </div>
 
             <h2
               id="about-heading"
-              className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-[1.2]"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]"
             >
               {heading}
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 text-lg sm:text-xl md:text-2xl leading-relaxed text-muted-foreground">
               {about.body}
             </p>
 
@@ -83,12 +83,12 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
               {pillars.map((pillar, idx) => {
                 const Icon = pillar.icon;
                 return (
-                  <div key={idx} className="flex flex-col gap-1.5 rounded-xl border border-border/60 bg-muted/20 p-3.5">
-                    <div className="flex items-center gap-2 text-primary font-bold text-xs">
-                      <Icon className="size-4 shrink-0" />
+                  <div key={idx} className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-muted/25 p-4">
+                    <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base">
+                      <Icon className="size-4.5 shrink-0" />
                       <span className="truncate">{pillar.title}</span>
                     </div>
-                    <p className="text-[11px] text-muted-foreground leading-snug">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {pillar.desc}
                     </p>
                   </div>

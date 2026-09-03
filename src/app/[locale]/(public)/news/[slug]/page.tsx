@@ -54,11 +54,11 @@ export default async function NewsDetailPage({
       </Link>
 
       <article className="mt-6">
-        <p className="text-xs text-muted-foreground">
+        <p className="text-sm font-semibold text-muted-foreground">
           {item.type === "NEWS" ? t("news") : t("event")} &middot;{" "}
           {formatDate(item.publishedAt)}
         </p>
-        <h1 className="mt-2 text-3xl font-bold">
+        <h1 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-tight">
           {pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
         </h1>
 
@@ -68,18 +68,18 @@ export default async function NewsDetailPage({
             alt={pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
             width={1200}
             height={675}
-            className="mt-6 w-full rounded-lg object-cover"
+            className="mt-6 w-full rounded-2xl object-cover shadow-sm"
             sizes="(max-width: 768px) 100vw, 768px"
           />
         )}
 
         {item.eventDate && (
-          <p className="mt-4 text-sm font-medium">
+          <p className="mt-4 text-base font-semibold text-primary">
             {t("eventDate", { date: formatDate(item.eventDate) })}
           </p>
         )}
 
-        <div className="mt-6 whitespace-pre-line leading-relaxed">
+        <div className="mt-6 whitespace-pre-line text-base sm:text-lg leading-relaxed text-foreground/90">
           {pickLocalizedText({ en: item.bodyEn, ml: item.bodyMl }, loc)}
         </div>
       </article>

@@ -46,15 +46,15 @@ export function CourseCard({
         ) : (
           <div className="h-48 sm:h-52 bg-gradient-to-br from-primary/10 to-muted flex flex-col items-center justify-center text-muted-foreground gap-2">
             <BookOpen className="size-8 text-primary/40" />
-            <span className="text-xs font-medium">Course Overview</span>
+            <span className="text-sm font-medium">Course Overview</span>
           </div>
         )}
         <div className="p-5">
-          <h2 className="font-bold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors leading-snug">
+          <h2 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors leading-snug">
             {title}
           </h2>
           {description && (
-            <p className="mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground line-clamp-2 leading-relaxed">
               {description}
             </p>
           )}
@@ -62,7 +62,7 @@ export function CourseCard({
       </div>
 
       <div className="px-5 pb-5 pt-0">
-        <div className="flex items-center gap-1 text-xs font-semibold text-primary pt-3 border-t border-border/40">
+        <div className="flex items-center gap-1 text-sm font-semibold text-primary pt-3 border-t border-border/40">
           <span>Explore Curriculum</span>
           <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
         </div>

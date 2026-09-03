@@ -121,11 +121,14 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
-            <Sparkles className="size-3 text-amber-500" />
-            <span>Connect With Us</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-sm font-bold text-primary mb-3.5">
+            <Sparkles className="size-3.5 text-amber-500" />
+            <span>Get In Touch</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground">
+          <h2
+            id="contact-heading"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
+          >
             {t("heading")}
           </h2>
         </div>
@@ -133,13 +136,13 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
           {/* Interactive Google Maps Frame */}
           {settings.mapEmbedUrl && (
-            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card shadow-lg min-h-[340px] sm:min-h-[420px] flex flex-col">
+            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card shadow-lg min-h-[360px] sm:min-h-[440px] flex flex-col">
               <iframe
                 title="G-TEC Thodupuzha location"
                 src={settings.mapEmbedUrl}
                 width="100%"
                 height="100%"
-                className="flex-1 w-full min-h-[340px] sm:min-h-[420px]"
+                className="flex-1 w-full min-h-[360px] sm:min-h-[440px]"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -150,35 +153,35 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
           )}
 
           {/* Contact Details Card */}
-          <div className="flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-xl p-6 sm:p-8 shadow-lg">
+          <div className="flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-xl p-7 sm:p-9 shadow-lg">
             <div className="space-y-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                <span className="text-sm font-bold uppercase tracking-wider text-primary">
                   Campus Centre
                 </span>
-                <h3 className="mt-1 text-xl sm:text-2xl font-black tracking-tight text-foreground">
+                <h3 className="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-foreground">
                   G-TEC <span className="text-primary">{siteConfig.centreName}</span>
                 </h3>
                 {settings.address && (
-                  <div className="mt-3 flex items-start gap-2.5 text-muted-foreground">
-                    <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                    <span className="text-sm leading-relaxed">{settings.address}</span>
+                  <div className="mt-3.5 flex items-start gap-2.5 text-muted-foreground">
+                    <MapPin className="mt-1 size-5 shrink-0 text-primary" />
+                    <span className="text-base leading-relaxed">{settings.address}</span>
                   </div>
                 )}
               </div>
 
               {/* Direct Action Chips */}
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3.5 sm:grid-cols-2">
                 <a
                   href={`tel:${siteConfig.phoneNumber}`}
-                  className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm font-semibold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
+                  className="flex items-center gap-3.5 rounded-2xl border border-border/70 bg-muted/40 p-4 text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
                 >
-                  <div className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Phone className="size-4" />
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Phone className="size-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[11px] font-medium text-muted-foreground">{t("phone")}</p>
-                    <p className="text-xs font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
+                    <p className="text-sm font-semibold text-muted-foreground">{t("phone")}</p>
+                    <p className="text-sm font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
                   </div>
                 </a>
 
@@ -186,14 +189,14 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                   href={`https://wa.me/${siteConfig.whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3.5 text-sm font-semibold text-foreground transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:shadow-xs group"
+                  className="flex items-center gap-3.5 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-base font-bold text-foreground transition-all hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:shadow-xs group"
                 >
-                  <div className="flex size-9 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                    <MessageCircle className="size-4" />
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <MessageCircle className="size-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[11px] font-medium text-emerald-700 dark:text-emerald-300">{t("whatsapp")}</p>
-                    <p className="text-xs font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
+                    <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">{t("whatsapp")}</p>
+                    <p className="text-sm font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
                   </div>
                 </a>
               </div>
@@ -201,7 +204,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
               {/* Social Channels & Reviews */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 {socialLinks.length > 0 && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     {socialLinks.map(({ url, key }) => {
                       const icon = socialIcons[key];
                       return (
@@ -211,7 +214,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={icon.label}
-                          className="flex size-10 items-center justify-center rounded-xl border border-border/80 bg-background text-muted-foreground shadow-2xs transition-all hover:border-primary/40 hover:text-primary hover:shadow-xs hover:scale-105 active:scale-95"
+                          className="flex size-11 items-center justify-center rounded-2xl border border-border/80 bg-background text-muted-foreground shadow-2xs transition-all hover:border-primary/40 hover:text-primary hover:shadow-xs hover:scale-105 active:scale-95"
                         >
                           <svg
                             viewBox={icon.viewBox}
@@ -220,7 +223,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                             strokeWidth={2}
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="size-4.5"
+                            className="size-5"
                           >
                             <path d={icon.path} />
                           </svg>
@@ -235,11 +238,11 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                     href={settings.googleReviewsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs font-semibold text-amber-700 dark:text-amber-300 transition-all hover:bg-amber-500/20 hover:scale-105"
+                    className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-bold text-amber-700 dark:text-amber-300 transition-all hover:bg-amber-500/20 hover:scale-105"
                   >
-                    <Star className="size-3.5 fill-amber-500 text-amber-500" />
+                    <Star className="size-4 fill-amber-500 text-amber-500" />
                     <span>{t("googleReviews")}</span>
-                    <ExternalLink className="size-3" />
+                    <ExternalLink className="size-3.5" />
                   </a>
                 )}
               </div>
@@ -250,9 +253,9 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
               <button
                 type="button"
                 onClick={() => setShowEnquiry(true)}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl bg-primary px-7 py-4 text-base sm:text-lg font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <Send className="size-4" />
+                <Send className="size-5" />
                 <span>{t("sendMessage")}</span>
               </button>
             </div>

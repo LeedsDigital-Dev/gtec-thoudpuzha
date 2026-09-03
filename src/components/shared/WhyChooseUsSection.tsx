@@ -27,13 +27,13 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
-            <Sparkles className="size-3 text-amber-500" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-sm font-bold text-primary mb-3.5">
+            <Sparkles className="size-3.5 text-amber-500" />
             <span>The G-TEC Advantage</span>
           </div>
           <h2
             id="why-choose-us-heading"
-            className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground"
           >
             {heading}
           </h2>
@@ -45,28 +45,28 @@ export function WhyChooseUsSection({ settings, locale, heading }: WhyChooseUsSec
             return (
               <div
                 key={card.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-sm p-6 sm:p-8 shadow-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 hover:border-primary/50"
+                className="group relative flex flex-col justify-between rounded-3xl border border-border/80 bg-card/95 backdrop-blur-sm p-7 sm:p-8 shadow-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 hover:border-primary/50"
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <div className="flex size-13 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/40">
-                      <Icon className="size-6" />
+                    <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/40">
+                      <Icon className="size-6.5" />
                     </div>
-                    <span className="text-xs font-black tracking-widest text-muted-foreground/40 font-mono">
+                    <span className="text-sm font-black tracking-widest text-muted-foreground/50 font-mono">
                       0{idx + 1}
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-lg sm:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="mt-6 text-xl sm:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
                     {card.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground font-normal">
                     {card.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-border/40 flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+                <div className="mt-6 pt-4 border-t border-border/40 flex items-center gap-1.5 text-sm font-bold text-primary opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
                   <span>Student Centric Standard</span>
                 </div>
               </div>

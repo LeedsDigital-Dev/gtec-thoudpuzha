@@ -115,7 +115,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
   ].filter((s): s is { url: string; key: string } => !!s.url);
 
   return (
-    <section className="relative bg-muted/30 py-16 sm:py-20 lg:py-24 border-t border-border/60 overflow-hidden">
+    <section id="enquiry" className="relative bg-muted/30 py-16 sm:py-20 lg:py-24 border-t border-border/60 overflow-hidden scroll-mt-12">
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" aria-hidden="true" />
 

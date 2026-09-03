@@ -1,7 +1,7 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/shared/HeroSection";
-import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { AboutSection } from "@/components/shared/AboutSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
@@ -57,7 +57,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <main className="relative flex flex-col w-full min-h-screen">
-      {/* Hero & Admission Fast Track Section */}
+      {/* Hero & Visual Showcase Section */}
       <section className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
@@ -72,9 +72,23 @@ export default async function HomePage({ params }: HomePageProps) {
               }}
             />
           </div>
-          <section id="enquiry" className="lg:col-span-5 lg:sticky lg:top-24">
-            <EnquiryForm source="homepage-hero" courses={courses} />
-          </section>
+          <div className="relative lg:col-span-5">
+            {/* Ambient Background Glow */}
+            <div
+              className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/20 to-amber-500/15 blur-xl opacity-70"
+              aria-hidden="true"
+            />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-border/80 bg-card shadow-2xl">
+              <Image
+                src="/images/hero-students-lab.jpg"
+                alt="Students learning and collaborating in a modern IT computer laboratory at G-TEC Thodupuzha"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

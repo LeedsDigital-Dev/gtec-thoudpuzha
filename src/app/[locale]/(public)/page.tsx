@@ -8,9 +8,11 @@ import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { PlacementSupportSection } from "@/components/shared/PlacementSupportSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
 import { EventsSection } from "@/components/shared/EventsSection";
+import { FeaturedCoursesSection } from "@/components/shared/FeaturedCoursesSection";
 import type { Locale } from "@/lib/site-settings";
 import {
   getCachedSiteSettings,
+  getCachedPublishedCourses,
   getCachedPlacementGalleryData,
   getCachedCertificationPartners,
   getCachedUpcomingEvents,
@@ -24,12 +26,14 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeStr } = await params;
   const locale = localeStr as Locale;
 
-  const [settings, placementData, certPartners, events] = await Promise.all([
-    getCachedSiteSettings(),
-    getCachedPlacementGalleryData(),
-    getCachedCertificationPartners(),
-    getCachedUpcomingEvents(3),
-  ]);
+  const [settings, courses, placementData, certPartners, events] =
+    await Promise.all([
+      getCachedSiteSettings(),
+      getCachedPublishedCourses(),
+      getCachedPlacementGalleryData(),
+      getCachedCertificationPartners(),
+      getCachedUpcomingEvents(3),
+    ]);
 
   const [heroT, aboutT, atAGlanceT, whyT, placementT, certT] =
     await Promise.all([
@@ -150,6 +154,9 @@ export default async function HomePage({ params }: HomePageProps) {
         heading={atAGlanceT("heading")}
         settings={settings}
       />
+
+      {/* Featured Courses Showcase */}
+      <FeaturedCoursesSection courses={courses} locale={locale} />
 
       {/* About Institution */}
       <AboutSection

@@ -35,6 +35,8 @@ vi.mock("@/lib/certification-partners", () => ({
 vi.mock("@/lib/news-events", () => ({
   getHomepageTeaser: vi.fn(() => Promise.resolve({ newsItems: [], nextEvent: null, flashNews: [], featuredNews: null })),
   getCachedHomepageTeaser: vi.fn(() => Promise.resolve({ newsItems: [], nextEvent: null, flashNews: [], featuredNews: null })),
+  getUpcomingEvents: vi.fn(() => Promise.resolve([])),
+  getCachedUpcomingEvents: vi.fn(() => Promise.resolve([])),
 }));
 
 vi.mock("@/lib/site-settings", async () => {

@@ -82,3 +82,30 @@ export async function getHomepageTeaser() {
     return { newsItems: [], nextEvent: null };
   }
 }
+
+export async function getUpcomingEvents(limit: number = 3): Promise<PublicNewsEvent[]> {
+  try {
+    return await prisma.newsEvent.findMany({
+      where: {
+        publishedAt: { not: null },
+        type: "EVENT",
+      },
+      orderBy: { eventDate: "asc" },
+      take: limit,
+      select: {
+        id: true,
+        type: true,
+        titleEn: true,
+        titleMl: true,
+        bodyEn: true,
+        bodyMl: true,
+        coverImageUrl: true,
+        eventDate: true,
+        slug: true,
+        publishedAt: true,
+      },
+    });
+  } catch {
+    return [];
+  }
+}

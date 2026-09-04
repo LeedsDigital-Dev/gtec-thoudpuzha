@@ -7,11 +7,13 @@ import { AboutSection } from "@/components/shared/AboutSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { PlacementSupportSection } from "@/components/shared/PlacementSupportSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
+import { EventsSection } from "@/components/shared/EventsSection";
 import type { Locale } from "@/lib/site-settings";
 import {
   getCachedSiteSettings,
   getCachedPlacementGalleryData,
   getCachedCertificationPartners,
+  getCachedUpcomingEvents,
 } from "@/lib/data-cache";
 
 interface HomePageProps {
@@ -22,10 +24,11 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeStr } = await params;
   const locale = localeStr as Locale;
 
-  const [settings, placementData, certPartners] = await Promise.all([
+  const [settings, placementData, certPartners, events] = await Promise.all([
     getCachedSiteSettings(),
     getCachedPlacementGalleryData(),
     getCachedCertificationPartners(),
+    getCachedUpcomingEvents(3),
   ]);
 
   const [heroT, aboutT, atAGlanceT, whyT, placementT, certT] =
@@ -151,6 +154,9 @@ export default async function HomePage({ params }: HomePageProps) {
         heading={certT("heading")}
         partners={certPartners}
       />
+
+      {/* Campus Happenings & Upcoming Events */}
+      <EventsSection events={events} locale={locale} />
 
       {/* Placement Support & Student Success */}
       <PlacementSupportSection

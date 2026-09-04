@@ -45,9 +45,9 @@ export default async function HomePage({ params }: HomePageProps) {
     <main className="relative flex flex-col w-full min-h-screen">
       {/* Hero & Visual Showcase Section */}
       <section className="relative overflow-hidden py-8 sm:py-12 lg:py-16">
-        {/* Dynamic Blue Waves Background Image */}
+        {/* Dynamic Blue Waves Background Image with Rich Gradient Atmosphere */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none bg-gradient-to-tr from-blue-600/25 via-sky-400/30 to-indigo-600/25 dark:from-blue-950/80 dark:via-sky-950/50 dark:to-indigo-950/80"
           aria-hidden="true"
         >
           <Image
@@ -56,11 +56,15 @@ export default async function HomePage({ params }: HomePageProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-bottom sm:object-center opacity-45 dark:opacity-20"
+            className="object-cover object-bottom sm:object-center opacity-100 dark:opacity-85 contrast-110 saturate-130"
           />
-          {/* Ambient gradient overlays for smooth text contrast & section blending */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
-          <div className="absolute inset-0 bg-radial-glow opacity-30" />
+          {/* Vibrant Color Gradient Mesh Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-sky-400/20 via-blue-500/15 to-transparent mix-blend-overlay" />
+          <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-sky-400/30 dark:bg-blue-500/20 blur-3xl" />
+          <div className="absolute top-1/3 -right-20 h-96 w-96 rounded-full bg-blue-500/25 dark:bg-indigo-600/20 blur-3xl" />
+          
+          {/* Smooth Bottom Gradient Fade into At A Glance */}
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-background via-background/40 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

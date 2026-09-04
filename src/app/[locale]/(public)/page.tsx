@@ -45,6 +45,24 @@ export default async function HomePage({ params }: HomePageProps) {
     <main className="relative flex flex-col w-full min-h-screen">
       {/* Hero & Visual Showcase Section */}
       <section className="relative overflow-hidden py-8 sm:py-12 lg:py-16">
+        {/* Dynamic Blue Waves Background Image */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none"
+          aria-hidden="true"
+        >
+          <Image
+            src="/images/hero-waves-bg.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-bottom sm:object-center opacity-45 dark:opacity-20"
+          />
+          {/* Ambient gradient overlays for smooth text contrast & section blending */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
+          <div className="absolute inset-0 bg-radial-glow opacity-30" />
+        </div>
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16">
             {/* Left Content Column (Wider for Natural 2-Line Headline) */}

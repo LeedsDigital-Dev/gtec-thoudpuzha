@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
 import { GraduationCap, Star } from "lucide-react";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
@@ -11,13 +10,9 @@ import { CertificationPartnerStrip } from "@/components/shared/CertificationPart
 import type { Locale } from "@/lib/site-settings";
 import {
   getCachedSiteSettings,
-  getCachedPublishedCourses,
-  getCachedHomepageTeaser,
   getCachedPlacementGalleryData,
   getCachedCertificationPartners,
 } from "@/lib/data-cache";
-import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
-import { ContactSection } from "@/components/shared/ContactSection";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -27,23 +22,19 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeStr } = await params;
   const locale = localeStr as Locale;
 
-  const [settings, courses, teaser, placementData, certPartners] =
-    await Promise.all([
-      getCachedSiteSettings(),
-      getCachedPublishedCourses(),
-      getCachedHomepageTeaser(),
-      getCachedPlacementGalleryData(),
-      getCachedCertificationPartners(),
-    ]);
+  const [settings, placementData, certPartners] = await Promise.all([
+    getCachedSiteSettings(),
+    getCachedPlacementGalleryData(),
+    getCachedCertificationPartners(),
+  ]);
 
-  const [heroT, aboutT, atAGlanceT, whyT, placementT, newsT, certT] =
+  const [heroT, aboutT, atAGlanceT, whyT, placementT, certT] =
     await Promise.all([
       getTranslations({ locale, namespace: "hero" }),
       getTranslations({ locale, namespace: "about" }),
       getTranslations({ locale, namespace: "atAGlance" }),
       getTranslations({ locale, namespace: "whyChooseUs" }),
       getTranslations({ locale, namespace: "placementSupport" }),
-      getTranslations({ locale, namespace: "newsTeaser" }),
       getTranslations({ locale, namespace: "certPartners" }),
     ]);
 
@@ -134,20 +125,10 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-
       {/* Numerical Highlights */}
       <AtAGlanceSection
         heading={atAGlanceT("heading")}
         settings={settings}
-      />
-
-      {/* Latest News & Events */}
-      <NewsTeaserSection
-        teaser={teaser}
-        heading={newsT("heading")}
-        viewAll={newsT("viewAll")}
-        upcomingEventLabel={newsT("upcomingEvent")}
-        locale={locale}
       />
 
       {/* About Institution */}
@@ -181,9 +162,6 @@ export default async function HomePage({ params }: HomePageProps) {
         viewVacancies={placementT("viewVacancies")}
         hiringCta={placementT("hiringCta")}
       />
-
-      {/* Contact & Map Section */}
-      <ContactSection settings={settings} courses={courses} />
     </main>
   );
 }

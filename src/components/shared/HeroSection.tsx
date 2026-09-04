@@ -37,12 +37,12 @@ export function HeroSection({ t }: HeroSectionProps) {
       </div>
 
       {/* Main Impact Headline */}
-      <h1 className="max-w-3xl text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.18]">
+      <h1 className="max-w-2xl text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.18]">
         {t.headline}
       </h1>
 
       {/* Subhead narrative */}
-      <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground font-normal">
+      <p className="max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground font-normal">
         {t.subhead}
       </p>
 

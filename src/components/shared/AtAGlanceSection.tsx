@@ -1,5 +1,6 @@
 import { Building2, GraduationCap, Globe, Award, Users, Sparkles } from "lucide-react";
 import { getAtAGlanceStats, type SiteSettingsWithCards } from "@/lib/site-settings";
+import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
 
 const statIcons: Record<number, React.ComponentType<{ className?: string }>> = {
   0: Building2,
@@ -50,7 +51,7 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
                   <Icon className="size-5 sm:size-6" />
                 </div>
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground transition-colors group-hover:text-primary">
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} />
                 </span>
                 <span className="mt-1.5 text-sm font-semibold text-muted-foreground leading-snug">
                   {stat.label}

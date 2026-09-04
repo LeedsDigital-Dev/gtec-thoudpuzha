@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
+import { GraduationCap, Star } from "lucide-react";
 import { HeroSection } from "@/components/shared/HeroSection";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { AboutSection } from "@/components/shared/AboutSection";
@@ -16,16 +17,7 @@ import {
   getCachedCertificationPartners,
 } from "@/lib/data-cache";
 import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
-
-const ContactSection = dynamic(
-  () =>
-    import("@/components/shared/ContactSection").then(
-      (mod) => mod.ContactSection,
-    ),
-  {
-    loading: () => <div className="h-96 bg-muted/40 animate-pulse" />,
-  },
-);
+import { ContactSection } from "@/components/shared/ContactSection";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -59,53 +51,10 @@ export default async function HomePage({ params }: HomePageProps) {
     <main className="relative flex flex-col w-full min-h-screen">
       {/* Hero & Visual Showcase Section */}
       <section className="relative overflow-hidden py-8 sm:py-12 lg:py-16">
-        {/* Exact Graphic Background matching reference (Solid Blue Curved Backdrop, Dotted Matrix, Bottom Sweeping Arc, Sparkle Star) */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none"
-          aria-hidden="true"
-        >
-          {/* Top-Right Large Solid Royal Blue Circular Backdrop */}
-          <div
-            className="absolute -top-20 -right-28 sm:-top-28 sm:-right-36 lg:-top-36 lg:-right-44 w-[480px] h-[480px] sm:w-[580px] sm:h-[580px] lg:w-[720px] lg:h-[720px] rounded-full bg-[#0052cc] dark:bg-[#0047ab] transition-all"
-            style={{
-              clipPath: "ellipse(100% 100% at 85% 15%)",
-            }}
-          />
-
-          {/* Dotted Grid Accent on the Right Edge */}
-          <div className="absolute right-2 top-[24%] sm:right-5 sm:top-[26%] lg:right-6 lg:top-[28%] w-24 h-48 sm:w-28 sm:h-56 z-0">
-            <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <pattern id="ref-hero-dots" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                <circle cx="2.5" cy="2.5" r="1.5" fill="#ffffff" fillOpacity="0.45" />
-              </pattern>
-              <rect width="100%" height="100%" fill="url(#ref-hero-dots)" />
-            </svg>
-          </div>
-
-          {/* Bottom-Right Sweeping Blue Curved Arc */}
-          <div
-            className="absolute -bottom-28 right-[4%] sm:-bottom-36 sm:right-[6%] lg:-bottom-44 lg:right-[8%] w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] lg:w-[560px] lg:h-[560px] rounded-full bg-[#0052cc] dark:bg-[#0047ab]"
-            style={{
-              clipPath: "ellipse(100% 100% at 75% 85%)",
-            }}
-          />
-
-          {/* 4-Point Diamond Sparkle Star (Bottom Right) */}
-          <div className="absolute right-[4%] bottom-[4%] sm:right-[6%] sm:bottom-[6%] lg:right-[7%] lg:bottom-[7%] z-0">
-            <svg
-              className="w-14 h-14 sm:w-18 sm:h-18 lg:w-22 lg:h-22 text-blue-400/40 dark:text-blue-300/30 fill-current"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M 50 0 C 50 32 68 50 100 50 C 68 50 50 68 50 100 C 50 68 32 50 0 50 C 32 50 50 32 50 0 Z" />
-            </svg>
-          </div>
-        </div>
-
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-14">
-            {/* Left Content (clean, crisp, 100% readable) */}
-            <div className="lg:col-span-6 xl:col-span-6">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+            {/* Left Content Column (Wider for Natural 2-Line Headline) */}
+            <div className="lg:col-span-7 flex flex-col justify-center z-10">
               <HeroSection
                 t={{
                   badge: heroT("badge"),
@@ -118,17 +67,67 @@ export default async function HomePage({ params }: HomePageProps) {
               />
             </div>
 
-            {/* Right Showcase Image (Enlarged, with rounded corners & clean depth matching reference) */}
-            <div className="relative lg:col-span-6 xl:col-span-6 flex justify-center">
-              <div className="relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-[16/10] w-full max-w-[640px] overflow-hidden rounded-[1.75rem] border border-border/60 bg-card shadow-2xl transition-all duration-500 hover:shadow-primary/10">
-                <Image
-                  src="/images/hero-students-lab.jpg"
-                  alt="Students learning and collaborating in a modern IT computer laboratory at G-TEC Thodupuzha"
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
-                  className="object-cover transition-transform duration-700 hover:scale-105"
+            {/* Right Visual Showcase Column with New High-Res Image & Modern UI */}
+            <div className="relative lg:col-span-5 flex items-center justify-center lg:justify-end">
+              <div className="relative w-full max-w-[480px] sm:max-w-[500px] lg:max-w-[520px]">
+                {/* Smooth, elegant blue curved backdrop naturally framing the image */}
+                <div
+                  className="pointer-events-none absolute -inset-3 sm:-inset-4 -z-10 rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-tr from-primary via-primary/95 to-blue-600 opacity-95 dark:opacity-85 shadow-xl transform rotate-1 sm:rotate-2"
+                  aria-hidden="true"
                 />
+
+                {/* Subtle ambient blur glow */}
+                <div
+                  className="pointer-events-none absolute -top-8 -right-8 h-36 w-36 -z-20 rounded-full bg-primary/25 blur-2xl"
+                  aria-hidden="true"
+                />
+
+                {/* Subtle Dotted Pattern Accent (top right) */}
+                <div
+                  className="pointer-events-none absolute -right-3 -top-3 sm:-right-4 sm:-top-4 h-20 w-20 z-0 opacity-30"
+                  aria-hidden="true"
+                >
+                  <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <pattern id="ref-hero-dots-subtle" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+                      <circle cx="2" cy="2" r="1.2" fill="#ffffff" fillOpacity="0.9" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#ref-hero-dots-subtle)" />
+                  </svg>
+                </div>
+
+                {/* Primary Photograph Frame */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/10 bg-card shadow-2xl transition-all duration-500 hover:shadow-primary/20">
+                  <Image
+                    src="/images/hero-main-student.jpg"
+                    alt="Student learning software development at modern IT workstation at G-TEC Thodupuzha"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 42vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+
+                {/* Floating Glassmorphism Badge 1: Placement Support (Top-Left) */}
+                <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 z-20 flex items-center gap-2.5 rounded-2xl border border-white/80 dark:border-white/20 bg-background/95 backdrop-blur-md px-3.5 py-2 shadow-lg transition-transform duration-300 hover:scale-105">
+                  <div className="flex size-8 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
+                    <GraduationCap className="size-4.5" />
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-bold text-foreground leading-tight">100% Placement</p>
+                    <p className="text-xs text-muted-foreground font-medium">Assistance Support</p>
+                  </div>
+                </div>
+
+                {/* Floating Glassmorphism Badge 2: Rating & Certified (Bottom-Right) */}
+                <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-3 z-20 flex items-center gap-2.5 rounded-2xl border border-white/80 dark:border-white/20 bg-background/95 backdrop-blur-md px-3.5 py-2 shadow-lg transition-transform duration-300 hover:scale-105">
+                  <div className="flex size-8 items-center justify-center rounded-xl bg-amber-500 text-white shadow-xs">
+                    <Star className="size-4.5 fill-current" />
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-extrabold text-foreground leading-tight">4.9/5 Rating</p>
+                    <p className="text-xs text-muted-foreground font-medium">30+ Yrs Global Legacy</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

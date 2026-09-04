@@ -9,17 +9,25 @@ export type Locale = "en" | "ml";
 
 const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
   id: "default",
+  createdAt: new Date(),
   updatedAt: new Date(),
   yearsInOperation: "25+",
   studentsTrained: "10,000+",
   centresWorldwide: "500+",
   affiliations: "50+",
   countries: "15+",
-  aboutTextEn:
+  aboutBodyEn:
     "G-TEC EDUCATION Thodupuzha is a premier skill development and computer education centre.",
-  aboutTextMl:
+  aboutBodyMl:
     "ജി-ടെക് എഡ്യൂക്കേഷൻ തൊടുപുഴ ഒരു പ്രമുഖ കമ്പ്യൂട്ടർ വിദ്യാഭ്യാസ സ്ഥാപനമാണ്.",
+  aboutPhotoUrl: null,
   address: "Near Private Bus Stand, Thodupuzha, Idukki, Kerala - 685584",
+  mapEmbedUrl: null,
+  facebookUrl: null,
+  instagramUrl: null,
+  youtubeUrl: null,
+  linkedinUrl: null,
+  googleReviewsUrl: null,
   whyChooseUsCards: [],
 };
 

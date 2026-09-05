@@ -3,20 +3,19 @@
 import { useEffect, useState } from "react";
 
 export function Preloader() {
-  const [show, setShow] = useState(() => {
-    try {
-      const hasSeen = sessionStorage.getItem("gtec_ps");
-      if (hasSeen) return false;
-      sessionStorage.setItem("gtec_ps", "1");
-    } catch {
-      // SessionStorage might be unavailable or restricted
-    }
-    return true;
-  });
+  const [show, setShow] = useState(false);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    if (!show) return;
+    try {
+      const hasSeen = sessionStorage.getItem("gtec_ps");
+      if (hasSeen) return;
+      sessionStorage.setItem("gtec_ps", "1");
+      setShow(true);
+    } catch {
+      // SessionStorage might be unavailable or restricted
+      return;
+    }
 
     const fadeTimer = setTimeout(() => {
       setFading(true);
@@ -30,7 +29,7 @@ export function Preloader() {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
-  }, [show]);
+  }, []);
 
   if (!show) return null;
 

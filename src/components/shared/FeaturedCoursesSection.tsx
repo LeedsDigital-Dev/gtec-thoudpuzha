@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import type { PublicCourse } from "@/lib/courses";
 import { getMediaUrl } from "@/lib/media";
-import { pickLocalizedText, type Locale } from "@/lib/site-settings";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 
 interface FeaturedCoursesSectionProps {
   courses: PublicCourse[];

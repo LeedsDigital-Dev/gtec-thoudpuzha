@@ -1,7 +1,7 @@
 import { getLocale } from "next-intl/server";
 import { getActiveFlashNews } from "@/lib/flash-news";
 import type { PublicFlashNewsItem } from "@/lib/flash-news";
-import { Bell } from "lucide-react";
+
 
 type Locale = "en" | "ml";
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { getNewsEventBySlug } from "@/lib/news-events";
 import { getMediaUrl } from "@/lib/media";
-import { pickLocalizedText, type Locale } from "@/lib/site-settings";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 
 interface NewsDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;

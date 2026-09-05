@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getLocalizedAbout, type Locale, type SiteSettingsWithCards } from "@/lib/site-settings";
-import { Award, CheckCircle2, Laptop, Users2, Sparkles } from "lucide-react";
+import { Award, Laptop, Users2, Sparkles } from "lucide-react";
 
 interface AboutSectionProps {
   settings: SiteSettingsWithCards;

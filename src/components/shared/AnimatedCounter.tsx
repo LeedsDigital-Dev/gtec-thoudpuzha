@@ -114,7 +114,6 @@ export function AnimatedCounter({
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      setDisplayValue(value);
       hasAnimatedRef.current = true;
       return;
     }

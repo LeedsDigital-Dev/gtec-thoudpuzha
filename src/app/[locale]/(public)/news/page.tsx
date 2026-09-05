@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getPublishedNews } from "@/lib/news-events";
-import { pickLocalizedText, type Locale } from "@/lib/site-settings";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 
 interface NewsPageProps {
   params: Promise<{ locale: string }>;

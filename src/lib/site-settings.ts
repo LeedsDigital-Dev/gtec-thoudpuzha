@@ -5,7 +5,8 @@ export type SiteSettingsWithCards = SiteSettings & {
   whyChooseUsCards: WhyChooseUsCard[];
 };
 
-export type Locale = "en" | "ml";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
+export { pickLocalizedText, type Locale };
 
 const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
   id: "default",
@@ -21,13 +22,18 @@ const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
   aboutBodyMl:
     "ജി-ടെക് എഡ്യൂക്കേഷൻ തൊടുപുഴ ഒരു പ്രമുഖ കമ്പ്യൂട്ടർ വിദ്യാഭ്യാസ സ്ഥാപനമാണ്.",
   aboutPhotoUrl: null,
-  address: "Near Private Bus Stand, Thodupuzha, Idukki, Kerala - 685584",
+  address:
+    "East End, Thodupuzha-Udumbanoor Rd, near De Paul Public School, Thodupuzha, Kerala 685585",
   mapEmbedUrl: null,
-  facebookUrl: null,
-  instagramUrl: null,
+  mapsUrl:
+    "https://maps.google.com/?q=G-TEC+Computer+Education,+East+End,+Thodupuzha-Udumbanoor+Rd,+near+De+Paul+Public+School,+Thodupuzha,+Kerala+685585",
+  whatsappNumber: "919544229992",
+  facebookUrl: "https://www.facebook.com/gtectdpa",
+  instagramUrl: "https://www.instagram.com/gtec_thodupuzha/",
   youtubeUrl: null,
   linkedinUrl: null,
-  googleReviewsUrl: null,
+  googleReviewsUrl:
+    "https://www.google.com/maps/search/?api=1&query=G-TEC+Computer+Education+Thodupuzha+reviews",
   whyChooseUsCards: [],
 };
 
@@ -51,12 +57,6 @@ export async function getSiteSettings(): Promise<SiteSettingsWithCards> {
   }
 }
 
-export function pickLocalizedText(
-  localized: { en: string; ml?: string | null },
-  locale: Locale,
-): string {
-  return locale === "ml" && localized.ml ? localized.ml : localized.en;
-}
 
 export function getAtAGlanceStats(settings: SiteSettingsWithCards) {
   return [

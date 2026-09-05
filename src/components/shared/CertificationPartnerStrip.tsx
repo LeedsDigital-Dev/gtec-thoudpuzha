@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getCertificationPartners } from "@/lib/certification-partners";
 import type { PublicCertificationPartner } from "@/lib/certification-partners";
 import { getMediaUrl } from "@/lib/media";
-import { ShieldCheck, Sparkles } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export async function CertificationPartnerStrip({
   heading,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CalendarDays, ArrowRight, Sparkles, MapPin, Clock } from "lucide-react";
 import type { PublicNewsEvent } from "@/lib/news-events";
-import { pickLocalizedText, type Locale } from "@/lib/site-settings";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 
 interface EventsSectionProps {
   events: PublicNewsEvent[];

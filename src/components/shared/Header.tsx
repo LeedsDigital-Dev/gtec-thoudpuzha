@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "@/lib/i18n/navigation";
 import {
@@ -21,7 +21,6 @@ import {
   User,
   ChevronDown,
   ArrowRight,
-  ExternalLink,
   Globe,
   ShieldCheck,
   ChevronRight,
@@ -52,6 +51,8 @@ interface CourseDropdownItem {
   titleMl: string | null;
 }
 
+const emptySubscribe = () => () => {};
+
 export function Header({
   courses,
 }: {
@@ -63,12 +64,19 @@ export function Header({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [coursesOpenMobile, setCoursesOpenMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const { isSignedIn } = useAuth();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Close drawer upon route navigation
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setDrawerOpen(false);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,11 +85,6 @@ export function Header({
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close drawer upon route navigation
-  useEffect(() => {
-    setDrawerOpen(false);
-  }, [pathname]);
 
   // Lock body scroll when drawer is open
   useEffect(() => {

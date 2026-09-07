@@ -154,13 +154,13 @@ export function Header({
         <div className="flex flex-col p-5 sm:p-6 space-y-5">
           {/* Drawer Header */}
           <div className="flex items-center justify-between pb-4 border-b border-border/70">
-            <div className="flex items-center gap-2.5">
-              <div className="relative h-8 aspect-[1600/1094]">
+            <div className="flex items-center gap-3">
+              <div className="relative h-10 sm:h-11 aspect-[1600/1094]">
                 <Image
                   src="/icons/gtec.jpeg"
                   alt="G-TEC Thodupuzha logo"
                   fill
-                  sizes="50px"
+                  sizes="80px"
                   className="object-contain"
                 />
               </div>
@@ -486,26 +486,26 @@ export function Header({
             : "bg-background/85 backdrop-blur-lg border-b border-border/50 supports-[backdrop-filter]:bg-background/75"
         )}
       >
-        <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-18 sm:h-20 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
           {/* Brand Logo & Centre Identity */}
           <Link
             href={localeHref("/")}
             className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group py-1"
             aria-label="G-TEC Thodupuzha home"
           >
-            <div className="relative h-10 sm:h-12 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-12 sm:h-14 lg:h-16 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/icons/gtec.jpeg"
                 alt="G-TEC Thodupuzha"
                 fill
                 priority
-                sizes="(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px"
+                sizes="(max-width: 640px) 90px, (max-width: 1024px) 110px, 130px"
                 className="object-contain"
               />
             </div>
 
             <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3.5">
-              <span className="text-base sm:text-lg font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-lg sm:text-xl font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
                 <span>{t("brandName")}</span>
               </span>
               <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">

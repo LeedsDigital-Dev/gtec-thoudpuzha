@@ -101,7 +101,7 @@ export function BiodataPdfDocument({ data }: { data: BiodataPdfData }) {
         />
         <ListField label="Certifications" items={data.certificationCodes} />
 
-        <Text style={styles.sectionTitle}>Skills &amp; Languages</Text>
+        <Text style={styles.sectionTitle}>Skills & Languages</Text>
         <ListField label="Languages Known" items={data.languagesKnown} />
         <ListField label="Skills" items={data.skillLabels} />
 

@@ -495,7 +495,7 @@ export function Header({
           >
             <div className="relative h-12 sm:h-14 lg:h-16 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/icons/gtec.jpeg"
+                src="/icons/gtec.png"
                 alt="G-TEC Thodupuzha"
                 fill
                 priority

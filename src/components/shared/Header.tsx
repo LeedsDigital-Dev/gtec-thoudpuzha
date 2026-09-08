@@ -486,32 +486,22 @@ export function Header({
             : "bg-background/85 backdrop-blur-lg border-b border-border/50 supports-[backdrop-filter]:bg-background/75"
         )}
       >
-        <div className="mx-auto flex h-18 sm:h-20 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
-          {/* Brand Logo & Centre Identity */}
+        <div className="mx-auto flex h-20 sm:h-22 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
+          {/* Brand Logo */}
           <Link
             href={localeHref("/")}
-            className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group py-1"
+            className="flex items-center shrink-0 group py-1"
             aria-label="G-TEC Thodupuzha home"
           >
-            <div className="relative h-12 sm:h-14 lg:h-16 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-14 sm:h-16 lg:h-18 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/icons/gtec.png"
                 alt="G-TEC Thodupuzha"
                 fill
                 priority
-                sizes="(max-width: 640px) 90px, (max-width: 1024px) 110px, 130px"
+                sizes="(max-width: 640px) 110px, (max-width: 1024px) 140px, 180px"
                 className="object-contain"
               />
-            </div>
-
-            <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3.5">
-              <span className="text-lg sm:text-xl font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
-                <span>{t("brandName")}</span>
-              </span>
-              <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">
-                <span className="size-2 rounded-full bg-emerald-500 shrink-0 inline-block animate-pulse" />
-                <span>{siteConfig.centreName}</span>
-              </span>
             </div>
           </Link>
 

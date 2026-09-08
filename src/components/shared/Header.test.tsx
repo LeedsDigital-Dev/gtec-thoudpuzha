@@ -87,8 +87,8 @@ describe("Header layout presence", () => {
   test("Header is present on a (public) page", () => {
     render(<Header />);
 
-    expect(screen.getByText("G-TEC")).toBeInTheDocument();
-    expect(screen.getByText(siteConfig.centreName)).toBeInTheDocument();
+    expect(screen.getByAltText("G-TEC Thodupuzha")).toBeInTheDocument();
+    expect(screen.getByLabelText("G-TEC Thodupuzha home")).toBeInTheDocument();
   });
 
   test("Header does not render inside a (portal) placeholder page", () => {
@@ -98,8 +98,7 @@ describe("Header layout presence", () => {
       </PortalLayout>,
     );
 
-    expect(screen.queryByText("G-TEC")).not.toBeInTheDocument();
-    expect(screen.queryByText(siteConfig.centreName)).not.toBeInTheDocument();
+    expect(screen.queryByAltText("G-TEC Thodupuzha")).not.toBeInTheDocument();
   });
 
   test("Header does not render inside an (admin) placeholder page", () => {
@@ -109,7 +108,6 @@ describe("Header layout presence", () => {
       </AdminLayout>,
     );
 
-    expect(screen.queryByText("G-TEC")).not.toBeInTheDocument();
-    expect(screen.queryByText(siteConfig.centreName)).not.toBeInTheDocument();
+    expect(screen.queryByAltText("G-TEC Thodupuzha")).not.toBeInTheDocument();
   });
 });

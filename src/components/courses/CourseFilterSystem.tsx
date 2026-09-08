@@ -51,9 +51,66 @@ export type DurationKey =
 
 export type LevelKey = "ALL" | "BASIC" | "ADVANCED";
 
+/**
+ * Normalizes course duration text and extracts the duration in months as a number.
+ * Returns null if duration is unspecified or unparseable.
+ */
+export function extractDurationInMonths(
+  durationText: string | null | undefined
+): number | null {
+  if (!durationText) return null;
+  const normalized = durationText.trim().toLowerCase();
+
+  // 1. Check for year representations (e.g. "1 year", "1 yr", "2 years")
+  const yearMatch =
+    normalized.match(/^(\d+(?:\.\d+)?)\s*(?:year|yr)s?$/i) ||
+    normalized.match(/\b(\d+(?:\.\d+)?)\s*(?:year|yr)s?\b/i);
+  if (yearMatch) {
+    const years = parseFloat(yearMatch[1]);
+    return Math.round(years * 12);
+  }
+
+  // 2. Check for month representations (e.g. "2 months", "12 months", "1 month")
+  const monthMatch = normalized.match(/\b(\d+)\s*(?:month|mo)s?\b/i);
+  if (monthMatch) {
+    return parseInt(monthMatch[1], 10);
+  }
+
+  // 3. Check for standalone number (e.g. "2", "12")
+  const numOnlyMatch = normalized.match(/^(\d+)$/);
+  if (numOnlyMatch) {
+    return parseInt(numOnlyMatch[1], 10);
+  }
+
+  return null;
+}
+
+/**
+ * Checks whether a course duration matches the selected duration filter option with exact comparison.
+ * Prevents partial substring false-positives (e.g. "2 Months" accidentally matching "12 Months").
+ */
+export function matchesDuration(
+  courseDurationText: string | null | undefined,
+  selectedDuration: DurationKey
+): boolean {
+  if (selectedDuration === "ALL") return true;
+  if (!courseDurationText) return false;
+
+  const courseMonths = extractDurationInMonths(courseDurationText);
+  const selectedMonths = extractDurationInMonths(selectedDuration);
+
+  if (courseMonths !== null && selectedMonths !== null) {
+    return courseMonths === selectedMonths;
+  }
+
+  // Fallback to exact normalized string matching (case-insensitive and trimmed)
+  const normalize = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ");
+  return normalize(courseDurationText) === normalize(selectedDuration);
+}
+
 export function getCourseLevel(course: PublicCourse): "BASIC" | "ADVANCED" {
   const title = (course.titleEn || "").toLowerCase();
-  const duration = (course.durationText || "").toLowerCase();
+  const durationMonths = extractDurationInMonths(course.durationText);
 
   if (
     title.includes("advanced") ||
@@ -62,7 +119,7 @@ export function getCourseLevel(course: PublicCourse): "BASIC" | "ADVANCED" {
     title.includes("data science") ||
     title.includes("machine learning") ||
     title.includes("software engineering") ||
-    duration.includes("12 month")
+    (durationMonths !== null && durationMonths >= 12)
   ) {
     return "ADVANCED";
   }
@@ -250,14 +307,8 @@ export function CourseFilterSystem({ courses, locale }: CourseFilterSystemProps)
       }
 
       // 3. Duration
-      if (selectedDuration !== "ALL") {
-        const d = (course.durationText || "").toLowerCase();
-        const target = selectedDuration.toLowerCase();
-        // Check if durationText matches e.g. "6 months" or "6 Months"
-        const numPart = selectedDuration.split(" ")[0]; // "6"
-        if (!d.includes(numPart) && !d.includes(target)) {
-          return false;
-        }
+      if (!matchesDuration(course.durationText, selectedDuration)) {
+        return false;
       }
 
       // 4. Level

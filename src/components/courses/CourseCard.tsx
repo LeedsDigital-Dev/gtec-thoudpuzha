@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
-import { getMediaUrl } from "@/lib/media";
+import { getCourseFallbackImage, getMediaUrl } from "@/lib/media";
 import { ArrowRight, BookOpen } from "lucide-react";
 
 interface CourseCardProps {
@@ -27,28 +27,25 @@ export function CourseCard({
     ? descriptionMl
     : descriptionEn;
 
+  const imageSrc = coverImageUrl
+    ? getMediaUrl(coverImageUrl)
+    : getCourseFallbackImage(slug);
+
   return (
     <Link
       href={`/courses/${slug}`}
       className="group flex flex-col justify-between rounded-2xl border border-border/80 overflow-hidden bg-card shadow-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-primary/40"
     >
       <div>
-        {coverImageUrl ? (
-          <div className="relative h-48 sm:h-52 overflow-hidden bg-muted">
-            <Image
-              src={getMediaUrl(coverImageUrl)}
-              alt={title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        ) : (
-          <div className="h-48 sm:h-52 bg-gradient-to-br from-primary/10 to-muted flex flex-col items-center justify-center text-muted-foreground gap-2">
-            <BookOpen className="size-8 text-primary/40" />
-            <span className="text-sm font-medium">Course Overview</span>
-          </div>
-        )}
+        <div className="relative h-48 sm:h-52 overflow-hidden bg-muted">
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
         <div className="p-5">
           <h2 className="font-bold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors leading-snug">
             {title}

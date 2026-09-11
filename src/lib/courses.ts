@@ -72,19 +72,72 @@ export async function getCourseSlugs(): Promise<string[]> {
   return courses.map((c) => c.slug);
 }
 
-export type RelatedCourse = Pick<Course, "slug" | "titleEn" | "titleMl" | "coverImageUrl">;
+export type RelatedCourse = Pick<
+  Course,
+  | "slug"
+  | "titleEn"
+  | "titleMl"
+  | "coverImageUrl"
+  | "durationText"
+  | "descriptionEn"
+  | "descriptionMl"
+> & {
+  category: Pick<CourseCategory, "id" | "nameEn" | "nameMl"> | null;
+};
 
 export async function getRelatedCourses(
   excludeSlug: string,
   limit = 3,
+  categoryId?: string | null,
 ): Promise<RelatedCourse[]> {
-  return prisma.course.findMany({
-    where: { status: "PUBLISHED", slug: { not: excludeSlug } },
-    select: { slug: true, titleEn: true, titleMl: true, coverImageUrl: true },
-    take: limit,
-    orderBy: { createdAt: "desc" },
-  }).catch((err) => {
+  try {
+    let related = await prisma.course.findMany({
+      where: {
+        status: "PUBLISHED",
+        slug: { not: excludeSlug },
+        ...(categoryId ? { categoryId } : {}),
+      },
+      select: {
+        slug: true,
+        titleEn: true,
+        titleMl: true,
+        coverImageUrl: true,
+        durationText: true,
+        descriptionEn: true,
+        descriptionMl: true,
+        category: { select: { id: true, nameEn: true, nameMl: true } },
+      },
+      take: limit,
+      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+    });
+
+    if (related.length < limit) {
+      const fallbackLimit = limit - related.length;
+      const existingSlugs = [excludeSlug, ...related.map((r) => r.slug)];
+      const more = await prisma.course.findMany({
+        where: {
+          status: "PUBLISHED",
+          slug: { notIn: existingSlugs },
+        },
+        select: {
+          slug: true,
+          titleEn: true,
+          titleMl: true,
+          coverImageUrl: true,
+          durationText: true,
+          descriptionEn: true,
+          descriptionMl: true,
+          category: { select: { id: true, nameEn: true, nameMl: true } },
+        },
+        take: fallbackLimit,
+        orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+      });
+      related = [...related, ...more];
+    }
+    return related;
+  } catch (err) {
     logger.exception("courses", "Failed to fetch related courses", err);
-    throw err;
-  });
+    return [];
+  }
 }
+

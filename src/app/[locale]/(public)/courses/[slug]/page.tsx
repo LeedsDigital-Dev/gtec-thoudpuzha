@@ -1,13 +1,33 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Image from "next/image";
-import { getCourseBySlug, getRelatedCourses } from "@/lib/courses";
-import { CoursePageContent } from "@/components/courses/CoursePageContent";
-import { EnquiryForm } from "@/components/shared/EnquiryForm";
-import { getPublishedCourses } from "@/lib/courses";
-import { Link } from "@/lib/i18n/navigation";
+import { getTranslations } from "next-intl/server";
+import { getCourseBySlug, getRelatedCourses, getPublishedCourses } from "@/lib/courses";
+import { getCachedSiteSettings } from "@/lib/data-cache";
+import { getMediaUrl, getCourseFallbackImage } from "@/lib/media";
 import type { CourseContent } from "@/lib/course-content.types";
-import { getMediaUrl } from "@/lib/media";
+import {
+  getCourseHighlights,
+  getWhatYoullLearn,
+  getCurriculumModules,
+  getSkillsGained,
+  getCareerOpportunities,
+  getWhoCanJoin,
+  getWhyChooseGtecFeatures,
+} from "@/lib/course-detail-helpers";
+
+import { CourseBreadcrumb } from "@/components/courses/CourseBreadcrumb";
+import { CourseHero } from "@/components/courses/CourseHero";
+import { CourseHighlights } from "@/components/courses/CourseHighlights";
+import { CourseOverview } from "@/components/courses/CourseOverview";
+import { WhatYoullLearn } from "@/components/courses/WhatYoullLearn";
+import { CourseCurriculum } from "@/components/courses/CourseCurriculum";
+import { SkillsGained } from "@/components/courses/SkillsGained";
+import { CareerOpportunities } from "@/components/courses/CareerOpportunities";
+import { WhoCanJoin } from "@/components/courses/WhoCanJoin";
+import { WhyChooseGtec } from "@/components/courses/WhyChooseGtec";
+import { RelatedCoursesSection } from "@/components/courses/RelatedCoursesSection";
+import { CourseCTA } from "@/components/courses/CourseCTA";
+import { CourseQuickEnquiry } from "@/components/courses/CourseQuickEnquiry";
 
 interface CourseDetailProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -18,93 +38,151 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: CourseDetailProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const course = await getCourseBySlug(slug);
   if (!course || course.status !== "PUBLISHED") {
-    return { title: "Course Not Found" };
+    const tErr = await getTranslations({ locale, namespace: "errors" });
+    return { title: tErr("title") };
   }
+
+  const title = `${course.titleEn} | G-TEC Education Thodupuzha`;
+  const description =
+    course.descriptionEn ||
+    `Enroll in ${course.titleEn} at G-TEC Education Thodupuzha. Comprehensive training with practical lab sessions, certified trainers, and 100% placement assistance.`;
+
+  const ogImage = course.coverImageUrl
+    ? getMediaUrl(course.coverImageUrl)
+    : getCourseFallbackImage(course.slug, course.category?.nameEn);
+
   return {
-    title: `${course.titleEn} | GTEC Thodupuzha`,
-    description: course.descriptionEn ?? undefined,
-    openGraph: course.coverImageUrl
-      ? { images: [getMediaUrl(course.coverImageUrl)] }
-      : undefined,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
 export default async function CourseDetailPage({ params }: CourseDetailProps) {
   const { locale, slug } = await params;
-  const [course, allCourses, relatedCourses] = await Promise.all([
+
+  const [course, allCourses, siteSettings] = await Promise.all([
     getCourseBySlug(slug),
     getPublishedCourses(),
-    getRelatedCourses(slug, 3),
+    getCachedSiteSettings().catch(() => null),
   ]);
 
   if (!course || course.status !== "PUBLISHED") {
     notFound();
   }
 
+  // Fetch related courses prioritizing the same category
+  const relatedCourses = await getRelatedCourses(slug, 3, course.categoryId);
+
   const contentBlocks = course.contentBlocks as unknown as CourseContent | null;
 
+  // Bilingual text selection
+  const isMl = locale === "ml";
+  const displayTitle = isMl && course.titleMl ? course.titleMl : course.titleEn;
+  const heroTagline = isMl && contentBlocks?.heroTaglineMl
+    ? contentBlocks.heroTaglineMl
+    : contentBlocks?.heroTaglineEn;
+
+  const overviewText = isMl && contentBlocks?.overviewMl
+    ? contentBlocks.overviewMl
+    : contentBlocks?.overviewEn || (isMl ? course.descriptionMl : course.descriptionEn);
+
+  const detailedContentText = isMl && contentBlocks?.detailedContentMl
+    ? contentBlocks.detailedContentMl
+    : contentBlocks?.detailedContentEn;
+
+  // Extract structured highlights and enriched data
+  const highlights = getCourseHighlights(course, locale);
+  const whatYoullLearn = getWhatYoullLearn(course, contentBlocks, locale);
+  const curriculumModules = getCurriculumModules(course, contentBlocks, locale);
+  const skills = getSkillsGained(course);
+  const careerRoles = getCareerOpportunities(course, locale);
+  const audience = getWhoCanJoin(locale);
+  const whyChooseFeatures = getWhyChooseGtecFeatures(locale);
+
+  const whatsappNumber = siteSettings?.whatsappNumber || "919544229992";
+
   return (
-    <main className="py-6 sm:py-10 px-4 sm:px-6 max-w-4xl mx-auto w-full max-w-full overflow-x-hidden">
-      <CoursePageContent
-        titleEn={course.titleEn}
-        titleMl={course.titleMl}
-        descriptionEn={course.descriptionEn}
-        descriptionMl={course.descriptionMl}
-        coverImageUrl={course.coverImageUrl}
-        contentBlocks={contentBlocks}
-        locale={locale}
-      />
+    <main className="min-h-screen bg-background pb-16 sm:pb-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 pt-2 sm:pt-4">
+        {/* 1. Breadcrumb Navigation */}
+        <CourseBreadcrumb courseTitle={displayTitle} locale={locale} />
 
-      {/* Enquiry CTA */}
-      <section className="mt-16 max-w-xl mx-auto space-y-6">
-        <h2 className="text-xl font-semibold text-center">
-          Interested in this course?
-        </h2>
-        <EnquiryForm
-          source={`course-${slug}`}
-          courses={allCourses}
+        {/* 2. Course Hero Section */}
+        <CourseHero
+          course={course}
+          locale={locale}
+          tagline={heroTagline}
+          whatsappNumber={whatsappNumber}
         />
-      </section>
 
-      {/* Related Courses */}
-      {relatedCourses.length > 0 && (
-        <section className="mt-16">
-          <h2 className="text-2xl font-semibold mb-6 text-center">
-            Explore More Courses
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedCourses.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/courses/${c.slug}`}
-                className="rounded-lg border border-border p-4 hover:shadow-md transition-shadow"
-              >
-                {c.coverImageUrl ? (
-                  <div className="relative h-40 w-full mb-3 rounded-md overflow-hidden bg-muted">
-                    <Image
-                      src={getMediaUrl(c.coverImageUrl)}
-                      alt={c.titleEn}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                ) : (
-                  <div className="h-40 w-full bg-muted rounded-md mb-3 flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">{locale === "ml" ? "ചിത്രമില്ല" : "No image"}</span>
-                  </div>
-                )}
-                <h3 className="font-medium">
-                  {locale === "ml" && c.titleMl ? c.titleMl : c.titleEn}
-                </h3>
-              </Link>
-            ))}
+        {/* 3. Course Highlights Cards Strip (4 Cards) */}
+        <CourseHighlights highlights={highlights} />
+
+        {/* 4. Main 2-Column Content + Sticky Sidebar Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pt-2">
+          {/* Main Content Column (8 cols on desktop) */}
+          <div className="lg:col-span-8 space-y-8 sm:space-y-10">
+            {/* Course Overview */}
+            <CourseOverview
+              overview={overviewText}
+              detailedContent={detailedContentText}
+              detailedImage={contentBlocks?.detailedContentImageUrl}
+              locale={locale}
+            />
+
+            {/* What You'll Learn */}
+            <WhatYoullLearn outcomes={whatYoullLearn} locale={locale} />
+
+            {/* Course Curriculum & Syllabus */}
+            <CourseCurriculum
+              modules={curriculumModules}
+              courseLists={contentBlocks?.courseLists}
+              locale={locale}
+            />
+
+            {/* Skills You'll Gain */}
+            <SkillsGained skills={skills} locale={locale} />
+
+            {/* Career Opportunities */}
+            <CareerOpportunities roles={careerRoles} locale={locale} />
+
+            {/* Who Can Join */}
+            <WhoCanJoin audience={audience} locale={locale} />
+
+            {/* Why Choose G-TEC */}
+            <WhyChooseGtec features={whyChooseFeatures} locale={locale} />
           </div>
-        </section>
-      )}
+
+          {/* Sticky Sidebar Column (4 cols on desktop) */}
+          <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+            <CourseQuickEnquiry
+              courseId={course.id}
+              courseTitle={displayTitle}
+              courses={allCourses}
+              locale={locale}
+              whatsappNumber={whatsappNumber}
+            />
+          </aside>
+        </div>
+
+        {/* 5. Related Courses Grid */}
+        <RelatedCoursesSection courses={relatedCourses} locale={locale} />
+
+        {/* 6. Final Call To Action Banner */}
+        <CourseCTA
+          courseTitle={displayTitle}
+          locale={locale}
+          whatsappNumber={whatsappNumber}
+        />
+      </div>
     </main>
   );
 }

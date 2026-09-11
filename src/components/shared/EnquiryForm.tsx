@@ -14,6 +14,9 @@ export type { EnquiryPayload };
 type EnquiryFormProps = {
   source: string;
   courses: PublicCourse[];
+  defaultCourseId?: string;
+  customTitle?: string;
+  customSubtitle?: string;
   onSubmit?: (payload: EnquiryPayload) => void | Promise<void>;
 };
 
@@ -31,11 +34,18 @@ function sanitizePhone(value: string) {
   return value.replace(/\D/g, "").slice(0, 10);
 }
 
-export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
+export function EnquiryForm({
+  source,
+  courses,
+  defaultCourseId,
+  customTitle,
+  customSubtitle,
+  onSubmit,
+}: EnquiryFormProps) {
   const t = useTranslations("enquiry");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [course, setCourse] = useState("");
+  const [course, setCourse] = useState(defaultCourseId || "");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -43,10 +53,11 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
   const resetForm = useCallback(() => {
     setFullName("");
     setPhone("");
-    setCourse("");
+    setCourse(defaultCourseId || "");
     setMessage("");
     setErrors({});
-  }, []);
+  }, [defaultCourseId]);
+
 
   const validate = useCallback((): boolean => {
     const nextErrors: FormErrors = {};
@@ -119,10 +130,10 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
           <span>Quick Admission Enquiry</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-          {t("heading")}
+          {customTitle || t("heading")}
         </h2>
         <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-          {t("description")}
+          {customSubtitle || t("description")}
         </p>
       </div>
 

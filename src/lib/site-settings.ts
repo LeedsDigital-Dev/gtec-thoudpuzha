@@ -14,10 +14,10 @@ const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
   id: "default",
   createdAt: new Date(),
   updatedAt: new Date(),
-  yearsInOperation: "20+",
-  studentsTrained: "15000+",
-  centresWorldwide: "120+",
-  affiliations: "50+",
+  yearsInOperation: "25+",
+  studentsTrained: "3.2M+",
+  centresWorldwide: "800+",
+  affiliations: "100+",
   countries: "23",
   aboutBodyEn:
     "G-TEC EDUCATION Thodupuzha is a premier skill development and computer education centre.",
@@ -62,11 +62,11 @@ export async function getSiteSettings(): Promise<SiteSettingsWithCards> {
 
 export function getAtAGlanceStats(settings: SiteSettingsWithCards) {
   return [
-    { label: "Years of Operation", value: settings.yearsInOperation },
-    { label: "Students Trained", value: settings.studentsTrained },
-    { label: "Centres Worldwide", value: settings.centresWorldwide },
+    { label: "Years of Legacy", value: settings.yearsInOperation },
     { label: "Affiliations", value: settings.affiliations },
-    { label: "Countries", value: settings.countries },
+    { label: "Students", value: settings.studentsTrained },
+    { label: "Countries Served", value: settings.countries },
+    { label: "Centres across the globe", value: settings.centresWorldwide },
   ];
 }
 

@@ -169,10 +169,10 @@ async function main() {
   /* 5. SiteSettings + At a Glance + Why Choose Us */
   console.log("Seeding site settings...");
   const settingsData = {
-    yearsInOperation: "20+",
-    studentsTrained: "15000+",
-    centresWorldwide: "120+",
-    affiliations: "50+",
+    yearsInOperation: "25+",
+    studentsTrained: "3.2M+",
+    centresWorldwide: "800+",
+    affiliations: "100+",
     countries: "23",
     aboutBodyEn:
       "G-TEC Education Thodupuzha is a premier training centre offering industry-relevant courses in IT, multimedia, accounting, language, and professional development. With a commitment to quality education and student success, we have trained thousands of professionals who now work across India and abroad.\n\nOur ISO 9001:2015 certified processes, experienced faculty, and state-of-the-art facilities ensure that every student receives the best possible learning experience. We combine theoretical knowledge with practical, hands-on training to prepare students for real-world challenges.\n\nLocated in the heart of Thodupuzha, our centre serves students from across Idukki district and beyond, providing accessible, affordable, and high-quality education that transforms careers.",

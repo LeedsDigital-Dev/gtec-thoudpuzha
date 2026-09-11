@@ -3,11 +3,11 @@ import { getAtAGlanceStats, type SiteSettingsWithCards } from "@/lib/site-settin
 import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
 
 const statIcons: Record<number, React.ComponentType<{ className?: string }>> = {
-  0: Building2,
-  1: GraduationCap,
-  2: Globe,
-  3: Award,
-  4: Users,
+  0: Sparkles,
+  1: Award,
+  2: GraduationCap,
+  3: Globe,
+  4: Building2,
 };
 
 interface AtAGlanceSectionProps {

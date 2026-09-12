@@ -192,14 +192,14 @@ export async function Footer({
   }
 
   return (
-    <footer className="bg-[#0B1F33] text-slate-300 antialiased selection:bg-sky-500 selection:text-white border-t border-slate-800">
+    <footer className="bg-[#004282] text-slate-300 antialiased selection:bg-sky-500 selection:text-white border-t border-white/10">
       {/* 1. TOP TRUST FEATURE BAR */}
       <FooterFeatureBar />
 
       {/* 2. OPTIONAL DYNAMIC SOCIAL / CONTACT STRIP (Rendered when custom settings passed) */}
       {propSettings && topFooterItems.length > 0 && (
         <div
-          className="border-b border-white/10 bg-[#0d233a]/50 py-6"
+          className="border-b border-white/10 bg-black/15 py-6"
           data-testid="top-of-footer-section"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

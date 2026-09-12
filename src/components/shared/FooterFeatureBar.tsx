@@ -51,7 +51,7 @@ export function FooterFeatureBar() {
   return (
     <section
       aria-label="Key institutional features"
-      className="border-b border-white/10 bg-[#0e263d]/80 backdrop-blur-md text-white py-8 lg:py-10 transition-colors"
+      className="border-b border-white/10 bg-black/10 backdrop-blur-md text-white py-8 lg:py-10 transition-colors"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">

@@ -7,24 +7,16 @@ import { getMediaUrl, getCourseFallbackImage } from "@/lib/media";
 import type { CourseContent } from "@/lib/course-content.types";
 import {
   getCourseHighlights,
-  getWhatYoullLearn,
-  getCurriculumModules,
-  getSkillsGained,
   getCareerOpportunities,
   getWhoCanJoin,
-  getWhyChooseGtecFeatures,
 } from "@/lib/course-detail-helpers";
 
 import { CourseBreadcrumb } from "@/components/courses/CourseBreadcrumb";
 import { CourseHero } from "@/components/courses/CourseHero";
 import { CourseHighlights } from "@/components/courses/CourseHighlights";
 import { CourseOverview } from "@/components/courses/CourseOverview";
-import { WhatYoullLearn } from "@/components/courses/WhatYoullLearn";
-import { CourseCurriculum } from "@/components/courses/CourseCurriculum";
-import { SkillsGained } from "@/components/courses/SkillsGained";
 import { CareerOpportunities } from "@/components/courses/CareerOpportunities";
 import { WhoCanJoin } from "@/components/courses/WhoCanJoin";
-import { WhyChooseGtec } from "@/components/courses/WhyChooseGtec";
 import { RelatedCoursesSection } from "@/components/courses/RelatedCoursesSection";
 import { CourseCTA } from "@/components/courses/CourseCTA";
 import { CourseQuickEnquiry } from "@/components/courses/CourseQuickEnquiry";
@@ -100,12 +92,8 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
 
   // Extract structured highlights and enriched data
   const highlights = getCourseHighlights(course, locale);
-  const whatYoullLearn = getWhatYoullLearn(course, contentBlocks, locale);
-  const curriculumModules = getCurriculumModules(course, contentBlocks, locale);
-  const skills = getSkillsGained(course);
   const careerRoles = getCareerOpportunities(course, locale);
   const audience = getWhoCanJoin(locale);
-  const whyChooseFeatures = getWhyChooseGtecFeatures(locale);
 
   const whatsappNumber = siteSettings?.whatsappNumber || "919544229992";
 
@@ -138,27 +126,11 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
               locale={locale}
             />
 
-            {/* What You'll Learn */}
-            <WhatYoullLearn outcomes={whatYoullLearn} locale={locale} />
-
-            {/* Course Curriculum & Syllabus */}
-            <CourseCurriculum
-              modules={curriculumModules}
-              courseLists={contentBlocks?.courseLists}
-              locale={locale}
-            />
-
-            {/* Skills You'll Gain */}
-            <SkillsGained skills={skills} locale={locale} />
-
             {/* Career Opportunities */}
             <CareerOpportunities roles={careerRoles} locale={locale} />
 
             {/* Who Can Join */}
             <WhoCanJoin audience={audience} locale={locale} />
-
-            {/* Why Choose G-TEC */}
-            <WhyChooseGtec features={whyChooseFeatures} locale={locale} />
           </div>
 
           {/* Sticky Sidebar Column (4 cols on desktop) */}

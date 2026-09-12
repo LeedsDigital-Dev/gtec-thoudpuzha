@@ -138,7 +138,7 @@ export function CoursesDropdown({
           role="menu"
           aria-label={`${label} menu`}
           className={cn(
-            "absolute top-full left-1/2 -translate-x-1/4 sm:-translate-x-1/3 md:-translate-x-1/2 mt-2.5 rounded-2xl border border-white/10 bg-[#0B1F33]/98 backdrop-blur-2xl text-slate-200 p-4 shadow-2xl z-50 animate-in fade-in-50 zoom-in-95 duration-150",
+            "absolute top-full left-1/2 -translate-x-1/4 sm:-translate-x-1/3 md:-translate-x-1/2 mt-2.5 rounded-2xl border border-white/10 bg-[#004282]/98 backdrop-blur-2xl text-slate-200 p-4 shadow-2xl z-50 animate-in fade-in-50 zoom-in-95 duration-150",
             useThreeColumns
               ? "w-[90vw] max-w-[660px] md:w-[680px] lg:w-[720px]"
               : "w-[85vw] max-w-[480px] md:w-[500px]"

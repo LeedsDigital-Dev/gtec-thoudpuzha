@@ -147,7 +147,7 @@ export function Header({
       <aside
         id="slideout-sidebar"
         className={cn(
-          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-[#0B1F33] text-slate-200 border-l border-white/10 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
+          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-[#004282] text-slate-200 border-l border-white/10 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
           drawerOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -482,8 +482,8 @@ export function Header({
         className={cn(
           "sticky top-0 z-40 w-full transition-all duration-300",
           scrolled
-            ? "bg-[#0B1F33]/95 backdrop-blur-xl border-b border-white/10 shadow-md supports-[backdrop-filter]:bg-[#0B1F33]/90"
-            : "bg-[#0B1F33] border-b border-white/10 shadow-xs"
+            ? "bg-[#004282]/95 backdrop-blur-xl border-b border-white/10 shadow-md supports-[backdrop-filter]:bg-[#004282]/90"
+            : "bg-[#004282] border-b border-white/10 shadow-xs"
         )}
       >
         <div className="mx-auto flex h-20 sm:h-22 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">

@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { Phone, Mail, MapPin, ShieldCheck, Sparkles, ExternalLink } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 interface FooterContactProps {
   phone?: string | null;
@@ -118,6 +119,15 @@ export function FooterContact({
             <p className="font-normal text-slate-300 leading-snug">
               {displayAddress}
             </p>
+            <a
+              href={siteConfig.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-white hover:underline mt-1.5 transition-colors group"
+            >
+              <span>Find Us on Google Maps</span>
+              <ExternalLink className="size-3 group-hover:translate-x-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

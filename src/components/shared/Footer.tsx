@@ -2,7 +2,6 @@ import React from "react";
 import { siteConfig } from "@/lib/site";
 import { getCachedSiteSettings } from "@/lib/data-cache";
 import type { SiteSettings } from "@prisma/client";
-import { FooterFeatureBar } from "@/components/shared/FooterFeatureBar";
 import { FooterContact } from "@/components/shared/FooterContact";
 import {
   FooterLinksColumn,
@@ -193,10 +192,7 @@ export async function Footer({
 
   return (
     <footer className="bg-[#004282] text-slate-300 antialiased selection:bg-sky-500 selection:text-white border-t border-white/10">
-      {/* 1. TOP TRUST FEATURE BAR */}
-      <FooterFeatureBar />
-
-      {/* 2. OPTIONAL DYNAMIC SOCIAL / CONTACT STRIP (Rendered when custom settings passed) */}
+      {/* 1. OPTIONAL DYNAMIC SOCIAL / CONTACT STRIP (Rendered when custom settings passed) */}
       {propSettings && topFooterItems.length > 0 && (
         <div
           className="border-b border-white/10 bg-black/15 py-6"

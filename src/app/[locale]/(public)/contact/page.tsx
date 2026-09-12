@@ -34,6 +34,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const t = await getTranslations({ locale, namespace: "contact" });
   const contactPageT = await getTranslations({ locale, namespace: "contactPage" });
 
+  const mapsUrl =
+    settings.mapsUrl ||
+    (settings.address
+      ? `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`
+      : siteConfig.mapsUrl);
+
   const socialLinks = [
     { url: settings.facebookUrl, label: "Facebook" },
     { url: settings.instagramUrl, label: "Instagram" },
@@ -103,17 +109,34 @@ export default async function ContactPage({ params }: ContactPageProps) {
             </div>
 
             {/* Address Card */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <MapPin className="h-6 w-6" />
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-foreground">
+                  {contactPageT("addressTitle")}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {settings.address ||
+                    "G-TEC Education, Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Idukki District, Kerala - 685584."}
+                </p>
               </div>
-              <h3 className="mt-4 text-lg font-bold text-foreground">
-                {contactPageT("addressTitle")}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {settings.address ||
-                  "G-TEC Education, Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Idukki District, Kerala - 685584."}
-              </p>
+
+              {mapsUrl && (
+                <div className="mt-4 pt-3 border-t border-border/60">
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline group"
+                  >
+                    <MapPin className="size-4 text-red-500 group-hover:scale-110 transition-transform" />
+                    <span>Find Us on Google Maps</span>
+                    <ExternalLink className="size-3.5" />
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Operating Hours Card */}
@@ -169,9 +192,23 @@ export default async function ContactPage({ params }: ContactPageProps) {
             {/* Google Map & Directions */}
             <div className="flex flex-col gap-6">
               <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
-                <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">
-                  {contactPageT("locationTitle")}
-                </h2>
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <h2 className="text-xl font-bold tracking-tight text-foreground">
+                    {contactPageT("locationTitle")}
+                  </h2>
+                  {mapsUrl && (
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline group"
+                    >
+                      <MapPin className="size-3.5 text-red-500 group-hover:scale-110 transition-transform" />
+                      <span>Find Us on Google Maps</span>
+                      <ExternalLink className="size-3.5" />
+                    </a>
+                  )}
+                </div>
 
                 {settings.mapEmbedUrl ? (
                   <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border shadow-inner">

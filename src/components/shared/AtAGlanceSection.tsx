@@ -1,4 +1,4 @@
-import { Building2, GraduationCap, Globe, Award, Users, Sparkles } from "lucide-react";
+import { Building2, GraduationCap, Globe, Award, Sparkles } from "lucide-react";
 import { getAtAGlanceStats, type SiteSettingsWithCards } from "@/lib/site-settings";
 import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
 

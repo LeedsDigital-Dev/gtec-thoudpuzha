@@ -5,6 +5,7 @@ import { getSiteSettings, type Locale } from "@/lib/site-settings";
 import { getPublishedCourses } from "@/lib/courses";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { siteConfig } from "@/lib/site";
+import LeafletContactMap from "@/components/shared/LeafletContactMap";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -210,29 +211,13 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   )}
                 </div>
 
-                {settings.mapEmbedUrl ? (
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border shadow-inner">
-                    <iframe
-                      title="G-TEC Education Thodupuzha location map"
-                      src={settings.mapEmbedUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      data-testid="google-map-iframe"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-muted p-6 text-center text-muted-foreground">
-                    <div className="flex flex-col items-center gap-2">
-                      <MapPin className="h-8 w-8 text-primary/60" />
-                      <p className="text-sm font-medium">G-TEC Education Centre</p>
-                      <p className="text-sm text-muted-foreground">Temple Bypass Road, Thodupuzha</p>
-                    </div>
-                  </div>
-                )}
+                <LeafletContactMap
+                  lat={9.8965}
+                  lng={76.7185}
+                  title="G-TEC Education Thodupuzha"
+                  address={settings.address || "Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Kerala - 685584"}
+                  mapsUrl={mapsUrl}
+                />
 
                 {settings.googleReviewsUrl && (
                   <div className="mt-6 text-center">

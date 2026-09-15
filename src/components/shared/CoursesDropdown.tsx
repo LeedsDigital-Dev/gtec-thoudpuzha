@@ -92,8 +92,8 @@ export function CoursesDropdown({
         className={cn(
           "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
           isCoursesActive
-            ? "bg-white/15 text-white font-semibold shadow-xs border border-white/20"
-            : "text-slate-300 hover:text-white hover:bg-white/10"
+            ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+            : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
         )}
       >
         {label}
@@ -118,8 +118,8 @@ export function CoursesDropdown({
         className={cn(
           "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center gap-1 cursor-pointer select-none whitespace-nowrap",
           isCoursesActive || open
-            ? "bg-white/15 text-white font-semibold shadow-xs border border-white/20"
-            : "text-slate-300 hover:text-white hover:bg-white/10"
+            ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+            : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
         )}
         aria-expanded={open}
         aria-haspopup="true"
@@ -128,7 +128,7 @@ export function CoursesDropdown({
         <ChevronDown
           className={cn(
             "size-3.5 transition-transform duration-200 shrink-0",
-            open ? "rotate-180 text-white" : "text-slate-400"
+            open ? "rotate-180 text-primary" : "text-slate-400"
           )}
         />
       </button>
@@ -138,25 +138,25 @@ export function CoursesDropdown({
           role="menu"
           aria-label={`${label} menu`}
           className={cn(
-            "absolute top-full left-1/2 -translate-x-1/4 sm:-translate-x-1/3 md:-translate-x-1/2 mt-2.5 rounded-2xl border border-white/10 bg-[#004282]/98 backdrop-blur-2xl text-slate-200 p-4 shadow-2xl z-50 animate-in fade-in-50 zoom-in-95 duration-150",
+            "absolute top-full left-1/2 -translate-x-1/4 sm:-translate-x-1/3 md:-translate-x-1/2 mt-2.5 rounded-2xl border border-slate-200/80 bg-white/98 backdrop-blur-2xl text-slate-800 p-4 shadow-xl z-50 animate-in fade-in-50 zoom-in-95 duration-150",
             useThreeColumns
               ? "w-[90vw] max-w-[660px] md:w-[680px] lg:w-[720px]"
               : "w-[85vw] max-w-[480px] md:w-[500px]"
           )}
         >
-          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3 px-1">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3 px-1">
             <div className="flex items-center gap-2">
-              <div className="size-6 rounded-md bg-sky-500/15 text-sky-400 flex items-center justify-center">
+              <div className="size-6 rounded-md bg-primary/10 text-primary flex items-center justify-center">
                 <GraduationCap className="size-3.5" />
               </div>
-              <span className="text-sm font-bold uppercase tracking-wider text-slate-400">
+              <span className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 {locale === "ml" ? "ലഭ്യമായ കോഴ്സുകൾ" : "Available Courses"} ({courses.length})
               </span>
             </div>
             <Link
               href="/courses"
               role="menuitem"
-              className="text-sm font-semibold text-sky-400 hover:text-sky-300 hover:underline inline-flex items-center gap-1 group"
+              className="text-sm font-semibold text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 group"
               tabIndex={-1}
             >
               <span>{locale === "ml" ? "എല്ലാ കോഴ്സുകളും" : "All Courses"}</span>
@@ -177,7 +177,7 @@ export function CoursesDropdown({
                 key={course.slug}
                 href={`/courses/${course.slug}`}
                 role="menuitem"
-                className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none"
+                className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition-all hover:bg-slate-50 hover:text-primary focus:bg-slate-50 focus:text-primary focus:outline-none"
                 tabIndex={-1}
               >
                 <span className="line-clamp-2">
@@ -185,7 +185,7 @@ export function CoursesDropdown({
                     ? course.titleMl
                     : course.titleEn}
                 </span>
-                <ArrowRight className="size-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-sky-400 shrink-0 ml-1.5" />
+                <ArrowRight className="size-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary shrink-0 ml-1.5" />
               </Link>
             ))}
           </div>

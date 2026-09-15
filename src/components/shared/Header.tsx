@@ -482,8 +482,8 @@ export function Header({
         className={cn(
           "sticky top-0 z-40 w-full transition-all duration-300",
           scrolled
-            ? "bg-[#004282]/95 backdrop-blur-xl border-b border-white/10 shadow-md supports-[backdrop-filter]:bg-[#004282]/90"
-            : "bg-[#004282] border-b border-white/10 shadow-xs"
+            ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-md supports-[backdrop-filter]:bg-white/90"
+            : "bg-white border-b border-slate-200/80 shadow-xs"
         )}
       >
         <div className="mx-auto flex h-20 sm:h-22 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
@@ -507,7 +507,7 @@ export function Header({
 
           {/* Clean Main Desktop Navigation Links */}
           <nav
-            className="hidden lg:flex items-center gap-1 bg-white/5 p-1.5 rounded-full border border-white/10 shadow-2xs backdrop-blur-sm"
+            className="hidden lg:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-full border border-slate-200/80 shadow-2xs backdrop-blur-sm"
             aria-label="Primary navigation"
           >
             {/* Home & About */}
@@ -520,8 +520,8 @@ export function Header({
                   className={cn(
                     "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-white/15 text-white font-semibold shadow-xs border border-white/20"
-                      : "text-slate-300 hover:text-white hover:bg-white/10"
+                      ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                   )}
                 >
                   {t(item.labelKey)}
@@ -542,8 +542,8 @@ export function Header({
                 className={cn(
                   "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                   pathname.startsWith("/courses")
-                    ? "bg-white/15 text-white font-semibold shadow-xs border border-white/20"
-                    : "text-slate-300 hover:text-white hover:bg-white/10"
+                    ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                 )}
               >
                 {t("courses")}
@@ -560,8 +560,8 @@ export function Header({
                   className={cn(
                     "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-white/15 text-white font-semibold shadow-xs border border-white/20"
-                      : "text-slate-300 hover:text-white hover:bg-white/10"
+                      ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                   )}
                 >
                   {t(item.labelKey)}
@@ -575,17 +575,17 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="group flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
+              className="group flex items-center gap-2.5 rounded-full border border-slate-200 bg-slate-100/90 hover:bg-slate-200/80 px-4 py-2 text-sm font-bold text-slate-800 transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
               aria-label="Open account menu"
               aria-expanded={drawerOpen}
             >
-              <div className="flex size-7 items-center justify-center rounded-full bg-sky-500/20 text-sky-400">
+              <div className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <User className="size-4" />
               </div>
-              <span className="font-bold text-sm text-white">
+              <span className="font-bold text-sm text-slate-800">
                 {isSignedIn ? t("myPortal") : "Menu"}
               </span>
-              <Menu className="size-4 text-slate-400 group-hover:text-white transition-colors" />
+              <Menu className="size-4 text-slate-500 group-hover:text-slate-800 transition-colors" />
             </button>
           </div>
 
@@ -594,7 +594,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(!drawerOpen)}
-              className="size-10 inline-flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/15 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
+              className="size-10 inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
               aria-label={drawerOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={drawerOpen}
               aria-controls="slideout-sidebar"

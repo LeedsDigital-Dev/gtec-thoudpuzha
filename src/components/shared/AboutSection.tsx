@@ -53,7 +53,7 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
                   <Award className="size-6" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">30+ Years Legacy</p>
+                  <p className="text-sm font-bold text-foreground">25+ Years Legacy</p>
                   <p className="text-sm font-medium text-muted-foreground">Excellence in IT Training</p>
                 </div>
               </div>

@@ -35,9 +35,7 @@ export default async function PublicLayout({
   return (
     <div className="relative min-h-screen w-full flex flex-col">
       <Header courses={courses} />
-      <div className="min-h-[36px]">
-        <FlashNewsBar />
-      </div>
+      <FlashNewsBar />
       <div className="flex-1 w-full max-w-full overflow-x-hidden">
         {children}
       </div>

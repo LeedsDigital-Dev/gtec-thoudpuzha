@@ -46,9 +46,9 @@ export default async function HomePage({ params }: HomePageProps) {
     ]);
 
   return (
-    <main className="relative flex flex-col w-full min-h-screen">
+    <main className="relative flex flex-col w-full">
       {/* Hero & Visual Showcase Section */}
-      <section className="relative overflow-hidden py-8 sm:py-12 lg:py-16">
+      <section className="relative overflow-hidden py-8 sm:py-10 lg:py-12">
         {/* Dynamic Blue Waves Background Image */}
         <div
           className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none bg-sky-50/40 dark:bg-slate-950/40"
@@ -62,8 +62,8 @@ export default async function HomePage({ params }: HomePageProps) {
             sizes="100vw"
             className="object-cover object-bottom sm:object-center opacity-55 dark:opacity-30"
           />
-          {/* Soft ambient gradient overlay for smooth contrast and seamless blending */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/70" />
+          {/* Soft ambient gradient overlay for smooth contrast without washing out bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -140,7 +140,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   </div>
                   <div>
                     <p className="text-xs sm:text-sm font-extrabold text-foreground leading-tight">4.9/5 Rating</p>
-                    <p className="text-xs text-muted-foreground font-medium">30+ Yrs Global Legacy</p>
+                    <p className="text-xs text-muted-foreground font-medium">25+ Yrs Global Legacy</p>
                   </div>
                 </div>
               </div>

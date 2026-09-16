@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import type { SiteSettings, WhyChooseUsCard } from "@prisma/client";
 import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 import { getMediaUrl } from "@/lib/media";
+import { logger } from "@/lib/logger";
 
 export type SiteSettingsWithCards = SiteSettings & {
   whyChooseUsCards: WhyChooseUsCard[];
@@ -55,7 +56,11 @@ export async function getSiteSettings(): Promise<SiteSettingsWithCards> {
     }
 
     return settings;
-  } catch {
+  } catch (err) {
+    // A missing row is handled above and is not an error. Anything reaching here
+    // is a real failure (connection dropped, schema mismatch), so it must be
+    // reported — otherwise an outage renders fabricated stats with no signal.
+    logger.exception("site-settings", "Failed to load site settings", err);
     return DEFAULT_SITE_SETTINGS;
   }
 }

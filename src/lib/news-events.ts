@@ -63,7 +63,11 @@ export async function getHomepageTeaser() {
         take: 3,
       }),
       prisma.newsEvent.findFirst({
-        where: { publishedAt: { not: null }, type: "EVENT" },
+        where: {
+          publishedAt: { not: null },
+          type: "EVENT",
+          eventDate: { gte: new Date() },
+        },
         orderBy: { eventDate: "asc" },
         select: {
           id: true,
@@ -89,6 +93,7 @@ export async function getUpcomingEvents(limit: number = 3): Promise<PublicNewsEv
       where: {
         publishedAt: { not: null },
         type: "EVENT",
+        eventDate: { gte: new Date() },
       },
       orderBy: { eventDate: "asc" },
       take: limit,

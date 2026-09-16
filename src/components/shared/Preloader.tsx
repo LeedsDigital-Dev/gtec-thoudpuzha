@@ -8,16 +8,23 @@ export function Preloader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    try {
-      const hasSeen = sessionStorage.getItem("gtec_ps");
-      if (!hasSeen) {
-        sessionStorage.setItem("gtec_ps", "1");
-        setShow(true);
+    // Deferred into the timer callback: a synchronous setState in an effect body
+    // trips react-hooks/set-state-in-effect and cascades a second render.
+    const mountTimer = setTimeout(() => {
+      setMounted(true);
+
+      try {
+        const hasSeen = sessionStorage.getItem("gtec_ps");
+        if (!hasSeen) {
+          sessionStorage.setItem("gtec_ps", "1");
+          setShow(true);
+        }
+      } catch {
+        // SessionStorage might be unavailable or restricted
       }
-    } catch {
-      // SessionStorage might be unavailable or restricted
-    }
+    }, 0);
+
+    return () => clearTimeout(mountTimer);
   }, []);
 
   useEffect(() => {

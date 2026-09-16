@@ -1,7 +1,8 @@
 // @vitest-environment node
 
 import { describe, expect, test, vi, beforeEach } from "vitest";
-import { updateFooterSettings, validateUrlOrNull } from "./actions";
+import { updateFooterSettings } from "./actions";
+import { validateUrlOrNull } from "@/lib/url-validation";
 
 const mockRequireRole = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() => vi.fn());

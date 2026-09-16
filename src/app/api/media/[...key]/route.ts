@@ -55,17 +55,27 @@ export async function GET(
   }
 
   // 2. Check local filesystem fallback (e.g. public/uploads or public)
+  const publicRoot = path.join(process.cwd(), "public");
   try {
     const candidatePaths = [
-      path.join(process.cwd(), "public", "uploads", objectKey),
-      path.join(process.cwd(), "public", objectKey),
-      path.join(process.cwd(), "public", "images", objectKey),
+      path.join(publicRoot, "uploads", objectKey),
+      path.join(publicRoot, objectKey),
+      path.join(publicRoot, "images", objectKey),
     ];
 
-    for (const p of candidatePaths) {
+    for (const candidate of candidatePaths) {
+      const resolved = path.resolve(candidate);
+
+      // `objectKey` is attacker-controlled, and `path.join` does not neutralise
+      // `..` segments — without this guard a request for `/api/media/..%2f.env.local`
+      // escapes `public/` and reads arbitrary files from the project root.
+      if (!resolved.startsWith(publicRoot + path.sep)) {
+        continue;
+      }
+
       try {
-        const data = await fs.readFile(p);
-        const ext = path.extname(p).toLowerCase();
+        const data = await fs.readFile(resolved);
+        const ext = path.extname(resolved).toLowerCase();
         const mimeMap: Record<string, string> = {
           ".png": "image/png",
           ".jpg": "image/jpeg",

@@ -19,7 +19,7 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
   const stats = getAtAGlanceStats(settings);
 
   return (
-    <section aria-labelledby="at-a-glance-heading" className="relative border-y border-border/60 bg-muted/25 pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20 overflow-hidden">
+    <section aria-labelledby="at-a-glance-heading" className="relative border-b border-border/60 bg-muted/25 pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20 overflow-hidden">
       {/* Subtle background decoration */}
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-radial-glow opacity-50" aria-hidden="true" />

@@ -49,9 +49,9 @@ export default async function HomePage({ params }: HomePageProps) {
     <main className="relative flex flex-col w-full">
       {/* Hero & Visual Showcase Section */}
       <section className="relative overflow-hidden py-8 sm:py-10 lg:py-12">
-        {/* Dynamic Blue Waves Background Image */}
+        {/* Dynamic Blue Waves Background Image with Smooth Bottom Fade to White/Background */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none bg-sky-50/40 dark:bg-slate-950/40"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none bg-sky-50/30 dark:bg-slate-950/30 [mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)]"
           aria-hidden="true"
         >
           <Image
@@ -60,11 +60,17 @@ export default async function HomePage({ params }: HomePageProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-bottom sm:object-center opacity-55 dark:opacity-30"
+            className="object-cover object-bottom sm:object-center opacity-50 dark:opacity-25"
           />
-          {/* Soft ambient gradient overlay for smooth contrast without washing out bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-transparent" />
+          {/* Ambient gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent via-35% to-background" />
         </div>
+
+        {/* Seamless bottom fade overlay ensuring the entire bottom edge cleanly melts into white/background with no sharp line */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-36 lg:h-44 bg-gradient-to-t from-background via-background/80 to-transparent -z-10"
+          aria-hidden="true"
+        />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16">

@@ -8,6 +8,7 @@ import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
 import { siteConfig } from "@/lib/site";
 import { Target, Compass, Heart, MapPin, Phone, MessageSquare } from "lucide-react";
+import LeafletContactMap from "@/components/shared/LeafletContactMap";
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
@@ -37,6 +38,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const atAGlanceT = await getTranslations({ locale, namespace: "atAGlance" });
   const whyT = await getTranslations({ locale, namespace: "whyChooseUs" });
   const certT = await getTranslations({ locale, namespace: "certPartners" });
+
+  const mapsUrl =
+    settings.mapsUrl ||
+    (settings.address
+      ? `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`
+      : siteConfig.mapsUrl);
 
   return (
     <main className="min-h-screen pb-16">
@@ -175,28 +182,18 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 </div>
               </div>
 
-              {settings.mapEmbedUrl ? (
-                <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border shadow-inner">
-                  <iframe
-                    src={settings.mapEmbedUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="G-TEC Education Thodupuzha location map"
-                  />
-                </div>
-              ) : (
-                <div className="flex aspect-video w-full items-center justify-center rounded-2xl bg-muted p-8 text-center text-muted-foreground">
-                  <div className="flex flex-col items-center gap-2">
-                    <MapPin className="h-8 w-8 text-primary/60" />
-                    <p className="text-sm font-medium">G-TEC Education Centre</p>
-                    <p className="text-sm text-muted-foreground">Temple Bypass Road, Thodupuzha</p>
-                  </div>
-                </div>
-              )}
+              <div className="w-full overflow-hidden rounded-2xl">
+                <LeafletContactMap
+                  lat={9.8965}
+                  lng={76.7185}
+                  title="G-TEC Education Thodupuzha"
+                  address={
+                    settings.address ||
+                    "G-TEC Education, Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Idukki District, Kerala - 685584."
+                  }
+                  mapsUrl={mapsUrl}
+                />
+              </div>
             </div>
           </div>
         </div>

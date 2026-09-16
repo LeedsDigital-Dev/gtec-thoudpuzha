@@ -23,7 +23,7 @@ describe("Footer", () => {
         "https://maps.google.com/?q=G-TEC+Computer+Education+East+End+Thodupuzha",
       instagramUrl: "https://www.instagram.com/gtec_thodupuzha/",
       facebookUrl: "https://www.facebook.com/gtectdpa",
-      whatsappNumber: "919544229992",
+      whatsappNumber: "919744221113",
       googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=G-TEC+Reviews",
     };
 
@@ -50,7 +50,7 @@ describe("Footer", () => {
 
     // WhatsApp
     expect(html).toContain('data-testid="footer-whatsapp-link"');
-    expect(html).toContain("https://wa.me/919544229992");
+    expect(html).toContain("https://wa.me/919744221113");
 
     // Google Reviews
     expect(html).toContain('data-testid="footer-google-reviews-link"');
@@ -80,11 +80,11 @@ describe("Footer", () => {
     const phoneSettings = {
       address: "Thodupuzha",
       mapsUrl: "https://maps.google.com",
-      whatsappNumber: "+91 9544-229-992",
+      whatsappNumber: "+91 9744-221-113",
     };
 
     const html = renderToString(await Footer({ settings: phoneSettings }));
     expect(html).toContain('data-testid="footer-whatsapp-link"');
-    expect(html).toContain("https://wa.me/919544229992");
+    expect(html).toContain("https://wa.me/919744221113");
   });
 });

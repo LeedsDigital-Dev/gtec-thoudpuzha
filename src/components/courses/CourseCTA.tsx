@@ -10,7 +10,7 @@ interface CourseCTAProps {
 export function CourseCTA({
   courseTitle,
   locale,
-  whatsappNumber = "919544229992",
+  whatsappNumber = "919744221113",
 }: CourseCTAProps) {
   const isMl = locale === "ml";
   const title = isMl
@@ -20,7 +20,7 @@ export function CourseCTA({
     ? "തൊടുപുഴയിലെ മികച്ച കമ്പ്യൂട്ടർ & പ്രൊഫഷണൽ ട്രെയിനിംഗ് ഇൻസ്റ്റിറ്റ്യൂട്ടിൽ ഇപ്പോൾ തന്നെ അഡ്മിഷൻ നേടൂ."
     : "Start learning with practical, industry-focused training, certified mentors, and 100% dedicated placement support.";
 
-  const cleanPhone = (whatsappNumber || "919544229992").replace(/\D/g, "");
+  const cleanPhone = (whatsappNumber || "919744221113").replace(/\D/g, "");
   const whatsappMsg = encodeURIComponent(
     `Hello G-TEC Thodupuzha, I would like to apply for the course: ${courseTitle}.`
   );

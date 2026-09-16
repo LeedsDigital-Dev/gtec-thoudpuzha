@@ -276,7 +276,7 @@ export default async function SiteSettingsPage({
                 id="whatsappNumber"
                 name="whatsappNumber"
                 type="text"
-                placeholder="e.g. 919544229992 or https://wa.me/..."
+                placeholder="e.g. 919744221113 or https://wa.me/..."
                 defaultValue={settings.whatsappNumber ?? ""}
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />

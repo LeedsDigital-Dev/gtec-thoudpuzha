@@ -17,7 +17,7 @@ export function FooterBottom({
   facebookUrl = "https://www.facebook.com/gtectdpa",
   instagramUrl = "https://www.instagram.com/gtec_thodupuzha/",
   youtubeUrl = "https://www.youtube.com/@gtecthodupuzha",
-  whatsappUrl = "https://wa.me/919447260022",
+  whatsappUrl = "https://wa.me/919744221113",
   googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=G-TEC+Computer+Education+Thodupuzha+reviews",
   centreName = "THODUPUZHA",
 }: FooterBottomProps) {

@@ -15,9 +15,10 @@ export function CourseQuickEnquiry({
   courseTitle,
   courses,
   locale,
-  whatsappNumber = "919544229992",
+  whatsappNumber = "919744221113",
 }: CourseQuickEnquiryProps) {
   const isMl = locale === "ml";
+  const cleanDigits = (whatsappNumber || "919744221113").replace(/\D/g, "");
 
   return (
     <div id="admission-enquiry" className="space-y-5 scroll-mt-24">
@@ -68,11 +69,11 @@ export function CourseQuickEnquiry({
         </div>
 
         <a
-          href={`tel:+${whatsappNumber || "919544229992"}`}
+          href={`tel:+${cleanDigits}`}
           className="flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-card py-2.5 px-4 text-xs sm:text-sm font-bold text-primary shadow-2xs transition-all hover:bg-primary hover:text-primary-foreground"
         >
           <Phone className="size-3.5" />
-          <span>+91 95442 29992</span>
+          <span>+91 97442 21113</span>
         </a>
 
         {/* Guarantee points */}

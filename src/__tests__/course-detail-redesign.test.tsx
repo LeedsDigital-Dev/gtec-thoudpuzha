@@ -239,7 +239,7 @@ describe("Course Detail UI Components", () => {
   });
 
   test("CourseCTA renders conversion banner with Apply button and WhatsApp link", () => {
-    render(<CourseCTA courseTitle="Tally Prime with GST" locale="en" whatsappNumber="919544229992" />);
+    render(<CourseCTA courseTitle="Tally Prime with GST" locale="en" whatsappNumber="919744221113" />);
     expect(screen.getByText("Ready to Transform Your Career with G-TEC?")).toBeDefined();
     expect(screen.getByText("Apply For Admission")).toBeDefined();
     expect(screen.getByText("WhatsApp Enquiry")).toBeDefined();

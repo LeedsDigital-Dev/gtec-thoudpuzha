@@ -34,7 +34,7 @@ export async function validateUrlOrNull(
       }
     } catch {
       throw new Error(
-        "Invalid WhatsApp format. Enter a valid phone number (e.g. +919544229992) or wa.me link.",
+        "Invalid WhatsApp format. Enter a valid phone number (e.g. +919744221113) or wa.me link.",
       );
     }
   }

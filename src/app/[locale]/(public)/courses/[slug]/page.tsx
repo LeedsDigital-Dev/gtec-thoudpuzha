@@ -95,7 +95,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
   const careerRoles = getCareerOpportunities(course, locale);
   const audience = getWhoCanJoin(locale);
 
-  const whatsappNumber = siteSettings?.whatsappNumber || "919544229992";
+  const whatsappNumber = siteSettings?.whatsappNumber || "919744221113";
 
   return (
     <main className="min-h-screen bg-background pb-16 sm:pb-24">

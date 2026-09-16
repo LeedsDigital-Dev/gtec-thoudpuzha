@@ -56,7 +56,7 @@ function createSettings() {
     address: "East End, Thodupuzha",
     mapEmbedUrl: null,
     mapsUrl: "https://maps.google.com/?q=G-TEC",
-    whatsappNumber: "919544229992",
+    whatsappNumber: "919744221113",
     facebookUrl: "https://facebook.com/gtec",
     instagramUrl: "https://instagram.com/gtec",
     youtubeUrl: null,
@@ -88,10 +88,10 @@ describe("validateUrlOrNull", () => {
   });
 
   test("accepts valid phone numbers and URLs for WhatsApp", async () => {
-    expect(await validateUrlOrNull("919544229992", "WhatsApp")).toBe("919544229992");
-    expect(await validateUrlOrNull("+91 9544 229992", "WhatsApp")).toBe("+91 9544 229992");
-    expect(await validateUrlOrNull("https://wa.me/919544229992", "WhatsApp")).toBe(
-      "https://wa.me/919544229992",
+    expect(await validateUrlOrNull("919744221113", "WhatsApp")).toBe("919744221113");
+    expect(await validateUrlOrNull("+91 9744 221113", "WhatsApp")).toBe("+91 9744 221113");
+    expect(await validateUrlOrNull("https://wa.me/919744221113", "WhatsApp")).toBe(
+      "https://wa.me/919744221113",
     );
   });
 });
@@ -148,7 +148,7 @@ describe("updateFooterSettings", () => {
     );
     formData.append("instagramUrl", "https://www.instagram.com/gtec_thodupuzha/");
     formData.append("facebookUrl", "https://www.facebook.com/gtectdpa");
-    formData.append("whatsappNumber", "919544229992");
+    formData.append("whatsappNumber", "919744221113");
     formData.append(
       "googleReviewsUrl",
       "https://www.google.com/maps/search/?api=1&query=G-TEC+Reviews",
@@ -165,7 +165,7 @@ describe("updateFooterSettings", () => {
           "https://maps.google.com/?q=G-TEC+Computer+Education+Thodupuzha",
         instagramUrl: "https://www.instagram.com/gtec_thodupuzha/",
         facebookUrl: "https://www.facebook.com/gtectdpa",
-        whatsappNumber: "919544229992",
+        whatsappNumber: "919744221113",
         googleReviewsUrl:
           "https://www.google.com/maps/search/?api=1&query=G-TEC+Reviews",
       }),

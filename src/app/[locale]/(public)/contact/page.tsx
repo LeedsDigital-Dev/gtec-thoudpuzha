@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { MapPin, Phone, MessageSquare, Clock, ExternalLink } from "lucide-react";
+import { MapPin, Phone, MessageSquare, Mail, Clock, ExternalLink } from "lucide-react";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
 import { getPublishedCourses } from "@/lib/courses";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
@@ -85,10 +85,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 {contactPageT("phoneDesc")}
               </p>
 
-              <div className="mt-4 space-y-2 text-sm font-medium">
+              <div className="mt-4 space-y-2.5 text-sm font-medium">
                 <div>
                   <a
-                    href={`tel:${siteConfig.phoneNumber}`}
+                    href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                     className="inline-flex items-center gap-2 text-primary hover:underline"
                   >
                     <Phone className="h-4 w-4" />
@@ -104,6 +104,15 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   >
                     <MessageSquare className="h-4 w-4" />
                     <span>WhatsApp: {siteConfig.phoneNumber}</span>
+                  </a>
+                </div>
+                <div className="pt-1 border-t border-border/60">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-primary hover:underline break-all"
+                  >
+                    <Mail className="h-4 w-4 text-sky-500 shrink-0" />
+                    <span className="text-xs sm:text-sm truncate">{siteConfig.email}</span>
                   </a>
                 </div>
               </div>

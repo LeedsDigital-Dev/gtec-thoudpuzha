@@ -30,7 +30,7 @@ const DEFAULT_SITE_SETTINGS: SiteSettingsWithCards = {
   mapEmbedUrl: null,
   mapsUrl:
     "https://maps.google.com/?q=G-TEC+Computer+Education,+East+End,+Thodupuzha-Udumbanoor+Rd,+near+De+Paul+Public+School,+Thodupuzha,+Kerala+685585",
-  whatsappNumber: "919544229992",
+  whatsappNumber: "919744221113",
   facebookUrl: "https://www.facebook.com/gtectdpa",
   instagramUrl: "https://www.instagram.com/gtec_thodupuzha/",
   youtubeUrl: null,

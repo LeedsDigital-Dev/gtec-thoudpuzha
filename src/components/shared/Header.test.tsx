@@ -52,7 +52,7 @@ describe("Header", () => {
     );
     expect(screen.getAllByLabelText("Call Now")[0]).toHaveAttribute(
       "href",
-      `tel:${siteConfig.phoneNumber}`,
+      `tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`,
     );
     expect(screen.getAllByLabelText("Apply Now")[0]).toHaveAttribute(
       "href",

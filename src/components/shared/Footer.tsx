@@ -240,7 +240,7 @@ export async function Footer({
           <div className="md:col-span-2 lg:col-span-4">
             <FooterContact
               phone={siteConfig.phoneNumber}
-              email="info@gtec.in"
+              email={siteConfig.email}
               address={liveAddress}
               centreName={siteConfig.centreName}
             />

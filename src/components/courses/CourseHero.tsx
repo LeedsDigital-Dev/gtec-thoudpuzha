@@ -25,7 +25,7 @@ export function CourseHero({
   course,
   locale,
   tagline,
-  whatsappNumber = "919544229992",
+  whatsappNumber = "919744221113",
 }: CourseHeroProps) {
   const isMl = locale === "ml";
   const title = isMl && course.titleMl ? course.titleMl : course.titleEn;
@@ -42,7 +42,7 @@ export function CourseHero({
     ? getMediaUrl(course.coverImageUrl)
     : getCourseFallbackImage(course.slug, course.category?.nameEn);
 
-  const cleanPhone = (whatsappNumber || "919544229992").replace(/\D/g, "");
+  const cleanPhone = (whatsappNumber || "919744221113").replace(/\D/g, "");
   const whatsappMsg = encodeURIComponent(
     `Hello G-TEC Thodupuzha, I would like to know more about admission for the course: ${course.titleEn}.`
   );

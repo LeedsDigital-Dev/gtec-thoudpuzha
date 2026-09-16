@@ -13,14 +13,14 @@ interface FooterContactProps {
 }
 
 export function FooterContact({
-  phone = "+91 94472 60022",
-  email = "info@gtec.in",
+  phone = "+91 97442 21113",
+  email = "thodupuzha.idk@gteceducation.com",
   address = "Near Municipal Office, Thodupuzha, Idukki District, Kerala – 685584",
   centreName = "THODUPUZHA",
 }: FooterContactProps) {
-  const displayPhone = phone || "+91 94472 60022";
+  const displayPhone = phone || "+91 97442 21113";
   const rawPhone = displayPhone.replace(/[^0-9+]/g, "");
-  const displayEmail = email || "info@gtec.in";
+  const displayEmail = email || "thodupuzha.idk@gteceducation.com";
   const displayAddress =
     address ||
     "Near Municipal Office, Thodupuzha, Idukki District, Kerala – 685584";

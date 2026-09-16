@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, MessageCircle, Send, Sparkles, Star, ExternalLink } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, Send, Sparkles, Star, ExternalLink } from "lucide-react";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { siteConfig } from "@/lib/site";
@@ -212,7 +212,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
               {/* Direct Action Chips */}
               <div className="grid gap-3 sm:grid-cols-2">
                 <a
-                  href={`tel:${siteConfig.phoneNumber}`}
+                  href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                   className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
                 >
                   <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
@@ -236,6 +236,19 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">{t("whatsapp")}</p>
                     <p className="text-sm font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
+                  </div>
+                </a>
+
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group sm:col-span-2"
+                >
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                    <Mail className="size-4.5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-muted-foreground">Official Email</p>
+                    <p className="text-sm font-bold text-foreground truncate">{siteConfig.email}</p>
                   </div>
                 </a>
               </div>

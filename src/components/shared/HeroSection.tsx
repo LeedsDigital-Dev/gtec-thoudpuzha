@@ -72,7 +72,7 @@ export function HeroSection({ t }: HeroSectionProps) {
           {t.whatsappUs}
         </a>
         <a
-          href={`tel:${siteConfig.phoneNumber}`}
+          href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
             "w-full sm:w-auto justify-center rounded-2xl border-border/80 bg-background/80 hover:bg-muted/80 text-foreground font-bold text-sm sm:text-base px-5 py-3 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"

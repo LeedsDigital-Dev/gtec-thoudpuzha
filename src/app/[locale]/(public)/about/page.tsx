@@ -6,6 +6,7 @@ import { AboutSection } from "@/components/shared/AboutSection";
 import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
 import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
+import { siteConfig } from "@/lib/site";
 import { Target, Compass, Heart, MapPin, Phone, MessageSquare } from "lucide-react";
 
 interface AboutPageProps {
@@ -156,14 +157,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a
-                    href="tel:+919447123456"
+                    href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                     className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                   >
                     <Phone className="h-4 w-4" />
                     <span>Call Centre</span>
                   </a>
                   <a
-                    href="https://wa.me/919447123456"
+                    href={`https://wa.me/${siteConfig.whatsappNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"

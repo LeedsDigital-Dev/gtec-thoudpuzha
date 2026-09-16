@@ -432,7 +432,7 @@ export function Header({
 
             {/* Call Now Button */}
             <a
-              href={`tel:${siteConfig.phoneNumber}`}
+              href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
               aria-label={t("callNow")}
               className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-all group"
             >

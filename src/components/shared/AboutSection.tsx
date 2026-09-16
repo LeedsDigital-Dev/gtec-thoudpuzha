@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getLocalizedAbout, type Locale, type SiteSettingsWithCards } from "@/lib/site-settings";
+import { getMediaUrl } from "@/lib/media";
 import { Award, Laptop, Users2, Sparkles } from "lucide-react";
 
 interface AboutSectionProps {
@@ -31,9 +32,10 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
               {about.photoUrl ? (
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border/80 shadow-2xl bg-card">
                   <Image
-                    src={about.photoUrl}
+                    src={getMediaUrl(about.photoUrl)}
                     alt="G-TEC Thodupuzha centre"
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-500 hover:scale-105"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
@@ -53,7 +55,7 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
                   <Award className="size-6" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">30+ Years Legacy</p>
+                  <p className="text-sm font-bold text-foreground">25+ Years Legacy</p>
                   <p className="text-sm font-medium text-muted-foreground">Excellence in IT Training</p>
                 </div>
               </div>

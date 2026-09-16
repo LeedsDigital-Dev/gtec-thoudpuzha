@@ -136,7 +136,7 @@ export function Header({
       {/* Backdrop Overlay covering 100% of viewport */}
       <div
         className={cn(
-          "fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300 ease-in-out",
+          "fixed inset-0 bg-black/70 backdrop-blur-xs transition-opacity duration-300 ease-in-out",
           drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setDrawerOpen(false)}
@@ -147,28 +147,28 @@ export function Header({
       <aside
         id="slideout-sidebar"
         className={cn(
-          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-background border-l border-border/80 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
+          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-white text-slate-800 border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
           drawerOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         <div className="flex flex-col p-5 sm:p-6 space-y-5">
           {/* Drawer Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-border/70">
-            <div className="flex items-center gap-2.5">
-              <div className="relative h-8 aspect-[1600/1094]">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="relative h-10 sm:h-11 aspect-[1600/1094]">
                 <Image
-                  src="/icons/gtec.jpeg"
+                  src="/icons/gtec.png"
                   alt="G-TEC Thodupuzha logo"
                   fill
-                  sizes="50px"
+                  sizes="80px"
                   className="object-contain"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold uppercase tracking-wider text-foreground">
+                <span className="text-sm font-bold uppercase tracking-wider text-slate-900">
                   Navigation & Profile
                 </span>
-                <span className="text-sm font-medium text-muted-foreground uppercase">
+                <span className="text-sm font-medium text-slate-500 uppercase">
                   {siteConfig.centreName} Centre
                 </span>
               </div>
@@ -177,7 +177,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(false)}
-              className="size-8 inline-flex items-center justify-center rounded-full bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="size-8 inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
               aria-label="Close drawer"
             >
               <X className="size-4" />
@@ -185,14 +185,14 @@ export function Header({
           </div>
 
           {/* 1. User Details / Authentication Section */}
-          <div className="rounded-2xl border border-border/80 bg-card p-4 shadow-xs">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-xs">
             {isSignedIn ? (
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <UserButton
                       appearance={{
-                        elements: { avatarBox: "size-9 ring-2 ring-primary/20" },
+                        elements: { avatarBox: "size-9 ring-2 ring-primary/40" },
                       }}
                     >
                       <UserButton.MenuItems>
@@ -204,10 +204,10 @@ export function Header({
                       </UserButton.MenuItems>
                     </UserButton>
                     <div>
-                      <span className="block font-bold text-sm text-foreground">
+                      <span className="block font-bold text-sm text-slate-900">
                         {t("myPortal")}
                       </span>
-                      <span className="text-muted-foreground text-sm">
+                      <span className="text-slate-500 text-sm">
                         {t("brandName")} Account
                       </span>
                     </div>
@@ -225,13 +225,13 @@ export function Header({
               </div>
             ) : (
               <div className="flex flex-col gap-2.5">
-                <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2.5 text-sm text-slate-500">
                   <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <User className="size-3.5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground text-sm">Student & Portal Access</p>
-                    <p className="text-sm text-muted-foreground">Sign in to access resources and job matches</p>
+                    <p className="font-semibold text-slate-900 text-sm">Student & Portal Access</p>
+                    <p className="text-sm text-slate-500">Sign in to access resources and job matches</p>
                   </div>
                 </div>
 
@@ -251,10 +251,10 @@ export function Header({
           {/* Mobile-Only Navigation Links */}
           {drawerOpen && (
             <nav
-              className="lg:hidden space-y-1 py-2 border-y border-border/70"
+              className="lg:hidden space-y-1 py-2 border-y border-slate-200"
               aria-label="Mobile navigation"
             >
-              <p className="px-2 py-1 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+              <p className="px-2 py-1 text-sm font-bold uppercase tracking-wider text-slate-500">
                 Navigation
               </p>
               <Link
@@ -262,12 +262,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Home className="size-4 text-muted-foreground" />
+                <Home className="size-4 text-slate-500" />
                 <span>{t("home")}</span>
               </Link>
 
@@ -276,12 +276,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/about")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Info className="size-4 text-muted-foreground" />
+                <Info className="size-4 text-slate-500" />
                 <span>{t("about")}</span>
               </Link>
 
@@ -291,8 +291,8 @@ export function Header({
                   className={cn(
                     "flex items-center justify-between rounded-xl px-3 py-2 transition-all",
                     pathname.startsWith("/courses")
-                      ? "bg-primary/10 text-primary font-bold"
-                      : "text-foreground hover:bg-muted/70"
+                      ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   )}
                 >
                   <Link
@@ -300,14 +300,14 @@ export function Header({
                     className="flex items-center gap-3 text-sm font-semibold flex-1"
                     onClick={() => setDrawerOpen(false)}
                   >
-                    <GraduationCap className="size-4 text-muted-foreground" />
+                    <GraduationCap className="size-4 text-slate-500" />
                     <span>{t("courses")}</span>
                   </Link>
                   {courses && courses.length > 0 && (
                     <button
                       type="button"
                       onClick={() => setCoursesOpenMobile((o) => !o)}
-                      className="p-1 rounded-md text-muted-foreground hover:text-foreground"
+                      className="p-1 rounded-md text-slate-500 hover:text-slate-900"
                       aria-label="Toggle courses submenu"
                     >
                       <ChevronDown
@@ -321,12 +321,12 @@ export function Header({
                 </div>
 
                 {courses && courses.length > 0 && coursesOpenMobile && (
-                  <div className="ml-7 my-1 border-l-2 border-primary/30 pl-3 space-y-1">
+                  <div className="ml-7 my-1 border-l-2 border-primary/40 pl-3 space-y-1">
                     {courses.map((course) => (
                       <Link
                         key={course.slug}
                         href={localeHref(`/courses/${course.slug}`)}
-                        className="block rounded-lg px-2 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                        className="block rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                         onClick={() => setDrawerOpen(false)}
                       >
                         {locale === "ml" && course.titleMl
@@ -343,12 +343,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/placement")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Briefcase className="size-4 text-muted-foreground" />
+                <Briefcase className="size-4 text-slate-500" />
                 <span>{t("placement")}</span>
               </Link>
 
@@ -357,12 +357,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/portal/student")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <BookOpen className="size-4 text-muted-foreground" />
+                <BookOpen className="size-4 text-slate-500" />
                 <span>{t("resources")}</span>
               </Link>
 
@@ -371,12 +371,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/gallery")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <ImageIcon className="size-4 text-muted-foreground" />
+                <ImageIcon className="size-4 text-slate-500" />
                 <span>{t("gallery")}</span>
               </Link>
 
@@ -385,12 +385,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/contact")
-                    ? "bg-primary/10 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Send className="size-4 text-muted-foreground" />
+                <Send className="size-4 text-slate-500" />
                 <span>{t("contact")}</span>
               </Link>
             </nav>
@@ -398,7 +398,7 @@ export function Header({
 
           {/* 2. Language Selection */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-500">
               <Globe className="size-3.5 text-primary" />
               <span>Language / ഭാഷ</span>
             </div>
@@ -407,7 +407,7 @@ export function Header({
 
           {/* 3. WhatsApp & Direct Contact Channels */}
           <div className="space-y-2.5 pt-1">
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-500">
               <Phone className="size-3.5 text-primary" />
               <span>Direct Support</span>
             </div>
@@ -418,32 +418,32 @@ export function Header({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("whatsapp")}
-              className="flex items-center gap-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-3.5 text-sm font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/20 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-sm font-semibold text-emerald-800 hover:bg-emerald-100 transition-all group"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
                 <MessageCircle className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-foreground">WhatsApp Admission Desk</p>
-                <p className="text-sm text-emerald-700 dark:text-emerald-400 truncate">Chat directly with counsellor</p>
+                <p className="font-bold text-sm text-slate-900">WhatsApp Admission Desk</p>
+                <p className="text-sm text-emerald-700 truncate">Chat directly with counsellor</p>
               </div>
-              <ChevronRight className="size-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+              <ChevronRight className="size-4 text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
             </a>
 
             {/* Call Now Button */}
             <a
-              href={`tel:${siteConfig.phoneNumber}`}
+              href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
               aria-label={t("callNow")}
-              className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-3.5 text-sm font-semibold text-foreground hover:bg-primary/10 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-100 transition-all group"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Phone className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm">{t("callNow")}</p>
-                <p className="text-sm text-muted-foreground truncate">{siteConfig.phoneNumber}</p>
+                <p className="font-bold text-sm text-slate-900">{t("callNow")}</p>
+                <p className="text-sm text-slate-500 truncate">{siteConfig.phoneNumber}</p>
               </div>
-              <ChevronRight className="size-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+              <ChevronRight className="size-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
 
@@ -463,12 +463,12 @@ export function Header({
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-5 sm:p-6 border-t border-border/70 bg-muted/20">
+        <div className="p-5 sm:p-6 border-t border-slate-200 bg-slate-50">
           <div className="flex items-center gap-2 text-primary font-bold text-sm">
             <ShieldCheck className="size-4 shrink-0" />
             <span>ISO 9001:2015 Certified Centre</span>
           </div>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm text-slate-500">
             G-TEC Education Centre, Thodupuzha
           </p>
         </div>
@@ -482,42 +482,32 @@ export function Header({
         className={cn(
           "sticky top-0 z-40 w-full transition-all duration-300",
           scrolled
-            ? "bg-background/95 backdrop-blur-xl border-b border-border/80 shadow-xs supports-[backdrop-filter]:bg-background/85"
-            : "bg-background/85 backdrop-blur-lg border-b border-border/50 supports-[backdrop-filter]:bg-background/75"
+            ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-md supports-[backdrop-filter]:bg-white/90"
+            : "bg-white border-b border-slate-200/80 shadow-xs"
         )}
       >
-        <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
-          {/* Brand Logo & Centre Identity */}
+        <div className="mx-auto flex h-20 sm:h-22 max-w-7xl items-center justify-between px-3.5 sm:px-6 lg:px-8">
+          {/* Brand Logo */}
           <Link
             href={localeHref("/")}
-            className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group py-1"
+            className="flex items-center shrink-0 group py-1"
             aria-label="G-TEC Thodupuzha home"
           >
-            <div className="relative h-10 sm:h-12 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-14 sm:h-16 lg:h-18 aspect-[1600/1094] shrink-0 flex items-center transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/icons/gtec.jpeg"
+                src="/icons/gtec.png"
                 alt="G-TEC Thodupuzha"
                 fill
                 priority
-                sizes="(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px"
+                sizes="(max-width: 640px) 110px, (max-width: 1024px) 140px, 180px"
                 className="object-contain"
               />
-            </div>
-
-            <div className="flex flex-col justify-center min-w-0 border-l border-border/80 pl-2.5 sm:pl-3.5">
-              <span className="text-base sm:text-lg font-bold leading-tight tracking-tight text-foreground truncate group-hover:text-primary transition-colors flex items-center gap-1.5 whitespace-nowrap">
-                <span>{t("brandName")}</span>
-              </span>
-              <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase truncate flex items-center gap-1.5 whitespace-nowrap">
-                <span className="size-2 rounded-full bg-emerald-500 shrink-0 inline-block animate-pulse" />
-                <span>{siteConfig.centreName}</span>
-              </span>
             </div>
           </Link>
 
           {/* Clean Main Desktop Navigation Links */}
           <nav
-            className="hidden lg:flex items-center gap-1 bg-muted/40 p-1.5 rounded-full border border-border/50 shadow-2xs backdrop-blur-sm"
+            className="hidden lg:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-full border border-slate-200/80 shadow-2xs backdrop-blur-sm"
             aria-label="Primary navigation"
           >
             {/* Home & About */}
@@ -530,8 +520,8 @@ export function Header({
                   className={cn(
                     "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
-                      : "text-foreground/75 hover:text-foreground hover:bg-background/60"
+                      ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                   )}
                 >
                   {t(item.labelKey)}
@@ -552,8 +542,8 @@ export function Header({
                 className={cn(
                   "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                   pathname.startsWith("/courses")
-                    ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
-                    : "text-foreground/75 hover:text-foreground hover:bg-background/60"
+                    ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                 )}
               >
                 {t("courses")}
@@ -570,8 +560,8 @@ export function Header({
                   className={cn(
                     "relative text-sm font-medium px-2.5 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap",
                     active
-                      ? "bg-background text-foreground font-semibold shadow-xs border border-border/50"
-                      : "text-foreground/75 hover:text-foreground hover:bg-background/60"
+                      ? "bg-white text-primary font-semibold shadow-xs border border-slate-200/80"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                   )}
                 >
                   {t(item.labelKey)}
@@ -585,17 +575,17 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="group flex items-center gap-2.5 rounded-full border border-border/80 bg-muted/40 hover:bg-muted/80 px-4 py-2 text-sm font-bold text-foreground transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
+              className="group flex items-center gap-2.5 rounded-full border border-slate-200 bg-slate-100/90 hover:bg-slate-200/80 px-4 py-2 text-sm font-bold text-slate-800 transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
               aria-label="Open account menu"
               aria-expanded={drawerOpen}
             >
               <div className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <User className="size-4" />
               </div>
-              <span className="font-bold text-sm">
+              <span className="font-bold text-sm text-slate-800">
                 {isSignedIn ? t("myPortal") : "Menu"}
               </span>
-              <Menu className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+              <Menu className="size-4 text-slate-500 group-hover:text-slate-800 transition-colors" />
             </button>
           </div>
 
@@ -604,7 +594,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(!drawerOpen)}
-              className="size-10 inline-flex items-center justify-center rounded-full bg-muted/60 text-foreground hover:bg-muted border border-border/70 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
+              className="size-10 inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
               aria-label={drawerOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={drawerOpen}
               aria-controls="slideout-sidebar"

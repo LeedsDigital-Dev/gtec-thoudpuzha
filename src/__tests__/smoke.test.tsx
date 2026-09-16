@@ -84,6 +84,6 @@ test("(public) homepage renders main elements and sections", async () => {
   // Structure check (translated strings come from dictionaries)
   expect(html).toContain("Build Your Career With G-TEC Thodupuzha");
   expect(html).toContain("Apply Now");
-  expect(html).toContain("Years of Operation");
+  expect(html).toContain("Years of Legacy");
   expect(html).toContain("About");
 });

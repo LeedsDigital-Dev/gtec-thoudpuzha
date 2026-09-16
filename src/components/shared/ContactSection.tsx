@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, MessageCircle, Send, Sparkles, Star, ExternalLink } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, Send, Sparkles, Star, ExternalLink } from "lucide-react";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { siteConfig } from "@/lib/site";
@@ -10,15 +10,18 @@ import type { PublicCourse } from "@/lib/courses";
 import type { SiteSettings } from "@prisma/client";
 
 interface ContactSectionProps {
-  settings: Pick<
-    SiteSettings,
-    | "address"
-    | "mapEmbedUrl"
-    | "facebookUrl"
-    | "instagramUrl"
-    | "youtubeUrl"
-    | "linkedinUrl"
-    | "googleReviewsUrl"
+  settings: Partial<
+    Pick<
+      SiteSettings,
+      | "address"
+      | "mapsUrl"
+      | "mapEmbedUrl"
+      | "facebookUrl"
+      | "instagramUrl"
+      | "youtubeUrl"
+      | "linkedinUrl"
+      | "googleReviewsUrl"
+    >
   >;
   courses: PublicCourse[];
 }
@@ -107,6 +110,12 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
   const t = useTranslations("contact");
   const [showEnquiry, setShowEnquiry] = useState(false);
 
+  const mapsUrl =
+    settings.mapsUrl ||
+    (settings.address
+      ? `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`
+      : siteConfig.mapsUrl);
+
   const socialLinks = [
     { url: settings.facebookUrl, key: "facebook" },
     { url: settings.instagramUrl, key: "instagram" },
@@ -136,7 +145,7 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
           {/* Interactive Google Maps Frame */}
           {settings.mapEmbedUrl && (
-            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card shadow-lg min-h-[360px] sm:min-h-[440px] flex flex-col">
+            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card shadow-lg min-h-[360px] sm:min-h-[440px] flex flex-col group">
               <iframe
                 title="G-TEC Thodupuzha location"
                 src={settings.mapEmbedUrl}
@@ -149,6 +158,20 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                 referrerPolicy="no-referrer-when-downgrade"
                 data-testid="google-map-iframe"
               />
+              {mapsUrl && (
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-2xl border border-border/80 bg-background/95 backdrop-blur-md px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-bold text-foreground shadow-lg hover:bg-background hover:scale-105 transition-all"
+                  >
+                    <MapPin className="size-4 text-red-500 shrink-0" />
+                    <span>Find Us on Google Maps</span>
+                    <ExternalLink className="size-3.5 text-muted-foreground" />
+                  </a>
+                </div>
+              )}
             </div>
           )}
 
@@ -168,12 +191,28 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                     <span className="text-sm sm:text-base leading-relaxed">{settings.address}</span>
                   </div>
                 )}
+
+                {mapsUrl && (
+                  <div className="mt-3.5">
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-3.5 py-2 text-xs sm:text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-500/20 hover:border-red-500/30 transition-all group"
+                      aria-label="Find Us on Google Maps"
+                    >
+                      <MapPin className="size-4 text-red-500 group-hover:scale-110 transition-transform" />
+                      <span>Find Us on Google Maps</span>
+                      <ExternalLink className="size-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Direct Action Chips */}
               <div className="grid gap-3 sm:grid-cols-2">
                 <a
-                  href={`tel:${siteConfig.phoneNumber}`}
+                  href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                   className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group"
                 >
                   <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
@@ -197,6 +236,19 @@ export function ContactSection({ settings, courses }: ContactSectionProps) {
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">{t("whatsapp")}</p>
                     <p className="text-sm font-bold text-foreground truncate">{siteConfig.phoneNumber}</p>
+                  </div>
+                </a>
+
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3.5 text-sm sm:text-base font-bold text-foreground transition-all hover:border-primary/40 hover:bg-muted/70 hover:shadow-xs group sm:col-span-2"
+                >
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                    <Mail className="size-4.5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-muted-foreground">Official Email</p>
+                    <p className="text-sm font-bold text-foreground truncate">{siteConfig.email}</p>
                   </div>
                 </a>
               </div>

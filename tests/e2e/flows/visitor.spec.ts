@@ -147,7 +147,7 @@ test.describe("Visitor Flow", () => {
     await expect(page.locator("h3").first()).toBeVisible();
 
     // At A Glance section
-    await expect(page.getByText("Years of Operation")).toBeVisible({
+    await expect(page.getByText("Years of Legacy")).toBeVisible({
       timeout: 5000,
     });
   });

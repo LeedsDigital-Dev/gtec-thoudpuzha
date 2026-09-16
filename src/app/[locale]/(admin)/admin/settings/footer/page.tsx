@@ -209,7 +209,7 @@ export default async function FooterSettingsPage({
                 id="whatsappNumber"
                 name="whatsappNumber"
                 type="text"
-                placeholder="e.g. 919544229992 or https://wa.me/919544229992"
+                placeholder="e.g. 919744221113 or https://wa.me/919744221113"
                 defaultValue={settings.whatsappNumber ?? ""}
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />

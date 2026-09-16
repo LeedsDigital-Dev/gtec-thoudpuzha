@@ -65,7 +65,7 @@ export default async function SiteSettingsPage({
                 <input
                   id={field.name}
                   name={field.name}
-                  defaultValue={settings[field.name as keyof typeof settings] as string}
+                  defaultValue={(settings[field.name as keyof typeof settings] as string) ?? ""}
                   className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
                 />
               </div>
@@ -101,17 +101,32 @@ export default async function SiteSettingsPage({
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-3">
               <label htmlFor="aboutPhotoUrl" className="text-sm font-medium">
-                About photo URL
+                About photo (URL or upload image)
               </label>
-              <input
-                id="aboutPhotoUrl"
-                name="aboutPhotoUrl"
-                type="url"
-                defaultValue={settings.aboutPhotoUrl ?? ""}
-                className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
-              />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <input
+                  id="aboutPhotoUrl"
+                  name="aboutPhotoUrl"
+                  type="text"
+                  placeholder="https://... or /images/..."
+                  defaultValue={settings.aboutPhotoUrl ?? ""}
+                  className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+                />
+                <input
+                  id="aboutPhotoFile"
+                  name="aboutPhotoFile"
+                  type="file"
+                  accept="image/*"
+                  className="w-full rounded border border-border bg-background px-3 py-1.5 text-sm file:mr-2 file:rounded-md file:border-0 file:bg-primary/10 file:px-2.5 file:py-1 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
+                />
+              </div>
+              {settings.aboutPhotoUrl && (
+                <p className="text-xs text-muted-foreground truncate">
+                  Current photo: {settings.aboutPhotoUrl}
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -261,7 +276,7 @@ export default async function SiteSettingsPage({
                 id="whatsappNumber"
                 name="whatsappNumber"
                 type="text"
-                placeholder="e.g. 919544229992 or https://wa.me/..."
+                placeholder="e.g. 919744221113 or https://wa.me/..."
                 defaultValue={settings.whatsappNumber ?? ""}
                 className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               />

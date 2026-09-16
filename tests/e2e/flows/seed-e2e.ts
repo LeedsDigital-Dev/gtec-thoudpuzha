@@ -406,12 +406,23 @@ async function seedTestData() {
     await prisma.siteSettings.create({
       data: {
         yearsInOperation: "25+",
-        studentsTrained: "15000+",
-        centresWorldwide: "120+",
-        affiliations: "50+",
+        studentsTrained: "3.2M+",
+        centresWorldwide: "800+",
+        affiliations: "100+",
         countries: "23",
         aboutBodyEn: "E2E test about section.",
         address: "E2E Test Address, Kerala",
+      },
+    });
+  } else {
+    await prisma.siteSettings.update({
+      where: { id: existingSettings.id },
+      data: {
+        yearsInOperation: "25+",
+        studentsTrained: "3.2M+",
+        centresWorldwide: "800+",
+        affiliations: "100+",
+        countries: "23",
       },
     });
   }

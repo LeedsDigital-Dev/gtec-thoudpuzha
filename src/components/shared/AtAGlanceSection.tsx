@@ -1,13 +1,13 @@
-import { Building2, GraduationCap, Globe, Award, Users, Sparkles } from "lucide-react";
+import { Building2, GraduationCap, Globe, Award, Sparkles } from "lucide-react";
 import { getAtAGlanceStats, type SiteSettingsWithCards } from "@/lib/site-settings";
 import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
 
 const statIcons: Record<number, React.ComponentType<{ className?: string }>> = {
-  0: Building2,
-  1: GraduationCap,
-  2: Globe,
-  3: Award,
-  4: Users,
+  0: Sparkles,
+  1: Award,
+  2: GraduationCap,
+  3: Globe,
+  4: Building2,
 };
 
 interface AtAGlanceSectionProps {
@@ -19,7 +19,7 @@ export function AtAGlanceSection({ settings, heading }: AtAGlanceSectionProps) {
   const stats = getAtAGlanceStats(settings);
 
   return (
-    <section aria-labelledby="at-a-glance-heading" className="relative border-y border-border/60 bg-muted/25 py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section aria-labelledby="at-a-glance-heading" className="relative border-b border-border/60 bg-muted/25 pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20 overflow-hidden">
       {/* Subtle background decoration */}
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-radial-glow opacity-50" aria-hidden="true" />

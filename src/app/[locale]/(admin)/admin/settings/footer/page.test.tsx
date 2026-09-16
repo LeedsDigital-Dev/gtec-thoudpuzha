@@ -33,7 +33,7 @@ function createSettings() {
       "East End, Thodupuzha-Udumbanoor Rd, near De Paul Public School, Thodupuzha, Kerala 685585",
     mapEmbedUrl: null,
     mapsUrl: "https://maps.google.com/?q=G-TEC",
-    whatsappNumber: "919544229992",
+    whatsappNumber: "919744221113",
     facebookUrl: "https://facebook.com/gtectdpa",
     instagramUrl: "https://instagram.com/gtec_thodupuzha",
     youtubeUrl: null,
@@ -95,6 +95,6 @@ describe("FooterSettingsPage", () => {
     expect(html).toContain("East End, Thodupuzha-Udumbanoor Rd, near De Paul Public School");
     expect(html).toContain("https://instagram.com/gtec_thodupuzha");
     expect(html).toContain("https://facebook.com/gtectdpa");
-    expect(html).toContain("919544229992");
+    expect(html).toContain("919744221113");
   });
 });

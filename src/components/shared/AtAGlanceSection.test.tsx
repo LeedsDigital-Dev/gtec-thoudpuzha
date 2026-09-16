@@ -5,7 +5,7 @@ import { AtAGlanceSection } from "./AtAGlanceSection";
 function createSettings() {
   return {
     id: "settings_1",
-    yearsInOperation: "30+",
+    yearsInOperation: "25+",
     studentsTrained: "5M+",
     centresWorldwide: "1,000+",
     affiliations: "200+",
@@ -33,10 +33,15 @@ describe("AtAGlanceSection", () => {
     const element = await AtAGlanceSection({ settings: createSettings(), heading: "At a Glance" });
     const html = renderToString(element);
 
-    expect(html).toContain("30+");
+    expect(html).toContain("25+");
     expect(html).toContain("5M+");
     expect(html).toContain("1,000+");
     expect(html).toContain("200+");
     expect(html).toContain("30");
+    expect(html).toContain("Years of Legacy");
+    expect(html).toContain("Affiliations");
+    expect(html).toContain("Students");
+    expect(html).toContain("Countries Served");
+    expect(html).toContain("Centres across the globe");
   });
 });

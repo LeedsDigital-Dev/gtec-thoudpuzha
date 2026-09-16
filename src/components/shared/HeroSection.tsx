@@ -16,7 +16,7 @@ interface HeroSectionProps {
 }
 
 const trustHighlights = [
-  { text: "30+ Years Global Legacy", icon: Award },
+  { text: "25+ Years Global Legacy", icon: Award },
   { text: "ISO 9001:2015 Certified", icon: ShieldCheck },
   { text: "100% Placement Assistance", icon: GraduationCap },
   { text: "Globally Recognized", icon: CheckCircle2 },
@@ -24,7 +24,7 @@ const trustHighlights = [
 
 export function HeroSection({ t }: HeroSectionProps) {
   return (
-    <div className="flex flex-col justify-center gap-6 sm:gap-8 py-2 sm:py-6 lg:min-h-[520px] lg:py-4">
+    <div className="flex flex-col justify-center gap-6 sm:gap-8 py-2 sm:py-4">
       {/* Premium Badge with Live Pulse */}
       <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/8 px-4 py-2 text-sm font-bold text-primary shadow-2xs backdrop-blur-sm w-fit transition-colors hover:bg-primary/12">
         <span className="relative flex size-2.5">
@@ -72,7 +72,7 @@ export function HeroSection({ t }: HeroSectionProps) {
           {t.whatsappUs}
         </a>
         <a
-          href={`tel:${siteConfig.phoneNumber}`}
+          href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
             "w-full sm:w-auto justify-center rounded-2xl border-border/80 bg-background/80 hover:bg-muted/80 text-foreground font-bold text-sm sm:text-base px-5 py-3 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"

@@ -2,8 +2,9 @@
 // client confirms a new WhatsApp number, phone number, or supplies a logo.
 export const siteConfig = {
   centreName: "THODUPUZHA",
-  whatsappNumber: "919544229992",
-  phoneNumber: "+919544229992",
+  email: "thodupuzha.idk@gteceducation.com",
+  whatsappNumber: "919744221113",
+  phoneNumber: "+91 97442 21113",
   locationAddress:
     "East End, Thodupuzha-Udumbanoor Rd, near De Paul Public School, Thodupuzha, Kerala 685585",
   mapsUrl:

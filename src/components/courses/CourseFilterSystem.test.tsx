@@ -4,6 +4,8 @@ import {
   CourseFilterSystem,
   getCourseDepartment,
   getCourseLevel,
+  extractDurationInMonths,
+  matchesDuration,
 } from "./CourseFilterSystem";
 import type { PublicCourse } from "@/lib/courses";
 
@@ -80,6 +82,44 @@ describe("CourseFilterSystem helpers", () => {
     contentBlocks: null,
   };
 
+  const mockCourseADSE: PublicCourse = {
+    id: "c-5",
+    slug: "adse",
+    titleEn: "Advanced Diploma in Software Engineering (ADSE)",
+    titleMl: null,
+    descriptionEn: "Intensive 12-month program in software engineering.",
+    descriptionMl: null,
+    durationText: "12 Months",
+    certifications: ["G-TEC", "ADSE"],
+    careerOutcomesEn: "Software Engineer",
+    careerOutcomesMl: null,
+    coverImageUrl: null,
+    featured: true,
+    category: { id: "cat-1", nameEn: "IT & Software", nameMl: "ഐടി" },
+    contentBlocks: null,
+  };
+
+  const mockCourseIELTS: PublicCourse = {
+    id: "c-6",
+    slug: "ielts-preparation",
+    titleEn: "IELTS / TOEFL Preparation",
+    titleMl: null,
+    descriptionEn: "2-month English proficiency prep course.",
+    descriptionMl: null,
+    durationText: "2 Months",
+    certifications: ["G-TEC"],
+    careerOutcomesEn: "Study Abroad Candidate",
+    careerOutcomesMl: null,
+    coverImageUrl: null,
+    featured: false,
+    category: {
+      id: "cat-4",
+      nameEn: "Language & Communications",
+      nameMl: "ഭാഷ & കമ്മ്യൂണിക്കേഷൻ",
+    },
+    contentBlocks: null,
+  };
+
   test("getCourseDepartment maps courses accurately", () => {
     expect(getCourseDepartment(mockCourse1)).toBe("Web Development");
     expect(getCourseDepartment(mockCourse2)).toBe("Office & Productivity");
@@ -92,12 +132,61 @@ describe("CourseFilterSystem helpers", () => {
     expect(getCourseLevel(mockCourse1)).toBe("ADVANCED");
     expect(getCourseLevel(mockCourse2)).toBe("BASIC");
     expect(getCourseLevel(mockCourse3)).toBe("BASIC");
+    expect(getCourseLevel(mockCourseADSE)).toBe("ADVANCED");
+    expect(getCourseLevel(mockCourseIELTS)).toBe("BASIC");
+  });
+
+  describe("Duration normalization and exact matching (Regression Bug Fix)", () => {
+    test("extractDurationInMonths accurately parses month and year formats", () => {
+      expect(extractDurationInMonths("1 Month")).toBe(1);
+      expect(extractDurationInMonths("2 Months")).toBe(2);
+      expect(extractDurationInMonths("2 months")).toBe(2);
+      expect(extractDurationInMonths("3 Months")).toBe(3);
+      expect(extractDurationInMonths("4 Months")).toBe(4);
+      expect(extractDurationInMonths("6 Months")).toBe(6);
+      expect(extractDurationInMonths("12 Months")).toBe(12);
+      expect(extractDurationInMonths("1 Year")).toBe(12);
+      expect(extractDurationInMonths("1 yr")).toBe(12);
+      expect(extractDurationInMonths("2 Years")).toBe(24);
+      expect(extractDurationInMonths(null)).toBeNull();
+      expect(extractDurationInMonths("")).toBeNull();
+    });
+
+    test("matchesDuration prevents '2 Months' filter from matching '12 Months' courses", () => {
+      // The core bug report: selecting "2 Months" must NOT match "12 Months"
+      expect(matchesDuration("12 Months", "2 Months")).toBe(false);
+      expect(matchesDuration("12 months", "2 Months")).toBe(false);
+
+      // Selecting "2 Months" matches 2-month courses
+      expect(matchesDuration("2 Months", "2 Months")).toBe(true);
+      expect(matchesDuration("2 months", "2 Months")).toBe(true);
+
+      // Selecting "1 Month" must NOT match "12 Months"
+      expect(matchesDuration("12 Months", "1 Month")).toBe(false);
+      expect(matchesDuration("1 Month", "1 Month")).toBe(true);
+
+      // Selecting "12 Months" matches 12-month and 1-year courses, but not 2-month
+      expect(matchesDuration("12 Months", "12 Months")).toBe(true);
+      expect(matchesDuration("1 Year", "12 Months")).toBe(true);
+      expect(matchesDuration("2 Months", "12 Months")).toBe(false);
+
+      // Selecting "ALL" matches any course
+      expect(matchesDuration("2 Months", "ALL")).toBe(true);
+      expect(matchesDuration("12 Months", "ALL")).toBe(true);
+      expect(matchesDuration("6 Months", "ALL")).toBe(true);
+      expect(matchesDuration(null, "ALL")).toBe(true);
+    });
+
+    test("matchesDuration returns false when course duration is null and filter is not ALL", () => {
+      expect(matchesDuration(null, "2 Months")).toBe(false);
+      expect(matchesDuration(undefined, "6 Months")).toBe(false);
+    });
   });
 
   test("renders course cards, dropdown filters, and action buttons in SSR", () => {
     const html = renderToString(
       <CourseFilterSystem
-        courses={[mockCourse1, mockCourse2, mockCourse3]}
+        courses={[mockCourse1, mockCourse2, mockCourse3, mockCourseADSE, mockCourseIELTS]}
         locale="en"
       />
     );
@@ -105,12 +194,14 @@ describe("CourseFilterSystem helpers", () => {
     expect(html).toContain("Full Stack Web Development");
     expect(html).toContain("Diploma in Computer Application (DCA)");
     expect(html).toContain("TallyPrime with GST &amp; E-Filing");
+    expect(html).toContain("Advanced Diploma in Software Engineering (ADSE)");
+    expect(html).toContain("IELTS / TOEFL Preparation");
     expect(html).toContain("Web Development");
     expect(html).toContain("Accounting &amp; Finance");
     expect(html).toContain("Advanced");
     expect(html).toContain("Basic");
     expect(html).toContain("Enroll Now");
     expect(html).toContain("View Details");
-    expect(html).toContain("Showing 3 of 3 courses");
+    expect(html).toContain("Showing 5 of 5 courses");
   });
 });

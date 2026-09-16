@@ -20,9 +20,17 @@ export async function logAdminAction({
   metadata,
 }: LogAdminActionInput): Promise<void> {
   try {
+    if (actorUserId && typeof prisma.user?.upsert === "function") {
+      await prisma.user.upsert({
+        where: { id: actorUserId },
+        update: { role: actorRole },
+        create: { id: actorUserId, role: actorRole },
+      });
+    }
+
     await prisma.auditLogEntry.create({
       data: {
-        actorUserId,
+        actorUserId: actorUserId || null,
         actorRole,
         action,
         entityType,

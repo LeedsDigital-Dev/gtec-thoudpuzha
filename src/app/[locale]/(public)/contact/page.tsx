@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { MapPin, Phone, MessageSquare, Clock, ExternalLink } from "lucide-react";
+import { MapPin, Phone, MessageSquare, Mail, Clock, ExternalLink } from "lucide-react";
 import { getSiteSettings, type Locale } from "@/lib/site-settings";
 import { getPublishedCourses } from "@/lib/courses";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import { siteConfig } from "@/lib/site";
+import LeafletContactMap from "@/components/shared/LeafletContactMap";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -33,6 +34,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
   const t = await getTranslations({ locale, namespace: "contact" });
   const contactPageT = await getTranslations({ locale, namespace: "contactPage" });
+
+  const mapsUrl =
+    settings.mapsUrl ||
+    (settings.address
+      ? `https://maps.google.com/?q=${encodeURIComponent(settings.address)}`
+      : siteConfig.mapsUrl);
 
   const socialLinks = [
     { url: settings.facebookUrl, label: "Facebook" },
@@ -78,10 +85,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 {contactPageT("phoneDesc")}
               </p>
 
-              <div className="mt-4 space-y-2 text-sm font-medium">
+              <div className="mt-4 space-y-2.5 text-sm font-medium">
                 <div>
                   <a
-                    href={`tel:${siteConfig.phoneNumber}`}
+                    href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                     className="inline-flex items-center gap-2 text-primary hover:underline"
                   >
                     <Phone className="h-4 w-4" />
@@ -99,21 +106,47 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     <span>WhatsApp: {siteConfig.phoneNumber}</span>
                   </a>
                 </div>
+                <div className="pt-1 border-t border-border/60">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-primary hover:underline break-all"
+                  >
+                    <Mail className="h-4 w-4 text-sky-500 shrink-0" />
+                    <span className="text-xs sm:text-sm truncate">{siteConfig.email}</span>
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Address Card */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <MapPin className="h-6 w-6" />
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-foreground">
+                  {contactPageT("addressTitle")}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {settings.address ||
+                    "G-TEC Education, Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Idukki District, Kerala - 685584."}
+                </p>
               </div>
-              <h3 className="mt-4 text-lg font-bold text-foreground">
-                {contactPageT("addressTitle")}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {settings.address ||
-                  "G-TEC Education, Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Idukki District, Kerala - 685584."}
-              </p>
+
+              {mapsUrl && (
+                <div className="mt-4 pt-3 border-t border-border/60">
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline group"
+                  >
+                    <MapPin className="size-4 text-red-500 group-hover:scale-110 transition-transform" />
+                    <span>Find Us on Google Maps</span>
+                    <ExternalLink className="size-3.5" />
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Operating Hours Card */}
@@ -169,33 +202,31 @@ export default async function ContactPage({ params }: ContactPageProps) {
             {/* Google Map & Directions */}
             <div className="flex flex-col gap-6">
               <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
-                <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">
-                  {contactPageT("locationTitle")}
-                </h2>
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <h2 className="text-xl font-bold tracking-tight text-foreground">
+                    {contactPageT("locationTitle")}
+                  </h2>
+                  {mapsUrl && (
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline group"
+                    >
+                      <MapPin className="size-3.5 text-red-500 group-hover:scale-110 transition-transform" />
+                      <span>Find Us on Google Maps</span>
+                      <ExternalLink className="size-3.5" />
+                    </a>
+                  )}
+                </div>
 
-                {settings.mapEmbedUrl ? (
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border shadow-inner">
-                    <iframe
-                      title="G-TEC Education Thodupuzha location map"
-                      src={settings.mapEmbedUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      data-testid="google-map-iframe"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-muted p-6 text-center text-muted-foreground">
-                    <div className="flex flex-col items-center gap-2">
-                      <MapPin className="h-8 w-8 text-primary/60" />
-                      <p className="text-sm font-medium">G-TEC Education Centre</p>
-                      <p className="text-sm text-muted-foreground">Temple Bypass Road, Thodupuzha</p>
-                    </div>
-                  </div>
-                )}
+                <LeafletContactMap
+                  lat={9.8965}
+                  lng={76.7185}
+                  title="G-TEC Education Thodupuzha"
+                  address={settings.address || "Temple Bypass Road, Near Private Bus Stand, Thodupuzha, Kerala - 685584"}
+                  mapsUrl={mapsUrl}
+                />
 
                 {settings.googleReviewsUrl && (
                   <div className="mt-6 text-center">

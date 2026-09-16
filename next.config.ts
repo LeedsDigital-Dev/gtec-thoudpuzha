@@ -6,6 +6,10 @@ const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   experimental: {
+    serverActions: {
+      bodySizeLimit: "25mb",
+    },
+    proxyClientMaxBodySize: "25mb",
     optimizePackageImports: [
       "lucide-react",
       "@clerk/nextjs",

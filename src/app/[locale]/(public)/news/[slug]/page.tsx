@@ -68,6 +68,7 @@ export default async function NewsDetailPage({
             alt={pickLocalizedText({ en: item.titleEn, ml: item.titleMl }, loc)}
             width={1200}
             height={675}
+            unoptimized
             className="mt-6 w-full rounded-2xl object-cover shadow-sm"
             sizes="(max-width: 768px) 100vw, 768px"
           />

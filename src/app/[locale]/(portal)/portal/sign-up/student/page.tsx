@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { lookupStudentRecord, finalizeStudentVerification } from "./actions";
+import { siteConfig } from "@/lib/site";
 
 type Step = "form" | "password" | "verifying" | "otp" | "done" | "error";
 
@@ -186,7 +187,7 @@ export default function StudentSignUpPage() {
             {!alreadyLinked && (
               <div className="mt-3 flex gap-3">
                 <a
-                  href="https://wa.me/yournumber"
+                  href={`https://wa.me/${siteConfig.whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-white hover:bg-primary/90"
@@ -194,7 +195,7 @@ export default function StudentSignUpPage() {
                   {t("whatsapp")}
                 </a>
                 <a
-                  href="tel:+919999999999"
+                  href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
                   className="inline-flex items-center gap-1 rounded-md bg-muted-foreground px-3 py-1.5 text-sm font-medium text-white hover:bg-foreground/10"
                 >
                   {t("callCentre")}

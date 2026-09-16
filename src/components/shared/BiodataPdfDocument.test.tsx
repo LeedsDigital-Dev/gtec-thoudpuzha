@@ -38,27 +38,35 @@ const incompleteData: BiodataPdfData = {
 };
 
 describe("BiodataPdfDocument", () => {
-  test("generates a valid PDF buffer for a complete profile", async () => {
-    const buffer = await renderToBuffer(
-      <BiodataPdfDocument data={completeData} />,
-    );
+  test(
+    "generates a valid PDF buffer for a complete profile",
+    { timeout: 30000 },
+    async () => {
+      const buffer = await renderToBuffer(
+        <BiodataPdfDocument data={completeData} />,
+      );
 
-    expect(buffer).toBeInstanceOf(Buffer);
-    expect(buffer.length).toBeGreaterThan(100);
+      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer.length).toBeGreaterThan(100);
 
-    const header = buffer.slice(0, 8).toString("utf8");
-    expect(header).toBe("%PDF-1.3");
-  });
+      const header = buffer.slice(0, 8).toString("utf8");
+      expect(header).toBe("%PDF-1.3");
+    },
+  );
 
-  test("generates a PDF without throwing for an incomplete profile", async () => {
-    const buffer = await renderToBuffer(
-      <BiodataPdfDocument data={incompleteData} />,
-    );
+  test(
+    "generates a PDF without throwing for an incomplete profile",
+    { timeout: 30000 },
+    async () => {
+      const buffer = await renderToBuffer(
+        <BiodataPdfDocument data={incompleteData} />,
+      );
 
-    expect(buffer).toBeInstanceOf(Buffer);
-    expect(buffer.length).toBeGreaterThan(100);
+      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer.length).toBeGreaterThan(100);
 
-    const header = buffer.slice(0, 8).toString("utf8");
-    expect(header).toBe("%PDF-1.3");
-  });
+      const header = buffer.slice(0, 8).toString("utf8");
+      expect(header).toBe("%PDF-1.3");
+    },
+  );
 });

@@ -180,6 +180,9 @@ async function main() {
       "ഐടി, മൾട്ടിമീഡിയ, അക്കൗണ്ടിംഗ്, ഭാഷ, പ്രൊഫഷണൽ ഡെവലപ്മെന്റ് എന്നീ മേഖലകളിൽ വ്യവസായത്തിന് അനുയോജ്യമായ കോഴ്സുകൾ വാഗ്ദാനം ചെയ്യുന്ന ഒരു മുൻനിര പരിശീലന കേന്ദ്രമാണ് ജി-ടെക് എജ്യുക്കേഷൻ തൊടുപുഴ.",
     address:
       "G-TEC Education, Near Municipal Office, Thodupuzha, Idukki District, Kerala - 685584",
+    mapsUrl:
+      "https://maps.google.com/?q=G-TEC+Computer+Education,+East+End,+Thodupuzha-Udumbanoor+Rd,+near+De+Paul+Public+School,+Thodupuzha,+Kerala+685585",
+    whatsappNumber: "919744221113",
   };
 
   const existingSettings = await prisma.siteSettings.findFirst({

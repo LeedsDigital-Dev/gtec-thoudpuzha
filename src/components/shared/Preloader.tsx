@@ -3,17 +3,22 @@
 import { useEffect, useState } from "react";
 
 export function Preloader() {
-  const [show, setShow] = useState(() => {
+  const [mounted, setMounted] = useState(false);
+  const [show, setShow] = useState(false);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
     try {
       const hasSeen = sessionStorage.getItem("gtec_ps");
-      if (hasSeen) return false;
-      sessionStorage.setItem("gtec_ps", "1");
+      if (!hasSeen) {
+        sessionStorage.setItem("gtec_ps", "1");
+        setShow(true);
+      }
     } catch {
       // SessionStorage might be unavailable or restricted
     }
-    return true;
-  });
-  const [fading, setFading] = useState(false);
+  }, []);
 
   useEffect(() => {
     if (!show) return;
@@ -32,7 +37,7 @@ export function Preloader() {
     };
   }, [show]);
 
-  if (!show) return null;
+  if (!mounted || !show) return null;
 
   return (
     <div

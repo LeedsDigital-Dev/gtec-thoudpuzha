@@ -6,6 +6,10 @@ const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   experimental: {
+    serverActions: {
+      bodySizeLimit: "25mb",
+    },
+    proxyClientMaxBodySize: "25mb",
     optimizePackageImports: [
       "lucide-react",
       "@clerk/nextjs",
@@ -16,8 +20,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
     remotePatterns: [
-      { protocol: "https", hostname: "img.youtube.com" },
-      { protocol: "https", hostname: "i.vimeocdn.com" },
+      { protocol: "https", hostname: "**" },
+      { protocol: "http", hostname: "**" },
     ],
   },
   async headers() {

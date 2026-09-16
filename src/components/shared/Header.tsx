@@ -157,7 +157,7 @@ export function Header({
             <div className="flex items-center gap-3">
               <div className="relative h-10 sm:h-11 aspect-[1600/1094]">
                 <Image
-                  src="/icons/gtec.jpeg"
+                  src="/icons/gtec.png"
                   alt="G-TEC Thodupuzha logo"
                   fill
                   sizes="80px"

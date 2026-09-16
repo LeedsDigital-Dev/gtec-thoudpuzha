@@ -181,6 +181,7 @@ export function CourseHero({
                 alt={title}
                 fill
                 priority
+                unoptimized={imageSrc.startsWith("/api/media/")}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 400px"
               />

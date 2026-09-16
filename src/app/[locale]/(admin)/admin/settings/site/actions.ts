@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { requireRole, Role } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { logAdminAction } from "@/lib/audit";
+import { uploadFile } from "@/lib/storage";
 import type { WhyCardIcon } from "@prisma/client";
 
 function localeFromFormData(formData: FormData): string {
@@ -36,6 +37,17 @@ export async function updateSiteSettings(formData: FormData) {
 
   const locale = localeFromFormData(formData);
 
+  let aboutPhotoUrl = getNullableString(formData, "aboutPhotoUrl");
+  const aboutPhotoFile = formData.get("aboutPhotoFile") as File | null;
+  if (aboutPhotoFile && aboutPhotoFile.size > 0 && typeof aboutPhotoFile.arrayBuffer === "function") {
+    try {
+      const key = await uploadFile(aboutPhotoFile, "about");
+      aboutPhotoUrl = `/api/media/${key}`;
+    } catch (err) {
+      console.error("[site-settings] Failed to upload about photo file:", err);
+    }
+  }
+
   await prisma.siteSettings.update({
     where: { id: settings.id },
     data: {
@@ -46,7 +58,7 @@ export async function updateSiteSettings(formData: FormData) {
       countries: getString(formData, "countries"),
       aboutBodyEn: getString(formData, "aboutBodyEn"),
       aboutBodyMl: getNullableString(formData, "aboutBodyMl"),
-      aboutPhotoUrl: getNullableString(formData, "aboutPhotoUrl"),
+      aboutPhotoUrl,
       address: getNullableString(formData, "address"),
       mapEmbedUrl: getNullableString(formData, "mapEmbedUrl"),
       mapsUrl: getNullableString(formData, "mapsUrl"),

@@ -204,6 +204,7 @@ function Lightbox({
             alt={itemCaption || "Gallery image"}
             width={1200}
             height={900}
+            unoptimized
             className="max-h-[85vh] w-auto rounded-lg object-contain"
             priority
           />
@@ -329,6 +330,7 @@ export function GalleryGrid({
                 }
                 alt={itemCaption || "Gallery image"}
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
               />

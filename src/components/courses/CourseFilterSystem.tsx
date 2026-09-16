@@ -570,6 +570,7 @@ export function CourseFilterSystem({ courses, locale }: CourseFilterSystemProps)
                       src={imageUrl}
                       alt={title}
                       fill
+                      unoptimized={imageUrl.startsWith("/api/media/")}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />

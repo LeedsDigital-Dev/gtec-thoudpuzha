@@ -8,15 +8,20 @@ export { fetchRoleFromApi };
 const intlMiddleware = createMiddleware(routing);
 
 export default clerkMiddleware(async (_auth, req: NextRequest) => {
-  const intlResponse = intlMiddleware(req);
-  if (intlResponse.status === 307 || intlResponse.status === 308) {
-    return intlResponse;
+  if (
+    req.nextUrl.pathname.startsWith("/api") ||
+    req.nextUrl.pathname === "/sw.js" ||
+    req.nextUrl.pathname === "/robots.txt" ||
+    req.nextUrl.pathname.startsWith("/icons/") ||
+    req.nextUrl.pathname.startsWith("/images/")
+  ) {
+    return NextResponse.next();
   }
-  return NextResponse.next();
+  return intlMiddleware(req);
 });
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sw.js|robots.txt|icons/.*|images/.*|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff2?|ico|webmanifest)$).*)",
   ],
 };

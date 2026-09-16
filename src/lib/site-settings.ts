@@ -1,11 +1,12 @@
 import { prisma } from "@/lib/db";
 import type { SiteSettings, WhyChooseUsCard } from "@prisma/client";
+import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
+import { getMediaUrl } from "@/lib/media";
 
 export type SiteSettingsWithCards = SiteSettings & {
   whyChooseUsCards: WhyChooseUsCard[];
 };
 
-import { pickLocalizedText, type Locale } from "@/lib/i18n-utils";
 export { pickLocalizedText, type Locale };
 
 // Mirrors prisma/seed.ts SiteSettings values so a degraded render (missing row or
@@ -90,6 +91,6 @@ export function getLocalizedAbout(
 ) {
   return {
     body: pickLocalizedText({ en: settings.aboutBodyEn, ml: settings.aboutBodyMl }, locale),
-    photoUrl: settings.aboutPhotoUrl,
+    photoUrl: settings.aboutPhotoUrl ? getMediaUrl(settings.aboutPhotoUrl) : null,
   };
 }

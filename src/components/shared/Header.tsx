@@ -147,13 +147,13 @@ export function Header({
       <aside
         id="slideout-sidebar"
         className={cn(
-          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-[#004282] text-slate-200 border-l border-white/10 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
+          "relative z-10 h-[100dvh] w-[85vw] max-w-[380px] sm:w-[360px] bg-white text-slate-800 border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out",
           drawerOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         <div className="flex flex-col p-5 sm:p-6 space-y-5">
           {/* Drawer Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-white/10">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
             <div className="flex items-center gap-3">
               <div className="relative h-10 sm:h-11 aspect-[1600/1094]">
                 <Image
@@ -165,10 +165,10 @@ export function Header({
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold uppercase tracking-wider text-white">
+                <span className="text-sm font-bold uppercase tracking-wider text-slate-900">
                   Navigation & Profile
                 </span>
-                <span className="text-sm font-medium text-slate-400 uppercase">
+                <span className="text-sm font-medium text-slate-500 uppercase">
                   {siteConfig.centreName} Centre
                 </span>
               </div>
@@ -177,7 +177,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setDrawerOpen(false)}
-              className="size-8 inline-flex items-center justify-center rounded-full bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
+              className="size-8 inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
               aria-label="Close drawer"
             >
               <X className="size-4" />
@@ -185,14 +185,14 @@ export function Header({
           </div>
 
           {/* 1. User Details / Authentication Section */}
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-xs">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-xs">
             {isSignedIn ? (
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <UserButton
                       appearance={{
-                        elements: { avatarBox: "size-9 ring-2 ring-sky-400/40" },
+                        elements: { avatarBox: "size-9 ring-2 ring-primary/40" },
                       }}
                     >
                       <UserButton.MenuItems>
@@ -204,10 +204,10 @@ export function Header({
                       </UserButton.MenuItems>
                     </UserButton>
                     <div>
-                      <span className="block font-bold text-sm text-white">
+                      <span className="block font-bold text-sm text-slate-900">
                         {t("myPortal")}
                       </span>
-                      <span className="text-slate-400 text-sm">
+                      <span className="text-slate-500 text-sm">
                         {t("brandName")} Account
                       </span>
                     </div>
@@ -217,7 +217,7 @@ export function Header({
                 <Link
                   href={portalUrl}
                   onClick={() => setDrawerOpen(false)}
-                  className="flex items-center justify-between rounded-xl bg-sky-500/15 border border-sky-400/30 px-3 py-2 text-sm font-semibold text-sky-300 hover:bg-sky-500/25 transition-colors mt-1"
+                  className="flex items-center justify-between rounded-xl bg-primary/10 border border-primary/20 px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/20 transition-colors mt-1"
                 >
                   <span>Open Student / Job Portal</span>
                   <ChevronRight className="size-3.5" />
@@ -225,13 +225,13 @@ export function Header({
               </div>
             ) : (
               <div className="flex flex-col gap-2.5">
-                <div className="flex items-center gap-2.5 text-sm text-slate-400">
-                  <div className="flex size-7 items-center justify-center rounded-lg bg-sky-500/15 text-sky-400">
+                <div className="flex items-center gap-2.5 text-sm text-slate-500">
+                  <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <User className="size-3.5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white text-sm">Student & Portal Access</p>
-                    <p className="text-sm text-slate-400">Sign in to access resources and job matches</p>
+                    <p className="font-semibold text-slate-900 text-sm">Student & Portal Access</p>
+                    <p className="text-sm text-slate-500">Sign in to access resources and job matches</p>
                   </div>
                 </div>
 
@@ -251,10 +251,10 @@ export function Header({
           {/* Mobile-Only Navigation Links */}
           {drawerOpen && (
             <nav
-              className="lg:hidden space-y-1 py-2 border-y border-white/10"
+              className="lg:hidden space-y-1 py-2 border-y border-slate-200"
               aria-label="Mobile navigation"
             >
-              <p className="px-2 py-1 text-sm font-bold uppercase tracking-wider text-slate-400">
+              <p className="px-2 py-1 text-sm font-bold uppercase tracking-wider text-slate-500">
                 Navigation
               </p>
               <Link
@@ -262,12 +262,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Home className="size-4 text-slate-400" />
+                <Home className="size-4 text-slate-500" />
                 <span>{t("home")}</span>
               </Link>
 
@@ -276,12 +276,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/about")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Info className="size-4 text-slate-400" />
+                <Info className="size-4 text-slate-500" />
                 <span>{t("about")}</span>
               </Link>
 
@@ -291,8 +291,8 @@ export function Header({
                   className={cn(
                     "flex items-center justify-between rounded-xl px-3 py-2 transition-all",
                     pathname.startsWith("/courses")
-                      ? "bg-white/15 text-white font-bold border border-white/20"
-                      : "text-slate-300 hover:bg-white/10 hover:text-white"
+                      ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   )}
                 >
                   <Link
@@ -300,14 +300,14 @@ export function Header({
                     className="flex items-center gap-3 text-sm font-semibold flex-1"
                     onClick={() => setDrawerOpen(false)}
                   >
-                    <GraduationCap className="size-4 text-slate-400" />
+                    <GraduationCap className="size-4 text-slate-500" />
                     <span>{t("courses")}</span>
                   </Link>
                   {courses && courses.length > 0 && (
                     <button
                       type="button"
                       onClick={() => setCoursesOpenMobile((o) => !o)}
-                      className="p-1 rounded-md text-slate-400 hover:text-white"
+                      className="p-1 rounded-md text-slate-500 hover:text-slate-900"
                       aria-label="Toggle courses submenu"
                     >
                       <ChevronDown
@@ -321,12 +321,12 @@ export function Header({
                 </div>
 
                 {courses && courses.length > 0 && coursesOpenMobile && (
-                  <div className="ml-7 my-1 border-l-2 border-sky-400/40 pl-3 space-y-1">
+                  <div className="ml-7 my-1 border-l-2 border-primary/40 pl-3 space-y-1">
                     {courses.map((course) => (
                       <Link
                         key={course.slug}
                         href={localeHref(`/courses/${course.slug}`)}
-                        className="block rounded-lg px-2 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10"
+                        className="block rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                         onClick={() => setDrawerOpen(false)}
                       >
                         {locale === "ml" && course.titleMl
@@ -343,12 +343,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/placement")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Briefcase className="size-4 text-slate-400" />
+                <Briefcase className="size-4 text-slate-500" />
                 <span>{t("placement")}</span>
               </Link>
 
@@ -357,12 +357,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/portal/student")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <BookOpen className="size-4 text-slate-400" />
+                <BookOpen className="size-4 text-slate-500" />
                 <span>{t("resources")}</span>
               </Link>
 
@@ -371,12 +371,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/gallery")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <ImageIcon className="size-4 text-slate-400" />
+                <ImageIcon className="size-4 text-slate-500" />
                 <span>{t("gallery")}</span>
               </Link>
 
@@ -385,12 +385,12 @@ export function Header({
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                   isLinkActive("/contact")
-                    ? "bg-white/15 text-white font-bold border border-white/20"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 )}
                 onClick={() => setDrawerOpen(false)}
               >
-                <Send className="size-4 text-slate-400" />
+                <Send className="size-4 text-slate-500" />
                 <span>{t("contact")}</span>
               </Link>
             </nav>
@@ -398,8 +398,8 @@ export function Header({
 
           {/* 2. Language Selection */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400">
-              <Globe className="size-3.5 text-sky-400" />
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-500">
+              <Globe className="size-3.5 text-primary" />
               <span>Language / ഭാഷ</span>
             </div>
             <LanguageSwitcher variant="segmented" />
@@ -407,8 +407,8 @@ export function Header({
 
           {/* 3. WhatsApp & Direct Contact Channels */}
           <div className="space-y-2.5 pt-1">
-            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400">
-              <Phone className="size-3.5 text-sky-400" />
+            <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-500">
+              <Phone className="size-3.5 text-primary" />
               <span>Direct Support</span>
             </div>
 
@@ -418,32 +418,32 @@ export function Header({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("whatsapp")}
-              className="flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-sm font-semibold text-emerald-800 hover:bg-emerald-100 transition-all group"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
                 <MessageCircle className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-white">WhatsApp Admission Desk</p>
-                <p className="text-sm text-emerald-400 truncate">Chat directly with counsellor</p>
+                <p className="font-bold text-sm text-slate-900">WhatsApp Admission Desk</p>
+                <p className="text-sm text-emerald-700 truncate">Chat directly with counsellor</p>
               </div>
-              <ChevronRight className="size-4 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+              <ChevronRight className="size-4 text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
             </a>
 
             {/* Call Now Button */}
             <a
               href={`tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`}
               aria-label={t("callNow")}
-              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-all group"
+              className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-100 transition-all group"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sky-500/15 text-sky-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Phone className="size-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-white">{t("callNow")}</p>
-                <p className="text-sm text-slate-400 truncate">{siteConfig.phoneNumber}</p>
+                <p className="font-bold text-sm text-slate-900">{t("callNow")}</p>
+                <p className="text-sm text-slate-500 truncate">{siteConfig.phoneNumber}</p>
               </div>
-              <ChevronRight className="size-4 text-sky-400 group-hover:translate-x-0.5 transition-transform" />
+              <ChevronRight className="size-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
 
@@ -463,12 +463,12 @@ export function Header({
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-5 sm:p-6 border-t border-white/10 bg-black/20">
-          <div className="flex items-center gap-2 text-sky-400 font-bold text-sm">
+        <div className="p-5 sm:p-6 border-t border-slate-200 bg-slate-50">
+          <div className="flex items-center gap-2 text-primary font-bold text-sm">
             <ShieldCheck className="size-4 shrink-0" />
             <span>ISO 9001:2015 Certified Centre</span>
           </div>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-slate-500">
             G-TEC Education Centre, Thodupuzha
           </p>
         </div>

@@ -79,15 +79,18 @@ describe("PlacementSupportSection", () => {
     expect(html).toContain('href="/portal/employer/register"');
   });
 
-  test("5. displays 9 support items with sequential badges (#01 to #09) and 9 pagination dots", () => {
+  test("5. displays 9 support items with captions and 9 pagination dots without number badges", () => {
     const props = makeProps(9);
     render(<PlacementSupportSection {...props} />);
 
-    // All 9 items are rendered with order badges
+    // All 9 item captions are rendered
     for (let i = 1; i <= 9; i++) {
-      expect(screen.getByText(`0${i}`)).toBeInTheDocument();
       expect(screen.getByText(`Placement ${i}`)).toBeInTheDocument();
     }
+
+    // Number badges like #01, #02 should not be attached
+    expect(screen.queryByText("#")).not.toBeInTheDocument();
+    expect(screen.queryByText("01")).not.toBeInTheDocument();
 
     // 9 pagination dots are present
     const tabs = screen.getAllByRole("tab");
@@ -98,11 +101,9 @@ describe("PlacementSupportSection", () => {
     const props = makeProps(9);
     render(<PlacementSupportSection {...props} />);
 
-    // Default active item is Item 5 (index 4)
-    expect(screen.getByTestId("carousel-indicator")).toHaveTextContent("Item 5 of 9");
     expect(screen.getByText("Featured")).toBeInTheDocument();
 
-    // 5th tab is selected
+    // 5th tab is selected (item 5 / index 4)
     const tabs = screen.getAllByRole("tab");
     expect(tabs[4]).toHaveAttribute("aria-selected", "true");
   });
@@ -113,18 +114,35 @@ describe("PlacementSupportSection", () => {
 
     const nextBtn = screen.getByLabelText("Next placement item");
     const prevBtn = screen.getByLabelText("Previous placement item");
+    const tabs = screen.getAllByRole("tab");
 
-    // Click Next -> moves to item 6
+    // Click Next -> moves to item 6 (index 5)
     fireEvent.click(nextBtn);
-    expect(screen.getByTestId("carousel-indicator")).toHaveTextContent("Item 6 of 9");
+    expect(tabs[5]).toHaveAttribute("aria-selected", "true");
 
-    // Click Prev -> moves back to item 5
+    // Click Prev -> moves back to item 5 (index 4)
     fireEvent.click(prevBtn);
-    expect(screen.getByTestId("carousel-indicator")).toHaveTextContent("Item 5 of 9");
+    expect(tabs[4]).toHaveAttribute("aria-selected", "true");
 
     // Click dot for item 2 (index 1)
-    const tabs = screen.getAllByRole("tab");
     fireEvent.click(tabs[1]);
-    expect(screen.getByTestId("carousel-indicator")).toHaveTextContent("Item 2 of 9");
+    expect(tabs[1]).toHaveAttribute("aria-selected", "true");
+  });
+
+  test("8. auto-scroll play/pause toggle toggles playback state", () => {
+    const props = makeProps(9);
+    render(<PlacementSupportSection {...props} />);
+
+    const toggleBtn = screen.getByRole("button", { name: /pause auto scrolling/i });
+    expect(toggleBtn).toBeInTheDocument();
+    expect(toggleBtn).toHaveTextContent("Auto-scroll on");
+
+    // Click to pause
+    fireEvent.click(toggleBtn);
+    expect(screen.getByRole("button", { name: /play auto scrolling/i })).toHaveTextContent("Paused");
+
+    // Click to resume
+    fireEvent.click(screen.getByRole("button", { name: /play auto scrolling/i }));
+    expect(screen.getByRole("button", { name: /pause auto scrolling/i })).toHaveTextContent("Auto-scroll on");
   });
 });

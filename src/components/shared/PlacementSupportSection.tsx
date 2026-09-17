@@ -13,11 +13,14 @@ import {
   Award,
   GraduationCap,
   TrendingUp,
+  Play,
+  Pause,
 } from "lucide-react";
 import { getMediaUrl } from "@/lib/media";
 import type { PublicGalleryCategory } from "@/lib/gallery";
 
 const PLACEMENT_SLUG = "placement-support";
+const AUTO_SCROLL_INTERVAL_MS = 3800;
 
 export type PlacementData = {
   slug: string;
@@ -65,6 +68,8 @@ export function PlacementSupportSection({
   // Default active index: Item 5 (index 4) if 9 items exist, otherwise middle item
   const defaultIndex = totalItems === 9 ? 4 : Math.max(0, Math.floor((totalItems - 1) / 2));
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -75,6 +80,17 @@ export function PlacementSupportSection({
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0));
   }, [totalItems]);
+
+  // Auto-scrolling animation loop (smooth cyclic rotation)
+  useEffect(() => {
+    if (!isPlaying || isHovered || totalItems <= 1) return;
+
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0));
+    }, AUTO_SCROLL_INTERVAL_MS);
+
+    return () => clearInterval(timer);
+  }, [isPlaying, isHovered, totalItems]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -153,12 +169,14 @@ export function PlacementSupportSection({
           </div>
         </div>
 
-        {/* 3D Fanned / Horizontal Scrolling Carousel Stage */}
+        {/* 3D Fanned / Auto-Scrolling Carousel Stage */}
         <div
           ref={containerRef}
           tabIndex={0}
           aria-roledescription="carousel"
           aria-label="Placement and support gallery showcase"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           className="relative outline-none select-none [--card-step:42px] sm:[--card-step:80px] md:[--card-step:110px] lg:[--card-step:135px]"
@@ -214,14 +232,14 @@ export function PlacementSupportSection({
               const itemCaption =
                 locale === "ml" && item.captionMl
                   ? item.captionMl
-                  : item.captionEn || `Placement & Support Initiative #${index + 1}`;
+                  : item.captionEn || "Placement & Support Initiative";
 
               return (
                 <div
                   key={item.id || `placement-card-${index}`}
                   role="group"
                   aria-roledescription="slide"
-                  aria-label={`Placement item ${index + 1} of ${totalItems}: ${itemCaption}`}
+                  aria-label={itemCaption}
                   aria-current={isActive ? "true" : undefined}
                   onClick={() => setActiveIndex(index)}
                   style={{
@@ -229,7 +247,7 @@ export function PlacementSupportSection({
                     opacity,
                     transform: `translateX(calc(-50% + (${offset} * var(--card-step)))) translateY(${translateY}px) scale(${scale}) rotate(${rotateDeg}deg)`,
                   }}
-                  className={`absolute left-1/2 top-4 w-[250px] sm:w-[290px] lg:w-[330px] h-[360px] sm:h-[410px] lg:h-[450px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ease-out origin-center ${
+                  className={`absolute left-1/2 top-4 w-[250px] sm:w-[290px] lg:w-[330px] h-[360px] sm:h-[410px] lg:h-[450px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 [transition-timing-function:cubic-bezier(0.25,1,0.5,1)] origin-center ${
                     isActive
                       ? "ring-4 ring-sky-400/40 border-2 border-primary shadow-[0_20px_50px_rgba(0,102,204,0.35)] dark:shadow-[0_20px_50px_rgba(56,189,248,0.25)]"
                       : "border border-border/70 shadow-md hover:border-primary/50 hover:opacity-95"
@@ -253,27 +271,14 @@ export function PlacementSupportSection({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 via-45% to-black/15" />
 
                     {/* Top Badges Bar */}
-                    <div className="absolute inset-x-0 top-0 p-4 flex items-center justify-between z-10">
-                      {/* Item Sequential Order Badge (1 to 9) */}
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-black tracking-wider shadow-sm backdrop-blur-md ${
-                          isActive
-                            ? "bg-primary text-primary-foreground ring-2 ring-white/30"
-                            : "bg-black/60 text-white border border-white/20"
-                        }`}
-                      >
-                        <span className="text-[10px] opacity-75">#</span>
-                        <span>0{index + 1}</span>
-                      </span>
-
-                      {/* Prominent Center Highlight Badge on Item 5 / Active Card */}
-                      {isActive && (
+                    {isActive && (
+                      <div className="absolute inset-x-0 top-0 p-4 flex items-center justify-end z-10">
                         <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/90 backdrop-blur-md px-2.5 py-1 text-[11px] font-extrabold text-amber-950 shadow-md ring-1 ring-amber-300 animate-bounce">
                           <Award className="size-3.5 fill-current" />
                           <span>Featured</span>
                         </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Bottom Content Card Details */}
                     <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-10 flex flex-col justify-end">
@@ -320,41 +325,55 @@ export function PlacementSupportSection({
             })}
           </div>
 
-          {/* 9 Pagination Dots Below Cards */}
-          <div
-            className="mt-6 flex items-center justify-center gap-2 sm:gap-2.5"
-            role="tablist"
-            aria-label="Placement carousel pagination"
-          >
-            {items.map((_, dotIdx) => {
-              const isDotActive = dotIdx === activeIndex;
-              return (
-                <button
-                  key={`dot-${dotIdx}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={isDotActive}
-                  aria-label={`Slide ${dotIdx + 1}${isDotActive ? " (Current)" : ""}`}
-                  onClick={() => setActiveIndex(dotIdx)}
-                  className={`group relative flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                    isDotActive
-                      ? "w-8 sm:w-10 h-3 rounded-full bg-gradient-to-r from-primary to-sky-400 shadow-md shadow-primary/30 ring-2 ring-primary/30"
-                      : "w-3 h-3 rounded-full bg-muted-foreground/30 hover:bg-primary/50 hover:scale-125"
-                  }`}
-                >
-                  <span className="sr-only">Go to item {dotIdx + 1}</span>
-                </button>
-              );
-            })}
-          </div>
+          {/* 9 Pagination Dots & Auto-Scroll Play/Pause Control Below Cards */}
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div
+              className="flex items-center justify-center gap-2 sm:gap-2.5"
+              role="tablist"
+              aria-label="Placement carousel pagination"
+            >
+              {items.map((_, dotIdx) => {
+                const isDotActive = dotIdx === activeIndex;
+                return (
+                  <button
+                    key={`dot-${dotIdx}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={isDotActive}
+                    aria-label={`Slide ${dotIdx + 1}${isDotActive ? " (Current)" : ""}`}
+                    onClick={() => setActiveIndex(dotIdx)}
+                    className={`group relative flex items-center justify-center transition-all duration-500 cursor-pointer ${
+                      isDotActive
+                        ? "w-8 sm:w-10 h-3 rounded-full bg-gradient-to-r from-primary to-sky-400 shadow-md shadow-primary/30 ring-2 ring-primary/30"
+                        : "w-3 h-3 rounded-full bg-muted-foreground/30 hover:bg-primary/50 hover:scale-125"
+                    }`}
+                  >
+                    <span className="sr-only">Go to item {dotIdx + 1}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-          {/* Status text indicator */}
-          <div
-            data-testid="carousel-indicator"
-            className="mt-3 text-center text-xs font-medium text-muted-foreground"
-          >
-            Item <span className="font-bold text-foreground">{activeIndex + 1}</span> of{" "}
-            <span className="font-bold text-foreground">{totalItems}</span>
+            {/* Auto-scroll Play / Pause Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsPlaying((p) => !p)}
+              aria-label={isPlaying ? "Pause auto scrolling" : "Play auto scrolling"}
+              title={isPlaying ? "Pause auto scrolling" : "Play auto scrolling"}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-card/80 px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 shadow-2xs transition-all cursor-pointer"
+            >
+              {isPlaying ? (
+                <>
+                  <Pause className="size-3 text-primary" />
+                  <span>Auto-scroll on</span>
+                </>
+              ) : (
+                <>
+                  <Play className="size-3 text-muted-foreground" />
+                  <span>Paused</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
 

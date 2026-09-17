@@ -139,6 +139,7 @@ export default async function HomePage({ params }: HomePageProps) {
         ctaText={placementT("ctaText")}
         viewVacancies={placementT("viewVacancies")}
         hiringCta={placementT("hiringCta")}
+        locale={locale}
       />
     </main>
   );

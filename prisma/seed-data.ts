@@ -451,6 +451,14 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     captionMl: "അലുംനി മീറ്റ് — പ്ലേസ്ഡ് വിദ്യാർത്ഥികൾ അനുഭവങ്ങൾ പങ്കിടുന്നു",
     sortOrder: 7,
   },
+  {
+    categorySlug: "placement-support",
+    mediaType: "IMAGE",
+    url: "gallery/placement-support/soft-skills-mentorship.png",
+    captionEn: "Soft skills & corporate communication mentorship",
+    captionMl: "സോഫ്റ്റ് സ്കിൽസ് & കോർപ്പറേറ്റ് കമ്മ്യൂണിക്കേഷൻ മെന്റർഷിപ്പ്",
+    sortOrder: 8,
+  },
 ];
 
 /* ── Skills ── */

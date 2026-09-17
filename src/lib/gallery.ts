@@ -60,7 +60,7 @@ export async function getGalleryCategoryBySlug(
 export type PlacementGalleryData = PublicGalleryCategory & { slug: "placement-support" };
 
 const PLACEMENT_SLUG = "placement-support";
-const DISPLAY_LIMIT = 6;
+const DISPLAY_LIMIT = 9;
 
 /** Fetch the Placement & Support category items (up to DISPLAY_LIMIT). Returns null if no such category exists. */
 export async function getPlacementGalleryData(): Promise<{

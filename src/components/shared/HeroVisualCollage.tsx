@@ -7,9 +7,9 @@ interface HeroVisualCollageProps {
 export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
   return (
     <div className="relative w-full max-w-[520px] sm:max-w-[580px] lg:max-w-[620px] xl:max-w-[660px] mx-auto lg:ml-auto lg:mr-0 select-none py-4 sm:py-6">
-      {/* Ambient Blue & Cyan Glows */}
+      {/* Ambient Blue & Cyan Glows with subtle pulse */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[85%] rounded-full bg-gradient-to-tr from-primary/20 via-sky-400/25 to-blue-600/20 blur-3xl -z-10"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[85%] rounded-full bg-gradient-to-tr from-primary/20 via-sky-400/25 to-blue-600/20 blur-3xl -z-10 animate-pulse"
         aria-hidden="true"
       />
       <div
@@ -48,16 +48,16 @@ export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
 
       {/* 3-Image Cohesive Composition Stage */}
       <div className="relative flex items-center justify-center min-h-[300px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[420px]">
-        {/* Secondary Left Layered Panel: AI / Technology Student */}
-        <div className="absolute left-0 sm:left-1 md:left-2 top-[12%] sm:top-[10%] w-[44%] sm:w-[43%] aspect-[4/5] z-10 transform -rotate-2 sm:-rotate-3 transition-transform duration-500 hover:rotate-0 hover:z-25">
-          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/20 bg-card shadow-xl shadow-blue-950/15">
+        {/* Secondary Left Layered Panel: AI / Technology Student (hero-ai-student.jpg) */}
+        <div className="absolute left-0 sm:left-1 md:left-2 top-[12%] sm:top-[10%] w-[44%] sm:w-[43%] aspect-[4/5] z-10 animate-float-subtle">
+          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/20 bg-card shadow-xl shadow-blue-950/15 transform -rotate-2 sm:-rotate-3 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:z-25 group">
             <Image
               src="/images/hero-ai-student.jpg"
               alt="Student exploring artificial intelligence and programming at G-TEC Thodupuzha"
               fill
               priority={priority}
               sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Soft subtle blending overlay connecting to center */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-primary/30 pointer-events-none" />
@@ -65,16 +65,16 @@ export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
           </div>
         </div>
 
-        {/* Secondary Right Layered Panel: Coding & Analytics HUD */}
-        <div className="absolute right-0 sm:right-1 md:right-2 bottom-[8%] sm:bottom-[7%] w-[44%] sm:w-[43%] aspect-[4/5] z-10 transform rotate-2 sm:rotate-3 transition-transform duration-500 hover:rotate-0 hover:z-25">
-          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/20 bg-card shadow-xl shadow-blue-950/15">
+        {/* Secondary Right Layered Panel: Coding Student with Laptop (courses/hero-ai-student.jpg.jpg) */}
+        <div className="absolute right-0 sm:right-1 md:right-2 bottom-[8%] sm:bottom-[7%] w-[44%] sm:w-[43%] aspect-[4/5] z-10 animate-float-gentle">
+          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/20 bg-card shadow-xl shadow-blue-950/15 transform rotate-2 sm:rotate-3 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:z-25 group">
             <Image
-              src="/images/hero-analytics-code.jpg"
-              alt="Data analytics and software technology interface at G-TEC Thodupuzha"
+              src="/images/courses/hero-ai-student.jpg.jpg"
+              alt="Hands-on coding and software education at G-TEC Thodupuzha"
               fill
               priority={priority}
               sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Soft subtle blending overlay connecting to center */}
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary/30 pointer-events-none" />
@@ -82,16 +82,16 @@ export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
           </div>
         </div>
 
-        {/* Main Center Focal Image: Professional Business & AI Technology */}
-        <div className="relative z-20 w-[58%] sm:w-[56%] md:w-[54%] lg:w-[56%] xl:w-[55%] aspect-[3/4] transition-transform duration-500 hover:scale-[1.02]">
-          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-white/95 dark:border-white/25 bg-card shadow-2xl shadow-blue-950/30 ring-1 ring-primary/20">
+        {/* Main Center Focal Image: Professional Business & AI Technology (hero-main-tech.jpg) */}
+        <div className="relative z-20 w-[58%] sm:w-[56%] md:w-[54%] lg:w-[56%] xl:w-[55%] aspect-[3/4] animate-float-gentle">
+          <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-white/95 dark:border-white/25 bg-card shadow-2xl shadow-blue-950/30 ring-1 ring-primary/20 transition-all duration-500 hover:scale-[1.03] group">
             <Image
               src="/images/hero-main-tech.jpg"
               alt="Professional executive and tech learner engaging with interactive digital interface at G-TEC Thodupuzha"
               fill
               priority={priority}
               sizes="(max-width: 640px) 60vw, (max-width: 1024px) 40vw, 28vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Subtle light sheen highlight */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/15 pointer-events-none" />

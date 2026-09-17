@@ -1,8 +1,7 @@
 import { describe, test, expect, vi } from "vitest";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import type { CourseWithCategory, RelatedCourse, PublicCourse } from "@/lib/courses";
-import type { CourseContent } from "@/lib/course-content.types";
+import type { CourseWithCategory, RelatedCourse } from "@/lib/courses";
 import {
   deriveCourseLevel,
   getCourseHighlights,

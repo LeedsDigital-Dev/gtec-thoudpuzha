@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
 import { getCourseFallbackImage, getMediaUrl } from "@/lib/media";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface CourseCardProps {
   slug: string;

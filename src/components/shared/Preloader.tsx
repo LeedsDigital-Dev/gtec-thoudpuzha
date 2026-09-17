@@ -1,13 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
+
+function getSessionSnapshot(): boolean {
+  try {
+    return sessionStorage.getItem("gtec_ps") !== "1";
+  } catch {
+    return false;
+  }
+}
+
+function getServerSnapshot(): boolean {
+  return false;
+}
 
 export function Preloader() {
-  const [mounted, setMounted] = useState(false);
-  const [show, setShow] = useState(false);
+  const shouldShow = useSyncExternalStore(
+    emptySubscribe,
+    getSessionSnapshot,
+    getServerSnapshot
+  );
+
+  const [dismissed, setDismissed] = useState(false);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+<<<<<<< HEAD
     // Deferred into the timer callback: a synchronous setState in an effect body
     // trips react-hooks/set-state-in-effect and cascades a second render.
     const mountTimer = setTimeout(() => {
@@ -29,22 +49,31 @@ export function Preloader() {
 
   useEffect(() => {
     if (!show) return;
+=======
+    if (!shouldShow) return;
+
+    try {
+      sessionStorage.setItem("gtec_ps", "1");
+    } catch {
+      // SessionStorage might be unavailable or restricted
+    }
+>>>>>>> dc695c3 (fix(hero,preloader): resolve hero image path and fix react 19 preloader effect)
 
     const fadeTimer = setTimeout(() => {
       setFading(true);
     }, 600);
 
     const removeTimer = setTimeout(() => {
-      setShow(false);
+      setDismissed(true);
     }, 1000);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
-  }, [show]);
+  }, [shouldShow]);
 
-  if (!mounted || !show) return null;
+  if (!shouldShow || dismissed) return null;
 
   return (
     <div

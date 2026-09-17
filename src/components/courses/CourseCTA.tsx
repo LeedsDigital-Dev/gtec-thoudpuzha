@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, PhoneCall, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/shared/icons/WhatsAppIcon";
 
 interface CourseCTAProps {

@@ -16,10 +16,10 @@ describe("HeroVisualCollage", () => {
     expect(aiStudentImage).toBeInTheDocument();
     expect(aiStudentImage).toHaveAttribute("src", expect.stringContaining("hero-ai-student.jpg"));
 
-    // 3. Coding student image (courses/hero-ai-student.jpg.jpg)
-    const codingImage = screen.getByAltText(/Hands-on coding and software education/i);
+    // 3. Analytics / coding image (hero-analytics-code.jpg)
+    const codingImage = screen.getByAltText(/Data analytics and software technology interface/i);
     expect(codingImage).toBeInTheDocument();
-    expect(codingImage).toHaveAttribute("src", expect.stringContaining("hero-ai-student.jpg.jpg"));
+    expect(codingImage).toHaveAttribute("src", expect.stringContaining("hero-analytics-code.jpg"));
   });
 
   it("does not render any Google Reviews or rating badges", () => {

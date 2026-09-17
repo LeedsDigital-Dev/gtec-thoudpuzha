@@ -65,12 +65,12 @@ export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
           </div>
         </div>
 
-        {/* Secondary Right Layered Panel: Coding Student with Laptop (courses/hero-ai-student.jpg.jpg) */}
+        {/* Secondary Right Layered Panel: Analytics & Code Interface (hero-analytics-code.jpg) */}
         <div className="absolute right-0 sm:right-1 md:right-2 bottom-[8%] sm:bottom-[7%] w-[44%] sm:w-[43%] aspect-[4/5] z-10 animate-float-gentle">
           <div className="relative w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/80 dark:border-white/20 bg-card shadow-xl shadow-blue-950/15 transform rotate-2 sm:rotate-3 transition-all duration-500 hover:rotate-0 hover:scale-105 hover:z-25 group">
             <Image
-              src="/images/courses/hero-ai-student.jpg.jpg"
-              alt="Hands-on coding and software education at G-TEC Thodupuzha"
+              src="/images/hero-analytics-code.jpg"
+              alt="Data analytics and software technology interface at G-TEC Thodupuzha"
               fill
               priority={priority}
               sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"

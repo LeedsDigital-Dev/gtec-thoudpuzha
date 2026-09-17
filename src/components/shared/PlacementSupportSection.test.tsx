@@ -8,9 +8,10 @@ vi.mock("next/image", () => ({
     props: React.ImgHTMLAttributes<HTMLImageElement> & {
       fill?: boolean;
       priority?: boolean;
+      unoptimized?: boolean;
     },
   ) => {
-    const { fill, priority, ...rest } = props;
+    const { fill, priority, unoptimized: _unoptimized, ...rest } = props;
     return (
       <img
         {...rest}

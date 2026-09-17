@@ -1,10 +1,10 @@
-import { Phone, ShieldCheck, Clock, CheckCircle2, Award, Headphones } from "lucide-react";
+import { Phone, Clock, CheckCircle2, Award, Headphones } from "lucide-react";
 import { EnquiryForm } from "@/components/shared/EnquiryForm";
 import type { PublicCourse } from "@/lib/courses";
 
 interface CourseQuickEnquiryProps {
   courseId: string;
-  courseTitle: string;
+  courseTitle?: string;
   courses: PublicCourse[];
   locale: string;
   whatsappNumber?: string | null;
@@ -12,7 +12,7 @@ interface CourseQuickEnquiryProps {
 
 export function CourseQuickEnquiry({
   courseId,
-  courseTitle,
+  courseTitle: _courseTitle,
   courses,
   locale,
   whatsappNumber = "919744221113",

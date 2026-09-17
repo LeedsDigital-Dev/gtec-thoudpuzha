@@ -1,4 +1,4 @@
-import { Layers, ChevronDown, CheckCircle, ListOrdered } from "lucide-react";
+import { Layers, CheckCircle, ListOrdered } from "lucide-react";
 import type { CurriculumModule } from "@/lib/course-detail-helpers";
 import type { CourseListBlock } from "@/lib/course-content.types";
 

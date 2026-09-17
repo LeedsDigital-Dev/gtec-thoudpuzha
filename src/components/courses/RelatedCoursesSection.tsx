@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
-import { Clock, ArrowRight, BookOpen, Sparkles } from "lucide-react";
+import { Clock, ArrowRight, Sparkles } from "lucide-react";
 import type { RelatedCourse } from "@/lib/courses";
 import { getCourseFallbackImage, getMediaUrl } from "@/lib/media";
 

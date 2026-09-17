@@ -16,11 +16,13 @@ import { MapPin, Star, ArrowUpRight } from "lucide-react";
 interface FooterProps {
   settings?: Partial<SiteSettings> | null;
   address?: string | null;
+  locale?: string;
 }
 
 export async function Footer({
   settings: propSettings,
   address: propAddress,
+  locale = "en",
 }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
@@ -248,7 +250,7 @@ export async function Footer({
 
           {/* Column 2: Quick Links (Width 2 on lg) */}
           <div className="lg:col-span-2">
-            <FooterLinksColumn title="Quick Links" links={defaultQuickLinks} />
+            <FooterLinksColumn title="Quick Links" links={defaultQuickLinks} locale={locale} />
           </div>
 
           {/* Column 3: Popular Courses (Width 2 on lg) */}
@@ -256,6 +258,7 @@ export async function Footer({
             <FooterLinksColumn
               title="Popular Courses"
               links={defaultPopularCourses}
+              locale={locale}
             />
           </div>
 
@@ -264,6 +267,7 @@ export async function Footer({
             <FooterLinksColumn
               title="Student & Portal"
               links={defaultPortalLinks}
+              locale={locale}
             />
           </div>
 
@@ -287,6 +291,7 @@ export async function Footer({
         whatsappUrl={whatsappUrl}
         googleReviewsUrl={googleReviewsUrl}
         centreName={siteConfig.centreName}
+        locale={locale}
       />
     </footer>
   );

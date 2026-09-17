@@ -47,7 +47,7 @@ export default async function NewsDetailPage({
   return (
     <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
-        href="/news"
+        href={`/${locale}/news`}
         className="text-sm text-primary underline hover:no-underline"
       >
         {t("backToNews")}

@@ -72,13 +72,13 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
-              href="/portal/jobs"
+              href={`/${locale}/portal/jobs`}
               className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             >
               {t("viewVacancies")}
             </Link>
             <Link
-              href="/portal/employer/register"
+              href={`/${locale}/portal/employer/register`}
               className="inline-flex items-center rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium hover:bg-muted"
             >
               {t("hiringCta")}

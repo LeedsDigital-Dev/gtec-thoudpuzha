@@ -46,7 +46,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
             {newsItems.map((item) => (
               <Link
                 key={item.id}
-                href={`/news/${item.slug}`}
+                href={`/${locale}/news/${item.slug}`}
                 className="block rounded-2xl border border-border p-5 transition-all hover:shadow-md hover:border-primary/40"
               >
                 <p className="text-sm font-semibold text-muted-foreground">
@@ -71,7 +71,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
             {eventItems.map((item) => (
               <Link
                 key={item.id}
-                href={`/news/${item.slug}`}
+                href={`/${locale}/news/${item.slug}`}
                 className="block rounded-2xl border border-border p-5 transition-all hover:shadow-md hover:border-primary/40"
               >
                 <p className="text-sm font-semibold text-muted-foreground">

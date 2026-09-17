@@ -326,6 +326,7 @@ export function Header({
                       <Link
                         key={course.slug}
                         href={localeHref(`/courses/${course.slug}`)}
+                        scroll={true}
                         className="block rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                         onClick={() => setDrawerOpen(false)}
                       >

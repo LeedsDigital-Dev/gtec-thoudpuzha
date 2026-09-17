@@ -176,6 +176,7 @@ export function CoursesDropdown({
               <Link
                 key={course.slug}
                 href={`/courses/${course.slug}`}
+                scroll={true}
                 role="menuitem"
                 className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition-all hover:bg-slate-50 hover:text-primary focus:bg-slate-50 focus:text-primary focus:outline-none"
                 tabIndex={-1}

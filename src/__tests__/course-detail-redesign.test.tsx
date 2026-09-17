@@ -27,7 +27,7 @@ import { CourseCTA } from "@/components/courses/CourseCTA";
 
 // Mock next-intl & navigation
 vi.mock("@/lib/i18n/navigation", () => ({
-  Link: ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  Link: ({ href, children, scroll: _scroll, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { scroll?: boolean }) => (
     <a href={href} {...props}>
       {children}
     </a>

@@ -66,13 +66,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/courses"
+              href={`/${locale}/courses`}
               className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {aboutPageT("exploreCourses")}
             </Link>
             <Link
-              href="/contact"
+              href={`/${locale}/contact`}
               className="inline-flex items-center justify-center rounded-xl border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {aboutPageT("contactUs")}

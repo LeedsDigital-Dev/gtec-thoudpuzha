@@ -20,6 +20,7 @@ import { WhoCanJoin } from "@/components/courses/WhoCanJoin";
 import { RelatedCoursesSection } from "@/components/courses/RelatedCoursesSection";
 import { CourseCTA } from "@/components/courses/CourseCTA";
 import { CourseQuickEnquiry } from "@/components/courses/CourseQuickEnquiry";
+import { CourseScrollReset } from "@/components/courses/CourseScrollReset";
 
 interface CourseDetailProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -31,7 +32,8 @@ export async function generateMetadata({
   params,
 }: CourseDetailProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const course = await getCourseBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug).trim();
+  const course = await getCourseBySlug(decodedSlug);
   if (!course || course.status !== "PUBLISHED") {
     const tErr = await getTranslations({ locale, namespace: "errors" });
     return { title: tErr("title") };
@@ -59,9 +61,10 @@ export async function generateMetadata({
 
 export default async function CourseDetailPage({ params }: CourseDetailProps) {
   const { locale, slug } = await params;
+  const decodedSlug = decodeURIComponent(slug).trim();
 
   const [course, allCourses, siteSettings] = await Promise.all([
-    getCourseBySlug(slug),
+    getCourseBySlug(decodedSlug),
     getPublishedCourses(),
     getCachedSiteSettings().catch(() => null),
   ]);
@@ -71,7 +74,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
   }
 
   // Fetch related courses prioritizing the same category
-  const relatedCourses = await getRelatedCourses(slug, 3, course.categoryId);
+  const relatedCourses = await getRelatedCourses(decodedSlug, 3, course.categoryId);
 
   const contentBlocks = course.contentBlocks as unknown as CourseContent | null;
 
@@ -99,6 +102,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
 
   return (
     <main className="min-h-screen bg-background pb-16 sm:pb-24">
+      <CourseScrollReset />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 pt-2 sm:pt-4">
         {/* 1. Breadcrumb Navigation */}
         <CourseBreadcrumb courseTitle={displayTitle} locale={locale} />

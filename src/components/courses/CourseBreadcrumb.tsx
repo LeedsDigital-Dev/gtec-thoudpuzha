@@ -1,4 +1,4 @@
-import { Link } from "@/lib/i18n/navigation";
+import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 
 interface CourseBreadcrumbProps {
@@ -20,7 +20,7 @@ export function CourseBreadcrumb({
       className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground/80 py-3"
     >
       <Link
-        href="/"
+        href={`/${locale}`}
         className="inline-flex items-center gap-1 hover:text-primary transition-colors font-medium"
       >
         <Home className="size-3.5" />
@@ -30,7 +30,7 @@ export function CourseBreadcrumb({
       <ChevronRight className="size-3.5 text-muted-foreground/50 shrink-0" aria-hidden="true" />
 
       <Link
-        href="/courses"
+        href={`/${locale}/courses`}
         className="hover:text-primary transition-colors font-medium"
       >
         {coursesLabel}

@@ -139,7 +139,8 @@ export function FeaturedCoursesSection({
                   {/* Card Content */}
                   <div className="p-5 sm:p-6">
                     <Link
-                      href={`/courses/${course.slug}`}
+                      href={`/${locale}/courses/${course.slug}`}
+                      scroll={true}
                       className="block group-hover:text-primary transition-colors"
                     >
                       <h3 className="text-lg sm:text-xl font-extrabold tracking-tight text-foreground leading-snug line-clamp-2">
@@ -159,7 +160,7 @@ export function FeaturedCoursesSection({
                 <div className="p-5 sm:p-6 pt-0 mt-2">
                   <div className="flex items-center gap-3 pt-4 border-t border-border/50">
                     <Link
-                      href={`/courses/${course.slug}#enquiry`}
+                      href={`/${locale}/courses/${course.slug}#enquiry`}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-xs sm:text-sm font-bold text-primary-foreground shadow-xs transition-all duration-200 hover:bg-primary/90 hover:shadow-md active:scale-95"
                     >
                       <span>{isMl ? "ഇപ്പോൾ ചേരുക" : "Enroll Now"}</span>
@@ -167,7 +168,8 @@ export function FeaturedCoursesSection({
                     </Link>
 
                     <Link
-                      href={`/courses/${course.slug}`}
+                      href={`/${locale}/courses/${course.slug}`}
+                      scroll={true}
                       className="inline-flex items-center justify-center gap-1 rounded-xl border border-border/80 bg-background/80 px-3.5 py-2.5 text-xs sm:text-sm font-bold text-foreground transition-all duration-200 hover:bg-muted hover:border-primary/40 active:scale-95"
                       aria-label={`View details for ${title}`}
                     >
@@ -197,7 +199,7 @@ export function FeaturedCoursesSection({
           </div>
 
           <Link
-            href="/courses"
+            href={`/${locale}/courses`}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-md transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
           >
             <span>{isMl ? "എല്ലാ കോഴ്‌സുകളും കാണുക" : "Explore All Courses"}</span>

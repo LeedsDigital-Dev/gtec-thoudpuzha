@@ -52,8 +52,16 @@ export type CourseWithCategory = Course & {
 export const getCourseBySlug = cache(
   async (slug: string): Promise<CourseWithCategory | null> => {
     try {
-      const course = await prisma.course.findUnique({
-        where: { slug },
+      const decodedSlug = decodeURIComponent(slug).trim();
+      const course = await prisma.course.findFirst({
+        where: {
+          OR: [
+            { slug: decodedSlug },
+            { slug: slug },
+            { slug: decodedSlug.toLowerCase() },
+            { slug: slug.toLowerCase() },
+          ],
+        },
         include: { category: true },
       });
       return course;

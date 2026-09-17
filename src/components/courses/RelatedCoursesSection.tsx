@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/lib/i18n/navigation";
+import Link from "next/link";
 import { Clock, ArrowRight, Sparkles } from "lucide-react";
 import type { RelatedCourse } from "@/lib/courses";
 import { getCourseFallbackImage, getMediaUrl } from "@/lib/media";
@@ -38,7 +38,7 @@ export function RelatedCoursesSection({
           </p>
         </div>
         <Link
-          href="/courses"
+          href={`/${locale}/courses`}
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:text-primary/80 transition-colors"
         >
           <span>{isMl ? "എല്ലാ കോഴ്‌സുകളും കാണുക" : "View All Courses"}</span>
@@ -108,7 +108,8 @@ export function RelatedCoursesSection({
               {/* Card Footer Link */}
               <div className="p-5 pt-0">
                 <Link
-                  href={`/courses/${c.slug}`}
+                  href={`/${locale}/courses/${c.slug}`}
+                  scroll={true}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/5 py-2.5 text-xs sm:text-sm font-bold text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:shadow-xs group-hover:border-primary"
                 >
                   <span>{isMl ? "കോഴ്‌സ് വിശദാംശങ്ങൾ" : "View Course"}</span>

@@ -53,9 +53,10 @@ export const defaultPortalLinks: FooterLinkItem[] = [
 interface FooterLinksColumnProps {
   title: string;
   links: FooterLinkItem[];
+  locale?: string;
 }
 
-export function FooterLinksColumn({ title, links }: FooterLinksColumnProps) {
+export function FooterLinksColumn({ title, links, locale = "en" }: FooterLinksColumnProps) {
   return (
     <div className="space-y-4 text-left">
       <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
@@ -103,10 +104,15 @@ export function FooterLinksColumn({ title, links }: FooterLinksColumnProps) {
             );
           }
 
+          const targetHref =
+            link.href.startsWith("http") || link.href.startsWith(`/${locale}`)
+              ? link.href
+              : `/${locale}${link.href === "/" ? "" : link.href}`;
+
           return (
             <li key={link.label}>
               <Link
-                href={link.href}
+                href={targetHref}
                 data-testid={link.testId}
                 className="group flex items-center gap-2 text-xs sm:text-sm text-slate-300 transition-all duration-200 hover:text-sky-300 hover:translate-x-1"
               >
@@ -121,17 +127,19 @@ export function FooterLinksColumn({ title, links }: FooterLinksColumnProps) {
   );
 }
 
-export function FooterLinks() {
+export function FooterLinks({ locale = "en" }: { locale?: string }) {
   return (
     <>
-      <FooterLinksColumn title="Quick Links" links={defaultQuickLinks} />
+      <FooterLinksColumn title="Quick Links" links={defaultQuickLinks} locale={locale} />
       <FooterLinksColumn
         title="Popular Courses"
         links={defaultPopularCourses}
+        locale={locale}
       />
       <FooterLinksColumn
         title="Student & Portal"
         links={defaultPortalLinks}
+        locale={locale}
       />
     </>
   );

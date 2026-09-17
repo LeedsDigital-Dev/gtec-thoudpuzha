@@ -21,7 +21,8 @@ export function CourseQuickEnquiry({
   const cleanDigits = (whatsappNumber || "919744221113").replace(/\D/g, "");
 
   return (
-    <div id="admission-enquiry" className="space-y-5 scroll-mt-24">
+    <div id="admission-enquiry" className="space-y-5 scroll-mt-24 relative">
+      <span id="enquiry" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       {/* Quick Admission Form Card */}
       <div className="relative rounded-3xl border border-primary/25 bg-card/95 backdrop-blur-xl shadow-xl overflow-hidden">
         {/* Top Decorative Banner */}

@@ -7,9 +7,12 @@ import { logger } from "@/lib/logger";
 
 export default async function PublicLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   let settings: import("@/lib/site-settings").SiteSettingsWithCards | undefined;
   try {
     settings = await getCachedSiteSettings();
@@ -39,7 +42,7 @@ export default async function PublicLayout({
       <div className="flex-1 w-full max-w-full overflow-x-hidden">
         {children}
       </div>
-      <Footer settings={settings} address={settings?.address} />
+      <Footer settings={settings} address={settings?.address} locale={locale} />
     </div>
   );
 }

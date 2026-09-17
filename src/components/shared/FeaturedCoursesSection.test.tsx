@@ -50,7 +50,7 @@ describe("FeaturedCoursesSection", () => {
     expect(html).toContain("6 Months");
     expect(html).toContain("Enroll Now");
     expect(html).toContain("View All Courses");
-    expect(html).toContain("href=\"/courses/full-stack-web-development#enquiry\"");
+    expect(html).toContain("href=\"/en/courses/full-stack-web-development#enquiry\"");
   });
 
   test("renders nothing when courses array is empty", () => {

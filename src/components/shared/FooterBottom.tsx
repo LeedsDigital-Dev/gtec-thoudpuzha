@@ -10,6 +10,7 @@ interface FooterBottomProps {
   whatsappUrl?: string | null;
   googleReviewsUrl?: string | null;
   centreName?: string;
+  locale?: string;
 }
 
 export function FooterBottom({
@@ -20,6 +21,7 @@ export function FooterBottom({
   whatsappUrl = "https://wa.me/919744221113",
   googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=G-TEC+Computer+Education+Thodupuzha+reviews",
   centreName = "THODUPUZHA",
+  locale = "en",
 }: FooterBottomProps) {
   const effectiveFacebook = facebookUrl ?? null;
   const effectiveInstagram = instagramUrl ?? null;
@@ -39,7 +41,7 @@ export function FooterBottom({
             <div className="hidden sm:inline-block text-slate-600">|</div>
             <div className="flex items-center gap-3 text-xs text-slate-400">
               <Link
-                href="/privacy"
+                href={`/${locale}/privacy`}
                 data-testid="footer-privacy-link"
                 className="hover:text-sky-400 transition-colors"
               >
@@ -47,7 +49,7 @@ export function FooterBottom({
               </Link>
               <span>•</span>
               <Link
-                href="/terms"
+                href={`/${locale}/terms`}
                 data-testid="footer-terms-link"
                 className="hover:text-sky-400 transition-colors"
               >

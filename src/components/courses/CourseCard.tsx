@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/lib/i18n/navigation";
+import Link from "next/link";
 import { getCourseFallbackImage, getMediaUrl } from "@/lib/media";
 import { ArrowRight } from "lucide-react";
 
@@ -33,7 +33,8 @@ export function CourseCard({
 
   return (
     <Link
-      href={`/courses/${slug}`}
+      href={`/${locale}/courses/${slug}`}
+      scroll={true}
       className="group flex flex-col justify-between rounded-2xl border border-border/80 overflow-hidden bg-card shadow-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-primary/40"
     >
       <div>

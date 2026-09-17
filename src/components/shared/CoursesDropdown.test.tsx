@@ -7,10 +7,12 @@ vi.mock("@/lib/i18n/navigation", () => ({
   Link: ({
     href,
     children,
+    scroll: _scroll,
     ...props
   }: {
     href: string;
     children: React.ReactNode;
+    scroll?: boolean;
   }) => (
     <a href={href} {...props}>
       {children}

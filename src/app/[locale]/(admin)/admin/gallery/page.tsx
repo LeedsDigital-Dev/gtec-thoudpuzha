@@ -5,6 +5,8 @@ import { prisma } from "@/lib/db";
 import { getMediaUrl } from "@/lib/media";
 import { Button } from "@/components/ui/button";
 import { ConfirmDeleteForm } from "./confirm-delete-form";
+import { EditCategoryDialog } from "./edit-category-dialog";
+import { EditGalleryItemDialog } from "./edit-gallery-item-dialog";
 import {
   createCategory,
   updateCategory,
@@ -47,6 +49,11 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
     group.push(item);
     itemsByCategory.set(item.categoryId, group);
   }
+
+  const categoryOptions = categories.map((c) => ({
+    id: c.id,
+    nameEn: c.nameEn,
+  }));
 
   return (
     <main className="p-4 sm:p-6 lg:p-8 space-y-10">
@@ -137,22 +144,11 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                       {isSuperAdmin && (
                         <td className="border border-border px-3 py-2">
                           <div className="flex items-center gap-2">
-                            <details className="relative">
-                              <summary className="cursor-pointer text-sm text-primary font-medium">Edit</summary>
-                              <form action={updateCategory} className="absolute right-0 top-6 z-20 w-80 rounded border border-border bg-card p-3 shadow-lg space-y-2 text-left">
-                                <input type="hidden" name="id" value={cat.id} />
-                                <input type="hidden" name="locale" value={locale} />
-                                <div>
-                                  <label className="block text-sm font-medium text-foreground mb-0.5">Name (English) *</label>
-                                  <input name="nameEn" defaultValue={cat.nameEn} required className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                </div>
-                                <div>
-                                  <label className="block text-sm font-medium text-foreground mb-0.5">Name (Malayalam)</label>
-                                  <input name="nameMl" defaultValue={cat.nameMl ?? ""} className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                </div>
-                                <Button type="submit" size="xs" className="w-full">Save Changes</Button>
-                              </form>
-                            </details>
+                            <EditCategoryDialog
+                              category={cat}
+                              locale={locale}
+                              action={updateCategory}
+                            />
                             <ConfirmDeleteForm
                               action={deleteCategory}
                               confirmMessage={
@@ -213,40 +209,28 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                       </div>
 
                       {isSuperAdmin && (
-                        <ConfirmDeleteForm
-                          action={deleteCategory}
-                          confirmMessage={
-                            cat._count.items > 0
-                              ? `Delete "${cat.nameEn}" and all ${cat._count.items} items in it?`
-                              : `Delete "${cat.nameEn}"?`
-                          }
-                        >
-                          <input type="hidden" name="id" value={cat.id} />
-                          <input type="hidden" name="nameEn" value={cat.nameEn} />
-                          <input type="hidden" name="locale" value={locale} />
-                          <Button type="submit" size="xs" variant="destructive">Delete</Button>
-                        </ConfirmDeleteForm>
+                        <div className="flex items-center gap-2">
+                          <EditCategoryDialog
+                            category={cat}
+                            locale={locale}
+                            action={updateCategory}
+                          />
+                          <ConfirmDeleteForm
+                            action={deleteCategory}
+                            confirmMessage={
+                              cat._count.items > 0
+                                ? `Delete "${cat.nameEn}" and all ${cat._count.items} items in it?`
+                                : `Delete "${cat.nameEn}"?`
+                            }
+                          >
+                            <input type="hidden" name="id" value={cat.id} />
+                            <input type="hidden" name="nameEn" value={cat.nameEn} />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                          </ConfirmDeleteForm>
+                        </div>
                       )}
                     </div>
-
-                    {isSuperAdmin && (
-                      <details className="pt-1 border-t">
-                        <summary className="cursor-pointer text-sm font-medium text-primary py-1">Edit Category</summary>
-                        <form action={updateCategory} className="mt-2 space-y-2.5 border border-border rounded p-3 bg-muted/20 text-left">
-                          <input type="hidden" name="id" value={cat.id} />
-                          <input type="hidden" name="locale" value={locale} />
-                          <div>
-                            <label className="block text-sm font-medium text-foreground mb-1">Name (English) *</label>
-                            <input name="nameEn" defaultValue={cat.nameEn} required className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-foreground mb-1">Name (Malayalam)</label>
-                            <input name="nameMl" defaultValue={cat.nameMl ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                          </div>
-                          <Button type="submit" size="xs" className="w-full">Save Changes</Button>
-                        </form>
-                      </details>
-                    )}
                   </div>
                 </div>
               ))}
@@ -414,40 +398,12 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                           {isSuperAdmin && (
                             <td className="border border-border px-3 py-2">
                               <div className="flex items-center gap-2">
-                                <details className="relative">
-                                  <summary className="cursor-pointer text-sm text-primary font-medium">Edit</summary>
-                                  <form action={updateGalleryItem} className="absolute right-0 top-6 z-20 w-80 rounded border border-border bg-card p-3 shadow-lg space-y-2 text-left">
-                                    <input type="hidden" name="id" value={item.id} />
-                                    <input type="hidden" name="locale" value={locale} />
-                                    <div>
-                                      <label className="block text-sm font-medium text-foreground mb-0.5">Category</label>
-                                      <select name="categoryId" defaultValue={item.categoryId} className="w-full rounded border border-border px-2 py-1 text-sm bg-background">
-                                        {categories.map((c) => (
-                                          <option key={c.id} value={c.id}>{c.nameEn}</option>
-                                        ))}
-                                      </select>
-                                    </div>
-                                    <div>
-                                      <label className="block text-sm font-medium text-foreground mb-0.5">Caption (English)</label>
-                                      <input name="captionEn" defaultValue={item.captionEn ?? ""} className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                    </div>
-                                    <div>
-                                      <label className="block text-sm font-medium text-foreground mb-0.5">Caption (Malayalam)</label>
-                                      <input name="captionMl" defaultValue={item.captionMl ?? ""} className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                    </div>
-                                    <div>
-                                      <label className="block text-sm font-medium text-foreground mb-0.5">Sort Order</label>
-                                      <input name="sortOrder" type="number" defaultValue={item.sortOrder} className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                    </div>
-                                    {item.mediaType === "VIDEO" && (
-                                      <div>
-                                        <label className="block text-sm font-medium text-foreground mb-0.5">Video URL</label>
-                                        <input name="url" type="url" defaultValue={item.url} required className="w-full rounded border border-border px-2 py-1 text-sm bg-background" />
-                                      </div>
-                                    )}
-                                    <Button type="submit" size="xs" className="w-full">Save Changes</Button>
-                                  </form>
-                                </details>
+                                <EditGalleryItemDialog
+                                  item={item}
+                                  categories={categoryOptions}
+                                  locale={locale}
+                                  action={updateGalleryItem}
+                                />
                                 <ConfirmDeleteForm
                                   action={deleteGalleryItem}
                                   confirmMessage="Delete this item?"
@@ -498,52 +454,21 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                       </div>
 
                       {isSuperAdmin && (
-                        <div className="pt-2 border-t space-y-2">
-                          <div className="flex items-center justify-between gap-2">
-                            <ConfirmDeleteForm
-                              action={deleteGalleryItem}
-                              confirmMessage="Delete this item?"
-                            >
-                              <input type="hidden" name="id" value={item.id} />
-                              <input type="hidden" name="locale" value={locale} />
-                              <Button type="submit" size="xs" variant="destructive" className="w-full">Delete Item</Button>
-                            </ConfirmDeleteForm>
-                          </div>
-
-                          <details className="pt-1 border-t">
-                            <summary className="cursor-pointer text-sm font-medium text-primary py-1">Edit Item</summary>
-                            <form action={updateGalleryItem} className="mt-2 space-y-2.5 border border-border rounded p-3 bg-muted/20 text-left">
-                              <input type="hidden" name="id" value={item.id} />
-                              <input type="hidden" name="locale" value={locale} />
-                              <div>
-                                <label className="block text-sm font-medium text-foreground mb-1">Category</label>
-                                <select name="categoryId" defaultValue={item.categoryId} className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background">
-                                  {categories.map((c) => (
-                                    <option key={c.id} value={c.id}>{c.nameEn}</option>
-                                  ))}
-                                </select>
-                              </div>
-                              <div>
-                                <label className="block text-sm font-medium text-foreground mb-1">Caption (English)</label>
-                                <input name="captionEn" defaultValue={item.captionEn ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                              </div>
-                              <div>
-                                <label className="block text-sm font-medium text-foreground mb-1">Caption (Malayalam)</label>
-                                <input name="captionMl" defaultValue={item.captionMl ?? ""} className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                              </div>
-                              <div>
-                                <label className="block text-sm font-medium text-foreground mb-1">Sort Order</label>
-                                <input name="sortOrder" type="number" defaultValue={item.sortOrder} className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                              </div>
-                              {item.mediaType === "VIDEO" && (
-                                <div>
-                                  <label className="block text-sm font-medium text-foreground mb-1">Video URL</label>
-                                  <input name="url" type="url" defaultValue={item.url} required className="w-full rounded border border-border px-2 py-1.5 text-sm bg-background" />
-                                </div>
-                              )}
-                              <Button type="submit" size="xs" className="w-full">Save Changes</Button>
-                            </form>
-                          </details>
+                        <div className="pt-2 border-t flex items-center justify-end gap-2">
+                          <EditGalleryItemDialog
+                            item={item}
+                            categories={categoryOptions}
+                            locale={locale}
+                            action={updateGalleryItem}
+                          />
+                          <ConfirmDeleteForm
+                            action={deleteGalleryItem}
+                            confirmMessage="Delete this item?"
+                          >
+                            <input type="hidden" name="id" value={item.id} />
+                            <input type="hidden" name="locale" value={locale} />
+                            <Button type="submit" size="xs" variant="destructive">Delete</Button>
+                          </ConfirmDeleteForm>
                         </div>
                       )}
                     </div>

@@ -372,6 +372,30 @@ describe("updateCategory and updateGalleryItem actions", () => {
     const { updateGalleryItem } = await import("./actions");
     await expect(updateGalleryItem(formData)).rejects.toThrow("redirect:/en/forbidden");
   });
+
+  test("10. Super Admin can replace an image file during update", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
+    mockUploadFile.mockResolvedValue("gallery/replaced-new.png");
+    mockItemUpdate.mockResolvedValue({ id: "item_1", url: "gallery/replaced-new.png" });
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "item_1");
+    formData.append("file", fakeFile("new-image.png", "image/png"));
+    formData.append("captionEn", "Replaced Caption");
+
+    const { updateGalleryItem } = await import("./actions");
+    await updateGalleryItem(formData);
+
+    expect(mockUploadFile).toHaveBeenCalled();
+    expect(mockItemUpdate).toHaveBeenCalledWith({
+      where: { id: "item_1" },
+      data: expect.objectContaining({
+        url: "gallery/replaced-new.png",
+        captionEn: "Replaced Caption",
+      }),
+    });
+  });
 });
 
 describe("GalleryPage", () => {
@@ -419,7 +443,7 @@ describe("GalleryPage", () => {
     ).rejects.toThrow("redirect:/en/forbidden");
   });
 
-  test("11. renders view-only gallery for CENTRE_STAFF with create/edit/delete buttons hidden", async () => {
+  test("12. renders view-only gallery for CENTRE_STAFF with create/edit/delete buttons hidden", async () => {
     mockAuth.mockResolvedValue({
       userId: "staff_1",
       sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
@@ -437,10 +461,10 @@ describe("GalleryPage", () => {
     expect(html).not.toContain("Upload Images");
     expect(html).not.toContain("Add Video URL");
     expect(html).not.toContain("Delete Item");
-    expect(html).not.toContain("Save Changes");
+    expect(html).not.toContain("Edit");
   });
 
-  test("12. renders full management & edit controls for SUPER_ADMIN", async () => {
+  test("13. renders full management & edit controls for SUPER_ADMIN", async () => {
     mockAuth.mockResolvedValue({
       userId: "admin_1",
       sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
@@ -458,6 +482,5 @@ describe("GalleryPage", () => {
     expect(html).toContain("Add Video URL");
     expect(html).toContain("Delete");
     expect(html).toContain("Edit");
-    expect(html).toContain("Save Changes");
   });
 });

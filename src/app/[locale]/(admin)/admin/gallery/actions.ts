@@ -114,20 +114,25 @@ export async function updateGalleryItem(formData: FormData) {
       : undefined;
   const rawUrl = (formData.get("url") as string) || null;
   const url = rawUrl ? stripHtml(rawUrl).trim() || undefined : undefined;
+  const file = formData.get("file") as File | null;
 
   const dataToUpdate: Record<string, unknown> = {
     captionEn,
     captionMl,
   };
 
+  if (file && typeof file === "object" && file.size > 0) {
+    const newUrl = await uploadFile(file, "gallery");
+    dataToUpdate.url = newUrl;
+  } else if (url) {
+    dataToUpdate.url = url;
+  }
+
   if (categoryId) {
     dataToUpdate.categoryId = categoryId;
   }
   if (sortOrder !== undefined && !Number.isNaN(sortOrder)) {
     dataToUpdate.sortOrder = sortOrder;
-  }
-  if (url) {
-    dataToUpdate.url = url;
   }
 
   await prisma.galleryItem.update({

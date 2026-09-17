@@ -260,9 +260,8 @@ export const CERTIFICATION_PARTNERS = [
 export const GALLERY_CATEGORIES = [
   { slug: "campus", nameEn: "Campus & Facilities", nameMl: "ക്യാമ്പസ് & സൗകര്യങ്ങൾ" },
   { slug: "events", nameEn: "Events & Activities", nameMl: "പരിപാടികൾ & പ്രവർത്തനങ്ങൾ" },
-  { slug: "placement", nameEn: "Placement & Support", nameMl: "പ്ലേസ്മെന്റ് & പിന്തുണ" },
+  { slug: "placement-support", nameEn: "Placement & Support", nameMl: "പ്ലേസ്മെന്റ് & പിന്തുണ" },
   { slug: "classroom", nameEn: "Classroom Sessions", nameMl: "ക്ലാസ്‌റൂം സെഷനുകൾ" },
-  { slug: "placement-support", nameEn: "Placement Support", nameMl: "പ്ലേസ്മെന്റ് പിന്തുണ" },
 ];
 
 export const WHY_CHOOSE_US_CARDS = [
@@ -368,7 +367,7 @@ export const GALLERY_ITEMS: GalleryItemSeed[] = [
   },
   // Placement & Support
   {
-    categorySlug: "placement",
+    categorySlug: "placement-support",
     mediaType: "IMAGE",
     url: "gallery/placement/certificate-distribution.png",
     captionEn: "Certificate distribution ceremony for placed candidates",
@@ -376,7 +375,7 @@ export const GALLERY_ITEMS: GalleryItemSeed[] = [
     sortOrder: 0,
   },
   {
-    categorySlug: "placement",
+    categorySlug: "placement-support",
     mediaType: "IMAGE",
     url: "gallery/placement/mock-interview-session.png",
     captionEn: "Mock interview session preparing students for placements",
@@ -410,7 +409,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/job-fair-2024.png",
     captionEn: "Annual Job Fair — 50+ companies participated in 2024",
     captionMl: "വാർഷിക തൊഴിൽ മേള — 2024ൽ 50+ കമ്പനികൾ പങ്കെടുത്തു",
-    sortOrder: 0,
+    sortOrder: 2,
   },
   {
     categorySlug: "placement-support",
@@ -418,7 +417,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/student-placed-infosys.png",
     captionEn: "Our student placed at Infosys as Systems Engineer",
     captionMl: "ഞങ്ങളുടെ വിദ്യാർത്ഥി ഇൻഫോസിസിൽ സിസ്റ്റംസ് എഞ്ചിനീയറായി നിയമിതനായി",
-    sortOrder: 1,
+    sortOrder: 3,
   },
   {
     categorySlug: "placement-support",
@@ -426,7 +425,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/campus-drive.png",
     captionEn: "On-campus recruitment drive by leading MNC",
     captionMl: "പ്രമുഖ എംഎൻസിയുടെ ക്യാമ്പസ് റിക്രൂട്ട്മെന്റ് ഡ്രൈവ്",
-    sortOrder: 2,
+    sortOrder: 4,
   },
   {
     categorySlug: "placement-support",
@@ -434,7 +433,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/offer-letter-moment.png",
     captionEn: "A proud moment — student receives offer letter",
     captionMl: "അഭിമാന നിമിഷം — വിദ്യാർത്ഥിക്ക് ഓഫർ ലെറ്റർ ലഭിക്കുന്നു",
-    sortOrder: 3,
+    sortOrder: 5,
   },
   {
     categorySlug: "placement-support",
@@ -442,7 +441,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/resume-workshop.png",
     captionEn: "Resume building workshop for final-year students",
     captionMl: "അവസാന വർഷ വിദ്യാർത്ഥികൾക്കുള്ള റെസ്യുമെ നിർമ്മാണ വർക്ക്ഷോപ്പ്",
-    sortOrder: 4,
+    sortOrder: 6,
   },
   {
     categorySlug: "placement-support",
@@ -450,7 +449,7 @@ export const PLACEMENT_SUPPORT_GALLERY_ITEMS: GalleryItemSeed[] = [
     url: "gallery/placement-support/alumni-meet.png",
     captionEn: "Alumni meet — placed students share experiences",
     captionMl: "അലുംനി മീറ്റ് — പ്ലേസ്ഡ് വിദ്യാർത്ഥികൾ അനുഭവങ്ങൾ പങ്കിടുന്നു",
-    sortOrder: 5,
+    sortOrder: 7,
   },
 ];
 

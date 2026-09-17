@@ -148,6 +148,8 @@ async function main() {
 
   /* 4. Gallery Categories */
   console.log("Seeding gallery categories...");
+  const validCategorySlugs = GALLERY_CATEGORIES.map((gc) => gc.slug);
+
   for (const gc of GALLERY_CATEGORIES) {
     await prisma.galleryCategory.upsert({
       where: { slug: gc.slug },
@@ -164,6 +166,26 @@ async function main() {
       },
     });
   }
+
+  // Clean up any stale categories not in seed data
+  const staleCategories = await prisma.galleryCategory.findMany({
+    where: { slug: { notIn: validCategorySlugs } },
+  });
+  for (const stale of staleCategories) {
+    if (stale.slug === "placement") {
+      const placementSupport = await prisma.galleryCategory.findUnique({
+        where: { slug: "placement-support" },
+      });
+      if (placementSupport) {
+        await prisma.galleryItem.updateMany({
+          where: { categoryId: stale.id },
+          data: { categoryId: placementSupport.id },
+        });
+      }
+    }
+    await prisma.galleryCategory.delete({ where: { id: stale.id } });
+  }
+
   console.log(`  OK: ${GALLERY_CATEGORIES.length} gallery categories\n`);
 
   /* 5. SiteSettings + At a Glance + Why Choose Us */

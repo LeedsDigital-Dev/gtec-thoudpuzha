@@ -56,7 +56,7 @@ describe("Header", () => {
     );
     expect(screen.getAllByLabelText("Apply Now")[0]).toHaveAttribute(
       "href",
-      "/en/#enquiry",
+      "/en/contact#enquiry",
     );
     expect(screen.getByLabelText("Login")).toHaveAttribute(
       "href",

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 
 interface HeroSectionProps {
+  locale?: string;
   t: {
     badge: string;
     headline: string;
@@ -22,7 +23,9 @@ const trustHighlights = [
   { text: "Globally Recognized", icon: CheckCircle2 },
 ];
 
-export function HeroSection({ t }: HeroSectionProps) {
+export function HeroSection({ t, locale }: HeroSectionProps) {
+  const applyHref = locale ? `/${locale}/contact#enquiry` : "/contact#enquiry";
+
   return (
     <div className="flex flex-col justify-center gap-6 sm:gap-8 py-2 sm:py-4">
       {/* Premium Badge with Live Pulse */}
@@ -49,7 +52,7 @@ export function HeroSection({ t }: HeroSectionProps) {
       {/* Action CTA Button Cluster */}
       <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
         <Link
-          href="#enquiry"
+          href={applyHref}
           className={cn(
             buttonVariants({ size: "lg" }),
             "relative w-full sm:w-auto justify-center rounded-2xl bg-primary text-primary-foreground font-bold text-sm sm:text-base px-6 py-3 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 group overflow-hidden"

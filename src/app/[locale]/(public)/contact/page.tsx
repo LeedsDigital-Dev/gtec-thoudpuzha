@@ -186,7 +186,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             {/* Direct Inline Enquiry Form */}
-            <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+            <div id="enquiry" className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm scroll-mt-24">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground">
                   {contactPageT("enquiryTitle")}

@@ -72,7 +72,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               {aboutPageT("exploreCourses")}
             </Link>
             <Link
-              href="/#enquiry"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {aboutPageT("contactUs")}

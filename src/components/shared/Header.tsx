@@ -450,7 +450,7 @@ export function Header({
           {/* 4. Apply Now Primary CTA */}
           <div className="pt-2">
             <Link
-              href={localeHref("/#enquiry")}
+              href={localeHref("/contact#enquiry")}
               aria-label={t("applyNow")}
               onClick={() => setDrawerOpen(false)}
               className="flex items-center justify-center gap-2 rounded-2xl bg-primary p-3.5 text-sm font-bold text-primary-foreground shadow-md hover:bg-primary/90 hover:shadow-lg transition-all active:scale-[0.99] group overflow-hidden"

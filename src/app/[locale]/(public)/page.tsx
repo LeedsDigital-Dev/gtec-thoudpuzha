@@ -77,6 +77,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {/* Left Content Column (Preserving all text, buttons, and trust points) */}
             <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center z-10">
               <HeroSection
+                locale={locale}
                 t={{
                   badge: heroT("badge"),
                   headline: heroT("headline"),

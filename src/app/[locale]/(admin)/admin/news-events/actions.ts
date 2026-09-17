@@ -19,7 +19,7 @@ function slugify(text: string): string {
 }
 
 export async function createNewsEvent(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -66,7 +66,7 @@ export async function createNewsEvent(formData: FormData) {
 }
 
 export async function updateNewsEvent(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -110,7 +110,7 @@ export async function updateNewsEvent(formData: FormData) {
 }
 
 export async function deleteNewsEvent(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -132,7 +132,7 @@ export async function deleteNewsEvent(formData: FormData) {
 }
 
 export async function togglePublishNewsEvent(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }

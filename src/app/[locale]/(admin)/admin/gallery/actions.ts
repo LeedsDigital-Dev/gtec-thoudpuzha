@@ -22,7 +22,7 @@ function revalidateGallery(locale: string) {
 /* ─── Category actions ─── */
 
 export async function createCategory(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -63,14 +63,20 @@ export async function createCategory(formData: FormData) {
 }
 
 export async function updateCategory(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
 
   const id = formData.get("id") as string;
-  const nameEn = formData.get("nameEn") as string;
-  const nameMl = (formData.get("nameMl") as string) || null;
+  const rawNameEn = formData.get("nameEn") as string;
+  const rawNameMl = (formData.get("nameMl") as string) || null;
+  const nameEn = rawNameEn ? stripHtml(rawNameEn).trim() : "";
+  const nameMl = rawNameMl ? stripHtml(rawNameMl).trim() || null : null;
+
+  if (!nameEn) {
+    throw new Error("Category English name is required");
+  }
 
   await prisma.galleryCategory.update({
     where: { id },
@@ -89,8 +95,60 @@ export async function updateCategory(formData: FormData) {
   revalidateGallery(localeFromFormData(formData));
 }
 
+export async function updateGalleryItem(formData: FormData) {
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
+  if (!authResult.authorized) {
+    redirect(`/${localeFromFormData(formData)}/forbidden`);
+  }
+
+  const id = formData.get("id") as string;
+  const categoryId = (formData.get("categoryId") as string) || undefined;
+  const rawCaptionEn = (formData.get("captionEn") as string) || null;
+  const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn).trim() || null : null;
+  const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl).trim() || null : null;
+  const sortOrderRaw = formData.get("sortOrder");
+  const sortOrder =
+    sortOrderRaw !== null && sortOrderRaw !== ""
+      ? Number(sortOrderRaw)
+      : undefined;
+  const rawUrl = (formData.get("url") as string) || null;
+  const url = rawUrl ? stripHtml(rawUrl).trim() || undefined : undefined;
+
+  const dataToUpdate: Record<string, unknown> = {
+    captionEn,
+    captionMl,
+  };
+
+  if (categoryId) {
+    dataToUpdate.categoryId = categoryId;
+  }
+  if (sortOrder !== undefined && !Number.isNaN(sortOrder)) {
+    dataToUpdate.sortOrder = sortOrder;
+  }
+  if (url) {
+    dataToUpdate.url = url;
+  }
+
+  await prisma.galleryItem.update({
+    where: { id },
+    data: dataToUpdate,
+  });
+
+  await logAdminAction({
+    actorUserId: authResult.userId!,
+    actorRole: authResult.role,
+    action: "galleryItem.update",
+    entityType: "GalleryItem",
+    entityId: id,
+    metadata: { ...dataToUpdate },
+  });
+
+  revalidateGallery(localeFromFormData(formData));
+}
+
 export async function deleteCategory(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -115,7 +173,7 @@ export async function deleteCategory(formData: FormData) {
 }
 
 export async function moveCategory(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -161,7 +219,7 @@ export async function moveCategory(formData: FormData) {
 /* ─── Media actions ─── */
 
 export async function uploadGalleryImages(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -220,7 +278,7 @@ export async function uploadGalleryImages(formData: FormData) {
 }
 
 export async function addVideoItem(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }
@@ -265,7 +323,7 @@ export async function addVideoItem(formData: FormData) {
 }
 
 export async function deleteGalleryItem(formData: FormData) {
-  const authResult = await requireRole([Role.CENTRE_STAFF, Role.SUPER_ADMIN]);
+  const authResult = await requireRole([Role.SUPER_ADMIN]);
   if (!authResult.authorized) {
     redirect(`/${localeFromFormData(formData)}/forbidden`);
   }

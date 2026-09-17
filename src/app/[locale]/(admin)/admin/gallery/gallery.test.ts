@@ -1,13 +1,17 @@
 // @vitest-environment node
 
 import { describe, expect, test, vi, beforeEach } from "vitest";
+import { renderToString } from "react-dom/server";
 
 const mockAuth = vi.hoisted(() => vi.fn());
 const mockItemCreate = vi.hoisted(() => vi.fn());
+const mockItemUpdate = vi.hoisted(() => vi.fn());
 const mockItemAggregate = vi.hoisted(() => vi.fn());
 const mockItemDelete = vi.hoisted(() => vi.fn());
 const mockItemFindMany = vi.hoisted(() => vi.fn());
 const mockCatAggregate = vi.hoisted(() => vi.fn());
+const mockCatUpdate = vi.hoisted(() => vi.fn());
+const mockCatFindMany = vi.hoisted(() => vi.fn());
 const mockAuditCreate = vi.hoisted(() => vi.fn());
 const mockUploadFile = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
@@ -27,12 +31,15 @@ vi.mock("@/lib/db", () => ({
   prisma: {
     galleryItem: {
       create: mockItemCreate,
+      update: mockItemUpdate,
       aggregate: mockItemAggregate,
       delete: mockItemDelete,
       findMany: mockItemFindMany,
     },
     galleryCategory: {
       aggregate: mockCatAggregate,
+      update: mockCatUpdate,
+      findMany: mockCatFindMany,
     },
     user: {
       findUnique: mockUserFindUnique,
@@ -78,6 +85,8 @@ describe("uploadGalleryImages", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockItemCreate.mockReset();
+    mockItemUpdate.mockReset();
+    mockCatUpdate.mockReset();
     mockItemAggregate.mockReset();
     mockCatAggregate.mockReset();
     mockAuditCreate.mockReset();
@@ -86,8 +95,8 @@ describe("uploadGalleryImages", () => {
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
-  test("1. bulk-uploading 3 images to a category creates 3 GalleryItem rows", async () => {
-    setMockAuth("staff_1", "CENTRE_STAFF");
+  test("1. bulk-uploading 3 images as Super Admin creates 3 GalleryItem rows", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
 
     mockCatAggregate.mockResolvedValue({ _max: { sortOrder: 0 } });
     mockItemAggregate.mockResolvedValue({ _max: { sortOrder: -1 } });
@@ -133,7 +142,7 @@ describe("uploadGalleryImages", () => {
   });
 
   test("2. bulk upload writes exactly one audit log entry summarizing the batch", async () => {
-    setMockAuth("staff_1", "CENTRE_STAFF");
+    setMockAuth("admin_1", "SUPER_ADMIN");
 
     mockCatAggregate.mockResolvedValue({ _max: { sortOrder: 0 } });
     mockItemAggregate.mockResolvedValue({ _max: { sortOrder: -1 } });
@@ -166,11 +175,10 @@ describe("uploadGalleryImages", () => {
     const { uploadGalleryImages } = await import("./actions");
     await uploadGalleryImages(formData);
 
-    // Audit called once, not per file
     expect(mockAuditCreate).toHaveBeenCalledTimes(1);
     expect(mockAuditCreate).toHaveBeenCalledWith({
-      actorUserId: "staff_1",
-      actorRole: "CENTRE_STAFF",
+      actorUserId: "admin_1",
+      actorRole: "SUPER_ADMIN",
       action: "gallery.bulkUpload",
       entityType: "GalleryItem",
       entityId: "cat_1",
@@ -180,6 +188,18 @@ describe("uploadGalleryImages", () => {
         itemIds: ["gi_1", "gi_2"],
       }),
     });
+  });
+
+  test("3. non-Super-Admin (CENTRE_STAFF) is denied when uploading gallery images", async () => {
+    setMockAuth("staff_1", "CENTRE_STAFF");
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("categoryId", "cat_1");
+    formData.append("files", fakeFile("a.png", "image/png"));
+
+    const { uploadGalleryImages } = await import("./actions");
+    await expect(uploadGalleryImages(formData)).rejects.toThrow("redirect:/en/forbidden");
   });
 });
 
@@ -194,8 +214,8 @@ describe("addVideoItem", () => {
     mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
   });
 
-  test("3. adding a VIDEO-type item stores the external URL without attempting an R2 upload", async () => {
-    setMockAuth("staff_1", "CENTRE_STAFF");
+  test("4. Super Admin adding a VIDEO-type item stores the external URL", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
 
     mockItemAggregate.mockResolvedValue({ _max: { sortOrder: -1 } });
 
@@ -222,7 +242,6 @@ describe("addVideoItem", () => {
     const { addVideoItem } = await import("./actions");
     await addVideoItem(formData);
 
-    // Stored with the external URL
     expect(mockItemCreate).toHaveBeenCalledWith({
       data: expect.objectContaining({
         categoryId: "cat_1",
@@ -232,14 +251,11 @@ describe("addVideoItem", () => {
       }),
     });
 
-    // R2 uploadFile should NOT have been called
     expect(mockUploadFile).not.toHaveBeenCalled();
-
-    // Audit logged
     expect(mockAuditCreate).toHaveBeenCalledTimes(1);
     expect(mockAuditCreate).toHaveBeenCalledWith({
-      actorUserId: "staff_1",
-      actorRole: "CENTRE_STAFF",
+      actorUserId: "admin_1",
+      actorRole: "SUPER_ADMIN",
       action: "gallery.addVideo",
       entityType: "GalleryItem",
       entityId: "gi_video_1",
@@ -248,6 +264,113 @@ describe("addVideoItem", () => {
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       }),
     });
+  });
+
+  test("5. non-Super-Admin (CENTRE_STAFF) is denied when adding video", async () => {
+    setMockAuth("staff_1", "CENTRE_STAFF");
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("categoryId", "cat_1");
+    formData.append("url", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+
+    const { addVideoItem } = await import("./actions");
+    await expect(addVideoItem(formData)).rejects.toThrow("redirect:/en/forbidden");
+  });
+});
+
+describe("updateCategory and updateGalleryItem actions", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockCatUpdate.mockReset();
+    mockItemUpdate.mockReset();
+    mockAuditCreate.mockReset();
+    mockRevalidatePath.mockReset();
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+  });
+
+  test("6. Super Admin can update category details", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
+    mockCatUpdate.mockResolvedValue({ id: "cat_1", nameEn: "Updated", nameMl: "പുതിയത്" });
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "cat_1");
+    formData.append("nameEn", "Updated");
+    formData.append("nameMl", "പുതിയത്");
+
+    const { updateCategory } = await import("./actions");
+    await updateCategory(formData);
+
+    expect(mockCatUpdate).toHaveBeenCalledWith({
+      where: { id: "cat_1" },
+      data: { nameEn: "Updated", nameMl: "പുതിയത്" },
+    });
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      actorUserId: "admin_1",
+      actorRole: "SUPER_ADMIN",
+      action: "galleryCategory.update",
+      entityType: "GalleryCategory",
+      entityId: "cat_1",
+      metadata: { nameEn: "Updated", nameMl: "പുതിയത്" },
+    });
+  });
+
+  test("7. non-Super-Admin (CENTRE_STAFF) cannot update category", async () => {
+    setMockAuth("staff_1", "CENTRE_STAFF");
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "cat_1");
+    formData.append("nameEn", "Updated");
+
+    const { updateCategory } = await import("./actions");
+    await expect(updateCategory(formData)).rejects.toThrow("redirect:/en/forbidden");
+  });
+
+  test("8. Super Admin can update gallery item captions and sort order", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
+    mockItemUpdate.mockResolvedValue({ id: "item_1", captionEn: "New Caption", sortOrder: 5 });
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "item_1");
+    formData.append("captionEn", "New Caption");
+    formData.append("sortOrder", "5");
+
+    const { updateGalleryItem } = await import("./actions");
+    await updateGalleryItem(formData);
+
+    expect(mockItemUpdate).toHaveBeenCalledWith({
+      where: { id: "item_1" },
+      data: expect.objectContaining({
+        captionEn: "New Caption",
+        sortOrder: 5,
+      }),
+    });
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      actorUserId: "admin_1",
+      actorRole: "SUPER_ADMIN",
+      action: "galleryItem.update",
+      entityType: "GalleryItem",
+      entityId: "item_1",
+      metadata: expect.objectContaining({
+        captionEn: "New Caption",
+        sortOrder: 5,
+      }),
+    });
+  });
+
+  test("9. non-Super-Admin (CENTRE_STAFF) cannot update gallery item", async () => {
+    setMockAuth("staff_1", "CENTRE_STAFF");
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "item_1");
+    formData.append("captionEn", "Hacked");
+
+    const { updateGalleryItem } = await import("./actions");
+    await expect(updateGalleryItem(formData)).rejects.toThrow("redirect:/en/forbidden");
   });
 });
 
@@ -258,9 +381,32 @@ describe("GalleryPage", () => {
     mockRedirect.mockImplementation((url: string) => {
       throw new Error(`redirect:${url}`);
     });
+    mockUserFindUnique.mockResolvedValue({ deactivatedAt: null });
+    mockCatFindMany.mockResolvedValue([
+      {
+        id: "cat_1",
+        nameEn: "Campus",
+        nameMl: null,
+        slug: "campus",
+        sortOrder: 1,
+        _count: { items: 1 },
+      },
+    ]);
+    mockItemFindMany.mockResolvedValue([
+      {
+        id: "item_1",
+        categoryId: "cat_1",
+        mediaType: "IMAGE",
+        url: "gallery/test.jpg",
+        captionEn: "Campus main",
+        captionMl: null,
+        sortOrder: 1,
+        category: { id: "cat_1", nameEn: "Campus" },
+      },
+    ]);
   });
 
-  test("4. /admin/gallery is denied to an employer-role user (403)", async () => {
+  test("10. /admin/gallery is denied to an employer-role user (403)", async () => {
     mockAuth.mockResolvedValue({
       userId: "employer_1",
       sessionClaims: { metadata: { role: "EMPLOYER" } },
@@ -271,5 +417,47 @@ describe("GalleryPage", () => {
     await expect(
       GalleryPage({ params: Promise.resolve({ locale: "en" }) }),
     ).rejects.toThrow("redirect:/en/forbidden");
+  });
+
+  test("11. renders view-only gallery for CENTRE_STAFF with create/edit/delete buttons hidden", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "staff_1",
+      sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
+    });
+
+    const { default: GalleryPage } = await import("./page");
+    const pageEl = await GalleryPage({ params: Promise.resolve({ locale: "en" }) });
+    const html = renderToString(pageEl);
+
+    expect(html).toContain("Gallery");
+    expect(html).toContain("Read-only");
+    expect(html).toContain("Campus");
+    // Mutation controls must NOT be present
+    expect(html).not.toContain("Add Category");
+    expect(html).not.toContain("Upload Images");
+    expect(html).not.toContain("Add Video URL");
+    expect(html).not.toContain("Delete Item");
+    expect(html).not.toContain("Save Changes");
+  });
+
+  test("12. renders full management & edit controls for SUPER_ADMIN", async () => {
+    mockAuth.mockResolvedValue({
+      userId: "admin_1",
+      sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
+    });
+
+    const { default: GalleryPage } = await import("./page");
+    const pageEl = await GalleryPage({ params: Promise.resolve({ locale: "en" }) });
+    const html = renderToString(pageEl);
+
+    expect(html).toContain("Gallery");
+    expect(html).not.toContain("Read-only");
+    // Mutation and edit controls must be present
+    expect(html).toContain("Add Category");
+    expect(html).toContain("Upload Images");
+    expect(html).toContain("Add Video URL");
+    expect(html).toContain("Delete");
+    expect(html).toContain("Edit");
+    expect(html).toContain("Save Changes");
   });
 });

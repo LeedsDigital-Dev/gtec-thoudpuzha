@@ -67,7 +67,6 @@ export const ADMIN_ROUTES: AdminRoute[] = [
     href: "/admin/gallery",
     label: "Gallery",
     icon: Image,
-    permissionKey: "canEditGallery",
   },
   {
     href: "/admin/certification-partners",
@@ -79,7 +78,6 @@ export const ADMIN_ROUTES: AdminRoute[] = [
     href: "/admin/news-events",
     label: "News & Events",
     icon: Newspaper,
-    permissionKey: "canEditNewsEvents",
   },
   {
     href: "/admin/flash-news",

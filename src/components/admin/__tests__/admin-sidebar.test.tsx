@@ -82,7 +82,7 @@ describe("AdminSidebar", () => {
     expect(screen.getByText("Courses")).toBeInTheDocument();
     expect(screen.getByText("Employers")).toBeInTheDocument();
 
-    expect(screen.queryByText("Gallery")).not.toBeInTheDocument();
+    expect(screen.queryByText("Certification Partners")).not.toBeInTheDocument();
     expect(screen.queryByText("Job Postings")).not.toBeInTheDocument();
     expect(screen.queryByText("Flash News")).not.toBeInTheDocument();
   });

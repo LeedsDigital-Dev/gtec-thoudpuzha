@@ -58,7 +58,7 @@ export function FeaturedCoursesSection({
           </div>
 
           <Link
-            href="/courses"
+            href={`/${locale}/courses`}
             className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 group self-start sm:self-auto transition-colors"
           >
             <span>{isMl ? "എല്ലാ കോഴ്‌സുകളും കാണുക" : "View All Courses"}</span>
@@ -95,7 +95,12 @@ export function FeaturedCoursesSection({
               >
                 <div>
                   {/* Course Banner Image */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+                  <Link
+                    href={`/${locale}/courses/${course.slug}`}
+                    scroll={true}
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-muted block"
+                    aria-label={title}
+                  >
                     <Image
                       src={imageUrl}
                       alt={title}
@@ -134,7 +139,7 @@ export function FeaturedCoursesSection({
                         </span>
                       </div>
                     )}
-                  </div>
+                  </Link>
 
                   {/* Card Content */}
                   <div className="p-5 sm:p-6">
@@ -170,11 +175,11 @@ export function FeaturedCoursesSection({
                     <Link
                       href={`/${locale}/courses/${course.slug}`}
                       scroll={true}
-                      className="inline-flex items-center justify-center gap-1 rounded-xl border border-border/80 bg-background/80 px-3.5 py-2.5 text-xs sm:text-sm font-bold text-foreground transition-all duration-200 hover:bg-muted hover:border-primary/40 active:scale-95"
-                      aria-label={`View details for ${title}`}
+                      className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-border/80 bg-background/80 px-3.5 py-2.5 text-xs sm:text-sm font-bold text-foreground transition-all duration-200 hover:bg-muted hover:border-primary/40 active:scale-95 whitespace-nowrap"
+                      aria-label={`View course details for ${title}`}
                     >
-                      <BookOpen className="size-3.5 text-muted-foreground" />
-                      <span className="hidden xs:inline">{isMl ? "വിശദാംശങ്ങൾ" : "Details"}</span>
+                      <BookOpen className="size-3.5 text-muted-foreground shrink-0" />
+                      <span>{isMl ? "കോഴ്‌സ് വിവരങ്ങൾ" : "Course Details"}</span>
                     </Link>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
-import { render } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import { CourseScrollReset } from "./CourseScrollReset";
 
 let mockPathname = "/courses/tally-prime-gst";
@@ -15,12 +15,15 @@ describe("CourseScrollReset", () => {
     mockPathname = "/courses/tally-prime-gst";
     window.scrollTo = vi.fn();
     window.location.hash = "";
+    window.history.scrollRestoration = "auto";
     document.documentElement.scrollTop = 500;
     document.body.scrollTop = 500;
+    document.body.innerHTML = "";
   });
 
   afterEach(() => {
     window.scrollTo = originalScrollTo;
+    document.body.innerHTML = "";
     vi.restoreAllMocks();
   });
 
@@ -37,10 +40,19 @@ describe("CourseScrollReset", () => {
     expect(document.body.scrollTop).toBe(0);
   });
 
-  test("does not reset scroll if hash is present (e.g. #admission-enquiry or #enquiry)", () => {
-    window.location.hash = "#admission-enquiry";
+  test("scrolls to enquiry element when hash is present and element exists", () => {
+    window.location.hash = "#enquiry";
+    const enquiryEl = document.createElement("div");
+    enquiryEl.id = "admission-enquiry";
+    enquiryEl.scrollIntoView = vi.fn();
+    document.body.appendChild(enquiryEl);
+
     render(<CourseScrollReset />);
 
+    expect(enquiryEl.scrollIntoView).toHaveBeenCalledWith({
+      behavior: "smooth",
+      block: "start",
+    });
     expect(window.scrollTo).not.toHaveBeenCalled();
   });
 
@@ -56,4 +68,31 @@ describe("CourseScrollReset", () => {
 
     expect(window.scrollTo).toHaveBeenCalledTimes(2);
   });
+
+  test("handles hashchange events dynamically", () => {
+    window.location.hash = "";
+    render(<CourseScrollReset />);
+
+    const admissionEl = document.createElement("div");
+    admissionEl.id = "admission-enquiry";
+    admissionEl.scrollIntoView = vi.fn();
+    document.body.appendChild(admissionEl);
+
+    act(() => {
+      window.location.hash = "#admission-enquiry";
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    });
+
+    expect(admissionEl.scrollIntoView).toHaveBeenCalledWith({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+
+  test("sets history.scrollRestoration to manual", () => {
+    render(<CourseScrollReset />);
+    expect(window.history.scrollRestoration).toBe("manual");
+  });
 });
+
+

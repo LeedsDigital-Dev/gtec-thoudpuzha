@@ -39,7 +39,7 @@ export default async function PublicLayout({
     <div className="relative min-h-screen w-full flex flex-col">
       <Header courses={courses} />
       <FlashNewsBar />
-      <div className="flex-1 w-full max-w-full overflow-x-hidden">
+      <div className="flex-1 w-full max-w-full overflow-x-clip">
         {children}
       </div>
       <Footer settings={settings} address={settings?.address} locale={locale} />

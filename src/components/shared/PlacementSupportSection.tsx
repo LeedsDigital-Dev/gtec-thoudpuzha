@@ -169,7 +169,7 @@ export function PlacementSupportSection({
           </div>
         </div>
 
-        {/* 3D Fanned / Auto-Scrolling Carousel Stage */}
+        {/* Smooth Horizontal Scrolling Carousel Showcase Stage */}
         <div
           ref={containerRef}
           tabIndex={0}
@@ -179,10 +179,20 @@ export function PlacementSupportSection({
           onMouseLeave={() => setIsHovered(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="relative outline-none select-none [--card-step:42px] sm:[--card-step:80px] md:[--card-step:110px] lg:[--card-step:135px]"
+          className="relative outline-none select-none overflow-hidden my-2 sm:my-4 py-2 [--card-w:250px] sm:[--card-w:290px] lg:[--card-w:330px] [--card-g:16px] sm:[--card-g:24px]"
         >
-          {/* Top Carousel Navigation Arrows Overlay */}
-          <div className="absolute inset-y-0 -left-2 sm:left-2 lg:left-4 z-40 flex items-center">
+          {/* Left & Right edge gradient fade overlays for seamless horizontal transition */}
+          <div
+            className="pointer-events-none absolute left-0 inset-y-0 z-30 w-12 sm:w-20 md:w-28 bg-gradient-to-r from-background via-background/60 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute right-0 inset-y-0 z-30 w-12 sm:w-20 md:w-28 bg-gradient-to-l from-background via-background/60 to-transparent"
+            aria-hidden="true"
+          />
+
+          {/* Navigation Arrows Overlay */}
+          <div className="absolute inset-y-0 left-1 sm:left-3 z-40 flex items-center">
             <button
               type="button"
               onClick={handlePrev}
@@ -193,7 +203,7 @@ export function PlacementSupportSection({
             </button>
           </div>
 
-          <div className="absolute inset-y-0 -right-2 sm:right-2 lg:right-4 z-40 flex items-center">
+          <div className="absolute inset-y-0 right-1 sm:right-3 z-40 flex items-center">
             <button
               type="button"
               onClick={handleNext}
@@ -204,125 +214,115 @@ export function PlacementSupportSection({
             </button>
           </div>
 
-          {/* Cards Stage Container */}
-          <div className="relative flex items-center justify-center min-h-[440px] sm:min-h-[490px] lg:min-h-[530px] overflow-hidden py-6">
-            {items.map((item, index) => {
-              const offset = index - activeIndex;
-              const absOffset = Math.abs(offset);
-              const isActive = offset === 0;
+          {/* Horizontal Sliding Track Container */}
+          <div className="relative flex items-center min-h-[410px] sm:min-h-[460px] lg:min-h-[500px] overflow-hidden py-4">
+            <div
+              className="absolute left-1/2 top-4 flex gap-4 sm:gap-6 w-max transition-transform duration-700 [transition-timing-function:cubic-bezier(0.25,1,0.5,1)]"
+              style={{
+                transform: `translateX(calc(-1 * (${activeIndex} * (var(--card-w) + var(--card-g)) + var(--card-w) / 2)))`,
+              }}
+            >
+              {items.map((item, index) => {
+                const isActive = index === activeIndex;
+                const absOffset = Math.abs(index - activeIndex);
 
-              // Perspective scale: center is 1.0 (or 1.05), gradually decreasing toward outer sides
-              const scale = isActive ? 1.04 : Math.max(0.52, 1 - absOffset * 0.115);
+                // Determine visual image
+                const imageSrc = item.url
+                  ? getMediaUrl(item.url)
+                  : FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
 
-              // Angular rotation: left cards tilt negative, right cards tilt positive
-              const rotateDeg = isActive ? 0 : offset * 3.2;
+                const itemCaption =
+                  locale === "ml" && item.captionMl
+                    ? item.captionMl
+                    : item.captionEn || "Placement & Support Initiative";
 
-              // Vertical arch offset to create dynamic curve
-              const translateY = isActive ? 0 : absOffset * 6;
-
-              // Opacity & Layering
-              const opacity = isActive ? 1.0 : Math.max(0.35, 1 - absOffset * 0.15);
-              const zIndex = 40 - absOffset * 5;
-
-              // Determine visual image
-              const imageSrc = item.url
-                ? getMediaUrl(item.url)
-                : FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
-
-              const itemCaption =
-                locale === "ml" && item.captionMl
-                  ? item.captionMl
-                  : item.captionEn || "Placement & Support Initiative";
-
-              return (
-                <div
-                  key={item.id || `placement-card-${index}`}
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label={itemCaption}
-                  aria-current={isActive ? "true" : undefined}
-                  onClick={() => setActiveIndex(index)}
-                  style={{
-                    zIndex,
-                    opacity,
-                    transform: `translateX(calc(-50% + (${offset} * var(--card-step)))) translateY(${translateY}px) scale(${scale}) rotate(${rotateDeg}deg)`,
-                  }}
-                  className={`absolute left-1/2 top-4 w-[250px] sm:w-[290px] lg:w-[330px] h-[360px] sm:h-[410px] lg:h-[450px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 [transition-timing-function:cubic-bezier(0.25,1,0.5,1)] origin-center ${
-                    isActive
-                      ? "ring-4 ring-sky-400/40 border-2 border-primary shadow-[0_20px_50px_rgba(0,102,204,0.35)] dark:shadow-[0_20px_50px_rgba(56,189,248,0.25)]"
-                      : "border border-border/70 shadow-md hover:border-primary/50 hover:opacity-95"
-                  }`}
-                >
-                  {/* Image Container */}
-                  <div className="relative w-full h-full bg-slate-900">
-                    <Image
-                      src={imageSrc}
-                      alt={itemCaption}
-                      fill
-                      unoptimized
-                      priority={isActive || absOffset <= 1}
-                      className={`object-cover transition-transform duration-700 ${
-                        isActive ? "scale-105" : "scale-100"
-                      }`}
-                      sizes="(max-width: 640px) 250px, (max-width: 1024px) 290px, 330px"
-                    />
-
-                    {/* Gradient & Frosted Glass Backing */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 via-45% to-black/15" />
-
-                    {/* Top Badges Bar */}
-                    {isActive && (
-                      <div className="absolute inset-x-0 top-0 p-4 flex items-center justify-end z-10">
-                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/90 backdrop-blur-md px-2.5 py-1 text-[11px] font-extrabold text-amber-950 shadow-md ring-1 ring-amber-300 animate-bounce">
-                          <Award className="size-3.5 fill-current" />
-                          <span>Featured</span>
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Bottom Content Card Details */}
-                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-10 flex flex-col justify-end">
-                      {/* Category Micro-tag */}
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="inline-flex items-center gap-1 rounded-md bg-white/15 px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-sky-200 backdrop-blur-md border border-white/10">
-                          {index % 3 === 0 ? (
-                            <GraduationCap className="size-3 text-sky-300" />
-                          ) : index % 3 === 1 ? (
-                            <Briefcase className="size-3 text-amber-300" />
-                          ) : (
-                            <TrendingUp className="size-3 text-emerald-300" />
-                          )}
-                          <span>
-                            {index % 3 === 0
-                              ? "Placement Success"
-                              : index % 3 === 1
-                                ? "Campus Recruitment"
-                                : "Skill Workshop"}
-                          </span>
-                        </span>
-                      </div>
-
-                      {/* Main Title / Caption */}
-                      <p
-                        className={`font-bold text-white transition-all duration-300 leading-snug line-clamp-3 ${
-                          isActive ? "text-base sm:text-lg text-sky-50 drop-shadow-sm" : "text-sm text-slate-200"
+                return (
+                  <div
+                    key={item.id || `placement-card-${index}`}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={itemCaption}
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={() => setActiveIndex(index)}
+                    className={`relative w-[var(--card-w)] h-[350px] sm:h-[400px] lg:h-[440px] shrink-0 rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 [transition-timing-function:cubic-bezier(0.25,1,0.5,1)] origin-center ${
+                      isActive
+                        ? "scale-105 ring-4 ring-sky-400/40 border-2 border-primary shadow-[0_20px_50px_rgba(0,102,204,0.35)] dark:shadow-[0_20px_50px_rgba(56,189,248,0.25)] z-20 opacity-100"
+                        : "scale-95 border border-border/70 shadow-md hover:border-primary/50 hover:opacity-95 z-10 opacity-70"
+                    }`}
+                  >
+                    {/* Image Container */}
+                    <div className="relative w-full h-full bg-slate-900">
+                      <Image
+                        src={imageSrc}
+                        alt={itemCaption}
+                        fill
+                        unoptimized
+                        priority={isActive || absOffset <= 1}
+                        className={`object-cover transition-transform duration-700 ${
+                          isActive ? "scale-105" : "scale-100"
                         }`}
-                      >
-                        {itemCaption}
-                      </p>
+                        sizes="(max-width: 640px) 250px, (max-width: 1024px) 290px, 330px"
+                      />
 
-                      {/* Interactive hint on active card */}
+                      {/* Gradient & Frosted Glass Backing */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 via-45% to-black/15" />
+
+                      {/* Top Badges Bar */}
                       {isActive && (
-                        <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-sky-300/90">
-                          <span>G-TEC Career Network</span>
-                          <Sparkles className="size-3 text-amber-400" />
+                        <div className="absolute inset-x-0 top-0 p-4 flex items-center justify-end z-10">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/90 backdrop-blur-md px-2.5 py-1 text-[11px] font-extrabold text-amber-950 shadow-md ring-1 ring-amber-300 animate-bounce">
+                            <Award className="size-3.5 fill-current" />
+                            <span>Featured</span>
+                          </span>
                         </div>
                       )}
+
+                      {/* Bottom Content Card Details */}
+                      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-10 flex flex-col justify-end">
+                        {/* Category Micro-tag */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-white/15 px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-sky-200 backdrop-blur-md border border-white/10">
+                            {index % 3 === 0 ? (
+                              <GraduationCap className="size-3 text-sky-300" />
+                            ) : index % 3 === 1 ? (
+                              <Briefcase className="size-3 text-amber-300" />
+                            ) : (
+                              <TrendingUp className="size-3 text-emerald-300" />
+                            )}
+                            <span>
+                              {index % 3 === 0
+                                ? "Placement Success"
+                                : index % 3 === 1
+                                  ? "Campus Recruitment"
+                                  : "Skill Workshop"}
+                            </span>
+                          </span>
+                        </div>
+
+                        {/* Main Title / Caption */}
+                        <p
+                          className={`font-bold text-white transition-all duration-300 leading-snug line-clamp-3 ${
+                            isActive
+                              ? "text-base sm:text-lg text-sky-50 drop-shadow-sm"
+                              : "text-sm text-slate-200"
+                          }`}
+                        >
+                          {itemCaption}
+                        </p>
+
+                        {/* Interactive hint on active card */}
+                        {isActive && (
+                          <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-sky-300/90">
+                            <span>G-TEC Career Network</span>
+                            <Sparkles className="size-3 text-amber-400" />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
 
           {/* 9 Pagination Dots & Auto-Scroll Play/Pause Control Below Cards */}

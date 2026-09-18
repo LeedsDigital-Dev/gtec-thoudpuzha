@@ -254,7 +254,7 @@ export function PlacementSupportSection({
                     <div className="relative w-full h-full bg-slate-900">
                       <Image
                         src={imageSrc}
-                        alt={itemCaption}
+                        alt={item.altText || itemCaption || "Placement & Career Support at G-TEC Thodupuzha"}
                         fill
                         unoptimized
                         priority={isActive || absOffset <= 1}

@@ -261,7 +261,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                     <input type="hidden" name="categoryId" value={cat.id} />
                     <div>
                       <label htmlFor={`files-${cat.id}`} className="text-sm font-medium">
-                        Select images (multi-file)
+                        Select images (multi-file) <span className="text-destructive">*</span>
                       </label>
                       <input
                         id={`files-${cat.id}`}
@@ -271,6 +271,17 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         accept="image/*"
                         required
                         className="mt-1 block w-full text-sm file:mr-3 file:rounded file:border-0 file:bg-primary file:px-3 file:py-1 file:text-sm file:text-primary-foreground"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor={`altText-${cat.id}`} className="text-sm font-medium">
+                        Alt Text / SEO Keywords <span className="text-xs text-muted-foreground">(For Google image indexing & accessibility)</span>
+                      </label>
+                      <input
+                        id={`altText-${cat.id}`}
+                        name="altText"
+                        placeholder="e.g. G-TEC Computer Education Thodupuzha Lab Workstations"
+                        className="mt-1 w-full rounded border border-border bg-background px-3 py-2 text-sm"
                       />
                     </div>
                     <div className="grid gap-3 md:grid-cols-2">
@@ -318,6 +329,17 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         className="mt-1 w-full rounded border border-border bg-background px-3 py-2 text-sm"
                       />
                     </div>
+                    <div>
+                      <label htmlFor={`vidAltText-${cat.id}`} className="text-sm font-medium">
+                        Alt Text / SEO Keywords <span className="text-xs text-muted-foreground">(Optional)</span>
+                      </label>
+                      <input
+                        id={`vidAltText-${cat.id}`}
+                        name="altText"
+                        placeholder="e.g. G-TEC Student Project Demonstration Video"
+                        className="mt-1 w-full rounded border border-border bg-background px-3 py-2 text-sm"
+                      />
+                    </div>
                     <div className="grid gap-3 md:grid-cols-2">
                       <div>
                         <label htmlFor={`vidCapEn-${cat.id}`} className="text-sm font-medium">
@@ -357,6 +379,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         <th className="border border-border px-3 py-2 text-left">Preview</th>
                         <th className="border border-border px-3 py-2 text-left">Type</th>
                         <th className="border border-border px-3 py-2 text-left">URL / Key</th>
+                        <th className="border border-border px-3 py-2 text-left">Alt / SEO Keywords</th>
                         <th className="border border-border px-3 py-2 text-left">Caption</th>
                         <th className="border border-border px-3 py-2 text-left">Sort</th>
                         {isSuperAdmin && (
@@ -371,7 +394,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                             {item.mediaType === "IMAGE" ? (
                               <Image
                                 src={getMediaUrl(item.url)}
-                                alt={item.captionEn || "Gallery image"}
+                                alt={item.altText || item.captionEn || "Gallery image"}
                                 width={40}
                                 height={40}
                                 unoptimized
@@ -386,8 +409,17 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                           <td className="border border-border px-3 py-2 text-sm font-medium">
                             {item.mediaType}
                           </td>
-                          <td className="border border-border px-3 py-2 text-sm font-mono max-w-[200px] truncate">
+                          <td className="border border-border px-3 py-2 text-sm font-mono max-w-[180px] truncate">
                             {item.url}
+                          </td>
+                          <td className="border border-border px-3 py-2 text-sm max-w-[200px]">
+                            {item.altText ? (
+                              <span className="inline-block rounded bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary line-clamp-2" title={item.altText}>
+                                {item.altText}
+                              </span>
+                            ) : (
+                              <span className="text-muted-foreground text-xs italic">None set</span>
+                            )}
                           </td>
                           <td className="border border-border px-3 py-2 text-sm">
                             {item.captionEn || "—"}
@@ -434,7 +466,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         {item.mediaType === "IMAGE" ? (
                           <Image
                             src={getMediaUrl(item.url)}
-                            alt={item.captionEn || "Gallery image"}
+                            alt={item.altText || item.captionEn || "Gallery image"}
                             width={56}
                             height={56}
                             unoptimized
@@ -447,6 +479,12 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                         )}
                         <div className="min-w-0 flex-1 space-y-1 text-xs text-muted-foreground">
                           <div className="truncate font-mono text-foreground">{item.url}</div>
+                          {item.altText && (
+                            <div>
+                              <span className="font-semibold text-foreground">SEO Alt: </span>
+                              <span className="text-primary font-medium">{item.altText}</span>
+                            </div>
+                          )}
                           <div className="flex justify-between">
                             <span>Sort Order: <span className="font-mono font-medium text-foreground">{item.sortOrder}</span></span>
                           </div>

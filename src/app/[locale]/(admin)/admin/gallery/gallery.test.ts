@@ -328,13 +328,19 @@ describe("updateCategory and updateGalleryItem actions", () => {
     await expect(updateCategory(formData)).rejects.toThrow("redirect:/en/forbidden");
   });
 
-  test("8. Super Admin can update gallery item captions and sort order", async () => {
+  test("8. Super Admin can update gallery item captions, altText SEO keywords, and sort order", async () => {
     setMockAuth("admin_1", "SUPER_ADMIN");
-    mockItemUpdate.mockResolvedValue({ id: "item_1", captionEn: "New Caption", sortOrder: 5 });
+    mockItemUpdate.mockResolvedValue({
+      id: "item_1",
+      altText: "G-TEC Thodupuzha Computer Lab",
+      captionEn: "New Caption",
+      sortOrder: 5,
+    });
 
     const formData = new FormData();
     formData.append("locale", "en");
     formData.append("id", "item_1");
+    formData.append("altText", "G-TEC Thodupuzha Computer Lab");
     formData.append("captionEn", "New Caption");
     formData.append("sortOrder", "5");
 
@@ -344,6 +350,7 @@ describe("updateCategory and updateGalleryItem actions", () => {
     expect(mockItemUpdate).toHaveBeenCalledWith({
       where: { id: "item_1" },
       data: expect.objectContaining({
+        altText: "G-TEC Thodupuzha Computer Lab",
         captionEn: "New Caption",
         sortOrder: 5,
       }),
@@ -355,6 +362,7 @@ describe("updateCategory and updateGalleryItem actions", () => {
       entityType: "GalleryItem",
       entityId: "item_1",
       metadata: expect.objectContaining({
+        altText: "G-TEC Thodupuzha Computer Lab",
         captionEn: "New Caption",
         sortOrder: 5,
       }),
@@ -382,6 +390,7 @@ describe("updateCategory and updateGalleryItem actions", () => {
     formData.append("locale", "en");
     formData.append("id", "item_1");
     formData.append("file", fakeFile("new-image.png", "image/png"));
+    formData.append("altText", "SEO Lab Image");
     formData.append("captionEn", "Replaced Caption");
 
     const { updateGalleryItem } = await import("./actions");
@@ -392,8 +401,30 @@ describe("updateCategory and updateGalleryItem actions", () => {
       where: { id: "item_1" },
       data: expect.objectContaining({
         url: "gallery/replaced-new.png",
+        altText: "SEO Lab Image",
         captionEn: "Replaced Caption",
       }),
+    });
+  });
+
+  test("11. Super Admin can delete a gallery item", async () => {
+    setMockAuth("admin_1", "SUPER_ADMIN");
+    mockItemDelete.mockResolvedValue({ id: "item_1" });
+
+    const formData = new FormData();
+    formData.append("locale", "en");
+    formData.append("id", "item_1");
+
+    const { deleteGalleryItem } = await import("./actions");
+    await deleteGalleryItem(formData);
+
+    expect(mockItemDelete).toHaveBeenCalledWith({ where: { id: "item_1" } });
+    expect(mockAuditCreate).toHaveBeenCalledWith({
+      actorUserId: "admin_1",
+      actorRole: "SUPER_ADMIN",
+      action: "galleryItem.delete",
+      entityType: "GalleryItem",
+      entityId: "item_1",
     });
   });
 });
@@ -422,6 +453,7 @@ describe("GalleryPage", () => {
         categoryId: "cat_1",
         mediaType: "IMAGE",
         url: "gallery/test.jpg",
+        altText: "Campus Main Building Exterior",
         captionEn: "Campus main",
         captionMl: null,
         sortOrder: 1,
@@ -430,7 +462,7 @@ describe("GalleryPage", () => {
     ]);
   });
 
-  test("10. /admin/gallery is denied to an employer-role user (403)", async () => {
+  test("12. /admin/gallery is denied to an employer-role user (403)", async () => {
     mockAuth.mockResolvedValue({
       userId: "employer_1",
       sessionClaims: { metadata: { role: "EMPLOYER" } },
@@ -443,7 +475,7 @@ describe("GalleryPage", () => {
     ).rejects.toThrow("redirect:/en/forbidden");
   });
 
-  test("12. renders view-only gallery for CENTRE_STAFF with create/edit/delete buttons hidden", async () => {
+  test("13. renders view-only gallery for CENTRE_STAFF with create/edit/delete buttons hidden", async () => {
     mockAuth.mockResolvedValue({
       userId: "staff_1",
       sessionClaims: { metadata: { role: "CENTRE_STAFF" } },
@@ -456,6 +488,7 @@ describe("GalleryPage", () => {
     expect(html).toContain("Gallery");
     expect(html).toContain("Read-only");
     expect(html).toContain("Campus");
+    expect(html).toContain("Campus Main Building Exterior");
     // Mutation controls must NOT be present
     expect(html).not.toContain("Add Category");
     expect(html).not.toContain("Upload Images");
@@ -464,7 +497,7 @@ describe("GalleryPage", () => {
     expect(html).not.toContain("Edit");
   });
 
-  test("13. renders full management & edit controls for SUPER_ADMIN", async () => {
+  test("14. renders full management & edit controls for SUPER_ADMIN with Alt / SEO column", async () => {
     mockAuth.mockResolvedValue({
       userId: "admin_1",
       sessionClaims: { metadata: { role: "SUPER_ADMIN" } },
@@ -476,6 +509,8 @@ describe("GalleryPage", () => {
 
     expect(html).toContain("Gallery");
     expect(html).not.toContain("Read-only");
+    expect(html).toContain("Alt / SEO Keywords");
+    expect(html).toContain("Campus Main Building Exterior");
     // Mutation and edit controls must be present
     expect(html).toContain("Add Category");
     expect(html).toContain("Upload Images");

@@ -15,6 +15,7 @@ interface GalleryItemData {
   categoryId: string;
   mediaType: "IMAGE" | "VIDEO";
   url: string;
+  altText?: string | null;
   captionEn: string | null;
   captionMl: string | null;
   sortOrder: number;
@@ -69,7 +70,7 @@ export function EditGalleryItemDialog({
           <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-xl space-y-4 text-left my-8">
             <div className="flex items-center justify-between border-b pb-3">
               <h3 className="text-lg font-semibold text-foreground">
-                {isImage ? "Edit Image Details" : "Edit Video Details"}
+                {isImage ? "Edit Image Details & SEO" : "Edit Video Details & SEO"}
               </h3>
               <button
                 type="button"
@@ -77,7 +78,7 @@ export function EditGalleryItemDialog({
                   setIsOpen(false);
                   setPreviewFile(null);
                 }}
-                className="text-muted-foreground hover:text-foreground text-sm font-semibold p-1"
+                className="text-muted-foreground hover:text-foreground text-sm font-semibold p-1 cursor-pointer"
                 aria-label="Close"
               >
                 ✕
@@ -90,7 +91,7 @@ export function EditGalleryItemDialog({
                 <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md border border-border bg-background">
                   <Image
                     src={previewFile ?? getMediaUrl(item.url)}
-                    alt={item.captionEn || "Gallery image"}
+                    alt={item.altText || item.captionEn || "Gallery image"}
                     fill
                     unoptimized
                     className="object-cover"
@@ -176,6 +177,23 @@ export function EditGalleryItemDialog({
                       </option>
                     ))}
                   </select>
+                </div>
+
+                {/* Alt Text / SEO Keywords */}
+                <div className="space-y-1 sm:col-span-2">
+                  <label htmlFor={`edit-alt-${item.id}`} className="block text-sm font-medium text-foreground">
+                    Alt Text / SEO Keywords <span className="text-xs text-muted-foreground">(Search indexing & accessibility)</span>
+                  </label>
+                  <input
+                    id={`edit-alt-${item.id}`}
+                    name="altText"
+                    defaultValue={item.altText ?? ""}
+                    placeholder="e.g. G-TEC Thodupuzha Computer Lab Workstations, Python Training"
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  />
+                  <p className="text-[11px] text-muted-foreground">
+                    Used as the HTML <code className="font-mono text-primary font-semibold">alt</code> attribute for image SEO search rankings and screen readers.
+                  </p>
                 </div>
 
                 <div className="space-y-1">

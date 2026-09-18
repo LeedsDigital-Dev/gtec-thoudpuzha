@@ -103,8 +103,10 @@ export async function updateGalleryItem(formData: FormData) {
 
   const id = formData.get("id") as string;
   const categoryId = (formData.get("categoryId") as string) || undefined;
+  const rawAltText = (formData.get("altText") as string) || null;
   const rawCaptionEn = (formData.get("captionEn") as string) || null;
   const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const altText = rawAltText ? stripHtml(rawAltText).trim() || null : null;
   const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn).trim() || null : null;
   const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl).trim() || null : null;
   const sortOrderRaw = formData.get("sortOrder");
@@ -120,6 +122,10 @@ export async function updateGalleryItem(formData: FormData) {
     captionEn,
     captionMl,
   };
+
+  if (formData.has("altText")) {
+    dataToUpdate.altText = altText;
+  }
 
   if (file && typeof file === "object" && file.size > 0) {
     const newUrl = await uploadFile(file, "gallery");
@@ -231,8 +237,10 @@ export async function uploadGalleryImages(formData: FormData) {
 
   const categoryId = formData.get("categoryId") as string;
   const files = formData.getAll("files") as File[];
+  const rawAltText = (formData.get("altText") as string) || null;
   const rawCaptionEn = (formData.get("captionEn") as string) || null;
   const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const altText = rawAltText ? stripHtml(rawAltText).trim() || null : null;
   const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn) : null;
   const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl) : null;
 
@@ -255,6 +263,7 @@ export async function uploadGalleryImages(formData: FormData) {
         categoryId,
         mediaType: "IMAGE",
         url,
+        altText,
         captionEn,
         captionMl,
         sortOrder,
@@ -275,6 +284,7 @@ export async function uploadGalleryImages(formData: FormData) {
       categoryId,
       count: files.length,
       itemIds,
+      altText,
       captionEn,
     },
   });
@@ -290,8 +300,10 @@ export async function addVideoItem(formData: FormData) {
 
   const categoryId = formData.get("categoryId") as string;
   const url = formData.get("url") as string;
+  const rawAltText = (formData.get("altText") as string) || null;
   const rawCaptionEn = (formData.get("captionEn") as string) || null;
   const rawCaptionMl = (formData.get("captionMl") as string) || null;
+  const altText = rawAltText ? stripHtml(rawAltText).trim() || null : null;
   const captionEn = rawCaptionEn ? stripHtml(rawCaptionEn) : null;
   const captionMl = rawCaptionMl ? stripHtml(rawCaptionMl) : null;
 
@@ -309,6 +321,7 @@ export async function addVideoItem(formData: FormData) {
       categoryId,
       mediaType: "VIDEO",
       url,
+      altText,
       captionEn,
       captionMl,
       sortOrder: (maxOrder._max.sortOrder ?? -1) + 1,
@@ -321,7 +334,7 @@ export async function addVideoItem(formData: FormData) {
     action: "gallery.addVideo",
     entityType: "GalleryItem",
     entityId: item.id,
-    metadata: { categoryId, url, captionEn },
+    metadata: { categoryId, url, altText, captionEn },
   });
 
   revalidateGallery(localeFromFormData(formData));

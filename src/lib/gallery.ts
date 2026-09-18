@@ -10,6 +10,7 @@ export type PublicGalleryCategory = {
     id: string;
     mediaType: "IMAGE" | "VIDEO";
     url: string;
+    altText?: string | null;
     captionEn: string | null;
     captionMl: string | null;
     sortOrder: number;

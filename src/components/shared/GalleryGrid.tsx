@@ -201,7 +201,7 @@ function Lightbox({
         ) : (
           <Image
             src={getMediaUrl(item.url)}
-            alt={itemCaption || "Gallery image"}
+            alt={item.altText || itemCaption || "G-TEC Computer Education Thodupuzha"}
             width={1200}
             height={900}
             unoptimized
@@ -328,7 +328,7 @@ export function GalleryGrid({
                     ? (getVideoThumbnail(item.url) ?? getMediaUrl(item.url))
                     : getMediaUrl(item.url)
                 }
-                alt={itemCaption || "Gallery image"}
+                alt={item.altText || itemCaption || "G-TEC Computer Education Thodupuzha"}
                 fill
                 unoptimized
                 className="object-cover transition-transform duration-300 group-hover:scale-110"

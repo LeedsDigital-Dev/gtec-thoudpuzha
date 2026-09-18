@@ -384,6 +384,7 @@ model GalleryItem {
   categoryId String
   mediaType   GalleryMediaType
   url         String
+  altText     String?
   captionEn   String?
   captionMl   String?
   sortOrder   Int             @default(0)

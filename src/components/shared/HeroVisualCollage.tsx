@@ -7,9 +7,9 @@ interface HeroVisualCollageProps {
 export function HeroVisualCollage({ priority = true }: HeroVisualCollageProps) {
   return (
     <div className="relative w-full max-w-[520px] sm:max-w-[580px] lg:max-w-[620px] xl:max-w-[660px] mx-auto lg:ml-auto lg:mr-0 select-none py-4 sm:py-6">
-      {/* Ambient Blue & Cyan Glows with subtle pulse */}
+      {/* Ambient Blue & Cyan Glows */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[85%] rounded-full bg-gradient-to-tr from-primary/20 via-sky-400/25 to-blue-600/20 blur-3xl -z-10 animate-pulse"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[85%] rounded-full bg-gradient-to-tr from-primary/20 via-sky-400/25 to-blue-600/20 blur-3xl -z-10"
         aria-hidden="true"
       />
       <div

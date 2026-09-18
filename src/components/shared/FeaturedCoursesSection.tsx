@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -98,6 +100,11 @@ export function FeaturedCoursesSection({
                   <Link
                     href={`/${locale}/courses/${course.slug}`}
                     scroll={true}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                      }
+                    }}
                     className="relative aspect-[16/10] w-full overflow-hidden bg-muted block"
                     aria-label={title}
                   >
@@ -146,6 +153,11 @@ export function FeaturedCoursesSection({
                     <Link
                       href={`/${locale}/courses/${course.slug}`}
                       scroll={true}
+                      onClick={() => {
+                        if (typeof window !== "undefined") {
+                          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                        }
+                      }}
                       className="block group-hover:text-primary transition-colors"
                     >
                       <h3 className="text-lg sm:text-xl font-extrabold tracking-tight text-foreground leading-snug line-clamp-2">
@@ -166,6 +178,11 @@ export function FeaturedCoursesSection({
                   <div className="flex items-center gap-3 pt-4 border-t border-border/50">
                     <Link
                       href={`/${locale}/courses/${course.slug}#enquiry`}
+                      onClick={() => {
+                        if (typeof window !== "undefined") {
+                          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                        }
+                      }}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-xs sm:text-sm font-bold text-primary-foreground shadow-xs transition-all duration-200 hover:bg-primary/90 hover:shadow-md active:scale-95"
                     >
                       <span>{isMl ? "ഇപ്പോൾ ചേരുക" : "Enroll Now"}</span>
@@ -175,6 +192,11 @@ export function FeaturedCoursesSection({
                     <Link
                       href={`/${locale}/courses/${course.slug}`}
                       scroll={true}
+                      onClick={() => {
+                        if (typeof window !== "undefined") {
+                          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                        }
+                      }}
                       className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-border/80 bg-background/80 px-3.5 py-2.5 text-xs sm:text-sm font-bold text-foreground transition-all duration-200 hover:bg-muted hover:border-primary/40 active:scale-95 whitespace-nowrap"
                       aria-label={`View course details for ${title}`}
                     >

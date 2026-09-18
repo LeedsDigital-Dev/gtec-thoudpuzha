@@ -28,10 +28,9 @@ export function HeroSection({ t, locale }: HeroSectionProps) {
 
   return (
     <div className="flex flex-col justify-center gap-6 sm:gap-8 py-2 sm:py-4">
-      {/* Premium Badge with Live Pulse */}
+      {/* Premium Badge */}
       <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/8 px-4 py-2 text-sm font-bold text-primary shadow-2xs backdrop-blur-sm w-fit transition-colors hover:bg-primary/12">
         <span className="relative flex size-2.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
           <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
         </span>
         <span className="tracking-wider uppercase font-extrabold text-sm">

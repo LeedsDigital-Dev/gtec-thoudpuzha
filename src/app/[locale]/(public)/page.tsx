@@ -72,7 +72,7 @@ export default async function HomePage({ params }: HomePageProps) {
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-12">
             {/* Left Content Column (Preserving all text, buttons, and trust points) */}
             <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center z-10">

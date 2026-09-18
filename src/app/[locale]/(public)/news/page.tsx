@@ -36,7 +36,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-8 xl:px-10">
       <h1 className="mb-6 text-2xl sm:text-3xl font-extrabold tracking-tight">{t("heading")}</h1>
 
       {newsItems.length > 0 && (

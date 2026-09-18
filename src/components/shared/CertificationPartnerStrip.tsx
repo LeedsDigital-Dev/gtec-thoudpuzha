@@ -20,7 +20,7 @@ export async function CertificationPartnerStrip({
       aria-label="Certification partners"
       className="relative border-y border-border/60 bg-muted/20 py-16 sm:py-20 overflow-hidden"
     >
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary mb-3">
             <ShieldCheck className="size-3.5 text-emerald-600 dark:text-emerald-400" />

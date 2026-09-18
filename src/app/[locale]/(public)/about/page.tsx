@@ -53,7 +53,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,var(--color-primary)_/_8%,transparent_60%)]"
           aria-hidden="true"
         />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 text-center">
           <span className="inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20">
             {aboutPageT("badge")}
           </span>
@@ -91,7 +91,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Vision, Mission & Values Grid */}
       <section className="py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Mission */}
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm transition-all hover:shadow-md">
@@ -146,7 +146,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Location & Centre Info */}
       <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="rounded-3xl border border-border bg-card p-8 sm:p-12 shadow-sm">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
               <div>

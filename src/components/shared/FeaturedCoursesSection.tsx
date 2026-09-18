@@ -36,7 +36,7 @@ export function FeaturedCoursesSection({
       aria-labelledby="featured-courses-heading"
       className="relative py-16 sm:py-20 lg:py-24 border-b border-border/60 bg-muted/15"
     >
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Section Header */}
         <div className="mb-12 sm:mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="max-w-2xl">

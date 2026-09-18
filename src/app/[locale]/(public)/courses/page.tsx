@@ -36,7 +36,7 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
         <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" aria-hidden="true" />
         <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-96 rounded-full bg-primary/20 blur-3xl" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-bold text-primary mb-4">
             <Sparkles className="size-4 text-amber-500" />
             <span>{isMl ? "തൊഴിലധിഷ്ഠിത പ്രോഗ്രാമുകൾ" : "Explore Career-Oriented Programs"}</span>
@@ -73,7 +73,7 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
       </section>
 
       {/* ── Main Courses & Filter System Container ── */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 pt-10 sm:pt-12">
         <CourseFilterSystem courses={courses} locale={locale} />
       </div>
     </main>

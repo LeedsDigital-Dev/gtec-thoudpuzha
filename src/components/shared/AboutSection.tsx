@@ -21,7 +21,7 @@ export async function AboutSection({ settings, locale, heading, photoPlaceholder
 
   return (
     <section aria-labelledby="about-heading" className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Visual Presentation / Photo Container */}
           <div className="relative lg:col-span-5">

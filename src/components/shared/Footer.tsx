@@ -200,7 +200,7 @@ export async function Footer({
           className="border-b border-white/10 bg-black/15 py-6"
           data-testid="top-of-footer-section"
         >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               {topFooterItems.map((item) => (
                 <a
@@ -236,7 +236,7 @@ export async function Footer({
       )}
 
       {/* 3. MAIN 5-COLUMN FOOTER CONTENT */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-8 xl:px-10 lg:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Column 1: Brand & Contact (Width 4 on lg) */}
           <div className="md:col-span-2 lg:col-span-4">

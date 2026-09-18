@@ -16,7 +16,7 @@ export default async function PlacementPage({ params }: PlacementPageProps) {
   const recent = postings.slice(0, 6);
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-8 xl:px-10">
       <section aria-labelledby="placement-heading">
         <div className="mb-8">
           <h1

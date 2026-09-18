@@ -29,7 +29,7 @@ function parseEventDate(date: Date | string | null | undefined) {
 export function EventsSection({ events, locale }: EventsSectionProps) {
   return (
     <section aria-labelledby="events-heading" className="relative py-16 sm:py-20 lg:py-24 bg-muted/20 border-b border-border/60">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Section Header */}
         <div className="mb-10 sm:mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>

@@ -56,7 +56,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,var(--color-primary)_/_8%,transparent_60%)]"
           aria-hidden="true"
         />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 text-center">
           <span className="inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20">
             {contactPageT("badge")}
           </span>
@@ -71,7 +71,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
       {/* Info Cards Grid */}
       <section className="py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Phone & WhatsApp Card */}
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md">
@@ -183,7 +183,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
       {/* Main Section: Enquiry Form & Map */}
       <section className="py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             {/* Direct Inline Enquiry Form */}
             <div id="enquiry" className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm scroll-mt-24">

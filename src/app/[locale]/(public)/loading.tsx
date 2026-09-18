@@ -1,7 +1,7 @@
 export default function PublicLoading() {
   return (
     <main className="animate-pulse">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-8 xl:px-10 lg:py-20">
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="space-y-6">
             <div className="h-6 w-24 rounded-full bg-muted" />
@@ -16,7 +16,7 @@ export default function PublicLoading() {
         </div>
       </div>
       <div className="space-y-12 py-16">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-5 gap-6">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="rounded-xl bg-muted p-6 text-center">
@@ -26,10 +26,10 @@ export default function PublicLoading() {
             ))}
           </div>
         </div>
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="h-48 rounded-xl bg-muted" />
         </div>
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="h-80 rounded-xl bg-muted" />
             <div className="space-y-4">

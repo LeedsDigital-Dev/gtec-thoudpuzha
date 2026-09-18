@@ -31,7 +31,7 @@ export function FooterBottom({
 
   return (
     <div className="border-t border-white/10 bg-black/25 text-slate-400 py-6 text-xs sm:text-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
           {/* Left: Copyright & Legal */}
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-slate-300 font-medium">

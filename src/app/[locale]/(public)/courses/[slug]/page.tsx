@@ -103,7 +103,7 @@ export default async function CourseDetailPage({ params }: CourseDetailProps) {
   return (
     <main className="min-h-screen bg-background pb-16 sm:pb-24">
       <CourseScrollReset />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 pt-2 sm:pt-4">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10 pt-2 sm:pt-4">
         {/* 1. Breadcrumb Navigation */}
         <CourseBreadcrumb courseTitle={displayTitle} locale={locale} />
 

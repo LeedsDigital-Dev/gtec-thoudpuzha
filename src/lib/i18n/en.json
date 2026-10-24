@@ -24,12 +24,20 @@
     "english": "English"
   },
   "hero": {
-    "badge": "Admissions Open 2025-26",
+    "badge": "Admissions Open 2026-27",
     "headline": "Build Your Career With G-TEC Thodupuzha",
     "subhead": "Learn in-demand skills in IT, multimedia, accounting, and spoken English. Join a trusted global network and take the next step toward a brighter future.",
     "applyNow": "Apply Now",
     "whatsappUs": "WhatsApp Us",
-    "callNow": "Call Now"
+    "callNow": "Call Now",
+    "yearsLabel": "years of empowering careers",
+    "ratingLabel": "rating on google"
+  },
+  "homeVideo": {
+    "badge": "Watch the tour",
+    "heading": "See G-TEC Thodupuzha in Action",
+    "subhead": "Take a quick look inside our classrooms, labs and student life, and see how we help learners build real careers.",
+    "fallback": "Your browser does not support embedded videos."
   },
   "about": {
     "heading": "About G-TEC Thodupuzha",
@@ -37,8 +45,12 @@
     "aboutUs": "About Us"
   },
   "aboutPage": {
+    "directorEyebrow": "Director's Message",
+    "directorQuote": "At G-TEC Thodupuzha, our success is measured by the satisfaction of our students. We strive to ensure that every student who walks through our doors leaves with quality training, valuable skills, greater confidence, and a positive learning experience.",
+    "directorName": "Noby K Sudharsan",
+    "directorRole": "Director, G-TEC Thodupuzha",
     "badge": "25+ Years of Excellence",
-    "title": "About G-TEC Education Thodupuzha",
+    "title": "About G-TEC EDUCATION Thodupuzha",
     "subtitle": "Transforming careers with world-class computer education, multimedia, accounting, and soft skills training.",
     "missionTitle": "Our Mission",
     "missionText": "To empower students and job seekers with high-demand technical and professional skills, fostering career growth and global opportunity.",
@@ -59,12 +71,18 @@
     "heading": "Why Choose Us"
   },
   "newsTeaser": {
-    "heading": "News &amp; Upcoming Events",
+    "heading": "News & Upcoming Events",
     "viewAll": "View all news →",
     "upcomingEvent": "Upcoming Event"
   },
+  "placedStudents": {
+    "badge": "Success stories",
+    "heading": "Our Placed Students",
+    "subhead": "Meet the G-TEC learners now building careers at leading companies.",
+    "viewAll": "View all"
+  },
   "placementSupport": {
-    "heading": "Placement &amp; Support",
+    "heading": "Placement & Support",
     "viewFullGallery": "View full gallery →",
     "ctaHeading": "Ready to take the next step?",
     "ctaText": "Explore current job openings or let employers find you.",
@@ -84,13 +102,13 @@
   },
   "contactPage": {
     "badge": "Get in Touch",
-    "title": "Contact G-TEC Education Thodupuzha",
+    "title": "Contact G-TEC EDUCATION Thodupuzha",
     "subtitle": "Have questions about our courses, admissions, or career opportunities? Reach out to us or visit our centre.",
     "phoneTitle": "Phone & WhatsApp",
     "phoneDesc": "Speak directly with our academic counselor",
     "addressTitle": "Centre Address",
     "hoursTitle": "Operating Hours",
-    "hoursText": "Monday – Saturday: 8:30 AM – 6:00 PM",
+    "hoursText": "Monday – Sunday: 8:30 AM – 6:00 PM",
     "enquiryTitle": "Send Us a Message",
     "enquirySubtitle": "Fill out the form below and our team will get back to you shortly.",
     "locationTitle": "Find Us on Google Maps"
@@ -226,7 +244,8 @@
     "filterLocation": "Location",
     "locationPlaceholder": "City or area...",
     "applyFilters": "Apply Filters",
-    "clear": "Clear"
+    "clear": "Clear",
+    "viewDetails": "View details"
   },
   "jobDetail": {
     "salary": "Salary",
@@ -239,7 +258,9 @@
     "applying": "Applying...",
     "completeProfileToApply": "Complete your profile to apply",
     "applied": "Applied ✓",
-    "salaryDisclosed": "Disclosed at interview"
+    "salaryDisclosed": "Disclosed at interview",
+    "closedBanner": "This job is no longer accepting applications.",
+    "yourStatus": "Your application status"
   },
   "industry": {
     "IT_SOFTWARE": "IT & Software",
@@ -294,7 +315,10 @@
     "location": "Location",
     "unknown": "Unknown",
     "applicantCount": "{count} applicant",
-    "applicantCount_plural": "{count} applicants"
+    "applicantCount_plural": "{count} applicants",
+    "viewProfile": "View profile",
+    "hideProfile": "Hide profile",
+    "careerObjective": "Career objective"
   },
   "candidateSearch": {
     "heading": "Candidate Search",
@@ -352,17 +376,17 @@
     "nextImage": "Next image"
   },
   "news": {
-    "heading": "News &amp; Events",
+    "heading": "News & Events",
     "latestNews": "Latest News",
     "upcomingEvents": "Upcoming Events",
     "noNews": "No news or events published yet.",
-    "backToNews": "← Back to News &amp; Events",
+    "backToNews": "← Back to News & Events",
     "news": "News",
     "event": "Event",
     "eventDate": "Event date: {date}"
   },
   "placement": {
-    "heading": "Placement &amp; Support",
+    "heading": "Placement & Support",
     "description": "We help our students and job seekers connect with leading employers. Browse current openings below.",
     "noPositions": "No open positions right now.",
     "noPositionsHint": "Check back soon — new vacancies are posted regularly.",
@@ -399,7 +423,19 @@
     "verifyCertificate": "Verify Certificate",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "allRightsReserved": "All rights reserved."
+    "allRightsReserved": "All rights reserved.",
+    "location": "Location",
+    "findOurCampus": "Find Our Campus",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp",
+    "googleReviews": "Google Reviews",
+    "openGoogleMaps": "Open in Google Maps",
+    "chatOnWhatsapp": "Chat on WhatsApp",
+    "readReviews": "Read Google Reviews",
+    "topRated": "4.9 ★ Rated",
+    "followUs": "Follow Us",
+    "officialPage": "Official Page"
   },
   "portalDashboard": {
     "heading": "Welcome, {role}",
@@ -446,38 +482,38 @@
   "privacy": {
     "heading": "Privacy Policy",
     "lastUpdated": "Last updated: {date}",
-    "introduction": "G-TEC Education Thodupuzha (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+    "introduction": "G-TEC EDUCATION Thodupuzha (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
     "infoWeCollect": "Information We Collect",
     "infoWeCollectContent": "We may collect personal identification information (name, email address, phone number, educational qualifications, employment history), demographic information, and usage data when you fill out enquiry forms, register as a student, create a candidate profile, or register as an employer.",
     "howWeUse": "How We Use Your Information",
     "howWeUseContent": "We use the collected information to provide and maintain our services, process enquiries and registrations, match candidates with employers, communicate with you about your account, and improve our website and services.",
-    "dataSharing": "Data Sharing &amp; Disclosure",
+    "dataSharing": "Data Sharing & Disclosure",
     "dataSharingContent": "We may share your information with registered employers (for job seekers and students who have enabled profile visibility), with service providers who assist us in operating our website and services, and as required by law. We do not sell your personal information to third parties.",
-    "dataRetention": "Data Retention &amp; Deletion",
+    "dataRetention": "Data Retention & Deletion",
     "dataRetentionContent": "We retain your personal information for as long as your account is active or as needed to provide you services. You may request deletion of your account and associated data by contacting us. We will respond to your request within 30 days.",
     "yourRights": "Your Rights",
     "yourRightsContent": "You have the right to access, update, or delete your personal information. You can update your profile information through your account settings. To request account deletion, please contact the centre.",
     "contact": "Contact Us",
-    "contactContent": "If you have questions about this Privacy Policy, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
+    "contactContent": "If you have questions about this Privacy Policy, please contact G-TEC EDUCATION Thodupuzha at the centre address listed on our website or via the contact form."
   },
   "terms": {
     "heading": "Terms of Service",
     "lastUpdated": "Last updated: {date}",
-    "introduction": "Welcome to G-TEC Education Thodupuzha. By accessing or using our website and services, you agree to be bound by these Terms of Service.",
+    "introduction": "Welcome to G-TEC EDUCATION Thodupuzha. By accessing or using our website and services, you agree to be bound by these Terms of Service.",
     "services": "Services Description",
-    "servicesContent": "G-TEC Education Thodupuzha provides education and training services (courses, certifications, placement support), a student portal with academic resources, and a job portal connecting candidates with employers.",
-    "userAccounts": "User Accounts &amp; Responsibilities",
+    "servicesContent": "G-TEC EDUCATION Thodupuzha provides education and training services (courses, certifications, placement support), a student portal with academic resources, and a job portal connecting candidates with employers.",
+    "userAccounts": "User Accounts & Responsibilities",
     "userAccountsContent": "You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You agree to provide accurate and complete information when creating an account or using our services.",
-    "candidateBiodata": "Candidate Biodata &amp; Profile Visibility",
+    "candidateBiodata": "Candidate Biodata & Profile Visibility",
     "candidateBiodataContent": "By creating a candidate profile, you consent to your profile being visible to registered employers as described in our Privacy Policy. You can control your profile visibility through your account settings at any time.",
     "employerObligations": "Employer Obligations",
     "employerObligationsContent": "Employers agree to use candidate information solely for legitimate hiring purposes, maintain confidentiality of candidate data, and not use the platform for any unlawful or discriminatory practices.",
     "prohibitedUses": "Prohibited Uses",
     "prohibitedUsesContent": "You agree not to use the website or services for any unlawful purpose, to impersonate any person or entity, to interfere with or disrupt the website, or to collect user information without consent.",
     "limitationOfLiability": "Limitation of Liability",
-    "limitationOfLiabilityContent": "G-TEC Education Thodupuzha shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the website or services.",
+    "limitationOfLiabilityContent": "G-TEC EDUCATION Thodupuzha shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the website or services.",
     "contact": "Contact Us",
-    "contactContent": "For questions about these Terms, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
+    "contactContent": "For questions about these Terms, please contact G-TEC EDUCATION Thodupuzha at the centre address listed on our website or via the contact form."
   },
   "biodata": {
     "studentTitle": "Student Biodata",
@@ -485,8 +521,8 @@
     "description": "Fill in your details below. You can save a partial profile and come back later.",
     "profileComplete": "✓ Your profile is complete",
     "personalInfo": "Personal Information",
-    "education": "Education &amp; Qualifications",
-    "skillsPreferences": "Skills &amp; Preferences",
+    "education": "Education & Qualifications",
+    "skillsPreferences": "Skills & Preferences",
     "profilePhoto": "Profile Photo",
     "profileVisibility": "Profile Visibility",
     "fullName": "Full Name",
@@ -588,11 +624,27 @@
     "benefitsHeading": "Benefits of the course",
     "noCoursesAvailable": "No courses available at the moment. Check back soon.",
     "exploreMoreCourses": "Explore More Courses",
-  "noContentPreview": "No content configured yet. Fill in the tabs above to build this page.",
+    "noContentPreview": "No content configured yet. Fill in the tabs above to build this page."
+  },
   "errors": {
     "title": "Something went wrong",
     "description": "We encountered an unexpected error. Please try again or come back later.",
     "tryAgain": "Try again"
+  },
+  "applicationStatus": {
+    "APPLIED": "Applied",
+    "VIEWED": "Viewed",
+    "SHORTLISTED": "Shortlisted",
+    "REJECTED": "Rejected",
+    "HIRED": "Hired"
+  },
+  "applicationErrors": {
+    "UNAUTHENTICATED": "Please sign in again to continue.",
+    "FORBIDDEN": "You are not allowed to do this.",
+    "NOT_FOUND": "This application or job could not be found.",
+    "PROFILE_INCOMPLETE": "Complete your profile to apply",
+    "JOB_CLOSED": "This job is no longer accepting applications.",
+    "ALREADY_APPLIED": "You have already applied to this job.",
+    "INVALID_TRANSITION": "This status change is not allowed. Refresh to see the latest status."
   }
-}
 }

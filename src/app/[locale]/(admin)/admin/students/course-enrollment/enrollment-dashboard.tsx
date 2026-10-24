@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { enrollStudentInCourses, unenrollStudentFromCourse } from "./actions";
+import { ActionForm } from "@/components/admin/action-form";
 
 interface EnrollmentRecord {
   id: string;
@@ -197,7 +198,7 @@ export default function EnrollmentDashboard({
                     ) : (
                       <div className="flex flex-wrap items-center gap-1">
                         {student.enrollments.length > 1 && (
-                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-sm font-medium text-primary">
                             {student.enrollments.length}
                           </span>
                         )}
@@ -233,11 +234,11 @@ export default function EnrollmentDashboard({
             >
               <div className="flex items-center justify-between border-b pb-2">
                 <span className="font-semibold text-foreground">{student.fullName || "Unknown"}</span>
-                <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-foreground">
+                <span className="rounded bg-muted px-2 py-0.5 font-mono text-sm text-foreground">
                   {student.studentId || "N/A"}
                 </span>
               </div>
-              <div className="text-xs space-y-1 text-muted-foreground">
+              <div className="text-sm space-y-1 text-muted-foreground">
                 <div><span className="font-medium text-foreground">Phone:</span> {student.phone || "N/A"}</div>
                 <div>
                   <span className="font-medium text-foreground">Enrolled Courses:</span>{" "}
@@ -317,7 +318,7 @@ export default function EnrollmentDashboard({
                             ).toLocaleDateString()}
                           </td>
                           <td className="border border-border px-3 py-2">
-                            <form action={unenrollStudentFromCourse}>
+                            <ActionForm action={unenrollStudentFromCourse} success="Student unenrolled">
                               <input
                                 type="hidden"
                                 name="enrollmentId"
@@ -345,7 +346,7 @@ export default function EnrollmentDashboard({
                               >
                                 Unenroll
                               </Button>
-                            </form>
+                            </ActionForm>
                           </td>
                         </tr>
                       ))}
@@ -359,9 +360,9 @@ export default function EnrollmentDashboard({
                     <div key={enrollment.id} className="rounded-md border p-3 bg-card flex items-center justify-between">
                       <div>
                         <div className="font-medium text-sm text-foreground">{enrollment.course.titleEn}</div>
-                        <div className="text-xs text-muted-foreground">Enrolled: {new Date(enrollment.enrolledAt).toLocaleDateString()}</div>
+                        <div className="text-sm text-muted-foreground">Enrolled: {new Date(enrollment.enrolledAt).toLocaleDateString()}</div>
                       </div>
-                      <form action={unenrollStudentFromCourse}>
+                      <ActionForm action={unenrollStudentFromCourse} success="Student unenrolled">
                         <input type="hidden" name="enrollmentId" value={enrollment.id} />
                         <input type="hidden" name="studentProfileId" value={selectedStudent.id} />
                         <input type="hidden" name="courseTitle" value={enrollment.course.titleEn} />
@@ -369,7 +370,7 @@ export default function EnrollmentDashboard({
                         <Button type="submit" variant="destructive" size="sm">
                           Unenroll
                         </Button>
-                      </form>
+                      </ActionForm>
                     </div>
                   ))}
                 </div>
@@ -381,8 +382,8 @@ export default function EnrollmentDashboard({
             <h3 className="text-md font-medium">
               Enroll in Additional Courses
             </h3>
-            <form
-              action={enrollStudentInCourses}
+            <ActionForm
+              action={enrollStudentInCourses} success="Enrolled in selected courses" resetOnSuccess
               className="mt-2 space-y-3"
             >
               <input
@@ -420,7 +421,7 @@ export default function EnrollmentDashboard({
                       />
                       {course.titleEn}
                       {isAlreadyEnrolled && (
-                        <span className="text-xs text-accent">
+                        <span className="text-sm text-accent">
                           (already enrolled)
                         </span>
                       )}
@@ -435,7 +436,7 @@ export default function EnrollmentDashboard({
               >
                 Enroll Selected Courses
               </Button>
-            </form>
+            </ActionForm>
           </div>
         </section>
       )}

@@ -4,6 +4,8 @@ import { Footer } from "@/components/shared/Footer";
 import { getCachedSiteSettings } from "@/lib/data-cache";
 import { getCachedPublishedCourses } from "@/lib/data-cache";
 import { logger } from "@/lib/logger";
+import { toNavCourse } from "@/lib/nav-courses";
+import { EnquiryModalProvider } from "@/components/enquiry/EnquiryModal";
 
 export default async function PublicLayout({
   children,
@@ -21,28 +23,25 @@ export default async function PublicLayout({
   }
 
   const courses = await getCachedPublishedCourses()
-    .then((c) =>
-      c.map(({ slug, titleEn, titleMl }) => ({
-        slug,
-        titleEn,
-        titleMl,
-      })),
-    )
+    .then((c) => c.map(toNavCourse))
     .catch((err) => {
-      logger.exception("public-layout", "Failed to load published courses", err);
+      logger.exception(
+        "public-layout",
+        "Failed to load published courses",
+        err,
+      );
       return [];
     });
-
   return (
-    <div className="relative min-h-screen w-full flex flex-col">
-      <Header courses={courses} />
-      <div className="min-h-[36px]">
+    <EnquiryModalProvider courses={courses}>
+      <div className="relative min-h-screen w-full flex flex-col">
         <FlashNewsBar />
+        <Header courses={courses} />
+        <div className="flex-1 w-full max-w-full overflow-x-hidden">
+          {children}
+        </div>
+        <Footer address={address} />
       </div>
-      <div className="flex-1 w-full max-w-full overflow-x-hidden">
-        {children}
-      </div>
-      <Footer address={address} />
-    </div>
+    </EnquiryModalProvider>
   );
 }

@@ -38,7 +38,7 @@ docker compose up
 
 ### What Happens Automatically:
 1. **PostgreSQL Container (`gtec_postgres_dev`)** starts on `localhost:5432`.
-2. **Database Schema Sync**: Prisma pushes all tables and relations.
+2. **Database Schema**: on an empty database, `drizzle-kit migrate` creates all tables and relations from `drizzle/`. An existing database is left untouched.
 3. **Database Seeding**: Sample courses, news, students, job postings, and site settings are populated automatically.
 4. **Next.js Dev Server** starts on **`http://localhost:3000`** with live hot-reloading enabled.
 
@@ -82,7 +82,7 @@ For maximum file system speed on Windows, run the repo directly inside WSL 2:
 ### 3. Hot Reloading & CPU Performance Optimization
 - **Problem**: Polling for file changes on Windows mounted drives (`C:\...`) can cause high CPU usage if thousands of dependency files are watched.
 - **Solution**:
-  - `docker-compose.yml` mounts `/app/node_modules` and `/app/.next` as isolated Docker volumes, so file watching **only monitors your actual source code** (`src/`, `prisma/`, `public/`). This keeps CPU usage below 1%.
+   - `docker-compose.yml` mounts only the source and development configuration directories into the container, while dependencies and `.next` remain in the image. File watching **only monitors your actual source code** (`src/`, `prisma/`, `public/`). This keeps CPU usage below 1%.
   - `WATCHPACK_POLLING=true` & `CHOKIDAR_USEPOLLING=true` are pre-configured in `docker-compose.yml` for instant live reload when saving files in VS Code on Windows.
 
 ### 4. Network Host Binding (`HOSTNAME=0.0.0.0`)

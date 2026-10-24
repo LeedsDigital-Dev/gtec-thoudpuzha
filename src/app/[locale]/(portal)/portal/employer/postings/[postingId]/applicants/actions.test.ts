@@ -1,205 +1,159 @@
 // @vitest-environment node
-import { describe, expect, test, vi, beforeEach } from "vitest";
-
-// ─── Hoisted mocks ──────────────────────────────────────────────────────────
+import { beforeEach, describe, expect, test, vi } from "vitest";
+import { db } from "@/db";
+import { application } from "@/db/schema";
+import { truncateAll, type TestDb } from "@/__tests__/pg-test-db";
+import {
+  insertEmployer,
+  insertJobPosting,
+  insertStudentProfile,
+  insertUser,
+} from "@/__tests__/pg-fixtures";
+import { markApplicationViewed, updateApplicationStatus } from "./actions";
 
 const mockAuth = vi.hoisted(() => vi.fn());
-const mockFindUnique = vi.hoisted(() => vi.fn());
-const mockUpdate = vi.hoisted(() => vi.fn());
 const mockRevalidatePath = vi.hoisted(() => vi.fn());
 
-vi.mock("@clerk/nextjs/server", () => ({ auth: mockAuth }));
-
-vi.mock("@/lib/db", () => ({
-  prisma: {
-    application: { findUnique: mockFindUnique, update: mockUpdate },
-    employerProfile: { findUnique: vi.fn() },
-  },
+vi.mock("@/db", async () => ({
+  db: await (await import("@/__tests__/pg-test-db")).createTestDb(),
 }));
-
+vi.mock("@clerk/nextjs/server", () => ({ auth: mockAuth }));
 vi.mock("next/cache", () => ({ revalidatePath: mockRevalidatePath }));
 
-import { updateApplicationStatus } from "./actions";
+const pg = db as unknown as TestDb;
 
-beforeEach(() => {
+let applicationId: string;
+
+const signIn = (userId: string, role: string) =>
+  mockAuth.mockResolvedValue({ userId, sessionClaims: { metadata: { role } } });
+
+beforeEach(async () => {
   vi.clearAllMocks();
+  await truncateAll(pg);
+  await insertUser(pg, { id: "user_emp_1", role: "EMPLOYER" });
+  const employer = await insertEmployer(pg, {
+    userId: "user_emp_1",
+    companyName: "Acme Corp",
+  });
+  const posting = await insertJobPosting(pg, { employerId: employer.id });
+  const candidate = await insertStudentProfile(pg);
+  [{ id: applicationId }] = await pg
+    .insert(application)
+    .values({
+      jobPostingId: posting.id,
+      candidateProfileId: candidate.id,
+      status: "VIEWED",
+      statusUpdatedAt: new Date("2026-01-01"),
+    })
+    .returning({ id: application.id });
+  signIn("user_emp_1", "EMPLOYER");
 });
 
-// ─── Tests ───────────────────────────────────────────────────────────────────
+const current = async () => (await pg.select().from(application))[0];
 
 describe("updateApplicationStatus", () => {
-  test("4. employer can move VIEWED application to SHORTLISTED", async () => {
-    mockAuth.mockResolvedValue({
-      userId: "user_emp_1",
-      sessionClaims: { metadata: { role: "EMPLOYER" } },
-    });
-    mockFindUnique
-      // First call: find the app + verify employer ownership
-      .mockResolvedValueOnce({
-        id: "app_1",
-        jobPosting: { employerId: "ep_1" },
-      });
-    // employerProfile lookup
-    vi.mocked(
-      (await import("@/lib/db")).prisma.employerProfile.findUnique,
-    ).mockResolvedValueOnce({
-      id: "ep_1",
-      userId: "user_emp_1",
-      companyName: "Acme Corp",
-      industrySector: "IT_SOFTWARE",
-      contactPersonName: "Alice",
-      designation: "HR Manager",
-      phone: "9876543210",
-      email: "alice@acme.com",
-      companyAddress: "123 Main St",
-      hasWebsite: false,
-      websiteUrl: null,
-      employeeCountRange: "RANGE_11_50",
-      aboutCompany: "A great company",
-      status: "APPROVED",
-      autoPublishTrusted: false,
-      rejectionReason: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    mockUpdate.mockResolvedValueOnce({ id: "app_1", status: "SHORTLISTED" });
+  test.each(["SHORTLISTED", "REJECTED", "HIRED"] as const)(
+    "4/5. employer can move a VIEWED application to %s",
+    async (status) => {
+      const result = await updateApplicationStatus(applicationId, status);
 
-    const result = await updateApplicationStatus("app_1", "SHORTLISTED");
-    expect(result).toEqual({ success: true });
-    expect(mockUpdate).toHaveBeenCalledWith({
-      where: { id: "app_1" },
-      data: { status: "SHORTLISTED", statusUpdatedAt: expect.any(Date) },
-    });
-    expect(mockRevalidatePath).toHaveBeenCalledWith("/portal/employer");
-  });
-
-  test("5. employer can move VIEWED application to REJECTED", async () => {
-    mockAuth.mockResolvedValue({
-      userId: "user_emp_1",
-      sessionClaims: { metadata: { role: "EMPLOYER" } },
-    });
-    mockFindUnique.mockResolvedValueOnce({
-      id: "app_2",
-      jobPosting: { employerId: "ep_1" },
-    });
-    vi.mocked(
-      (await import("@/lib/db")).prisma.employerProfile.findUnique,
-    ).mockResolvedValueOnce({
-      id: "ep_1",
-      userId: "user_emp_1",
-      companyName: "Acme Corp",
-      industrySector: "IT_SOFTWARE",
-      contactPersonName: "Alice",
-      designation: "HR Manager",
-      phone: "9876543210",
-      email: "alice@acme.com",
-      companyAddress: "123 Main St",
-      hasWebsite: false,
-      websiteUrl: null,
-      employeeCountRange: "RANGE_11_50",
-      aboutCompany: "A great company",
-      status: "APPROVED",
-      autoPublishTrusted: false,
-      rejectionReason: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    mockUpdate.mockResolvedValueOnce({ id: "app_2", status: "REJECTED" });
-
-    const result = await updateApplicationStatus("app_2", "REJECTED");
-    expect(result).toEqual({ success: true });
-    expect(mockUpdate).toHaveBeenCalledWith({
-      where: { id: "app_2" },
-      data: { status: "REJECTED", statusUpdatedAt: expect.any(Date) },
-    });
-  });
-
-  test("5. employer can move VIEWED application to HIRED", async () => {
-    mockAuth.mockResolvedValue({
-      userId: "user_emp_1",
-      sessionClaims: { metadata: { role: "EMPLOYER" } },
-    });
-    mockFindUnique.mockResolvedValueOnce({
-      id: "app_3",
-      jobPosting: { employerId: "ep_1" },
-    });
-    vi.mocked(
-      (await import("@/lib/db")).prisma.employerProfile.findUnique,
-    ).mockResolvedValueOnce({
-      id: "ep_1",
-      userId: "user_emp_1",
-      companyName: "Acme Corp",
-      industrySector: "IT_SOFTWARE",
-      contactPersonName: "Alice",
-      designation: "HR Manager",
-      phone: "9876543210",
-      email: "alice@acme.com",
-      companyAddress: "123 Main St",
-      hasWebsite: false,
-      websiteUrl: null,
-      employeeCountRange: "RANGE_11_50",
-      aboutCompany: "A great company",
-      status: "APPROVED",
-      autoPublishTrusted: false,
-      rejectionReason: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    mockUpdate.mockResolvedValueOnce({ id: "app_3", status: "HIRED" });
-
-    const result = await updateApplicationStatus("app_3", "HIRED");
-    expect(result).toEqual({ success: true });
-    expect(mockUpdate).toHaveBeenCalledWith({
-      where: { id: "app_3" },
-      data: { status: "HIRED", statusUpdatedAt: expect.any(Date) },
-    });
-  });
+      expect(result).toEqual({ success: true });
+      const app = await current();
+      expect(app.status).toBe(status);
+      expect(app.statusUpdatedAt.getTime()).toBeGreaterThan(
+        new Date("2026-01-01").getTime(),
+      );
+      expect(mockRevalidatePath).toHaveBeenCalledWith(
+        "/[locale]/portal/employer",
+        "layout",
+      );
+    },
+  );
 
   test("employer from another company cannot update application", async () => {
-    mockAuth.mockResolvedValue({
-      userId: "user_emp_other",
-      sessionClaims: { metadata: { role: "EMPLOYER" } },
+    await insertUser(pg, { id: "user_emp_2", role: "EMPLOYER" });
+    await insertEmployer(pg, {
+      userId: "user_emp_2",
+      companyName: "Rival Ltd",
     });
-    mockFindUnique.mockResolvedValueOnce({
-      id: "app_other",
-      jobPosting: { employerId: "ep_1" },
-    });
-    vi.mocked(
-      (await import("@/lib/db")).prisma.employerProfile.findUnique,
-    ).mockResolvedValueOnce({
-      id: "ep_other",
-      userId: "user_emp_other",
-      companyName: "Other Corp",
-      industrySector: "RETAIL",
-      contactPersonName: "Bob",
-      designation: "CTO",
-      phone: "1234567890",
-      email: "bob@othercorp.com",
-      companyAddress: "456 Other St",
-      hasWebsite: true,
-      websiteUrl: "https://othercorp.com",
-      employeeCountRange: "RANGE_51_200",
-      aboutCompany: "Another great company",
-      status: "APPROVED",
-      autoPublishTrusted: false,
-      rejectionReason: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+    signIn("user_emp_2", "EMPLOYER");
 
-    const result = await updateApplicationStatus("app_other", "SHORTLISTED");
-    expect(result).toEqual({ error: "Forbidden" });
-    expect(mockUpdate).not.toHaveBeenCalled();
+    const result = await updateApplicationStatus(applicationId, "HIRED");
+
+    expect(result).toEqual({ error: "FORBIDDEN" });
+    expect((await current()).status).toBe("VIEWED");
   });
 
   test("non-employer cannot update status", async () => {
-    mockAuth.mockResolvedValue({
-      userId: "user_student",
-      sessionClaims: { metadata: { role: "STUDENT" } },
-    });
+    signIn("user_student_1", "STUDENT");
 
-    const result = await updateApplicationStatus("app_1", "SHORTLISTED");
-    expect(result).toEqual({ error: "Forbidden" });
-    expect(mockUpdate).not.toHaveBeenCalled();
+    const result = await updateApplicationStatus(applicationId, "HIRED");
+
+    expect(result).toEqual({ error: "FORBIDDEN" });
+    expect((await current()).status).toBe("VIEWED");
+  });
+
+  test("an unknown application is reported, not updated", async () => {
+    expect(await updateApplicationStatus("missing", "HIRED")).toEqual({
+      error: "NOT_FOUND",
+    });
+  });
+
+  test.each([
+    ["HIRED", "SHORTLISTED"],
+    ["REJECTED", "HIRED"],
+    ["VIEWED", "APPLIED"],
+    ["VIEWED", "VIEWED"],
+    ["APPLIED", "HIRED"],
+  ] as const)(
+    "refuses the transition %s -> %s on the server",
+    async (from, to) => {
+      await pg.update(application).set({ status: from });
+
+      expect(await updateApplicationStatus(applicationId, to)).toEqual({
+        error: "INVALID_TRANSITION",
+      });
+      expect((await current()).status).toBe(from);
+      expect(mockRevalidatePath).not.toHaveBeenCalled();
+    },
+  );
+});
+
+describe("markApplicationViewed", () => {
+  test("moves an APPLIED application to VIEWED", async () => {
+    await pg.update(application).set({ status: "APPLIED" });
+
+    expect(await markApplicationViewed(applicationId)).toEqual({
+      success: true,
+    });
+    const app = await current();
+    expect(app.status).toBe("VIEWED");
+    expect(app.statusUpdatedAt.getTime()).toBeGreaterThan(
+      new Date("2026-01-01").getTime(),
+    );
+  });
+
+  test.each(["VIEWED", "SHORTLISTED", "REJECTED", "HIRED"] as const)(
+    "leaves a %s application alone",
+    async (status) => {
+      await pg.update(application).set({ status });
+
+      expect(await markApplicationViewed(applicationId)).toEqual({
+        success: true,
+      });
+      expect((await current()).status).toBe(status);
+    },
+  );
+
+  test("employer from another company cannot mark it viewed", async () => {
+    await pg.update(application).set({ status: "APPLIED" });
+    await insertUser(pg, { id: "user_emp_2", role: "EMPLOYER" });
+    await insertEmployer(pg, { userId: "user_emp_2", companyName: "Rival" });
+    signIn("user_emp_2", "EMPLOYER");
+
+    expect(await markApplicationViewed(applicationId)).toEqual({
+      error: "FORBIDDEN",
+    });
+    expect((await current()).status).toBe("APPLIED");
   });
 });

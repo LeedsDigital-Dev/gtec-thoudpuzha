@@ -1,6 +1,6 @@
-import { prisma } from "@/lib/db";
+import { db } from "@/db";
+import { auditLogEntry, user } from "@/db/schema";
 import { Role } from "@/lib/auth";
-import type { Prisma } from "@prisma/client";
 
 interface LogAdminActionInput {
   actorUserId: string;
@@ -20,15 +20,20 @@ export async function logAdminAction({
   metadata,
 }: LogAdminActionInput): Promise<void> {
   try {
-    await prisma.auditLogEntry.create({
-      data: {
-        actorUserId,
-        actorRole,
-        action,
-        entityType,
-        entityId,
-        metadata: metadata as Prisma.InputJsonValue | undefined,
-      },
+    if (actorUserId) {
+      await db
+        .insert(user)
+        .values({ id: actorUserId, role: actorRole })
+        .onConflictDoUpdate({ target: user.id, set: { role: actorRole } });
+    }
+
+    await db.insert(auditLogEntry).values({
+      actorUserId: actorUserId || null,
+      actorRole,
+      action,
+      entityType,
+      entityId,
+      metadata,
     });
   } catch (error) {
     console.error("[audit] failed to write audit log entry:", error);
@@ -58,15 +63,13 @@ export async function logSystemAction({
   metadata,
 }: LogSystemActionInput): Promise<void> {
   try {
-    await prisma.auditLogEntry.create({
-      data: {
-        actorUserId: null,
-        actorRole: null,
-        action,
-        entityType,
-        entityId,
-        metadata: metadata as Prisma.InputJsonValue | undefined,
-      },
+    await db.insert(auditLogEntry).values({
+      actorUserId: null,
+      actorRole: null,
+      action,
+      entityType,
+      entityId,
+      metadata,
     });
   } catch (error) {
     console.error("[audit] failed to write system audit log entry:", error);

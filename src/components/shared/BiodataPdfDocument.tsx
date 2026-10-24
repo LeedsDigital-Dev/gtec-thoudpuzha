@@ -63,13 +63,7 @@ function Field({
   );
 }
 
-function ListField({
-  label,
-  items,
-}: {
-  label: string;
-  items: string[];
-}) {
+function ListField({ label, items }: { label: string; items: string[] }) {
   return (
     <View style={styles.row}>
       <Text style={styles.label}>{label}:</Text>
@@ -101,15 +95,12 @@ export function BiodataPdfDocument({ data }: { data: BiodataPdfData }) {
         />
         <ListField label="Certifications" items={data.certificationCodes} />
 
-        <Text style={styles.sectionTitle}>Skills &amp; Languages</Text>
+        <Text style={styles.sectionTitle}>Skills & Languages</Text>
         <ListField label="Languages Known" items={data.languagesKnown} />
         <ListField label="Skills" items={data.skillLabels} />
 
         <Text style={styles.sectionTitle}>Career Preferences</Text>
-        <Field
-          label="Preferred Location"
-          value={data.preferredJobLocation}
-        />
+        <Field label="Preferred Location" value={data.preferredJobLocation} />
         <Field label="Preferred Job Type" value={data.preferredJobType} />
         <Field label="Career Objective" value={data.careerObjective} />
 

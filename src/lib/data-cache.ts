@@ -61,6 +61,20 @@ export const getCachedPlacementGalleryData = unstable_cache(
   { revalidate: 3600, tags: ["placement-gallery", "gallery"] },
 );
 
+export const getCachedPlacedStudentsPosters = unstable_cache(
+  async () => {
+    const { getPlacedStudentsPosters } = await import("@/lib/gallery");
+    try {
+      return await getPlacedStudentsPosters();
+    } catch (err) {
+      logger.exception("cache", "Failed to load placed students posters", err);
+      throw err;
+    }
+  },
+  ["placed-students-posters"],
+  { revalidate: 3600, tags: ["placed-students-posters", "gallery"] },
+);
+
 export const getCachedCertificationPartners = unstable_cache(
   async (): Promise<PublicCertificationPartner[]> => {
     const { getCertificationPartners } = await import(
@@ -86,4 +100,19 @@ export const getCachedActiveFlashNews = (locale: "en" | "ml") =>
     [`active-flash-news-${locale}`],
     { revalidate: 3600, tags: ["flash-news"] },
   )();
+
+export const getCachedUpcomingEvents = unstable_cache(
+  async (limit: number = 3) => {
+    const { getUpcomingEvents } = await import("@/lib/news-events");
+    try {
+      return await getUpcomingEvents(limit);
+    } catch (err) {
+      logger.exception("cache", "Failed to load upcoming events", err);
+      throw err;
+    }
+  },
+  ["upcoming-events"],
+  { revalidate: 3600, tags: ["upcoming-events", "news-events"] },
+);
+
 

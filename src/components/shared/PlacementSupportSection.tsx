@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { Marquee } from "@/components/shared/Marquee";
 import { getMediaUrl } from "@/lib/media";
 import type { PublicGalleryCategory } from "@/lib/gallery";
 
@@ -31,9 +33,12 @@ export function PlacementSupportSection({
   if (!data || data.items.length === 0) return null;
 
   return (
-    <section aria-labelledby="placement-support-heading" className="py-16 lg:py-20">
+    <section
+      aria-labelledby="placement-support-heading"
+      className="py-16 lg:py-20"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex items-center justify-between">
+        <Reveal className="mb-10 flex items-center justify-between">
           <h2
             id="placement-support-heading"
             className="text-3xl font-bold tracking-tight"
@@ -47,33 +52,14 @@ export function PlacementSupportSection({
             {viewFullGallery}
             <ArrowRight className="size-3.5" />
           </Link>
-        </div>
+        </Reveal>
+      </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {data.items.map((item) => (
-            <div
-              key={item.id}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-muted shadow-sm"
-            >
-              <Image
-                src={getMediaUrl(item.url)}
-                alt={item.captionEn ?? "Placement & Support image"}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              />
-              {item.captionEn && (
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-3 pt-8">
-                  <p className="truncate text-xs font-medium text-white">
-                    {item.captionEn}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+      {/* Full-width endless row of placement photos (no captions). */}
+      <PlacementMarquee items={data.items} />
 
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 p-8 text-center sm:p-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal className="mt-12 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 p-8 text-center sm:p-10">
           <h3 className="text-2xl font-bold tracking-tight">{ctaHeading}</h3>
           <p className="mt-3 max-w-lg mx-auto text-muted-foreground leading-relaxed">
             {ctaText}
@@ -93,8 +79,32 @@ export function PlacementSupportSection({
               {hiringCta}
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
+  );
+}
+
+function PlacementMarquee({
+  items,
+}: {
+  items: NonNullable<PlacementData>["items"];
+}) {
+  return (
+    <Marquee
+      data-testid="placement-marquee"
+      items={items}
+      itemKey={(item) => item.id}
+      itemClassName="relative mr-4 aspect-square w-[calc((100vw-2rem)/2.5)] overflow-hidden rounded-xl bg-muted shadow-sm sm:mr-6 sm:w-[calc(100vw/3.5)] lg:mr-8 lg:w-[calc(100vw/4.5)]"
+      renderItem={(item, repeat) => (
+        <Image
+          src={getMediaUrl(item.url)}
+          alt={repeat ? "" : (item.captionEn ?? "Placement & Support image")}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 40vw, (max-width: 1024px) 29vw, 23vw"
+        />
+      )}
+    />
   );
 }

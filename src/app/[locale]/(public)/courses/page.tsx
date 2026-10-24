@@ -1,10 +1,30 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { ArrowLeft, ArrowRight, GraduationCap, Layers } from "lucide-react";
 import { getPublishedCourses } from "@/lib/courses";
 import { CourseCard } from "@/components/courses/CourseCard";
+import { CourseHeroBackdrop } from "@/components/courses/CourseHero";
+import { CourseCtaBanner } from "@/components/courses/CourseCtaBanner";
+import { Link } from "@/lib/i18n/navigation";
+import {
+  collectCategories,
+  paginate,
+  resolveCategory,
+} from "@/lib/course-filters";
+import {
+  MotionProvider,
+  Reveal,
+  RevealGroup,
+  RevealItem,
+  RevealNoScript,
+} from "@/components/motion/Reveal";
 
 interface CoursesPageProps {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    category?: string | string[];
+    page?: string | string[];
+  }>;
 }
 
 export async function generateMetadata({
@@ -18,37 +38,251 @@ export async function generateMetadata({
   };
 }
 
-export default async function CoursesPage({ params }: CoursesPageProps) {
+const chipBase =
+  "inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold tracking-tight transition-colors";
+const chipActive = "bg-[#0B57D0] text-white shadow-md";
+const chipIdle = "bg-[#F2F4F7] text-[#111827] hover:bg-[#E4E7EC]";
+const pagerLink =
+  "group inline-flex items-center gap-2 rounded-full bg-[#F2F4F7] px-5 py-2.5 text-sm font-semibold text-[#111827] transition-colors hover:bg-[#E4E7EC]";
+
+const first = (v: string | string[] | undefined) =>
+  Array.isArray(v) ? v[0] : v;
+
+export default async function CoursesPage({
+  params,
+  searchParams,
+}: CoursesPageProps) {
   const { locale } = await params;
+  const { category: rawCategory, page: rawPage } = await searchParams;
+  const isMl = locale === "ml";
   const t = await getTranslations({ locale, namespace: "nav" });
   const courses = await getPublishedCourses();
 
-  return (
-    <main className="py-12 px-4 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center">
-        {t("courses")}
-      </h1>
+  const categories = collectCategories(courses);
+  const active = resolveCategory(first(rawCategory), categories);
+  const visible = active
+    ? courses.filter((c) => c.category?.id === active.id)
+    : courses;
+  const {
+    page,
+    pageCount,
+    start,
+    items: pageCourses,
+  } = paginate(visible, first(rawPage));
+  const pageHref = (n: number) => {
+    const query = new URLSearchParams();
+    if (active) query.set("category", active.slug);
+    if (n > 1) query.set("page", String(n));
+    const qs = query.toString();
+    return `${qs ? `/courses?${qs}` : "/courses"}#course-grid`;
+  };
+  const pick = (en: string, ml: string | null) => (isMl && ml ? ml : en);
 
-      {courses.length === 0 ? (
-        <p className="text-center text-muted-foreground py-12">
-          No courses available at the moment. Check back soon.
-        </p>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <CourseCard
-              key={course.id}
-              slug={course.slug}
-              titleEn={course.titleEn}
-              titleMl={course.titleMl}
-              descriptionEn={course.descriptionEn}
-              descriptionMl={course.descriptionMl}
-              coverImageUrl={course.coverImageUrl}
-              locale={locale}
-            />
-          ))}
-        </div>
-      )}
+  return (
+    <main className="w-full max-w-full overflow-x-hidden">
+      <RevealNoScript />
+      <MotionProvider>
+        {/* Hero (shares the course detail page's backdrop) */}
+        <section className="relative w-full">
+          <div className="relative w-full overflow-hidden rounded-b-[40px] bg-linear-to-b from-[#1759CF] from-[6.49%] to-[#0A2B68] text-white sm:rounded-b-[56px] lg:rounded-b-[80px]">
+            <CourseHeroBackdrop />
+
+            <div className="relative z-10 mx-auto max-w-7xl px-4 pt-32 pb-28 sm:px-6 sm:pt-36 sm:pb-32 lg:px-8 lg:pt-[172px] lg:pb-[140px]">
+              <RevealGroup stagger={0.09} className="max-w-3xl">
+                <RevealItem>
+                  <p className="text-base font-semibold tracking-[-0.05em] text-white/60 sm:text-xl">
+                    GTEC at glance
+                  </p>
+                </RevealItem>
+                <RevealItem>
+                  <h1 className="mt-2 text-4xl font-bold leading-[1.1] tracking-[-0.04em] sm:text-5xl lg:text-[56px]">
+                    {isMl ? t("courses") : "Our Courses"}
+                  </h1>
+                </RevealItem>
+                <RevealItem>
+                  <p className="mt-5 max-w-2xl text-base font-light leading-[1.5] tracking-[-0.02em] text-white/80 sm:text-lg">
+                    Industry-focused programmes in accounting, IT, design,
+                    programming and more — with hands-on labs, recognised
+                    certifications and dedicated placement support.
+                  </p>
+                </RevealItem>
+                <RevealItem className="mt-7 flex flex-wrap items-center gap-3">
+                  <span className="inline-flex h-8 items-center gap-2 rounded-full bg-[rgba(237,237,237,0.2)] px-3.5 text-sm font-semibold">
+                    <GraduationCap className="size-4" aria-hidden="true" />
+                    {courses.length} {isMl ? "കോഴ്സുകൾ" : "courses"}
+                  </span>
+                  {categories.length > 0 && (
+                    <span className="inline-flex h-8 items-center gap-2 rounded-full bg-[rgba(237,237,237,0.2)] px-3.5 text-sm font-semibold">
+                      <Layers className="size-4" aria-hidden="true" />
+                      {categories.length} {isMl ? "വിഭാഗങ്ങൾ" : "categories"}
+                    </span>
+                  )}
+                </RevealItem>
+              </RevealGroup>
+            </div>
+          </div>
+
+          {/* Category filter, overlapping the hero like the course CTA card */}
+          {categories.length > 0 && (
+            <div className="relative z-20 mx-auto -mt-12 max-w-7xl px-4 sm:-mt-14 sm:px-6 lg:-mt-[70px] lg:px-8">
+              <Reveal y={24} delay={0.2}>
+                <nav
+                  aria-label={isMl ? "കോഴ്സ് വിഭാഗങ്ങൾ" : "Course categories"}
+                  className="rounded-[30px] bg-white p-3 shadow-[9px_8px_25px_rgba(0,0,0,0.06)] sm:p-4"
+                >
+                  {/* Scrolls sideways on small screens instead of wrapping. */}
+                  <ul className="flex gap-2 overflow-x-auto overscroll-x-contain [scrollbar-width:none] lg:flex-wrap lg:overflow-visible">
+                    <li>
+                      <Link
+                        href="/courses"
+                        scroll={false}
+                        aria-current={active ? undefined : "page"}
+                        className={`${chipBase} ${active ? chipIdle : chipActive}`}
+                      >
+                        {isMl ? "എല്ലാം" : "All"}
+                        <span className="text-xs opacity-70">
+                          {courses.length}
+                        </span>
+                      </Link>
+                    </li>
+                    {categories.map((cat) => {
+                      const isActive = active?.id === cat.id;
+                      return (
+                        <li key={cat.id}>
+                          <Link
+                            href={`/courses?category=${cat.slug}`}
+                            scroll={false}
+                            aria-current={isActive ? "page" : undefined}
+                            className={`${chipBase} ${isActive ? chipActive : chipIdle}`}
+                          >
+                            {pick(cat.nameEn, cat.nameMl)}
+                            <span className="text-xs opacity-70">
+                              {cat.count}
+                            </span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </Reveal>
+            </div>
+          )}
+        </section>
+
+        {/* Course grid */}
+        <section
+          id="course-grid"
+          className="mx-auto max-w-7xl scroll-mt-24 px-4 py-14 sm:px-6 sm:py-20 lg:px-8"
+        >
+          <Reveal className="mb-10 flex flex-col gap-1 sm:mb-14">
+            <p className="text-base font-semibold tracking-[-0.05em] text-[#B4B4B4] sm:text-xl">
+              {isMl ? "കാണിക്കുന്നത്" : "Showing"}{" "}
+              {pageCount > 1
+                ? `${start + 1}–${start + pageCourses.length} ${isMl ? "/" : "of"} ${visible.length}`
+                : visible.length}{" "}
+              {isMl ? "കോഴ്സുകൾ" : visible.length === 1 ? "course" : "courses"}
+            </p>
+            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#111827] sm:text-5xl">
+              {active
+                ? pick(active.nameEn, active.nameMl)
+                : isMl
+                  ? "എല്ലാ കോഴ്സുകളും"
+                  : "All Courses"}
+            </h2>
+          </Reveal>
+
+          {visible.length === 0 ? (
+            <Reveal className="rounded-[30px] bg-[#F5F7FB] px-6 py-16 text-center">
+              <p className="text-lg font-semibold text-[#111827]">
+                {isMl
+                  ? "ഇപ്പോൾ കോഴ്സുകളൊന്നും ലഭ്യമല്ല."
+                  : "No courses available here at the moment."}
+              </p>
+              <p className="mt-2 text-sm text-[#6B7280]">
+                {isMl
+                  ? "ഉടൻ വീണ്ടും പരിശോധിക്കുക."
+                  : "New batches are added regularly — check back soon."}
+              </p>
+              {active && (
+                <Link
+                  href="/courses"
+                  scroll={false}
+                  className="group mt-6 inline-flex items-center gap-2 rounded-full bg-[#0B1220] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-black"
+                >
+                  {isMl ? "എല്ലാ കോഴ്സുകളും കാണുക" : "View all courses"}
+                  <ArrowRight
+                    className="size-4 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+              )}
+            </Reveal>
+          ) : (
+            <>
+              {/* No scroll reveal here: a staggered fade across a full page of
+                cards kept the last ones hidden for seconds. */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {pageCourses.map((course) => (
+                  <div key={course.id} className="h-full">
+                    <CourseCard
+                      courseId={course.id}
+                      slug={course.slug}
+                      titleEn={course.titleEn}
+                      titleMl={course.titleMl}
+                      descriptionEn={course.descriptionEn}
+                      descriptionMl={course.descriptionMl}
+                      coverImageUrl={course.coverImageUrl}
+                      categoryNameEn={course.category?.nameEn}
+                      categoryNameMl={course.category?.nameMl}
+                      durationText={course.durationText}
+                      featured={course.featured}
+                      locale={locale}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {pageCount > 1 && (
+                <nav
+                  aria-label={isMl ? "പേജുകൾ" : "Pagination"}
+                  className="mt-12 flex items-center justify-between gap-4"
+                >
+                  {page > 1 ? (
+                    <Link href={pageHref(page - 1)} className={pagerLink}>
+                      <ArrowLeft
+                        className="size-4 transition-transform group-hover:-translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                      {isMl ? "മുമ്പത്തെ" : "Previous"}
+                    </Link>
+                  ) : (
+                    <span />
+                  )}
+                  <p className="text-sm font-semibold text-[#6B7280]">
+                    {isMl
+                      ? `പേജ് ${page} / ${pageCount}`
+                      : `Page ${page} of ${pageCount}`}
+                  </p>
+                  {page < pageCount ? (
+                    <Link href={pageHref(page + 1)} className={pagerLink}>
+                      {isMl ? "അടുത്തത്" : "Next"}
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  ) : (
+                    <span />
+                  )}
+                </nav>
+              )}
+            </>
+          )}
+        </section>
+      </MotionProvider>
+
+      <CourseCtaBanner />
     </main>
   );
 }

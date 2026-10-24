@@ -35,6 +35,21 @@
   --color-white:      oklch(0.996 0 0);
   --color-white-soft: oklch(0.97 0 0);
 
+  /* ── Figma Brand Tokens (GTEC Landing Design System) ── */
+  --color-figma-blue: #0B57D0;
+  --color-figma-dark: #121926;
+  --color-figma-deep: #0B1220;
+  --color-figma-wine: #810000;
+  --color-figma-accent-blue: #093C98;
+  --color-figma-btn-blue: #1753DA;
+  --color-figma-green: #2EB700;
+  --color-figma-green-dark: #067914;
+  --color-figma-lime: #6AFF00;
+  --color-figma-legacy-blue: #072D6D;
+  --color-figma-muted: #565555;
+  --color-figma-tag-bg: #F9F9F9;
+  --color-figma-card-bg: #F0F0F0;
+
   /* ── Spacing (4 px base) ── */
   --space-0:  0;
   --space-1:  0.25rem;
@@ -268,9 +283,23 @@
 @theme inline {
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-sora), var(--font-inter), sans-serif;
+  --font-sora: var(--font-sora);
   --font-mono: var(--font-jetbrains-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-sora), var(--font-sans);
+  --color-figma-blue: var(--color-figma-blue);
+  --color-figma-dark: var(--color-figma-dark);
+  --color-figma-deep: var(--color-figma-deep);
+  --color-figma-wine: var(--color-figma-wine);
+  --color-figma-accent-blue: var(--color-figma-accent-blue);
+  --color-figma-btn-blue: var(--color-figma-btn-blue);
+  --color-figma-green: var(--color-figma-green);
+  --color-figma-green-dark: var(--color-figma-green-dark);
+  --color-figma-lime: var(--color-figma-lime);
+  --color-figma-legacy-blue: var(--color-figma-legacy-blue);
+  --color-figma-muted: var(--color-figma-muted);
+  --color-figma-tag-bg: var(--color-figma-tag-bg);
+  --color-figma-card-bg: var(--color-figma-card-bg);
   --color-sidebar-ring: var(--color-sidebar-ring);
   --color-sidebar-border: var(--color-sidebar-border);
   --color-sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
@@ -369,4 +398,61 @@
   100% {
     transform: translateX(-50%);
   }
+}
+
+/* Endless image row: the track holds the images twice and slides left by
+   half its width, so the loop is seamless. Pauses on hover; with reduced
+   motion it stops, drops the copy, and becomes a row you can swipe. */
+.gallery-marquee {
+  animation: flash-marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+.gallery-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .gallery-marquee {
+    animation: none;
+  }
+
+  .gallery-marquee > [data-marquee-copy] {
+    display: none;
+  }
+}
+
+/* Spinner on the submit button an admin ActionForm is currently running. */
+[data-submitting]::before {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.4em;
+  vertical-align: -0.125em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: action-spin 0.6s linear infinite;
+}
+
+@keyframes action-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   Malayalam pages (/ml): keep Sora for Latin text and numbers, and render
+   every Malayalam character in Noto Sans Malayalam.
+   ============================================================ */
+html:lang(ml) body,
+html:lang(ml) .font-sora,
+html:lang(ml) .font-sans,
+html:lang(ml) .font-heading {
+  font-family:
+    var(--font-sora), var(--font-malayalam), var(--font-inter), sans-serif;
 }

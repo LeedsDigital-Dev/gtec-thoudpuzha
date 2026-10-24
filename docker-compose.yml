@@ -31,7 +31,7 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - HOSTNAME=0.0.0.0
-      - DATABASE_URL=postgresql://postgres:postgrespassword@db:5432/gtec_thodupuzha_dev?schema=public
+      - DATABASE_URL=postgresql://postgres:postgrespassword@db:5432/gtec_thodupuzha_dev
       - DB_HOST=db
       - DB_PORT=5432
       - DB_USER=postgres
@@ -47,9 +47,12 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
-
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./drizzle:/app/drizzle
+      - ./next.config.ts:/app/next.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./postcss.config.mjs:/app/postcss.config.mjs
+      - ./drizzle.config.ts:/app/drizzle.config.ts
 volumes:
   pgdata:

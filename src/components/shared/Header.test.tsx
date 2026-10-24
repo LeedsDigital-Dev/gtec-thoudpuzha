@@ -52,7 +52,7 @@ describe("Header", () => {
     );
     expect(screen.getAllByLabelText("Call Now")[0]).toHaveAttribute(
       "href",
-      `tel:${siteConfig.phoneNumber}`,
+      `tel:${siteConfig.phoneNumber.replace(/[^0-9+]/g, "")}`,
     );
     expect(screen.getAllByLabelText("Apply Now")[0]).toHaveAttribute(
       "href",
@@ -74,7 +74,8 @@ describe("Header", () => {
     fireEvent.click(screen.getByLabelText("Open menu"));
     const mobileNav = screen.getByLabelText("Mobile navigation");
     expect(mobileNav).toBeInTheDocument();
-    expect(within(mobileNav).getByText("Resources")).toBeInTheDocument();
+    expect(within(mobileNav).getByText("Gallery")).toBeInTheDocument();
+    expect(within(mobileNav).queryByText("Resources")).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByLabelText("Close menu"));
     expect(
@@ -87,8 +88,8 @@ describe("Header layout presence", () => {
   test("Header is present on a (public) page", () => {
     render(<Header />);
 
-    expect(screen.getByText("G-TEC")).toBeInTheDocument();
-    expect(screen.getByText(siteConfig.centreName)).toBeInTheDocument();
+    expect(screen.getByAltText("G-TEC Thodupuzha")).toBeInTheDocument();
+    expect(screen.getByLabelText("G-TEC Thodupuzha home")).toBeInTheDocument();
   });
 
   test("Header does not render inside a (portal) placeholder page", () => {
@@ -98,8 +99,7 @@ describe("Header layout presence", () => {
       </PortalLayout>,
     );
 
-    expect(screen.queryByText("G-TEC")).not.toBeInTheDocument();
-    expect(screen.queryByText(siteConfig.centreName)).not.toBeInTheDocument();
+    expect(screen.queryByAltText("G-TEC Thodupuzha")).not.toBeInTheDocument();
   });
 
   test("Header does not render inside an (admin) placeholder page", () => {
@@ -109,7 +109,6 @@ describe("Header layout presence", () => {
       </AdminLayout>,
     );
 
-    expect(screen.queryByText("G-TEC")).not.toBeInTheDocument();
-    expect(screen.queryByText(siteConfig.centreName)).not.toBeInTheDocument();
+    expect(screen.queryByAltText("G-TEC Thodupuzha")).not.toBeInTheDocument();
   });
 });

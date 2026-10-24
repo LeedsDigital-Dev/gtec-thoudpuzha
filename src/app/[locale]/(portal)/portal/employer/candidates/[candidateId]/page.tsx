@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
-import { prisma } from "@/lib/db";
+import { db } from "@/db";
 import { Role, getEffectiveRole } from "@/lib/auth";
 import { getSearchableCandidates } from "@/lib/biodata-search";
 
@@ -20,8 +20,8 @@ export default async function CandidateDetailPage({ params }: PageProps) {
   const role = await getEffectiveRole(session);
   if (role !== Role.EMPLOYER) redirect("/forbidden");
 
-  const profile = await prisma.employerProfile.findUnique({
-    where: { userId: session.userId },
+  const profile = await db.query.employerProfile.findFirst({
+    where: (e, { eq }) => eq(e.userId, session.userId!),
   });
   if (!profile || profile.status !== "APPROVED") {
     redirect("/portal/employer/register/status");
@@ -39,17 +39,17 @@ export default async function CandidateDetailPage({ params }: PageProps) {
 
   let courseNames: { id: string; titleEn: string }[] = [];
   if (candidate.courseCompletedIds.length > 0) {
-    courseNames = await prisma.course.findMany({
-      where: { id: { in: candidate.courseCompletedIds } },
-      select: { id: true, titleEn: true },
+    courseNames = await db.query.course.findMany({
+      where: (c, { inArray }) => inArray(c.id, candidate.courseCompletedIds),
+      columns: { id: true, titleEn: true },
     });
   }
 
   let skillLabels: { id: string; label: string }[] = [];
   if (candidate.skillIds.length > 0) {
-    skillLabels = await prisma.skill.findMany({
-      where: { id: { in: candidate.skillIds } },
-      select: { id: true, label: true },
+    skillLabels = await db.query.skill.findMany({
+      where: (s, { inArray }) => inArray(s.id, candidate.skillIds),
+      columns: { id: true, label: true },
     });
   }
 
@@ -71,7 +71,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
             {candidate.fullName ?? ct("unnamed")}
           </h1>
           {candidate.isVerifiedStudent && (
-            <span className="mt-1 inline-block rounded-full bg-primary/10 px-3 py-0.5 text-xs font-medium text-primary">
+            <span className="mt-1 inline-block rounded-full bg-primary/10 px-3 py-0.5 text-sm font-medium text-primary">
               {ct("verifiedStudent")}
             </span>
           )}
@@ -140,7 +140,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
                   {candidate.skillIds.map((id) => (
                     <span
                       key={id}
-                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
+                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-sm text-primary"
                     >
                       {skillMap.get(id) ?? id}
                     </span>
@@ -157,7 +157,7 @@ export default async function CandidateDetailPage({ params }: PageProps) {
                   {candidate.languagesKnown.map((lang) => (
                     <span
                       key={lang}
-                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
+                      className="rounded-full bg-primary/10 px-2.5 py-0.5 text-sm text-primary"
                     >
                       {lang}
                     </span>

@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import { db } from "@/db";
 
 export interface PublicFlashNewsItem {
   id: string;
@@ -9,24 +9,26 @@ export interface PublicFlashNewsItem {
 export async function getActiveFlashNews(
   locale: "en" | "ml",
 ): Promise<PublicFlashNewsItem[]> {
-  const now = new Date();
-  const items = await prisma.flashNewsItem.findMany({
-    where: {
-      active: true,
-      OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
-    },
-    orderBy: { sortOrder: "asc" },
-  });
+  try {
+    const now = new Date();
+    const items = await db.query.flashNewsItem.findMany({
+      where: (f, { and, eq, gt, isNull, or }) =>
+        and(eq(f.active, true), or(isNull(f.expiresAt), gt(f.expiresAt, now))),
+      orderBy: (f, { asc }) => asc(f.sortOrder),
+    });
 
-  return items.map((item) => ({
-    id: item.id,
-    text: locale === "ml" && item.textMl ? item.textMl : item.textEn,
-    link: item.link,
-  }));
+    return items.map((item) => ({
+      id: item.id,
+      text: locale === "ml" && item.textMl ? item.textMl : item.textEn,
+      link: item.link,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export async function getAllFlashNews() {
-  return prisma.flashNewsItem.findMany({
-    orderBy: { sortOrder: "asc" },
+  return db.query.flashNewsItem.findMany({
+    orderBy: (f, { asc }) => asc(f.sortOrder),
   });
 }

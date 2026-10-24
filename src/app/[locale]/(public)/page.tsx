@@ -1,21 +1,27 @@
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/shared/HeroSection";
-import { EnquiryForm } from "@/components/shared/EnquiryForm";
-import { AtAGlanceSection } from "@/components/shared/AtAGlanceSection";
-import { AboutSection } from "@/components/shared/AboutSection";
-import { WhyChooseUsSection } from "@/components/shared/WhyChooseUsSection";
-import { PlacementSupportSection } from "@/components/shared/PlacementSupportSection";
+import { HomeVideoSection } from "@/components/shared/HomeVideoSection";
+import { HOME_MAIN_VIDEO_URL, HOME_REEL_VIDEO_URLS } from "@/lib/home-videos";
+import { CourseCategoryStrip } from "@/components/shared/CourseCategoryStrip";
+// Hidden until real testimonials replace the demo data.
+// import { StudentStoriesSection } from "@/components/shared/StudentStoriesSection";
+import { FeaturedCoursesSection } from "@/components/shared/FeaturedCoursesSection";
 import { CertificationPartnerStrip } from "@/components/shared/CertificationPartnerStrip";
+import { LegacyStatsSection } from "@/components/shared/LegacyStatsSection";
+import { AboutSection } from "@/components/shared/AboutSection";
+import { PlacedStudentsSection } from "@/components/shared/PlacedStudentsSection";
+import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
+import { DirectorMessage } from "@/components/shared/DirectorMessage";
+import { MotionProvider, RevealNoScript } from "@/components/motion/Reveal";
 import type { Locale } from "@/lib/site-settings";
 import {
   getCachedSiteSettings,
   getCachedPublishedCourses,
   getCachedHomepageTeaser,
-  getCachedPlacementGalleryData,
+  getCachedPlacedStudentsPosters,
   getCachedCertificationPartners,
 } from "@/lib/data-cache";
-import { NewsTeaserSection } from "@/components/shared/NewsTeaserSection";
 
 const ContactSection = dynamic(
   () =>
@@ -35,88 +41,122 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeStr } = await params;
   const locale = localeStr as Locale;
 
-  const [settings, courses, teaser, placementData, certPartners] =
+  const [settings, courses, teaser, placedPosters, certPartners] =
     await Promise.all([
       getCachedSiteSettings(),
       getCachedPublishedCourses(),
       getCachedHomepageTeaser(),
-      getCachedPlacementGalleryData(),
+      getCachedPlacedStudentsPosters(),
       getCachedCertificationPartners(),
     ]);
 
-  const [heroT, aboutT, atAGlanceT, whyT, placementT, newsT, certT] =
+  const [heroT, videoT, aboutT, aboutPageT, placedT, newsT, certT] =
     await Promise.all([
       getTranslations({ locale, namespace: "hero" }),
+      getTranslations({ locale, namespace: "homeVideo" }),
       getTranslations({ locale, namespace: "about" }),
-      getTranslations({ locale, namespace: "atAGlance" }),
-      getTranslations({ locale, namespace: "whyChooseUs" }),
-      getTranslations({ locale, namespace: "placementSupport" }),
+      getTranslations({ locale, namespace: "aboutPage" }),
+      getTranslations({ locale, namespace: "placedStudents" }),
       getTranslations({ locale, namespace: "newsTeaser" }),
       getTranslations({ locale, namespace: "certPartners" }),
     ]);
 
   return (
-    <main>
-      <div className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,var(--color-primary)_/_4%,transparent_60%)]"
-          aria-hidden="true"
+    <main className="w-full overflow-x-hidden">
+      <RevealNoScript />
+      <MotionProvider>
+        {/* 1. Hero Section (Figma #1:67) */}
+        <HeroSection
+          t={{
+            badge: heroT("badge"),
+            headline: heroT("headline"),
+            subhead: heroT("subhead"),
+            applyNow: heroT("applyNow"),
+            whatsappUs: heroT("whatsappUs"),
+            callNow: heroT("callNow"),
+            yearsLabel: heroT("yearsLabel"),
+            ratingLabel: heroT("ratingLabel"),
+          }}
+          years={settings.yearsInOperation}
+          reviewsUrl={settings.googleReviewsUrl}
         />
-        <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
-          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
-            <HeroSection
-              t={{
-                badge: heroT("badge"),
-                headline: heroT("headline"),
-                subhead: heroT("subhead"),
-                applyNow: heroT("applyNow"),
-                whatsappUs: heroT("whatsappUs"),
-                callNow: heroT("callNow"),
-              }}
-            />
-            <section id="enquiry" className="lg:sticky lg:top-24">
-              <EnquiryForm source="homepage-hero" courses={courses} />
-            </section>
-          </div>
-        </section>
-      </div>
 
-      <AtAGlanceSection
-        heading={atAGlanceT("heading")}
-        settings={settings}
-      />
-      <NewsTeaserSection
-        teaser={teaser}
-        heading={newsT("heading")}
-        viewAll={newsT("viewAll")}
-        upcomingEventLabel={newsT("upcomingEvent")}
-        locale={locale}
-      />
-      <AboutSection
-        settings={settings}
-        locale={locale}
-        heading={aboutT("heading")}
-        photoPlaceholder={aboutT("photoPlaceholder")}
-      />
-      <WhyChooseUsSection
-        heading={whyT("heading")}
-        settings={settings}
-        locale={locale}
-      />
-      <CertificationPartnerStrip
-        heading={certT("heading")}
-        partners={certPartners}
-      />
-      <PlacementSupportSection
-        data={placementData}
-        heading={placementT("heading")}
-        viewFullGallery={placementT("viewFullGallery")}
-        ctaHeading={placementT("ctaHeading")}
-        ctaText={placementT("ctaText")}
-        viewVacancies={placementT("viewVacancies")}
-        hiringCta={placementT("hiringCta")}
-      />
-      <ContactSection settings={settings} courses={courses} />
+        {/* 1b. Intro video (hosted on ImageKit) */}
+        <HomeVideoSection
+          videoUrl={HOME_MAIN_VIDEO_URL}
+          reels={HOME_REEL_VIDEO_URLS}
+          t={{
+            badge: videoT("badge"),
+            heading: videoT("heading"),
+            subhead: videoT("subhead"),
+            fallback: videoT("fallback"),
+          }}
+        />
+
+        {/* 2. Course Category Banner (Figma #1:54) */}
+        <CourseCategoryStrip courses={courses} locale={locale} />
+
+        {/* 3. "Hear from our students" / "Why Choose Us" Showcase (Figma #1:146, #1:151) */}
+        {/* Hidden until real testimonials replace the demo data. */}
+        {/* <StudentStoriesSection /> */}
+
+        {/* 4. "Featured Courses" / "GTEC at glance" (Figma #1:150, #1:147, #1:175) */}
+        <FeaturedCoursesSection courses={courses} locale={locale} />
+
+        {/* 5. "Our Partners" Certification Strip (Figma #1:148, #1:221) */}
+        <CertificationPartnerStrip
+          heading={certT("heading") || "Our Partners"}
+          partners={certPartners}
+        />
+
+        {/* 6. Legacy & Statistics Showcase (Figma #1:137-#1:140, #1:223) */}
+        <LegacyStatsSection settings={settings} />
+
+        {/* 7. "About Us" Section with Dark Geometry (Figma #1:228) */}
+        <AboutSection
+          settings={settings}
+          locale={locale}
+          heading={aboutT("heading")}
+        />
+
+        {/* 7a. Director's message */}
+        <DirectorMessage
+          t={{
+            eyebrow: aboutPageT("directorEyebrow"),
+            quote: aboutPageT("directorQuote"),
+            name: aboutPageT("directorName"),
+            role: aboutPageT("directorRole"),
+          }}
+        />
+
+        {/* 7b. Placed students posters (gallery category "placed-students") */}
+        <PlacedStudentsSection
+          data={placedPosters}
+          locale={locale}
+          t={{
+            badge: placedT("badge"),
+            heading: placedT("heading"),
+            subhead: placedT("subhead"),
+            viewAll: placedT("viewAll"),
+          }}
+        />
+
+        {/* 9. News & Events Teaser */}
+        {teaser && (
+          <NewsTeaserSection
+            teaser={teaser}
+            heading={newsT("heading")}
+            viewAll={newsT("viewAll")}
+            upcomingEventLabel={newsT("upcomingEvent")}
+            locale={locale}
+          />
+        )}
+
+        {/* 10. Contact & Interactive Enquiry Section */}
+        <div id="enquiry">
+          <ContactSection settings={settings} courses={courses} />
+        </div>
+      </MotionProvider>
     </main>
   );
 }

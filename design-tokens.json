@@ -34,6 +34,21 @@
       "neutral": {
         "white":      { "$value": "oklch(0.996 0 0)", "$type": "color", "$description": "Pure near-white page background" },
         "white-soft": { "$value": "oklch(0.97 0 0)", "$type": "color", "$description": "Dark mode foreground / text" }
+      },
+      "figma": {
+        "blue":       { "$value": "#0B57D0", "$type": "color", "$description": "Hero brand royal blue" },
+        "dark":       { "$value": "#121926", "$type": "color", "$description": "Dark container and banner background" },
+        "deep":       { "$value": "#0B1220", "$type": "color", "$description": "Button and dark pill background" },
+        "wine":       { "$value": "#810000", "$type": "color", "$description": "Decorative brand arcs" },
+        "accentBlue": { "$value": "#093C98", "$type": "color", "$description": "Category badge blue" },
+        "btnBlue":    { "$value": "#1753DA", "$type": "color", "$description": "Circular arrow button badge" },
+        "green":      { "$value": "#2EB700", "$type": "color", "$description": "WhatsApp primary green" },
+        "greenDark":  { "$value": "#067914", "$type": "color", "$description": "WhatsApp badge dark green" },
+        "lime":       { "$value": "#6AFF00", "$type": "color", "$description": "Badge highlight lime" },
+        "legacyBlue": { "$value": "#072D6D", "$type": "color", "$description": "Stats and numbers blue" },
+        "muted":      { "$value": "#565555", "$type": "color", "$description": "Footer link muted color" },
+        "tagBg":      { "$value": "#F9F9F9", "$type": "color", "$description": "Navbar pill background" },
+        "cardBg":     { "$value": "#F0F0F0", "$type": "color", "$description": "Hear from students card background" }
       }
     },
     "spacing": {
@@ -52,7 +67,7 @@
       "24": { "$value": "6rem", "$type": "dimension" }
     },
     "fontSize": {
-      "xs":   { "$value": "0.75rem", "$type": "dimension" },
+      "xs":   { "$value": "0.875rem", "$type": "dimension" },
       "sm":   { "$value": "0.875rem", "$type": "dimension" },
       "base": { "$value": "1rem", "$type": "dimension" },
       "lg":   { "$value": "1.125rem", "$type": "dimension" },
@@ -239,7 +254,7 @@
       "radius":      { "$value": "{primitive.radius.full}", "$type": "dimension" },
       "padding-x":   { "$value": "{primitive.spacing.3}", "$type": "dimension" },
       "padding-y":   { "$value": "{primitive.spacing.1}", "$type": "dimension" },
-      "font-size":   { "$value": "{primitive.fontSize.xs}", "$type": "dimension" },
+      "font-size":   { "$value": "{primitive.fontSize.sm}", "$type": "dimension" },
       "font-weight": { "$value": "{primitive.fontWeight.semibold}", "$type": "number" }
     },
     "link": {

@@ -24,12 +24,20 @@
     "english": "English"
   },
   "hero": {
-    "badge": "2025-26 പ്രവേശനം ആരംഭിച്ചു",
-    "headline": "ജി-ടെക് തൊടുപുഴയിൽ നിങ്ങളുടെ കരിയർ കെട്ടിപ്പടുക്കുക",
+    "badge": "2026-27 പ്രവേശനം ആരംഭിച്ചു",
+    "headline": "ജി-ടെക് തൊടുപുഴയിലൂടെ നിങ്ങളുടെ കരിയർ കെട്ടിപ്പടുക്കൂ..",
     "subhead": "ഐടി, മൾട്ടിമീഡിയ, അക്കൗണ്ടിംഗ്, സ്പോക്കൺ ഇംഗ്ലീഷ് എന്നീ മേഖലകളിൽ ആവശ്യമായ വൈദഗ്ദ്ധ്യം നേടൂ. വിശ്വസനീയമായ ആഗോള ശൃംഖലയിൽ ചേരൂ, ശോഭനമായ ഭാവിയിലേക്ക് അടുത്ത ചുവടുവെപ്പ് നടത്തൂ.",
     "applyNow": "ഇപ്പോൾ അപേക്ഷിക്കുക",
     "whatsappUs": "വാട്ട്സ്ആപ്പ്",
-    "callNow": "ഇപ്പോൾ വിളിക്കുക"
+    "callNow": "ഇപ്പോൾ വിളിക്കുക",
+    "yearsLabel": "വർഷത്തെ കരിയർ ശാക്തീകരണം",
+    "ratingLabel": "ഗൂഗിൾ റേറ്റിംഗ്"
+  },
+  "homeVideo": {
+    "badge": "വീഡിയോ കാണൂ",
+    "heading": "ജി-ടെക് തൊടുപുഴയെ അടുത്തറിയൂ",
+    "subhead": "ഞങ്ങളുടെ ക്ലാസ് മുറികൾ, ലാബുകൾ, വിദ്യാർത്ഥി ജീവിതം എന്നിവ കാണൂ, ഒപ്പം യഥാർത്ഥ കരിയർ കെട്ടിപ്പടുക്കാൻ ഞങ്ങൾ എങ്ങനെ സഹായിക്കുന്നുവെന്ന് അറിയൂ.",
+    "fallback": "നിങ്ങളുടെ ബ്രൗസർ ഈ വീഡിയോ പിന്തുണയ്ക്കുന്നില്ല."
   },
   "about": {
     "heading": "ജി-ടെക് തൊടുപുഴയെക്കുറിച്ച്",
@@ -37,6 +45,10 @@
     "aboutUs": "ഞങ്ങളെക്കുറിച്ച്"
   },
   "aboutPage": {
+    "directorEyebrow": "ഡയറക്ടറുടെ സന്ദേശം",
+    "directorQuote": "At G-TEC Thodupuzha, our success is measured by the satisfaction of our students. We strive to ensure that every student who walks through our doors leaves with quality training, valuable skills, greater confidence, and a positive learning experience.",
+    "directorName": "Noby K Sudharsan",
+    "directorRole": "ഡയറക്ടർ, ജി-ടെക് തൊടുപുഴ",
     "badge": "25+ വർഷത്തെ മികവ്",
     "title": "ജി-ടെക് തൊടുപുഴയെക്കുറിച്ച്",
     "subtitle": "ലോകോത്തര കമ്പ്യൂട്ടർ വിദ്യാഭ്യാസം, മൾട്ടിമീഡിയ, അക്കൗണ്ടിംഗ്, സോഫ്റ്റ് സ്കിൽ പരിശീലനം എന്നിവയിലൂടെ കരിയർ കെട്ടിപ്പടുക്കുന്നു.",
@@ -62,6 +74,12 @@
     "heading": "വാർത്തകളും വരാനിരിക്കുന്ന പരിപാടികളും",
     "viewAll": "എല്ലാ വാർത്തകളും കാണുക →",
     "upcomingEvent": "വരാനിരിക്കുന്ന പരിപാടി"
+  },
+  "placedStudents": {
+    "badge": "വിജയകഥകൾ",
+    "heading": "ഞങ്ങളുടെ പ്ലേസ്‌മെന്റ് നേടിയ വിദ്യാർത്ഥികൾ",
+    "subhead": "മുൻനിര കമ്പനികളിൽ കരിയർ കെട്ടിപ്പടുക്കുന്ന ജി-ടെക് വിദ്യാർത്ഥികളെ പരിചയപ്പെടൂ.",
+    "viewAll": "എല്ലാം കാണുക"
   },
   "placementSupport": {
     "heading": "പ്ലേസ്‌മെന്റും പിന്തുണയും",
@@ -90,7 +108,7 @@
     "phoneDesc": "ഞങ്ങളുടെ അക്കാദമിക് കൗൺസിലറുമായി നേരിട്ട് സംസാരിക്കുക",
     "addressTitle": "സെന്റർ വിലാസം",
     "hoursTitle": "പ്രവർത്തന സമയങ്ങൾ",
-    "hoursText": "തിങ്കൾ – ശനി: രാവിലെ 8:30 – വൈകുന്നേരം 6:00",
+    "hoursText": "തിങ്കൾ – ‍ഞായർ: രാവിലെ 8:30 – വൈകുന്നേരം 6:00",
     "enquiryTitle": "ഞങ്ങൾക്ക് സന്ദേശം അയക്കുക",
     "enquirySubtitle": "താഴെയുള്ള ഫോം പൂരിപ്പിക്കുക, ഞങ്ങളുടെ ടീം ഉടൻ നിങ്ങളുമായി ബന്ധപ്പെടും.",
     "locationTitle": "ഗൂഗിൾ മാപ്പിൽ ഞങ്ങളെ കണ്ടെത്തുക"
@@ -307,7 +325,8 @@
     "filterLocation": "സ്ഥലം",
     "locationPlaceholder": "നഗരം അല്ലെങ്കിൽ പ്രദേശം...",
     "applyFilters": "ഫിൽറ്ററുകൾ പ്രയോഗിക്കുക",
-    "clear": "മായ്ക്കുക"
+    "clear": "മായ്ക്കുക",
+    "viewDetails": "View details"
   },
   "jobDetail": {
     "salary": "ശമ്പളം",
@@ -320,7 +339,9 @@
     "applying": "അപേക്ഷിക്കുന്നു...",
     "completeProfileToApply": "അപേക്ഷിക്കാൻ നിങ്ങളുടെ പ്രൊഫൈൽ പൂർത്തിയാക്കുക",
     "applied": "അപേക്ഷിച്ചു ✓",
-    "salaryDisclosed": "അഭിമുഖത്തിൽ വെളിപ്പെടുത്തും"
+    "salaryDisclosed": "അഭിമുഖത്തിൽ വെളിപ്പെടുത്തും",
+    "closedBanner": "This job is no longer accepting applications.",
+    "yourStatus": "Your application status"
   },
   "industry": {
     "IT_SOFTWARE": "ഐടി & സോഫ്റ്റ്‌വെയർ",
@@ -375,7 +396,10 @@
     "location": "സ്ഥലം",
     "unknown": "അജ്ഞാതം",
     "applicantCount": "{count} അപേക്ഷകൻ",
-    "applicantCount_plural": "{count} അപേക്ഷകർ"
+    "applicantCount_plural": "{count} അപേക്ഷകർ",
+    "viewProfile": "View profile",
+    "hideProfile": "Hide profile",
+    "careerObjective": "Career objective"
   },
   "candidateSearch": {
     "heading": "ഉദ്യോഗാർത്ഥി തിരയൽ",
@@ -480,7 +504,19 @@
     "verifyCertificate": "സർട്ടിഫിക്കറ്റ് പരിശോധിക്കുക",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "allRightsReserved": "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം."
+    "allRightsReserved": "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
+    "location": "ലൊക്കേഷൻ",
+    "findOurCampus": "ഞങ്ങളുടെ ക്യാമ്പസ് കണ്ടെത്തുക",
+    "instagram": "ഇൻസ്റ്റാഗ്രാം",
+    "facebook": "ഫേസ്ബുക്ക്",
+    "whatsapp": "വാട്ട്സ്ആപ്പ്",
+    "googleReviews": "ഗൂഗിൾ റിവ്യൂകൾ",
+    "openGoogleMaps": "ഗൂഗിൾ മാപ്സിൽ കാണുക",
+    "chatOnWhatsapp": "വാട്ട്സ്ആപ്പിൽ ബന്ധപ്പെടുക",
+    "readReviews": "റിവ്യൂകൾ വായിക്കുക",
+    "topRated": "4.9 ★ റേറ്റിംഗ്",
+    "followUs": "ഫോളോ ചെയ്യുക",
+    "officialPage": "ഔദ്യോഗിക പേജ്"
   },
   "portalDashboard": {
     "heading": "സ്വാഗതം, {role}",
@@ -527,38 +563,38 @@
   "privacy": {
     "heading": "Privacy Policy",
     "lastUpdated": "Last updated: {date}",
-    "introduction": "G-TEC Education Thodupuzha (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+    "introduction": "G-TEC EDUCATION Thodupuzha (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
     "infoWeCollect": "Information We Collect",
     "infoWeCollectContent": "We may collect personal identification information (name, email address, phone number, educational qualifications, employment history), demographic information, and usage data when you fill out enquiry forms, register as a student, create a candidate profile, or register as an employer.",
     "howWeUse": "How We Use Your Information",
     "howWeUseContent": "We use the collected information to provide and maintain our services, process enquiries and registrations, match candidates with employers, communicate with you about your account, and improve our website and services.",
-    "dataSharing": "Data Sharing &amp; Disclosure",
+    "dataSharing": "Data Sharing & Disclosure",
     "dataSharingContent": "We may share your information with registered employers (for job seekers and students who have enabled profile visibility), with service providers who assist us in operating our website and services, and as required by law. We do not sell your personal information to third parties.",
-    "dataRetention": "Data Retention &amp; Deletion",
+    "dataRetention": "Data Retention & Deletion",
     "dataRetentionContent": "We retain your personal information for as long as your account is active or as needed to provide you services. You may request deletion of your account and associated data by contacting us. We will respond to your request within 30 days.",
     "yourRights": "Your Rights",
     "yourRightsContent": "You have the right to access, update, or delete your personal information. You can update your profile information through your account settings. To request account deletion, please contact the centre.",
     "contact": "Contact Us",
-    "contactContent": "If you have questions about this Privacy Policy, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
+    "contactContent": "If you have questions about this Privacy Policy, please contact G-TEC EDUCATION Thodupuzha at the centre address listed on our website or via the contact form."
   },
   "terms": {
     "heading": "Terms of Service",
     "lastUpdated": "Last updated: {date}",
-    "introduction": "Welcome to G-TEC Education Thodupuzha. By accessing or using our website and services, you agree to be bound by these Terms of Service.",
+    "introduction": "Welcome to G-TEC EDUCATION Thodupuzha. By accessing or using our website and services, you agree to be bound by these Terms of Service.",
     "services": "Services Description",
-    "servicesContent": "G-TEC Education Thodupuzha provides education and training services (courses, certifications, placement support), a student portal with academic resources, and a job portal connecting candidates with employers.",
-    "userAccounts": "User Accounts &amp; Responsibilities",
+    "servicesContent": "G-TEC EDUCATION Thodupuzha provides education and training services (courses, certifications, placement support), a student portal with academic resources, and a job portal connecting candidates with employers.",
+    "userAccounts": "User Accounts & Responsibilities",
     "userAccountsContent": "You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You agree to provide accurate and complete information when creating an account or using our services.",
-    "candidateBiodata": "Candidate Biodata &amp; Profile Visibility",
+    "candidateBiodata": "Candidate Biodata & Profile Visibility",
     "candidateBiodataContent": "By creating a candidate profile, you consent to your profile being visible to registered employers as described in our Privacy Policy. You can control your profile visibility through your account settings at any time.",
     "employerObligations": "Employer Obligations",
     "employerObligationsContent": "Employers agree to use candidate information solely for legitimate hiring purposes, maintain confidentiality of candidate data, and not use the platform for any unlawful or discriminatory practices.",
     "prohibitedUses": "Prohibited Uses",
     "prohibitedUsesContent": "You agree not to use the website or services for any unlawful purpose, to impersonate any person or entity, to interfere with or disrupt the website, or to collect user information without consent.",
     "limitationOfLiability": "Limitation of Liability",
-    "limitationOfLiabilityContent": "G-TEC Education Thodupuzha shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the website or services.",
+    "limitationOfLiabilityContent": "G-TEC EDUCATION Thodupuzha shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the website or services.",
     "contact": "Contact Us",
-    "contactContent": "For questions about these Terms, please contact G-TEC Education Thodupuzha at the centre address listed on our website or via the contact form."
+    "contactContent": "For questions about these Terms, please contact G-TEC EDUCATION Thodupuzha at the centre address listed on our website or via the contact form."
   },
   "common": {
     "loading": "ലോഡ് ചെയ്യുന്നു...",
@@ -588,11 +624,27 @@
     "benefitsHeading": "കോഴ്‌സിന്റെ പ്രയോജനങ്ങൾ",
     "noCoursesAvailable": "ഇപ്പോൾ കോഴ്‌സുകളൊന്നും ലഭ്യമല്ല. പിന്നീട് വീണ്ടും പരിശോധിക്കുക.",
     "exploreMoreCourses": "കൂടുതൽ കോഴ്‌സുകൾ പര്യവേക്ഷണം ചെയ്യുക",
-  "noContentPreview": "ഇതുവരെ ഉള്ളടക്കം ക്രമീകരിച്ചിട്ടില്ല. ഈ പേജ് നിർമ്മിക്കാൻ മുകളിലുള്ള ടാബുകൾ പൂരിപ്പിക്കുക.",
+    "noContentPreview": "ഇതുവരെ ഉള്ളടക്കം ക്രമീകരിച്ചിട്ടില്ല. ഈ പേജ് നിർമ്മിക്കാൻ മുകളിലുള്ള ടാബുകൾ പൂരിപ്പിക്കുക."
+  },
   "errors": {
     "title": "എന്തോ തകരാറുണ്ടായി",
     "description": "അപ്രതീക്ഷിതമായ ഒരു തകരാർ സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക.",
     "tryAgain": "വീണ്ടും ശ്രമിക്കുക"
+  },
+  "applicationStatus": {
+    "APPLIED": "Applied",
+    "VIEWED": "Viewed",
+    "SHORTLISTED": "Shortlisted",
+    "REJECTED": "Rejected",
+    "HIRED": "Hired"
+  },
+  "applicationErrors": {
+    "UNAUTHENTICATED": "Please sign in again to continue.",
+    "FORBIDDEN": "You are not allowed to do this.",
+    "NOT_FOUND": "This application or job could not be found.",
+    "PROFILE_INCOMPLETE": "Complete your profile to apply",
+    "JOB_CLOSED": "This job is no longer accepting applications.",
+    "ALREADY_APPLIED": "You have already applied to this job.",
+    "INVALID_TRANSITION": "This status change is not allowed. Refresh to see the latest status."
   }
-}
 }

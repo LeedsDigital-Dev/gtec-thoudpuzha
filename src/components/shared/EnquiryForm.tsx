@@ -2,18 +2,27 @@
 
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { ArrowUpRight, ChevronDown, CircleCheck, Loader2 } from "lucide-react";
 import { submitEnquiry, type EnquiryPayload } from "@/lib/enquiry";
-import { CourseSelect } from "./CourseSelect";
-import type { PublicCourse } from "@/lib/courses";
+import { CourseSelect, type CourseOption } from "./CourseSelect";
 export type { EnquiryPayload };
 
 type EnquiryFormProps = {
   source: string;
-  courses: PublicCourse[];
+  courses: CourseOption[];
   onSubmit?: (payload: EnquiryPayload) => void | Promise<void>;
+  /** Course id to preselect (e.g. on a course page). */
+  defaultCourseId?: string;
+  /** "card" = standalone white card; "bare" = no chrome, for use inside a modal/panel. */
+  variant?: "card" | "bare";
+  /** Hide the built-in heading when the container already provides one. */
+  hideHeading?: boolean;
+  /** Override the built-in heading text. */
+  customTitle?: string;
+  /** Override the built-in heading description. */
+  customSubtitle?: string;
+  /** Called after a successful submission. */
+  onSuccess?: () => void;
 };
 
 type FormErrors = {
@@ -30,22 +39,43 @@ function sanitizePhone(value: string) {
   return value.replace(/\D/g, "").slice(0, 10);
 }
 
-export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
+const labelClass = "text-sm font-semibold text-[#344054]";
+const fieldClass =
+  "w-full rounded-2xl border border-[#EAECF0] bg-[#F9FAFB] px-4 text-sm text-[#111827] outline-none transition placeholder:text-[#98A2B3] focus:border-[#1753DA] focus:bg-white focus:ring-4 focus:ring-[#1753DA]/15 aria-[invalid=true]:border-red-400 aria-[invalid=true]:bg-red-50/40";
+const errorClass = "text-xs font-medium text-red-600";
+
+export function EnquiryForm({
+  source,
+  courses,
+  onSubmit,
+  defaultCourseId,
+  variant = "card",
+  hideHeading = false,
+  onSuccess,
+  customTitle,
+  customSubtitle,
+}: EnquiryFormProps) {
   const t = useTranslations("enquiry");
+  const initialCourse =
+    defaultCourseId && courses.some((c) => c.id === defaultCourseId)
+      ? defaultCourseId
+      : "";
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [course, setCourse] = useState("");
+  const [course, setCourse] = useState(initialCourse);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
 
   const resetForm = useCallback(() => {
     setFullName("");
     setPhone("");
-    setCourse("");
+    setCourse(initialCourse);
     setMessage("");
     setErrors({});
-  }, []);
+  }, [initialCourse]);
 
   const validate = useCallback((): boolean => {
     const nextErrors: FormErrors = {};
@@ -94,104 +124,175 @@ export function EnquiryForm({ source, courses, onSubmit }: EnquiryFormProps) {
         }
         setStatus("success");
         resetForm();
+        onSuccess?.();
       } catch {
         setStatus("error");
       }
     },
-    [source, fullName, phone, course, message, validate, onSubmit, resetForm],
+    [
+      source,
+      fullName,
+      phone,
+      course,
+      message,
+      validate,
+      onSubmit,
+      resetForm,
+      onSuccess,
+    ],
   );
+
+  const fieldId = (name: string) => `enquiry-${name}-${source}`;
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-2xl border bg-card p-6 shadow-md"
+      className={
+        variant === "card"
+          ? "flex flex-col gap-5 rounded-[28px] border border-[#EAECF0] bg-white p-6 shadow-[0_24px_60px_-24px_rgba(11,18,32,0.25)] sm:p-8"
+          : "flex flex-col gap-5"
+      }
       aria-label={`Enquiry form${source ? ` — ${source}` : ""}`}
       noValidate
     >
-      <div>
-        <h2 className="text-xl font-semibold">{t("heading")}</h2>
-        <p className="text-sm text-muted-foreground">
-          {t("description")}
-        </p>
-      </div>
-
-      <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-fullName-${source}`}>{t("fullName")}</Label>
-        <Input
-          id={`enquiry-fullName-${source}`}
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          aria-invalid={errors.fullName ? "true" : "false"}
-          aria-describedby={errors.fullName ? `enquiry-fullName-${source}-error` : undefined}
-          placeholder={t("fullNamePlaceholder")}
-          required
-        />
-        {errors.fullName && (
-          <p id={`enquiry-fullName-${source}-error`} className="text-sm text-destructive">
-            {errors.fullName}
+      {!hideHeading && (
+        <div>
+          <h2 className="text-2xl font-semibold tracking-[-0.04em] text-[#111827]">
+            {customTitle ?? t("heading")}
+          </h2>
+          <p className="mt-1 text-sm text-[#667085]">
+            {customSubtitle ?? t("description")}
           </p>
-        )}
+        </div>
+      )}
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor={fieldId("fullName")} className={labelClass}>
+            {t("fullName")}
+          </label>
+          <input
+            id={fieldId("fullName")}
+            type="text"
+            autoComplete="name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            aria-invalid={errors.fullName ? "true" : "false"}
+            aria-describedby={
+              errors.fullName ? `${fieldId("fullName")}-error` : undefined
+            }
+            placeholder={t("fullNamePlaceholder")}
+            className={`${fieldClass} h-12`}
+            required
+          />
+          {errors.fullName && (
+            <p id={`${fieldId("fullName")}-error`} className={errorClass}>
+              {errors.fullName}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor={fieldId("phone")} className={labelClass}>
+            {t("phoneNumber")}
+          </label>
+          <div className="relative">
+            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-[#667085]">
+              +91
+            </span>
+            <input
+              id={fieldId("phone")}
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel-national"
+              value={phone}
+              onChange={(e) => setPhone(sanitizePhone(e.target.value))}
+              aria-invalid={errors.phone ? "true" : "false"}
+              aria-describedby={
+                errors.phone ? `${fieldId("phone")}-error` : undefined
+              }
+              placeholder={t("phonePlaceholder")}
+              className={`${fieldClass} h-12 pl-12`}
+              required
+            />
+          </div>
+          {errors.phone && (
+            <p id={`${fieldId("phone")}-error`} className={errorClass}>
+              {errors.phone}
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-phone-${source}`}>{t("phoneNumber")}</Label>
-        <Input
-          id={`enquiry-phone-${source}`}
-          type="tel"
-          inputMode="tel"
-          value={phone}
-          onChange={(e) => setPhone(sanitizePhone(e.target.value))}
-          aria-invalid={errors.phone ? "true" : "false"}
-          aria-describedby={errors.phone ? `enquiry-phone-${source}-error` : undefined}
-          placeholder={t("phonePlaceholder")}
-          required
-        />
-        {errors.phone && (
-          <p id={`enquiry-phone-${source}-error`} className="text-sm text-destructive">
-            {errors.phone}
-          </p>
-        )}
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor={fieldId("course")} className={labelClass}>
+          {t("courseInterested")}
+        </label>
+        <div className="relative">
+          <CourseSelect
+            courses={courses}
+            mode="single"
+            value={course}
+            onChange={(v: string | string[]) => {
+              if (typeof v === "string") setCourse(v);
+            }}
+            id={fieldId("course")}
+            error={errors.course}
+            selectClassName={`${fieldClass} h-12 appearance-none pr-11`}
+          />
+          <ChevronDown
+            className="pointer-events-none absolute right-4 top-6 size-4 -translate-y-1/2 text-[#667085]"
+            aria-hidden="true"
+          />
+        </div>
       </div>
 
-      <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-course-${source}`}>{t("courseInterested")}</Label>
-        <CourseSelect
-          courses={courses}
-          mode="single"
-          value={course}
-          onChange={(v: string | string[]) => { if (typeof v === "string") setCourse(v); }}
-          id={`enquiry-course-${source}`}
-          error={errors.course}
-        />
-      </div>
-
-      <div className="space-y-1.5">
-        <Label htmlFor={`enquiry-message-${source}`}>{t("messageQuery")}</Label>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor={fieldId("message")} className={labelClass}>
+          {t("messageQuery")}
+        </label>
         <textarea
-          id={`enquiry-message-${source}`}
+          id={fieldId("message")}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder={t("messagePlaceholder")}
-          className="w-full resize-none rounded-lg border border-input bg-transparent px-2.5 py-1.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className={`${fieldClass} resize-none py-3`}
         />
       </div>
 
       {status === "success" && (
-        <div className="rounded-lg bg-primary/10 p-3 text-sm text-primary dark:bg-primary/20 dark:text-primary-foreground">
+        <div
+          role="status"
+          className="flex items-start gap-2.5 rounded-2xl bg-[#ECFDF3] p-4 text-sm font-medium text-[#067647]"
+        >
+          <CircleCheck className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           {t("success")}
         </div>
       )}
       {status === "error" && (
-        <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+        <div
+          role="alert"
+          className="rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700"
+        >
           {t("error")}
         </div>
       )}
 
-      <Button type="submit" disabled={status === "submitting"} className="w-full">
-        {status === "submitting" ? t("submitting") : t("submit")}
-      </Button>
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="group flex w-full items-center justify-between gap-4 rounded-full bg-[#0B1220] py-2 pl-6 pr-2 text-sm font-semibold text-white shadow-lg transition-all hover:bg-black active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 sm:text-base"
+      >
+        <span>{status === "submitting" ? t("submitting") : t("submit")}</span>
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#1753DA] transition-transform group-hover:scale-105">
+          {status === "submitting" ? (
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+          ) : (
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+          )}
+        </span>
+      </button>
     </form>
   );
 }

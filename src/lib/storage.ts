@@ -1,4 +1,6 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 let s3Client: S3Client | null = null;
 
@@ -21,19 +23,25 @@ export async function uploadFile(
   folder: string,
 ): Promise<string> {
   const bucket = process.env.R2_BUCKET_NAME;
-  if (!bucket) throw new Error("R2_BUCKET_NAME is not set");
-
+  const accessKey = process.env.R2_ACCESS_KEY_ID;
   const buffer = Buffer.from(await file.arrayBuffer());
   const key = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
 
-  await getS3Client().send(
-    new PutObjectCommand({
-      Bucket: bucket,
-      Key: key,
-      Body: buffer,
-      ContentType: file.type,
-    }),
-  );
+  if (bucket && accessKey) {
+    await getS3Client().send(
+      new PutObjectCommand({
+        Bucket: bucket,
+        Key: key,
+        Body: buffer,
+        ContentType: file.type,
+      }),
+    );
+  } else {
+    // Local development fallback: store in public/uploads/${key}
+    const localPath = path.join(process.cwd(), "public", "uploads", key);
+    await fs.mkdir(path.dirname(localPath), { recursive: true });
+    await fs.writeFile(localPath, buffer);
+  }
 
   return key;
 }

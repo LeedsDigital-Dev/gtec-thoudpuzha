@@ -36,6 +36,7 @@ const CATALOG: Record<string, string> = {
   constraints: `select conrelid::regclass::text as tbl, conname, pg_get_constraintdef(oid) as def
                 from pg_constraint
                 where connamespace = 'public'::regnamespace
+                  and contype <> 'n'
                   and conrelid::regclass::text not in (${NOT_PRISMA}, '"_prisma_migrations"')
                 order by 1, 2`,
 };
